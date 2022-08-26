@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.1. Working with Files &mdash; Computer Science with Applications  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/csapps.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="4.2. NumPy" href="../numpy/index.html" />
+    <link rel="prev" title="4. Working with Data" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Computer Science with Applications
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../preface.html">Preface</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_structures/index.html">2. Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../functions/index.html">3. Functional Programming and Recursion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. Working with Data</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.1. Working with Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-file-i-o">4.1.1. Basic file I/O</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-data-to-a-file">4.1.2. Writing data to a file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#csv">4.1.3. CSV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#json">4.1.4. JSON</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#yaml">4.1.5. YAML</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../numpy/index.html">4.2. NumPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/index.html">4.3. The pandas library</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Computer Science with Applications</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">4. </span>Working with Data</a> &raquo;</li>
+      <li><span class="section-number">4.1. </span>Working with Files</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/working_with_data/files/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="working-with-files">
+<h1><span class="section-number">4.1. </span>Working with Files<a class="headerlink" href="#working-with-files" title="Permalink to this heading"></a></h1>
+<p>A very common programming pattern proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p>Read the contents of one or more files from disk and load the data into one or more data structures.</p></li>
+<li><p>Manipulate the data in some way.</p></li>
+<li><p>(Optional) Write the resulting data back to disk.</p></li>
+</ol>
+<p>Programmers often connect multiple programs written using this pattern
+into data-processing pipelines.</p>
+<p>In this chapter, we’ll discuss how to work with several different file
+formats.  We’ll start with the most basic mechanisms and work our way
+up to higher-level tools and more complex formats.</p>
+<div class="section" id="basic-file-i-o">
+<h2><span class="section-number">4.1.1. </span>Basic file I/O<a class="headerlink" href="#basic-file-i-o" title="Permalink to this heading"></a></h2>
+<p>Reading file input and writing file output is often referred to as
+I/O, or input/output.  We’ll start our discussion of basic file I/O
+with a simple example: load the contents of the text file
+<code class="docutils literal notranslate"><span class="pre">instructor-email.txt</span></code> into a sorted list.  Here are the contents of
+the file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">amr</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span>
+<span class="n">borja</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span>
+<span class="n">yanjingl</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span>
+<span class="n">mwachs</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span>
+<span class="n">dupont</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span>
+</pre></div>
+</div>
+<p>and here’s the desired result:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s2">&quot;amr@cs.uchicago.edu&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;borja@cs.uchicago.edu&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;dupont@cs.uchicago.edu&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;mwachs@cs.uchicago.edu&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;yanjingl@cs.uchicago.edu&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To access the contents of a file, we first need to open it using the
+built-in function <code class="docutils literal notranslate"><span class="pre">open</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;instructor-email.txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">open</span></code> function returns a data structure, known as a <em>file
+pointer</em>, that we can use to work with the contents of the file.  It is
+common to use the word <em>file</em> to refer to both a file on disk and a file
+pointer.</p>
+<p>Once we have a file pointer, we can perform a number of
+operations on it.  In a sense, text files are simply very long strings
+that are stored on disk.  So, for example, we can read the entire
+contents of the file into a string in a single operation using the
+<code class="docutils literal notranslate"><span class="pre">read</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
+<span class="go">&#39;amr@cs.uchicago.edu\nborja@cs.uchicago.edu\nyanjingl@cs.uchicago.edu\nmwachs@cs.uchicago.edu\ndupont@cs.uchicago.edu\n&#39;</span>
+</pre></div>
+</div>
+<p>The characters <code class="docutils literal notranslate"><span class="pre">\n</span></code> are what is known as an <em>escape sequence</em>, which
+in this case encodes the newline character. Notice that if we print
+the value of <code class="docutils literal notranslate"><span class="pre">email_address</span></code>, all of the occurrences of the <code class="docutils literal notranslate"><span class="pre">\n</span></code>
+escape sequence are converted into newlines as expected:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="go">amr@cs.uchicago.edu</span>
+<span class="go">borja@cs.uchicago.edu</span>
+<span class="go">yanjingl@cs.uchicago.edu</span>
+<span class="go">mwachs@cs.uchicago.edu</span>
+<span class="go">dupont@cs.uchicago.edu</span>
+
+</pre></div>
+</div>
+<p>We can convert the string into a list of email addresses using the
+string <code class="docutils literal notranslate"><span class="pre">split</span></code> method, which, by default, breaks the string into
+tokens using white space (that is, spaces, tabs, newlines, etc.) as a
+the delimiter.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="go">[&#39;amr@cs.uchicago.edu&#39;, &#39;borja@cs.uchicago.edu&#39;, &#39;yanjingl@cs.uchicago.edu&#39;, &#39;mwachs@cs.uchicago.edu&#39;, &#39;dupont@cs.uchicago.edu&#39;]</span>
+</pre></div>
+</div>
+<p>Finally, we can call the built-in function <code class="docutils literal notranslate"><span class="pre">sorted</span></code> to to get the
+desired result: a sorted list of email addresses:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">email_addresses</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>When reading from a file, the operating system keeps track of the most recent
+position it has read. In this case, the file pointer has already
+reached the end-of-file (or EOF). So, if we call <code class="docutils literal notranslate"><span class="pre">read</span></code> again, we
+don’t get the contents of the file, we get an empty string instead:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span>
+<span class="go">&#39;&#39;</span>
+</pre></div>
+</div>
+<p>Once we’re done working with a file, we need to close the file pointer:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Following the close, you can no longer use that file pointer to access
+the file. (You’d have to reopen the file to use it again.) It is
+important to close files to free the associated resources and, as
+we’ll see later on when writing to files, to ensure that all of your
+updates to the file are written to disk.</p>
+<p>It is easy to forget to close a file, so it is common to use a
+<code class="docutils literal notranslate"><span class="pre">with</span></code> statement, which guarantees that the file will be closed no
+matter what happens in the body of the statement.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;instructor-email.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">s</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="n">email_addresses</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">email_addresses</span><span class="p">)</span>
+<span class="go">[&#39;amr@cs.uchicago.edu&#39;, &#39;borja@cs.uchicago.edu&#39;, &#39;dupont@cs.uchicago.edu&#39;, &#39;mwachs@cs.uchicago.edu&#39;, &#39;yanjingl@cs.uchicago.edu&#39;]</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">with</span></code> statement introduces a new name, in this case, <code class="docutils literal notranslate"><span class="pre">f</span></code>,
+that refers to the file pointer returned by the call to <code class="docutils literal notranslate"><span class="pre">open</span></code>.  At
+the end of the <code class="docutils literal notranslate"><span class="pre">with</span></code> block, file <code class="docutils literal notranslate"><span class="pre">f</span></code> is closed automatically.</p>
+<p>Instead of reading the file in one chunk, we can also read it line by
+line.  One approach is to use a for loop that iterates over a text
+file line by line.  For example, here’s some code that reads and
+prints each line in the <code class="docutils literal notranslate"><span class="pre">instructor-email.txt</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;instructor-email.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">amr@cs.uchicago.edu</span>
+
+<span class="go">borja@cs.uchicago.edu</span>
+
+<span class="go">yanjingl@cs.uchicago.edu</span>
+
+<span class="go">mwachs@cs.uchicago.edu</span>
+
+<span class="go">dupont@cs.uchicago.edu</span>
+
+</pre></div>
+</div>
+<p>This result may look a bit funny to you.  Why the extra empty line?
+Each line from the file includes a newline at the end, and
+<code class="docutils literal notranslate"><span class="pre">print</span></code> adds a newline as well.  We can see the actual representation
+of the string using the built-in <code class="docutils literal notranslate"><span class="pre">repr</span></code> function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;instructor-email.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+<span class="gp">... </span>
+<span class="go">&#39;amr@cs.uchicago.edu\n&#39;</span>
+<span class="go">&#39;borja@cs.uchicago.edu\n&#39;</span>
+<span class="go">&#39;yanjingl@cs.uchicago.edu\n&#39;</span>
+<span class="go">&#39;mwachs@cs.uchicago.edu\n&#39;</span>
+<span class="go">&#39;dupont@cs.uchicago.edu\n&#39;</span>
+</pre></div>
+</div>
+<p>When reading lines from a file, we can use the <code class="docutils literal notranslate"><span class="pre">strip</span></code> method from the
+string library to remove leading and trailing whitespace:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;instructor-email.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+<span class="gp">... </span>
+<span class="go">amr@cs.uchicago.edu</span>
+<span class="go">borja@cs.uchicago.edu</span>
+<span class="go">yanjingl@cs.uchicago.edu</span>
+<span class="go">mwachs@cs.uchicago.edu</span>
+<span class="go">dupont@cs.uchicago.edu</span>
+</pre></div>
+</div>
+<p>To accomplish our goal of creating a sorted list of email addresses,
+we can combine a familiar pattern for constructing lists with a use of
+<code class="docutils literal notranslate"><span class="pre">with</span></code> and a call to the list <code class="docutils literal notranslate"><span class="pre">sort</span></code> method.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">email_addresses</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;instructor-email.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">email</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="gp">... </span>        <span class="n">email_addresses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">email_addresses</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="writing-data-to-a-file">
+<h2><span class="section-number">4.1.2. </span>Writing data to a file<a class="headerlink" href="#writing-data-to-a-file" title="Permalink to this heading"></a></h2>
+<p>To write to a file, we must open the file in write mode (note the use of
+<code class="docutils literal notranslate"><span class="pre">&quot;w&quot;</span></code> as a second parameter to <code class="docutils literal notranslate"><span class="pre">open</span></code> to specify that we’re opening
+the file in write mode):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;names2.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It is very
+important to understand that when you open an existing file in write
+mode, <em>all</em> of its existing contents will be wiped away! If you open a
+file that doesn’t already exist in write mode, a new file will be
+created.</p>
+<p>Once we have a writable file pointer, we can append a string to the file using
+<code class="docutils literal notranslate"><span class="pre">write</span></code>.  For example, after we run this code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;names.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Anne Rogers</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Borja Sotomayor</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Yanjing Li</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Matthew Wachs</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Todd Dupont</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The file <code class="docutils literal notranslate"><span class="pre">names.txt</span></code> will contain:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Anne</span> <span class="n">Rogers</span>
+<span class="n">Borja</span> <span class="n">Sotomayor</span>
+<span class="n">Yanjing</span> <span class="n">Li</span>
+<span class="n">Matthew</span> <span class="n">Wachs</span>
+<span class="n">Todd</span> <span class="n">Dupont</span>
+</pre></div>
+</div>
+<p>We could also use the <code class="docutils literal notranslate"><span class="pre">print</span></code> method to generate this output, which
+has the advantage that it will add the newline automatically.  The
+<code class="docutils literal notranslate"><span class="pre">file</span></code> keyword parameter allow us to specify a file pointer as the
+destination of call to <code class="docutils literal notranslate"><span class="pre">print</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;names2.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Anne Rogers&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Borja Sotomayor&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Yanjing Li&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matthew Wachs&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Todd Dupont&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+<span class="gp">... </span>
+</pre></div>
+</div>
+<p>Internally, writes to files are often stored in a buffer
+and then written out to disk in batches.  When you close a file, you flush any
+buffered data to disk.  If you do not close your file, the data
+from the last few writes you do may remain in the buffer and thus
+may not get written back to disk.</p>
+<p>Let’s put these pieces together to write a function that transforms a file
+with a list of email addresses into a new file with the domain name
+(that is, <code class="docutils literal notranslate"><span class="pre">&#64;cs.uchicago.edu</span></code>) stripped off.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">strip_domain</span><span class="p">(</span><span class="n">input_filename</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="sd">&#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="sd"></span>
+<span class="gp">... </span><span class="sd">    Strip the domain names off the email address from the input</span>
+<span class="gp">... </span><span class="sd">    file and write the resulting usernames to the output file.</span>
+<span class="gp">... </span><span class="sd"></span>
+<span class="gp">... </span><span class="sd">    Inputs:</span>
+<span class="gp">... </span><span class="sd">      input_filename: (string) name of a file with email addresses</span>
+<span class="gp">... </span><span class="sd">      output_filename: (string) name for the output file.</span>
+<span class="gp">... </span><span class="sd">    &#39;&#39;&#39;</span>
+<span class="gp">... </span>
+<span class="gp">... </span>    <span class="c1"># Load data into a data structure (a list of strings)</span>
+<span class="gp">... </span>    <span class="n">email_addresses</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">... </span>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="n">email</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="gp">... </span>            <span class="n">email_addresses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="gp">... </span>    <span class="c1"># Transform the data</span>
+<span class="gp">... </span>    <span class="n">usernames</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">email</span> <span class="ow">in</span> <span class="n">email_addresses</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">username</span><span class="p">,</span> <span class="n">domain</span> <span class="o">=</span> <span class="n">email</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;@&quot;</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">usernames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="gp">... </span>    <span class="c1"># Write the data</span>
+<span class="gp">... </span>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">for</span> <span class="n">username</span> <span class="ow">in</span> <span class="n">usernames</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="nb">print</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+<span class="gp">... </span>
+</pre></div>
+</div>
+<p>In this case, the operation is simple enough that we could’ve produced
+the usernames during the input loop or during the output loop, but in
+general, it’s good to separate input, transformation, and output into
+separate steps.</p>
+<p>Python’s basic file I/O functionality is sufficient for working with
+simple files, but sometimes we need work with more complex data
+files. In the next few sections, we’ll introduce a few existing data
+formats and libraries that it make it easy to work with them.  In
+general, it is better to use an existing format and its associated
+libraries, if you can, than to invent your own ad hoc format.</p>
+</div>
+<div class="section" id="csv">
+<h2><span class="section-number">4.1.3. </span>CSV<a class="headerlink" href="#csv" title="Permalink to this heading"></a></h2>
+<p>The acronym CSV stands for Comma Separated Values. CSV files contain
+values separated by commas (and sometimes by other delimiters) and are
+typically used to represent tabular data, that is, any data that can
+be organized into rows, each with the same columns (or <em>fields</em>).</p>
+<p>Here are the contents of a CSV file named <code class="docutils literal notranslate"><span class="pre">instructors.csv</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">id</span><span class="p">,</span><span class="n">lname</span><span class="p">,</span><span class="n">fname</span><span class="p">,</span><span class="n">email</span>
+<span class="n">amr</span><span class="p">,</span><span class="n">Rogers</span><span class="p">,</span><span class="n">Anne</span><span class="p">,</span><span class="n">amr</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span>
+<span class="n">borja</span><span class="p">,</span><span class="n">Sotomayor</span><span class="p">,</span><span class="n">Borja</span><span class="p">,</span><span class="n">borja</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span>
+<span class="n">yanjingl</span><span class="p">,</span><span class="n">Li</span><span class="p">,</span><span class="n">Yanjing</span><span class="p">,</span><span class="n">yanjingl</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span>
+<span class="n">mwachs</span><span class="p">,</span><span class="n">Wachs</span><span class="p">,</span><span class="n">Matthew</span><span class="p">,</span><span class="n">mwachs</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span>
+<span class="n">dupont</span><span class="p">,</span><span class="n">Dupont</span><span class="p">,</span><span class="n">Todd</span><span class="p">,</span><span class="n">dupont</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span>
+</pre></div>
+</div>
+<p>The first line is the header row; it includes the names of the
+columns/fields (<code class="docutils literal notranslate"><span class="pre">id</span></code>, <code class="docutils literal notranslate"><span class="pre">lname</span></code>, <code class="docutils literal notranslate"><span class="pre">fname</span></code>, and <code class="docutils literal notranslate"><span class="pre">email</span></code>). The
+remaining lines contain the data.</p>
+<p>With what we’ve seen so far, we could just use the existing file
+functions to read this file and generate some simple output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;instructors.csv&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">header</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span> <span class="c1"># Skip the header row</span>
+<span class="gp">... </span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">fields</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="gp">... </span>        <span class="nb">id</span> <span class="o">=</span> <span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">... </span>        <span class="n">last_name</span> <span class="o">=</span> <span class="n">fields</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">... </span>        <span class="n">first_name</span> <span class="o">=</span> <span class="n">fields</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="gp">... </span>        <span class="n">email</span> <span class="o">=</span> <span class="n">fields</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="gp">... </span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&#39;s e-mail is </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">,</span> <span class="n">email</span><span class="p">))</span>
+<span class="gp">... </span>
+<span class="go">Anne Rogers&#39;s e-mail is amr@cs.uchicago.edu</span>
+<span class="go">Borja Sotomayor&#39;s e-mail is borja@cs.uchicago.edu</span>
+<span class="go">Yanjing Li&#39;s e-mail is yanjingl@cs.uchicago.edu</span>
+<span class="go">Matthew Wachs&#39;s e-mail is mwachs@cs.uchicago.edu</span>
+<span class="go">Todd Dupont&#39;s e-mail is dupont@cs.uchicago.edu</span>
+</pre></div>
+</div>
+<p>We could similarly use the existing file functions to write a CSV file.</p>
+<p>This process, however, can be very error-prone, and it doesn’t account
+for a number of peculiarities in the CSV file format e.g., what if a
+column holds a string value with a comma in it? Such a value would be
+represented in double-quotes, like <code class="docutils literal notranslate"><span class="pre">&quot;Hello,</span> <span class="pre">world!&quot;</span></code>, but the above
+code would fail.  To make this concrete, let’s look at what, would
+happen if we added this line to the file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spade</span><span class="p">,</span><span class="s2">&quot;Spade, Jr&quot;</span><span class="p">,</span><span class="n">Sam</span><span class="p">,</span><span class="n">spade</span><span class="nd">@cs</span><span class="o">.</span><span class="n">uchicago</span><span class="o">.</span><span class="n">edu</span>
+</pre></div>
+</div>
+<p>We’d get:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Jr</span><span class="s2">&quot; &quot;</span><span class="n">Spade</span><span class="s1">&#39;s e-mail is Sam</span>
+</pre></div>
+</div>
+<p>as the output for this line, because the <code class="docutils literal notranslate"><span class="pre">split</span></code> method is not
+designed to handle commas embedded in quoted sub-strings.</p>
+<p>Fortunately, Python includes a <code class="docutils literal notranslate"><span class="pre">csv</span></code> module that allows us to work
+with CSV files more naturally.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">csv</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">DictReader</span></code> class allows us to iterate over the rows in a CSV
+file, and access each field in a row via a dictionary (with the same
+field names specified in the header row or using the optional
+<code class="docutils literal notranslate"><span class="pre">fieldnames</span></code> parameter).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;instructors.csv&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&#39;s e-mail is </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;fname&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;lname&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;email&quot;</span><span class="p">]))</span>
+<span class="gp">... </span>
+<span class="go">Anne Rogers&#39;s e-mail is amr@cs.uchicago.edu</span>
+<span class="go">Borja Sotomayor&#39;s e-mail is borja@cs.uchicago.edu</span>
+<span class="go">Yanjing Li&#39;s e-mail is yanjingl@cs.uchicago.edu</span>
+<span class="go">Matthew Wachs&#39;s e-mail is mwachs@cs.uchicago.edu</span>
+<span class="go">Todd Dupont&#39;s e-mail is dupont@cs.uchicago.edu</span>
+</pre></div>
+</div>
+<p>We can use a similar class, <code class="docutils literal notranslate"><span class="pre">DictWriter</span></code>, to write CSV file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fieldnames</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;lname&quot;</span><span class="p">,</span> <span class="s2">&quot;fname&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">]</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;instructors-122.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictWriter</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fieldnames</span><span class="o">=</span><span class="n">fieldnames</span><span class="p">)</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">writeheader</span><span class="p">()</span>
+
+    <span class="n">row</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;amr&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;lname&quot;</span><span class="p">:</span> <span class="s2">&quot;Rogers&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;fname&quot;</span><span class="p">:</span> <span class="s2">&quot;Anne&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;amr@cs.uchicago.edu&quot;</span><span class="p">}</span>
+
+    <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+    <span class="n">row</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;mwachs&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;lname&quot;</span><span class="p">:</span><span class="s2">&quot;Wachs&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;fname&quot;</span><span class="p">:</span> <span class="s2">&quot;Matthew&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;mwachs@cs.uchicago.edu&quot;</span><span class="p">}</span>
+
+    <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">csv</span></code> module also has <code class="docutils literal notranslate"><span class="pre">reader</span></code> and <code class="docutils literal notranslate"><span class="pre">writer</span></code> classes that use
+lists to represent rows rather than dictionaries. This allows us to
+interact with the fields positionally instead of by name.</p>
+</div>
+<div class="section" id="json">
+<h2><span class="section-number">4.1.4. </span>JSON<a class="headerlink" href="#json" title="Permalink to this heading"></a></h2>
+<p>JSON (JavaScript Object Notation) is a <em>lightweight</em> data-interchange
+format that web services commonly use.  It is also used as a
+data storage format.  JSON supports a few different types:</p>
+<ul class="simple">
+<li><p>Object: looks like a python dictionary with string-value pairs (string:value) separated by commas,</p></li>
+<li><p>Array: empty list or list of values,</p></li>
+<li><p>Value: string, number, object, array, true, false, null</p></li>
+</ul>
+<p>Note the nesting of object and array in the definition of value.</p>
+<p>An application might receive a string in JSON format from another
+application, like a web service, or as a file.  Python has a <code class="docutils literal notranslate"><span class="pre">json</span></code>
+module for handling JSON data in either form.  We’ll start by looking
+at the functions that operate on strings, but first, we need to import
+the library.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">json</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">dumps</span></code> function takes a Python data structure and encodes it in
+JSON format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;baz&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="go">&#39;[&quot;baz&quot;, null, 1.0, 2]&#39;</span>
+</pre></div>
+</div>
+<p>Notice that the result is a string representation of the data, with
+some minor differences from Python (e.g., “null” instead of “None”)</p>
+<p>JSON allows for nested data structures and, so, the
+<code class="docutils literal notranslate"><span class="pre">dumps</span></code> function handles them as well:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;bar&#39;</span><span class="p">:</span> <span class="n">l</span><span class="p">}</span> <span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="go">&#39;[&quot;foo&quot;, {&quot;bar&quot;: [&quot;baz&quot;, null, 1.0, 2]}]&#39;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">loads</span></code> function takes a string containing data encoded
+in JSON format and decodes it, yielding the corresponding Python data
+structures:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="s2">&quot;42&quot;</span><span class="p">)</span>
+<span class="go">42</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="s2">&quot;[1,2,3]&quot;</span><span class="p">)</span>
+<span class="go">[1, 2, 3]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="s1">&#39;[&quot;foo&quot;, {&quot;bar&quot;: [&quot;baz&quot;, null, 1.0, 2]}]&#39;</span><span class="p">)</span>
+<span class="go">[&#39;foo&#39;, {&#39;bar&#39;: [&#39;baz&#39;, None, 1.0, 2]}]</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">load</span></code> and <code class="docutils literal notranslate"><span class="pre">dump</span></code> functions perform analogous operations, but
+on files.  The <code class="docutils literal notranslate"><span class="pre">dump</span></code> function takes two arguments—an appropriate
+data structure and a file pointer—and writes a JSON encoding of the
+data structure to the file.  Here’s a sample call:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;saved_data.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>   <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<span class="gp">... </span>
+</pre></div>
+</div>
+<p>that yields a file named <code class="docutils literal notranslate"><span class="pre">saved_data.json</span></code> with contents of:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;bar&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;baz&quot;</span><span class="p">,</span> <span class="n">null</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]}]</span>
+</pre></div>
+</div>
+<p>For a large and complex data structure, the standard encoding can be
+hard to read. You can use the optional <code class="docutils literal notranslate"><span class="pre">indent</span></code> parameter, which
+allows you to specify the number of spaces to indent for each level of
+nesting, and the <code class="docutils literal notranslate"><span class="pre">sort_keys</span></code> parameter to generate output that is
+easier to read.  This code, for example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;saved_data.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>   <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">... </span>
+</pre></div>
+</div>
+<p>yields a version of <code class="docutils literal notranslate"><span class="pre">saved_data.json</span></code> with the following contents:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;bar&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;baz&quot;</span><span class="p">,</span>
+            <span class="n">null</span><span class="p">,</span>
+            <span class="mf">1.0</span><span class="p">,</span>
+            <span class="mi">2</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">load</span></code> function takes a file pointer, reads the data from the
+file, and returns the decoded data structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">saved_data</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;saved_data.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">saved_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">saved_data</span>
+<span class="go">[&#39;foo&#39;, {&#39;bar&#39;: [&#39;baz&#39;, None, 1.0, 2]}]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="yaml">
+<h2><span class="section-number">4.1.5. </span>YAML<a class="headerlink" href="#yaml" title="Permalink to this heading"></a></h2>
+<p>YAML (YAML Ain’t Markup Language) is, like JSON, a lightweight data
+format that is intended to be both machine-readable and
+human-readable.  It uses indentation rather than braces and brackets
+to represent nesting.  We won’t describe this format in detail, other
+than to point out that these files are easy to read and to process
+automatically.</p>
+<p>YAML is often used for configuration files, as well as files that
+need to be processed by a program, but also need to be readable
+by a non-technical user. For example, the following <code class="docutils literal notranslate"><span class="pre">rubric.yml</span></code> file could
+be used to provide the results of grading a programming assignment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Points:
+    Tests:
+        Points Possible: 50
+        Points Obtained: 45
+
+    Implementing foo():
+        Points Possible: 20
+        Points Obtained: 10
+
+    Implementing bar():
+        Points Possible: 20
+        Points Obtained: 20
+
+    Code Style:
+        Points Possible: 10
+        Points Obtained: 7.5
+
+Penalties:
+    Code comments are written in Old English: -5
+
+Bonuses:
+    Worked alone: 10
+
+Total Points: 87.5 / 100
+
+Comments: &gt;
+    Well done!
+</pre></div>
+</div>
+<p>As with any library, we need to import the <code class="docutils literal notranslate"><span class="pre">yaml</span></code> library before we
+can use it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">yaml</span>
+</pre></div>
+</div>
+<p>We can load a YAML file using <code class="docutils literal notranslate"><span class="pre">yaml.load</span></code> with a file pointer:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;rubric.yml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">rubric</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="gp">... </span>
+</pre></div>
+</div>
+<p>The result will be a dictionary:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rubric</span>
+<span class="go">{&#39;Points&#39;: {&#39;Tests&#39;: {&#39;Points Possible&#39;: 50, &#39;Points Obtained&#39;: 45}, &#39;Implementing foo()&#39;: {&#39;Points Possible&#39;: 20, &#39;Points Obtained&#39;: 10}, &#39;Implementing bar()&#39;: {&#39;Points Possible&#39;: 20, &#39;Points Obtained&#39;: 20}, &#39;Code Style&#39;: {&#39;Points Possible&#39;: 10, &#39;Points Obtained&#39;: 7.5}}, &#39;Penalties&#39;: {&#39;Code comments are written in Old English&#39;: -5}, &#39;Bonuses&#39;: {&#39;Worked alone&#39;: 10}, &#39;Total Points&#39;: &#39;87.5 / 100&#39;, &#39;Comments&#39;: &#39;Well done!\n&#39;}</span>
+</pre></div>
+</div>
+<p>Notice that the nesting of the dictionary reflects the nesting of the
+indentation above.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="4. Working with Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../numpy/index.html" class="btn btn-neutral float-right" title="4.2. NumPy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Anne Rogers and Borja Sotomayor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

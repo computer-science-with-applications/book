@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.3. The pandas library &mdash; Computer Science with Applications  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/csapps.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="4.2. NumPy" href="../numpy/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Computer Science with Applications
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../preface.html">Preface</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_structures/index.html">2. Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../functions/index.html">3. Functional Programming and Recursion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. Working with Data</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../files/index.html">4.1. Working with Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numpy/index.html">4.2. NumPy</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.3. The pandas library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dataframes">4.3.1. DataFrames</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a-note-about-missing-values">4.3.2. A note about missing values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#series">4.3.3. Series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filtering">4.3.4. Filtering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#grouping">4.3.5. Grouping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pivoting">4.3.6. Pivoting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#saving-space-with-categoricals">4.3.7. Saving space with Categoricals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#summary">4.3.8. Summary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Computer Science with Applications</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">4. </span>Working with Data</a> &raquo;</li>
+      <li><span class="section-number">4.3. </span>The pandas library</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/working_with_data/pandas/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="the-pandas-library">
+<h1><span class="section-number">4.3. </span>The pandas library<a class="headerlink" href="#the-pandas-library" title="Permalink to this heading"></a></h1>
+<p><a class="reference external" href="http://pandas.pydata.org/">Pandas</a> is a data analysis toolkit for Python that makes it easy to
+work with certain types of data, specially:</p>
+<ul class="simple">
+<li><p>Tabular data (i.e., anything that can be expressed as labelled
+columns and rows)</p></li>
+<li><p>Time series data</p></li>
+<li><p>Matrix data</p></li>
+<li><p>Statistical datasets</p></li>
+</ul>
+<p>In this chapter, we will focus on tabular data and organize our discussion of this
+library around an exploration of data from the 2015 New York City
+Street Tree Survey, which is freely available from the New York City
+open data portal (<a class="reference external" href="https://data.cityofnewyork.us">https://data.cityofnewyork.us</a>).  This survey was
+performed by the New York City Department of Parks and Recreation with
+help from more than 2000 volunteers.  The goal of the survey is to
+catalog the trees planted on the City right-of-way, typically the
+space between the sidewalk and the curb, in the five boroughs of New
+York.  We can use this data to answer questions such as:</p>
+<ol class="arabic simple">
+<li><p>How many different species are planted as street trees in New York?</p></li>
+<li><p>What are the five most common street tree species in New York?</p></li>
+<li><p>What is the most common street tree species in Brooklyn?</p></li>
+<li><p>What percentage of the street trees in Queens are dead or in poor health?</p></li>
+<li><p>How does street tree health differ by borough?</p></li>
+</ol>
+<p>The survey data is stored in a CSV file that has 683,789 lines, one per
+street tree. (Hereafter we will refer to trees rather than street
+trees for simplicity.)  The census takers record many different
+attributes for each tree, such as the common name of the species, the
+location of the tree, etc.  Of these values, we will use the
+following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">boroname</span></code>: the name of the borough in which the tree resides;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">health</span></code>: an estimate of the health of the tree: one of good, fair, or poor;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">latitude</span></code> and <code class="docutils literal notranslate"><span class="pre">longitude</span></code> :  the location of the tree using geographical coordinates;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spc_common</span></code>: the common, as opposed to Latin, name of the species;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">status</span></code>: the status of the tree: one of alive, dead, or stump;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tree_id</span></code>: a unique identifier</p></li>
+</ul>
+<p>Some fields are not populated for some trees. For example, the
+<code class="docutils literal notranslate"><span class="pre">health</span></code> field is not populated for dead trees and stumps and the
+species field (<code class="docutils literal notranslate"><span class="pre">spc_common</span></code>) is not populated for stumps and most
+dead trees.</p>
+<p>Pandas supports a variety of data types.  We’ll talk about
+three—<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, <code class="docutils literal notranslate"><span class="pre">Series</span></code> and <code class="docutils literal notranslate"><span class="pre">Categorical</span></code>—in detail.  We
+also talk about how filtering, which was introduced in our discussion
+of Numpy, and grouping, a new concept, can be used to answer complex
+questions with little code.  But before we get get started, we need to
+import Pandas.  This step is traditionally done using the <code class="docutils literal notranslate"><span class="pre">as</span></code>
+option with <code class="docutils literal notranslate"><span class="pre">import</span></code> to introduce a short alias (<code class="docutils literal notranslate"><span class="pre">pd</span></code>) for the
+library.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+<div class="section" id="dataframes">
+<h2><span class="section-number">4.3.1. </span>DataFrames<a class="headerlink" href="#dataframes" title="Permalink to this heading"></a></h2>
+<p>We’ll start by loading the tree data into a data structure.  Data frames,
+the main data structure in Pandas, were inspired by the data structure
+of the same name in R and are designed to represent tabular data.  The
+library function <code class="docutils literal notranslate"><span class="pre">pd.read_csv</span></code> takes the name of a CSV file and
+loads it into a data frame.  Let’s use this function to load the tree
+data from a file named <code class="docutils literal notranslate"><span class="pre">2015StreetTreesCensus_TREES.csv</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;2015StreetTreesCensus_TREES.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This file is available in our <a class="reference internal" href="../../preface.html#example-code"><span class="std std-ref">example code</span></a>,
+in the <code class="docutils literal notranslate"><span class="pre">working_with_data/pandas/</span></code> directory. Please note that it is
+provided as a ZIP file called <code class="docutils literal notranslate"><span class="pre">tree-census-data.zip</span></code>, and you must un-zip
+it before using it.</p>
+<p>The variable <code class="docutils literal notranslate"><span class="pre">trees</span></code> now refers to a Pandas <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.  Let’s
+start by looking at some of the actual data.  We’ll explain the
+various ways to access data in detail later.  For now, just keep in
+mind that the columns have names (for example, “Latitude”,
+“longitude”, “spc_common”, etc) and leverage the intuition you’ve built up
+about indexing in other data structures.</p>
+<p>Here, for example, are a few columns from the first ten rows of the
+dataset:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees10</span> <span class="o">=</span> <span class="n">trees</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trees10</span><span class="p">[[</span><span class="s2">&quot;Latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="s2">&quot;spc_common&quot;</span><span class="p">,</span> <span class="s2">&quot;health&quot;</span><span class="p">,</span> <span class="s2">&quot;boroname&quot;</span><span class="p">]]</span>
+<span class="go">    Latitude  longitude        spc_common health       boroname</span>
+<span class="go">0  40.723092 -73.844215         red maple   Fair         Queens</span>
+<span class="go">1  40.794111 -73.818679           pin oak   Fair         Queens</span>
+<span class="go">2  40.717581 -73.936608       honeylocust   Good       Brooklyn</span>
+<span class="go">3  40.713537 -73.934456       honeylocust   Good       Brooklyn</span>
+<span class="go">4  40.666778 -73.975979   American linden   Good       Brooklyn</span>
+<span class="go">5  40.770046 -73.984950       honeylocust   Good      Manhattan</span>
+<span class="go">6  40.770210 -73.985338       honeylocust   Good      Manhattan</span>
+<span class="go">7  40.762724 -73.987297   American linden   Good      Manhattan</span>
+<span class="go">8  40.596579 -74.076255       honeylocust   Good  Staten Island</span>
+<span class="go">9  40.586357 -73.969744  London planetree   Fair       Brooklyn</span>
+</pre></div>
+</div>
+<p>Notice that the result looks very much like a table in which both the
+columns and the rows are labelled.  In this case, the column labels
+came from the first row in the file and the rows are simply numbered
+starting at zero.</p>
+<p>Here’s the full first row of the dataset with all 41 attributes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">created_at                                       08/27/2015</span>
+<span class="go">tree_id                                              180683</span>
+<span class="go">block_id                                             348711</span>
+<span class="go">the_geom      POINT (-73.84421521958048 40.723091773924274)</span>
+<span class="go">tree_dbh                                                  3</span>
+<span class="go">stump_diam                                                0</span>
+<span class="go">curb_loc                                             OnCurb</span>
+<span class="go">status                                                Alive</span>
+<span class="go">health                                                 Fair</span>
+<span class="go">spc_latin                                       Acer rubrum</span>
+<span class="go">spc_common                                        red maple</span>
+<span class="go">steward                                                None</span>
+<span class="go">guards                                                 None</span>
+<span class="go">sidewalk                                           NoDamage</span>
+<span class="go">user_type                                  TreesCount Staff</span>
+<span class="go">problems                                               None</span>
+<span class="go">root_stone                                               No</span>
+<span class="go">root_grate                                               No</span>
+<span class="go">root_other                                               No</span>
+<span class="go">trnk_wire                                                No</span>
+<span class="go">trnk_light                                               No</span>
+<span class="go">trnk_other                                               No</span>
+<span class="go">brnch_ligh                                               No</span>
+<span class="go">brnch_shoe                                               No</span>
+<span class="go">brnch_othe                                               No</span>
+<span class="go">address                                   108-005 70 AVENUE</span>
+<span class="go">zipcode                                               11375</span>
+<span class="go">zip_city                                       Forest Hills</span>
+<span class="go">cb_num                                                  406</span>
+<span class="go">borocode                                                  4</span>
+<span class="go">boroname                                             Queens</span>
+<span class="go">cncldist                                                 29</span>
+<span class="go">st_assem                                                 28</span>
+<span class="go">st_senate                                                16</span>
+<span class="go">nta                                                    QN17</span>
+<span class="go">nta_name                                       Forest Hills</span>
+<span class="go">boro_ct                                             4073900</span>
+<span class="go">state                                              New York</span>
+<span class="go">Latitude                                            40.7231</span>
+<span class="go">longitude                                          -73.8442</span>
+<span class="go">x_sp                                            1.02743e+06</span>
+<span class="go">y_sp                                                 202757</span>
+<span class="go">Name: 0, dtype: object</span>
+</pre></div>
+</div>
+<p>and here are a few specific values from that row:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">first_row</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">first_row</span><span class="p">[</span><span class="s2">&quot;Latitude&quot;</span><span class="p">]</span>
+<span class="go">40.72309177</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">first_row</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">]</span>
+<span class="go">-73.84421522</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">first_row</span><span class="p">[</span><span class="s2">&quot;boroname&quot;</span><span class="p">]</span>
+<span class="go">&#39;Queens&#39;</span>
+</pre></div>
+</div>
+<p>Notice that the latitude and longitude values are floats, while the
+borough name is a string.  Conveniently, <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> analyzes each
+column and if possible, identifies the appropriate type for the data
+stored in the column.  If this analysis cannot determine a more
+specific type, the data will be represented using strings.</p>
+<p>We can also extract data for a specific column:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees10</span><span class="p">[</span><span class="s2">&quot;boroname&quot;</span><span class="p">]</span>
+<span class="go">0           Queens</span>
+<span class="go">1           Queens</span>
+<span class="go">2         Brooklyn</span>
+<span class="go">3         Brooklyn</span>
+<span class="go">4         Brooklyn</span>
+<span class="go">5        Manhattan</span>
+<span class="go">6        Manhattan</span>
+<span class="go">7        Manhattan</span>
+<span class="go">8    Staten Island</span>
+<span class="go">9         Brooklyn</span>
+<span class="go">Name: boroname, dtype: object</span>
+</pre></div>
+</div>
+<p>and we can easily do useful things with the result, like count the number
+of times each unique value occurs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees10</span><span class="p">[</span><span class="s2">&quot;boroname&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="go">Brooklyn         4</span>
+<span class="go">Manhattan        3</span>
+<span class="go">Queens           2</span>
+<span class="go">Staten Island    1</span>
+<span class="go">Name: boroname, dtype: int64</span>
+</pre></div>
+</div>
+<p>Now that you have a some feel for the data, we’ll move on to
+discussing some useful attributes and methods provided by data frames.
+The <code class="docutils literal notranslate"><span class="pre">shape</span></code> attribute yields the number of rows and columns in the
+data frame:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(683788, 42)</span>
+</pre></div>
+</div>
+<p>The data frame has fewer rows (683,788) than lines in the file
+(683,789), because the header row is used to construct the column
+labels and does not appear as a regular row in the data frame.</p>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">columns</span></code> attribute to examine the column labels:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">columns</span>
+<span class="go">Index([&#39;created_at&#39;, &#39;tree_id&#39;, &#39;block_id&#39;, &#39;the_geom&#39;, &#39;tree_dbh&#39;,</span>
+<span class="go">       &#39;stump_diam&#39;, &#39;curb_loc&#39;, &#39;status&#39;, &#39;health&#39;, &#39;spc_latin&#39;, &#39;spc_common&#39;,</span>
+<span class="go">       &#39;steward&#39;, &#39;guards&#39;, &#39;sidewalk&#39;, &#39;user_type&#39;, &#39;problems&#39;, &#39;root_stone&#39;,</span>
+<span class="go">       &#39;root_grate&#39;, &#39;root_other&#39;, &#39;trnk_wire&#39;, &#39;trnk_light&#39;, &#39;trnk_other&#39;,</span>
+<span class="go">       &#39;brnch_ligh&#39;, &#39;brnch_shoe&#39;, &#39;brnch_othe&#39;, &#39;address&#39;, &#39;zipcode&#39;,</span>
+<span class="go">       &#39;zip_city&#39;, &#39;cb_num&#39;, &#39;borocode&#39;, &#39;boroname&#39;, &#39;cncldist&#39;, &#39;st_assem&#39;,</span>
+<span class="go">       &#39;st_senate&#39;, &#39;nta&#39;, &#39;nta_name&#39;, &#39;boro_ct&#39;, &#39;state&#39;, &#39;Latitude&#39;,</span>
+<span class="go">       &#39;longitude&#39;, &#39;x_sp&#39;, &#39;y_sp&#39;],</span>
+<span class="go">      dtype=&#39;object&#39;)</span>
+</pre></div>
+</div>
+<p>We noted earlier that the rows, like columns, have labels.
+Collectively, these values are known as the index.  As currently
+constructed, the tree data set has an index that ranges from zero to
+683,787.  Often, data sets have a meaningful value that can be used to
+uniquely identify the rows.  The trees in our data set, for example,
+have unique identifiers that can be used for this purpose.  Let’s
+re-load the data and specify the name of a column to use for the
+index using the <code class="docutils literal notranslate"><span class="pre">index_col</span></code> parameter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;2015StreetTreesCensus_TREES.csv&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                    <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;tree_id&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now that we have a meaningful index, we can use the <code class="docutils literal notranslate"><span class="pre">index</span></code>
+attribute to find the names of the rows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">index</span>
+<span class="go">Int64Index([180683, 200540, 204026, 204337, 189565, 190422, 190426, 208649,</span>
+<span class="go">            209610, 192755,</span>
+<span class="go">            ...</span>
+<span class="go">            200671, 193070, 195173, 155348, 184210, 155433, 183795, 166161,</span>
+<span class="go">            184028, 200607],</span>
+<span class="go">           dtype=&#39;int64&#39;, name=&#39;tree_id&#39;, length=683788)</span>
+</pre></div>
+</div>
+<p>Now let’s look at accessing values in the sample data frame in a more
+systematic way.  We can extract the data for a specific row using
+either the appropriate row label or the position of the row in the
+data frame.  To index the data using the row label (<code class="docutils literal notranslate"><span class="pre">180683</span></code> for the
+row at position 0), we use the <code class="docutils literal notranslate"><span class="pre">loc</span></code> operator with square brackets.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">180683</span><span class="p">]</span>
+<span class="go">created_at                                       08/27/2015</span>
+<span class="go">block_id                                             348711</span>
+<span class="go">the_geom      POINT (-73.84421521958048 40.723091773924274)</span>
+<span class="go">tree_dbh                                                  3</span>
+<span class="go">stump_diam                                                0</span>
+<span class="go">curb_loc                                             OnCurb</span>
+<span class="go">status                                                Alive</span>
+<span class="go">health                                                 Fair</span>
+<span class="go">spc_latin                                       Acer rubrum</span>
+<span class="go">spc_common                                        red maple</span>
+<span class="go">steward                                                None</span>
+<span class="go">guards                                                 None</span>
+<span class="go">sidewalk                                           NoDamage</span>
+<span class="go">user_type                                  TreesCount Staff</span>
+<span class="go">problems                                               None</span>
+<span class="go">root_stone                                               No</span>
+<span class="go">root_grate                                               No</span>
+<span class="go">root_other                                               No</span>
+<span class="go">trnk_wire                                                No</span>
+<span class="go">trnk_light                                               No</span>
+<span class="go">trnk_other                                               No</span>
+<span class="go">brnch_ligh                                               No</span>
+<span class="go">brnch_shoe                                               No</span>
+<span class="go">brnch_othe                                               No</span>
+<span class="go">address                                   108-005 70 AVENUE</span>
+<span class="go">zipcode                                               11375</span>
+<span class="go">zip_city                                       Forest Hills</span>
+<span class="go">cb_num                                                  406</span>
+<span class="go">borocode                                                  4</span>
+<span class="go">boroname                                             Queens</span>
+<span class="go">cncldist                                                 29</span>
+<span class="go">st_assem                                                 28</span>
+<span class="go">st_senate                                                16</span>
+<span class="go">nta                                                    QN17</span>
+<span class="go">nta_name                                       Forest Hills</span>
+<span class="go">boro_ct                                             4073900</span>
+<span class="go">state                                              New York</span>
+<span class="go">Latitude                                            40.7231</span>
+<span class="go">longitude                                          -73.8442</span>
+<span class="go">x_sp                                            1.02743e+06</span>
+<span class="go">y_sp                                                 202757</span>
+<span class="go">Name: 180683, dtype: object</span>
+</pre></div>
+</div>
+<p>To access the row using the row number, that is, its position in the
+data frame, we use <code class="docutils literal notranslate"><span class="pre">iloc</span></code> operator and square brackets:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">created_at                                       08/27/2015</span>
+<span class="go">block_id                                             348711</span>
+<span class="go">the_geom      POINT (-73.84421521958048 40.723091773924274)</span>
+<span class="go">tree_dbh                                                  3</span>
+<span class="go">stump_diam                                                0</span>
+<span class="go">curb_loc                                             OnCurb</span>
+<span class="go">status                                                Alive</span>
+<span class="go">health                                                 Fair</span>
+<span class="go">spc_latin                                       Acer rubrum</span>
+<span class="go">spc_common                                        red maple</span>
+<span class="go">steward                                                None</span>
+<span class="go">guards                                                 None</span>
+<span class="go">sidewalk                                           NoDamage</span>
+<span class="go">user_type                                  TreesCount Staff</span>
+<span class="go">problems                                               None</span>
+<span class="go">root_stone                                               No</span>
+<span class="go">root_grate                                               No</span>
+<span class="go">root_other                                               No</span>
+<span class="go">trnk_wire                                                No</span>
+<span class="go">trnk_light                                               No</span>
+<span class="go">trnk_other                                               No</span>
+<span class="go">brnch_ligh                                               No</span>
+<span class="go">brnch_shoe                                               No</span>
+<span class="go">brnch_othe                                               No</span>
+<span class="go">address                                   108-005 70 AVENUE</span>
+<span class="go">zipcode                                               11375</span>
+<span class="go">zip_city                                       Forest Hills</span>
+<span class="go">cb_num                                                  406</span>
+<span class="go">borocode                                                  4</span>
+<span class="go">boroname                                             Queens</span>
+<span class="go">cncldist                                                 29</span>
+<span class="go">st_assem                                                 28</span>
+<span class="go">st_senate                                                16</span>
+<span class="go">nta                                                    QN17</span>
+<span class="go">nta_name                                       Forest Hills</span>
+<span class="go">boro_ct                                             4073900</span>
+<span class="go">state                                              New York</span>
+<span class="go">Latitude                                            40.7231</span>
+<span class="go">longitude                                          -73.8442</span>
+<span class="go">x_sp                                            1.02743e+06</span>
+<span class="go">y_sp                                                 202757</span>
+<span class="go">Name: 180683, dtype: object</span>
+</pre></div>
+</div>
+<p>In both cases the result of evaluating the expression has type Pandas
+<code class="docutils literal notranslate"><span class="pre">Series</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">trees</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">&lt;class &#39;pandas.core.series.Series&#39;&gt;</span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">Series</span></code> is defined as “a one-dimensional labeled array capable of
+holding any data type (integers, strings, floating point numbers,
+Python objects, etc.).”  Briefly, we can think of a <code class="docutils literal notranslate"><span class="pre">Series</span></code> as an
+array and index it using integers, for example, <code class="docutils literal notranslate"><span class="pre">trees.iloc[0][0]</span></code>
+yields the first value in the first row (“08/27/2015”).  We can also
+think of it as a dictionary and index it using the labels.  We can,
+for example, extract the exact same value using the expression
+<code class="docutils literal notranslate"><span class="pre">trees.iloc[0][&quot;created_at&quot;]</span></code>.</p>
+<p>As we saw earlier, we can use slicing to construct a new data frame
+with a subset of the rows of an existing data frame.  For example,
+this statement from above:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees10</span> <span class="o">=</span> <span class="n">trees</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>constructs a data frame that contains the first ten rows (row 0
+through row 9 inclusive) of the trees data set.  One thing to keep in
+mind, the new data frame and the original data frame share the same
+underlying data, which means that updating one, updates the other!</p>
+<p>We can extract the values in a specific column as a series using
+square brackets with the column name as the index:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees10</span><span class="p">[</span><span class="s2">&quot;spc_common&quot;</span><span class="p">]</span>
+<span class="go">tree_id</span>
+<span class="go">180683           red maple</span>
+<span class="go">200540             pin oak</span>
+<span class="go">204026         honeylocust</span>
+<span class="go">204337         honeylocust</span>
+<span class="go">189565     American linden</span>
+<span class="go">190422         honeylocust</span>
+<span class="go">190426         honeylocust</span>
+<span class="go">208649     American linden</span>
+<span class="go">209610         honeylocust</span>
+<span class="go">192755    London planetree</span>
+<span class="go">Name: spc_common, dtype: object</span>
+</pre></div>
+</div>
+<p>We can also use dot notation to access a column, if the corresponding
+label conforms to the rules for Python identifiers and does not
+conflict with the name of a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> attribute or method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees10</span><span class="o">.</span><span class="n">spc_common</span>
+<span class="go">tree_id</span>
+<span class="go">180683           red maple</span>
+<span class="go">200540             pin oak</span>
+<span class="go">204026         honeylocust</span>
+<span class="go">204337         honeylocust</span>
+<span class="go">189565     American linden</span>
+<span class="go">190422         honeylocust</span>
+<span class="go">190426         honeylocust</span>
+<span class="go">208649     American linden</span>
+<span class="go">209610         honeylocust</span>
+<span class="go">192755    London planetree</span>
+<span class="go">Name: spc_common, dtype: object</span>
+</pre></div>
+</div>
+<p>The tree dataset has many columns, most of which we will not be using
+to answer the questions posed at the beginning of the chapter.  As we
+saw above, we can extract the desired columns using a list as the
+index:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cols_to_keep</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;spc_common&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;health&#39;</span><span class="p">,</span> <span class="s1">&#39;boroname&#39;</span><span class="p">,</span> <span class="s1">&#39;Latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trees_narrow</span> <span class="o">=</span> <span class="n">trees</span><span class="p">[</span><span class="n">cols_to_keep</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trees_narrow</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(683788, 6)</span>
+</pre></div>
+</div>
+<p>This new data frame has the same number of rows and the same index as
+the original data frame, but only six columns instead of the original
+41.</p>
+<p>If we know in advance that we will be using only a subset of the
+columns, we can specify the names of the columns of interest to
+<code class="docutils literal notranslate"><span class="pre">pd.read_csv</span></code> and get the slimmer data frame to start.  Here’s a
+function that uses this approach to construct the desired data frame:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">get_tree_data</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="sd">&#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="sd">    Read slim version of the tree data and clean up the labels.</span>
+<span class="gp">... </span><span class="sd"></span>
+<span class="gp">... </span><span class="sd">    Inputs:</span>
+<span class="gp">... </span><span class="sd">        filename: name of the file with the tree data</span>
+<span class="gp">... </span><span class="sd"></span>
+<span class="gp">... </span><span class="sd">    Returns: DataFrame</span>
+<span class="gp">... </span><span class="sd">    &#39;&#39;&#39;</span>
+<span class="gp">... </span>    <span class="n">cols_to_keep</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tree_id&#39;</span><span class="p">,</span> <span class="s1">&#39;spc_common&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;health&#39;</span><span class="p">,</span> <span class="s1">&#39;boroname&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                    <span class="s1">&#39;Latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">trees</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;tree_id&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                        <span class="n">usecols</span><span class="o">=</span><span class="n">cols_to_keep</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">trees</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Latitude&quot;</span><span class="p">:</span><span class="s2">&quot;latitude&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">trees</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span> <span class="o">=</span> <span class="n">get_tree_data</span><span class="p">(</span><span class="s2">&quot;2015StreetTreesCensus_TREES.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A few things to notice about this function: first, the index column,
+<code class="docutils literal notranslate"><span class="pre">tree_id</span></code>, needs to be included in the value passed with the
+<code class="docutils literal notranslate"><span class="pre">usecols</span></code> parameter.  Second, we used the <code class="docutils literal notranslate"><span class="pre">rename</span></code> method to fix a
+quirk with the tree data: “Latitude” is the only column name that
+starts with a capital letter.  We fixed this problem by supplying a
+dictionary that maps the old name of a label to a new name using the
+<code class="docutils literal notranslate"><span class="pre">columns</span></code> parameter.  Finally, by default, <code class="docutils literal notranslate"><span class="pre">rename</span></code> constructs a
+new dataframe.  Calling it with the <code class="docutils literal notranslate"><span class="pre">inplace</span></code> parameter set to
+<code class="docutils literal notranslate"><span class="pre">True</span></code>, causes frame updated in place, instead.</p>
+</div>
+<div class="section" id="a-note-about-missing-values">
+<h2><span class="section-number">4.3.2. </span>A note about missing values<a class="headerlink" href="#a-note-about-missing-values" title="Permalink to this heading"></a></h2>
+<p>As we noted when we described the tree data, some attributes are not
+included for some entries.  The entries for stumps and dead trees, for
+example, do not include values for the health of the tree.  We can see
+the impact of this missing data in row 630, which contains information
+about a dead tree in Queens:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">630</span><span class="p">]</span>
+<span class="go">status           Dead</span>
+<span class="go">health            NaN</span>
+<span class="go">spc_common        NaN</span>
+<span class="go">boroname       Queens</span>
+<span class="go">latitude       40.738</span>
+<span class="go">longitude    -73.9216</span>
+<span class="go">Name: 192569, dtype: object</span>
+</pre></div>
+</div>
+<p>Notice that both the <code class="docutils literal notranslate"><span class="pre">health</span></code> and the <code class="docutils literal notranslate"><span class="pre">spc_common</span></code> fields have the
+value <code class="docutils literal notranslate"><span class="pre">NaN</span></code>, which stands for “not a number.”  This value is
+inserted in place of missing values by default by <code class="docutils literal notranslate"><span class="pre">pd.read_csv</span></code>.
+We’ll talk about how Pandas handles these values as we explore the
+trees data set.</p>
+</div>
+<div class="section" id="series">
+<h2><span class="section-number">4.3.3. </span>Series<a class="headerlink" href="#series" title="Permalink to this heading"></a></h2>
+<p>Now that we have the data in a form suitable for computation, let’s look at what is
+required to answer the first two questions: “How many different
+tree species are planted in New York?” and “What are the five most common
+tree species in New York?”</p>
+<p>One approach would be to write code to iterate over tree species in
+the <code class="docutils literal notranslate"><span class="pre">spc_common</span></code> column, build a dictionary that maps these names to
+counts, and then process the dictionary to extract the answers to our
+questions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">kind</span> <span class="ow">in</span> <span class="n">trees</span><span class="o">.</span><span class="n">spc_common</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">kind</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="n">counts</span><span class="p">[</span><span class="n">kind</span><span class="p">]</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">kind</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of unique street tree species:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+<span class="go">Number of unique street tree species: 132</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">top_5</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">kind</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">top_5</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">London planetree</span>
+<span class="go">honeylocust</span>
+<span class="go">Callery pear</span>
+<span class="go">pin oak</span>
+<span class="go">Norway maple</span>
+</pre></div>
+</div>
+<p>Recall that the species is not specified for stumps and most dead
+trees and that missing values are represented in the data frame with
+the value <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.  We do not want to include these values in our
+count and so we’ll check for <code class="docutils literal notranslate"><span class="pre">NaN</span></code> using <code class="docutils literal notranslate"><span class="pre">pd.notnull</span></code> before we
+update <code class="docutils literal notranslate"><span class="pre">counts</span></code>.  The method <code class="docutils literal notranslate"><span class="pre">pd.notnull</span></code> can be used with a
+single value or with a compound value, such as a list, series, or a
+data frame. In this context, we are calling it with a single value and
+it will return <code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">kind</span></code> is not <code class="docutils literal notranslate"><span class="pre">NaN</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code>
+otherwise.</p>
+<p>This code works, but thus far all we have gained from using Pandas in
+service to answering our question is the ability to extract and
+iterate over a column from the data frame, which is not very exciting.
+We can, in fact, answer these questions with very little code by using
+some of the many attributes and methods provided by the <code class="docutils literal notranslate"><span class="pre">Series</span></code>
+data type.  Here for example, is code, to answer the first question
+using the <code class="docutils literal notranslate"><span class="pre">nunique</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">num_unique</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">spc_common</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of unique street tree species:&quot;</span><span class="p">,</span> <span class="n">num_unique</span><span class="p">)</span>
+<span class="go">Number of unique street tree species: 132</span>
+</pre></div>
+</div>
+<p>which returns the number of unique values in a series.  By default, it
+does not include <code class="docutils literal notranslate"><span class="pre">NaN</span></code> in the count.  The <code class="docutils literal notranslate"><span class="pre">unique</span></code> method, which
+returns a Numpy array with the unique values in the series, is also
+useful.</p>
+<p>We can also answer the second question with very little code.  we’ll
+use the <code class="docutils literal notranslate"><span class="pre">value_counts</span></code> method to construct a <em>new</em> series in which
+the index labels are the different species that occurred in
+<code class="docutils literal notranslate"><span class="pre">spc_common</span></code> and the values count the number of times each species
+occurred.  Conveniently, the values are ordered in descending order by
+count, so the most frequent item is first and we can use slicing to
+extract the top five:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vc</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">spc_common</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vc</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+<span class="go">London planetree    87014</span>
+<span class="go">honeylocust         64264</span>
+<span class="go">Callery pear        58931</span>
+<span class="go">pin oak             53185</span>
+<span class="go">Norway maple        34189</span>
+<span class="go">Name: spc_common, dtype: int64</span>
+</pre></div>
+</div>
+<p>The resulting series is not quite what we want: the names of the
+trees.  Fortunately, we can extract these names from the slices series
+using the <code class="docutils literal notranslate"><span class="pre">index</span></code> attribute:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">kind</span> <span class="ow">in</span> <span class="n">vc</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">London planetree</span>
+<span class="go">honeylocust</span>
+<span class="go">Callery pear</span>
+<span class="go">pin oak</span>
+<span class="go">Norway maple</span>
+</pre></div>
+</div>
+<p>In addition to the <code class="docutils literal notranslate"><span class="pre">index</span></code> attribute, the <code class="docutils literal notranslate"><span class="pre">Series</span></code> type includes
+other useful attributes, such as <code class="docutils literal notranslate"><span class="pre">size</span></code> which holds the number of
+elements in the series and <code class="docutils literal notranslate"><span class="pre">values</span></code>, which yields an array with the
+series’ values.  This type also comes with a large number of useful methods.
+We’ll discuss a few of them here.</p>
+<p>As we just saw, we can slice a series. We can also extract individual
+elements using the <code class="docutils literal notranslate"><span class="pre">loc</span></code> and <code class="docutils literal notranslate"><span class="pre">iloc</span></code> operators with a value’s index
+and position respectively:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vc</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;London planetree&quot;</span><span class="p">]</span>
+<span class="go">87014</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vc</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">87014</span>
+</pre></div>
+</div>
+<p>We can also drop the <code class="docutils literal notranslate"><span class="pre">loc</span></code> operator and just use square brackets
+with the index:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vc</span><span class="p">[</span><span class="s2">&quot;London planetree&quot;</span><span class="p">]</span>
+<span class="go">87014</span>
+</pre></div>
+</div>
+<p>Finally, if the index is a legal Python identifier and it does not
+conflict with a <code class="docutils literal notranslate"><span class="pre">Series</span></code> attribute or method name, we can use the
+dot notation.  “London planetree” does not qualify because of the
+embedded space, but “mimosa” on the other hand, does:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vc</span><span class="o">.</span><span class="n">mimosa</span>
+<span class="go">163</span>
+</pre></div>
+</div>
+<p>The series <code class="docutils literal notranslate"><span class="pre">describe</span></code> method computes a new series that contains
+summary information about the data and is very useful when you are
+exploring a new dataset.  The result depends on the type of the values
+stored in the series.  In the case of the common names of the tree
+species, the values are strings and so, <code class="docutils literal notranslate"><span class="pre">describe</span></code> tells us the
+number of entries (<code class="docutils literal notranslate"><span class="pre">count</span></code>), the number of unique values
+(<code class="docutils literal notranslate"><span class="pre">unique</span></code>), the most common value (<code class="docutils literal notranslate"><span class="pre">top</span></code>), and its frequency
+<code class="docutils literal notranslate"><span class="pre">freq</span></code>).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">spc_common</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="go">count               652169</span>
+<span class="go">unique                 132</span>
+<span class="go">top       London planetree</span>
+<span class="go">freq                 87014</span>
+<span class="go">Name: spc_common, dtype: object</span>
+</pre></div>
+</div>
+<p>By default, all of these values are computed excluding <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values.
+This method provides an alternative way to answer our first question:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">num_unique</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">spc_common</span><span class="o">.</span><span class="n">describe</span><span class="p">()[</span><span class="s2">&quot;unique&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of unique street tree species:&quot;</span><span class="p">,</span> <span class="n">num_unique</span><span class="p">)</span>
+<span class="go">Number of unique street tree species: 132</span>
+</pre></div>
+</div>
+<p>One thing to note about this code: we used the square bracket notation
+to access the <code class="docutils literal notranslate"><span class="pre">unique</span></code> value from the result of <code class="docutils literal notranslate"><span class="pre">describe</span></code>.  Could
+we have used dot notation instead?  No, because even though <code class="docutils literal notranslate"><span class="pre">unique</span></code>
+is a legal Python identifier, it conflicts with the name of a series
+method.</p>
+<p>Given a series with numeric values <code class="docutils literal notranslate"><span class="pre">describe</span></code> computes the number of
+values in the series, the mean of those values, their standard
+deviation, and their quartiles.  Latitude and longitude are the only
+values represented by floats in our sample dataset and it does not
+really make sense to compute quartiles for these values.  So, we’ll
+construct a simple series with an index that ranges from zero to ten
+to use an example using the <code class="docutils literal notranslate"><span class="pre">pd.Series</span></code> constructor and a list of
+values:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sample_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">92</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">70</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sample_series</span>
+<span class="go">0    92</span>
+<span class="go">1    74</span>
+<span class="go">2    80</span>
+<span class="go">3    60</span>
+<span class="go">4    72</span>
+<span class="go">5    90</span>
+<span class="go">6    84</span>
+<span class="go">7    74</span>
+<span class="go">8    75</span>
+<span class="go">9    70</span>
+<span class="go">dtype: int64</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sample_series</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="go">count    10.000000</span>
+<span class="go">mean     77.100000</span>
+<span class="go">std       9.643075</span>
+<span class="go">min      60.000000</span>
+<span class="go">25%      72.500000</span>
+<span class="go">50%      74.500000</span>
+<span class="go">75%      83.000000</span>
+<span class="go">max      92.000000</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">describe</span></code> method can also be applied to data frames.</p>
+<p>As with NumPy arrays, operators are applied element-wise and
+Numpy-style broadcasting is used to construct values of the same shape
+prior to applying the operator.  For example, we could compute a
+series with the percentage live trees, dead trees, and stumps using a
+call to <code class="docutils literal notranslate"><span class="pre">value_counts</span></code> and a couple of operators:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">trees</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="go">Alive    95.376491</span>
+<span class="go">Stump     2.581794</span>
+<span class="go">Dead      2.041715</span>
+<span class="go">Name: status, dtype: float64</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="filtering">
+<h2><span class="section-number">4.3.4. </span>Filtering<a class="headerlink" href="#filtering" title="Permalink to this heading"></a></h2>
+<p>Now let’s move on to our third and fourth questions: “What is the most
+common street tree species in Brooklyn?” and “What percentage of the
+trees street in Queens are dead or in poor health?”</p>
+<p>We could answer these questions by iterating over the data frame using
+the <code class="docutils literal notranslate"><span class="pre">iterrows</span></code> method, which yields a tuple with the label and
+corresponding value for each row in the data frame.  In the body of
+the loop, we would identify the relevant rows, construct a dictionary,
+and calculate the most frequent species as we go:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">top_kind</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">top_count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">brooklyn_tree_counts</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">tree</span> <span class="ow">in</span> <span class="n">trees</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">tree</span><span class="p">[</span><span class="s2">&quot;boroname&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Brooklyn&quot;</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">kind</span> <span class="o">=</span> <span class="n">tree</span><span class="p">[</span><span class="s2">&quot;spc_common&quot;</span><span class="p">]</span>
+<span class="gp">... </span>        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">kind</span><span class="p">):</span>
+<span class="gp">... </span>            <span class="n">brooklyn_tree_counts</span><span class="p">[</span><span class="n">kind</span><span class="p">]</span> <span class="o">=</span> <span class="n">brooklyn_tree_counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">kind</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="gp">... </span>            <span class="k">if</span> <span class="n">brooklyn_tree_counts</span><span class="p">[</span><span class="n">kind</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">top_count</span><span class="p">:</span>
+<span class="gp">... </span>                <span class="n">top_count</span> <span class="o">=</span> <span class="n">brooklyn_tree_counts</span><span class="p">[</span><span class="n">kind</span><span class="p">]</span>
+<span class="gp">... </span>                <span class="n">top_kind</span> <span class="o">=</span> <span class="n">kind</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Most common tree in Brooklyn:&quot;</span><span class="p">,</span> <span class="n">top_kind</span><span class="p">)</span>
+<span class="go">Most common tree in Brooklyn: London planetree</span>
+</pre></div>
+</div>
+<p>Alternatively, we could leverage Pandas a bit more by constructing a
+new data frame with the relevant rows and then using the <code class="docutils literal notranslate"><span class="pre">Series</span></code>
+<code class="docutils literal notranslate"><span class="pre">mode</span></code> method to find the most frequent non-null value in the
+<code class="docutils literal notranslate"><span class="pre">spc_common</span></code> column:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">brooklyn_trees</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">tree</span> <span class="ow">in</span> <span class="n">trees</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">tree</span><span class="p">[</span><span class="s2">&quot;boroname&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Brooklyn&quot;</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">brooklyn_trees</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">brooklyn_trees</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Most common tree in Brooklyn:&quot;</span><span class="p">,</span> <span class="n">bt</span><span class="o">.</span><span class="n">spc_common</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">Most common tree in Brooklyn: London planetree</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">mode</span></code> method returns returns a series of with the most frequent
+value or, in the case of a tie, values</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bt</span><span class="o">.</span><span class="n">spc_common</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span>
+<span class="go">0    London planetree</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+<p>To find the name of the species that occurs most often, we’ll extract
+the first value from this series using <code class="docutils literal notranslate"><span class="pre">iloc[0]</span></code> Given a tie, we’ll
+just use the first one.</p>
+<p>Unfortunately, both of these approaches are quite slow, because
+iterating over a data frame one row at a time is an expensive
+operation.  A better way to answer this question is to use filtering,
+which is similar to filtering in Numpy.  Here’s a statement that
+computes the same data frame with entries for the trees in Brooklyn
+much more efficiently:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">in_brooklyn</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">boroname</span> <span class="o">==</span> <span class="s2">&quot;Brooklyn&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bt</span> <span class="o">=</span> <span class="n">trees</span><span class="p">[</span><span class="n">in_brooklyn</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The variable <code class="docutils literal notranslate"><span class="pre">in_brooklyn</span></code> refers to a series with boolean values,
+one per tree, that are <code class="docutils literal notranslate"><span class="pre">True</span></code> for trees in Brooklyn and <code class="docutils literal notranslate"><span class="pre">False</span></code>
+otherwise.  If we use a series of booleans to index into a data frame,
+the result will be a new data frame that includes the rows for which
+the corresponding boolean is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>Using this approach, we can compute the most common tree in Brooklyn
+quite compactly and efficiently:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bt</span> <span class="o">=</span> <span class="n">trees</span><span class="p">[</span><span class="n">trees</span><span class="o">.</span><span class="n">boroname</span> <span class="o">==</span> <span class="s2">&quot;Brooklyn&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Most common tree in Brooklyn:&quot;</span><span class="p">,</span> <span class="n">bt</span><span class="o">.</span><span class="n">spc_common</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">Most common tree in Brooklyn: London planetree</span>
+</pre></div>
+</div>
+<p>Notice that this version specifies the filter expression directly as
+the index, rather than assigning an intermediate name to the series of
+booleans.</p>
+<p>We can combine multiple conditions using the element-wise and (<code class="docutils literal notranslate"><span class="pre">&amp;</span></code>)
+and element-wise or (<code class="docutils literal notranslate"><span class="pre">|</span></code>) operators.  For example, here’s code that
+constructs a data frame with the entries for trees in Queens that are
+that are either dead or in poor health:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">filter</span> <span class="o">=</span> <span class="p">(</span><span class="n">trees</span><span class="o">.</span><span class="n">boroname</span> <span class="o">==</span> <span class="s2">&quot;Queens&quot;</span><span class="p">)</span> <span class="o">&amp;</span> \
+<span class="gp">... </span>           <span class="p">((</span><span class="n">trees</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;Dead&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">trees</span><span class="o">.</span><span class="n">health</span> <span class="o">==</span> <span class="s2">&quot;Poor&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bad_trees_queens</span> <span class="o">=</span> <span class="n">trees</span><span class="p">[</span><span class="nb">filter</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Note that the parentheses are necessary because element-wise and
+(<code class="docutils literal notranslate"><span class="pre">&amp;</span></code>) has higher precedence than both equality (<code class="docutils literal notranslate"><span class="pre">==</span></code>) and
+element-wise or (<code class="docutils literal notranslate"><span class="pre">|</span></code>).</p>
+<p>To answer our question “What percentage of the trees street in Queens
+are dead or in poor health?”, we need both the number of trees in
+Queens (excluding stumps) and the number of bad trees in Queens, so
+we’ll split the filtering into two pieces:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">not_stump_in_queens</span> <span class="o">=</span> <span class="p">(</span><span class="n">trees</span><span class="o">.</span><span class="n">boroname</span> <span class="o">==</span> <span class="s2">&quot;Queens&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">trees</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s2">&quot;Stump&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trees_in_queens</span> <span class="o">=</span> <span class="n">trees</span><span class="p">[</span><span class="n">not_stump_in_queens</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bad_tree_filter</span> <span class="o">=</span> <span class="p">(</span><span class="n">trees_in_queens</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;Dead&quot;</span><span class="p">)</span> <span class="o">|</span> \
+<span class="gp">... </span>                      <span class="p">(</span><span class="n">trees_in_queens</span><span class="o">.</span><span class="n">health</span> <span class="o">==</span> <span class="s2">&quot;Poor&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bad_trees_in_queens</span> <span class="o">=</span> <span class="n">trees_in_queens</span><span class="p">[</span><span class="n">bad_tree_filter</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;Percentage of the trees street in Queens are dead or in poor health: </span><span class="si">{:.2f}</span><span class="s2">%&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bad_trees_in_queens</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">trees_in_queens</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+<span class="go">Percentage of the trees street in Queens are dead or in poor health: 5.72%</span>
+</pre></div>
+</div>
+<p>The first two lines build a data frame for the trees in Queens
+(excluding stumps), while the second and third lines filter this new data
+frame further to find the dead trees and trees in poor health.</p>
+</div>
+<div class="section" id="grouping">
+<h2><span class="section-number">4.3.5. </span>Grouping<a class="headerlink" href="#grouping" title="Permalink to this heading"></a></h2>
+<p>To answer our last question— “How does tree health differ by
+borough?”—we will compute a data frame similar to Table X, which has
+one row per borough.  Specifically, it contains data for the
+percentages of trees in the borough deemed to be in good, fair, or
+poor health and for dead trees and stumps.</p>
+<table class="colwidths-given docutils align-center" id="id6">
+<caption><span class="caption-text">Stree Tree Health by Borough</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Borough</p></th>
+<th class="head"><p>Good</p></th>
+<th class="head"><p>Fair</p></th>
+<th class="head"><p>Poor</p></th>
+<th class="head"><p>Dead</p></th>
+<th class="head"><p>Stumps</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Bronx</p></td>
+<td><p>78.2%</p></td>
+<td><p>12.8%</p></td>
+<td><p>3.6%</p></td>
+<td><p>3.0%</p></td>
+<td><p>2.5%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Brooklyn</p></td>
+<td><p>78.0%</p></td>
+<td><p>14.1%</p></td>
+<td><p>3.6%</p></td>
+<td><p>1.9%</p></td>
+<td><p>2.4%</p></td>
+</tr>
+<tr class="row-even"><td><p>Manhattan</p></td>
+<td><p>72.4%</p></td>
+<td><p>17.5%</p></td>
+<td><p>5.5%</p></td>
+<td><p>2.8%</p></td>
+<td><p>1.8%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Queens</p></td>
+<td><p>77.4%</p></td>
+<td><p>13.8%</p></td>
+<td><p>3.8%</p></td>
+<td><p>1.8%</p></td>
+<td><p>3.2%</p></td>
+</tr>
+<tr class="row-even"><td><p>Staten Island</p></td>
+<td><p>78.5%</p></td>
+<td><p>13.8%</p></td>
+<td><p>4.0%</p></td>
+<td><p>1.8%</p></td>
+<td><p>1.9%</p></td>
+</tr>
+</tbody>
+</table>
+<p>We’ll work up to this task by answering some easier questions first:</p>
+<ol class="arabic simple">
+<li><p>How many entries does the data set have for each borough?</p></li>
+<li><p>For each borough, how many entries are for live trees, dead trees, and stumps?</p></li>
+<li><p>For each borough, what percentage of the trees are live, dead, or stumps?</p></li>
+</ol>
+<p>To count the number of entries per borough, we could walk over the
+individual rows and update a dictionary that maps boroughs to entry
+counts.  But as we learned in the last section, iterating over the
+rows individually is slow and is best to be avoided.  Another way to
+compute this information would be to use filtering to create a data
+frame for each borough and then compute its length.  Here’s a function
+that uses this approach:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">find_per_boro_count</span><span class="p">(</span><span class="n">trees</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">counts</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">... </span>    <span class="n">boros</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">trees</span><span class="o">.</span><span class="n">boroname</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">boro</span> <span class="ow">in</span> <span class="n">boros</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">boro_df</span> <span class="o">=</span> <span class="n">trees</span><span class="p">[</span><span class="n">trees</span><span class="o">.</span><span class="n">boroname</span> <span class="o">==</span> <span class="n">boro</span><span class="p">]</span>
+<span class="gp">... </span>        <span class="n">counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">boro_df</span><span class="p">))</span>
+<span class="gp">... </span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">boros</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">find_per_boro_count</span><span class="p">(</span><span class="n">trees</span><span class="p">)</span>
+<span class="go">Bronx             85203</span>
+<span class="go">Brooklyn         177293</span>
+<span class="go">Manhattan         65423</span>
+<span class="go">Queens           250551</span>
+<span class="go">Staten Island    105318</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>In each iteration of the loop, we identify the trees in a specific
+borough, count them using <code class="docutils literal notranslate"><span class="pre">len</span></code>, and then save the number on a list.
+Once this list is constructed, we use it and the list of borough names
+to create a series with the desired result.</p>
+<p>The task of separating the rows of a data frame into groups based on
+one or more fields and then doing some work on the individual groups
+is very common and so, Pandas provides the <code class="docutils literal notranslate"><span class="pre">groupby</span></code> method to
+simplify the process.  The groups can be specified in a variety of
+ways.  We’ll start with the most straightforward: using a column label
+or a tuple of column labels.  This method returns a special
+<code class="docutils literal notranslate"><span class="pre">DataFrameGroupBy</span></code> object.  When we iterate over an object of this
+type, we get a tuple that contains the name of the group and a data
+frame that contains the rows that belong to the group.</p>
+<p>Here’s a version of <code class="docutils literal notranslate"><span class="pre">find_per_boro_count</span></code> that uses <code class="docutils literal notranslate"><span class="pre">groupby</span></code> on
+the borough name rather than explicit filtering:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">find_per_boro_count</span><span class="p">(</span><span class="n">trees</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">counts</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">... </span>    <span class="n">boros</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">boro</span><span class="p">,</span> <span class="n">boro_df</span> <span class="ow">in</span> <span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;boroname&quot;</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="n">counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">boro_df</span><span class="p">))</span>
+<span class="gp">... </span>        <span class="n">boros</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">boro</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">boros</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">find_per_boro_count</span><span class="p">(</span><span class="n">trees</span><span class="p">)</span>
+<span class="go">Bronx             85203</span>
+<span class="go">Brooklyn         177293</span>
+<span class="go">Manhattan         65423</span>
+<span class="go">Queens           250551</span>
+<span class="go">Staten Island    105318</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>Other than the use of <code class="docutils literal notranslate"><span class="pre">groupby</span></code>, the only difference between this
+function and the previous one is that we construct the list of borough
+names from the group names rather than applying <code class="docutils literal notranslate"><span class="pre">unique</span></code> to the
+<code class="docutils literal notranslate"><span class="pre">boroname</span></code> column.</p>
+<p>This version runs faster than the previous version, but it turns out
+there is an even better way to compute this result.  This particular task,
+grouping by a field or fields and then counting the number of items in
+each group, is so common that the <code class="docutils literal notranslate"><span class="pre">DataFrameGroupBy</span></code> class includes
+a method, named <code class="docutils literal notranslate"><span class="pre">size</span></code>, for this computation.  Using this method, we
+can count the number of trees per borough in one line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;boroname&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="go">boroname</span>
+<span class="go">Bronx             85203</span>
+<span class="go">Brooklyn         177293</span>
+<span class="go">Manhattan         65423</span>
+<span class="go">Queens           250551</span>
+<span class="go">Staten Island    105318</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>How do we build on this code to compute the number of live trees,
+dead trees, and stumps for each borough?  Recall that this information
+is available for each tree in the <code class="docutils literal notranslate"><span class="pre">status</span></code> field.  We can group the
+data using this field along with the borough to get the information
+we want:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">status_per_boro</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;boroname&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">status_per_boro</span>
+<span class="go">boroname       status</span>
+<span class="go">Bronx          Alive      80585</span>
+<span class="go">               Dead        2530</span>
+<span class="go">               Stump       2088</span>
+<span class="go">Brooklyn       Alive     169744</span>
+<span class="go">               Dead        3319</span>
+<span class="go">               Stump       4230</span>
+<span class="go">Manhattan      Alive      62427</span>
+<span class="go">               Dead        1802</span>
+<span class="go">               Stump       1194</span>
+<span class="go">Queens         Alive     237974</span>
+<span class="go">               Dead        4440</span>
+<span class="go">               Stump       8137</span>
+<span class="go">Staten Island  Alive     101443</span>
+<span class="go">               Dead        1870</span>
+<span class="go">               Stump       2005</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>What might not be immediately clear from this output is that
+<code class="docutils literal notranslate"><span class="pre">status_per_boro</span></code> is a <code class="docutils literal notranslate"><span class="pre">Series</span></code> with a hierarchical index, not a
+data frame.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">status_per_boro</span><span class="o">.</span><span class="n">index</span>
+<span class="go">MultiIndex([(        &#39;Bronx&#39;, &#39;Alive&#39;),</span>
+<span class="go">            (        &#39;Bronx&#39;,  &#39;Dead&#39;),</span>
+<span class="go">            (        &#39;Bronx&#39;, &#39;Stump&#39;),</span>
+<span class="go">            (     &#39;Brooklyn&#39;, &#39;Alive&#39;),</span>
+<span class="go">            (     &#39;Brooklyn&#39;,  &#39;Dead&#39;),</span>
+<span class="go">            (     &#39;Brooklyn&#39;, &#39;Stump&#39;),</span>
+<span class="go">            (    &#39;Manhattan&#39;, &#39;Alive&#39;),</span>
+<span class="go">            (    &#39;Manhattan&#39;,  &#39;Dead&#39;),</span>
+<span class="go">            (    &#39;Manhattan&#39;, &#39;Stump&#39;),</span>
+<span class="go">            (       &#39;Queens&#39;, &#39;Alive&#39;),</span>
+<span class="go">            (       &#39;Queens&#39;,  &#39;Dead&#39;),</span>
+<span class="go">            (       &#39;Queens&#39;, &#39;Stump&#39;),</span>
+<span class="go">            (&#39;Staten Island&#39;, &#39;Alive&#39;),</span>
+<span class="go">            (&#39;Staten Island&#39;,  &#39;Dead&#39;),</span>
+<span class="go">            (&#39;Staten Island&#39;, &#39;Stump&#39;)],</span>
+<span class="go">           names=[&#39;boroname&#39;, &#39;status&#39;])</span>
+</pre></div>
+</div>
+<p>We can extract the information for a given borough as series using
+square brackets and the name of the borough:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">status_per_boro</span><span class="p">[</span><span class="s2">&quot;Bronx&quot;</span><span class="p">]</span>
+<span class="go">status</span>
+<span class="go">Alive    80585</span>
+<span class="go">Dead      2530</span>
+<span class="go">Stump     2088</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>and we can extract a specific value, say, the number of live trees,
+for a specific borough using either two sets of square brackets or one
+set of square brackets and a tuple:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">status_per_boro</span><span class="p">[</span><span class="s2">&quot;Bronx&quot;</span><span class="p">][</span><span class="s2">&quot;Alive&quot;</span><span class="p">]</span>
+<span class="go">80585</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">status_per_boro</span><span class="p">[</span><span class="s2">&quot;Bronx&quot;</span><span class="p">,</span> <span class="s2">&quot;Alive&quot;</span><span class="p">]</span>
+<span class="go">80585</span>
+</pre></div>
+</div>
+<p>Our desired result is a data frame, not a series with a hierarchical
+index, but before we convert the result to the right type, let’s add
+some code to calculate percentages rather than the counts:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro</span> <span class="o">=</span> <span class="n">status_per_boro</span><span class="o">/</span><span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;boroname&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro</span>
+<span class="go">boroname       status</span>
+<span class="go">Bronx          Alive     94.580003</span>
+<span class="go">               Dead       2.969379</span>
+<span class="go">               Stump      2.450618</span>
+<span class="go">Brooklyn       Alive     95.742077</span>
+<span class="go">               Dead       1.872042</span>
+<span class="go">               Stump      2.385881</span>
+<span class="go">Manhattan      Alive     95.420571</span>
+<span class="go">               Dead       2.754383</span>
+<span class="go">               Stump      1.825046</span>
+<span class="go">Queens         Alive     94.980263</span>
+<span class="go">               Dead       1.772094</span>
+<span class="go">               Stump      3.247642</span>
+<span class="go">Staten Island  Alive     96.320667</span>
+<span class="go">               Dead       1.775575</span>
+<span class="go">               Stump      1.903758</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>Notice that while the numerator of the division operation is a series
+with a hierarchical index, the denominator is a series with a flat
+index.  Pandas uses Numpy-style broadcasting to convert the
+denominator into something like this value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">boroname</span>       <span class="n">status</span>
+<span class="n">Bronx</span>          <span class="n">Alive</span>       <span class="mi">85203</span>
+               <span class="n">Dead</span>        <span class="mi">85203</span>
+               <span class="n">Stump</span>       <span class="mi">85203</span>
+<span class="n">Brooklyn</span>       <span class="n">Alive</span>      <span class="mi">177293</span>
+               <span class="n">Dead</span>       <span class="mi">177293</span>
+               <span class="n">Stump</span>      <span class="mi">177293</span>
+<span class="n">Manhattan</span>      <span class="n">Alive</span>       <span class="mi">65423</span>
+               <span class="n">Dead</span>        <span class="mi">65423</span>
+               <span class="n">Stump</span>       <span class="mi">65423</span>
+<span class="n">Queens</span>         <span class="n">Alive</span>      <span class="mi">250551</span>
+               <span class="n">Dead</span>       <span class="mi">250551</span>
+               <span class="n">Stump</span>      <span class="mi">250551</span>
+<span class="n">Staten</span> <span class="n">Island</span>  <span class="n">Alive</span>      <span class="mi">105318</span>
+               <span class="n">Dead</span>       <span class="mi">105318</span>
+               <span class="n">Stump</span>      <span class="mi">105318</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+</pre></div>
+</div>
+<p>before performing the division.  Similarly, the value 100 is broadcast
+into a series with the right shape before the multiplication is done.</p>
+<p>We now have the right values in the wrong form. We need to convert the
+series into a data frame with the borough names as the index and the
+different values for status (<code class="docutils literal notranslate"><span class="pre">'Alive'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Dead'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'Stump'</span></code>)
+as the column labels.  There are a couple of ways to accomplish this
+task. For now, we’ll describe the most straight-forward approach: use
+the <code class="docutils literal notranslate"><span class="pre">unstack</span></code> method, which converts a series with a hierarchical
+index into a data frame.  By default it uses the lowest level of the
+hierarchy as the column labels in the new data frame and the remaining
+levels of the hierarchical index as the index of the new data frame.
+In our example, <code class="docutils literal notranslate"><span class="pre">unstack</span></code> will use the <code class="docutils literal notranslate"><span class="pre">boroname</span></code> as the data
+frame index and the values of <code class="docutils literal notranslate"><span class="pre">status</span></code> as the column labels, which
+is exactly what we want:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="go">status             Alive      Dead     Stump</span>
+<span class="go">boroname                                    </span>
+<span class="go">Bronx          94.580003  2.969379  2.450618</span>
+<span class="go">Brooklyn       95.742077  1.872042  2.385881</span>
+<span class="go">Manhattan      95.420571  2.754383  1.825046</span>
+<span class="go">Queens         94.980263  1.772094  3.247642</span>
+<span class="go">Staten Island  96.320667  1.775575  1.903758</span>
+</pre></div>
+</div>
+<p>We’ve walked through several steps to get to this point, let’s put
+them together before we move on:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">counts_per_boro</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;boroname&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">status_per_boro</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;boroname&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro</span> <span class="o">=</span> <span class="n">status_per_boro</span><span class="o">/</span><span class="n">counts_per_boro</span> <span class="o">*</span> <span class="mf">100.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_df</span> <span class="o">=</span> <span class="n">pct_per_boro</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_df</span>
+<span class="go">status             Alive      Dead     Stump</span>
+<span class="go">boroname                                    </span>
+<span class="go">Bronx          94.580003  2.969379  2.450618</span>
+<span class="go">Brooklyn       95.742077  1.872042  2.385881</span>
+<span class="go">Manhattan      95.420571  2.754383  1.825046</span>
+<span class="go">Queens         94.980263  1.772094  3.247642</span>
+<span class="go">Staten Island  96.320667  1.775575  1.903758</span>
+</pre></div>
+</div>
+<p>We are now close to answering the question of how tree health differs
+by borough.  The last step is to replace the <code class="docutils literal notranslate"><span class="pre">Alive</span></code> column in our
+current result with three new columns— <code class="docutils literal notranslate"><span class="pre">Good</span></code>, <code class="docutils literal notranslate"><span class="pre">Fair</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">Poor</span></code>—using information in the <code class="docutils literal notranslate"><span class="pre">health</span></code> column.</p>
+<p>A common way to do this type of task is to compute and then process a
+new column with the combined information—health for live trees and
+status for dead trees and stumps.  We’ll use the Pandas <code class="docutils literal notranslate"><span class="pre">where</span></code>
+method to compute the new column (<code class="docutils literal notranslate"><span class="pre">combined</span></code>) and then
+add it to the <code class="docutils literal notranslate"><span class="pre">trees</span></code> data frame using an assignment statement.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="p">[</span><span class="s2">&quot;combined&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">trees</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s2">&quot;Alive&quot;</span><span class="p">,</span> <span class="n">trees</span><span class="o">.</span><span class="n">health</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">where</span></code> method will return a series with the same shape and
+index as <code class="docutils literal notranslate"><span class="pre">trees.status</span></code>.  A given entry in this series will hold the
+same value as the corresponding entry in <code class="docutils literal notranslate"><span class="pre">trees.status</span></code> if the
+corresponding entry has a value other than <code class="docutils literal notranslate"><span class="pre">&quot;Alive&quot;</span></code> and the
+corresponding value from <code class="docutils literal notranslate"><span class="pre">trees.health</span></code>, if not.  The <code class="docutils literal notranslate"><span class="pre">where</span></code>
+method uses the index to identify corresponding entries.  In this
+example, every index value in <code class="docutils literal notranslate"><span class="pre">trees.status</span></code> appears in both the
+condition and in what is known as the <em>other</em> argument
+(<code class="docutils literal notranslate"><span class="pre">tree.health</span></code>, in our example).  When a given index is missing from
+either the condition or from the other argument, <code class="docutils literal notranslate"><span class="pre">where</span></code> will insert
+a <code class="docutils literal notranslate"><span class="pre">NaN</span></code> into the result.</p>
+<p>Here’s some sample data from the result:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="p">[</span><span class="mi">629</span><span class="p">:</span><span class="mi">632</span><span class="p">]</span>
+<span class="go">        status health        spc_common  boroname   latitude  longitude combined</span>
+<span class="go">tree_id                                                                         </span>
+<span class="go">179447   Alive   Good  northern red oak  Brooklyn  40.637491 -73.955789     Good</span>
+<span class="go">192569    Dead    NaN               NaN    Queens  40.738044 -73.921552     Dead</span>
+<span class="go">179766   Stump    NaN               NaN  Brooklyn  40.637379 -73.953814    Stump</span>
+</pre></div>
+</div>
+<p>Rows 629-631 happen to contain information about a live tree, a dead
+tree, and a stump. Notice that the new <code class="docutils literal notranslate"><span class="pre">combined</span></code> column contains
+the health of the first tree, which is live, but the status for the
+other two, which are not.</p>
+<p>Once we have completed our computation, we can drop the <code class="docutils literal notranslate"><span class="pre">combined</span></code>
+column from the data frame using <code class="docutils literal notranslate"><span class="pre">drop</span></code> with <code class="docutils literal notranslate"><span class="pre">axis=1</span></code>.  Putting it
+all together, we get this function, which computes a data frame with
+information about how tree health differs by borough:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">tree_health_by_boro</span><span class="p">(</span><span class="n">trees</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">trees</span><span class="p">[</span><span class="s2">&quot;combined&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">trees</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s2">&quot;Alive&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                                           <span class="n">trees</span><span class="o">.</span><span class="n">health</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">num_per_boro</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;boroname&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="n">combined_per_boro</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;boroname&quot;</span><span class="p">,</span><span class="s2">&quot;combined&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="n">pct_per_boro</span> <span class="o">=</span> <span class="n">combined_per_boro</span><span class="o">/</span><span class="n">num_per_boro</span><span class="o">*</span><span class="mf">100.0</span>
+<span class="gp">... </span>    <span class="n">pct_per_boro_df</span> <span class="o">=</span> <span class="n">pct_per_boro</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="n">trees</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;combined&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">pct_per_boro_df</span><span class="p">[[</span><span class="s2">&quot;Good&quot;</span><span class="p">,</span> <span class="s2">&quot;Fair&quot;</span><span class="p">,</span> <span class="s2">&quot;Poor&quot;</span><span class="p">,</span> <span class="s2">&quot;Dead&quot;</span><span class="p">,</span> <span class="s2">&quot;Stump&quot;</span><span class="p">]]</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tree_health_by_boro</span><span class="p">(</span><span class="n">trees</span><span class="p">)</span>
+<span class="go">combined            Good       Fair      Poor      Dead     Stump</span>
+<span class="go">boroname                                                         </span>
+<span class="go">Bronx          78.169783  12.777719  3.632501  2.969379  2.450618</span>
+<span class="go">Brooklyn       77.956829  14.142126  3.643122  1.872042  2.385881</span>
+<span class="go">Manhattan      72.387387  17.516775  5.516409  2.754383  1.825046</span>
+<span class="go">Queens         77.432539  13.789209  3.758516  1.772094  3.247642</span>
+<span class="go">Staten Island  78.494654  13.801060  4.024003  1.775575  1.903758</span>
+</pre></div>
+</div>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">unstack</span></code> will order the columns by value, which is not
+ideal for our purposes.  Our function solves this problem by indexing
+the result of <code class="docutils literal notranslate"><span class="pre">unstack</span></code> with a list of the columns in the preferred
+order.</p>
+<p>It seems a little silly to add a column and almost immediately remove
+it.  And, in fact, we don’t actually need to add the combined data to
+the data frame to use it in a call <code class="docutils literal notranslate"><span class="pre">groupby</span></code>.  In addition to
+specifying the groups using one or more column names, we can also
+specify the groups using one or more series.  We can even combine the
+two approaches: use one or more column names and one or more series.</p>
+<p>Let’s look at what happens when we use a single series to specify the
+groups:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">combined_status</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">trees</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s2">&quot;Alive&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                                     <span class="n">trees</span><span class="o">.</span><span class="n">health</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">combined_status</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="go">status</span>
+<span class="go">Dead      13961</span>
+<span class="go">Fair      96504</span>
+<span class="go">Good     528850</span>
+<span class="go">Poor      26818</span>
+<span class="go">Stump     17654</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>The groups are determined by the values <code class="docutils literal notranslate"><span class="pre">combined_status</span></code>.  A row
+from <code class="docutils literal notranslate"><span class="pre">tree</span></code> is included in a given group, if <code class="docutils literal notranslate"><span class="pre">combined_status</span></code>
+contains an entry with the same index and the associated value matches
+the group’s label.  For example, <code class="docutils literal notranslate"><span class="pre">177922</span></code> appears as an index value
+in both <code class="docutils literal notranslate"><span class="pre">trees</span></code> and <code class="docutils literal notranslate"><span class="pre">combined_status</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">combined_status</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">177922</span><span class="p">]</span>
+<span class="go">&#39;Stump&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">177922</span><span class="p">]</span>
+<span class="go">status                Stump</span>
+<span class="go">health                  NaN</span>
+<span class="go">spc_common              NaN</span>
+<span class="go">boroname      Staten Island</span>
+<span class="go">latitude            40.5285</span>
+<span class="go">longitude          -74.1652</span>
+<span class="go">combined              Stump</span>
+<span class="go">Name: 177922, dtype: object</span>
+</pre></div>
+</div>
+<p>This tree will be in the <code class="docutils literal notranslate"><span class="pre">'Stump'</span></code> group, because that’s the value
+of tree <code class="docutils literal notranslate"><span class="pre">177922</span></code> in <code class="docutils literal notranslate"><span class="pre">combined_status.loc</span></code>.  In contrast, tree
+<code class="docutils literal notranslate"><span class="pre">180683</span></code> will be in group <code class="docutils literal notranslate"><span class="pre">'Fair'</span></code>, because that’s its value in
+<code class="docutils literal notranslate"><span class="pre">combined_status</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">combined_status</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">180683</span><span class="p">]</span>
+<span class="go">&#39;Fair&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">180683</span><span class="p">]</span>
+<span class="go">status            Alive</span>
+<span class="go">health             Fair</span>
+<span class="go">spc_common    red maple</span>
+<span class="go">boroname         Queens</span>
+<span class="go">latitude        40.7231</span>
+<span class="go">longitude      -73.8442</span>
+<span class="go">combined           Fair</span>
+<span class="go">Name: 180683, dtype: object</span>
+</pre></div>
+</div>
+<p>In this case, every index value in <code class="docutils literal notranslate"><span class="pre">trees</span></code> has a corresponding value
+in the index for <code class="docutils literal notranslate"><span class="pre">combined_status</span></code>.  If <code class="docutils literal notranslate"><span class="pre">trees</span></code> had contained an
+index that did not occur in <code class="docutils literal notranslate"><span class="pre">combined_status</span></code>, then the
+corresponding row would not have appeared in any group.  Similarly, an
+index that appeared in <code class="docutils literal notranslate"><span class="pre">combined_status</span></code> and not <code class="docutils literal notranslate"><span class="pre">trees</span></code> would not
+have an impact on the result.  This process of matching up the indices
+and discarding entries that do not have mates is known as an <em>inner
+join</em>.</p>
+<p>While this example used a single series, we can also use a list or
+tuple of series to specify the groups.  In this case, a row from the
+data frame is included in the result if its index occurs in all the
+series in the list.  The row’s group is determined by creating a tuple
+using its index to extract the corresponding values from each of the
+series.</p>
+<p>We can also mix column names and series.  In this case, you can think
+of the column name as a proxy for the column as a series.  That is,
+<code class="docutils literal notranslate"><span class="pre">trees.groupby(&quot;boroname&quot;,</span> <span class="pre">&quot;status&quot;)</span></code> is the same as
+<code class="docutils literal notranslate"><span class="pre">trees.groupby([trees.boroname,</span> <span class="pre">trees.status])</span></code>.</p>
+<p>Using this approach, we can skip adding the “combined” field to
+<code class="docutils literal notranslate"><span class="pre">trees</span></code> and just use the series directly in the <code class="docutils literal notranslate"><span class="pre">groupby</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">tree_health_by_boro</span><span class="p">(</span><span class="n">trees</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">combined_status</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">trees</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s2">&quot;Alive&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                                         <span class="n">trees</span><span class="o">.</span><span class="n">health</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">num_per_boro</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;boroname&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="n">combined_per_boro</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;boroname&quot;</span><span class="p">,</span><span class="n">combined_status</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="n">pct_per_boro</span> <span class="o">=</span> <span class="n">combined_per_boro</span><span class="o">/</span><span class="n">num_per_boro</span><span class="o">*</span><span class="mf">100.0</span>
+<span class="gp">... </span>    <span class="n">pct_per_boro_df</span> <span class="o">=</span> <span class="n">pct_per_boro</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">pct_per_boro_df</span><span class="p">[[</span><span class="s2">&quot;Good&quot;</span><span class="p">,</span> <span class="s2">&quot;Fair&quot;</span><span class="p">,</span> <span class="s2">&quot;Poor&quot;</span><span class="p">,</span> <span class="s2">&quot;Dead&quot;</span><span class="p">,</span> <span class="s2">&quot;Stump&quot;</span><span class="p">]]</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tree_health_by_boro</span><span class="p">(</span><span class="n">trees</span><span class="p">)</span>
+<span class="go">status              Good       Fair      Poor      Dead     Stump</span>
+<span class="go">boroname                                                         </span>
+<span class="go">Bronx          78.169783  12.777719  3.632501  2.969379  2.450618</span>
+<span class="go">Brooklyn       77.956829  14.142126  3.643122  1.872042  2.385881</span>
+<span class="go">Manhattan      72.387387  17.516775  5.516409  2.754383  1.825046</span>
+<span class="go">Queens         77.432539  13.789209  3.758516  1.772094  3.247642</span>
+<span class="go">Staten Island  78.494654  13.801060  4.024003  1.775575  1.903758</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pivoting">
+<h2><span class="section-number">4.3.6. </span>Pivoting<a class="headerlink" href="#pivoting" title="Permalink to this heading"></a></h2>
+<p>In the previous section, we used <code class="docutils literal notranslate"><span class="pre">unstack</span></code> to convert a series with
+a hierarchical index into a data frame with a flat index.  In this
+section, we’ll look at another way to handle the same task using the
+<code class="docutils literal notranslate"><span class="pre">pct_per_boro</span></code> series:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro</span>
+<span class="go">boroname       status</span>
+<span class="go">Bronx          Alive     94.580003</span>
+<span class="go">               Dead       2.969379</span>
+<span class="go">               Stump      2.450618</span>
+<span class="go">Brooklyn       Alive     95.742077</span>
+<span class="go">               Dead       1.872042</span>
+<span class="go">               Stump      2.385881</span>
+<span class="go">Manhattan      Alive     95.420571</span>
+<span class="go">               Dead       2.754383</span>
+<span class="go">               Stump      1.825046</span>
+<span class="go">Queens         Alive     94.980263</span>
+<span class="go">               Dead       1.772094</span>
+<span class="go">               Stump      3.247642</span>
+<span class="go">Staten Island  Alive     96.320667</span>
+<span class="go">               Dead       1.775575</span>
+<span class="go">               Stump      1.903758</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>As first step, we will convert the series into a data frame using
+the series’ <code class="docutils literal notranslate"><span class="pre">to_frame</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_df</span> <span class="o">=</span> <span class="n">pct_per_boro</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_df</span>
+<span class="go">                              0</span>
+<span class="go">boroname      status           </span>
+<span class="go">Bronx         Alive   94.580003</span>
+<span class="go">              Dead     2.969379</span>
+<span class="go">              Stump    2.450618</span>
+<span class="go">Brooklyn      Alive   95.742077</span>
+<span class="go">              Dead     1.872042</span>
+<span class="go">              Stump    2.385881</span>
+<span class="go">Manhattan     Alive   95.420571</span>
+<span class="go">              Dead     2.754383</span>
+<span class="go">              Stump    1.825046</span>
+<span class="go">Queens        Alive   94.980263</span>
+<span class="go">              Dead     1.772094</span>
+<span class="go">              Stump    3.247642</span>
+<span class="go">Staten Island Alive   96.320667</span>
+<span class="go">              Dead     1.775575</span>
+<span class="go">              Stump    1.903758</span>
+</pre></div>
+</div>
+<p>The resulting data frame retains the hierarchical index from the series
+and has a single column with name <code class="docutils literal notranslate"><span class="pre">0</span></code>.  Using <code class="docutils literal notranslate"><span class="pre">reset_index</span></code>, we
+can shift the hierarchical index values into columns and construct a
+new range index:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_df</span> <span class="o">=</span> <span class="n">pct_per_boro_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_df</span>
+<span class="go">         boroname status          0</span>
+<span class="go">0           Bronx  Alive  94.580003</span>
+<span class="go">1           Bronx   Dead   2.969379</span>
+<span class="go">2           Bronx  Stump   2.450618</span>
+<span class="go">3        Brooklyn  Alive  95.742077</span>
+<span class="go">4        Brooklyn   Dead   1.872042</span>
+<span class="go">5        Brooklyn  Stump   2.385881</span>
+<span class="go">6       Manhattan  Alive  95.420571</span>
+<span class="go">7       Manhattan   Dead   2.754383</span>
+<span class="go">8       Manhattan  Stump   1.825046</span>
+<span class="go">9          Queens  Alive  94.980263</span>
+<span class="go">10         Queens   Dead   1.772094</span>
+<span class="go">11         Queens  Stump   3.247642</span>
+<span class="go">12  Staten Island  Alive  96.320667</span>
+<span class="go">13  Staten Island   Dead   1.775575</span>
+<span class="go">14  Staten Island  Stump   1.903758</span>
+</pre></div>
+</div>
+<p>You’ll notice that this data frame is long and thin as opposed to
+short and wide, as is desired.  Before we convert the data frame into
+the appropriate shape, let’s rename the column labelled <code class="docutils literal notranslate"><span class="pre">0</span></code> into
+something more descriptive:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s2">&quot;percentage&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, we can use the data frame <code class="docutils literal notranslate"><span class="pre">pivot</span></code> method to convert a long
+and thin data frame into a short and wide data frame.  This function
+takes three parameters: a column name to use as the index for the new
+data frame, a column to use to make the new data frames’ column names,
+and the column to use for filling the new data frame.  In our case,
+we’ll use the borough name as the index, the <code class="docutils literal notranslate"><span class="pre">status</span></code> column to
+supply the column names, and the recently renamed <code class="docutils literal notranslate"><span class="pre">percentage</span></code>
+column to supply the values:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_pvt</span> <span class="o">=</span> <span class="n">pct_per_boro_df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s2">&quot;boroname&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;percentage&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_pvt</span>
+<span class="go">status             Alive      Dead     Stump</span>
+<span class="go">boroname                                    </span>
+<span class="go">Bronx          94.580003  2.969379  2.450618</span>
+<span class="go">Brooklyn       95.742077  1.872042  2.385881</span>
+<span class="go">Manhattan      95.420571  2.754383  1.825046</span>
+<span class="go">Queens         94.980263  1.772094  3.247642</span>
+<span class="go">Staten Island  96.320667  1.775575  1.903758</span>
+</pre></div>
+</div>
+<p>Because every borough has at least one tree of each status, values are
+available for all the entries in pivot result.  If a combination is
+not available, <code class="docutils literal notranslate"><span class="pre">pivot</span></code> fills in a <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.  We can see an example of
+this by computing a pivot table for tree species per boro:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;spc_common&quot;</span><span class="p">,</span> <span class="s2">&quot;boroname&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro_df</span> <span class="o">=</span> <span class="n">species_per_boro</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro_pvt</span> <span class="o">=</span> <span class="n">species_per_boro_df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s2">&quot;spc_common&quot;</span><span class="p">,</span> <span class="s2">&quot;boroname&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and then by examining the resulting value for a species named Atlas
+cedar:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro_pvt</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Atlas cedar&quot;</span><span class="p">]</span>
+<span class="go">boroname</span>
+<span class="go">Bronx             6.0</span>
+<span class="go">Brooklyn         34.0</span>
+<span class="go">Manhattan         NaN</span>
+<span class="go">Queens           39.0</span>
+<span class="go">Staten Island     8.0</span>
+<span class="go">Name: Atlas cedar, dtype: float64</span>
+</pre></div>
+</div>
+<p>Notice that the entry for <code class="docutils literal notranslate"><span class="pre">Manhattan</span></code> is <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p>
+<p>In case  you are curious, here’s the  code that we used  to identify a
+tree to use as an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro_pvt</span><span class="p">[</span><span class="n">species_per_boro_pvt</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+<span class="go">boroname        Bronx  Brooklyn  Manhattan  Queens  Staten Island</span>
+<span class="go">spc_common                                                       </span>
+<span class="go">Atlas cedar       6.0      34.0        NaN    39.0            8.0</span>
+<span class="go">Shantung maple    9.0      12.0        NaN    27.0           11.0</span>
+<span class="go">Virginia pine     1.0       3.0        3.0     3.0            NaN</span>
+<span class="go">false cypress    13.0      35.0        NaN    51.0            9.0</span>
+<span class="go">trident maple     7.0      12.0        NaN    68.0           23.0</span>
+</pre></div>
+</div>
+<p>Let’s pull this expression apart.  The expression
+<code class="docutils literal notranslate"><span class="pre">species_per_boro_pvt.isnull()</span></code> yields a data frame of booleans with
+the same shape as <code class="docutils literal notranslate"><span class="pre">species_per_boro_pvt</span></code>, that is 132 (species) by 5
+(boroughs).  A given entry is <code class="docutils literal notranslate"><span class="pre">True</span></code> if the corresponding entry in
+<code class="docutils literal notranslate"><span class="pre">species_per_boro_pvt</span></code> is <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.  We use a reduction to convert
+this value into a series of booleans, where the ith entry is <code class="docutils literal notranslate"><span class="pre">True</span></code>
+if the ith row contains at least one <code class="docutils literal notranslate"><span class="pre">True</span></code>.  Recall from our
+discussion of reductions in the Numpy chapter, that we use an axis of
+one when to apply the reduction function to the rows.  Also, recall
+that <code class="docutils literal notranslate"><span class="pre">any</span></code> returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if at least one value in the input is
+<code class="docutils literal notranslate"><span class="pre">True</span></code>.  Putting this together: the expression
+<code class="docutils literal notranslate"><span class="pre">species_per_boro_pvt.isnull().any(axis=1)</span></code> yields a series of
+booleans, one per tree type, that will be <code class="docutils literal notranslate"><span class="pre">True</span></code> if the
+corresponding entry in <code class="docutils literal notranslate"><span class="pre">species_per_boro_pvt</span></code> contains a <code class="docutils literal notranslate"><span class="pre">NaN</span></code>
+for at least one borough.  Finally, we use this series as a filter to
+the original pivot table to extract the desired entries.</p>
+<p>While we’ll admit that this code computes a somewhat esoteric
+result—species that occur in some, but not all five boroughs—it is
+impressive how little code is required to extract this information
+from the data set.</p>
+<p>As an aside, in this case, it makes sense to replace the null values
+with zeros.  We can do this task easily using the <code class="docutils literal notranslate"><span class="pre">fillna</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro_pvt</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro_pvt</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Atlas cedar&quot;</span><span class="p">]</span>
+<span class="go">boroname</span>
+<span class="go">Bronx             6.0</span>
+<span class="go">Brooklyn         34.0</span>
+<span class="go">Manhattan         0.0</span>
+<span class="go">Queens           39.0</span>
+<span class="go">Staten Island     8.0</span>
+<span class="go">Name: Atlas cedar, dtype: float64</span>
+</pre></div>
+</div>
+<p>As in other cases, adding <code class="docutils literal notranslate"><span class="pre">inplace=True</span></code> as a parameter instructs
+<code class="docutils literal notranslate"><span class="pre">fillna</span></code> to make the changes in place rather construct a new data
+frame.</p>
+</div>
+<div class="section" id="saving-space-with-categoricals">
+<h2><span class="section-number">4.3.7. </span>Saving space with Categoricals<a class="headerlink" href="#saving-space-with-categoricals" title="Permalink to this heading"></a></h2>
+<p>Our tree data set contains nearly 700,000 rows, so a natural question
+to ask is: how large is the memory footprint?  We can answer this
+question using the <code class="docutils literal notranslate"><span class="pre">info</span></code> method for data frames.  Like many Pandas
+methods, <code class="docutils literal notranslate"><span class="pre">info</span></code> has a variety of options.  For our purposes, we’ll
+use the <code class="docutils literal notranslate"><span class="pre">verbose=False</span></code> option, which reduces the amount of
+information generated by the method and <code class="docutils literal notranslate"><span class="pre">memory_usage=&quot;deep&quot;</span></code>
+option, which tells <code class="docutils literal notranslate"><span class="pre">info</span></code> to include all the memory costs
+associated with the data frame.  Before we run <code class="docutils literal notranslate"><span class="pre">info</span></code>, we’ll reload
+the data from the file to clean up any extra columns left over from
+our earlier computation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span> <span class="o">=</span> <span class="n">get_tree_data</span><span class="p">(</span><span class="s2">&quot;2015StreetTreesCensus_TREES.csv&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">memory_usage</span><span class="o">=</span><span class="s2">&quot;deep&quot;</span><span class="p">)</span>
+<span class="go">&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;</span>
+<span class="go">Int64Index: 683788 entries, 180683 to 200607</span>
+<span class="go">Columns: 6 entries, status to longitude</span>
+<span class="go">dtypes: float64(2), object(4)</span>
+<span class="go">memory usage: 181.1 MB</span>
+</pre></div>
+</div>
+<p>The last line of the output tells us that our <code class="docutils literal notranslate"><span class="pre">trees</span></code> data frame
+uses more than 180MB of space, which is non-trivial.  One way to
+reduce this amount is to replace strings with categoricals, which are
+more space efficient.  Categorical variables are used to represent
+features that can take on a small number of values, such as, borough
+names or the <code class="docutils literal notranslate"><span class="pre">status</span></code> and <code class="docutils literal notranslate"><span class="pre">health</span></code> fields of our tree data set.
+Though we can represent these values as strings, it is more space
+efficient to represent them using the Pandas <code class="docutils literal notranslate"><span class="pre">Categorical</span></code> class,
+which uses small integers as the underlying representation. This
+efficiency may not matter for a small dataset, but it can be
+significant for a large dataset.</p>
+<p>We can construct a categorical variable from the values in a series
+using the <code class="docutils literal notranslate"><span class="pre">astype</span></code> method with <code class="docutils literal notranslate"><span class="pre">&quot;category&quot;</span></code> as the type.  Here’s
+some code that displays a slice with borough names for the first five
+entries in the <code class="docutils literal notranslate"><span class="pre">trees</span></code> data frame, constructs a new series from the
+<code class="docutils literal notranslate"><span class="pre">boroname</span></code> field using a categorical variable, and then shows the
+first five values of the new series:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">boroname</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+<span class="go">tree_id</span>
+<span class="go">180683      Queens</span>
+<span class="go">200540      Queens</span>
+<span class="go">204026    Brooklyn</span>
+<span class="go">204337    Brooklyn</span>
+<span class="go">189565    Brooklyn</span>
+<span class="go">Name: boroname, dtype: object</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">boro_cat</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">boroname</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">boro_cat</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+<span class="go">tree_id</span>
+<span class="go">180683      Queens</span>
+<span class="go">200540      Queens</span>
+<span class="go">204026    Brooklyn</span>
+<span class="go">204337    Brooklyn</span>
+<span class="go">189565    Brooklyn</span>
+<span class="go">Name: boroname, dtype: category</span>
+<span class="go">Categories (5, object): [&#39;Bronx&#39;, &#39;Brooklyn&#39;, &#39;Manhattan&#39;, &#39;Queens&#39;, &#39;Staten Island&#39;]</span>
+</pre></div>
+</div>
+<p>Notice that the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> has changed from <code class="docutils literal notranslate"><span class="pre">object</span></code> to <code class="docutils literal notranslate"><span class="pre">category</span></code>
+and that the category has five values <code class="docutils literal notranslate"><span class="pre">Bronx</span></code>, <code class="docutils literal notranslate"><span class="pre">Brooklyn</span></code>, etc.</p>
+<p>Using this simple mechanism dramatically reduces the memory footprint
+of the trees data.  Specifically, we can reduce the amount of memory
+needed by a factor of 10 by converting the <code class="docutils literal notranslate"><span class="pre">boroname</span></code>, <code class="docutils literal notranslate"><span class="pre">health</span></code>,
+<code class="docutils literal notranslate"><span class="pre">spc_common</span></code>, and <code class="docutils literal notranslate"><span class="pre">status</span></code> fields from strings to categoricals:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">col_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;boroname&quot;</span><span class="p">,</span> <span class="s2">&quot;health&quot;</span><span class="p">,</span> <span class="s2">&quot;spc_common&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">]:</span>
+<span class="gp">... </span>    <span class="n">trees</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">trees</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">memory_usage</span><span class="o">=</span><span class="s2">&quot;deep&quot;</span><span class="p">)</span>
+<span class="go">&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;</span>
+<span class="go">Int64Index: 683788 entries, 180683 to 200607</span>
+<span class="go">Columns: 6 entries, status to longitude</span>
+<span class="go">dtypes: category(4), float64(2)</span>
+<span class="go">memory usage: 18.9 MB</span>
+</pre></div>
+</div>
+<p>Another way to create a <code class="docutils literal notranslate"><span class="pre">Categorical</span></code> is to define a set of labelled
+bins and use them along with the method <code class="docutils literal notranslate"><span class="pre">pd.cut</span></code> to construct a
+categorical variable from a series with numeric values.  Our tree data
+does not have a natural example for this type of categorical, so we’ll
+use ten sample diastolic blood pressure values as an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dbp_10</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">92</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">70</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>We might want to label values below 80 as “normal”, values between 80
+and 90 as pre-hypertension, and values at 90 or above as high.  To
+define the bin boundaries, we specify an ordered list of values:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dbp_bins</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>The values are paired in sequence to create the bin boundaries : [0.0,
+80], (80, 90], and (90, float(“inf”)].  By default, the right value in
+each pair is not included in the bin.  Also, by default the first
+interval does not include the smallest value.  Both of these defaults
+can be changed using optional parameters named <code class="docutils literal notranslate"><span class="pre">right</span></code> and
+<code class="docutils literal notranslate"><span class="pre">include_lowest</span></code> respectively.  Somewhat counter-intuitively,
+<code class="docutils literal notranslate"><span class="pre">right</span></code> needs to be set to <code class="docutils literal notranslate"><span class="pre">False</span></code>, if you want to include the
+rightmost edge in the bin.</p>
+<p>The bin labels are specified as a list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dbp_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="s2">&quot;pre-hypertension&quot;</span><span class="p">,</span> <span class="s2">&quot;high&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The number of labels should match the numbers of bins, which means
+this list is one shorter than the list of floats used to define the
+bin boundaries.</p>
+<p>Give these bin boundaries and labels, we can create a categorical
+variable from the sample diastolic blood pressures using <code class="docutils literal notranslate"><span class="pre">pd.cut</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">dbp_10</span><span class="p">,</span> <span class="n">dbp_bins</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">dbp_labels</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">0                high</span>
+<span class="go">1              normal</span>
+<span class="go">2    pre-hypertension</span>
+<span class="go">3              normal</span>
+<span class="go">4              normal</span>
+<span class="go">5                high</span>
+<span class="go">6    pre-hypertension</span>
+<span class="go">7              normal</span>
+<span class="go">8              normal</span>
+<span class="go">9              normal</span>
+<span class="go">dtype: category</span>
+<span class="go">Categories (3, object): [&#39;normal&#39; &lt; &#39;pre-hypertension&#39; &lt; &#39;high&#39;]</span>
+</pre></div>
+</div>
+<p>As expected from the description above, patients 3, 4, 7-9 are
+labelled as having “normal” diastolic blood pressure, patients 2 and 6
+are labelled with “pre-hypertension” and patients 0 and 5 are labelled
+has having high diastolic blood pressure.</p>
+</div>
+<div class="section" id="summary">
+<h2><span class="section-number">4.3.8. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this heading"></a></h2>
+<p>Pandas is very complex library and we have barely skimmed the surface
+of its many useful features. We strongly encourage you to look at the
+documentation to explore the wealth of options it provides.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../numpy/index.html" class="btn btn-neutral float-left" title="4.2. NumPy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Anne Rogers and Borja Sotomayor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

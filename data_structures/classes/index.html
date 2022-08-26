@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.4. Classes and Objects &mdash; Computer Science with Applications  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/csapps.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3. Functional Programming and Recursion" href="../../functions/index.html" />
+    <link rel="prev" title="2.3. Implementing a Data Structure: Stacks and Queues" href="../stacks_queues/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Computer Science with Applications
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../preface.html">Preface</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">2. Data Structures</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../lists/index.html">2.1. Lists, Tuples, and Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dictionaries/index.html">2.2. Dictionaries and Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stacks_queues/index.html">2.3. Implementing a Data Structure: Stacks and Queues</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.4. Classes and Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#defining-a-new-class">2.4.1. Defining a new class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#composition">2.4.2. Composition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#public-vs-private-attributes">2.4.3. Public vs private attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#properties">2.4.4. Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#class-static-attributes-vs-instance-attributes">2.4.5. Class/static attributes vs instance attributes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../functions/index.html">3. Functional Programming and Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working_with_data/index.html">4. Working with Data</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Computer Science with Applications</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">2. </span>Data Structures</a> &raquo;</li>
+      <li><span class="section-number">2.4. </span>Classes and Objects</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/data_structures/classes/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="classes-and-objects">
+<span id="chapter-classes"></span><h1><span class="section-number">2.4. </span>Classes and Objects<a class="headerlink" href="#classes-and-objects" title="Permalink to this heading"></a></h1>
+<p>In the previous chapter, we saw that we can define new data types by creating an
+API of functions to operate on that data type (like we did for stacks
+and queues). However, this approach has two main limitations.</p>
+<p>First of all, when implementing stacks and queues, we decided to use a list to
+store information about our stack or queue. For example, the
+<code class="docutils literal notranslate"><span class="pre">stack_create</span></code> function returns an empty list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">stack_create</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">stack_create</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Once we have that variable <code class="docutils literal notranslate"><span class="pre">s</span></code>, we can pass it to the other stack
+functions (<code class="docutils literal notranslate"><span class="pre">stack_pop</span></code>, <code class="docutils literal notranslate"><span class="pre">stack_push</span></code>, etc.) and essentially
+manipulate it as a stack, even though it actually contains a list.</p>
+<p>However, nothing prevents us from manipulating that list in non-stack
+ways: we can still use any of Python’s list operations directly on it.
+In other words, our data type has information that should be <em>private</em>
+to the data type, and that users of that data type cannot manipulate.
+We want those users to access only those operations and data that we
+choose to make <em>public</em>. Using a function-based API, we can’t fully
+enforce this separation between the public and private parts of
+a data type.</p>
+<p>Second, our stack/queue implementations allowed the stack/queue to be
+represented with a single variable (a list), which meant we only had
+to pass that as a parameter to the other functions. However, not all data
+types can be implemented like that. For example, I may want to define
+a data type with multiple <em>attributes</em>, such as a “student” data type
+that includes a first name, a last name, a student ID number, and other
+attributes of the student.</p>
+<p>One way to address this second issue is to simply encapsulate those multiple
+attributes in a list or dictionary. In fact, back in <a class="reference internal" href="../dictionaries/index.html#chapter-dictionaries"><span class="std std-ref">Dictionaries and Sets</span></a>
+we saw that this was a common use case of dictionaries. We could store
+information about a single student in a dictionary like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">student</span> <span class="o">=</span> <span class="p">{</span>
+           <span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Johnny&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Coder&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="s2">&quot;313370&quot;</span>
+          <span class="p">}</span>
+</pre></div>
+</div>
+<p>In fact, this dictionary could, in turn, include other dictionaries that
+represent other data types, like courses or majors:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">student</span> <span class="o">=</span> <span class="p">{</span>
+           <span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Johnny&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Coder&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="s2">&quot;313370&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;courses&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;CMSC 12100&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Computer Science with Applications I&quot;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;CMSC 12200&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Computer Science with Applications II&quot;</span><span class="p">}],</span>
+           <span class="s2">&quot;major&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Economics&quot;</span><span class="p">,</span>
+                     <span class="s2">&quot;short_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Econ&quot;</span><span class="p">}</span>
+          <span class="p">}</span>
+</pre></div>
+</div>
+<p>This way, if we defined a function that operates on a student, all we need
+to do is pass a single student dictionary to that function (instead of one
+parameter for each of the attributes of the student). However, we can still
+manipulate that dictionary in ways that may not be allowed (like changing
+the student’s ID number), and we could potentially use attribute names
+that make no sense (e.g., if we made a typo like writing <code class="docutils literal notranslate"><span class="pre">firstname</span></code>
+instead of <code class="docutils literal notranslate"><span class="pre">first_name</span></code>).</p>
+<p>The <em>object-oriented paradigm</em> (or OO for short) addresses many of these issues by
+providing a mechanism to define new data types that encapsulate some
+attributes as well as operations that are allowed on the
+data type. OO also allows for a cleaner separation between the
+<em>public</em> attributes and operations that any programmer can access,
+and the <em>private</em> ones that only the data type implementor should
+be allowed to modify.</p>
+<div class="section" id="defining-a-new-class">
+<h2><span class="section-number">2.4.1. </span>Defining a new class<a class="headerlink" href="#defining-a-new-class" title="Permalink to this heading"></a></h2>
+<p>In OO, a <em>class</em> is the definition of a new type, while <em>objects</em> are
+specific instances of that data type. One of way to think about this
+distinction is that a class is like the blueprint for a car, while
+objects are the actual individual cars. There is only one blueprint,
+and that blueprint specifies certain characteristics of the car that
+may vary from car to car, like its color or engine type. There can be
+multiple cars, all built according to the same blueprint, but with
+each individual car having different values for a given attribute
+(e.g., one car could be red and another blue).</p>
+<p>So, let’s say we want to define a new data type to represent a
+location on Earth. A location will have only two attributes: latitude
+and longitude.  So, while we could implement this data type by using a
+list of two numbers, and creating a function-based API like we did for
+stacks and queues, we will see that defining a location class will have a
+number of advantages.</p>
+<p>Below is the full specification of a new <code class="docutils literal notranslate"><span class="pre">Location</span></code> data type using
+an OO approach. For now, don’t worry about the individual details
+of this code. We will deconstruct it piece by piece soon.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">class</span> <span class="nc">Location</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">latitude</span> <span class="o">=</span> <span class="n">latitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">longitude</span> <span class="o">=</span> <span class="n">longitude</span>
+
+    <span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latitude</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">):</span>
+            <span class="n">lat</span> <span class="o">=</span> <span class="s2">&quot;S&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lat</span> <span class="o">=</span> <span class="s2">&quot;N&quot;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">longitude</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">):</span>
+            <span class="n">lon</span> <span class="o">=</span> <span class="s2">&quot;W&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lon</span> <span class="o">=</span> <span class="s2">&quot;E&quot;</span>
+
+        <span class="k">return</span> <span class="s2">&quot;(</span><span class="si">{:.3f}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">, </span><span class="si">{:.3f}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latitude</span><span class="p">),</span>
+                                               <span class="n">lat</span><span class="p">,</span>
+                                               <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">longitude</span><span class="p">),</span>
+                                               <span class="n">lon</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">distance_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="n">diffLatitude</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">latitude</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">latitude</span><span class="p">)</span>
+        <span class="n">diffLongitude</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">longitude</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">longitude</span><span class="p">)</span>
+
+        <span class="n">a</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">diffLatitude</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">diffLatitude</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> \
+            <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latitude</span><span class="p">))</span> <span class="o">*</span> \
+            <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">latitude</span><span class="p">))</span> <span class="o">*</span> \
+            <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">diffLongitude</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">diffLongitude</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">asin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="mf">6371000.0</span> <span class="o">*</span> <span class="n">d</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The above code defines a new <code class="docutils literal notranslate"><span class="pre">Location</span></code> data type that we can now use in Python
+to manipulate geographic locations (specified with a latitude and longitude):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span> <span class="o">=</span> <span class="n">Location</span><span class="p">(</span> <span class="mf">41.8337329</span><span class="p">,</span> <span class="o">-</span><span class="mf">87.7321555</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newyork_loc</span> <span class="o">=</span> <span class="n">Location</span><span class="p">(</span> <span class="mf">40.7056308</span><span class="p">,</span> <span class="o">-</span><span class="mf">73.9780035</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
+<span class="go">&#39;(41.834 N, 87.732 W)&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newyork_loc</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
+<span class="go">&#39;(40.706 N, 73.978 W)&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span><span class="o">.</span><span class="n">distance_to</span><span class="p">(</span><span class="n">newyork_loc</span><span class="p">)</span>
+<span class="go">1155076.7723381526</span>
+</pre></div>
+</div>
+<p>Notice how we can create two separate locations, <code class="docutils literal notranslate"><span class="pre">chicago_loc</span></code> and <code class="docutils literal notranslate"><span class="pre">newyork_loc</span></code> that both
+conform to the <code class="docutils literal notranslate"><span class="pre">Location</span></code> “blueprint” (they both have their own values for <code class="docutils literal notranslate"><span class="pre">latitude</span></code> and <code class="docutils literal notranslate"><span class="pre">longitude</span></code>).
+We can also perform a useful operation on these locations: computing the distance from one
+location to another (in this case, the distance from Chicago to New York is 1,155,076 meters, or
+1,115.07 kilometers).</p>
+<p>Let’s now take a closer look at how we have defined the <code class="docutils literal notranslate"><span class="pre">Location</span></code> class.</p>
+<p>Our definition starts with this line:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Location</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>This line starts the definition of a <code class="docutils literal notranslate"><span class="pre">Location</span></code> class: notice how everything else
+is indented below the <code class="docutils literal notranslate"><span class="pre">class</span></code> statement.</p>
+<p>Inside the class, we have what look like functions: <code class="docutils literal notranslate"><span class="pre">__init__</span></code>,
+<code class="docutils literal notranslate"><span class="pre">to_string</span></code>, <code class="docutils literal notranslate"><span class="pre">distance_to</span></code>, and <code class="docutils literal notranslate"><span class="pre">__repr__</span></code>. These definitions are referred to as
+<em>methods</em>.  The first one is special: it is known as the
+<em>constructor</em>, and is always called <code class="docutils literal notranslate"><span class="pre">__init__</span></code>. The constructor
+is used to <em>initialize</em> a new object.</p>
+<p>Remember that a class is like a blueprint, and an object is a specific
+<em>instance</em> of that class. So, when we do this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">chicago_loc</span> <span class="o">=</span> <span class="n">Location</span><span class="p">(</span> <span class="mf">41.8337329</span><span class="p">,</span> <span class="o">-</span><span class="mf">87.7321555</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>What we’re doing is taking the <code class="docutils literal notranslate"><span class="pre">Location</span></code> “blueprint” and constructing a
+location with latitude equal to 41.8337329 and longitude equal to -87.7321555.
+Internally, Python builds this instance
+by calling the  <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method, which is in charge of <em>initializing</em> the coordinates.
+However, notice how <code class="docutils literal notranslate"><span class="pre">Location</span></code>’s constructor actually has three parameters:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>But, when we create the new <code class="docutils literal notranslate"><span class="pre">Location</span></code> object we only provide two
+parameters.  When implementing a class, all the methods will have a
+<code class="docutils literal notranslate"><span class="pre">self</span></code> parameter, which represents the object the method is
+operating on. In th case of <code class="docutils literal notranslate"><span class="pre">__init__</span></code>, <code class="docutils literal notranslate"><span class="pre">self</span></code> is the new
+<code class="docutils literal notranslate"><span class="pre">Location</span></code> object we are constructing.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method is commonly used to initialize the object’s <em>attributes</em>.
+In this case, <code class="docutils literal notranslate"><span class="pre">Location</span></code> has two attributes (latitude and longitude),
+so we need to set their values. We do so with the <code class="docutils literal notranslate"><span class="pre">latitude</span></code> and <code class="docutils literal notranslate"><span class="pre">longitude</span></code> parameters
+provided to the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">latitude</span> <span class="o">=</span> <span class="n">latitude</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">longitude</span> <span class="o">=</span> <span class="n">longitude</span>
+</pre></div>
+</div>
+<p>In the above code, <code class="docutils literal notranslate"><span class="pre">self.latitude</span></code> can be read as “<code class="docutils literal notranslate"><span class="pre">latitude</span></code> of <code class="docutils literal notranslate"><span class="pre">self</span></code>”, i.e., the <code class="docutils literal notranslate"><span class="pre">latitude</span></code>
+attribute of the <code class="docutils literal notranslate"><span class="pre">self</span></code> object (which is the object we are constructing), while
+<code class="docutils literal notranslate"><span class="pre">latitude</span></code> (by itself, without <code class="docutils literal notranslate"><span class="pre">self.</span></code>) is just a parameter to the constructor.</p>
+<p>So, to recap, when we evaluate this statement:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span> <span class="o">=</span> <span class="n">Location</span><span class="p">(</span> <span class="mf">41.8337329</span><span class="p">,</span> <span class="o">-</span><span class="mf">87.7321555</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>A new <code class="docutils literal notranslate"><span class="pre">Location</span></code> object is created with two attributes, <code class="docutils literal notranslate"><span class="pre">latitude</span></code> and <code class="docutils literal notranslate"><span class="pre">longitude</span></code>, with their
+values initialized to <code class="docutils literal notranslate"><span class="pre">41.8337329</span></code> and <code class="docutils literal notranslate"><span class="pre">-87.7321555</span></code>, respectively. The object is then stored in
+the <code class="docutils literal notranslate"><span class="pre">chicago_loc</span></code> variable. We can actually access the <code class="docutils literal notranslate"><span class="pre">latitude</span></code> and <code class="docutils literal notranslate"><span class="pre">longitude</span></code> attributes by using
+the dot operator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span><span class="o">.</span><span class="n">latitude</span>
+<span class="go">41.8337329</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span><span class="o">.</span><span class="n">longitude</span>
+<span class="go">-87.7321555</span>
+</pre></div>
+</div>
+<p>Once we have created a new object, we can invoke other methods defined in the
+<code class="docutils literal notranslate"><span class="pre">Location</span></code> class. For example, the class includes the following method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latitude</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">):</span>
+        <span class="n">lat</span> <span class="o">=</span> <span class="s2">&quot;S&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lat</span> <span class="o">=</span> <span class="s2">&quot;N&quot;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">longitude</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">):</span>
+        <span class="n">lon</span> <span class="o">=</span> <span class="s2">&quot;W&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lon</span> <span class="o">=</span> <span class="s2">&quot;E&quot;</span>
+
+    <span class="k">return</span> <span class="s2">&quot;(</span><span class="si">{:.3f}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">, </span><span class="si">{:.3f}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latitude</span><span class="p">),</span>
+                                           <span class="n">lat</span><span class="p">,</span>
+                                           <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">longitude</span><span class="p">),</span>
+                                           <span class="n">lon</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The purpose of this method is to produce a string representation of the coordinates.
+While we could simply print the object’s latitude and longitude like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">chicago_loc</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span> <span class="n">chicago_loc</span><span class="o">.</span><span class="n">longitude</span><span class="p">)</span>
+<span class="go">41.8337329 -87.7321555</span>
+</pre></div>
+</div>
+<p>This method produces a more compact representation that also indicates the hemisphere
+of each coordinate:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
+<span class="go">&#39;(41.834 N, 87.732 W)&#39;</span>
+</pre></div>
+</div>
+<p>This method may look a bit odd because, if we were writing a <em>function</em> to do
+this, it would look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">latitude</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">):</span>
+        <span class="n">lat</span> <span class="o">=</span> <span class="s2">&quot;S&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lat</span> <span class="o">=</span> <span class="s2">&quot;N&quot;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">longitude</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">):</span>
+        <span class="n">lon</span> <span class="o">=</span> <span class="s2">&quot;W&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lon</span> <span class="o">=</span> <span class="s2">&quot;E&quot;</span>
+
+    <span class="k">return</span> <span class="s2">&quot;(</span><span class="si">{:.3f}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">, </span><span class="si">{:.3f}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">latitude</span><span class="p">),</span>
+                                           <span class="n">lat</span><span class="p">,</span>
+                                           <span class="nb">abs</span><span class="p">(</span><span class="n">longitude</span><span class="p">),</span>
+                                           <span class="n">lon</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And we would call it like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">to_string</span><span class="p">(</span><span class="mf">41.8337329</span><span class="p">,</span> <span class="o">-</span><span class="mf">87.7321555</span><span class="p">)</span>
+<span class="go">&#39;(41.834 N, 87.732 W)&#39;</span>
+</pre></div>
+</div>
+<p>But, instead, when using objects, we call it like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
+<span class="go">&#39;(41.834 N, 87.732 W)&#39;</span>
+</pre></div>
+</div>
+<p>Remember that the <code class="docutils literal notranslate"><span class="pre">self</span></code> parameter contains the object a method is operating on.
+Furthermore, this parameter is <em>implied</em> whenever we call a method. So, a call
+like <code class="docutils literal notranslate"><span class="pre">chicago_loc.to_string()</span></code> internally becomes something like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Location</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">chicago_loc</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then, inside the method, an expression like <code class="docutils literal notranslate"><span class="pre">self.latitude</span></code> actually evaluates to
+“attribute <code class="docutils literal notranslate"><span class="pre">latitude</span></code> of object <code class="docutils literal notranslate"><span class="pre">chicago_loc</span></code>”. In fact, notice how calling <code class="docutils literal notranslate"><span class="pre">to_string</span></code>
+on different objects produces different results:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">regenstein_loc</span> <span class="o">=</span> <span class="n">Location</span><span class="p">(</span> <span class="mf">41.79218</span><span class="p">,</span>   <span class="o">-</span><span class="mf">87.599934</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ryerson_loc</span> <span class="o">=</span>    <span class="n">Location</span><span class="p">(</span> <span class="mf">41.7902836</span><span class="p">,</span> <span class="o">-</span><span class="mf">87.5991959</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">regenstein_loc</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
+<span class="go">&#39;(41.792 N, 87.600 W)&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ryerson_loc</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
+<span class="go">&#39;(41.790 N, 87.599 W)&#39;</span>
+</pre></div>
+</div>
+<p>This is because the first call to <code class="docutils literal notranslate"><span class="pre">to_string</span></code> is done using the <code class="docutils literal notranslate"><span class="pre">regenstein_loc</span></code> object
+(which has its <code class="docutils literal notranslate"><span class="pre">latitude</span></code> and <code class="docutils literal notranslate"><span class="pre">longitude</span></code> attributes set to 41.79218 and -87.599934) and the second
+call is done using the <code class="docutils literal notranslate"><span class="pre">ryerson_loc</span></code> object (which has its <code class="docutils literal notranslate"><span class="pre">latitude</span></code> and <code class="docutils literal notranslate"><span class="pre">longitude</span></code> attributes
+set to different values: 41.7902836 and -87.5991959).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Location</span></code> class also has a <code class="docutils literal notranslate"><span class="pre">__repr__</span></code> method that simply returns the value
+return by <code class="docutils literal notranslate"><span class="pre">to_string</span></code>. The <code class="docutils literal notranslate"><span class="pre">__repr__</span></code> method is a special method that is called
+any time Python needs a string representation of a given object. So, once we
+implement a <code class="docutils literal notranslate"><span class="pre">__repr__</span></code> method, we can actually get its string representation
+simply by printing the object or by writing an object variable name in the interpreter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">chicago_loc</span><span class="p">)</span>
+<span class="go">(41.834 N, 87.732 W)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span>
+<span class="go">(41.834 N, 87.732 W)</span>
+</pre></div>
+</div>
+<p>This mechanism is more convenient than having to remember to call a <code class="docutils literal notranslate"><span class="pre">to_string</span></code> method
+every time we want a string representation. While we would usually just place
+the code from <code class="docutils literal notranslate"><span class="pre">to_string</span></code> directly inside <code class="docutils literal notranslate"><span class="pre">__repr__</span></code>, we separated the
+implementation for clarity, and to highlight how we can also call <code class="docutils literal notranslate"><span class="pre">to_string</span></code>
+directly.</p>
+<p>Finally, the <code class="docutils literal notranslate"><span class="pre">Location</span></code> class has a <code class="docutils literal notranslate"><span class="pre">distance_to</span></code> method that takes one parameter besides
+<code class="docutils literal notranslate"><span class="pre">self</span></code>. In fact, the purpose of this method is to compute the distance between
+two locations, where one location is the <code class="docutils literal notranslate"><span class="pre">Location</span></code> object that <code class="docutils literal notranslate"><span class="pre">distance</span></code> is called on,
+and the second location is passed via a parameter. Like before, one way of thinking
+about this is that this call:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">chicago_loc</span><span class="o">.</span><span class="n">distance_to</span><span class="p">(</span><span class="n">newyork_loc</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Internally becomes something like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Location</span><span class="o">.</span><span class="n">distance_to</span><span class="p">(</span><span class="n">chicago_loc</span><span class="p">,</span> <span class="n">newyork_loc</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This <code class="docutils literal notranslate"><span class="pre">distance_to</span></code> method computes the distance between two geographic coordinates
+This method computes the distance
+between two coordinates (i.e., two longitude/latitude pairs) using the
+<a class="reference external" href="http://en.wikipedia.org/wiki/Haversine_formula">haversine formula</a>:</p>
+<div class="math notranslate nohighlight">
+\[2 r \arcsin\left(\sqrt{\sin^2\left(\frac{x_{lat} - y_{lat}}{2}\right) + \cos(y_{lat}) \cos(x_{lat})\sin^2\left(\frac{x_{long} - y_{long}}{2}\right)}\right)\]</div>
+<p>where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_{lat}, x_{long}\)</span> is the latitude and longitude <em>in radians</em> of point <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(y_{lat}, y_{long}\)</span> is the latitude and longitude <em>in radians</em> of point <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(r\)</span> is the radius of the sphere (in this case, Earth’s average radius: 6,371km)</p></li>
+</ul>
+</div></blockquote>
+<p>Encapsulating the use of this complex formula is yet another example of how functions (or, in this case, methods) can abstract away
+complex details about an operation. Instead of having to worry about the complicated formula
+above, we are able to manipulate locations with relatively simple operations:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span> <span class="o">=</span> <span class="n">Location</span><span class="p">(</span> <span class="mf">41.8337329</span><span class="p">,</span> <span class="o">-</span><span class="mf">87.7321555</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newyork_loc</span> <span class="o">=</span> <span class="n">Location</span><span class="p">(</span> <span class="mf">40.7056308</span><span class="p">,</span> <span class="o">-</span><span class="mf">73.9780035</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span><span class="o">.</span><span class="n">distance_to</span><span class="p">(</span><span class="n">newyork_loc</span><span class="p">)</span>
+<span class="go">1155076.7723381526</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="composition">
+<h2><span class="section-number">2.4.2. </span>Composition<a class="headerlink" href="#composition" title="Permalink to this heading"></a></h2>
+<p>So far, we have defined a new data type, <code class="docutils literal notranslate"><span class="pre">Location</span></code>, that encapsulates
+two <code class="docutils literal notranslate"><span class="pre">float</span></code> values. However, attributes are not limited to the
+built-in types in Python: we can define classes with attributes that
+are, themselves, objects. This mechanism is called <em>composition</em> and it is very
+powerful when defining new data types.</p>
+<p>To further illustrate this point, we are going to model information about
+Chicago’s Divvy bike share system. More specifically, we are going to use
+the data from the <a class="reference external" href="https://www.divvybikes.com/datachallenge">2013 Divvy Data
+Challenge</a>), which includes
+(anonymized) data on all the Divvy bicycle trips taken in
+2013, as well as information about each Divvy station where bikes can
+be picked up and dropped off.</p>
+<p>Ultimately, we will answer the following question:
+<em>What is the total duration and total distance of all the Divvy trips taken in 2013?</em>
+As we’ll see, going through the effort of modeling the Divvy data using
+classes will make it relatively easy to answer not just this question,
+but also a number of other questions we did not set out to answer originally.</p>
+<p>First of all, we need to model the Divvy stations. The dataset provides
+the following information about each station:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: A unique integer identifier.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: A string with descriptive name (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;State</span> <span class="pre">St</span> <span class="pre">&amp;</span> <span class="pre">Harrison</span> <span class="pre">St&quot;</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">latitude</span></code>: A float with the latitude of the station.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">longitude</span></code>: A float with the longitude of the station.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dpcapacity</span></code>: The number of total docks at each station as of 2/7/2014</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">landmark</span></code>: An undocumented attribute (the Divvy Challenge never explained what this field meant)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">online</span> <span class="pre">date</span></code>: A string with the date the station went live in the system (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;6/28/2013&quot;</span></code>)</p></li>
+</ul>
+<p>Given this information, we could define a new <code class="docutils literal notranslate"><span class="pre">DivvyStation</span></code> class as follows,
+with attributes corresponding to the information above (note: we use <code class="docutils literal notranslate"><span class="pre">stationID</span></code> instead
+of <code class="docutils literal notranslate"><span class="pre">id</span></code> because <code class="docutils literal notranslate"><span class="pre">id</span></code> is a reserved keyword in Python):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DivvyStation</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stationID</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span>
+                 <span class="n">dpcapacity</span><span class="p">,</span> <span class="n">landmark</span><span class="p">,</span> <span class="n">online_date</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">stationID</span> <span class="o">=</span> <span class="n">stationID</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">latitude</span> <span class="o">=</span> <span class="n">latitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">longitude</span> <span class="o">=</span> <span class="n">longitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dpcapacity</span> <span class="o">=</span> <span class="n">dpcapacity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">landmark</span> <span class="o">=</span> <span class="n">landmark</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">online_date</span> <span class="o">=</span> <span class="n">online_date</span>
+</pre></div>
+</div>
+<p>However, we’ve already defined a <code class="docutils literal notranslate"><span class="pre">Location</span></code> class that encapsulates information
+about a geographical location <em>and</em> which implements some potentially useful
+operations on locations, such as the distance between two locations. Since we
+want to ultimately compute the total distance of all the Divvy trips, it seems
+like we may want to leverage that existing <code class="docutils literal notranslate"><span class="pre">Location</span></code> class.</p>
+<p>So, instead of having a <code class="docutils literal notranslate"><span class="pre">latitude</span></code> and <code class="docutils literal notranslate"><span class="pre">longitude</span></code> attribute, we can
+define our class to have a <code class="docutils literal notranslate"><span class="pre">location</span></code> attribute that contains a <code class="docutils literal notranslate"><span class="pre">Location</span></code>
+object.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DivvyStation</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stationID</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span>
+                 <span class="n">dpcapacity</span><span class="p">,</span> <span class="n">landmark</span><span class="p">,</span> <span class="n">online_date</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">stationID</span> <span class="o">=</span> <span class="n">stationID</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">Location</span><span class="p">(</span><span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dpcapacity</span> <span class="o">=</span> <span class="n">dpcapacity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">landmark</span> <span class="o">=</span> <span class="n">landmark</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">online_date</span> <span class="o">=</span> <span class="n">online_date</span>
+</pre></div>
+</div>
+<p>If we follow this approach, adding a method to compute the distance from one
+station to another becomes very simple:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DivvyStation</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stationID</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span>
+                 <span class="n">dpcapacity</span><span class="p">,</span> <span class="n">landmark</span><span class="p">,</span> <span class="n">online_date</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">stationID</span> <span class="o">=</span> <span class="n">stationID</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">Location</span><span class="p">(</span><span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dpcapacity</span> <span class="o">=</span> <span class="n">dpcapacity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">landmark</span> <span class="o">=</span> <span class="n">landmark</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">online_date</span> <span class="o">=</span> <span class="n">online_date</span>
+
+    <span class="k">def</span> <span class="nf">distance_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other_station</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">distance_to</span><span class="p">(</span><span class="n">other_station</span><span class="o">.</span><span class="n">location</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">d</span>
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s25</span> <span class="o">=</span> <span class="n">DivvyStation</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;Michigan Ave &amp; Pearson St&quot;</span><span class="p">,</span> <span class="mf">41.89766</span><span class="p">,</span> <span class="o">-</span><span class="mf">87.62351</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="s2">&quot;6/28/2013&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s44</span> <span class="o">=</span> <span class="n">DivvyStation</span><span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="s2">&quot;State St &amp; Randolph St&quot;</span><span class="p">,</span> <span class="mf">41.8847302</span><span class="p">,</span> <span class="o">-</span><span class="mf">87.62773357</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;6/28/2013&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s25</span><span class="o">.</span><span class="n">distance_to</span><span class="p">(</span><span class="n">s44</span><span class="p">)</span>
+<span class="go">1479.6238912792467</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s25</span><span class="o">.</span><span class="n">distance_to</span><span class="p">(</span><span class="n">s44</span><span class="p">)</span>
+<span class="go">1479.6238912792467</span>
+</pre></div>
+</div>
+<p>Next, we need to model the information about a Divvy trip. The dataset
+provides the following information about each trip:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">trip_id</span></code>: A unique integer identifier for the trip.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">starttime</span></code>, and <code class="docutils literal notranslate"><span class="pre">stoptime</span></code>: The start and end time of the trip.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bikeid</span></code>: A unique integer identifier for the bike used in this trip.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tripduration</span></code>: The duration (in seconds) of the trip.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">from_station_id</span></code> and <code class="docutils literal notranslate"><span class="pre">to_station_id</span></code>: The integer identifiers of
+the origin and destination stations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">from_station_name</span></code> and <code class="docutils literal notranslate"><span class="pre">to_station_name</span></code>: The names of the origin
+and destination stations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">usertype</span></code>:  This field will be either <code class="docutils literal notranslate"><span class="pre">Customer</span></code> or <code class="docutils literal notranslate"><span class="pre">Subscriber</span></code>.
+A “customer” is a rider who purchased a 24-Hour Pass, and a “subscriber” is a
+rider who purchased an Annual Membership.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gender</span></code>: The gender of the rider. This field only has a value when the rider is a subscriber.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">birthday</span></code>: The date of birth of the rider. This field only has a value when the rider is a subscriber.</p></li>
+</ul>
+<p>Since we already defined a <code class="docutils literal notranslate"><span class="pre">DivvyStation</span></code> class, we will use it to
+represent the information about the origin and destination stations.
+So, when defining a <code class="docutils literal notranslate"><span class="pre">DivvyTrip</span></code> class, instead of having <code class="docutils literal notranslate"><span class="pre">from_station_id</span></code>
+and <code class="docutils literal notranslate"><span class="pre">to_station_id</span></code> attributes, we will instead have a <code class="docutils literal notranslate"><span class="pre">from_station</span></code>
+attribute that will contain a <code class="docutils literal notranslate"><span class="pre">DivvyStation</span></code> object (we will also
+have a similar <code class="docutils literal notranslate"><span class="pre">to_station</span></code> attribute). So, the class will look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DivvyTrip</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trip_id</span><span class="p">,</span> <span class="n">starttime</span><span class="p">,</span> <span class="n">stoptime</span><span class="p">,</span> <span class="n">bikeid</span><span class="p">,</span>
+                 <span class="n">tripduration</span><span class="p">,</span> <span class="n">from_station</span><span class="p">,</span> <span class="n">to_station</span><span class="p">,</span>
+                 <span class="n">usertype</span><span class="p">,</span> <span class="n">gender</span><span class="p">,</span> <span class="n">birthyear</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trip_id</span> <span class="o">=</span> <span class="n">trip_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">starttime</span> <span class="o">=</span> <span class="n">starttime</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stoptime</span> <span class="o">=</span> <span class="n">stoptime</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bikeid</span> <span class="o">=</span> <span class="n">bikeid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tripduration</span> <span class="o">=</span> <span class="n">tripduration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">from_station</span> <span class="o">=</span> <span class="n">from_station</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">to_station</span> <span class="o">=</span> <span class="n">to_station</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">usertype</span> <span class="o">=</span> <span class="n">usertype</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gender</span> <span class="o">=</span> <span class="n">gender</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">birthyear</span> <span class="o">=</span> <span class="n">birthyear</span>
+</pre></div>
+</div>
+<p>Now, let’s say we created three stations:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s25</span> <span class="o">=</span> <span class="n">DivvyStation</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;Michigan Ave &amp; Pearson St&quot;</span><span class="p">,</span> <span class="mf">41.89766</span><span class="p">,</span> <span class="o">-</span><span class="mf">87.62351</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="s2">&quot;6/28/2013&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s44</span> <span class="o">=</span> <span class="n">DivvyStation</span><span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="s2">&quot;State St &amp; Randolph St&quot;</span><span class="p">,</span> <span class="mf">41.8847302</span><span class="p">,</span> <span class="o">-</span><span class="mf">87.62773357</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;6/28/2013&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s52</span> <span class="o">=</span> <span class="n">DivvyStation</span><span class="p">(</span><span class="mi">52</span><span class="p">,</span> <span class="s2">&quot;Michigan Ave &amp; Lake St&quot;</span><span class="p">,</span> <span class="mf">41.88605812</span><span class="p">,</span> <span class="o">-</span><span class="mf">87.62428934</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="s2">&quot;6/28/2013&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When creating the <code class="docutils literal notranslate"><span class="pre">DivvyTrip</span></code> objects, we would use the above <code class="docutils literal notranslate"><span class="pre">DivvyStation</span></code> objects
+as values for the <code class="docutils literal notranslate"><span class="pre">from_station</span></code> and <code class="docutils literal notranslate"><span class="pre">to_station</span></code> parameters to the constructor:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trip5433</span> <span class="o">=</span> <span class="n">DivvyTrip</span><span class="p">(</span><span class="mi">5433</span><span class="p">,</span>   <span class="s2">&quot;2013-06-28 10:43&quot;</span><span class="p">,</span> <span class="s2">&quot;2013-06-28 11:03&quot;</span><span class="p">,</span> <span class="mi">218</span><span class="p">,</span> <span class="mi">1214</span><span class="p">,</span>
+<span class="gp">... </span>                     <span class="n">s25</span><span class="p">,</span> <span class="n">s44</span><span class="p">,</span> <span class="s2">&quot;Customer&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trip4666</span> <span class="o">=</span> <span class="n">DivvyTrip</span><span class="p">(</span><span class="mi">4666</span><span class="p">,</span>   <span class="s2">&quot;2013-06-27 20:33&quot;</span><span class="p">,</span> <span class="s2">&quot;2013-06-27 21:22&quot;</span><span class="p">,</span> <span class="mi">242</span><span class="p">,</span> <span class="mi">2936</span><span class="p">,</span>
+<span class="gp">... </span>                     <span class="n">s44</span><span class="p">,</span> <span class="n">s52</span><span class="p">,</span> <span class="s2">&quot;Customer&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trip11236</span> <span class="o">=</span> <span class="n">DivvyTrip</span><span class="p">(</span><span class="mi">11236</span><span class="p">,</span> <span class="s2">&quot;2013-06-30 15:41&quot;</span><span class="p">,</span> <span class="s2">&quot;2013-06-30 15:58&quot;</span><span class="p">,</span> <span class="mi">906</span><span class="p">,</span> <span class="mi">1023</span><span class="p">,</span>
+<span class="gp">... </span>                      <span class="n">s25</span><span class="p">,</span> <span class="n">s44</span><span class="p">,</span> <span class="s2">&quot;Customer&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trip4646</span> <span class="o">=</span> <span class="n">DivvyTrip</span><span class="p">(</span><span class="mi">4646</span><span class="p">,</span>   <span class="s2">&quot;2013-06-27 20:22&quot;</span><span class="p">,</span> <span class="s2">&quot;2013-06-27 20:39&quot;</span><span class="p">,</span> <span class="mi">477</span><span class="p">,</span> <span class="mi">996</span><span class="p">,</span>
+<span class="gp">... </span>                     <span class="n">s52</span><span class="p">,</span> <span class="n">s52</span><span class="p">,</span> <span class="s2">&quot;Customer&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trip13805</span> <span class="o">=</span> <span class="n">DivvyTrip</span><span class="p">(</span><span class="mi">13805</span><span class="p">,</span> <span class="s2">&quot;2013-07-01 13:21&quot;</span><span class="p">,</span> <span class="s2">&quot;2013-07-01 13:35&quot;</span><span class="p">,</span> <span class="mi">469</span><span class="p">,</span> <span class="mi">858</span><span class="p">,</span>
+<span class="gp">... </span>                      <span class="n">s44</span><span class="p">,</span> <span class="n">s25</span><span class="p">,</span> <span class="s2">&quot;Customer&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Notice how we can reuse the <code class="docutils literal notranslate"><span class="pre">DivvyStation</span></code> objects across <code class="docutils literal notranslate"><span class="pre">DivvyTrip</span></code> objects.
+For example, <code class="docutils literal notranslate"><span class="pre">s25</span></code> is the origin station in <code class="docutils literal notranslate"><span class="pre">trip5433</span></code> and <code class="docutils literal notranslate"><span class="pre">trip11236</span></code>, as
+well as the destination station in <code class="docutils literal notranslate"><span class="pre">trip13805</span></code>. This is yet another example
+of how we can <em>compose</em> multiple classes together to form complex data structures.
+The following figure shows these composition relationships between the objects
+we have created so far (blue lines represent an “origin station” relation and green lines represent a
+“destination station” relation):</p>
+<a class="reference internal image-reference" href="../../_images/divvy-objects.png"><img alt="../../_images/divvy-objects.png" class="align-center" src="../../_images/divvy-objects.png" style="width: 450px;" /></a>
+<p>Notice how the <code class="docutils literal notranslate"><span class="pre">DivvyStation</span></code> objects are “shared” between the various <code class="docutils literal notranslate"><span class="pre">DivvyTrip</span></code>
+objects, and how it is even possible for a trip to have the same <code class="docutils literal notranslate"><span class="pre">DivvyStation</span></code> object
+as its origin <em>and</em> its destination.</p>
+<p>Another advantage of this composition is that we can conveniently access information
+about the origin and destination stations
+through the <code class="docutils literal notranslate"><span class="pre">from_station</span></code> and <code class="docutils literal notranslate"><span class="pre">to_station</span></code> attributes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trip5433</span><span class="o">.</span><span class="n">from_station</span><span class="o">.</span><span class="n">name</span>
+<span class="go">&#39;Michigan Ave &amp; Pearson St&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trip4646</span><span class="o">.</span><span class="n">to_station</span><span class="o">.</span><span class="n">location</span>
+<span class="go">(41.886 N, 87.624 W)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trip13805</span><span class="o">.</span><span class="n">to_station</span><span class="o">.</span><span class="n">stationID</span>
+<span class="go">25</span>
+</pre></div>
+</div>
+<p>This also means that adding a <code class="docutils literal notranslate"><span class="pre">get_distance</span></code> method to the <code class="docutils literal notranslate"><span class="pre">DivvyTrip</span></code>
+class, to compute the distance from the origin station to the destination
+station, becomes very simple:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DivvyTrip</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trip_id</span><span class="p">,</span> <span class="n">starttime</span><span class="p">,</span> <span class="n">stoptime</span><span class="p">,</span> <span class="n">bikeid</span><span class="p">,</span>
+                 <span class="n">tripduration</span><span class="p">,</span> <span class="n">from_station</span><span class="p">,</span> <span class="n">to_station</span><span class="p">,</span>
+                 <span class="n">usertype</span><span class="p">,</span> <span class="n">gender</span><span class="p">,</span> <span class="n">birthyear</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trip_id</span> <span class="o">=</span> <span class="n">trip_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">starttime</span> <span class="o">=</span> <span class="n">starttime</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stoptime</span> <span class="o">=</span> <span class="n">stoptime</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bikeid</span> <span class="o">=</span> <span class="n">bikeid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tripduration</span> <span class="o">=</span> <span class="n">tripduration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">from_station</span> <span class="o">=</span> <span class="n">from_station</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">to_station</span> <span class="o">=</span> <span class="n">to_station</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">usertype</span> <span class="o">=</span> <span class="n">usertype</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gender</span> <span class="o">=</span> <span class="n">gender</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">birthyear</span> <span class="o">=</span> <span class="n">birthyear</span>
+
+    <span class="k">def</span> <span class="nf">get_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_station</span><span class="o">.</span><span class="n">distance_to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_station</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It seems like we’re getting closer to the point where we can answer the question
+we originally posed: <em>What is the total duration and total distance of all the Divvy trips taken in 2013?</em>
+However, so far, we’ve been creating <code class="docutils literal notranslate"><span class="pre">DivvyStation</span></code> and <code class="docutils literal notranslate"><span class="pre">DivvyTrip</span></code> objects
+manually. To answer this question, we will need to load the entire Divvy dataset.
+To do this, we have written a <code class="docutils literal notranslate"><span class="pre">DivvyData</span></code> class that encapsulates all
+interactions with the full dataset. We will not discuss the internal details
+of <code class="docutils literal notranslate"><span class="pre">DivvyData</span></code> here, but we encourage you to look at its source code.</p>
+<p>We can create a <code class="docutils literal notranslate"><span class="pre">DivvyData</span></code> object as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">DivvyData</span><span class="p">(</span><span class="n">stations_filename</span><span class="o">=</span><span class="s2">&quot;data/divvy_2013_stations.csv&quot;</span><span class="p">,</span>
+                 <span class="n">trips_filename</span><span class="o">=</span><span class="s2">&quot;data/divvy_2013_trips.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This object has two attributes: <code class="docutils literal notranslate"><span class="pre">stations</span></code>, with a list of <code class="docutils literal notranslate"><span class="pre">DivvyStation</span></code> objects
+corresponding to the stations in the dataset, and <code class="docutils literal notranslate"><span class="pre">trips</span></code> with a list of <code class="docutils literal notranslate"><span class="pre">DivvyTrips</span></code>
+objects.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">stations</span><span class="p">)</span>
+<span class="go">300</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">trips</span><span class="p">)</span>
+<span class="go">759788</span>
+</pre></div>
+</div>
+<p>Computing the total distance of all the trips now involves just a simple <code class="docutils literal notranslate"><span class="pre">for</span></code> loop:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">total_distance</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">trip</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">trips</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">total_distance</span> <span class="o">+=</span> <span class="n">trip</span><span class="o">.</span><span class="n">get_distance</span><span class="p">()</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">total_distance</span>
+<span class="go">1557441209.2794986</span>
+</pre></div>
+</div>
+<p>Notice how that single call to <code class="docutils literal notranslate"><span class="pre">get_distance</span></code> abstracts away a lot of the details
+we’ve described above. <code class="docutils literal notranslate"><span class="pre">get_distance</span></code> takes the origin and destination stations,
+calls the <code class="docutils literal notranslate"><span class="pre">distance_to</span></code> method in <code class="docutils literal notranslate"><span class="pre">DivvyStation</span></code> which, in turn, accesses
+the <code class="docutils literal notranslate"><span class="pre">location</span></code> attributes of the stations, and calls the <code class="docutils literal notranslate"><span class="pre">distance_to</span></code> method
+in <code class="docutils literal notranslate"><span class="pre">Location</span></code> which implements a fairly elaborate formula that we are blissfully
+unaware of in the above piece of code.</p>
+<p>Similarly, the total duration of all the trips involves an equally simple for loop:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">total_duration</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">trip</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">trips</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">total_duration</span> <span class="o">+=</span> <span class="n">trip</span><span class="o">.</span><span class="n">tripduration</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">total_duration</span>
+<span class="go">941734778.0</span>
+</pre></div>
+</div>
+<p>Now that we’ve organized our data in this way, and created convenient abstractions
+around stations and trips, it becomes easy to perform other computations. For example,
+by using Python’s <code class="docutils literal notranslate"><span class="pre">collections.Counter</span></code> class (which itself provides a convenient
+abstraction around “counting things”), we can easily find out what are the top 10 origin
+stations in the Divvy system:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">origin_stations</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">trips</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">origin_stations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">from_station</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">origin_stations</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">station</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:30}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">station</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">count</span><span class="p">))</span>
+<span class="gp">...</span>
+<span class="go">Millennium Park                17272</span>
+<span class="go">Streeter Dr &amp; Illinois St      16710</span>
+<span class="go">Lake Shore Dr &amp; Monroe St      15673</span>
+<span class="go">Clinton St &amp; Washington Blvd   14967</span>
+<span class="go">Michigan Ave &amp; Oak St          13274</span>
+<span class="go">Museum Campus                  12676</span>
+<span class="go">McClurg Ct &amp; Illinois St       10847</span>
+<span class="go">Michigan Ave &amp; Lake St         10760</span>
+<span class="go">Canal St &amp; Jackson Blvd        10141</span>
+<span class="go">Franklin St &amp; Jackson Blvd     9784</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="public-vs-private-attributes">
+<h2><span class="section-number">2.4.3. </span>Public vs private attributes<a class="headerlink" href="#public-vs-private-attributes" title="Permalink to this heading"></a></h2>
+<p>As you may have noticed, once we create a <code class="docutils literal notranslate"><span class="pre">Location</span></code> object, we can
+access its attributes freely:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span> <span class="o">=</span> <span class="n">Location</span><span class="p">(</span> <span class="mf">41.8337329</span><span class="p">,</span> <span class="o">-</span><span class="mf">87.7321555</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span><span class="o">.</span><span class="n">latitude</span>
+<span class="go">41.8337329</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span><span class="o">.</span><span class="n">longitude</span>
+<span class="go">-87.7321555</span>
+</pre></div>
+</div>
+<p>We can also <em>modify</em> these attributes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span>
+<span class="go">(41.834 N, 87.732 W)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span><span class="o">.</span><span class="n">latitude</span> <span class="o">=</span> <span class="o">-</span><span class="mf">70.67</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span>
+<span class="go">(70.670 S, 87.732 W)</span>
+</pre></div>
+</div>
+<p>However, allowing unfettered access to the attributes like this
+could make our <code class="docutils literal notranslate"><span class="pre">Location</span></code> class fail in some cases. For example,
+let’s say we create the following locations:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span> <span class="o">=</span> <span class="n">Location</span><span class="p">(</span> <span class="mf">41.8337329</span><span class="p">,</span> <span class="o">-</span><span class="mf">87.7321555</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newyork_loc</span> <span class="o">=</span> <span class="n">Location</span><span class="p">(</span> <span class="mf">40.7056308</span><span class="p">,</span> <span class="o">-</span><span class="mf">73.9780035</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>We can now obtain the distance between the two locations like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span><span class="o">.</span><span class="n">distance_to</span><span class="p">(</span><span class="n">newyork_loc</span><span class="p">)</span>
+<span class="go">1155076.7723381526</span>
+</pre></div>
+</div>
+<p>But, if we now change the <code class="docutils literal notranslate"><span class="pre">latitude</span></code> coordinate of point <code class="docutils literal notranslate"><span class="pre">newyork_loc</span></code> to
+an invalid value, like a string, it will make the <code class="docutils literal notranslate"><span class="pre">distance_to</span></code>
+method fail, because it performs operations on <code class="docutils literal notranslate"><span class="pre">latitude</span></code> that
+assume that the attribute will contain a number:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">newyork_loc</span><span class="o">.</span><span class="n">latitude</span> <span class="o">=</span> <span class="s2">&quot;foobar&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chicago_loc</span><span class="o">.</span><span class="n">distance_to</span><span class="p">(</span><span class="n">newyork_loc</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">25</span>, in <span class="n">distance_to</span>
+<span class="gr">TypeError</span>: <span class="n">unsupported operand type(s) for -: &#39;str&#39; and &#39;float&#39;</span>
+</pre></div>
+</div>
+<p>The problem here is that <code class="docutils literal notranslate"><span class="pre">latitude</span></code> and <code class="docutils literal notranslate"><span class="pre">longitude</span></code> are <em>public</em> attributes,
+meaning that the user of the <code class="docutils literal notranslate"><span class="pre">Location</span></code> class can read and modify
+their values. Ideally, we would like to make these attributes
+<em>private</em>, and provide a controlled mechanism for access the
+values of <code class="docutils literal notranslate"><span class="pre">latitude</span></code> and <code class="docutils literal notranslate"><span class="pre">longitude</span></code>.</p>
+<p>To explain how to make attributes private, we will use two new classes,
+<code class="docutils literal notranslate"><span class="pre">Point</span></code> and <code class="docutils literal notranslate"><span class="pre">Line</span></code>, each of which are originally implemented with
+public attributes. <code class="docutils literal notranslate"><span class="pre">Point</span></code> represent a point in two-dimensional
+space:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Point</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;(</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">to_polar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span> <span class="n">math</span><span class="o">.</span><span class="n">atan</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="p">)</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">r</span><span class="p">,</span> <span class="n">theta</span>
+
+    <span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Line</span></code> represents a line in two-dimensional spaces, as specified by
+two points:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Line</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">p1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p0</span> <span class="o">=</span> <span class="n">p0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p1</span> <span class="o">=</span> <span class="n">p1</span>
+
+    <span class="k">def</span> <span class="nf">is_vertical</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">p0</span><span class="o">.</span><span class="n">x</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">p1</span><span class="o">.</span><span class="n">x</span>
+
+    <span class="k">def</span> <span class="nf">get_slope</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_vertical</span><span class="p">():</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p1</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">p0</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p1</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">p0</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_y_intercept</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_vertical</span><span class="p">():</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">p0</span><span class="o">.</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mf">0.0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;NaN&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">p0</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_slope</span><span class="p">()</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">p0</span><span class="o">.</span><span class="n">x</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_vertical</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s2">&quot;x = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p0</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;y = </span><span class="si">{}</span><span class="s2">*x + </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_slope</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_y_intercept</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Notice how this is yet another example of composition:
+a <code class="docutils literal notranslate"><span class="pre">Line</span></code> object will be composed of two <code class="docutils literal notranslate"><span class="pre">Point</span></code> objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">get_slope</span><span class="p">()</span>
+<span class="go">5.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">get_y_intercept</span><span class="p">()</span>
+<span class="go">7.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span>
+<span class="go">y = 5.0*x + 7.0</span>
+</pre></div>
+</div>
+<p>We will focus first on the <code class="docutils literal notranslate"><span class="pre">Point</span></code> class. Its two attributes
+are currently public, which means we can modify them freely and,
+as with the <code class="docutils literal notranslate"><span class="pre">Location</span></code> class, this design can cause errors if we
+set the value of <code class="docutils literal notranslate"><span class="pre">x</span></code> or <code class="docutils literal notranslate"><span class="pre">y</span></code> to an invalid value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">get_slope</span><span class="p">()</span>
+<span class="go">5.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;foobar&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">get_slope</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">13</span>, in <span class="n">get_slope</span>
+<span class="gr">TypeError</span>: <span class="n">unsupported operand type(s) for -: &#39;int&#39; and &#39;str&#39;</span>
+</pre></div>
+</div>
+<p>To make <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> private, we will rename them to <code class="docutils literal notranslate"><span class="pre">_x</span></code> and <code class="docutils literal notranslate"><span class="pre">_y</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Point</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_y</span> <span class="o">=</span> <span class="n">y</span>
+</pre></div>
+</div>
+<p>Adding a single underscore before an attribute name is a common
+Python convention to indicate that an attribute shouldn’t
+be directly accessed by the users of the class. i.e., they
+are intended to be <em>private</em> attributes that only the developers
+of the class should be able to manipulate.</p>
+<p>Of course, we may want to give users of the <code class="docutils literal notranslate"><span class="pre">Point</span></code> class
+the ability to read and modify these attributes, but we want
+to do so in a controlled manner: we want to make sure they
+value of these attributes is always a number.</p>
+<p>One way of doing this is by adding <em>getter</em> and <em>setter</em>
+method. These are methods whose purpose is to <em>get</em> or <em>set</em>
+the value of an attribute. For example, the getter and
+setter for <code class="docutils literal notranslate"><span class="pre">_x</span></code> would look like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
+
+<span class="k">def</span> <span class="nf">set_x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not a number&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="n">x</span>
+</pre></div>
+</div>
+<p>Notice how <code class="docutils literal notranslate"><span class="pre">set_x</span></code> first checks whether the provided parameter <code class="docutils literal notranslate"><span class="pre">x</span></code> is an
+<code class="docutils literal notranslate"><span class="pre">int</span></code> or a <code class="docutils literal notranslate"><span class="pre">float</span></code> and, if not, raises a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> exception. We have
+not seen exceptions in detail yet, but this will basically make the program fail
+if we try to set <code class="docutils literal notranslate"><span class="pre">x</span></code> to be anything but a number.</p>
+<p>The complete implementation of the <code class="docutils literal notranslate"><span class="pre">Point</span></code> class with getters and setters would
+look like this. Notice how the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method also calls the setters, to ensure
+that the values of the attributes provided to the constructor are also correct:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Point</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_y</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
+
+    <span class="k">def</span> <span class="nf">set_x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not a number&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="n">x</span>
+
+    <span class="k">def</span> <span class="nf">get_y</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y</span>
+
+    <span class="k">def</span> <span class="nf">set_y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Nor a number&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_y</span> <span class="o">=</span> <span class="n">y</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;(</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">to_polar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span> <span class="n">math</span><span class="o">.</span><span class="n">atan</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="p">)</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">r</span><span class="p">,</span> <span class="n">theta</span>
+
+    <span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">_x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_y</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">_y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, we can use the <code class="docutils literal notranslate"><span class="pre">Point</span></code> class as before, except we use the getters
+and setters to access the <code class="docutils literal notranslate"><span class="pre">_x</span></code> and <code class="docutils literal notranslate"><span class="pre">_y</span></code> attributes. If we try to
+set either of them to an invalid value, we will get an error:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="mf">3.14</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span>
+<span class="go">(3.14, 3)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">11</span>, in <span class="n">set_x</span>
+<span class="gr">ValueError</span>: <span class="n">Not a number</span>
+</pre></div>
+</div>
+<p>Notice how <code class="docutils literal notranslate"><span class="pre">to_polar</span></code> and <code class="docutils literal notranslate"><span class="pre">distance</span></code> <em>don’t</em> use the getters and setters.
+The getters and setters are part of the class’s <em>public</em> interface, so
+the users of our data type must use them to access the x and y coordinates.
+However, in the internal implementation of the class, we are still free
+to use the <code class="docutils literal notranslate"><span class="pre">_x</span></code> and <code class="docutils literal notranslate"><span class="pre">_y</span></code> attributes directly.</p>
+<p>However, it is worth reiterating that adding a single underscore before
+an attribute name only makes the attribute private <em>by convention</em>, meaning that
+other programmers should know not to use any attribute that starts with
+an underscore, but Python doesn’t actually protect these attributes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">_x</span>
+<span class="go">3.14</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span>
+<span class="go">(5, 3)</span>
+</pre></div>
+</div>
+<p>If we want to make an attribute private, we can use two underscores
+before the attribute name (although, technically, this action doesn’t make the
+attribute truly private; there are still ways of accessing that attribute,
+but they are slightly obfuscated, and not as simple as just using
+the name of the attribute with two underscores). However, we should
+be careful when doing this: if we are implementing <em>multiple</em> classes,
+we may want one class to access the attributes of another class. Using
+a single underscore will allow us to do that, while signalling to
+programmers that use the classes that they should not use those
+attributes directly. On the other hand, using two underscores will prevent
+other classes from accessing those attributes.</p>
+</div>
+<div class="section" id="properties">
+<h2><span class="section-number">2.4.4. </span>Properties<a class="headerlink" href="#properties" title="Permalink to this heading"></a></h2>
+<p>Switching to private attributes, and adding getters/setters, gives us
+greater control on how users of the <code class="docutils literal notranslate"><span class="pre">Point</span></code> class interact with its
+attributes. However, it also means that accessing or modifying an attribute now requires
+writing code like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Instead of this, which is arguably more readable:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">x</span>
+<span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">42</span>
+</pre></div>
+</div>
+<p>On top of that, if we originally wrote a class with public attributes,
+and then decide we need private attributes and getters/setters, we need
+to rewrite all the code that depended on those attributes. In fact,
+that’s what we would need to do with the <code class="docutils literal notranslate"><span class="pre">Line</span></code> class, which will
+now be broken because our <code class="docutils literal notranslate"><span class="pre">Point</span></code> class now has an <code class="docutils literal notranslate"><span class="pre">_x</span></code> attribute
+instead of an <code class="docutils literal notranslate"><span class="pre">x</span></code> attribute:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">get_slope</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">10</span>, in <span class="n">get_slope</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">7</span>, in <span class="n">is_vertical</span>
+<span class="gr">AttributeError</span>: <span class="n">&#39;Point&#39; object has no attribute &#39;x&#39;</span>
+</pre></div>
+</div>
+<p>Fortunately, instead of having to re-write the <code class="docutils literal notranslate"><span class="pre">Line</span></code> class to use
+the getters and setters, we can modify the <code class="docutils literal notranslate"><span class="pre">Point</span></code> class to
+provide <em>managed attributes</em>. A managed attribute is a publicly
+accessible attribute, but where access to the attribute is
+<em>managed</em> by a getter and/or setter (without requiring the user
+of the class to explicitly call the getter or setter).</p>
+<p>For example, in the <code class="docutils literal notranslate"><span class="pre">Point</span></code> class, we can define private
+<code class="docutils literal notranslate"><span class="pre">_x</span></code> and <code class="docutils literal notranslate"><span class="pre">_y</span></code> attributes, and then define public <em>managed</em>
+attributes called <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> which, when accessed,
+actually translate internally to a call to the getter/setter
+for <code class="docutils literal notranslate"><span class="pre">_x</span></code> and <code class="docutils literal notranslate"><span class="pre">_y</span></code>. In other words, when we do something like
+this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">x</span>
+<span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">42</span>
+</pre></div>
+</div>
+<p>Python will translate the above to calls to the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In Python, this is accomplished by using <em>properties</em>. A property
+is defined inside the class like this:</p>
+<pre class="literal-block"><em>&lt;property_name&gt;</em> = property(<em>&lt;getter&gt;</em>, <em>&lt;setter&gt;</em>)</pre>
+<p>For example, in the <code class="docutils literal notranslate"><span class="pre">Point</span></code> class, we would just add the following
+to our class definition below the definitions of the get and set
+methods:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_x</span><span class="p">,</span> <span class="n">set_x</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_y</span><span class="p">,</span> <span class="n">set_y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The complete code for the class would now look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Point</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+
+    <span class="k">def</span> <span class="nf">get_x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
+
+    <span class="k">def</span> <span class="nf">set_x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not a number&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="n">x</span>
+
+    <span class="k">def</span> <span class="nf">get_y</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y</span>
+
+    <span class="k">def</span> <span class="nf">set_y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Nor a number&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_y</span> <span class="o">=</span> <span class="n">y</span>
+
+    <span class="c1"># Property definitions. Must be done *after* we&#39;ve defined the getters/setters.</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_x</span><span class="p">,</span> <span class="n">set_x</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_y</span><span class="p">,</span> <span class="n">set_y</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;(</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">to_polar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span> <span class="n">math</span><span class="o">.</span><span class="n">atan</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="p">)</span> <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, whenever we access <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> (which are not actual attributes,
+they just behave like attributes), Python will translate the use into a call to the
+corresponding getter or setter. This behavior is specially evident if we try
+to set the value of <code class="docutils literal notranslate"><span class="pre">x</span></code> to an invalid value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">x</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span>
+<span class="go">(6, 3)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;foo&quot;</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">11</span>, in <span class="n">set_x</span>
+<span class="gr">ValueError</span>: <span class="n">Not a number</span>
+</pre></div>
+</div>
+<p>Notice how we also access the attributes in this manner from inside the constructor,
+instead of manipulating the private <code class="docutils literal notranslate"><span class="pre">_x</span></code> and <code class="docutils literal notranslate"><span class="pre">_y</span></code> attributes:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+</pre></div>
+</div>
+<p>This ensures that we are not able to create a <code class="docutils literal notranslate"><span class="pre">Point</span></code> object with invalid
+values for <code class="docutils literal notranslate"><span class="pre">x</span></code> or <code class="docutils literal notranslate"><span class="pre">y</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">4</span>, in <span class="n">__init__</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">19</span>, in <span class="n">set_y</span>
+<span class="gr">ValueError</span>: <span class="n">Nor a number</span>
+</pre></div>
+</div>
+<p>Take into account that properties also allow us to define immutable attributes.
+All we have to do is <em>not</em> provide a setter when creating the property. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_x</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Notice how, after making these changes, our implementation of Line works again:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">get_slope</span><span class="p">()</span>
+<span class="go">5.0</span>
+</pre></div>
+</div>
+<p>Finally, we can also define properties using <em>function decorators</em>,
+which allow us to annotate the getters/setters directly. For example,
+this is how our <code class="docutils literal notranslate"><span class="pre">Point</span></code> class would look if we used function decorators
+to annotate the getters and setters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Point</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+
+    <span class="c1"># Notice how the name of the method is not &quot;get_x&quot; but simply &quot;x&quot;</span>
+    <span class="c1"># the name of the attribute.</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
+
+    <span class="c1"># Now we define the setter, which has the same name, but an</span>
+    <span class="c1"># additional parameter (the value being set). Notice how the</span>
+    <span class="c1"># decorator isn&#39;t &quot;@property&quot;, it&#39;s the name the attribute and .setter</span>
+    <span class="nd">@x</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+       <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+           <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not a number&quot;</span><span class="p">)</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="n">x</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">y</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y</span>
+
+    <span class="nd">@y</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Nor a number&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_y</span> <span class="o">=</span> <span class="n">y</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;(</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition-when-to-use-public-attributes-private-attributes-and-properties admonition">
+<p class="admonition-title">When to use public attributes, private attributes, and properties</p>
+<p>Using private attributes with getter and setters (with or without properties)
+does come at a cost: instead of accessing attributes directly (which is a very
+efficient operation), we now have to incur in the cost of a function call
+every time we interact with an attribute. Even if the performance hit is
+small, it still means we have to define a getter and possibly a setter
+for every attribute. This can resulted in a very bloated implementation if,
+say, we have a class with 50 attributes.</p>
+<p>A good strategy is to start by implementing your code using public attributes.
+If the classes you are writing are going to be used only by you, or if you
+are just prototyping some code, there is probably not immediate advantage
+to using private attributes and getters/setters. However, if there comes a
+point when you need to manage access to the attributes, you can switch
+to using properties, which will not break any existing code that relied
+on those attributes.</p>
+<p>In any case, if you are writing classes that will be used by other
+programmers, it is generally a good idea to very clearly separate
+the private and public data of your class, and making sure that
+access to private attributes is either managed through the use of
+getters/setters or properties or hidden from the client all
+together.</p>
+</div>
+</div>
+<div class="section" id="class-static-attributes-vs-instance-attributes">
+<h2><span class="section-number">2.4.5. </span>Class/static attributes vs instance attributes<a class="headerlink" href="#class-static-attributes-vs-instance-attributes" title="Permalink to this heading"></a></h2>
+<p>In the <code class="docutils literal notranslate"><span class="pre">Point</span></code> class, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are <em>instance</em> attributes. This
+means that each <code class="docutils literal notranslate"><span class="pre">Point</span></code> object (or <em>instance</em> of the <code class="docutils literal notranslate"><span class="pre">Point</span></code> class)
+will have their own values for <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span><span class="o">.</span><span class="n">x</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span><span class="o">.</span><span class="n">x</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<p>We can also define <em>class attributes</em> which belong to the class as a
+whole, not to individual instances. These are also referred to as
+<em>static attributes</em>.</p>
+<p>A common use case for this mechanism is to define <em>constants</em> that are relevant to
+that class. This would make sense in our <code class="docutils literal notranslate"><span class="pre">Location</span></code> class, where the <code class="docutils literal notranslate"><span class="pre">distance_to</span></code>
+method hardcoded the average radius of Earth (<code class="docutils literal notranslate"><span class="pre">6371000.0</span></code> below):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">distance_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="n">diffLatitude</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">latitude</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">latitude</span><span class="p">)</span>
+    <span class="n">diffLongitude</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">longitude</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">longitude</span><span class="p">)</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">diffLatitude</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">diffLatitude</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> \
+        <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latitude</span><span class="p">))</span> <span class="o">*</span> \
+        <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">latitude</span><span class="p">))</span> <span class="o">*</span> \
+        <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">diffLongitude</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">diffLongitude</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">asin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="mf">6371000.0</span> <span class="o">*</span> <span class="n">d</span>
+</pre></div>
+</div>
+<p>While we could define this as a global constant outside the <code class="docutils literal notranslate"><span class="pre">Location</span></code>
+class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">EARTH_RADIUS</span> <span class="o">=</span> <span class="mf">6371000.0</span>
+
+<span class="k">class</span> <span class="nc">Location</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>We can instead define that value <em>inside</em> the <code class="docutils literal notranslate"><span class="pre">Location</span></code> class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Location</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">EARTH_RADIUS</span> <span class="o">=</span> <span class="mf">6371000.0</span>
+
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>So the return statement in <code class="docutils literal notranslate"><span class="pre">distance_to</span></code> would now be this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="n">Location</span><span class="o">.</span><span class="n">EARTH_RADIUS</span> <span class="o">*</span> <span class="n">d</span>
+</pre></div>
+</div>
+<p>Notice how, to access the value of a class attribute, we need to qualify it
+with the name of the class.</p>
+<p>Another common use case for class attributes is when we have some data
+that needs to be shared by all instances of a class. In essence, this
+attribute is like a global variable, but one where we restrict the
+scope of the variable to a specific class. For example, if we have a
+<code class="docutils literal notranslate"><span class="pre">Client</span></code> class and want to assign each new object an incrementing
+identifier, we could define our class like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Client</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">next_identifier</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">identifier</span> <span class="o">=</span> <span class="n">Client</span><span class="o">.</span><span class="n">next_identifier</span>
+        <span class="n">Client</span><span class="o">.</span><span class="n">next_identifier</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>This class defines a class attribute <code class="docutils literal notranslate"><span class="pre">next_identifier</span></code> that is
+initialized to <code class="docutils literal notranslate"><span class="pre">1</span></code> at the start of our program, and which
+is incremented every time we construct a new <code class="docutils literal notranslate"><span class="pre">Client</span></code> object:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="s2">&quot;Carol&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">identifier</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">identifier</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">identifier</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Client</span><span class="o">.</span><span class="n">next_identifier</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../stacks_queues/index.html" class="btn btn-neutral float-left" title="2.3. Implementing a Data Structure: Stacks and Queues" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../functions/index.html" class="btn btn-neutral float-right" title="3. Functional Programming and Recursion" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Anne Rogers and Borja Sotomayor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

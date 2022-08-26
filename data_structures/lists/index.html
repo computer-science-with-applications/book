@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.1. Lists, Tuples, and Strings &mdash; Computer Science with Applications  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/csapps.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.2. Dictionaries and Sets" href="../dictionaries/index.html" />
+    <link rel="prev" title="2. Data Structures" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Computer Science with Applications
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../preface.html">Preface</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">2. Data Structures</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.1. Lists, Tuples, and Strings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-lists">2.1.1. Creating lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accessing-elements-in-a-list">2.1.2. Accessing elements in a list</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#list-slicing">2.1.2.1. List slicing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#iterating-over-a-list">2.1.3. Iterating over a list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modifying-a-list">2.1.4. Modifying a list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-list-based-on-another-list">2.1.5. Creating a list based on another list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other-operations-on-lists">2.1.6. Other operations on lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variables-revisited">2.1.7. Variables revisited</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-heap">2.1.8. The heap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-parameters">2.1.9. List parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#aliases-revisited">2.1.9.1. Aliases revisited</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lists-of-lists">2.1.10. Lists of lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shallow-copy-versus-deep-copy">2.1.11. Shallow copy versus deep copy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tuples">2.1.12. Tuples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#strings">2.1.13. Strings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#string-formatting">2.1.13.1. String formatting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#other-operations-on-strings">2.1.13.2. Other operations on strings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dictionaries/index.html">2.2. Dictionaries and Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stacks_queues/index.html">2.3. Implementing a Data Structure: Stacks and Queues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes/index.html">2.4. Classes and Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../functions/index.html">3. Functional Programming and Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working_with_data/index.html">4. Working with Data</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Computer Science with Applications</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">2. </span>Data Structures</a> &raquo;</li>
+      <li><span class="section-number">2.1. </span>Lists, Tuples, and Strings</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/data_structures/lists/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="lists-tuples-and-strings">
+<span id="chapter-lists"></span><h1><span class="section-number">2.1. </span>Lists, Tuples, and Strings<a class="headerlink" href="#lists-tuples-and-strings" title="Permalink to this heading"></a></h1>
+<p>Up to this point, we have worked with simple data types:
+integers, floats, strings, and booleans. Whenever we used these data types,
+a variable contained a single value. For example, the variable
+<code class="docutils literal notranslate"><span class="pre">price</span></code> contains a single integer:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">price</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">price</span>
+<span class="go">10</span>
+</pre></div>
+</div>
+<p>Most programming languages allow us to construct a more complex data structure
+out of these basic data types. In fact, we caught
+a glimpse of this in <a class="reference internal" href="../../getting_started/control_structures/index.html#chapter-control"><span class="std std-ref">Control Flow Statements</span></a>, where we wanted to compute
+the total price (with tax) of a collection of prices:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prices</span><span class="p">:</span>
+    <span class="n">tax</span> <span class="o">=</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">p</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="n">tax</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The price (with tax) is&quot;</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The price (with tax) is 11.0
+The price (with tax) is 27.5
+The price (with tax) is 5.5
+The price (with tax) is 77.0
+The price (with tax) is 11.0
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">prices</span></code> variable contains a <em>list</em> of integers, as opposed to a
+single integer. In Python, a list allows us to store and manipulate an
+ordered sequence of values. In this chapter, we will dig deeper into
+lists and learn how to create and manipulate them. Towards the end of
+the chapter, we will introduce a related data type, <em>tuples</em>. We will
+also discuss a number of features of strings that are easier to
+understand once we know how lists work.</p>
+<p>In general, most programming languages provide some way of working
+with <em>collections</em> of values. Python’s lists are
+a very versatile and powerful data type, arguably more so than
+similar data types provided in other languages. They
+are not, however, the be-all and end-all of working with multiple values:
+later in the book we will see other types, such as dictionaries
+and classes, that allow us to work with collections of values
+in other ways.</p>
+<div class="section" id="creating-lists">
+<h2><span class="section-number">2.1.1. </span>Creating lists<a class="headerlink" href="#creating-lists" title="Permalink to this heading"></a></h2>
+<p>To create a list, we type the values in the list separated by commas
+and delimit the beginning and end of the list with square
+brackets. For example, here we assign a list of strings to a variable
+named <code class="docutils literal notranslate"><span class="pre">lang</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;C++&quot;</span><span class="p">,</span> <span class="s2">&quot;Python&quot;</span><span class="p">,</span> <span class="s2">&quot;Java&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python&#39;, &#39;Java&#39;]</span>
+</pre></div>
+</div>
+<p>And here is a list of integers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">187</span><span class="p">,</span> <span class="mi">1232</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">21398</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nums</span>
+<span class="go">[3, 187, 1232, 53, 21398]</span>
+</pre></div>
+</div>
+<p>Since Python is a dynamically-typed language, a list can have values
+of different types. So, for example, this is a valid list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[&#39;string&#39;, 4, 5.0, True]</span>
+</pre></div>
+</div>
+<p>For the most part, we will avoid mixed-type lists because we typically
+want to operate on lists of values of the same type. In fact,
+statically-typed languages usually <em>require</em> all the values in a list
+to have the same type.</p>
+<p>To create an empty list, we use square brackets with no values between
+them:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<p>We can also create <em>new</em>
+lists by concatenating existing lists using the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst2</span> <span class="o">=</span> <span class="n">lst0</span> <span class="o">+</span> <span class="n">lst1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst2</span>
+<span class="go">[1, 2, 3, 4, 5, 6]</span>
+</pre></div>
+</div>
+<p>The new list (<code class="docutils literal notranslate"><span class="pre">lst2</span></code>) contains the values from the
+first operand followed by the values from second operand.</p>
+<p>Sometimes, we will want to create a list of a specific size with all the
+entries in the list set to the same initial value. For example, we may want
+to create a list with ten zeroes.
+We could do this task by explicitly writing out all the values:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]</span>
+</pre></div>
+</div>
+<p>Of course, this approach would be cumbersome for long lists.
+So, we’ll use the multiplication operator (<code class="docutils literal notranslate"><span class="pre">*</span></code>) to do this task instead:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]</span>
+</pre></div>
+</div>
+<p>In general, given a list <code class="docutils literal notranslate"><span class="pre">l</span></code> and an integer value <code class="docutils literal notranslate"><span class="pre">n</span></code>, the expression <code class="docutils literal notranslate"><span class="pre">l</span> <span class="pre">*</span>
+<span class="pre">n</span></code> concatenates <code class="docutils literal notranslate"><span class="pre">n</span></code> copies of the list <code class="docutils literal notranslate"><span class="pre">l</span></code> to create a new
+list. The list <code class="docutils literal notranslate"><span class="pre">l</span></code> can even contain more than one value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]</span>
+</pre></div>
+</div>
+<p>If the idea of multiplying a list and an integer seems odd to you,
+recall that multiplication is repeated addition and that
+adding two lists simply concatenates their values in a new list.</p>
+<p>Once we have created a list, we can obtain its length using the
+built-in <code class="docutils literal notranslate"><span class="pre">len</span></code> function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python&#39;, &#39;Java&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">lang</span><span class="p">)</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nums</span>
+<span class="go">[3, 187, 1232, 53, 21398]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+<span class="go">20</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="accessing-elements-in-a-list">
+<h2><span class="section-number">2.1.2. </span>Accessing elements in a list<a class="headerlink" href="#accessing-elements-in-a-list" title="Permalink to this heading"></a></h2>
+<p>Once we have a list, we can access and update individual values within that list.
+To do so, we specify the variable containing the list followed
+by the position, or <em>index</em>, of the element we want to access enclosed in square brackets.
+Indexes are numbered from zero so if we wanted to access the third
+element in the list, we would use index <code class="docutils literal notranslate"><span class="pre">2</span></code>. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python&#39;, &#39;Java&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">&#39;Python&#39;</span>
+</pre></div>
+</div>
+<p>We can use individual elements from a list wherever a value of the element’s
+type is appropriate. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nums</span>
+<span class="go">[3, 187, 1232, 53, 21398]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">nums</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">234080</span>
+</pre></div>
+</div>
+<p>Lists are <em>mutable</em>: we can change both the contents and the
+size of a list.  To update the value at an index, we assign a value to the
+list element at that index using the same indexing notation as when we read a
+value from the list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python&#39;, &#39;Java&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Python 3&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python 3&#39;, &#39;Java&#39;]</span>
+</pre></div>
+</div>
+<p>Indexes are specified as integers, so the
+square brackets can contain any expression that evaluates to an
+integer. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="go">&#39;C++&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+<span class="go">&#39;Python 3&#39;</span>
+</pre></div>
+</div>
+<p>Whether we are accessing or updating a value, we must always
+use a valid index. If we do not, our code will fail.
+For example, let’s try to access the fifth element of the <code class="docutils literal notranslate"><span class="pre">lang</span></code> list, which
+only has four elements. Remember that, since lists are indexed from zero, we will use index <code class="docutils literal notranslate"><span class="pre">4</span></code> in our attempt to access the (non-existent) fifth element:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">IndexError</span>: <span class="n">list index out of range</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">IndexError</span></code> is an <em>exception</em>, which, as we saw in
+<a class="reference internal" href="../../getting_started/exceptions/index.html#chapter-exceptions"><span class="std std-ref">Understanding Errors and Catching Exceptions</span></a>, is Python’s way of informing us that
+something went wrong at runtime.  In this case, the exception is
+telling us that our code failed with a <code class="docutils literal notranslate"><span class="pre">list</span> <span class="pre">index</span> <span class="pre">of</span> <span class="pre">out</span> <span class="pre">range</span></code>
+error.  When you encounter an error of this variety, you will want to
+print the actual index and then look at your code and the stack trace
+provided in the error message to identify the origin of the bad index.
+(Alternatively, you may need to determine why your list is shorter
+than expected.)</p>
+<p>Python also allows programmers to use negative indexes, counting from
+the end of the list, to access the list.  So, index <code class="docutils literal notranslate"><span class="pre">-1</span></code> refers to the last
+element in the list, index <code class="docutils literal notranslate"><span class="pre">-2</span></code> is the next-to-last element of the
+list, and so on.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python 3&#39;, &#39;Java&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">&#39;Java&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">&#39;Python 3&#39;</span>
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">lang[len(lang)-1]</span></code> and <code class="docutils literal notranslate"><span class="pre">lang[-1]</span></code> are equivalent ways
+to extract the last element in the list; the <code class="docutils literal notranslate"><span class="pre">len(lang)</span></code> part of the
+index expression is implicit in the second version.</p>
+<p>As with positive indexes, Python will generate an <code class="docutils literal notranslate"><span class="pre">IndexError</span></code> exception at runtime if we specify a negative index that is out of range:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">IndexError</span>: <span class="n">list index out of range</span>
+</pre></div>
+</div>
+<div class="section" id="list-slicing">
+<h3><span class="section-number">2.1.2.1. </span>List slicing<a class="headerlink" href="#list-slicing" title="Permalink to this heading"></a></h3>
+<p>In addition to accessing a single value from a list, we can also
+access all of the elements between two specified indexes of a list. This operation is called
+<em>slicing</em> and requires specifying
+the two indexes separated by a colon:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python 3&#39;, &#39;Java&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="go">[&#39;C++&#39;, &#39;Python 3&#39;]</span>
+</pre></div>
+</div>
+<p>In the above example, the slice contains the elements starting at
+index <code class="docutils literal notranslate"><span class="pre">1</span></code> up to <em>but not including</em> index <code class="docutils literal notranslate"><span class="pre">3</span></code>. The slice itself is
+a <em>new</em> list: it contains a copy of the values in the original
+list. So, we can modify the resulting slice without altering the
+original list. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python 3&#39;, &#39;Java&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="n">lang</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[&#39;C++&#39;, &#39;Python 3&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;C++14&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[&#39;C++14&#39;, &#39;Python 3&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python 3&#39;, &#39;Java&#39;]</span>
+</pre></div>
+</div>
+<p>Note that, as with accessing individual elements, an index in a slice can be
+any expression that evaluates to an integer.</p>
+<p>At times using a negative index as part of a slice can yield code that
+is easier to read.  We can even mix and match negative and positive
+indices when we slice a list.  For example, here are at two ways to
+extract a slice with all but the first and last elements of <code class="docutils literal notranslate"><span class="pre">lang</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">lang</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">[&#39;C++&#39;, &#39;Python 3&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">[&#39;C++&#39;, &#39;Python 3&#39;]</span>
+</pre></div>
+</div>
+<p>Which version feels more natural to you?  Here’s another example:
+extract the last two elements of <code class="docutils literal notranslate"><span class="pre">lang</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">lang</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">lang</span><span class="p">)]</span>
+<span class="go">[&#39;Python 3&#39;, &#39;Java&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">lang</span><span class="p">)]</span>
+<span class="go">[&#39;Python 3&#39;, &#39;Java&#39;]</span>
+</pre></div>
+</div>
+<p>When constructing a slice, one or both operands can be omitted. When
+first operand (that is, the value to the left of the colon) is
+omitted, its value defaults to 0:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python 3&#39;, &#39;Java&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;]</span>
+</pre></div>
+</div>
+<p>When second operand (that is, the value to the right of the colon) is
+omitted, its value defaults to the length of the list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python 3&#39;, &#39;Java&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="go">[&#39;C++&#39;, &#39;Python 3&#39;, &#39;Java&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>
+<span class="go">[&#39;Python 3&#39;, &#39;Java&#39;]</span>
+</pre></div>
+</div>
+<p>If both are omitted, the slice contains the entire list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python 3&#39;, &#39;Java&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[:]</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python 3&#39;, &#39;Java&#39;]</span>
+</pre></div>
+</div>
+<p>Remember that each slice itself is a new list, so the default slice
+notation (<code class="docutils literal notranslate"><span class="pre">[:]</span></code>) is commonly used to create a copy of the list.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python 3&#39;, &#39;Java&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang2</span> <span class="o">=</span> <span class="n">lang</span><span class="p">[:]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Scheme&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang2</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Haskell&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang2</span>
+<span class="go">[&#39;Scheme&#39;, &#39;C++&#39;, &#39;Python 3&#39;, &#39;Haskell&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python 3&#39;, &#39;Java&#39;]</span>
+</pre></div>
+</div>
+<p>Finally, we can specify an arbitrary <em>step</em> through the values in
+the slice by adding a second colon followed by the step size.
+For example, if we have a slice from index 1 up to but not
+including index 7 with a step of 2, we get the values at indexes 1,
+3, and 5 (but not 7).  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tens</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tens</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">7</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">[10, 30, 50]</span>
+</pre></div>
+</div>
+<p>When the step is not specified, it defaults to one (i.e., we step
+through the elements of the list one by one).</p>
+<p>The step <em>can</em> be negative:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tens</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">[70, 60, 50, 40, 30, 20]</span>
+</pre></div>
+</div>
+<p>The bounds work as before: Python starts at the first bound (<code class="docutils literal notranslate"><span class="pre">7</span></code>) and goes up
+to but does not include the second bound (<code class="docutils literal notranslate"><span class="pre">1</span></code>) using the specified step
+size (<code class="docutils literal notranslate"><span class="pre">-1</span></code>).</p>
+<p>Negative steps are most often used to yield a <em>new</em>
+list that contains the values of an existing list in reverse order:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tens</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">[100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0]</span>
+</pre></div>
+</div>
+<p>Omitted indices work differently when the step is negative.
+If we omit the first bound, the missing value defaults to the index of the
+last element in the list.  A missing second
+bound defaults to a value immediately
+to the left of the first element in the list (thereby including the
+index of the first element in the range of legal values).  We
+can use <code class="docutils literal notranslate"><span class="pre">None</span></code> as the bound and get the same behavior:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tens</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">tens</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="kc">None</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">[100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0]</span>
+</pre></div>
+</div>
+<p>Unfortunately, there is no numeric value that we can specify that
+behaves in exactly the same way.</p>
+<p><em>Degenerate slices</em></p>
+<p>Perhaps surprisingly, <em>degenerate</em> slices, or slices with
+out-of-bounds indexes, do not fail at runtime; Python handles them
+gracefully instead. If you specify a bound that is too small, then
+Python uses the smallest legal value in its place (<em>e.g.</em>,
+<code class="docutils literal notranslate"><span class="pre">-len(lang)</span></code> for the list <code class="docutils literal notranslate"><span class="pre">lang</span></code>).  If you specify a bound that is too
+large, Python uses the length of the list as the bound instead.
+Notice, for example, that evaluating <code class="docutils literal notranslate"><span class="pre">lang[-10:10]</span></code> and
+<code class="docutils literal notranslate"><span class="pre">lst[-len(lang):len(lang)]</span></code> yield the same four element list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python 3&#39;, &#39;Java&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">lang</span><span class="p">):</span><span class="nb">len</span><span class="p">(</span><span class="n">lang</span><span class="p">)]</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python 3&#39;, &#39;Java&#39;]</span>
+</pre></div>
+</div>
+<p>One consequence of this design is that slicing an empty list is legal
+and simply yields a (new) empty list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[][</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<p>It is also possible to generate an empty list when slicing a non-empty
+list.  Here are two examples of this phenomenon, one that uses
+legal indexes and another that uses out-of-bounds indexes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<p>While this language design choice may seem at odds with your
+expectations, not having to worry about out-of-bounds indexes when
+constructing a slice is quite convenient.</p>
+<p><em>Updating lists using slicing</em></p>
+<p>Slices are typically used to extract a copy of part of a list, but
+they can be used on the left side of an assignment statement to
+specify a range of elements to be updated in an existing list as well.
+For example, the following code replaces the first two elements of
+<code class="docutils literal notranslate"><span class="pre">lang</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Ruby&quot;</span><span class="p">,</span> <span class="s2">&quot;Scala&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;Ruby&#39;, &#39;Scala&#39;, &#39;Python 3&#39;, &#39;Java&#39;]</span>
+</pre></div>
+</div>
+<p>This usage is much less common and should be used sparingly.</p>
+</div>
+</div>
+<div class="section" id="iterating-over-a-list">
+<h2><span class="section-number">2.1.3. </span>Iterating over a list<a class="headerlink" href="#iterating-over-a-list" title="Permalink to this heading"></a></h2>
+<p>Often, you will need to perform some action for each element
+of a list. Processing a list element by element is usually
+called <em>iterating</em> over the list, and as we saw in <a class="reference internal" href="../../getting_started/control_structures/index.html#chapter-control"><span class="std std-ref">Control Flow Statements</span></a>,
+we can use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to do this work:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prices</span><span class="p">:</span>
+    <span class="n">tax</span> <span class="o">=</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">p</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="n">tax</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The price (with tax) is&quot;</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The price (with tax) is 11.0
+The price (with tax) is 27.5
+The price (with tax) is 5.5
+The price (with tax) is 77.0
+The price (with tax) is 11.0
+</pre></div>
+</div>
+<p>Notice that the loop starts at the beginning of the list and proceeds
+through the list elements in order. In each iteration of the loop, the
+loop variable <code class="docutils literal notranslate"><span class="pre">p</span></code> contains the value of the list element that is
+being processed. The loop ends once it has iterated over all of the
+values in the list.  If the list is empty, there are no values to
+process and so the body of the loop is never executed.</p>
+<p>Alternatively, we could also use the <code class="docutils literal notranslate"><span class="pre">range</span></code> function, which we also discussed in
+<a class="reference internal" href="../../getting_started/control_structures/index.html#chapter-control"><span class="std std-ref">Control Flow Statements</span></a>, to iterate over the indexes of the list, and then use those
+to access the list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">prices</span><span class="p">)):</span>
+    <span class="n">tax</span> <span class="o">=</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">prices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">prices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">tax</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The price (with tax) is&quot;</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The price (with tax) is 11.0
+The price (with tax) is 27.5
+The price (with tax) is 5.5
+The price (with tax) is 77.0
+The price (with tax) is 11.0
+</pre></div>
+</div>
+<p>The above code produces the exact same result as the previous version,
+but it is considered poor style (you
+will often see this style referred to as “not Pythonic”). First
+of all, it is harder to read: instead of “iterating over a list of
+prices” we are “iterating over all valid indexes of a list of prices”.
+It is also more error-prone: in the first version, <code class="docutils literal notranslate"><span class="pre">p</span></code> contains the
+price we are processing in the current iteration; in the second
+version, <code class="docutils literal notranslate"><span class="pre">i</span></code> contains an index that we could easily use  by mistake as the
+price in place of <code class="docutils literal notranslate"><span class="pre">prices[i]</span></code>, the appropriate expression
+for accessing the <code class="docutils literal notranslate"><span class="pre">i</span></code>-th price in the list.</p>
+<p>In other programming languages, iterating over the indexes is often
+the only way of iterating over a list. So, if you are already familiar
+with a language that uses this approach, remember that in Python,
+iterating over a range of indexes is typically considered poor style.</p>
+<p>Occassionally, a task requires iterating over both the values in a
+list and their indices.  Python provides a built-in function, named
+<code class="docutils literal notranslate"><span class="pre">enumerate</span></code>, that allows us to iterate over both the current value
+being processed in a loop and its index.  Instead of specifying one
+name for the loop variable, we supply two–one for the index and one
+for the value–separated by a comma.</p>
+<p>Here’s a variant of the task above that uses both the index (named
+<code class="docutils literal notranslate"><span class="pre">i</span></code>) and the value (named <code class="docutils literal notranslate"><span class="pre">price</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">price</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">prices</span><span class="p">):</span>
+    <span class="n">tax</span> <span class="o">=</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">price</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">price</span> <span class="o">+</span> <span class="n">tax</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The price (with tax) of element&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The price (with tax) of element 0 is 11.0
+The price (with tax) of element 1 is 27.5
+The price (with tax) of element 2 is 5.5
+The price (with tax) of element 3 is 77.0
+The price (with tax) of element 4 is 11.0
+</pre></div>
+</div>
+<div class="admonition-tip admonition">
+<p class="admonition-title">Tip</p>
+<p>Keep in mind that cases where you need to know the index of each
+value as you iterate through a list are typically few and far
+between.  So, when you are writing a loop to process a list, your
+first instinct should be to iterate over the values of the list.
+Only if you find that you need both the value and its index, should
+you use <code class="docutils literal notranslate"><span class="pre">enumerate</span></code>.</p>
+<p>If you find yourself using <code class="docutils literal notranslate"><span class="pre">range</span></code> with the length of a list, you
+may want to rethink your implementation choices.</p>
+</div>
+<p>The line between values and indices can be a bit blurry.  For example,
+it can be convenient to use the values in one list as indices into
+another list.  Let’s say we want to print the values in <code class="docutils literal notranslate"><span class="pre">lang</span></code> in an
+order that reflects one person’s language preferences.  We could
+represent those preferences as a list of integers between zero and
+three inclusive.  The list <code class="docutils literal notranslate"><span class="pre">[2,</span> <span class="pre">0,</span> <span class="pre">3]</span></code>, for example, would represent
+the preferences of a person who prefers Python to C and C to Java and
+declined to rank C++.  To print the languages in the preferred order
+we could write:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">preferences</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">preferences</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">lang</span><span class="p">[</span><span class="n">p</span><span class="p">])</span>
+<span class="gp">... </span>
+<span class="go">Python 3</span>
+<span class="go">Ruby</span>
+<span class="go">Java</span>
+</pre></div>
+</div>
+<p>Notice that <code class="docutils literal notranslate"><span class="pre">p</span></code>, which iterates over the preferences, is used as an
+index into the list <code class="docutils literal notranslate"><span class="pre">lang</span></code>.</p>
+</div>
+<div class="section" id="modifying-a-list">
+<h2><span class="section-number">2.1.4. </span>Modifying a list<a class="headerlink" href="#modifying-a-list" title="Permalink to this heading"></a></h2>
+<p>So far, we have seen how to create a list with a number of elements,
+and then access or modify those elements.  We are not limited to
+working with just the elements specified when a list is created: lists
+can grow and shrink dynamically.</p>
+<p>For example, lists have an <code class="docutils literal notranslate"><span class="pre">append</span></code> method that we can use to add a
+new element to the end of an existing list. A <em>method</em> is a special
+type of function that operates on the variable on which it is
+called. We call the <code class="docutils literal notranslate"><span class="pre">append</span></code> method like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lang</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Scheme&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This code should be understood as follows: the <code class="docutils literal notranslate"><span class="pre">append</span></code> method will
+perform an operation on <code class="docutils literal notranslate"><span class="pre">lang</span></code>, and will do so with a parameter
+(<code class="docutils literal notranslate"><span class="pre">&quot;Scheme&quot;</span></code>), the value we want to add to the end of the
+list. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;Ruby&#39;, &#39;Scala&#39;, &#39;Python 3&#39;, &#39;Java&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">lang</span><span class="p">)</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Scheme&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;Ruby&#39;, &#39;Scala&#39;, &#39;Python 3&#39;, &#39;Java&#39;, &#39;Scheme&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">lang</span><span class="p">)</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<p>This operation modifies the
+list <em>in-place</em>. In other words, the <code class="docutils literal notranslate"><span class="pre">lang</span></code> list itself is
+modified, as opposed to having <code class="docutils literal notranslate"><span class="pre">append</span></code> return a new list
+with the appended value. We will see that many functions
+and methods modify lists in-place.</p>
+<div class="admonition-a-common-pitfall admonition">
+<p class="admonition-title">A Common Pitfall</p>
+<p>A common mistake is to treat the <code class="docutils literal notranslate"><span class="pre">append</span></code> method as if it returns
+the updated list.  It does not: it updates its list operand and
+returns <code class="docutils literal notranslate"><span class="pre">None</span></code>.  As a result, a statement like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span> <span class="o">=</span> <span class="n">lang</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Go&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Sets the value of <code class="docutils literal notranslate"><span class="pre">lang</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code>, which is likely not what
+the programmer has in mind.</p>
+<p>To avoid this mistake, never use the <code class="docutils literal notranslate"><span class="pre">append</span></code> method in an
+assignment statement or as part of a more complex expression.</p>
+</div>
+<div class="admonition-technical-details admonition">
+<p class="admonition-title">Functions and methods</p>
+<p>In <a class="reference internal" href="../../getting_started/intro_functions/index.html#chapter-functions"><span class="std std-ref">Introduction to Functions</span></a>, we introduced functions as an
+abstraction mechanism.  Defining a function allows us to
+parameterize a task, assign it a name, and then use it by name in
+multiple places in our code.  Methods also allow us to parameterize
+a task, assign it a name, and use it in multiple places.  The
+difference between the two mechanisms, as you will see in more
+detail in <a class="reference internal" href="../classes/index.html#chapter-classes"><span class="std std-ref">Classes and Objects</span></a>, is that methods are defined as
+part of a class and operate on (or are <em>applied to</em>) a specific
+value of that class (known as an <em>instance</em> of the class). The
+value is placed to the left of the <code class="docutils literal notranslate"><span class="pre">.</span></code> and the method name and
+parameters appear on the right of the <code class="docutils literal notranslate"><span class="pre">.</span></code></p>
+<p>In this code, for example,,</p>
+<p><code class="docutils literal notranslate"><span class="pre">lang</span></code> is a list (an instance of the <code class="docutils literal notranslate"><span class="pre">list</span></code> class) and
+<code class="docutils literal notranslate"><span class="pre">append</span></code> is the name of a <code class="docutils literal notranslate"><span class="pre">list</span></code> method that takes a single
+argument (<code class="docutils literal notranslate"><span class="pre">&quot;Scheme&quot;</span></code>).</p>
+<p>We will discuss how to define your own classes and methods in
+detail in a few chapters.  For now, just keep in mind that
+operations on values, such as lists, are often defined as methods
+and are used with the <code class="docutils literal notranslate"><span class="pre">.</span></code> syntax.</p>
+</div>
+<p>Similar to <code class="docutils literal notranslate"><span class="pre">append</span></code>, we can use the <code class="docutils literal notranslate"><span class="pre">extend</span></code> method to
+extend an existing list with the contents of another list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;C++&quot;</span><span class="p">,</span> <span class="s2">&quot;Python&quot;</span><span class="p">,</span> <span class="s2">&quot;Java&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang2</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Pascal&quot;</span><span class="p">,</span> <span class="s2">&quot;FORTRAN&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">lang2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python&#39;, &#39;Java&#39;, &#39;Pascal&#39;, &#39;FORTRAN&#39;]</span>
+</pre></div>
+</div>
+<p>Like <code class="docutils literal notranslate"><span class="pre">append</span></code>, <code class="docutils literal notranslate"><span class="pre">extend</span></code> modifies the list in-place.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">insert</span></code> method inserts new elements in a specific position and
+takes two parameters: the position
+where the new element will be inserted and the value to be inserted:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python&#39;, &#39;Java&#39;, &#39;Pascal&#39;, &#39;FORTRAN&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Haskell&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Haskell&#39;, &#39;Python&#39;, &#39;Java&#39;, &#39;Pascal&#39;, &#39;FORTRAN&#39;]</span>
+</pre></div>
+</div>
+<p>Notice that <code class="docutils literal notranslate"><span class="pre">insert</span></code> doesn’t replace the existing value in position
+<code class="docutils literal notranslate"><span class="pre">2</span></code>. Instead, it inserts the new value at position <code class="docutils literal notranslate"><span class="pre">2</span></code> and shifts
+all the original values starting at index <code class="docutils literal notranslate"><span class="pre">2</span></code> to the right by one.</p>
+<p>Finally, the <code class="docutils literal notranslate"><span class="pre">pop</span></code> method removes a value in a
+specific position. The <code class="docutils literal notranslate"><span class="pre">pop</span></code> method takes one parameter: the
+position of the item we want to remove.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Haskell&#39;, &#39;Python&#39;, &#39;Java&#39;, &#39;Pascal&#39;, &#39;FORTRAN&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">&#39;Haskell&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python&#39;, &#39;Java&#39;, &#39;Pascal&#39;, &#39;FORTRAN&#39;]</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">pop</span></code> method also returns the value that was removed from
+the list.</p>
+<p>If we omit the parameter to <code class="docutils literal notranslate"><span class="pre">pop</span></code>, it will remove
+and return the last element in the list by default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python&#39;, &#39;Java&#39;, &#39;Pascal&#39;, &#39;FORTRAN&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="go">&#39;FORTRAN&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python&#39;, &#39;Java&#39;, &#39;Pascal&#39;]</span>
+</pre></div>
+</div>
+<p>We can also remove elements using the <code class="docutils literal notranslate"><span class="pre">del</span></code> operator, which
+uses a different syntax. It is not a function or method, but
+a built-in operator, and it must be followed by the item we
+want to remove written using the list indexing syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python&#39;, &#39;Java&#39;, &#39;Pascal&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">lang</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
+<span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python&#39;, &#39;Pascal&#39;]</span>
+</pre></div>
+</div>
+<p>Notice that, unlike <code class="docutils literal notranslate"><span class="pre">pop</span></code>, <code class="docutils literal notranslate"><span class="pre">del</span></code> doesn’t return the value that is
+removed.</p>
+<div class="admonition-tip admonition">
+<p class="admonition-title">Tip</p>
+<p>Do not modify lists as you iterate over them.  Doing so may yield
+unexpected or surprising result.  This loop, for example, may never
+terminate:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">val</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># val is even</span>
+        <span class="n">lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The next example terminates, but the desired result is not at all
+clear:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">val</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="c1"># remove the value that follows an</span>
+<span class="gp">... </span>        <span class="c1"># even number.</span>
+<span class="gp">... </span>        <span class="k">del</span> <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">... </span>
+</pre></div>
+</div>
+<p>Are we expecting to get <code class="docutils literal notranslate"><span class="pre">[1]</span></code> or <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">5]</span></code>?</p>
+</div>
+</div>
+<div class="section" id="creating-a-list-based-on-another-list">
+<h2><span class="section-number">2.1.5. </span>Creating a list based on another list<a class="headerlink" href="#creating-a-list-based-on-another-list" title="Permalink to this heading"></a></h2>
+<p>Now that we’ve seen how to iterate over a list as well
+as how to use the <code class="docutils literal notranslate"><span class="pre">append</span></code> method, we can discuss another common way
+of creating a list: by taking the values from an existing list,
+transforming them in some way, and creating a new list with the
+transformed values. For example, let’s say we have a list of prices:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">59.99</span><span class="p">,</span> <span class="mf">7.00</span><span class="p">,</span> <span class="mf">15.00</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>We may be interested in producing a new list that contains the same
+prices after a 10% discount is applied. We start by creating an empty
+list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">discounted_prices</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+<p>Then, we use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to iterate over the values in the original
+list. For each element, we transform the value by multiplying it by
+<code class="docutils literal notranslate"><span class="pre">0.9</span></code> and use the <code class="docutils literal notranslate"><span class="pre">append</span></code> method to add the transformed value to
+the new list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">price</span> <span class="ow">in</span> <span class="n">prices</span><span class="p">:</span>
+    <span class="n">new_price</span> <span class="o">=</span> <span class="n">price</span> <span class="o">*</span> <span class="mf">0.9</span>
+    <span class="n">discounted_prices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_price</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">discounted_prices</span></code> list now contains the discounted prices:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">discounted_prices</span>
+<span class="go">[90.0, 53.991, 6.3, 13.5]</span>
+</pre></div>
+</div>
+<p>This example shows the four key components used in this common computational
+pattern:</p>
+<ul class="simple">
+<li><p>a list to iterate over (<code class="docutils literal notranslate"><span class="pre">prices</span></code>, in the example above),</p></li>
+<li><p>a variable that holds the individual values over the course of the computation (<code class="docutils literal notranslate"><span class="pre">price</span></code>),</p></li>
+<li><p>an expression that computes a new value from the old one (<code class="docutils literal notranslate"><span class="pre">price</span> <span class="pre">*</span> <span class="pre">0.9</span></code>), and</p></li>
+<li><p>a name for the resulting list (<code class="docutils literal notranslate"><span class="pre">discounted_prices</span></code>).</p></li>
+</ul>
+<p>We can use the angle bracket notation that we introduced in
+<a class="reference internal" href="../../getting_started/control_structures/index.html#chapter-control"><span class="std std-ref">Control Flow Statements</span></a> to describe this pattern more formally as
+follows:</p>
+<pre class="literal-block">&lt;list name&gt; = []
+
+<strong>for</strong> <em>&lt;variable name&gt;</em> <strong>in</strong> <em>&lt;list expression&gt;</em>:
+    new_val = <em>&lt;transformation expression&gt;</em>
+    <em>&lt;list name&gt;</em>.append(new_val)</pre>
+<p>Recall that words in <strong>bold</strong> represent keywords that are part of the
+language itself, whereas anything delimited with angle brackets means
+“substitute this for …” (i.e., you do not write the <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>
+characters themselves).</p>
+<p>Python includes a special syntax, called a <em>list comprehension</em> for expressing
+these frequently-performed types of computations:</p>
+<pre class="literal-block">&lt;list name&gt; = <strong>[</strong> &lt;transformation expression&gt; <strong>for</strong> &lt;variable name&gt;
+                            <strong>in</strong> &lt;list expression&gt; <strong>]</strong></pre>
+<p>Here’s the example shown above rewritten using this compact syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">discounted_prices</span> <span class="o">=</span> <span class="p">[</span><span class="n">price</span> <span class="o">*</span> <span class="mf">0.9</span> <span class="k">for</span> <span class="n">price</span> <span class="ow">in</span> <span class="n">prices</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>We are not required to assign the list comprehension to a variable. We
+can use it in any place where a list would be valid.  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)]:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">1</span>
+<span class="go">4</span>
+<span class="go">9</span>
+<span class="go">16</span>
+<span class="go">25</span>
+<span class="go">36</span>
+<span class="go">49</span>
+<span class="go">64</span>
+<span class="go">81</span>
+<span class="go">100</span>
+</pre></div>
+</div>
+<p>The transformation expression can be any legal Python expression and
+is not required to use the values in the original list. For example,
+the list comprehension:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="go">[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]</span>
+</pre></div>
+</div>
+<p>yields a list of ten zeros.</p>
+<p>List comprehensions also allow us to filter which values from the
+original list will be included in the computation of the new list. For
+example, suppose we wanted to create a <code class="docutils literal notranslate"><span class="pre">discounted_prices</span></code> list, but
+only wanted to include prices (before the discount) that are greater
+than 10. If we were using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, we might write something like
+this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">discounted_prices</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">price</span> <span class="ow">in</span> <span class="n">prices</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">price</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="n">new_price</span> <span class="o">=</span> <span class="n">price</span> <span class="o">*</span> <span class="mf">0.9</span>
+        <span class="n">discounted_prices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_price</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">discounted_prices</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[90.0, 53.991, 13.5]
+</pre></div>
+</div>
+<p>With list comprehensions, we can just write this code instead:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">discounted_prices</span> <span class="o">=</span> <span class="p">[</span><span class="n">price</span> <span class="o">*</span> <span class="mf">0.9</span> <span class="k">for</span> <span class="n">price</span> <span class="ow">in</span> <span class="n">prices</span> <span class="k">if</span> <span class="n">price</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">discounted_prices</span>
+<span class="go">[90.0, 53.991, 13.5]</span>
+</pre></div>
+</div>
+<p>So, the general syntax for list comprehensions becomes:</p>
+<pre class="literal-block"><strong>[</strong> &lt;transformation expression&gt; <strong>for</strong> &lt;variable name&gt; <strong>in</strong> &lt;list expression&gt; <strong>if</strong> &lt;boolean expression&gt; <strong>]</strong></pre>
+<p>where the boolean expression is evaluated for each value in the original
+list. If the boolean expression is true, the transformation expression
+is evaluated and the result is added to the new list.</p>
+<p>In other words, this more general list comprehension
+expands into this code:</p>
+<pre class="literal-block">&lt;list name&gt; = []
+
+<strong>for</strong> <em>&lt;variable name&gt;</em> <strong>in</strong> <em>&lt;list expression&gt;</em>:
+    <strong>if</strong> <em>&lt;boolean expression&gt;</em>:
+        new_val = <em>&lt;transformational expression &gt;</em>
+        <em>&lt;list name&gt;</em>.append(new_val)</pre>
+<p>We will return to this topic again Section
+<a class="reference internal" href="../../functions/functions/index.html#list-comprehensions-revisited"><span class="std std-ref">List comprehensions revisited</span></a> to discuss an alternate way to
+think about the computation captured by the list comprehension
+shorthand.</p>
+</div>
+<div class="section" id="other-operations-on-lists">
+<h2><span class="section-number">2.1.6. </span>Other operations on lists<a class="headerlink" href="#other-operations-on-lists" title="Permalink to this heading"></a></h2>
+<p>Lists are a very versatile data structure in Python and we have a
+large number of operators, functions, and methods at our disposal to
+operate on them.  We will only mention some of the more useful ones
+here; you can see the complete list in the official Python
+documentation, or by writing <code class="docutils literal notranslate"><span class="pre">help(list)</span></code> in the Python interpreter.</p>
+<p>Given a list of integers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">107</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">23</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>We can find the minimum and maximum value with the built-in
+<code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> functions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">min</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">max</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+<span class="go">107</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">min</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">])</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">&#39;&lt;&#39; not supported between instances of &#39;str&#39; and &#39;int&#39;</span>
+</pre></div>
+</div>
+<p>The third example illustrates an important aspect of these functions:
+they will succeed only if there is a natural ordering on the elements
+of the list.</p>
+<p>For lists containing numbers (either integers or floats), we
+can add up all the values in the list with the built-in <code class="docutils literal notranslate"><span class="pre">sum</span></code>
+function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">sum</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+<span class="go">323</span>
+</pre></div>
+</div>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">count</span></code> method to count the number of occurrences
+of a given value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">47</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">29</span><span class="p">)</span>
+<span class="go">0</span>
+</pre></div>
+</div>
+<p>Note that while we could use this method to determine whether a list contains a
+specific value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">47</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Python provides a more direct way to do this test, namely, the <code class="docutils literal notranslate"><span class="pre">in</span></code>
+operator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">47</span> <span class="ow">in</span> <span class="n">lst</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">25</span> <span class="ow">in</span> <span class="n">lst</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>We can reverse the list <em>in-place</em> with the <code class="docutils literal notranslate"><span class="pre">reverse</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[17, 47, 23, 101, 107, 5, 23]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[23, 5, 107, 101, 23, 47, 17]</span>
+</pre></div>
+</div>
+<p>As noted earlier, we can produce a <em>new</em> list that contains the values
+of an existing list in reverse order using slicing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst_reversed</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst_reversed</span>
+<span class="go">[17, 47, 23, 101, 107, 5, 23]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[23, 5, 107, 101, 23, 47, 17]</span>
+</pre></div>
+</div>
+<p>We can sort the values in the list in ascending order using the <code class="docutils literal notranslate"><span class="pre">sort</span></code>
+method. Like <code class="docutils literal notranslate"><span class="pre">reverse</span></code>, this method will modify the list in-place:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[23, 5, 107, 101, 23, 47, 17]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[5, 17, 23, 23, 47, 101, 107]</span>
+</pre></div>
+</div>
+<p>If we want to create a sorted copy of the list without modifying
+the original list, we can use the built-in <code class="docutils literal notranslate"><span class="pre">sorted</span></code> function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">107</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">23</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst2</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst2</span>
+<span class="go">[5, 17, 23, 23, 47, 101, 107]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[17, 47, 23, 101, 107, 5, 23]</span>
+</pre></div>
+</div>
+<p>By default, both the list <code class="docutils literal notranslate"><span class="pre">sort</span></code> method and the <code class="docutils literal notranslate"><span class="pre">sorted</span></code> function
+sort the values in a list in increasing order.  Both have an optional
+keyword parameter, <code class="docutils literal notranslate"><span class="pre">reverse</span></code>, that can be set to <code class="docutils literal notranslate"><span class="pre">True</span></code> to
+indicate that the data should be sorted in decreasing order, instead.
+Notice, for example, the order of the elements in the result from this
+call to <code class="docutils literal notranslate"><span class="pre">sorted</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">[107, 101, 47, 23, 23, 17, 5]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="variables-revisited">
+<span id="section-variables-revisited"></span><h2><span class="section-number">2.1.7. </span>Variables revisited<a class="headerlink" href="#variables-revisited" title="Permalink to this heading"></a></h2>
+<p>In <a class="reference internal" href="../../getting_started/basics/index.html#chapter-basics"><span class="std std-ref">Programming Basics</span></a> we described variables as symbolic names representing
+locations in the computer’s memory. When we assign a value to a variable,
+we are storing that value in the associated location in memory. So, say we have two
+variables <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>:</p>
+<img alt="../../_images/lists-01.png" src="../../_images/lists-01.png" />
+<p>If we assign a value to variable <code class="docutils literal notranslate"><span class="pre">a</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">42</span>
+</pre></div>
+</div>
+<p>Then the position in memory represented by variable <code class="docutils literal notranslate"><span class="pre">a</span></code> will now contain
+the value 42:</p>
+<img alt="../../_images/lists-02.png" src="../../_images/lists-02.png" />
+<p>If we now assign the value of variable <code class="docutils literal notranslate"><span class="pre">a</span></code> to <code class="docutils literal notranslate"><span class="pre">b</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+</pre></div>
+</div>
+<p>Then <code class="docutils literal notranslate"><span class="pre">b</span></code> will contain the same value as <code class="docutils literal notranslate"><span class="pre">a</span></code>:</p>
+<img alt="../../_images/lists-03.png" src="../../_images/lists-03.png" />
+<p>However, each variable will still represent distinct positions in memory, which
+means that if we modify <code class="docutils literal notranslate"><span class="pre">a</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">37</span>
+</pre></div>
+</div>
+<p>The value of <code class="docutils literal notranslate"><span class="pre">b</span></code> is not affected:</p>
+<img alt="../../_images/lists-04.png" src="../../_images/lists-04.png" />
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">37</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">42</span>
+</pre></div>
+</div>
+<p>To be more specific, Python <em>copied</em> the value of variable <code class="docutils literal notranslate"><span class="pre">a</span></code> and stored the
+copy in <code class="docutils literal notranslate"><span class="pre">b</span></code> during the <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">a</span></code> assignment.</p>
+<p>Lists, on the other hand, behave differently. Let’s say we have two variables
+<code class="docutils literal notranslate"><span class="pre">lst1</span></code> and <code class="docutils literal notranslate"><span class="pre">lst2</span></code> and we assign a list to <code class="docutils literal notranslate"><span class="pre">lst1</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Unlike simple types like integers, the <code class="docutils literal notranslate"><span class="pre">lst1</span></code> variable (or, more
+specifically, the location in memory it represents) doesn’t contain the list
+directly. Instead, it contains a <em>reference</em> to another location in memory
+that contains the list. We represent this behavior pictorially with an arrow going from <code class="docutils literal notranslate"><span class="pre">lst1</span></code>
+to the list:</p>
+<img alt="../../_images/lists-05.png" src="../../_images/lists-05.png" />
+<p>If we now assign <code class="docutils literal notranslate"><span class="pre">lst1</span></code> to <code class="docutils literal notranslate"><span class="pre">lst2</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst2</span> <span class="o">=</span> <span class="n">lst1</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">lst2</span></code> will point to the <em>same</em> list
+as <code class="docutils literal notranslate"><span class="pre">lst1</span></code>. In other words, assigning one list to another <em>does not</em>
+create a copy of the list; it creates a copy of the <em>reference</em> to
+the list, so that both variables point to the same list in memory:</p>
+<img alt="../../_images/lists-06.png" src="../../_images/lists-06.png" />
+<p>We refer to two (or more) variables that reference the same list as
+<em>aliases</em> of each other.  The above assignment, for example, makes
+<code class="docutils literal notranslate"><span class="pre">lst1</span></code> and <code class="docutils literal notranslate"><span class="pre">lst2</span></code> aliases.</p>
+<p>As a result of this sharing, changes made to a list through one
+variable <em>will</em> affect the other variable. For example, if we modify
+the first element of <code class="docutils literal notranslate"><span class="pre">lst2</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst2</span>
+<span class="go">[100, 2, 3, 4]</span>
+</pre></div>
+</div>
+<p>We are modifying both the list referenced by <code class="docutils literal notranslate"><span class="pre">lst2</span></code> and the list
+referenced by <code class="docutils literal notranslate"><span class="pre">lst1</span></code>, because <code class="docutils literal notranslate"><span class="pre">lst1</span></code> and <code class="docutils literal notranslate"><span class="pre">lst2</span></code> refer to the
+same list.</p>
+<img alt="../../_images/lists-07.png" src="../../_images/lists-07.png" />
+<p>We can see that the change to <code class="docutils literal notranslate"><span class="pre">lst2</span></code> also changed <code class="docutils literal notranslate"><span class="pre">lst1</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst1</span>
+<span class="go">[100, 2, 3, 4]</span>
+</pre></div>
+</div>
+<p>This design makes comparing lists a bit tricky. Let’s say we have the
+following statements:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst4</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>After these assignments, <code class="docutils literal notranslate"><span class="pre">lst3</span></code> and <code class="docutils literal notranslate"><span class="pre">lst4</span></code> refer to separate
+lists, which just happen to contain the same values:</p>
+<img alt="../../_images/lists-08.png" src="../../_images/lists-08.png" />
+<p>The equality operator (<code class="docutils literal notranslate"><span class="pre">==</span></code>) compares the contents of the lists, not
+whether the variables contain references to the same list in memory,
+and so, <code class="docutils literal notranslate"><span class="pre">lst3</span></code> and <code class="docutils literal notranslate"><span class="pre">lst4</span></code> are considered equal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst3</span> <span class="o">==</span> <span class="n">lst4</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">lst3</span></code> and <code class="docutils literal notranslate"><span class="pre">lst4</span></code> variables themselves do contain different values
+(since they point to different locations in memory, which just
+happen to contain lists with the same values). We can actually see
+these values (the location of the lists in memory) using the
+built-in <code class="docutils literal notranslate"><span class="pre">id</span></code> function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst3</span><span class="p">)</span>
+<span class="go">140181492535872</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst4</span><span class="p">)</span>
+<span class="go">140181492521920</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst3</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">lst4</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Note: if you run this code yourself, you will very likely not see the
+same <code class="docutils literal notranslate"><span class="pre">id</span></code> values shown above. The <code class="docutils literal notranslate"><span class="pre">id</span></code> value for <code class="docutils literal notranslate"><span class="pre">lst3</span></code>,
+however, should not be the same as the one for <code class="docutils literal notranslate"><span class="pre">lst4</span></code>.</p>
+<p>In contrast, the <code class="docutils literal notranslate"><span class="pre">lst1</span></code> and <code class="docutils literal notranslate"><span class="pre">lst2</span></code> variables we created earlier do have the
+same <code class="docutils literal notranslate"><span class="pre">id</span></code> value, since they both refer to the same list in memory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst1</span><span class="p">)</span>
+<span class="go">140181493770112</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst2</span><span class="p">)</span>
+<span class="go">140181493770112</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst1</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">lst2</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>In some languages, such as C, the equality operator (<code class="docutils literal notranslate"><span class="pre">==</span></code>)
+determines whether two variables refer to the same location in memory
+and not whether the values of the two variables are the same.  This
+type of equality is known as <em>reference equality</em>.  A test that
+determines whether two variables have the same value is known as
+<em>value equality</em>.  Python provides both types of equality.  The
+standard equality operator (<code class="docutils literal notranslate"><span class="pre">==</span></code>) performs value equality, while the
+<code class="docutils literal notranslate"><span class="pre">is</span></code> operator performs reference equality.  Using the <code class="docutils literal notranslate"><span class="pre">is</span></code>
+operator, we could rewrite the above <code class="docutils literal notranslate"><span class="pre">id</span></code> examples as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst3</span> <span class="ow">is</span> <span class="n">lst4</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst1</span> <span class="ow">is</span> <span class="n">lst2</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Finally, in some cases, we may actually want to assign a <em>copy</em> of a
+list to another variable. As noted earlier, we can just use
+the slicing operator, since it will always return a new list. More
+specifically, we specify the <code class="docutils literal notranslate"><span class="pre">[:]</span></code> slice (remember:
+when we omit the starting and ending indexes, they default to zero and
+the length of the list respectively). For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst5</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst6</span> <span class="o">=</span> <span class="n">lst5</span><span class="p">[:]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst5</span>
+<span class="go">[1, 2, 3, 4]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst6</span>
+<span class="go">[1, 2, 3, 4]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst5</span> <span class="o">==</span> <span class="n">lst6</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst5</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">lst6</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst5</span> <span class="ow">is</span> <span class="n">lst6</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Notice that <code class="docutils literal notranslate"><span class="pre">lst5</span></code> and <code class="docutils literal notranslate"><span class="pre">lst6</span></code> end up pointing to <em>different</em> locations in memory
+(which happen to contain lists with the same values). So, unlike <code class="docutils literal notranslate"><span class="pre">lst1</span></code> and <code class="docutils literal notranslate"><span class="pre">lst2</span></code>,
+if we were to modify an element in <code class="docutils literal notranslate"><span class="pre">lst6</span></code>, <code class="docutils literal notranslate"><span class="pre">lst5</span></code> would not be affected:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst5</span>
+<span class="go">[1, 2, 3, 4]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst6</span>
+<span class="go">[1, 2, 3, 4]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst6</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst6</span>
+<span class="go">[100, 2, 3, 4]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst5</span>
+<span class="go">[1, 2, 3, 4]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-heap">
+<h2><span class="section-number">2.1.8. </span>The heap<a class="headerlink" href="#the-heap" title="Permalink to this heading"></a></h2>
+<p>In the previous section, we explained that variables refer to lists
+and that more than one variable can refer to the same list.  Where do
+the lists actually reside in memory?  The answer is that lists (and
+other compound data structures that we’ll discuss in subsequent
+chapters) reside in a part of memory known as the <em>heap</em>, which is
+managed behind the scenes for you by a part of the Python runtime
+system called the <em>garbage collector</em>.</p>
+<p>The garbage collector allocates space in the heap when you create a
+new list or add values to an existing list and it is responsible for
+reclaiming space when it is no longer needed.</p>
+</div>
+<div class="section" id="list-parameters">
+<h2><span class="section-number">2.1.9. </span>List parameters<a class="headerlink" href="#list-parameters" title="Permalink to this heading"></a></h2>
+<p>In <a class="reference internal" href="../../getting_started/intro_functions/index.html#chapter-functions"><span class="std std-ref">Introduction to Functions</span></a>, we saw that Python functions use a type of parameter passing
+called <em>call-by-value</em> where the arguments to a function are evaluated <em>before</em> the
+function is called and the resulting <em>values</em> are used to initialize fresh copies
+of the formal parameters.</p>
+<p>However, we just saw that, when it comes to lists, the value of a list variable is
+actually a <em>reference</em> to the list elsewhere in memory. This detail means that when
+we call a function with a list parameter, it is this reference (and not a copy
+of the list) that is used to initialize the formal parameters.</p>
+<p>For example, suppose we want to write a function <code class="docutils literal notranslate"><span class="pre">scale</span></code> that takes a list <code class="docutils literal notranslate"><span class="pre">lst</span></code> and modifies
+it in-place so that each value in the list is scaled by a given <code class="docutils literal notranslate"><span class="pre">factor</span></code>.
+We could write the function like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Multiplies the values in a list in-place by a specified factor.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">        lst: a list</span>
+<span class="sd">        factor: the factor to multiply by</span>
+
+<span class="sd">    Returns: None</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)):</span>
+        <span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">factor</span>
+</pre></div>
+</div>
+<p>Earlier, we said that iterating over the range of indexes is
+considered “not Pythonic”, but this is one case where it
+is justified, as we need to use the indexes of the list
+to update it (just iterating over the values would not
+allow us to do so). Later in the chapter we will see that
+there is a built-in function called <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> that is
+generally preferred whenever we need to iterate over
+both the indexes and values of a list.</p>
+<p>Let’s try out this function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scale</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nums</span>
+<span class="go">[5.0, 10.0, 15.0, 20.0]</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">nums</span></code> list <em>was</em> modified by the function <code class="docutils literal notranslate"><span class="pre">scale</span></code>, which
+seems to go against our previous warning that functions cannot modify
+variables outside their scope. This seeming anomaly can best
+understood by looking at what happens in memory.</p>
+<p>Before the call to <code class="docutils literal notranslate"><span class="pre">scale</span></code>, memory looks like this:</p>
+<img alt="../../_images/lists-functions-01.png" src="../../_images/lists-functions-01.png" />
+<p>The variable <code class="docutils literal notranslate"><span class="pre">nums</span></code> resides in the space set aside for globals and
+the list resides in the heap.</p>
+<p>Once the call to <code class="docutils literal notranslate"><span class="pre">scale</span></code> is made, memory will look like this:</p>
+<img alt="../../_images/lists-functions-02.png" src="../../_images/lists-functions-02.png" />
+<p>Notice that the <code class="docutils literal notranslate"><span class="pre">lst</span></code> parameter in the stack frame for <code class="docutils literal notranslate"><span class="pre">scale</span></code>
+refers to the same list (in the heap) as the global <code class="docutils literal notranslate"><span class="pre">nums</span></code>.  (If you
+skipped the <a class="reference internal" href="../../getting_started/intro_functions/index.html#call-stack"><span class="std std-ref">The function call stack</span></a> section of <a class="reference internal" href="../../getting_started/intro_functions/index.html#chapter-functions"><span class="std std-ref">Introduction to Functions</span></a>, you
+may want to revisit it now.)</p>
+<p>Once the computation is finished and <code class="docutils literal notranslate"><span class="pre">scale</span></code> returns, the stack
+frame goes away and we are left with <code class="docutils literal notranslate"><span class="pre">nums</span></code> and the modified list.</p>
+<img alt="../../_images/lists-functions-03.png" src="../../_images/lists-functions-03.png" />
+<p>As the client of a function, you need to be mindful that when you pass
+a list as a parameter to a function any changes made inside the
+function will affect the original list.  If you write a function that,
+like <code class="docutils literal notranslate"><span class="pre">scale</span></code>, modifies a list in-place, make sure this behavior is
+properly documented so that anyone using the function is aware that
+the list that they are passing to the function will be modified.  In
+general, it is considered poor style to modify a data structure as a
+side effect of a function unless that is the stated purpose of the
+function.</p>
+<p>Next, since <code class="docutils literal notranslate"><span class="pre">scale</span></code> modifies the list in-place, it doesn’t need to
+return anything. However, we could write a similar version of
+<code class="docutils literal notranslate"><span class="pre">scale</span></code> that, instead of modifying the list in place, creates and
+returns a new list, leaving the original list intact:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Multiplies the values in a list by a specified factor.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">        lst: a list</span>
+<span class="sd">        factor: the factor to multiply by</span>
+
+<span class="sd">    Returns: a list of the same type as the input</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">new_lst</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
+        <span class="n">new_lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">factor</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">new_lst</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scaled_nums</span> <span class="o">=</span> <span class="n">scale</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nums</span>
+<span class="go">[10, 20, 30, 40]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scaled_nums</span>
+<span class="go">[5.0, 10.0, 15.0, 20.0]</span>
+</pre></div>
+</div>
+<p>This version of <code class="docutils literal notranslate"><span class="pre">scale</span></code> uses a <code class="docutils literal notranslate"><span class="pre">for</span></code>-loop and <code class="docutils literal notranslate"><span class="pre">append</span></code> to
+construct the new list.  We can also write the function using list
+comprehension:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Multiplies the values in a list by a specified factor.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">        lst: a list</span>
+<span class="sd">        factor: the factor to multiply by</span>
+
+<span class="sd">    Returns: a list of the same type as the input</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="n">factor</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>In both versions, a list is constructed in the heap and a reference to
+the newly constructed list is returned.</p>
+<p>This approach to passing and returning lists is efficient because the
+value handed around is just a memory address.  We do not need to make
+a full copy of the list every time it is passed as an argument or
+returned as a result.  Of course, this efficiency comes at a cost: it
+is easy to introduce hard-to-find bugs by unexpectedly modifying a
+list passed as a parameter.</p>
+<p>When taking lists as parameters to functions, you should:</p>
+<ul class="simple">
+<li><p>Be mindful that any changes you make to the list <em>will</em> have an effect outside the function’s scope;</p></li>
+<li><p>Think carefully about whether you want to modify the list in-place or return a new list with modified values; and finally,</p></li>
+<li><p>Record your choice in your function’s docstring!</p></li>
+</ul>
+<div class="section-technical-details section" id="aliases-revisited">
+<h3><span class="section-number">2.1.9.1. </span>Aliases revisited<a class="headerlink" href="#aliases-revisited" title="Permalink to this heading"></a></h3>
+<p>Earlier in this chapter, we mentioned that it is possible to introduce
+aliases–a second name for a data structure–using an assignment
+statement.  For example, in this code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lst1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">lst2</span> <span class="o">=</span> <span class="n">lst1</span>
+<span class="n">lst1</span> <span class="ow">is</span> <span class="n">lst2</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">lst1</span></code> and <code class="docutils literal notranslate"><span class="pre">lst2</span></code> are aliases: they both refer to the same list,
+which contains the values <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>, etc.</p>
+<p>Function parameters provide another way to introduce aliases.</p>
+<p>For
+example, here’s a function, <code class="docutils literal notranslate"><span class="pre">remove_vals</span></code>, that takes two lists and
+removes that values from <code class="docutils literal notranslate"><span class="pre">lst2</span></code> that appear in <code class="docutils literal notranslate"><span class="pre">lst1</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_vals</span><span class="p">(</span><span class="n">lst1</span><span class="p">,</span> <span class="n">lst2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Remove the values that appear in lst2 from lst1.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      lst1: a list of unique values</span>
+<span class="sd">      lst2: a list of unique values</span>
+
+<span class="sd">    Modifies: lst1</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">lst2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">lst1</span><span class="p">:</span>
+            <span class="n">lst1</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Notice that the docstring states that the inputs to this function are
+expected to be lists of unique values, that is, any given value
+appears at most once in a list.  This restriction is included because
+the <code class="docutils literal notranslate"><span class="pre">remove</span></code> method removes the first occurrence of a value in a
+list, not all of the occurrences of a value in a list.  If we wanted
+to allow a value to appear (and be removed) multiple times, we’d need
+to add an inner loop.</p>
+<p>Let’s first look at a call to this function that uses two different lists:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lstA</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">lstB</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">remove_vals</span><span class="p">(</span><span class="n">lstA</span><span class="p">,</span> <span class="n">lstB</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>During the call to <code class="docutils literal notranslate"><span class="pre">remove_vals</span></code>, memory will look like this:</p>
+<p>After the call, it will look like this:</p>
+<p>Notice that <code class="docutils literal notranslate"><span class="pre">lstA</span></code> has fewer elements: the two values that appeared
+in <code class="docutils literal notranslate"><span class="pre">lstB</span></code> have been removed as expected.</p>
+<p>Now let’s look at a call to this function that uses the <em>same</em> list for both arguments:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lst3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
+<span class="n">remove_vals</span><span class="p">(</span><span class="n">lst3</span><span class="p">,</span> <span class="n">lst3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;lst3 after the call to remove_vals(lst3, lst3):&quot;</span><span class="p">,</span> <span class="n">lst3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>lst3 after the call to remove_vals(lst3, lst3): [20, 40]
+</pre></div>
+</div>
+<p>It is natural to expect the result of the function to be the empty
+list (<code class="docutils literal notranslate"><span class="pre">[]</span></code>), since the all the elements in the first parameter occur
+in the second parameter.  But since <code class="docutils literal notranslate"><span class="pre">lst1</span></code> and <code class="docutils literal notranslate"><span class="pre">lst2</span></code> inside the
+function are aliases for the same list, the result will be
+unpredictable.  We</p>
+</div>
+</div>
+<div class="section" id="lists-of-lists">
+<h2><span class="section-number">2.1.10. </span>Lists of lists<a class="headerlink" href="#lists-of-lists" title="Permalink to this heading"></a></h2>
+<p>The lists we have seen so far contain simple values like integers or strings,
+but lists can, themselves, contain other lists. For example, the following
+list contains three elements, each of which is a four-integer list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">]</span> <span class="p">]</span>
+</pre></div>
+</div>
+<p>Notice that, if we iterate over the list, we iterate over the three
+lists that constitute the elements of the outer list (not the twelve
+integers contained across the sublists).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">m</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">[1, 2, 3, 4]</span>
+<span class="go">[5, 6, 7, 8]</span>
+<span class="go">[9, 10, 11, 12]</span>
+</pre></div>
+</div>
+<p>Lists-of-lists are often used to represent matrices. For example,
+list <code class="docutils literal notranslate"><span class="pre">m</span></code> could represent this matrix:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 27%" />
+<col style="width: 27%" />
+<col style="width: 27%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>3</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>6</p></td>
+<td><p>7</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>10</p></td>
+<td><p>11</p></td>
+<td><p>12</p></td>
+</tr>
+</tbody>
+</table>
+<p>To access individual elements, we  use the square brackets
+twice: once to specify the row, and again to specify the column:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">9</span>
+</pre></div>
+</div>
+<p>Similarly, we can assign values to individual elements using the square bracket notation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span>
+<span class="go">[[1, 2, 3, 4], [5, 0, 7, 8], [9, 10, 11, 12]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">m</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">[1, 2, 3, 4]</span>
+<span class="go">[5, 0, 7, 8]</span>
+<span class="go">[9, 10, 11, 12]</span>
+</pre></div>
+</div>
+<p>We can also nest lists even further. For example, we could use a
+“list-of-lists-of-lists” to represent a three-dimensional matrix:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m3d</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span> <span class="p">],</span> <span class="p">[</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span> <span class="p">],</span> <span class="p">[</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">]</span> <span class="p">]</span> <span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">submatrix</span> <span class="ow">in</span> <span class="n">m3d</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">submatrix</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">()</span>
+<span class="gp">... </span>
+<span class="go">[1, 2]</span>
+<span class="go">[3, 4]</span>
+
+<span class="go">[5, 6]</span>
+<span class="go">[7, 8]</span>
+
+<span class="go">[9, 10]</span>
+<span class="go">[11, 12]</span>
+
+</pre></div>
+</div>
+<p>In the above example, <code class="docutils literal notranslate"><span class="pre">m3d</span></code> is a 3x2x2 matrix.</p>
+<p>It is important, however, to understand that, even though we can use lists-of-lists
+to manipulate data in a matrix-like way, the data is not stored internally as a matrix: it
+is stored as a list with references to other lists, meaning that we can still access each individual
+list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span>
+<span class="go">[[1, 2, 3, 4], [5, 0, 7, 8], [9, 10, 11, 12]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">[9, 10, 11, 12]</span>
+</pre></div>
+</div>
+<p>Or modify these lists in a way that turns the data into something that is
+<em>not</em> a matrix:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Foobar&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span>
+<span class="go">[[1, 2, 3, 4], [5, 0, 7, 8], &#39;Foobar&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">m</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">[1, 2, 3, 4]</span>
+<span class="go">[5, 0, 7, 8]</span>
+<span class="go">Foobar</span>
+</pre></div>
+</div>
+<p>This representation can cause problems when we initialize a list
+of lists. For example, we want to create a 5x5 matrix, with all elements
+initialized to 0. For example, we might be tempted to use the <code class="docutils literal notranslate"><span class="pre">*</span></code>
+operator to create a row of five zeroes with
+<code class="docutils literal notranslate"><span class="pre">[0]*5</span></code> and then repeat that five times, like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">5</span> <span class="p">]</span> <span class="o">*</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<p>At first, it may seem like this approach worked:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span>
+<span class="go">[[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">m</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">[0, 0, 0, 0, 0]</span>
+<span class="go">[0, 0, 0, 0, 0]</span>
+<span class="go">[0, 0, 0, 0, 0]</span>
+<span class="go">[0, 0, 0, 0, 0]</span>
+<span class="go">[0, 0, 0, 0, 0]</span>
+</pre></div>
+</div>
+<p>However, something odd will happen if we try to modify an element of the
+matrix:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span>
+<span class="go">[[0, 0, 0, 10, 0], [0, 0, 0, 10, 0], [0, 0, 0, 10, 0], [0, 0, 0, 10, 0], [0, 0, 0, 10, 0]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">m</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">[0, 0, 0, 10, 0]</span>
+<span class="go">[0, 0, 0, 10, 0]</span>
+<span class="go">[0, 0, 0, 10, 0]</span>
+<span class="go">[0, 0, 0, 10, 0]</span>
+<span class="go">[0, 0, 0, 10, 0]</span>
+</pre></div>
+</div>
+<p>What happened here? When we created the list <code class="docutils literal notranslate"><span class="pre">m</span></code>, we actually initialized
+all five positions of <code class="docutils literal notranslate"><span class="pre">m</span></code> to point to the same list (<code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">0,</span>
+<span class="pre">0]</span></code>). Basically, the expression <code class="docutils literal notranslate"><span class="pre">[0]*5</span></code> produced one list,
+but then using <code class="docutils literal notranslate"><span class="pre">*</span></code> again didn’t create five copies of this list: it
+created five copies of the <em>reference</em> to the list, which we can
+depict as follows:</p>
+<img alt="../../_images/lists-09.png" class="align-center" src="../../_images/lists-09.png" />
+<p>As a result, updating one “row” of the matrix actually updates them
+all!  If this explanation of why the rows of <code class="docutils literal notranslate"><span class="pre">M</span></code> all refer to the
+same list is confusing, please re-read the
+<a class="reference internal" href="#section-variables-revisited"><span class="std std-ref">Variables revisited</span></a> section.</p>
+<p>Instead of using multiplication on a nested list to initialize the
+matrix, we will use a loop:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<span class="gp">... </span>   <span class="n">m</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">... </span>
+</pre></div>
+</div>
+<p>Because the expression <code class="docutils literal notranslate"><span class="pre">[0]*5</span></code> is reevaluated in each iteration of
+the loop, a new list of five zeros is constructed and then appended to
+<code class="docutils literal notranslate"><span class="pre">m</span></code> on every iteration.  The new version of <code class="docutils literal notranslate"><span class="pre">m</span></code> can be depicted as
+follows:</p>
+<img alt="../../_images/lists-10.png" class="align-center" src="../../_images/lists-10.png" />
+<p>As we can see, modifying one row of <code class="docutils literal notranslate"><span class="pre">m</span></code> won’t affect any other
+row now:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">m</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">[0, 0, 0, 0, 0]</span>
+<span class="go">[0, 0, 0, 0, 0]</span>
+<span class="go">[0, 0, 0, 10, 0]</span>
+<span class="go">[0, 0, 0, 0, 0]</span>
+<span class="go">[0, 0, 0, 0, 0]</span>
+</pre></div>
+</div>
+<p>In sum, while lists-of-lists can be used to manipulate matrix-like
+data, they must constructed used with care.</p>
+<p>The way Python stores the lists internally means that many matrix
+operations (like matrix multiplication) can be quite inefficient. If
+you find yourself needing to manipulate matrix-like data extensively
+in your code (specially if you have to use higher-dimensional
+matrices), you may want to consider using a library like <a class="reference external" href="http://www.numpy.org/">NumPy</a>, which is specifically optimized for
+manipulating matrices and vectors, and which we will cover later in
+the book.</p>
+</div>
+<div class="section" id="shallow-copy-versus-deep-copy">
+<h2><span class="section-number">2.1.11. </span>Shallow copy versus deep copy<a class="headerlink" href="#shallow-copy-versus-deep-copy" title="Permalink to this heading"></a></h2>
+<p>Earlier in the section, we saw how to use slicing to make a copy of a
+list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst_copy</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[:]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">==</span> <span class="n">lst_copy</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="ow">is</span> <span class="n">lst_copy</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>This mechanism is very useful, but only does a shallow copy of the
+list.  That is, it copies the values in the list.  If the copied value
+is a reference to a list, the reference is copied, not the list
+itself.</p>
+<p>This design is efficient, but can lead to unexpected sharing.  For
+example, let’s recreate our matrix of zeros and then make a shallow
+copy:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<span class="gp">... </span>   <span class="n">m</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m_shallow</span> <span class="o">=</span> <span class="n">m</span><span class="p">[:]</span>
+</pre></div>
+</div>
+<p>The result can be depicted as follows:</p>
+<img alt="../../_images/lists-11.png" src="../../_images/lists-11.png" />
+<p>Notice that while the top-level level lists are different, they refer
+to the same sub-lists.  We can verify this behavior using the <code class="docutils literal notranslate"><span class="pre">is</span></code>
+operator, which us whether two elements refer to the <em>same</em> location
+in the heap.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="ow">is</span> <span class="n">m_shallow</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">)):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">is</span> <span class="n">m_shallow</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="gp">... </span>
+<span class="go">0 True</span>
+<span class="go">1 True</span>
+<span class="go">2 True</span>
+<span class="go">3 True</span>
+<span class="go">4 True</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">copy</span></code> library provides a function called <code class="docutils literal notranslate"><span class="pre">deepcopy</span></code> that can
+be used when your application needs to avoid sharing between the
+original and the copy.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">copy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m_deep</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">m_deep</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="go">[0, 0, 0, 0, 0]</span>
+<span class="go">[0, 0, 0, 0, 0]</span>
+<span class="go">[0, 0, 0, 0, 0]</span>
+<span class="go">[0, 0, 0, 0, 0]</span>
+<span class="go">[0, 0, 0, 0, 0]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="ow">is</span> <span class="n">m_deep</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">)):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">is</span> <span class="n">m_deep</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="gp">... </span>
+<span class="go">0 False</span>
+<span class="go">1 False</span>
+<span class="go">2 False</span>
+<span class="go">3 False</span>
+<span class="go">4 False</span>
+</pre></div>
+</div>
+<img alt="../../_images/lists-12.png" src="../../_images/lists-12.png" />
+<p>The deep copy function needs to be used with care; it will get stuck
+in an infinite computation, if it is called on a data structure that
+loops back onto itself, such as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">list_with_cycle</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">list_with_cycle</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">list_with_cycle</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/lists-13.png" src="../../_images/lists-13.png" />
+</div>
+<div class="section" id="tuples">
+<h2><span class="section-number">2.1.12. </span>Tuples<a class="headerlink" href="#tuples" title="Permalink to this heading"></a></h2>
+<p>Tuples, another data structure available in Python, are very similar
+to lists. We can use them to store sequences of values and can create
+tuple literals in the same way we create list literals, except using
+parentheses instead of square brackets:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span>
+<span class="go">(100, 200, 300)</span>
+</pre></div>
+</div>
+<p>We include a trailing comma in tuples of length one to to distinguish
+tuples from expressions that happen to be surrounded by
+parenthesis.  Note, for example, the difference in the type of <code class="docutils literal notranslate"><span class="pre">t</span></code>
+versus the type of <code class="docutils literal notranslate"><span class="pre">e</span></code> in the following code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="go">&lt;class &#39;tuple&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="go">&lt;class &#39;int&#39;&gt;</span>
+</pre></div>
+</div>
+<p>Many of the operations available on lists are also available on tuples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">300</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">max</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="go">300</span>
+</pre></div>
+</div>
+<p>However, tuples differ from lists in one crucial way: they are
+<em>immutable</em>, which means that, once a tuple is created, its contents
+cannot be modified.</p>
+<p>For example, we cannot assign a new value to an element of a tuple:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">&#39;tuple&#39; object does not support item assignment</span>
+</pre></div>
+</div>
+<p>Nor can we append to a tuple, delete from a tuple, or carry out any
+operations that would modify a tuple in-place:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">AttributeError</span>: <span class="n">&#39;tuple&#39; object has no attribute &#39;append&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">&#39;tuple&#39; object doesn&#39;t support item deletion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">AttributeError</span>: <span class="n">&#39;tuple&#39; object has no attribute &#39;sort&#39;</span>
+</pre></div>
+</div>
+<p>Despite this limitation, tuples are commonly used, especially to
+return multiple values from a function and to represent related data
+with different types, such as a person’s name and salary (<code class="docutils literal notranslate"><span class="pre">(&quot;Alice&quot;,</span>
+<span class="pre">5000)</span></code>). Here’s an example of using a tuple to return multiple
+values:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="k">def</span> <span class="nf">compute_basic_stats</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">    Compute the mean and standard deviation of a list of numbers.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      lst: list of numbers</span>
+
+<span class="sd">    Returns: tuple with the mean and standard deviation.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">mean</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+    <span class="n">sqdiffs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">]</span>
+    <span class="n">stdev</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">sqdiffs</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">stdev</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can call this function with a list of numbers, assign the result
+to a variable, and then extract the results by indexing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">quiz_scores</span> <span class="o">=</span> <span class="p">[</span><span class="mf">9.9</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">7.6</span><span class="p">,</span> <span class="mf">6.6</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">,</span> <span class="mf">7.8</span><span class="p">,</span> <span class="mf">11.0</span><span class="p">,</span> <span class="mf">7.3</span><span class="p">,</span> <span class="mf">7.4</span><span class="p">,</span> <span class="mf">9.2</span><span class="p">]</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="n">compute_basic_stats</span><span class="p">(</span><span class="n">quiz_scores</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean:&quot;</span><span class="p">,</span> <span class="n">stats</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Standard deviation:&quot;</span><span class="p">,</span> <span class="n">stats</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Mean: 8.88
+Standard deviation: 1.7121915780659593
+</pre></div>
+</div>
+<p>While this approach works, the resulting code is a bit cryptic.  We
+could clean it up a bit by introducing named constants, such as
+<code class="docutils literal notranslate"><span class="pre">MEAN_SLOT</span></code> and <code class="docutils literal notranslate"><span class="pre">STDEV_SLOT</span></code>, for the different slots in the
+tuple and using them in place of the slot numbers.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MEAN_SLOT</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">STDEV_SLOT</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="n">compute_basic_stats</span><span class="p">(</span><span class="n">quiz_scores</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean:&quot;</span><span class="p">,</span> <span class="n">stats</span><span class="p">[</span><span class="n">MEAN_SLOT</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Standard deviation:&quot;</span><span class="p">,</span> <span class="n">stats</span><span class="p">[</span><span class="n">STDEV_SLOT</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Mean: 8.88
+Standard deviation: 1.7121915780659593
+</pre></div>
+</div>
+<p>Better yet, we can give names to the individual values directly using
+Python’s tuple <em>unpacking</em> mechanism, which allows programmers to
+specify multiple names, separated by commas, on the left side of an
+assignment statement and an expression that yields a tuple on the
+right side.  Here’s a sample call to <code class="docutils literal notranslate"><span class="pre">compute_basic_stats</span></code> that uses
+this mechanism to give names to the components of the return value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">quiz_mean</span><span class="p">,</span> <span class="n">quiz_stdev</span> <span class="o">=</span> <span class="n">compute_basic_stats</span><span class="p">(</span><span class="n">quiz_scores</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When unpacking a tuple, the number of names must match the number of
+values in the tuple.  Python will throw a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> exception if
+the number of names does not match the length of the tuple:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">ValueError</span>: <span class="n">too many values to unpack (expected 2)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">ValueError</span>: <span class="n">not enough values to unpack (expected 3, got 2)</span>
+</pre></div>
+</div>
+<p>Tuple unpacking can also be used in <code class="docutils literal notranslate"><span class="pre">for</span></code> loops.  For example,
+suppose we want to represent salary information for a small company.
+While we could represent this data using a list of lists, it is more
+common in Python to use a tuples to represent related data with
+different types:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">salaries</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="mi">4000</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Carol&quot;</span><span class="p">,</span> <span class="mi">4500</span><span class="p">)</span> <span class="p">]</span>
+</pre></div>
+</div>
+<p>We could iterate over the list in the usual way and use indices to
+extract values as needed in the body of the loop:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">salaries</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">name</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">salary</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;has a salary of&quot;</span><span class="p">,</span> <span class="n">salary</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">Alice has a salary of 5000</span>
+<span class="go">John has a salary of 4000</span>
+<span class="go">Carol has a salary of 4500</span>
+</pre></div>
+</div>
+<p>We can also use tuple unpacking in the <code class="docutils literal notranslate"><span class="pre">for</span></code> statement itself for
+this purpose:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span> <span class="ow">in</span> <span class="n">salaries</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;has a salary of&quot;</span><span class="p">,</span> <span class="n">salary</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">Alice has a salary of 5000</span>
+<span class="go">John has a salary of 4000</span>
+<span class="go">Carol has a salary of 4500</span>
+</pre></div>
+</div>
+<p>In the example above, the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop will iterate over each element
+of <code class="docutils literal notranslate"><span class="pre">salaries</span></code> and, because we specified multiple variable names before the
+<code class="docutils literal notranslate"><span class="pre">in</span></code>, Python will assume that each element of <code class="docutils literal notranslate"><span class="pre">salaries</span></code> contains a
+tuple (or list) with two elements and will assign the first
+element to <code class="docutils literal notranslate"><span class="pre">name</span></code> and the second element to <code class="docutils literal notranslate"><span class="pre">salary</span></code>.</p>
+<p>Note that this loop will fail if we have even a single tuple in the
+list with a different number of elements:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">salaries</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span> <span class="mi">4000</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Carol&quot;</span><span class="p">,</span> <span class="mi">4500</span><span class="p">)</span> <span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span> <span class="ow">in</span> <span class="n">salaries</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;has a salary of&quot;</span><span class="p">,</span> <span class="n">salary</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">ValueError</span>: <span class="n">too many values to unpack (expected 2)</span>
+</pre></div>
+</div>
+<p>Another use of tuple unpacking in for loops arises when we need to use
+both the values and their indices when iterating over a list.  You can
+now see that our earlier introduction of <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> (shown again
+below) made use of tuple unpacking: <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> yields a list of
+(index, value) tuples and the loop header supplies two names (<code class="docutils literal notranslate"><span class="pre">i</span></code>
+and <code class="docutils literal notranslate"><span class="pre">price</span></code>) to hold the components of the tuple as it is
+processed in the body of the loop.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">price</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">prices</span><span class="p">):</span>
+    <span class="n">tax</span> <span class="o">=</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">price</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">price</span> <span class="o">+</span> <span class="n">tax</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The price (with tax) of element&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The price (with tax) of element 0 is 11.0
+The price (with tax) of element 1 is 27.5
+The price (with tax) of element 2 is 5.5
+The price (with tax) of element 3 is 77.0
+The price (with tax) of element 4 is 11.0
+</pre></div>
+</div>
+</div>
+<div class="section" id="strings">
+<span id="section-strings"></span><h2><span class="section-number">2.1.13. </span>Strings<a class="headerlink" href="#strings" title="Permalink to this heading"></a></h2>
+<p>Back in <a class="reference internal" href="../../getting_started/basics/index.html#chapter-basics"><span class="std std-ref">Programming Basics</span></a> we introduced one of the basic data types
+in Python: strings. Strings allow us to store “text” or, more concretely, sequences (or
+“strings”) of characters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span> <span class="o">=</span> <span class="s2">&quot;foobar&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s2</span> <span class="o">=</span> <span class="s1">&#39;foobar&#39;</span>
+</pre></div>
+</div>
+<p>As it turns out, string have some similarities to lists.
+Most notably, individual characters of a string can be accessed
+in the same way as elements in a list, using square brackets:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">&#39;f&#39;</span>
+</pre></div>
+</div>
+<p>We can also extract slices of a string:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+<span class="go">&#39;oob&#39;</span>
+</pre></div>
+</div>
+<p>Strings, like tuples, are immutable, so we cannot modify individual
+characters in a string:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;F&#39;</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">&#39;str&#39; object does not support item assignment</span>
+</pre></div>
+</div>
+<div class="section" id="string-formatting">
+<h3><span class="section-number">2.1.13.1. </span>String formatting<a class="headerlink" href="#string-formatting" title="Permalink to this heading"></a></h3>
+<p>So far, whenever we had to print a combination of strings and other values,
+we would just use the <code class="docutils literal notranslate"><span class="pre">print</span></code> function, which prints its parameters
+separated by spaces:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">37</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Here is a number:&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+<span class="go">Here is a number: 37</span>
+</pre></div>
+</div>
+<p>Strings also have a <code class="docutils literal notranslate"><span class="pre">format</span></code> method that allows us to combine values
+into a string in many different ways. When using this method, we
+include curly braces (<code class="docutils literal notranslate"><span class="pre">{}</span></code>) in any place where we want to embed
+another value.  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;Here is a number: </span><span class="si">{}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>Then, we call the <code class="docutils literal notranslate"><span class="pre">format</span></code> method, and pass the value (or values) we
+want to embed in the string as a parameter (or parameters):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">&#39;Here is a number: 37&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="go">&#39;Here is a number: 100&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mf">3.1415</span><span class="p">)</span>
+<span class="go">&#39;Here is a number: 3.1415&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Not a number, but this still works&quot;</span><span class="p">)</span>
+<span class="go">&#39;Here is a number: Not a number, but this still works&#39;</span>
+</pre></div>
+</div>
+<p>Note how <code class="docutils literal notranslate"><span class="pre">format</span></code> returns a new string; it does not modify
+the format string itself. If we want to print the resulting string, we can
+pass the return value of <code class="docutils literal notranslate"><span class="pre">format</span></code> to <code class="docutils literal notranslate"><span class="pre">print</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="go">Here is a number: 37</span>
+</pre></div>
+</div>
+<p>In practice, it is common to call <code class="docutils literal notranslate"><span class="pre">format</span></code> directly on a string literal. This usage may
+look weird at first, but it is no different from calling <code class="docutils literal notranslate"><span class="pre">format</span></code> on a string variable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;Here is a number: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="go">&#39;Here is a number: 42&#39;</span>
+</pre></div>
+</div>
+<p>We can also embed multiple values into the string:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> times </span><span class="si">{}</span><span class="s2"> is </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">))</span>
+<span class="go">5 times 7 is 35</span>
+</pre></div>
+</div>
+<p>And we can also control the way in which the embedded values are formatted.
+For example, when embedding a float, we can write <code class="docutils literal notranslate"><span class="pre">{:.Nf}</span></code>, substituting
+the number of decimal places we want to print for <code class="docutils literal notranslate"><span class="pre">N</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">PI</span> <span class="o">=</span> <span class="mf">3.141592653589793</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The value of pi is </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">PI</span><span class="p">))</span>
+<span class="go">The value of pi is 3.14</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The value of pi is </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">PI</span><span class="p">))</span>
+<span class="go">The value of pi is 3.1416</span>
+</pre></div>
+</div>
+<p>There are many more ways to format strings with <code class="docutils literal notranslate"><span class="pre">format</span></code>. You can
+see the full description of how to specify formats for different types
+of values in the <a class="reference external" href="https://docs.python.org/3/library/string.html#formatstrings">Python documentation</a> for
+this method</p>
+</div>
+<div class="section" id="other-operations-on-strings">
+<h3><span class="section-number">2.1.13.2. </span>Other operations on strings<a class="headerlink" href="#other-operations-on-strings" title="Permalink to this heading"></a></h3>
+<p>Like lists, Python provides a large number of functions and methods to operate on strings. For example, we can use the <code class="docutils literal notranslate"><span class="pre">in</span></code>
+operator to determine whether a given string is contained within
+another string:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span> <span class="o">=</span> <span class="s2">&quot;foobar&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;oo&quot;</span> <span class="ow">in</span> <span class="n">s1</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;baz&quot;</span> <span class="ow">in</span> <span class="n">s1</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>If we want to find the location of a substring in a string, we can use
+the <code class="docutils literal notranslate"><span class="pre">find</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span> <span class="o">=</span> <span class="s2">&quot;foobar&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;oo&quot;</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;baz&quot;</span><span class="p">)</span>
+<span class="go">-1</span>
+</pre></div>
+</div>
+<p>If the substring provided to <code class="docutils literal notranslate"><span class="pre">find</span></code> is found in the string, the
+method will return the index of the first occurrence of that
+substring.  If the string does not contain the provided substring,
+then the method returns <code class="docutils literal notranslate"><span class="pre">-1</span></code>.  Since <code class="docutils literal notranslate"><span class="pre">-1</span></code> is a legal index,
+it is important to check the return value of this method before you
+use it!</p>
+<p>We also have methods that transform the strings in various ways:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;FOOBAR&quot;</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="go">&#39;foobar&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;foobar&quot;</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+<span class="go">&#39;FOOBAR&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;hello world&quot;</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+<span class="go">&#39;Hello world&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;1.000.000&quot;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="go">&#39;1,000,000&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;   hello   world </span><span class="se">\t</span><span class="s2">  </span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="go">&#39;hello   world&#39;</span>
+</pre></div>
+</div>
+<p>While most of these functions are self-explanatory, the last one may
+not be: it constructs a new string that omits any leading or trailing
+white space (i.e., spaces, tabs, newlines, etc) from the original.</p>
+<p>Two methods that will come in handy as we start to work with more data are the
+<code class="docutils literal notranslate"><span class="pre">split</span></code> and <code class="docutils literal notranslate"><span class="pre">join</span></code> methods. The <code class="docutils literal notranslate"><span class="pre">split</span></code> method takes a string that contains
+several values separated by a delimiter, such as a comma or
+a space, and returns a list of strings containing the values from the original string with the
+delimiters removed. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;foo,bar,baz&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">values</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">values</span>
+<span class="go">[&#39;foo&#39;, &#39;bar&#39;, &#39;baz&#39;]</span>
+</pre></div>
+</div>
+<p>The parameter to <code class="docutils literal notranslate"><span class="pre">split</span></code> is optional; if we omit it, <code class="docutils literal notranslate"><span class="pre">split</span></code> will
+assume that any whitespace characters (spaces, tabs, etc.) are the separator. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">phrase</span> <span class="o">=</span> <span class="s2">&quot;The quick   brown  fox     jumps  over   the  lazy            dog&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">words</span> <span class="o">=</span> <span class="n">phrase</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">words</span>
+<span class="go">[&#39;The&#39;, &#39;quick&#39;, &#39;brown&#39;, &#39;fox&#39;, &#39;jumps&#39;, &#39;over&#39;, &#39;the&#39;, &#39;lazy&#39;, &#39;dog&#39;]</span>
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">split</span></code> will consider any amount of whitespace to be a single delimiter.
+This behavior happens only when we call <code class="docutils literal notranslate"><span class="pre">split</span></code> without a parameter; when we specify
+an explicit parameter, multiple consecutive delimiters become “empty”
+values (strings of length zero):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;foo,bar,,baz&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">values2</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">values2</span>
+<span class="go">[&#39;foo&#39;, &#39;bar&#39;, &#39;&#39;, &#39;baz&#39;]</span>
+</pre></div>
+</div>
+<p>A similar method, <code class="docutils literal notranslate"><span class="pre">join</span></code>, allows us to take a list of strings and concatenate
+them using a given delimiter. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">values</span>
+<span class="go">[&#39;foo&#39;, &#39;bar&#39;, &#39;baz&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;|&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+<span class="go">&#39;foo|bar|baz&#39;</span>
+</pre></div>
+</div>
+<p>Note that, like the <code class="docutils literal notranslate"><span class="pre">format</span></code> method, we can call <code class="docutils literal notranslate"><span class="pre">join</span></code> directly on a string
+literal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;|&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+<span class="go">&#39;foo|bar|baz&#39;</span>
+</pre></div>
+</div>
+<p>This section describes a small sample of what you can do with strings. To see
+a full list of methods, see the <a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#string-methods">Python documentation</a>
+or run <code class="docutils literal notranslate"><span class="pre">help(str)</span></code> from the Python interpreter.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="2. Data Structures" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../dictionaries/index.html" class="btn btn-neutral float-right" title="2.2. Dictionaries and Sets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Anne Rogers and Borja Sotomayor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

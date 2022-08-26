@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.2. Programming Basics &mdash; Computer Science with Applications  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/csapps.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1.3. Control Flow Statements" href="../control_structures/index.html" />
+    <link rel="prev" title="1.1. Computational Thinking" href="../introduction/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Computer Science with Applications
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../preface.html">Preface</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction/index.html">1.1. Computational Thinking</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.2. Programming Basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tools">1.2.1. Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#your-first-program">1.2.2. Your First Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-python-interpreter">1.2.2.1. Using the Python interpreter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-code-from-a-file">1.2.2.2. Running code from a file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-code-interactively-vs-from-a-file">1.2.2.3. Running code interactively vs. from a file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#the-basics">1.2.3. The Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variables">1.2.4. Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#types">1.2.5. Types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#integers">1.2.5.1. Integers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#real-numbers">1.2.5.2. Real numbers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#strings">1.2.5.3. Strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#booleans">1.2.5.4. Booleans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-value-none">1.2.5.5. The value <code class="docutils literal notranslate"><span class="pre">None</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#scalar-types">1.2.5.6. Scalar types</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#expressions">1.2.6. Expressions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#string-expressions">1.2.6.1. String expressions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#casting">1.2.7. Casting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dynamic-typing-revisited">1.2.8. Dynamic Typing Revisited</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-comments">1.2.9. Code Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../control_structures/index.html">1.3. Control Flow Statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_functions/index.html">1.4. Introduction to Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../organization/index.html">1.5. Basics of Code Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exceptions/index.html">1.6. Understanding Errors and Catching Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../example/index.html">1.7. Example: A Game of Chance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_structures/index.html">2. Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../functions/index.html">3. Functional Programming and Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working_with_data/index.html">4. Working with Data</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Computer Science with Applications</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">1. </span>Getting Started</a> &raquo;</li>
+      <li><span class="section-number">1.2. </span>Programming Basics</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/getting_started/basics/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="programming-basics">
+<span id="chapter-basics"></span><h1><span class="section-number">1.2. </span>Programming Basics<a class="headerlink" href="#programming-basics" title="Permalink to this heading"></a></h1>
+<p>A computer program is, at its core, a collection of instructions that the
+computer must perform. It could be as simple as telling the computer to
+add two numbers or as complex as performing a complex simulation of
+drug interactions. In this chapter, you will learn some
+of the most basic instructions we can include in a program,
+and you will run your first computer program.</p>
+<p>As you read through this chapter, it may seem like you won’t be able to
+do much with these basic instructions. This is normal: the concepts
+presented in this chapter lay the foundation for understanding more
+complex concepts introduced in subsequent chapters.</p>
+<p>In this book, we will be using the Python programming language and, more
+specifically, Python 3. Python is a widely-used modern language with
+a fairly low overhead for getting started. Don’t forget, however, that
+the goal of this book isn’t to teach you Python specifically; our
+goal is to teach you how to think computationally and how to write
+programs that provide a computational solution to a given problem.
+Python just happens to be a very convenient language to get started
+with, but many of the concepts and skills you will learn will
+carry over to other languages.</p>
+<div class="section" id="tools">
+<h2><span class="section-number">1.2.1. </span>Tools<a class="headerlink" href="#tools" title="Permalink to this heading"></a></h2>
+<p>Before we get started, let’s review the tools you’ll need to follow
+along as we introduce concepts.  Specifically, you’ll need:</p>
+<ol class="arabic simple">
+<li><p>a shell and a terminal application,</p></li>
+<li><p>a code or text editor, and</p></li>
+<li><p>the Python 3 interpreter.</p></li>
+</ol>
+<p>Both MacOS and Linux come with a terminal application pre-installed.
+You may need to install one, however if you are running Windows.  The
+program that runs within a terminal window and processes the commands
+the you type is called a <em>shell</em>.  There are lots of shells—Bash,
+ksh, PowerShell, etc.  For our purposes, it does not matter which one
+you use as long as you know how to run basic commands and create
+directories and move among them.</p>
+<p>When you use the shell, you will type commands at the command-line
+prompt.  We will use <code class="docutils literal notranslate"><span class="pre">$</span></code> as the shell command-line prompt in our
+examples. You may see something different depending on exactly which
+shell you are using.  The exact prompt does not matter, just remember
+that you do not need to type the <code class="docutils literal notranslate"><span class="pre">$</span></code> when you enter a command.</p>
+<p>Programmers often have <em>very</em> strong opinions about text editors.  One
+of us is a long-time Emacs fan, the other uses graphical IDEs like
+Visual Studio Code (VSCode) and PyCharm. We
+currently recommend VSCode to our students. If you do not already have
+a favorite text editor, try out a few and pick the one that works best
+for <em>you</em> and then do your best to ignore all the comments coming from
+your friends and colleagues about <em>their</em> favorite editor being the
+one true editor.  Whichever editor you choose, you will need to be
+able to create new files and edit existing files.</p>
+<p>As for Python, depending on how your machine is configured you may
+already have Python 3 or you may need to install it.  You can check
+which, if any, version of Python you have installed by running the
+following command at the command-line prompt in a terminal window:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python --version
+Python 3.8.3
+</pre></div>
+</div>
+<p>If the command fails with a <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">not</span> <span class="pre">found</span></code> error, then you will
+need to install Python 3.  If the output shows a version number
+starting with 2 (e.g., <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">2.7</span></code>), try running <code class="docutils literal notranslate"><span class="pre">python3</span></code>
+instead of just <code class="docutils literal notranslate"><span class="pre">python</span></code> to make sure you run Python 3.  The version
+numbers displayed may be different on your computer. Please make sure
+you’re running at least Python 3.4.</p>
+<p>While we have chosen to recommend using an editor and a separate
+interpreter, many programmers prefer to use integrated development
+environments (IDE), such as PyCharm or Juypter notebooks.  You might
+want to try one or more IDEs as well.  As long as you have a way to
+edit code and run it, you will be in good shape,</p>
+<p>If you choose to use different tools, please keep in mind that the
+prompts and the format of output may be slightly different from our
+examples below.</p>
+</div>
+<div class="section" id="your-first-program">
+<h2><span class="section-number">1.2.2. </span>Your First Program<a class="headerlink" href="#your-first-program" title="Permalink to this heading"></a></h2>
+<p>Traditionally, the first program you write is a simple program that instructs
+the computer to print out the following message on the screen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Hello, world!
+</pre></div>
+</div>
+<p>In Python, we can do this task with a single line of code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Don’t worry about the exact syntactical details just yet. However, do notice
+that the above line makes sense intuitively: we’re telling the computer
+to <em>print</em> something
+on the screen: <code class="docutils literal notranslate"><span class="pre">Hello,</span> <span class="pre">world!</span></code></p>
+<p>Not just that, that single line is the entirety of the program. In most programming
+languages, a program is specified in plain text typically stored in one or more files.
+So, if you create a text file called <code class="docutils literal notranslate"><span class="pre">hello.py</span></code> with that single line of code,
+that file will contain your first program.</p>
+<p>Of course, now we have to <em>run</em> that program. In general, all
+programming languages have some mechanism to take the contents of a
+file containing a program and run the instructions contained in that
+file. Because Python is an <em>interpreted</em> language, we have second way
+of running the program: interactively entering Python code into an
+<em>interpreter</em>.</p>
+<p>These two ways of running code (storing it in a file or running it interactively
+in an interpreter) are complementary. We will see how to do both in Python,
+and then discuss when it makes sense to use one or the other.</p>
+<div class="section" id="using-the-python-interpreter">
+<h3><span class="section-number">1.2.2.1. </span>Using the Python interpreter<a class="headerlink" href="#using-the-python-interpreter" title="Permalink to this heading"></a></h3>
+<p>The Python interpreter is a program that allows us to interactively run
+Python code one line at a time. So, let’s start the Python interpreter!
+From the terminal, run the <code class="docutils literal notranslate"><span class="pre">python</span></code> command. You should see something like the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span> <span class="mf">3.8</span><span class="o">.</span><span class="mi">3</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Jul</span>  <span class="mi">2</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">11</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">31</span><span class="p">)</span>
+<span class="p">[</span><span class="n">Clang</span> <span class="mf">10.0</span><span class="o">.</span><span class="mi">0</span> <span class="p">]</span> <span class="p">::</span> <span class="n">Anaconda</span><span class="p">,</span> <span class="n">Inc</span><span class="o">.</span> <span class="n">on</span> <span class="n">darwin</span>
+<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<div class="admonition-info-note admonition">
+<p class="admonition-title">Note</p>
+<p>The exact date and version numbers shown when you start the
+interpreter will likely be different on your computer. As noted
+earlier, please make sure you’re running at least Python 3.4.</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> symbol is called the <em>prompt</em>. If you write a line of Python code and press the Enter key,
+the Python interpreter will run that single line of code, print any output resulting
+from running that code, and will finally return to the prompt so you can write more
+code. So, try typing in the “Hello, world!” program and then pressing “Enter”. The
+interpreter should look something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Python 3.8.3 (default, Jul  2 2020, 11:26:31)
+[Clang 10.0.0 ] :: Anaconda, Inc. on darwin
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; print(&quot;Hello, world!&quot;)
+Hello, world!
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>Notice that, after the user pressed Enter, the Python interpreter <em>printed</em> <code class="docutils literal notranslate"><span class="pre">Hello,</span> <span class="pre">world!</span></code>
+before returning to the prompt. This is called the <em>output</em> of the program.</p>
+<p>For the remainder of the book, whenever we want to show code that is intended to
+be run in the Python interpreter, we will include the <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> prompt in the
+code examples. However, this does <em>not</em> mean you have to type <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> yourself;
+it is simply intended to distinguish between the code you type into the interpreter,
+and the expected output of that code. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
+<span class="go">Hello, world!</span>
+</pre></div>
+</div>
+<p>Before we continue, it is worth noting that Python (and pretty much
+all programming languages) are very picky when it comes to code syntax
+(i.e., the required elements and form of a piece of code). For
+example, code is usually case-sensitive, meaning that typing <code class="docutils literal notranslate"><span class="pre">Print</span></code>
+instead of <code class="docutils literal notranslate"><span class="pre">print</span></code> will result in an error:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;Print&#39; is not defined</span>
+</pre></div>
+</div>
+<p>Every bit of syntax, even if it seems redundant, plays a role, so forgetting
+to include quotation marks will similarly result in an error:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; print(Hello, world!)
+  File &quot;&lt;stdin&gt;&quot;, line 1
+    print(Hello, world!)
+                      ^
+SyntaxError: invalid syntax
+</pre></div>
+</div>
+<p>If you type a piece of code into the interpreter and get an error back,
+especially a <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code>, double-check the code you typed to make
+sure you included all of the necessary syntax and did not introduce any typos.</p>
+<p>You’ll encounter many errors as you learn to write code.  In a couple
+of chapters, we’ll explain how to interpret the information presented
+in error messages in more detail.  For now, you can ignore most it;
+just look at the last line to find out type of error occurred.</p>
+</div>
+<div class="section" id="running-code-from-a-file">
+<h3><span class="section-number">1.2.2.2. </span>Running code from a file<a class="headerlink" href="#running-code-from-a-file" title="Permalink to this heading"></a></h3>
+<p>Instead of typing and running a program line by line in the
+interpreter, we can also store that program in a file, typically named
+with a <code class="docutils literal notranslate"><span class="pre">.py</span></code> extension, and tell Python to read the file and run the
+program contained in it.  In fact, when we use the term “a Python
+program” we typically refer to a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file (or a collection of
+<code class="docutils literal notranslate"><span class="pre">.py</span></code> files; for now we’ll work with just one) that contains a
+sequence of Python instructions.</p>
+<p>Let’s write our “Hello World!” program using this approach: create a
+blank text file called <code class="docutils literal notranslate"><span class="pre">hello.py</span></code> and edit it to contain this single
+line:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To run this program, open a terminal and, in the same directory that
+contains your <code class="docutils literal notranslate"><span class="pre">hello.py</span></code> file, run the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python hello.py
+</pre></div>
+</div>
+<p>This command should produce the following output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Hello, world!
+</pre></div>
+</div>
+<p>And then immediately return to the terminal.</p>
+</div>
+<div class="section" id="running-code-interactively-vs-from-a-file">
+<span id="chapter-basics-sec-interactive-vs-file"></span><h3><span class="section-number">1.2.2.3. </span>Running code interactively vs. from a file<a class="headerlink" href="#running-code-interactively-vs-from-a-file" title="Permalink to this heading"></a></h3>
+<p>We have seen two ways of running Python code: by entering the code line by line
+ourselves into the interpreter, and by saving the code in a text file
+and telling Python to run the contents of that file.</p>
+<p>Entering code into the interpreter line by line is very useful for trying
+out small pieces of code. For example, let’s say you wanted to experiment
+with the “Hello, world!” code to see what happened if you included different
+messages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
+<span class="go">Hello, world!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, reader!&quot;</span><span class="p">)</span>
+<span class="go">Hello, reader!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, interpreter!&quot;</span><span class="p">)</span>
+<span class="go">Hello, interpreter!</span>
+</pre></div>
+</div>
+<p>If we were running code from a file, we would have to open the <code class="docutils literal notranslate"><span class="pre">hello.py</span></code> file, edit it,
+save it, and re-run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">hello.py</span></code>. This process quickly becomes
+tedious, and using an interactive tool like the interpreter makes it much easier to experiment with
+small pieces of code.</p>
+<p>In fact, this type of tool is common in other interpreted programming
+languages, such as Ruby, JavaScript, R, and others. It is more formally
+called a REPL environment: Read-Evaluate-Print-Loop. The tool
+<em>reads</em> the code, <em>evaluates</em> it, <em>prints</em> any output it produces,
+and <em>loops</em> (i.e., allows you to start the process all over again by
+prompting you for more code).</p>
+<p>By contrast, <em>compiled</em> programming languages like C, C++, Java, and
+C# typically don’t offer such an environment. In those languages, you
+must write code in a file, and then run it from the file (or, more
+precisely, code is first <em>compiled</em> into a binary format that the
+computer can understand, and then it is actually run).</p>
+<p>While the interpreter is a great tool, it is most
+useful for testing <em>small</em> pieces of code. Imagine that
+you had a complex program with hundreds or even thousands of lines of codes:
+typing it line by line into the interpreter <em>every time</em> you wanted to run it
+would be cumbersome. Instead, we store the program in a file
+(or several files) and run it from there.</p>
+<p>This reasoning, however, doesn’t mean that all small programs are run
+in the interpreter and all large programs are run from files. Instead,
+the approaches are complementary. When writing a program, a common
+workflow is to start writing the program in a file and to use the
+interpreter to help you figure out specific pieces of code. In other
+words, you may use the interpreter to work through tricky bits of
+code, adding them to the text file only when they are correct. Later
+in the book, we will see specific examples of this workflow.</p>
+<p>Interpreters are also helpful for gaining familiarity with a new
+<em>software library</em>. For example, Python itself includes a vast library
+of code to handle common tasks (such as performing common math
+operations and generating random numbers) and, while this code is very
+well-documented, it usually pays off to familiarize yourself with it
+in the interpreter before using it in programs.  Later in the book we
+will see examples of how you can experiment with Python’s standard
+library in the interpreter, as well as other <em>third-party libraries</em>
+(such as Pandas for data manipulation and Matplotlib for visualizing
+data).</p>
+</div>
+</div>
+<div class="section" id="the-basics">
+<h2><span class="section-number">1.2.3. </span>The Basics<a class="headerlink" href="#the-basics" title="Permalink to this heading"></a></h2>
+<p>So far, the only “instruction” we’ve seen is <code class="docutils literal notranslate"><span class="pre">print</span></code>, which allows
+us to print some text on the screen (as we’ll see later on, <code class="docutils literal notranslate"><span class="pre">print</span></code>
+is actually something called a “function” and <code class="docutils literal notranslate"><span class="pre">print(&quot;Hello,</span>
+<span class="pre">world!&quot;)</span></code> is a “call” to that function). Of course, there is a lot
+more you can do in Python. We’ll see that there are instructions for
+doing many things:</p>
+<ul class="simple">
+<li><p>Simple arithmetic</p></li>
+<li><p>Performing one action or another based on the result of a previous one</p></li>
+<li><p>Repeating an action multiple times</p></li>
+<li><p>And so on</p></li>
+</ul>
+<p>For the remainder of this chapter we are going to focus on three fundamental
+concepts found in nearly every programming language:</p>
+<ul class="simple">
+<li><p>Variables</p></li>
+<li><p>Types</p></li>
+<li><p>Expressions</p></li>
+</ul>
+<p>As we said at the start of this chapter, there is little we’ll be able
+to do with these constructs alone, so don’t worry if they seem a bit
+abstract at first. In no time, you will find yourself using variables,
+types, and expressions in all of your programs.</p>
+</div>
+<div class="section" id="variables">
+<h2><span class="section-number">1.2.4. </span>Variables<a class="headerlink" href="#variables" title="Permalink to this heading"></a></h2>
+<p>A fundamental part of writing a computer program is keeping track of
+certain information throughout the lifetime of the program (i.e., while the
+program is running). For example,
+if you were writing a simple program to compute the average of a
+series of measurements, you would need to
+keep track of the running total of those measurements. This kind of
+information is stored in your computer’s memory while a program is running.</p>
+<p>However, you will rarely (if ever) have to interact with your computer’s memory
+directly. Instead, most programming languages provide a convenient abstraction
+for storing information: <em>variables</em>. A variable is a <em>symbolic name</em>
+representing a location in the computer’s memory. You can store a
+specific <em>value</em>, such as a number or piece of text, in a variable and
+retrieve that value later on.</p>
+<p>In Python, you can <em>assign</em> a value to a variable like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">variable</span> <span class="o">=</span> <span class="n">value</span>
+</pre></div>
+</div>
+<p>The equals sign is called the <em>assignment operator</em>. It tells Python to
+take the value on the right-hand side and assign it to the variable on
+the left-hand side. The whole code fragment is called
+an <em>assignment statement</em>.</p>
+<p>For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Hello, world!&quot;</span>
+</pre></div>
+</div>
+<p>In Python, it doesn’t matter whether the <code class="docutils literal notranslate"><span class="pre">message</span></code> variable already
+existed or not. Whenever you perform an assignment on a previously-unseen
+variable, Python will choose a location in memory to store whatever value is
+assigned to that variable (in this case, the text <code class="docutils literal notranslate"><span class="pre">&quot;Hello,</span> <span class="pre">world!&quot;</span></code>).
+You don’t have to worry about the low-level details, as
+Python handles them under the hood.</p>
+<p>Go ahead and try running the above assignment in the interpreter. You should
+see something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Hello, world!&quot;</span>
+</pre></div>
+</div>
+<p>After you press Enter, the interpreter will return straight to
+the <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> prompt. Unlike the <code class="docutils literal notranslate"><span class="pre">print</span></code> function, an assignment does not
+produce any output. It simply alters the state of your computer.
+More specifically, this example stored the value <code class="docutils literal notranslate"><span class="pre">&quot;Hello,</span> <span class="pre">world!&quot;</span></code> in a
+location in the computer’s memory
+identified by the name <code class="docutils literal notranslate"><span class="pre">message</span></code>.</p>
+<p>To print the value of a variable, we can use the <code class="docutils literal notranslate"><span class="pre">print</span></code> function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="go">Hello, world!</span>
+</pre></div>
+</div>
+<p>In fact, you can also just write the name of a variable in the
+interpreter, and the interpreter will <em>evaluate</em> (or look up the value
+of) the variable and print out its value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">message</span>
+<span class="go">&#39;Hello, world!&#39;</span>
+</pre></div>
+</div>
+<p>You can ignore the quotation marks around <code class="docutils literal notranslate"><span class="pre">Hello,</span> <span class="pre">world!</span></code> in the
+above output;
+we will revisit this detail later in this chapter.</p>
+<p>Over the lifetime of a program, we can assign new values to variables
+using the assignment operator. For example, notice that we assign a
+sequence of new values to the <code class="docutils literal notranslate"><span class="pre">message</span></code> variable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="go">Hello, world!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Hello, reader!&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="go">Hello, reader!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Hello, interpreter!&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="go">Hello, interpreter!</span>
+</pre></div>
+</div>
+<p>Assigning a new value to an existing variable is often referred to as
+<em>updating</em> the variable.</p>
+</div>
+<div class="section" id="types">
+<h2><span class="section-number">1.2.5. </span>Types<a class="headerlink" href="#types" title="Permalink to this heading"></a></h2>
+<p>In the above example, the <code class="docutils literal notranslate"><span class="pre">message</span></code> variable contained a piece of text
+(<code class="docutils literal notranslate"><span class="pre">&quot;Hello,</span> <span class="pre">world!&quot;</span></code>). However, variables can also contain other <em>types</em>
+of data. Most programming languages (including Python) support at least
+three basic types:</p>
+<ul class="simple">
+<li><p><strong>Numbers</strong>: Numbers usually encompass both integer numbers and real numbers.</p></li>
+<li><p><strong>Strings</strong>: Strings are how we refer to “text” in most programming
+languages (in the sense that text is a “string” of characters). We’ve
+actually already seen an example of a string: <code class="docutils literal notranslate"><span class="pre">Hello,</span> <span class="pre">world!</span></code> (the
+character <code class="docutils literal notranslate"><span class="pre">H</span></code> followed by the character <code class="docutils literal notranslate"><span class="pre">e</span></code> followed by the character <code class="docutils literal notranslate"><span class="pre">l</span></code>, etc.).</p></li>
+<li><p><strong>Booleans</strong>: Booleans represent truth values (<em>True</em> or <em>False</em>).</p></li>
+</ul>
+<p>Additionally, Python also supports a special “None” type, to indicate
+the <em>absence</em> of a value.  In this section, we will describe the above
+three types, as well as the special “None” type, in more detail.</p>
+<p>In most programming languages, each variable in a program has a specific type
+associated with it. For example, <code class="docutils literal notranslate"><span class="pre">message</span></code> has a string type: it stores
+a string of characters. Notice, however, that we didn’t need to tell
+Python “<code class="docutils literal notranslate"><span class="pre">message</span></code> is a variable of type string”.
+This is because Python is a <em>dynamically-typed</em> language: it can figure out the
+type of a variable on-the-fly. In this case, the fact that we assigned a string
+value (<code class="docutils literal notranslate"><span class="pre">&quot;Hello,</span> <span class="pre">world!&quot;</span></code>) to <code class="docutils literal notranslate"><span class="pre">message</span></code> was enough for Python to determine
+that <code class="docutils literal notranslate"><span class="pre">message</span></code> was a string variable. In addition, as we will see later in
+this chapter, the type of a variable can change dynamically during the
+lifetime of a program.</p>
+<p>Other languages, like Java and C/C++, are
+<em>statically-typed</em> and require the programmer to specify the type of
+<em>every</em> variable. For example, in Java we would need to declare the
+variable like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Hello, world!&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In a statically-typed language, once the type of a variable is set,
+it remains the same for the remainder of the program’s lifetime.</p>
+<div class="section" id="integers">
+<h3><span class="section-number">1.2.5.1. </span>Integers<a class="headerlink" href="#integers" title="Permalink to this heading"></a></h3>
+<p>An integer is a number without a fractional component. We can use the assignment
+operator to assign an integer value to a variable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mi">16</span>
+</pre></div>
+</div>
+<p>In the above code, <code class="docutils literal notranslate"><span class="pre">5</span></code> and <code class="docutils literal notranslate"><span class="pre">-16</span></code> are what we call <em>literal values</em>, in the sense
+that <code class="docutils literal notranslate"><span class="pre">5</span></code> is <em>literally</em> the integer 5, while <code class="docutils literal notranslate"><span class="pre">a</span></code> is the <em>symbolic</em> name
+of a variable. Note how we can also specify <em>negative</em> integers.</p>
+<p>Right now, there is not much we can do with integers, other than print them:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">-16</span>
+</pre></div>
+</div>
+<p>As we will see soon, we will also be able to perform common arithmetic operations
+with integers.</p>
+</div>
+<div class="section" id="real-numbers">
+<h3><span class="section-number">1.2.5.2. </span>Real numbers<a class="headerlink" href="#real-numbers" title="Permalink to this heading"></a></h3>
+<p>Similarly, we can also assign real numbers to variables:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mf">14.3</span>
+</pre></div>
+</div>
+<p>Computers, however, can only represent real numbers up to a finite
+precision.  In other words, while there are infinitely many real
+numbers between 0.0 and 1.0, computers can only represent a finite
+subset of those numbers. Similarly, <span class="math notranslate nohighlight">\(\pi\)</span> has infinitely many decimal
+places (3.14159265359…) but a computer can only store a finite
+number of them.</p>
+<p>Computers store real numbers using an internal representation called
+<em>floating point</em>. In fact, these numbers are commonly referred to as
+<em>floats</em> in programming languages. The floating point representation
+<em>approximates</em> the value
+of the real number and may not always store its exact value. For example,
+the number <code class="docutils literal notranslate"><span class="pre">2.0</span></code> could, in some cases, be represented internally as <code class="docutils literal notranslate"><span class="pre">1.99999999999999</span></code>.</p>
+<p>Integers, on the other hand, use an <em>exact</em> internal representation.
+The <em>range</em> of integers that can be represented is still finite,
+but the internal representation of an integer is always an exact value.
+For example, the integer <code class="docutils literal notranslate"><span class="pre">2</span></code>, if stored in a variable, will always be
+exactly <code class="docutils literal notranslate"><span class="pre">2</span></code> (instead of an approximation
+like <code class="docutils literal notranslate"><span class="pre">1.99999999999999</span></code>).</p>
+<p>The difference between an integer literal and a floating point literal is the presence
+of a decimal point. If a decimal point is present in the number, it will be
+represented internally as a floating point value, even if the fractional
+part is zero. Otherwise, it will be represented
+as an integer.</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mf">15.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">15.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">15</span>
+</pre></div>
+</div>
+<p>Conceptually, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> both store the name number (fifteen), but they
+have different types: <code class="docutils literal notranslate"><span class="pre">x</span></code> is a float and <code class="docutils literal notranslate"><span class="pre">b</span></code> is an integer. Python actually
+has a built-in <code class="docutils literal notranslate"><span class="pre">type</span></code> function that will tell us the exact type of a variable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">15.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">&lt;class &#39;float&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">&lt;class &#39;int&#39;&gt;</span>
+</pre></div>
+</div>
+<div class="admonition-technical-details admonition">
+<p class="admonition-title">Technical Details</p>
+<p>Types are represented using classes in Python, which is why the
+output of the <code class="docutils literal notranslate"><span class="pre">type</span></code> function says <code class="docutils literal notranslate"><span class="pre">&lt;class</span> <span class="pre">'float'&gt;</span></code> rather
+than <code class="docutils literal notranslate"><span class="pre">&lt;type</span> <span class="pre">'float'&gt;</span></code> or simply <code class="docutils literal notranslate"><span class="pre">'float'</span></code>.  We will introduce
+classes later in the book.</p>
+</div>
+<p>This function also allows us to see how Python is able to recognize
+the type of a variable has changed dynamically based on the value it
+stores:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="go">&lt;class &#39;int&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="mf">10.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="go">&lt;class &#39;float&#39;&gt;</span>
+</pre></div>
+</div>
+<p>Notice how variable <code class="docutils literal notranslate"><span class="pre">c</span></code> first stored an integer, but then switched to being
+a <code class="docutils literal notranslate"><span class="pre">float</span></code> variable once we assigned a float to it.</p>
+</div>
+<div class="section" id="strings">
+<h3><span class="section-number">1.2.5.3. </span>Strings<a class="headerlink" href="#strings" title="Permalink to this heading"></a></h3>
+<p>We have already seen one way to assign a string value to a variable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Hello, world!&quot;</span>
+</pre></div>
+</div>
+<p>One thing to note, though, is that the value that is associated with the
+variable does not include the quotation marks. The quotation marks are simply
+used to delimit the start and end of the string literal. This is why the
+quotation marks are not included when we print a string variable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="go">Hello, world!</span>
+</pre></div>
+</div>
+<p>But are included when we supply the name of the variable to the
+interpreter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">message</span>
+<span class="go">&#39;Hello, world!&#39;</span>
+</pre></div>
+</div>
+<p>The result of evaluating the name <code class="docutils literal notranslate"><span class="pre">message</span></code> includes the quotation
+marks to indicate that the value is a string.</p>
+<p>You can also use single quotes to delimit the start and end of a string literal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">message2</span> <span class="o">=</span> <span class="s1">&#39;Hello, universe!&#39;</span>
+</pre></div>
+</div>
+<p>When using single or double quotes, the string cannot span multiple lines. Instead,
+you can use triple-quotes (either three single quotes or three double quotes) to specify
+strings that span multiple lines:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">message3</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;This message</span>
+<span class="gp">... </span><span class="s2">spans multiple</span>
+<span class="gp">... </span><span class="s2">lines&quot;&quot;&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">message3</span><span class="p">)</span>
+<span class="go">This message</span>
+<span class="go">spans multiple</span>
+<span class="go">lines</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">message4</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;And</span>
+<span class="gp">... </span><span class="s1">this</span>
+<span class="gp">... </span><span class="s1">one</span>
+<span class="gp">... </span><span class="s1">does</span>
+<span class="gp">... </span><span class="s1">too!&#39;&#39;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">message4</span><span class="p">)</span>
+<span class="go">And</span>
+<span class="go">this</span>
+<span class="go">one</span>
+<span class="go">does</span>
+<span class="go">too!</span>
+</pre></div>
+</div>
+<p>When a user is writing a piece of code that spans multiple lines,
+the interpreter
+will use three periods <code class="docutils literal notranslate"><span class="pre">...</span></code> to indicate that it is expecting more code
+before it can run anything.</p>
+<p>You might reasonably wonder why there are so many different ways to
+delimit a string.  One answer is that having different methods makes it
+easier to include quotation marks in your strings.  For example, I
+might want to have a string to represent the sentence: <code class="docutils literal notranslate"><span class="pre">He</span> <span class="pre">said,</span>
+<span class="pre">&quot;Hello</span> <span class="pre">world!&quot;</span></code>.  I can represent this value in Python using single
+quotes <code class="docutils literal notranslate"><span class="pre">'He</span> <span class="pre">said,</span> <span class="pre">&quot;Hello</span> <span class="pre">world&quot;'</span></code>.  Because we are using single quotes
+to delimit the string, the two occurrences of <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> inside the string
+are treated as normal characters that have no special meaning.  In
+other languages, we would need to use a special pair of characters <code class="docutils literal notranslate"><span class="pre">\&quot;</span></code>,
+known as an escape sequence, to indicate that the inner quotes are
+part of the value.</p>
+<p>Finally, note that you must always use some type of quotes to delimit the start
+and end of a string. If you don’t, Python cannot distinguish between a
+string literal and a variable name. For example, try this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">message5</span> <span class="o">=</span> <span class="n">Hello</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;Hello&#39; is not defined</span>
+</pre></div>
+</div>
+<p>When Python interprets the above code, it will assume that <code class="docutils literal notranslate"><span class="pre">Hello</span></code>
+is a the name of a variable, not a string. And since we haven’t
+defined a <code class="docutils literal notranslate"><span class="pre">Hello</span></code> variable, we will get a <code class="docutils literal notranslate"><span class="pre">NameError</span></code> telling you
+as much.</p>
+</div>
+<div class="section" id="booleans">
+<h3><span class="section-number">1.2.5.4. </span>Booleans<a class="headerlink" href="#booleans" title="Permalink to this heading"></a></h3>
+<p>Variables can also contain a <em>boolean</em> value. This value can be
+either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>As we noted earlier, Python is case sensitive, which means that capital
+letters in <code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code> are required.  Typing <code class="docutils literal notranslate"><span class="pre">true</span></code> into
+the Python interpreter, yields an error</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">true</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;true&#39; is not defined</span>
+</pre></div>
+</div>
+<p>because Python interprets <code class="docutils literal notranslate"><span class="pre">true</span></code> as the name of a non-existent
+variable, rather than as a boolean value.</p>
+<p>Right now, there’s not much we can do with boolean variables or values,
+but we’ll see soon that they’ll come in handy.</p>
+</div>
+<div class="section" id="the-value-none">
+<h3><span class="section-number">1.2.5.5. </span>The value <code class="docutils literal notranslate"><span class="pre">None</span></code><a class="headerlink" href="#the-value-none" title="Permalink to this heading"></a></h3>
+<p>Sometimes, we may want to define a variable but not assign any
+value to it just yet.
+In some cases, we can simply assign a reasonable default value to a variable. For
+example, if we’re writing a program to process sales, we may need to apply
+a discount in certain cases (e.g., a client who is part of a loyalty program).
+This program could include a variable to store the total discount, and
+we could simply initialize it to zero:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">discount</span> <span class="o">=</span> <span class="mf">0.0</span>
+</pre></div>
+</div>
+<p>If it turns out no discounts are applicable, then the default value of zero works well.</p>
+<p>In some cases, however, we need to distinguish <em>absent</em> values
+explicitly. For example, suppose a survey includes an optional
+question where a customer can specify the number of children in their
+household (which could be used for demographic classification
+purposes). A default value of zero wouldn’t work in this case, because
+we would need to distinguish between “the customer didn’t provide a
+value” and “the customer did provide a value, and it is zero”. We
+would need some way of indicating that a variable simply has no
+value. In Python, we can use the special value <code class="docutils literal notranslate"><span class="pre">None</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">num_children</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>Besides using <code class="docutils literal notranslate"><span class="pre">None</span></code> directly in our programs, we will also see that there are a number of Python
+operations that will use <code class="docutils literal notranslate"><span class="pre">None</span></code> to indicate that the operation did not produce any value at all.</p>
+<p>Not all programming languages have this kind of special value. In languages
+without the special value <code class="docutils literal notranslate"><span class="pre">None</span></code>, a variable would be assigned
+an <em>impossible</em> value instead. For example, we could assign a value of <code class="docutils literal notranslate"><span class="pre">-1</span></code> to <code class="docutils literal notranslate"><span class="pre">num_children</span></code>
+because it is impossible for someone to have “negative one” children and thus
+that value would actually mean that “<code class="docutils literal notranslate"><span class="pre">num_children</span></code> has no value”.
+You may encounter this convention now and then but,
+in Python, you should remember to use <code class="docutils literal notranslate"><span class="pre">None</span></code> to indicate the absence
+of a value.</p>
+<div class="admonition-technical-details admonition">
+<p class="admonition-title">Technical Details</p>
+<p>Since we mentioned that every value has a type, you might be
+wondering about the type of <code class="docutils literal notranslate"><span class="pre">None</span></code>.  It has the type
+<code class="docutils literal notranslate"><span class="pre">NoneType</span></code>, which has exactly one value: <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+</div>
+<div class="section" id="scalar-types">
+<h3><span class="section-number">1.2.5.6. </span>Scalar types<a class="headerlink" href="#scalar-types" title="Permalink to this heading"></a></h3>
+<p>Atomic values, those of type <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">bool</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">NoneType</span></code> plus values from a couple of types–<code class="docutils literal notranslate"><span class="pre">complex</span></code> and
+<code class="docutils literal notranslate"><span class="pre">bytes</span></code> –that we will not discuss, are often referred to as
+<em>scalars</em>.  If you have experience with linear algebra, you might
+recognize this term as referring to a value that has a magnitude but
+no direction (as opposed to a vector which has both a magnitude and a
+direction).  If you don’t have experience with linear algebra, just
+remember that the term scalar is used to mean a single value–like
+<code class="docutils literal notranslate"><span class="pre">5</span></code>, <code class="docutils literal notranslate"><span class="pre">5.0</span></code>, or <code class="docutils literal notranslate"><span class="pre">True</span></code> –that cannot be broken into smaller
+components.</p>
+</div>
+</div>
+<div class="section" id="expressions">
+<h2><span class="section-number">1.2.6. </span>Expressions<a class="headerlink" href="#expressions" title="Permalink to this heading"></a></h2>
+<p>Now that we’ve seen variables, some basic types, and their corresponding literals, we can
+combine them together into <em>expressions</em>. An expression is a piece of Python code
+that gets <em>evaluated</em> to produce a new value. For example, we can combine integer literals using simple arithmetic
+operators to produce new integer values. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+<p>Note that whenever you enter an expression in the Python interpreter,
+the interpreter will evaluate the expression and then print out the
+resulting value.</p>
+<p>We can also assign the result of evaluating an expression to a variable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+<p>And we can use variables in expressions themselves. For example, we
+can add an integer literal and an integer variable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">+</span> <span class="mi">5</span>
+<span class="go">15</span>
+</pre></div>
+</div>
+<p>Or we can add two integer variables:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="go">30</span>
+</pre></div>
+</div>
+<p>We will focus on only two types of expressions for now: arithmetic expressions,
+which produce integer or float values, and boolean expressions, which produce
+a boolean value.</p>
+<p>For arithmetic expressions, addition, subtraction, multiplication (<code class="docutils literal notranslate"><span class="pre">*</span></code>)
+and division (<code class="docutils literal notranslate"><span class="pre">/</span></code>) work pretty much like you would expect them to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">10</span> <span class="o">-</span> <span class="mi">3</span>
+<span class="go">7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="go">9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">10</span> <span class="o">/</span> <span class="mi">3</span>
+<span class="go">3.3333333333333335</span>
+</pre></div>
+</div>
+<p>Notice, however, that division will always produce a floating point number even when
+its operands are integers, <em>even</em> if the divisor evenly divides the dividend:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">9</span> <span class="o">/</span> <span class="mi">3</span>
+<span class="go">3.0</span>
+</pre></div>
+</div>
+<p>We can verify this claim using the <code class="docutils literal notranslate"><span class="pre">type</span></code> function that we
+introduced earlier as a way to determine the type of a variable.  When
+this function is used with an expression, Python will first evaluate
+the expression and <em>then</em> determine the type of the result.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="mi">9</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">&lt;class &#39;float&#39;&gt;</span>
+</pre></div>
+</div>
+<p>When an integer result is desirable, we can use <em>integer division</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">10</span> <span class="o">//</span> <span class="mi">3</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span> <span class="mi">10</span> <span class="o">//</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">&lt;class &#39;int&#39;&gt;</span>
+</pre></div>
+</div>
+<p>While the previous example suggests that this operator, known as <em>floor division</em>, just throws
+away the fractional part of the result, it actually rounds down towards negative infinity:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="o">-</span> <span class="mi">10</span> <span class="o">//</span> <span class="mi">3</span>
+<span class="go">-4</span>
+</pre></div>
+</div>
+<p>There is also a <em>modulus</em> operator that will produce the remainder of
+dividing two integers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">10</span> <span class="o">%</span> <span class="mi">3</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+<p>And an exponentiation operator that will raise a value to a power:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span> <span class="o">**</span> <span class="mi">3</span>
+<span class="go">8</span>
+</pre></div>
+</div>
+<p>When an expression contains multiple operators, Python evaluates the
+operations in a specific order based on their relative
+<em>precedence</em>. Most notably, multiplication and division are always
+performed before addition and subtraction, so the expression
+<code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">-</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">3</span></code> is equivalent to <span class="math notranslate nohighlight">\(10 - (2 \cdot 3)\)</span>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">10</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">10</span> <span class="o">-</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+<p>In technical terms, we say that multiplication and division have
+<em>higher</em> precedence than addition and subtraction or alternatively, we
+could say that addition and subtraction have <em>lower</em> precedence than
+multiplication and division.  We will describe Python’s precedence
+rules in more detail below after we have introduced a few more
+operators.</p>
+<p>If we want to force a different order of evaluation, we can use parentheses:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">10</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="go">24</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">10</span> <span class="o">-</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+<p>All of the above operators are <em>binary</em> operators, meaning that they operate
+on two operands (one on the left and one on the right). Python also has
+<em>unary</em> operators that operate on a single operand. For example,
+unary negation will take an expression that evaluates to a number, and will
+produce its negative value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="o">-</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">-</span> <span class="p">(</span><span class="mi">10</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">-3.3333333333333335</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">-</span> <span class="p">(</span><span class="mi">10</span> <span class="o">/</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">3.3333333333333335</span>
+</pre></div>
+</div>
+<p>When an arithmetic expression involves both integers and floats, the
+entire expression will yield a float, <em>even</em> if the float’s fractional part is
+zero:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="o">+</span> <span class="mf">3.2</span>
+<span class="go">4.2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span> <span class="o">*</span> <span class="mf">3.0</span>
+<span class="go">6.0</span>
+</pre></div>
+</div>
+<p>The expressions we have seen that operate on numbers all produce a numeric value, but we can
+also use <em>relational operators</em> on numbers. These include operators such as “greater than” (<code class="docutils literal notranslate"><span class="pre">&gt;</span></code>),
+“greater than or equals” (<code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>), “less than” (<code class="docutils literal notranslate"><span class="pre">&lt;</span></code>),
+“less than or equals” (<code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>), “equals” (<code class="docutils literal notranslate"><span class="pre">==</span></code>), and “not equals” (<code class="docutils literal notranslate"><span class="pre">!=</span></code>) to compare two
+values. The result of the comparison will be a boolean value: <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">10</span> <span class="o">&gt;</span> <span class="mi">5</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">100</span> <span class="o">&lt;</span> <span class="mi">2</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">7</span> <span class="o">&gt;=</span> <span class="mi">7</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">42</span> <span class="o">&lt;=</span> <span class="mi">37</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">5</span> <span class="o">==</span> <span class="mi">5</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">5</span> <span class="o">!=</span> <span class="mi">5</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">10</span> <span class="o">==</span> <span class="mi">6</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">10</span> <span class="o">!=</span> <span class="mi">6</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Either side of the relational operator can be a literal value, a variable, or
+<em>any</em> expression that produces a number. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">5</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">&lt;</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>In the above expression, the left side of the <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> evaluates to 10,
+and the right side evaluates to <code class="docutils literal notranslate"><span class="pre">15</span></code>, meaning that the comparison
+becomes <code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">&lt;</span> <span class="pre">15</span></code> (which evaluates to <code class="docutils literal notranslate"><span class="pre">True</span></code>).  We do not
+need to enclose the expressions <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">+</span> <span class="pre">5</span></code> and <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">*</span> <span class="pre">3</span></code> in parenthesis because relational operators have lower precedence than arithmetic operators.
+Whether or not to include them for clarity is largely a matter of personal preference.</p>
+<p>The equality and inequality operators can also be used with the value
+<code class="docutils literal notranslate"><span class="pre">None</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">num_children</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tax_rate</span> <span class="o">=</span> <span class="mf">15.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">num_children</span> <span class="o">==</span> <span class="kc">None</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tax_rate</span> <span class="o">==</span> <span class="kc">None</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Python also includes two operators, <code class="docutils literal notranslate"><span class="pre">is</span></code> and <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">not</span></code>, that are
+similar, but not identical, to <code class="docutils literal notranslate"><span class="pre">==</span></code> and <code class="docutils literal notranslate"><span class="pre">!=</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="ow">is</span> <span class="mi">5</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="ow">is</span> <span class="ow">not</span> <span class="mi">10</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">num_children</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tax_rate</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tax_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>The differences between <code class="docutils literal notranslate"><span class="pre">==</span></code> and <code class="docutils literal notranslate"><span class="pre">is</span></code> are very subtle and we will not
+concern ourselves with them here.
+However, by convention, <code class="docutils literal notranslate"><span class="pre">==</span></code> and <code class="docutils literal notranslate"><span class="pre">!=</span></code> are used to compare integers,
+floats, strings, and booleans, while <code class="docutils literal notranslate"><span class="pre">is</span></code> and <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">not</span></code> are used to
+check whether a value is <code class="docutils literal notranslate"><span class="pre">None</span></code> or not. Later in the book, we will see
+that there are differences between these operators that become important when the operands have more complex Python data types, such as lists.</p>
+<p>On top of all this, we can combine boolean expressions using <em>logical</em> operators, where
+each side of the operator must evaluate to a boolean value. The <code class="docutils literal notranslate"><span class="pre">and</span></code>
+operator evaluates to <code class="docutils literal notranslate"><span class="pre">True</span></code> if both sides of the operator evaluate
+to <code class="docutils literal notranslate"><span class="pre">True</span></code> and evaluates to <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>The above expression checks whether both <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> are positive
+non-zero numbers. Since <code class="docutils literal notranslate"><span class="pre">b</span></code> is not, the whole expression evaluates
+to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">or</span></code> operator evaluates to <code class="docutils literal notranslate"><span class="pre">True</span></code> if either or both sides of the operator evaluate to <code class="docutils literal notranslate"><span class="pre">True</span></code>,
+and evaluates to <code class="docutils literal notranslate"><span class="pre">False</span></code> only if both sides of the operator are <code class="docutils literal notranslate"><span class="pre">False</span></code>. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>The above expression evaluates to <code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">a</span></code> is a positive non-zero
+number, if <code class="docutils literal notranslate"><span class="pre">b</span></code> is a positive non-zero number, or if both <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> are
+positive non-zero numbers. Since <code class="docutils literal notranslate"><span class="pre">a</span></code> is positive, the expression evaluates
+to <code class="docutils literal notranslate"><span class="pre">True</span></code>.  This operation is known as <em>inclusive or</em>, because it “includes”
+as <code class="docutils literal notranslate"><span class="pre">True</span></code> the case where both operands are true.</p>
+<p>Finally the <code class="docutils literal notranslate"><span class="pre">not</span></code> operator takes only a single operand on its right side and negates a boolean value. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="ow">not</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>The above expression yields <code class="docutils literal notranslate"><span class="pre">True</span></code> when either <code class="docutils literal notranslate"><span class="pre">a</span></code> or <code class="docutils literal notranslate"><span class="pre">b</span></code> are negative or zero, but
+<code class="docutils literal notranslate"><span class="pre">False</span></code> if they are both positive and non-zero. In other words, it yields
+the opposite of the expression that we saw earlier.</p>
+<p>At this point, while you can probably relate to the need to compute
+the value of an arithmetic expression, you may be wondering about the
+purpose of boolean expressions. We will see in the next chapter that
+boolean expression will be used to determine whether an action has to
+be performed or not, or for how many times an action should be
+repeated. For example, if you are writing a stock-trading application,
+you might need a way to express that a given stock should be sold <em>if</em>
+its price (stored in a variable called <code class="docutils literal notranslate"><span class="pre">price</span></code>) reaches or exceeds a
+certain target price (stored in a variable called <code class="docutils literal notranslate"><span class="pre">target_price</span></code>).
+The boolean expression that controls this action could look something
+like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">price</span> <span class="o">&gt;=</span> <span class="n">target_price</span>
+</pre></div>
+</div>
+<p>We can combine different logical operations to describe complex rules.
+For example, in the United States Senate, a bill can be brought to the
+floor for debate in a few ways:</p>
+<ul class="simple">
+<li><p>all of the senators present in the chamber agree on a <em>motion to proceed</em>, also known as unanimous consent, or</p></li>
+<li><p>at least 60 senators vote in favor of a motion to proceed, or</p></li>
+<li><p>a quorum of at least 51 senators is present, a majority of the senators present vote in favor of a <em>motion to proceed</em>, and the bill either is not or cannot be filibustered (defined roughly as “talked to death”), or</p></li>
+<li><p>a quorum is present, half the senators present vote in favor of a <em>motion to proceed</em>, the bill either is not or cannot be  filibustered, and the Vice President is present and votes in favor of the motion to proceed.</p></li>
+</ul>
+<p>Given variables for:</p>
+<ul class="simple">
+<li><p>the number of votes in favor of the motion to proceed (<code class="docutils literal notranslate"><span class="pre">num_yea</span></code>),</p></li>
+<li><p>the number of votes against proceeding (<code class="docutils literal notranslate"><span class="pre">num_nay</span></code>),</p></li>
+<li><p>a boolean that indicates whether the bill is being filibustered (<code class="docutils literal notranslate"><span class="pre">is_filibuster</span></code>), and</p></li>
+<li><p>a boolean that indicates whether the Vice President in present and votes “yea” (<code class="docutils literal notranslate"><span class="pre">is_vp_yea</span></code>).</p></li>
+</ul>
+<p>and a couple of constants:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FILIBUSTER_LIMIT</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">QUORUM</span> <span class="o">=</span> <span class="mi">51</span>
+</pre></div>
+</div>
+<p>we can translate these rules into a boolean expression:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">num_yea</span> <span class="o">&gt;=</span> <span class="n">FILIBUSTER_LIMIT</span><span class="p">)</span> <span class="ow">or</span> \
+<span class="p">((</span><span class="n">num_yea</span> <span class="o">+</span> <span class="n">num_nay</span> <span class="o">&gt;</span> <span class="n">QUORUM</span><span class="p">)</span> <span class="ow">and</span> \
+ <span class="p">(</span><span class="ow">not</span> <span class="n">is_filibuster</span><span class="p">)</span> <span class="ow">and</span> \
+ <span class="p">((</span><span class="n">num_yea</span> <span class="o">&gt;</span> <span class="n">num_nay</span><span class="p">)</span> <span class="ow">or</span> <span class="p">((</span><span class="n">num_yea</span> <span class="o">==</span> <span class="n">num_nay</span><span class="p">)</span> <span class="ow">and</span> <span class="n">is_vp_yea</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>This expression is long. To prevent the line of code from getting too
+long to read easily, we split it across multiple lines using backward
+slash (<code class="docutils literal notranslate"><span class="pre">\</span></code>) to indicate that the expression continues on the next
+line.  Alternatively, we could have wrapped the whole expression in
+parentheses:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="n">num_yea</span> <span class="o">&gt;=</span> <span class="n">FILIBUSTER_LIMIT</span><span class="p">)</span> <span class="ow">or</span>
+ <span class="p">((</span><span class="n">num_yea</span> <span class="o">+</span> <span class="n">num_nay</span> <span class="o">&gt;</span> <span class="n">QUORUM</span><span class="p">)</span> <span class="ow">and</span>
+  <span class="p">(</span><span class="ow">not</span> <span class="n">is_filibuster</span><span class="p">)</span> <span class="ow">and</span>
+  <span class="p">((</span><span class="n">num_yea</span> <span class="o">&gt;</span> <span class="n">num_nay</span><span class="p">)</span> <span class="ow">or</span> <span class="p">((</span><span class="n">num_yea</span> <span class="o">==</span> <span class="n">num_nay</span><span class="p">)</span> <span class="ow">and</span> <span class="n">is_vp_yea</span><span class="p">))))</span>
+</pre></div>
+</div>
+<p>We could have chosen to use the numbers 60 and 51 in the expression
+directly, but it is better to give these types of values names rather
+than have them appear as <em>magic numbers</em> in an expression.  It is
+traditional to name <em>constants</em>, that is, variables whose values are
+fixed and will not change during the lifetime of a program, using
+capital letters.</p>
+<p>You might notice that we did not include a special case for unanimous
+consent.  We handle this case by setting <code class="docutils literal notranslate"><span class="pre">num_yea</span></code> equal to the
+filibuster limit and <code class="docutils literal notranslate"><span class="pre">num_nay</span></code> to zero.  Alternatively, we could
+introduce a new boolean variable, <code class="docutils literal notranslate"><span class="pre">unanimous_consent</span></code> for tracking
+this situation and add a new clause to the expression:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">unanimous_consent</span> <span class="ow">or</span>
+ <span class="p">(</span><span class="n">num_yea</span> <span class="o">&gt;=</span> <span class="n">FILIBUSTER_LIMIT</span><span class="p">)</span> <span class="ow">or</span>
+ <span class="p">((</span><span class="n">num_yea</span> <span class="o">+</span> <span class="n">num_nay</span> <span class="o">&gt;</span> <span class="n">QUORUM</span><span class="p">)</span> <span class="ow">and</span>
+  <span class="p">(</span><span class="ow">not</span> <span class="n">is_filibuster</span><span class="p">)</span> <span class="ow">and</span>
+  <span class="p">((</span><span class="n">num_yea</span> <span class="o">&gt;</span> <span class="n">num_nay</span><span class="p">)</span> <span class="ow">or</span> <span class="p">((</span><span class="n">num_yea</span> <span class="o">==</span> <span class="n">num_nay</span><span class="p">)</span> <span class="ow">and</span> <span class="n">is_vp_yea</span><span class="p">))))</span>
+</pre></div>
+</div>
+<p>Notice that we wrote <code class="docutils literal notranslate"><span class="pre">unanimous_consent</span></code> rather than
+<code class="docutils literal notranslate"><span class="pre">unanimous_consent</span> <span class="pre">==</span> <span class="pre">True</span></code> for the new clause that we added to the
+expression.  The latter form frequently appeals to new programmers,
+but adding <code class="docutils literal notranslate"><span class="pre">==</span> <span class="pre">True</span></code> is redudant and should be avoided.  We’ll come
+back to the appropriate values for <code class="docutils literal notranslate"><span class="pre">num_yea</span></code>, <code class="docutils literal notranslate"><span class="pre">num_nay</span></code>, etc in
+the case that the senators approve the motion to proceed by unanimous
+consent shortly.</p>
+<div class="admonition-technical-details admonition">
+<p class="admonition-title">Operator precedence</p>
+<p>You might be asking yourself whether all the parentheses in the
+expression above necessary?  To answer that question we need to
+understand the relative precedence of the different operations used
+in the expression.  Here is a subset of Python’s precedence rules
+taken from <a class="reference external" href="https://docs.python.org/3/reference/expressions.html">Operator Precedence section</a> of the
+Python Language Reference.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 70%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">**</span></code></p></td>
+<td><p>exponentiation</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-x</span></code>, <code class="docutils literal notranslate"><span class="pre">+x</span></code></p></td>
+<td><p>unary negation, unary plus</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code>, <code class="docutils literal notranslate"><span class="pre">//</span></code>, <code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
+<td><p>multiplication, division,
+floor division, remainder</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td><p>addition, subtraction</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">!=</span></code>, <code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">is</span></code>, <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">not</span></code></p></td>
+<td><p>relational, comparison,
+and identity operations</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">x</span></code></p></td>
+<td><p>logical negation</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">and</span></code></p></td>
+<td><p>logical and</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">or</span></code></p></td>
+<td><p>logical (inclusive) or</p></td>
+</tr>
+</tbody>
+</table>
+<p>Operators higher in the table have higher precedence than operators
+lower in the table.  For example, exponentiation has higher
+precedence than unary negation.  Operators in the same row have the
+same precedence and are evaluated left to right if they occur
+together.  For example, the expression <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">/</span> <span class="pre">3</span> <span class="pre">*</span> <span class="pre">4</span></code> is equivalent
+to <code class="docutils literal notranslate"><span class="pre">(2</span> <span class="pre">/</span> <span class="pre">3)</span> <span class="pre">*</span> <span class="pre">4</span></code>.  Similarly, with the exception of
+exponentiation, multiple instances of the same operator are
+evaluated left to right, so the expression <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">/</span> <span class="pre">3</span> <span class="pre">/</span> <span class="pre">4</span></code> is
+equivalent to <code class="docutils literal notranslate"><span class="pre">(2</span> <span class="pre">/</span> <span class="pre">3)</span> <span class="pre">/</span> <span class="pre">4</span></code>.  Exponentiation, in constrast, is
+evaluated right to left, so the expression <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">**</span> <span class="pre">3</span> <span class="pre">**</span> <span class="pre">4</span></code> is
+equivalent to <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">**</span> <span class="pre">(3</span> <span class="pre">**</span> <span class="pre">4)</span></code>.</p>
+<p>In addition to saying that one operator has higher precedence than
+another, programmers also use the phrase <em>binds more tightly</em> to
+mean that one operator has higher precedence than another. For
+example, multiplication binds more tightly than addition.</p>
+<p>Since arithmetic operations bind more tightly than relational
+operations, which in turn, bind more tightly than logical
+operations, we can write the expression for describing when a bill
+can be brought to the floor of the United States Senate for debate
+with many fewer parenthesis:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num_yea</span> <span class="o">&gt;=</span> <span class="n">FILIBUSTER_LIMIT</span> <span class="ow">or</span> \
+<span class="n">num_yea</span> <span class="o">+</span> <span class="n">num_nay</span> <span class="o">&gt;</span> <span class="n">QUORUM</span> <span class="ow">and</span> \
+<span class="ow">not</span> <span class="n">is_filibuster</span> <span class="ow">and</span> \
+<span class="p">(</span><span class="n">num_yea</span> <span class="o">&gt;</span> <span class="n">num_nay</span> <span class="ow">or</span> <span class="n">num_yea</span> <span class="o">==</span> <span class="n">num_nay</span> <span class="ow">and</span> <span class="n">is_vp_yea</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Only one set–those around the expression <code class="docutils literal notranslate"><span class="pre">num_yea</span> <span class="pre">&gt;</span> <span class="pre">num_nay</span> <span class="pre">or</span>
+<span class="pre">num_yea</span> <span class="pre">==</span> <span class="pre">num_nay</span> <span class="pre">and</span> <span class="pre">is_vp_yea</span></code>–is required to express the
+rules of the senate. As noted earlier, whether to include the rest
+of the parentheses or not is largely a matter personal preference.</p>
+</div>
+<p>As noted, the operands for nearly all binary operators evaluated left
+to right.  Logical operators exploit this evaluation order to provide
+a very useful feature: they <em>short circuit</em>, that is, if the value of
+the left operand determines the result of the operation (<code class="docutils literal notranslate"><span class="pre">True</span></code> for
+<code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code> for <code class="docutils literal notranslate"><span class="pre">and</span></code>), then the right operand is not
+evaluated.  For example, given the expression:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">y</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span> <span class="o">%</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>the subexpression <code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">%</span> <span class="pre">y</span> <span class="pre">==</span> <span class="pre">0)</span></code> will not be evaluated if <code class="docutils literal notranslate"><span class="pre">y</span></code> has
+the value zero.  Why?  Because if <code class="docutils literal notranslate"><span class="pre">y</span></code> is zero, then the result of
+the <code class="docutils literal notranslate"><span class="pre">and</span></code> is guaranteed to be <code class="docutils literal notranslate"><span class="pre">False</span></code>.  Conveniently, short circuiting
+allows us to avoid dividing by zero in this case.</p>
+<p>This property of <code class="docutils literal notranslate"><span class="pre">and</span></code> and <code class="docutils literal notranslate"><span class="pre">or</span></code> makes the order of the operands
+important. This expression:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">x</span> <span class="o">%</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">y</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>will fail with a <code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code> error when <code class="docutils literal notranslate"><span class="pre">y</span></code> is zero,
+because the left operand is evaluated first.</p>
+<p>Now that we have discussed short circuiting, let’s return to the
+filibuster example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">unanimous_consent</span> <span class="ow">or</span>
+ <span class="p">(</span><span class="n">num_yea</span> <span class="o">&gt;=</span> <span class="n">FILIBUSTER_LIMIT</span><span class="p">)</span> <span class="ow">or</span>
+ <span class="p">((</span><span class="n">num_yea</span> <span class="o">+</span> <span class="n">num_nay</span> <span class="o">&gt;</span> <span class="n">QUORUM</span><span class="p">)</span> <span class="ow">and</span>
+  <span class="p">(</span><span class="ow">not</span> <span class="n">is_filibuster</span><span class="p">)</span> <span class="ow">and</span>
+  <span class="p">((</span><span class="n">num_yea</span> <span class="o">&gt;</span> <span class="n">num_nay</span><span class="p">)</span> <span class="ow">or</span> <span class="p">((</span><span class="n">num_yea</span> <span class="o">==</span> <span class="n">num_nay</span><span class="p">)</span> <span class="ow">and</span> <span class="n">is_vp_yea</span><span class="p">))))</span>
+</pre></div>
+</div>
+<p>Python will stop evaluating this expression as soon as one of the
+three <code class="docutils literal notranslate"><span class="pre">or</span></code> clauses evaluates to <code class="docutils literal notranslate"><span class="pre">True</span></code>.  As a result, the values
+of <code class="docutils literal notranslate"><span class="pre">num_yea</span></code>, <code class="docutils literal notranslate"><span class="pre">num_nay</span></code>, etc can be set to zero or to <code class="docutils literal notranslate"><span class="pre">None</span></code> or
+not at all, for that matter, if <code class="docutils literal notranslate"><span class="pre">unanimous_consent</span></code> is true.</p>
+<div class="section" id="string-expressions">
+<h3><span class="section-number">1.2.6.1. </span>String expressions<a class="headerlink" href="#string-expressions" title="Permalink to this heading"></a></h3>
+<p>Strings also support many of the operations we just described.
+Addition, for example, works with strings and results in the
+concatenation, or joining, of those strings:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;abc&quot;</span> <span class="o">+</span> <span class="s2">&quot;def&quot;</span>
+<span class="go">&#39;abcdef&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="n">name</span>
+<span class="go">&#39;Hello, Alice&#39;</span>
+</pre></div>
+</div>
+<p>One thing to note: while you can mix integers and floats when using
+the addition operator, mixing integers and strings generates a type
+error:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tax</span> <span class="o">=</span> <span class="mf">15.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;Your tax rate is &quot;</span> <span class="o">+</span> <span class="n">tax</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">can only concatenate str (not &quot;float&quot;) to str</span>
+</pre></div>
+</div>
+<p>We will describe a solution to this problem in the next section.</p>
+<p>The equality and identity operations can also be used on strings:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Bob&quot;</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">name</span> <span class="o">!=</span> <span class="s2">&quot;Bob&quot;</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Alice&quot;</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">name</span> <span class="ow">is</span> <span class="s2">&quot;Alice&quot;</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="s2">&quot;Bob&quot;</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="admonition-common-pitfalls admonition">
+<p class="admonition-title">Mixing types with the equality operator</p>
+<p>While, as we noted, you cannot mix strings and numbers when using
+arithmetic operations, such as addition, you <em>can</em> mix types when
+using the <code class="docutils literal notranslate"><span class="pre">==</span></code> and <code class="docutils literal notranslate"><span class="pre">!=</span></code> operators, but be careful: they
+check whether the two values have the same type. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">5</span> <span class="o">==</span> <span class="s2">&quot;Hello&quot;</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Naturally, the result is <code class="docutils literal notranslate"><span class="pre">False</span></code>: the number 5 is not the same as
+the string <code class="docutils literal notranslate"><span class="pre">&quot;Hello&quot;</span></code>. However, evaluating this expression is also
+yields <code class="docutils literal notranslate"><span class="pre">False</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">10</span> <span class="o">==</span> <span class="s2">&quot;10&quot;</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>When comparing two values of a different type, Python won’t make
+any attempt to convert one to the other’s type before making the
+comparison. Instead, the above expression returns <code class="docutils literal notranslate"><span class="pre">False</span></code> because
+an integer is not the same thing as a string, even if semantically
+they refer to the same thing.</p>
+</div>
+<p>The relational operations can also be used on strings:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;Alice&quot;</span> <span class="o">&lt;</span> <span class="s2">&quot;Bob&quot;</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;Alex&quot;</span> <span class="o">&gt;</span> <span class="s2">&quot;Alice&quot;</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>The relational operators use lexicographic ordering when used to
+compare strings: the result of the operation is determined by
+comparing the first two characters that differ.  In the first example,
+the strings differ in the first character and “A” comes before “B” and
+so, the result of evaluating <code class="docutils literal notranslate"><span class="pre">&quot;Alice&quot;</span> <span class="pre">&lt;</span> <span class="pre">&quot;Bob&quot;</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.  In the
+second example, the strings differ first at the third character and
+since “e” does not come after “i”, the result of evaluating the
+expression is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<div class="admonition-technical-details admonition">
+<p class="admonition-title">Character encoding and relational operators</p>
+<p>What does it mean for one character to “come before” another?
+Strings in Python are represented using a <em>character encoding</em>
+which associates each individual character (like <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>)
+with an integer value.  You can actually see that integer value by
+using the built-in <code class="docutils literal notranslate"><span class="pre">ord</span></code> function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="go">65</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">)</span>
+<span class="go">66</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;ñ&quot;</span><span class="p">)</span>
+<span class="go">241</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;🤔&quot;</span><span class="p">)</span>
+<span class="go">129300</span>
+</pre></div>
+</div>
+<p>Notice how <code class="docutils literal notranslate"><span class="pre">A</span></code> has a lower numerical value than <code class="docutils literal notranslate"><span class="pre">B</span></code>, so it is
+considered to come before <code class="docutils literal notranslate"><span class="pre">B</span></code>. Also, notice how letters from
+other alphabets, such as <code class="docutils literal notranslate"><span class="pre">ñ</span></code> from the Spanish alphabet, and
+emojis are valid characters in Python. This is
+because the default character encoding in Python is Unicode, which
+supports a wide array of characters, including practically all
+non-English characters.</p>
+<p>If you are working with English language text (or, more specifically,
+with the 26-letter Roman alphabet), then in practice,
+you do not need to be concerned with this technical detail. When it
+comes to the relational operators and strings, you can assume they
+support the standard English dictionary ordering on strings.</p>
+<p>If you are working with text that includes characters outside the
+26-letter Roman alphabet, the ordering created by the Unicode encoding
+may not always produce the expected result. For example, in Spanish,
+the letter <code class="docutils literal notranslate"><span class="pre">ñ</span></code> comes after <code class="docutils literal notranslate"><span class="pre">n</span></code> and before <code class="docutils literal notranslate"><span class="pre">o</span></code>, which means
+the word <code class="docutils literal notranslate"><span class="pre">original</span></code> must come after <code class="docutils literal notranslate"><span class="pre">ñoño</span></code>. However:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;original&quot;</span> <span class="o">&gt;</span> <span class="s2">&quot;ñoño&quot;</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Ordering string can thus get a bit complicated in these cases, and
+often requires the use of external libraries, like <a class="reference external" href="https://gitlab.pyicu.org/main/pyicu">PyICU</a>.</p>
+</div>
+<p>We have only described a small subset of the operations supported by
+strings here.  We discuss lots more later in <a class="reference internal" href="../../data_structures/lists/index.html#chapter-lists"><span class="std std-ref">Lists, Tuples, and Strings</span></a>.</p>
+</div>
+</div>
+<div class="section" id="casting">
+<h2><span class="section-number">1.2.7. </span>Casting<a class="headerlink" href="#casting" title="Permalink to this heading"></a></h2>
+<p>There are times when we need to convert a value from one type to
+another. For example, we might get a real number represented as a
+string from a user interface and want to compute with that value as a
+number. To do so, we first need to convert it from a string to a
+floating point value. We convert or <em>cast</em> the string into a floating
+point value using the <code class="docutils literal notranslate"><span class="pre">float</span></code> function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">approx_pi</span> <span class="o">=</span> <span class="s2">&quot;3.1415&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">approx_pi</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="go">6.283</span>
+</pre></div>
+</div>
+<p>Or we might want to cast a float into a string (using <code class="docutils literal notranslate"><span class="pre">str</span></code>) and
+then combine it with another string:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">approx_pi</span> <span class="o">=</span> <span class="mf">3.1415</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">approx_pi</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; is an approximation to Pi&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="go">3.1415 is an approximation to Pi</span>
+</pre></div>
+</div>
+<p>When we cast a float to an integer, we not only change the type, we
+also change the value by throwing away the fractional part:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">approx_pi</span> <span class="o">=</span> <span class="mf">3.1415</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="n">approx_pi</span><span class="p">)</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+<p>Note that throwing away the fractional part is equivalent to rounding
+towards zero.  If the value is positive, as in the above example,
+<code class="docutils literal notranslate"><span class="pre">int</span></code> will round it down towards zero.  In contrast, if the value is
+negative, <code class="docutils literal notranslate"><span class="pre">int</span></code> will round up towards zero:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">neg_pi</span> <span class="o">=</span> <span class="o">-</span><span class="mf">3.1415</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="n">neg_pi</span><span class="p">)</span>
+<span class="go">-3</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dynamic-typing-revisited">
+<h2><span class="section-number">1.2.8. </span>Dynamic Typing Revisited<a class="headerlink" href="#dynamic-typing-revisited" title="Permalink to this heading"></a></h2>
+<p>Now that we’ve seen some basic types as well as expressions, we can
+see some of the implications of dynamic typing in a bit more detail.
+Like we said earlier, Python is dynamically-typed, which means it
+infers the type of a variable when we assign a value to it. As we saw
+earlier, we can see the exact type of a variable by writing
+<code class="docutils literal notranslate"><span class="pre">type(v)</span></code> (where <code class="docutils literal notranslate"><span class="pre">v</span></code> is a variable).</p>
+<p>Notice that Python correctly infers that <code class="docutils literal notranslate"><span class="pre">a</span></code> should be an integer
+(or <code class="docutils literal notranslate"><span class="pre">int</span></code>), that <code class="docutils literal notranslate"><span class="pre">x</span></code> should be a float, and that <code class="docutils literal notranslate"><span class="pre">s</span></code> should
+be a string (or <code class="docutils literal notranslate"><span class="pre">str</span></code>) based on the values supplied on the right-hand side
+of the assignment statements:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">&lt;class &#39;int&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mf">3.1415</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">&lt;class &#39;float&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;foobar&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="go">&lt;class &#39;str&#39;&gt;</span>
+</pre></div>
+</div>
+<p>Not just that, we can assign a value of one type to a variable and,
+later on, assign a value of a different type, and Python will
+<em>dynamically</em> change the type of the variable. In contrast, a
+statically-typed language would likely generate an error pointing out
+that you’re trying to assign a value of an incompatible type.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">&lt;class &#39;int&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">&lt;class &#39;str&#39;&gt;</span>
+</pre></div>
+</div>
+<p>One consequence of this property is that an operation that succeeds
+in one line, may not succeed a few lines later.  For example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="go">12</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">7</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">can only concatenate str (not &quot;int&quot;) to str</span>
+</pre></div>
+</div>
+<p>The first time we evaluate the expression <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">+</span> <span class="pre">7</span></code>, the evaluation
+succeeds and yields the value <code class="docutils literal notranslate"><span class="pre">12</span></code>.  The second time, however, the
+evaluation fails, because <code class="docutils literal notranslate"><span class="pre">b</span></code> is now a string and we cannot add a string
+and an integer.</p>
+<p>When working with a dynamically-typed language like Python, we must be
+careful to use types consistently. Just because a variable can change
+its type throughout the lifetime of a program doesn’t mean it
+should. As you take your first steps with Python, you should try to be
+disciplined about choosing a type for a variable and then sticking
+with it throughout the program.</p>
+</div>
+<div class="section" id="code-comments">
+<h2><span class="section-number">1.2.9. </span>Code Comments<a class="headerlink" href="#code-comments" title="Permalink to this heading"></a></h2>
+<p>Before we move on to the next chapter, there’s one final element of Python
+syntax we need to discuss: code comments. When writing code in a Python file, you can include notes for the reader, known as <em>comments</em>, in your
+code using the hash character, and Python will ignore everything that appears
+after the hash character:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a comment</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># This is a comment that</span>
+<span class="c1"># spans multiple</span>
+<span class="c1"># lines</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>  <span class="c1"># Comments can also appear at the end of lines</span>
+</pre></div>
+</div>
+<p>You will see comments in many of the examples we will provide,
+and it is good practice to use comments to document your code,
+especially when your code is not self-explanatory.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../introduction/index.html" class="btn btn-neutral float-left" title="1.1. Computational Thinking" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../control_structures/index.html" class="btn btn-neutral float-right" title="1.3. Control Flow Statements" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Anne Rogers and Borja Sotomayor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

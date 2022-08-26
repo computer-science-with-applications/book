@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.7. Example: A Game of Chance &mdash; Computer Science with Applications  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/csapps.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2. Data Structures" href="../../data_structures/index.html" />
+    <link rel="prev" title="1.6. Understanding Errors and Catching Exceptions" href="../exceptions/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Computer Science with Applications
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../preface.html">Preface</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction/index.html">1.1. Computational Thinking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/index.html">1.2. Programming Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../control_structures/index.html">1.3. Control Flow Statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_functions/index.html">1.4. Introduction to Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../organization/index.html">1.5. Basics of Code Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exceptions/index.html">1.6. Understanding Errors and Catching Exceptions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.7. Example: A Game of Chance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rolling-dice">1.7.1. Rolling dice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#playing-a-round">1.7.2. Playing a round</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simulating-a-player">1.7.3. Simulating a player</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#estimating-win-rate">1.7.4. Estimating win rate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_structures/index.html">2. Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../functions/index.html">3. Functional Programming and Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working_with_data/index.html">4. Working with Data</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Computer Science with Applications</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">1. </span>Getting Started</a> &raquo;</li>
+      <li><span class="section-number">1.7. </span>Example: A Game of Chance</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/getting_started/example/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="example-a-game-of-chance">
+<span id="chapter-hazard"></span><h1><span class="section-number">1.7. </span>Example: A Game of Chance<a class="headerlink" href="#example-a-game-of-chance" title="Permalink to this heading"></a></h1>
+<p>Hazard is a game of chance that was popular in medieval England.  To
+play, a designated player named the <em>caster</em> throws a pair of
+six-sided die and any number of other players can place bets on the
+caster’s rolls. In this chapter, we will first describe the game and
+then write code to simulate it.</p>
+<p>The game proceeds in rounds.  At the start of a round, the caster
+chooses an integer, known as the <em>main</em>, in the range 5 to 9
+inclusive. The caster then rolls both dice in the <em>come out roll</em>.
+The terminology for this part
+of Hazard is complex and does not add a lot to our understanding of
+the game.  Without affecting the accuracy of our simulation, we will
+simply refer to the the sum of the come out roll as the <em>chance</em>.</p>
+<p>Here are the rules for the come out roll:</p>
+<ul class="simple">
+<li><p>If the chance is equal to the caster’s chosen main, the caster immediately wins the round.</p></li>
+<li><p>If the chance is 2 or 3, the caster immediately loses the round.</p></li>
+<li><p>If the chance is 11 or 12, then:</p>
+<ul>
+<li><p>If the caster’s main is 5 or 9, the caster loses the round.</p></li>
+<li><p>If the caster’s main is 6 or 8, the caster wins the round if the chance is 12 and loses the round otherwise.</p></li>
+<li><p>If the caster’s main is 7, the caster wins the round if the chance is 11 and loses the round otherwise.</p></li>
+</ul>
+</li>
+</ul>
+<p>If none of these conditions is met, the caster will continue to roll
+the dice until a throw matches the main or the chance.
+The caster wins the round if their last throw matches the chance and loses the
+round if it matches the main.</p>
+<p>Here is a table that summarizes these rules:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 29%" />
+<col style="width: 30%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p><strong>Come out roll</strong></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p><em>Main</em></p></th>
+<th class="head"><p><em>Caster wins immediately
+on a chance of</em></p></th>
+<th class="head"><p><em>Caster loses immediately
+on a chance of</em></p></th>
+<th class="head"><p><em>Caster continues to
+throw on chance of</em></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>5</p></td>
+<td><p>2, 3, 11, 12</p></td>
+<td><p>Any other value</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>6, 12</p></td>
+<td><p>2, 3, 11,</p></td>
+<td><p>Any other value</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>7, 11</p></td>
+<td><p>2, 3, 12</p></td>
+<td><p>Any other value</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>8, 12</p></td>
+<td><p>2, 3, 11</p></td>
+<td><p>Any other value</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>9</p></td>
+<td><p>2, 3, 11, 12</p></td>
+<td><p>Any other value</p></td>
+</tr>
+</tbody>
+</table>
+<p>The caster continues playing rounds until they lose two consecutive rounds,
+at which point another player becomes the caster.</p>
+<p>To make this description more concrete,
+let’s play a few rounds with a chosen main of 5.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 10%" />
+<col style="width: 19%" />
+<col style="width: 53%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p><strong>Round One</strong></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p><em>Main</em></p></th>
+<th class="head"><p><em>Roll</em></p></th>
+<th class="head"><p><em>Result</em></p></th>
+<th class="head"><p><em>Notes</em></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>9</p></td>
+<td><p>Continues</p></td>
+<td><p>Come out roll, chance is 9</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>7</p></td>
+<td><p>Continues</p></td>
+<td><p>Does not match main or chance</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>7</p></td>
+<td><p>Continues</p></td>
+<td><p>Does not match main or chance</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>9</p></td>
+<td><p>Wins</p></td>
+<td><p>Roll matches chance</p></td>
+</tr>
+</tbody>
+</table>
+<p>In this round, because the caster rolls a 9 in the come out roll, the
+chance is 9.  This value does not match any of the special cases for
+the first roll, so the caster continues to roll the dice.  Neither of
+the next two rolls (7 and 7) match either the chance or the main, and
+so the caster rolls once more.  In their final roll, the caster throws
+a 9, which matches the chance, and wins.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 10%" />
+<col style="width: 19%" />
+<col style="width: 53%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p><strong>Round Two</strong></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p><em>Main</em></p></th>
+<th class="head"><p><em>Roll</em></p></th>
+<th class="head"><p><em>Result</em></p></th>
+<th class="head"><p><em>Notes</em></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>4</p></td>
+<td><p>Continues</p></td>
+<td><p>Come out roll, chance is 4</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>6</p></td>
+<td><p>Continues</p></td>
+<td><p>Does not match main or chance</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>11</p></td>
+<td><p>Continues</p></td>
+<td><p>Does not match main or chance</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>12</p></td>
+<td><p>Continues</p></td>
+<td><p>Does not match main or chance</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>5</p></td>
+<td><p>Loses</p></td>
+<td><p>Roll matches main</p></td>
+</tr>
+</tbody>
+</table>
+<p>In the second round, because the caster rolls a 4 in the come out
+roll, the chance is 4.  This value does not match any of the special
+cases, so the caster continues to roll the dice.  The next three
+rolls (6, 11, and 12) do not match the chance or the main, so the
+caster rolls the dice a fifth time.  The final roll is a 5, which
+matches the main, and the caster loses the round.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 13%" />
+<col style="width: 24%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p><strong>Round Three</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em>Main</em></p></td>
+<td><p><em>Roll</em></p></td>
+<td><p><em>Result</em></p></td>
+<td><p><em>Notes</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>11</p></td>
+<td><p>Loses</p></td>
+<td><p>Come out roll</p></td>
+</tr>
+</tbody>
+</table>
+<p>In the third round, the caster rolls an 11 in the come out roll and
+immediately loses.  Since the caster has lost two rounds in a row, they
+pass the dice on to another player.</p>
+<p>Given that brief explanation, let’s look at some code for simulating
+this game.  The first thing we need to do is simulate
+rolling a pair of dice.</p>
+<div class="section" id="rolling-dice">
+<h2><span class="section-number">1.7.1. </span>Rolling dice<a class="headerlink" href="#rolling-dice" title="Permalink to this heading"></a></h2>
+<p>In Hazard, we throw of pair of dice and add the face values
+together.  Because we will use this computation often in our simulation,
+it makes sense to write a very short function to do it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">throw_dice</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Throw a pair of six-sided dice</span>
+
+<span class="sd">    Returns (int): the sum of the dice</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">NUM_SIDES</span> <span class="o">=</span> <span class="mi">6</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">NUM_SIDES</span><span class="p">)</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">NUM_SIDES</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">val</span>
+</pre></div>
+</div>
+<p>We chose to use a constant for number of sides for the die, but we could have
+easily written this function to take the number of sides as
+an argument.</p>
+</div>
+<div class="section" id="playing-a-round">
+<h2><span class="section-number">1.7.2. </span>Playing a round<a class="headerlink" href="#playing-a-round" title="Permalink to this heading"></a></h2>
+<p>The work needed to play a round is sufficiently complex that it makes
+sense to encapsulate it in a function.  Since the caster chooses the main,
+this function will need to take the main as a parameter.
+The only detail that matters for the
+rest of the game is whether the caster won the round.
+We can return this information as a boolean: <code class="docutils literal notranslate"><span class="pre">True</span></code> for a win and
+<code class="docutils literal notranslate"><span class="pre">False</span></code> for a loss.  Putting these design decisions together gives
+us the following function header:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">play_one_round</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Play one round of Hazard.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">        chosen_main (int): a value between 5 and 9 inclusive.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns (boolean): True, if player wins the round and False, otherwise.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+</pre></div>
+</div>
+<p>To simulate the come out roll, we first call our
+<code class="docutils literal notranslate"><span class="pre">throw_dice</span></code> function and save the result in a variable named
+<code class="docutils literal notranslate"><span class="pre">chance</span></code>.</p>
+<p>Next, we need to translate the rules for the come out roll.  At the
+top-level, this computation requires a conditional with four branches.
+The first two branches are straightforward: if each condition holds, the caster
+wins in the first case (<code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">True</span></code>), and loses in the second
+(<code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">False</span></code>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">if</span> <span class="n">chance</span> <span class="o">==</span> <span class="n">chosen_main</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">chance</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">chance</span> <span class="o">==</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>To determine the outcome of the third case, we need a nested
+conditional that branches on the value of <code class="docutils literal notranslate"><span class="pre">chosen_main</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">elif</span> <span class="p">(</span><span class="n">chance</span> <span class="o">==</span> <span class="mi">11</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">chance</span> <span class="o">==</span> <span class="mi">12</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">chosen_main</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">chosen_main</span> <span class="o">==</span> <span class="mi">9</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">chosen_main</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">chosen_main</span> <span class="o">==</span> <span class="mi">8</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">chance</span> <span class="o">==</span> <span class="mi">12</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># chosen_main is 7</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">chance</span> <span class="o">==</span> <span class="mi">11</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Notice that the outcome of the second branch of the inner conditional
+is not <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> but instead depends on whether the value
+of <code class="docutils literal notranslate"><span class="pre">chance</span></code> is 11 or 12.  Since <code class="docutils literal notranslate"><span class="pre">chance</span></code> can only have one of
+these two values, we can compute the output with a simple boolean
+expression: <code class="docutils literal notranslate"><span class="pre">chance</span> <span class="pre">==</span> <span class="pre">12</span></code>.  The output of the third branch is
+computed similarly, using the boolean expression <code class="docutils literal notranslate"><span class="pre">chance</span> <span class="pre">==</span> <span class="pre">11</span></code>.</p>
+<p>Finally, if none of the first three conditions of the outer
+conditional statement hold, then Python executes the body of the <code class="docutils literal notranslate"><span class="pre">else</span></code> branch.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">roll</span> <span class="o">=</span> <span class="n">throw_dice</span><span class="p">()</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="p">((</span><span class="n">roll</span> <span class="o">==</span> <span class="n">chance</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">roll</span> <span class="o">==</span> <span class="n">chosen_main</span><span class="p">)):</span>
+        <span class="n">roll</span> <span class="o">=</span> <span class="n">throw_dice</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">roll</span> <span class="o">==</span> <span class="n">chance</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p>In this case, the caster continues to throw the dice until a roll
+matches either the chance or the main.  Let’s look at how to encode
+this condition in two parts: The expression <code class="docutils literal notranslate"><span class="pre">(roll</span> <span class="pre">==</span> <span class="pre">chance)</span> <span class="pre">or</span>
+<span class="pre">(roll</span> <span class="pre">==</span> <span class="pre">chosen_main)</span></code> will be true when the roll matches either the
+chance or the main.  Since our loop should continue only when that
+condition does not hold, we can simply negate this expression to get
+the proper test for the loop: (<code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">((roll</span> <span class="pre">==</span> <span class="pre">chance)</span> <span class="pre">or</span> <span class="pre">(roll</span> <span class="pre">==</span>
+<span class="pre">chosen_main))</span></code>)</p>
+<p>Notice that we again return the result of evaluating a boolean
+expression.</p>
+<p>A note about using parenthesis in expressions: because <code class="docutils literal notranslate"><span class="pre">not</span></code> has
+higher precedence than <code class="docutils literal notranslate"><span class="pre">or</span></code>, the parenthesis surrounding the
+expression <code class="docutils literal notranslate"><span class="pre">((roll</span> <span class="pre">==</span> <span class="pre">chance)</span> <span class="pre">or</span> <span class="pre">(roll</span> <span class="pre">==</span> <span class="pre">main))</span></code> in the while loop
+test are necessary for correctness.  The rest of parenthesis
+surrounding expressions in this function, in contrast, are not
+necessary for correctness.  Some programmers include parenthesis to
+increase clarity, while others consider them unnecessary distractions.
+You can decide for yourself.</p>
+<p>We can put these pieces together to get the following complete function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">play_one_round</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Play one round of Hazard.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">        chosen_main (int): a value between 5 and 9 inclusive.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns (boolean): True, if player wins the round and False, otherwise.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">chance</span> <span class="o">=</span> <span class="n">throw_dice</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">chance</span> <span class="o">==</span> <span class="n">chosen_main</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">chance</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">chance</span> <span class="o">==</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">chance</span> <span class="o">==</span> <span class="mi">11</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">chance</span> <span class="o">==</span> <span class="mi">12</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">chosen_main</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">chosen_main</span> <span class="o">==</span> <span class="mi">9</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">chosen_main</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">chosen_main</span> <span class="o">==</span> <span class="mi">8</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">chance</span> <span class="o">==</span> <span class="mi">12</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># chosen_main is 7</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">chance</span> <span class="o">==</span> <span class="mi">11</span><span class="p">)</span>
+
+    <span class="n">roll</span> <span class="o">=</span> <span class="n">throw_dice</span><span class="p">()</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="p">((</span><span class="n">roll</span> <span class="o">==</span> <span class="n">chance</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">roll</span> <span class="o">==</span> <span class="n">chosen_main</span><span class="p">)):</span>
+        <span class="n">roll</span> <span class="o">=</span> <span class="n">throw_dice</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">roll</span> <span class="o">==</span> <span class="n">chance</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="simulating-a-player">
+<h2><span class="section-number">1.7.3. </span>Simulating a player<a class="headerlink" href="#simulating-a-player" title="Permalink to this heading"></a></h2>
+<p>We will also encapsulate the code for simulating an individual caster’s turn
+in a function.  Similar to <code class="docutils literal notranslate"><span class="pre">play_one_round</span></code>, this function will take
+the chosen main as a parameter.  The betting rules for Hazard are
+complex so, for now, our simulation will simply count the number of
+rounds that the caster wins.</p>
+<p>Recall that the caster plays rounds until they lose two in a row.
+Keeping track of the number of consecutive losses is the trickiest
+part of this function.  We’ll use a variable, <code class="docutils literal notranslate"><span class="pre">consecutive_losses</span></code>,
+that we initialize to zero because the caster has not yet played or
+lost any rounds. We will call <code class="docutils literal notranslate"><span class="pre">play_one_round</span></code> to simulate a round
+and update <code class="docutils literal notranslate"><span class="pre">consecutive_losses</span></code> as appropriate: on a loss, we will
+increment its value.  On a win, we will reset it to zero.</p>
+<p>As soon as the caster has lost two consecutive rounds, the test for
+the while loop will be false and the function will return the number
+of rounds won.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulate_caster</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Simulate rounds until the caster loses two rounds in a row.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">        chosen_main (int): a value between 5 and 9 inclusive.</span>
+
+<span class="sd">    Returns (int): the number of rounds won</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">num_wins</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">consecutive_losses</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">while</span> <span class="n">consecutive_losses</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">play_one_round</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">):</span>
+            <span class="n">consecutive_losses</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">num_wins</span> <span class="o">=</span> <span class="n">num_wins</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">consecutive_losses</span> <span class="o">=</span> <span class="n">consecutive_losses</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">num_wins</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="estimating-win-rate">
+<h2><span class="section-number">1.7.4. </span>Estimating win rate<a class="headerlink" href="#estimating-win-rate" title="Permalink to this heading"></a></h2>
+<p>Finally, we can easily reuse our function <code class="docutils literal notranslate"><span class="pre">play_one_round</span></code> to print
+a table of estimated per-round win rates for the different possible choices for
+main.  There is a tradeoff between accuracy and computation time: simulating
+more rounds takes more time to compute
+but produces a more accurate result.  Rather than hard-coding a specific number
+of rounds, we’ll write our function to take the number of rounds as a
+parameter and let the user make this tradeoff.</p>
+<p>We will use a pair of nested loops to generate the table.  The outer
+loop will iterate over the possible values for main (<code class="docutils literal notranslate"><span class="pre">range(5,</span>
+<span class="pre">10)</span></code>). Why <code class="docutils literal notranslate"><span class="pre">10</span></code>?  Recall that <code class="docutils literal notranslate"><span class="pre">range</span></code> generates a sequence of
+values from the specified lower bound up to, but not including, the
+specified upper bound.  The inner loop will both simulate the desired
+number of rounds and keep track of the number of rounds won for the
+current value of <code class="docutils literal notranslate"><span class="pre">chosen_main</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_win_rate_table</span><span class="p">(</span><span class="n">num_rounds</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Print a table with the win rates for the possible choices for main</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">        num_rounds (int): the number of rounds to simulate</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">for</span> <span class="n">chosen_main</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+        <span class="n">num_wins</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_rounds</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">play_one_round</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">):</span>
+                <span class="n">num_wins</span> <span class="o">=</span> <span class="n">num_wins</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">,</span> <span class="n">num_wins</span><span class="o">/</span><span class="n">num_rounds</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Notice that for this computation, we need to start with a fresh win
+count for each possible value of <code class="docutils literal notranslate"><span class="pre">chosen_main</span></code>, so the value of
+<code class="docutils literal notranslate"><span class="pre">win</span></code> gets reset to zero for each iteration of the outer loop.  As
+we noted in our earlier discussion of loops, initializing variables in
+the wrong place is a very common source of bugs.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../exceptions/index.html" class="btn btn-neutral float-left" title="1.6. Understanding Errors and Catching Exceptions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../data_structures/index.html" class="btn btn-neutral float-right" title="2. Data Structures" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Anne Rogers and Borja Sotomayor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

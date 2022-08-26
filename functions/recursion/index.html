@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.2. Recursion &mdash; Computer Science with Applications  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/csapps.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3.3. Trees" href="../trees/index.html" />
+    <link rel="prev" title="3.1. Functional Programming" href="../functions/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Computer Science with Applications
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../preface.html">Preface</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_structures/index.html">2. Data Structures</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. Functional Programming and Recursion</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../functions/index.html">3.1. Functional Programming</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.2. Recursion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#factorials">3.2.1. Factorials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-anatomy-of-a-recursive-function-call">3.2.2. The anatomy of a recursive function call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recursion-vs-iteration">3.2.3. Recursion vs. iteration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#permutations-or-how-to-think-recursively">3.2.4. Permutations (or how to think recursively)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#binary-search">3.2.5. Binary Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../trees/index.html">3.3. Trees</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../working_with_data/index.html">4. Working with Data</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Computer Science with Applications</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">3. </span>Functional Programming and Recursion</a> &raquo;</li>
+      <li><span class="section-number">3.2. </span>Recursion</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/functions/recursion/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="recursion">
+<h1><span class="section-number">3.2. </span>Recursion<a class="headerlink" href="#recursion" title="Permalink to this heading"></a></h1>
+<p>As we have seen throughout the book, there are many cases where we must repeat
+operations and can do so with a <code class="docutils literal notranslate"><span class="pre">for</span></code> or <code class="docutils literal notranslate"><span class="pre">while</span></code> loop.
+This form of repetition is formally known as <em>iteration</em> and involves
+defining a loop condition and a block of statements to be repeated
+as long as that condition is true. Each repetition of the block of
+statements is called an <em>iteration</em> and an algorithm that uses
+this style of repetition is called an <em>iterative algorithm</em>.</p>
+<p>In this chapter, we will discuss a different way of expressing
+repetition: <em>recursion</em>. Recursion
+is equally expressive as iteration, meaning that anything we
+can do with iteration can also be done with recursion (and vice versa).
+There are some algorithms, however, where a recursive solution
+will require less code and will result in cleaner and more intuitive code
+than the equivalent iterative solution.
+In this chapter, we will introduce recursion and work through several problems that
+lend themselves naturally to a recursive solution.</p>
+<div class="section" id="factorials">
+<h2><span class="section-number">3.2.1. </span>Factorials<a class="headerlink" href="#factorials" title="Permalink to this heading"></a></h2>
+<p>Let’s look at the factorial operation:</p>
+<div class="math notranslate nohighlight">
+\[4! = 4\cdot 3 \cdot 2 \cdot 1 = 24\]</div>
+<p>One of the formal definitions of factorial is:</p>
+<div class="math notranslate nohighlight">
+\[n!=\prod_{k=1}^n k \!\]</div>
+<p>We can implement this definition using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;  Compute n! iteratively &#39;&#39;&#39;</span>
+
+    <span class="n">rv</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="n">rv</span> <span class="o">*</span> <span class="n">k</span>
+    <span class="k">return</span> <span class="n">rv</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">factorial</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">24</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">120</span>
+</pre></div>
+</div>
+<p>Factorials can also be defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}n!=\left\{
+            \begin{array}{ll}
+              1 &amp; \textrm{if n=1}\\
+              n\cdot(n-1)! &amp; \textrm{if n&gt;1}
+            \end{array}
+          \right.\end{split}\]</div>
+<p>This is a <em>recursive definition</em>. Notice how there
+is no reference to loops or to repetition. Instead, factorials are
+defined in terms of themselves. At first, this approach may seem odd. Imagine
+finding a definition in the dictionary that looked like this:</p>
+<blockquote>
+<div><p><strong>Recursion</strong>: See <em>recursion</em>.</p>
+</div></blockquote>
+<p>You would keep coming back to the definition of “recursion” infinitely!</p>
+<p>However, the recursive definition of factorial works because it is
+divided into two cases:</p>
+<ul class="simple">
+<li><p><em>The base case</em>: In this case, the value of the factorial can be obtained immediately and trivially. In the case where <span class="math notranslate nohighlight">\(n=1\)</span>, the value of the factorial is known immediately and without further computation: it is simply 1.</p></li>
+<li><p><em>The recursive case</em>: In this case, we define the factorial in terms of itself. For factorials, we can define <span class="math notranslate nohighlight">\(n!\)</span> as <span class="math notranslate nohighlight">\(n\)</span> times <span class="math notranslate nohighlight">\((n-1)!\)</span></p></li>
+</ul>
+<p>So, if we were computing <span class="math notranslate nohighlight">\(4!\)</span>, we would start in the recursive case,
+which tells us that:</p>
+<div class="math notranslate nohighlight">
+\[4! = 4\cdot 3!\]</div>
+<p>To evaluate this formula, we need to find the value of <span class="math notranslate nohighlight">\(3!\)</span> which,
+again, involves the recursive case:</p>
+<div class="math notranslate nohighlight">
+\[3! = 3\cdot 2!\]</div>
+<p>Similarly for <span class="math notranslate nohighlight">\(2!\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[2! = 2\cdot 1!\]</div>
+<p>But, when we get to <span class="math notranslate nohighlight">\(1!\)</span>, we know that <span class="math notranslate nohighlight">\(1!=1\)</span>, so we can plug <span class="math notranslate nohighlight">\(1\)</span> into the above formula, and we get:</p>
+<div class="math notranslate nohighlight">
+\[2! = 2\cdot 1 = 2\]</div>
+<p>Now that we know the value of  <span class="math notranslate nohighlight">\(2!\)</span>, we can plug that
+into this formula:</p>
+<div class="math notranslate nohighlight">
+\[3! = 3\cdot 2!\]</div>
+<p>And we get:</p>
+<div class="math notranslate nohighlight">
+\[3! = 3\cdot 2 = 6\]</div>
+<p>And, finally, now that we know the value of <span class="math notranslate nohighlight">\(3!\)</span>,
+plug it into the formula for <span class="math notranslate nohighlight">\(4!\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[4! = 4\cdot 3!\]</div>
+<p>And we get:</p>
+<div class="math notranslate nohighlight">
+\[4! = 4\cdot 6 = 24\]</div>
+<p>Notice that
+the recursive case must be defined so that it
+gets us closer to the base case when we use it; otherwise,
+we would fall into infinite recursion.</p>
+<p>We can implement our recursive definition of factorial
+in Python like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial_r</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;  Compute n! recursively &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+       <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+       <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorial_r</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">factorial_r</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">24</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">factorial_r</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">120</span>
+</pre></div>
+</div>
+<p>Notice that our function <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code> calls itself.
+We refer to such functions as <em>recursive functions</em>, and we refer
+to the point where the function calls itself as a <em>recursive call</em>.
+While the concept of recursion can be easy to understand at a high
+level (think, for example, of how easily we defined factorials
+recursively), writing recursive functions and understanding what
+happens during a recursive call often stumps beginning programmers.</p>
+<p>So, we are going to spend some time dissecting exactly what happens
+in a recursive function. After that, we will work through several
+examples of recursive algorithms that will help us to understand
+how to design recursive functions, as well as when to use a recursive
+algorithm instead of an iterative solution.</p>
+</div>
+<div class="section" id="the-anatomy-of-a-recursive-function-call">
+<h2><span class="section-number">3.2.2. </span>The anatomy of a recursive function call<a class="headerlink" href="#the-anatomy-of-a-recursive-function-call" title="Permalink to this heading"></a></h2>
+<p>To show what happens in the <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code> function,
+we have prepared a more verbose version that will do the
+same thing as the function shown earlier, but will print messages
+to help us understand exactly what’s going on. Don’t worry if
+you don’t understand how we’re formatting the output (especially
+how we indent the messages, which requires using an extra parameter).
+Focus instead on following what happens during each recursive call.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial_r</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute n! recursively and print information about the</span>
+<span class="sd">    computation along the way.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      n (int): operand</span>
+<span class="sd">      indent (string): spaces to use as a prefix when printing.</span>
+
+<span class="sd">    Returns (int): n!</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+       <span class="nb">print</span><span class="p">(</span><span class="n">indent</span> <span class="o">+</span> <span class="s2">&quot;factorial_r(1) -- BASE CASE -- The value of 1! is 1&quot;</span><span class="p">)</span>
+       <span class="nb">print</span><span class="p">()</span>
+       <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+       <span class="nb">print</span><span class="p">(</span><span class="n">indent</span> <span class="o">+</span> <span class="s2">&quot;factorial_r(</span><span class="si">{}</span><span class="s2">) -- START OF RECURSIVE CASE&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+       <span class="nb">print</span><span class="p">(</span><span class="n">indent</span> <span class="o">+</span> <span class="s2">&quot;                  The value of </span><span class="si">{}</span><span class="s2">! is </span><span class="si">{}</span><span class="s2">*</span><span class="si">{}</span><span class="s2">!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+       <span class="nb">print</span><span class="p">(</span><span class="n">indent</span> <span class="o">+</span> <span class="s2">&quot;                  I need to find out the value of </span><span class="si">{}</span><span class="s2">!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+       <span class="nb">print</span><span class="p">()</span>
+       <span class="n">x</span> <span class="o">=</span> <span class="n">factorial_r</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="o">+</span><span class="s2">&quot;    &quot;</span><span class="p">)</span>
+       <span class="nb">print</span><span class="p">(</span><span class="n">indent</span> <span class="o">+</span> <span class="s2">&quot;factorial_r(</span><span class="si">{}</span><span class="s2">) -- END OF RECURSIVE CASE&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+       <span class="nb">print</span><span class="p">(</span><span class="n">indent</span> <span class="o">+</span> <span class="s2">&quot;                  I now know that </span><span class="si">{}</span><span class="s2">! is </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+       <span class="nb">print</span><span class="p">(</span><span class="n">indent</span> <span class="o">+</span> <span class="s2">&quot;                  Which means that </span><span class="si">{}</span><span class="s2">! = </span><span class="si">{}</span><span class="s2">*</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+       <span class="nb">print</span><span class="p">()</span>
+       <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">x</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">factorial_r</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">factorial_r(4) -- START OF RECURSIVE CASE</span>
+<span class="go">                  The value of 4! is 4*3!</span>
+<span class="go">                  I need to find out the value of 3!</span>
+
+<span class="go">    factorial_r(3) -- START OF RECURSIVE CASE</span>
+<span class="go">                      The value of 3! is 3*2!</span>
+<span class="go">                      I need to find out the value of 2!</span>
+
+<span class="go">        factorial_r(2) -- START OF RECURSIVE CASE</span>
+<span class="go">                          The value of 2! is 2*1!</span>
+<span class="go">                          I need to find out the value of 1!</span>
+
+<span class="go">            factorial_r(1) -- BASE CASE -- The value of 1! is 1</span>
+
+<span class="go">        factorial_r(2) -- END OF RECURSIVE CASE</span>
+<span class="go">                          I now know that 1! is 1</span>
+<span class="go">                          Which means that 2! = 2*1</span>
+
+<span class="go">    factorial_r(3) -- END OF RECURSIVE CASE</span>
+<span class="go">                      I now know that 2! is 2</span>
+<span class="go">                      Which means that 3! = 3*2</span>
+
+<span class="go">factorial_r(4) -- END OF RECURSIVE CASE</span>
+<span class="go">                  I now know that 3! is 6</span>
+<span class="go">                  Which means that 4! = 4*6</span>
+
+<span class="go">24</span>
+</pre></div>
+</div>
+<p>Notice how, whenever we run into a recursive case, we put that function call
+on “hold” while we go deeper into the recursion rabbit hole until we
+get to a base case and can start “wrapping up” all of the recursive cases that
+we put on hold. Examining the function call stack (see <a class="reference internal" href="../../getting_started/intro_functions/index.html#call-stack"><span class="std std-ref">The function call stack</span></a> in chapter <a class="reference internal" href="../../getting_started/intro_functions/index.html#chapter-functions"><span class="std std-ref">Introduction to Functions</span></a>)
+can help explain what happens
+during a call to a recursive function. This process is a fairly low-level aspect of
+how recursive calls work, and so you can skip this discussion for now if you want. However,
+if you’re the kind of person who understands concepts better if you know
+exactly what happens under the hood, read on.</p>
+<p>When a call is made to <code class="docutils literal notranslate"><span class="pre">factorial_r(4)</span></code>, the following entry is added to
+the function call stack. For simplicity, we will omit the <code class="docutils literal notranslate"><span class="pre">indent</span></code> parameter,
+which is used purely for formatting purposes.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Function</strong>: <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code></p>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: 4</p></li>
+</ul>
+<p><strong>Variables</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: <em>undefined</em></p></li>
+</ul>
+<p><strong>Return value</strong>: None</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>When the function reaches the recursive call (<code class="docutils literal notranslate"><span class="pre">factorial_r(n-1)</span></code>), it will need
+to make a call to <code class="docutils literal notranslate"><span class="pre">factorial_r(3)</span></code> before it can set a value for <code class="docutils literal notranslate"><span class="pre">x</span></code>. So,
+we add an entry for <code class="docutils literal notranslate"><span class="pre">factorial_r(3)</span></code>:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Function</strong>: <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code></p>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: 4</p></li>
+</ul>
+<p><strong>Variables</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: <em>undefined</em></p></li>
+</ul>
+<p><strong>Return value</strong>: None</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>Function</strong>: <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code></p>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: 3</p></li>
+</ul>
+<p><strong>Variables</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: <em>undefined</em></p></li>
+</ul>
+<p><strong>Return value</strong>: None</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Recall that our stacks grow down the page, so we added the frame for
+the call <code class="docutils literal notranslate"><span class="pre">factorial_r(3)</span></code> beneath the frame for the call
+<code class="docutils literal notranslate"><span class="pre">factorial_4</span></code>.</p>
+<p>This process is repeated for every recursive call, until we reach the
+recursive call that triggers the base case:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Function</strong>: <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code></p>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: 4</p></li>
+</ul>
+<p><strong>Variables</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: <em>undefined</em></p></li>
+</ul>
+<p><strong>Return value</strong>: None</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>Function</strong>: <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code></p>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: 3</p></li>
+</ul>
+<p><strong>Variables</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: <em>undefined</em></p></li>
+</ul>
+<p><strong>Return value</strong>: None</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>Function</strong>: <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code></p>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: 2</p></li>
+</ul>
+<p><strong>Variables</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: <em>undefined</em></p></li>
+</ul>
+<p><strong>Return value</strong>: None</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>Function</strong>: <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code></p>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: 1</p></li>
+</ul>
+<p><strong>Variables</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: <em>undefined</em></p></li>
+</ul>
+<p><strong>Return value</strong>: None</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>At this point, we have a function call stack that is holding
+information for all the calls from <code class="docutils literal notranslate"><span class="pre">factorial_r(4)</span></code> to
+<code class="docutils literal notranslate"><span class="pre">factorial_r(1)</span></code>. When we reach the base case, the recursion starts
+to <em>unwind</em> because we have reached a point where <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code> can
+return a value without having to make any more recursive calls. The
+last entry in the function call stack will return 1:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Function</strong>: <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code></p>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: 1</p></li>
+</ul>
+<p><strong>Variables</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: <em>undefined</em></p></li>
+</ul>
+<p><strong>Return value</strong>: 1</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The function call represented by the previous entry in the function
+call stack can now assign a value to variable <code class="docutils literal notranslate"><span class="pre">x</span></code> because it has
+finished evaluating the function call <code class="docutils literal notranslate"><span class="pre">factorial_r(1)</span></code>, so the
+function call stack will look like this:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Function</strong>: <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code></p>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: 4</p></li>
+</ul>
+<p><strong>Variables</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: <em>undefined</em></p></li>
+</ul>
+<p><strong>Return value</strong>: None</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>Function</strong>: <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code></p>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: 3</p></li>
+</ul>
+<p><strong>Variables</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: <em>undefined</em></p></li>
+</ul>
+<p><strong>Return value</strong>: None</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>Function</strong>: <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code></p>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: 2</p></li>
+</ul>
+<p><strong>Variables</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: 1</p></li>
+</ul>
+<p><strong>Return value</strong>: 2</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Remember that once a function call ends, its entry is removed (or popped) from the
+function call stack, so we no longer have an entry for <code class="docutils literal notranslate"><span class="pre">factorial_r(1)</span></code>.</p>
+<p>Now, the function call to <code class="docutils literal notranslate"><span class="pre">factorial_r(2)</span></code> will be able to return the value
+<code class="docutils literal notranslate"><span class="pre">2</span></code> (i.e., <code class="docutils literal notranslate"><span class="pre">n</span></code> multiplied by <code class="docutils literal notranslate"><span class="pre">x</span></code>), which will become the value for <code class="docutils literal notranslate"><span class="pre">x</span></code>
+in <code class="docutils literal notranslate"><span class="pre">factorial_r(3)</span></code>:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Function</strong>: <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code></p>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: 4</p></li>
+</ul>
+<p><strong>Variables</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: <em>undefined</em></p></li>
+</ul>
+<p><strong>Return value</strong>: None</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>Function</strong>: <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code></p>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: 3</p></li>
+</ul>
+<p><strong>Variables</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: 2</p></li>
+</ul>
+<p><strong>Return value</strong>: 6</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>We repeat this process one final time, to obtain the return value of <code class="docutils literal notranslate"><span class="pre">factorial_r(4)</span></code>:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Function</strong>: <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code></p>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>: 4</p></li>
+</ul>
+<p><strong>Variables</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: 6</p></li>
+</ul>
+<p><strong>Return value</strong>: 24</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Thinking about recursive calls in terms of their function call stack
+reinforces the notion that a fresh set of parameters and local
+variables is created for a <em>every</em> call to a function.  Keeping this
+fact in mind can help avoid a common mistake: thinking that the
+recursive call simply “jumps” back to the beginning of the
+function. For example, in the <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code> function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial_r</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;  Compute n! recursively &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+       <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+       <span class="n">x</span> <span class="o">=</span> <span class="n">factorial_r</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+       <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">x</span>
+</pre></div>
+</div>
+<p>When we reach the <code class="docutils literal notranslate"><span class="pre">factorial_r(n-1)</span></code> call, we do not
+change the value of <code class="docutils literal notranslate"><span class="pre">n</span></code> and “jump” back up to the beginning of
+the function that is currently running. Instead, an entirely new
+entry in the function call stack is created, with its own values for
+<code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">x</span></code>. If you find yourself struggling to understand how
+a recursive function works, try working through the function
+call stack step-by-step as we did above.</p>
+</div>
+<div class="section" id="recursion-vs-iteration">
+<h2><span class="section-number">3.2.3. </span>Recursion vs. iteration<a class="headerlink" href="#recursion-vs-iteration" title="Permalink to this heading"></a></h2>
+<p>At this point, we have seen that we can implement the factorial
+function using iteration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;  Compute n! iteratively &#39;&#39;&#39;</span>
+
+    <span class="n">rv</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="n">rv</span> <span class="o">*</span> <span class="n">k</span>
+    <span class="k">return</span> <span class="n">rv</span>
+</pre></div>
+</div>
+<p>And using recursion:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial_r</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;  Compute n! recursively &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+       <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+       <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorial_r</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this simple example, the amount of code we write for both functions
+is roughly the same, so why would we choose recursion over iteration?
+In general, there are a number of algorithms and data structures
+that lend themselves naturally to a recursive definition.
+In those cases, a recursive implementation will typically be simpler
+and more elegant than the equivalent iterative implementation. This
+will become more apparent as we see more recursive algorithms.</p>
+<p>However, you should resist the urge to use recursion as just
+another way of performing repetition in your code. While it is true that
+recursion and iteration are equally expressive (every iterative
+algorithm can be converted to a recursive one, and vice versa),
+you will usually use recursion <em>only</em> when you are faced
+with problems that have an inherently recursive definition.</p>
+<p>For example, let’s say we want to create a list with all the numbers
+between a lower bound <code class="docutils literal notranslate"><span class="pre">lb</span></code> and <code class="docutils literal notranslate"><span class="pre">ub</span></code> (both inclusive). We can do this work very
+simply with iteration (for the sake of argument, let’s assume
+we cannot use the <code class="docutils literal notranslate"><span class="pre">range</span></code> function):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gen_nums</span><span class="p">(</span><span class="n">lb</span><span class="p">,</span> <span class="n">ub</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Generate a list of integers from a lower bound to an upper</span>
+<span class="sd">    bound inclusive.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      lb (int): lower bound</span>
+<span class="sd">      ub (int): upper bound</span>
+
+<span class="sd">    Returns (list of ints): list of integers from lb to ub</span>
+<span class="sd">      inclusive</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">lb</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">ub</span><span class="p">:</span>
+       <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+       <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">l</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gen_nums</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">[1, 2, 3, 4, 5]</span>
+</pre></div>
+</div>
+<p>Although we can also write a recursive solution to this problem,
+it is arguably not as easy to understand as the equivalent iterative solution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gen_nums_r</span><span class="p">(</span><span class="n">lb</span><span class="p">,</span> <span class="n">ub</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Generate a list of integers from a lower bound to an upper</span>
+<span class="sd">    bound inclusive.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      lb (int): lower bound</span>
+<span class="sd">      ub (int): upper bound</span>
+
+<span class="sd">    Returns (list of ints): list of integers from lb to ub</span>
+<span class="sd">      inclusive</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="n">lb</span> <span class="o">&gt;</span> <span class="n">ub</span><span class="p">:</span>
+       <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">else</span><span class="p">:</span>
+       <span class="k">return</span> <span class="p">[</span><span class="n">lb</span><span class="p">]</span> <span class="o">+</span> <span class="n">gen_nums_r</span><span class="p">(</span><span class="n">lb</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">ub</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gen_nums_r</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">[1, 2, 3, 4, 5]</span>
+</pre></div>
+</div>
+<p>Notice that our base case is the case when the lower bound is greater
+than the upper bound. In this case, the list can be obtained
+trivially: it will simply be an empty list. In the recursive case, we
+create a list whose first element is the lower bound and the
+rest of the list (from <code class="docutils literal notranslate"><span class="pre">lb+1</span></code> to <code class="docutils literal notranslate"><span class="pre">ub</span></code>) is obtained recursively
+(we’re guaranteed to reach the base case eventually because we
+increment <code class="docutils literal notranslate"><span class="pre">lb</span></code> by one in each call and get closer to <code class="docutils literal notranslate"><span class="pre">ub</span></code> with
+each recursive call). As suggested earlier, you may want to work
+through the function call stack for a simple example call, such as
+<code class="docutils literal notranslate"><span class="pre">gen_nums_r(2,5)</span></code>, if you have trouble understanding how this
+function works.</p>
+<p>Choosing between iteration and recursion can also be
+a question of taste. Most functional programming languages depend on recursion
+to repeat operations and many of them do not include any iterative
+constructs at all, so someone
+who learned how to program using a functional programming language
+may find the recursive version of <code class="docutils literal notranslate"><span class="pre">gen_nums_r</span></code> to be
+more elegant and easier to understand.  Programmers who
+have learned to program under the imperative paradigm (using loops
+for repetition), however, tend to use recursion only when dealing with problems
+that have an inherently recursive definition because it is easier
+to translate the problem into code using that definition rather than trying
+to figure out the equivalent iterative solution.</p>
+</div>
+<div class="section" id="permutations-or-how-to-think-recursively">
+<h2><span class="section-number">3.2.4. </span>Permutations (or how to think recursively)<a class="headerlink" href="#permutations-or-how-to-think-recursively" title="Permalink to this heading"></a></h2>
+<p><em>Generating permutations</em> is a good example of a problem that has a
+simple recursive definition: given <span class="math notranslate nohighlight">\(n\)</span> elements, the
+permutations of those elements are all possible ways of arranging
+those elements.</p>
+<p>For example, these are all of the possible permutations of (1,2,3):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
+<span class="mi">1</span> <span class="mi">3</span> <span class="mi">2</span>
+<span class="mi">2</span> <span class="mi">1</span> <span class="mi">3</span>
+<span class="mi">2</span> <span class="mi">3</span> <span class="mi">1</span>
+<span class="mi">3</span> <span class="mi">1</span> <span class="mi">2</span>
+<span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>And these are all of the possible permutations of (1,2,3,4):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span>
+<span class="mi">1</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">3</span>
+<span class="mi">1</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">4</span>
+<span class="mi">1</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">2</span>
+<span class="mi">1</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">3</span>
+<span class="mi">1</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span>
+
+<span class="mi">2</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">4</span>
+<span class="mi">2</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">3</span>
+<span class="mi">2</span> <span class="mi">3</span> <span class="mi">1</span> <span class="mi">4</span>
+<span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">1</span>
+<span class="mi">2</span> <span class="mi">4</span> <span class="mi">1</span> <span class="mi">3</span>
+<span class="mi">2</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">1</span>
+
+<span class="mi">3</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">4</span>
+<span class="mi">3</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">2</span>
+<span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">4</span>
+<span class="mi">3</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">1</span>
+<span class="mi">3</span> <span class="mi">4</span> <span class="mi">1</span> <span class="mi">2</span>
+<span class="mi">3</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">1</span>
+
+<span class="mi">4</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
+<span class="mi">4</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">2</span>
+<span class="mi">4</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">3</span>
+<span class="mi">4</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">1</span>
+<span class="mi">4</span> <span class="mi">3</span> <span class="mi">1</span> <span class="mi">2</span>
+<span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Look closely at both sets of permutations. In particular,
+look at all the permutations of (1,2,3,4) that start with 4:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
+<span class="mi">4</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">2</span>
+<span class="mi">4</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">3</span>
+<span class="mi">4</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">1</span>
+<span class="mi">4</span> <span class="mi">3</span> <span class="mi">1</span> <span class="mi">2</span>
+<span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>These permutations are generated by taking all of the permutations
+of (1,2,3) and adding 4 as the first element. In fact,
+the permutations of (1,2,3,4) are:</p>
+<ul class="simple">
+<li><p>All permutations of (2,3,4) with 1 as the first element;</p></li>
+<li><p>All permutations of (1,3,4) with 2 as the first element;</p></li>
+<li><p>All permutations of (1,2,4) with 3 as the first element; plus</p></li>
+<li><p>All permutations of (1,2,3) with 4 as the first element.</p></li>
+</ul>
+<p>And the permutations of (1,2,3) are:</p>
+<ul class="simple">
+<li><p>All permutations of (2,3) with 1 as the first element;</p></li>
+<li><p>All permutations of (1,3) with 2 as the first element; plus</p></li>
+<li><p>All permutations of (1,2) with 3 as the first element.</p></li>
+</ul>
+<p>And so on.</p>
+<p>Intuitively, it looks like permutations are defined recursively,
+because we can define permutations of <span class="math notranslate nohighlight">\(n\)</span> elements in
+terms of permutations of <span class="math notranslate nohighlight">\(n-1\)</span> elements. To write a
+recursive solution, we will generally take
+the following three steps.</p>
+<p><strong>Step #1: Determine the input(s) and output(s) to the function.</strong>
+This step may seem obvious given that we do this work any time we
+write a function, but when solving a recursive problem, it is
+especially important to make these decisions first.</p>
+<p>In this case, the input to our function will be a list
+of elements we want to generate permutations on. The output,
+or return value, will be a list of permutations, with
+each permutation being a list of elements. For example,
+if we call the function with the following list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>We would expect it to return the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>The reason we need to figure the types out first is because we need to
+ensure that both our base case and our recursive case expect the same
+type of inputs and return the same type of outputs.</p>
+<p><strong>Step #2: Determine the base case(s) for the function.</strong>
+We need to think about the case (or cases) where solving
+the problem is trivial. With permutations, this case
+is when we’re asked to produce all the permutations
+of one element. In this case, there is only one such
+permutation: the permutation with that element.</p>
+<p>So, we can start writing our <code class="docutils literal notranslate"><span class="pre">permutations_r</span></code> function
+as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">permutations_r</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute all the permutations of the values in p.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      p (list): list of values to permute</span>
+
+<span class="sd">    Returns (list of lists): permutations of p</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># Base case</span>
+        <span class="k">return</span> <span class="n">p</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># TODO: Recursive case</span>
+        <span class="k">return</span> <span class="p">[]</span>
+</pre></div>
+</div>
+<p>However, the above code for the base case is not correct!
+Let’s try calling the function in such a way that we hit
+the base case immediately:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">permutations_r</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
+<span class="go">[1]</span>
+</pre></div>
+</div>
+<p>The function returns <code class="docutils literal notranslate"><span class="pre">[1]</span></code>, but we decided that the return
+value of our function would be a <em>list</em> of permutations (and
+<code class="docutils literal notranslate"><span class="pre">[1]</span></code> represents a single permutation). What we really
+want to get from the function is <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">[1]</span> <span class="pre">]</span></code>. So we re-write
+the function as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">permutations_r</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute all the permutations of the values in p.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      p (list): list of values to permute</span>
+
+<span class="sd">    Returns (list of lists): permutations of p</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># Base case</span>
+        <span class="k">return</span> <span class="p">[</span> <span class="n">p</span> <span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># TODO: Recursive case</span>
+        <span class="k">return</span> <span class="p">[]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">permutations_r</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
+<span class="go">[[1]]</span>
+</pre></div>
+</div>
+<p>This is a common way to mess up the base case.  While it may make
+intuitive sense for the function to return <code class="docutils literal notranslate"><span class="pre">[1]</span></code> in the trivial case
+because we only have one permutation, we must make sure that the
+code uses inputs and outputs consistently. Otherwise, the recursive
+case will not work.</p>
+<p>Make sure that your function works correctly for the base case before
+moving onto the next step. Test it
+informally using the Python interpreter on inputs that will
+immediately hit the base case and make sure the return value is
+consistent with your desired type of output. Paying careful
+attention to the input and output types will save you a fair amount of
+trouble and debugging time farther down the road.</p>
+<p><strong>Step #3: Determine the recursive case(s) for the function.</strong> This step
+can be tricky because thinking recursively doesn’t
+come naturally to many people. We suggest taking the following
+approach: if you are writing a function that takes some input
+<span class="math notranslate nohighlight">\(x\)</span>, write a solution that assumes that calls to that
+function with a <em>smaller value</em> for <span class="math notranslate nohighlight">\(x\)</span> will “just work”.</p>
+<p>For example, let’s go back to the factorial function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial_r</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;  Compute n! recursively &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+       <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+       <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorial_r</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After designing our base case, we wrote a recursive case that
+assumes that the call to <code class="docutils literal notranslate"><span class="pre">factorial_r(n-1)</span></code> will “just work”.
+If we actually write out the entire sequence of function calls
+and the function call stack we can understand <em>how</em> this works,
+but when starting to write a recursive solution ,
+it is better to not go down the rabbit hole of trying
+to trace every recursive call all the way down to the base case.</p>
+<p>Instead, we implement the recursive case <em>under the assumption</em> that
+recursive calls will “just work” as long as the parameters we pass to
+the recursive call move us closer to the base case.  This
+is certainly true in the case of factorial: for any positive value of
+<code class="docutils literal notranslate"><span class="pre">n</span></code>, calling the function with <code class="docutils literal notranslate"><span class="pre">n-1</span></code> gets us closer to the base
+case of <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">==</span> <span class="pre">1</span></code>.</p>
+<p>So, what is the recursive case for permutations? Our function
+is called with a list of elements we want to generate permutations
+on, and our base case is reached whenever that list contains
+a single element. So, if the function is called like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">permutations_r</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>We can <em>assume</em> that the following calls will “just work”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">permutations_r</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">permutations_r</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">permutations_r</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">permutations_r</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Or, more generally, if the function is called with a list
+of size <code class="docutils literal notranslate"><span class="pre">n</span></code>, we should implement our recursive case
+<em>under the assumption</em> that recursive calls with a list
+of size <code class="docutils literal notranslate"><span class="pre">n-1</span></code> will work. Notice how this approach will eventually
+get us to the base case of calling the function with a list
+of size <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">==</span> <span class="pre">1</span></code>.</p>
+<p>Now, remember the example permutations we showed above. We
+remarked that the permutations of (1,2,3,4) are simply:</p>
+<ul class="simple">
+<li><p>All permutations of (2,3,4) with 1 as the first element;</p></li>
+<li><p>All permutations of (1,3,4) with 2 as the first element;</p></li>
+<li><p>All permutations of (1,2,4) with 3 as the first element; plus</p></li>
+<li><p>All permutations of (1,2,3) with 4 as the first element</p></li>
+</ul>
+<p>So, let’s implement this logic under the assumption that
+the recursive calls (with those smaller lists)
+will return the correct permutations. First of all,
+we said our function will return a list of permutations,
+so let’s start there:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">permutations_r</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute all the permutations of the values in p.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      p (list): list of values to permute</span>
+
+<span class="sd">    Returns (list of lists): permutations of p</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># Base case</span>
+        <span class="k">return</span> <span class="p">[</span> <span class="n">p</span> <span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Recursive case</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># rv will contain the list of permutations</span>
+
+        <span class="k">return</span> <span class="n">rv</span>
+</pre></div>
+</div>
+<p>Then, for each element of <code class="docutils literal notranslate"><span class="pre">p</span></code>, we want to obtain the permutations
+resulting from removing that element.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">permutations_r</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute all the permutations of the values in p.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      p (list): list of values to permute</span>
+
+<span class="sd">    Returns (list of lists): permutations of p</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># Base case</span>
+        <span class="k">return</span> <span class="p">[</span> <span class="n">p</span> <span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Recursive case</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">p</span><span class="p">:</span>
+           <span class="n">p_minus_x</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">p</span> <span class="k">if</span> <span class="n">v</span> <span class="o">!=</span> <span class="n">x</span><span class="p">]</span>
+           <span class="n">perms_without_x</span> <span class="o">=</span> <span class="n">permutations_r</span><span class="p">(</span><span class="n">p_minus_x</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">rv</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">p_minus_x</span></code> is simply a copy of the list <code class="docutils literal notranslate"><span class="pre">p</span></code> but with <code class="docutils literal notranslate"><span class="pre">x</span></code>
+removed from it. Next, we make the recursive call with that list.
+If <code class="docutils literal notranslate"><span class="pre">p</span></code> is <code class="docutils literal notranslate"><span class="pre">[1,2,3,4]</span></code> and <code class="docutils literal notranslate"><span class="pre">x</span></code> is <code class="docutils literal notranslate"><span class="pre">4</span></code>, then this recursive
+call would return the following list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Remember: avoid the urge to go down the rabbit hole of understanding
+exactly what happens in this recursive call! For now, we take the approach
+of writing the code under the assumption that the recursive call
+will return exactly what we expect (according to how we specified
+the inputs and outputs of our function).</p>
+<p>However, our function is not yet finished. You should also resist
+the urge to try and test it as soon as you’ve written the recursive call.
+We said our function has to return a list of permutations, so we need
+to take the permutations returned by the recursive call, add <code class="docutils literal notranslate"><span class="pre">x</span></code>
+to each permutation, and then add it to our <code class="docutils literal notranslate"><span class="pre">rv</span></code> list. For example,
+in the specific case where <code class="docutils literal notranslate"><span class="pre">p</span></code> is <code class="docutils literal notranslate"><span class="pre">[1,2,3,4]</span></code> and <code class="docutils literal notranslate"><span class="pre">x</span></code> is <code class="docutils literal notranslate"><span class="pre">4</span></code>,
+we want to add the following permutations to <code class="docutils literal notranslate"><span class="pre">rv</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>So we add a loop that iterates over the permutations returned by the
+recursive call.  For each permutation, we construct a new list
+containing <code class="docutils literal notranslate"><span class="pre">x</span></code> and the values from permutation and add it to the
+list we are going to return:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">permutations_r</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute all the permutations of the values in p.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      p (list): list of values to permute</span>
+
+<span class="sd">    Returns (list of lists): permutations of p</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># Base case</span>
+        <span class="k">return</span> <span class="p">[</span> <span class="n">p</span> <span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Recursive case</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">p</span><span class="p">:</span>
+           <span class="n">p_minus_x</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">p</span> <span class="k">if</span> <span class="n">v</span><span class="o">!=</span><span class="n">x</span><span class="p">]</span>
+           <span class="n">perms_without_x</span> <span class="o">=</span> <span class="n">permutations_r</span><span class="p">(</span><span class="n">p_minus_x</span><span class="p">)</span>
+           <span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">perms_without_x</span><span class="p">:</span>
+               <span class="n">pl</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">perm</span>
+               <span class="n">rv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pl</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">rv</span>
+</pre></div>
+</div>
+<p>At this point, our function is finished:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">permutations_r</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
+<span class="go">[[1]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">permutations_r</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="go">[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]</span>
+</pre></div>
+</div>
+<div class="admonition-recursion-and-induction admonition">
+<p class="admonition-title">Recursion and Induction</p>
+<p>If you’re familiar with inductive proofs, they can also
+provide a good framework to think about recursion. When
+doing an inductive proof, we prove a statement for
+one or more base cases (such as <span class="math notranslate nohighlight">\(n=0\)</span> and <span class="math notranslate nohighlight">\(n=1\)</span>)
+and once we’ve done that, we take the <em>inductive step</em>:
+assuming the statement holds for <span class="math notranslate nohighlight">\(n\)</span>, prove
+it holds for <span class="math notranslate nohighlight">\(n+1\)</span>.</p>
+<p>Thinking recursively is similar to doing an inductive proof:
+once we’ve implemented the base case, we then implement
+the recursive case under the assumption that a recursive
+call (with parameters that get us closer to the base
+case) will work.</p>
+</div>
+<p>Like we did for the factorial function, here is a version of the
+permutations function that prints out messages explaining what happens
+at each recursive call.  We encourage you to play around with it so
+you can understand what happens when you make recursive calls.  This
+function has several extra parameters: <code class="docutils literal notranslate"><span class="pre">n</span></code>, which is the desired
+number of elements in each permutation, <code class="docutils literal notranslate"><span class="pre">verbose</span></code>, which controls
+the printing of information about the computation, and <code class="docutils literal notranslate"><span class="pre">level</span></code>,
+which is used internally by the function to track the depth of the
+recursion for printing purposes.  Notice that the code handles the
+fact that there might be more than one element in <code class="docutils literal notranslate"><span class="pre">p</span></code> when <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">==</span>
+<span class="pre">1</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">permutations</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute all the permutations of length n of the values in p.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      p (list): list of values to permute</span>
+<span class="sd">      n (int): desired size of the permutations</span>
+<span class="sd">      verbose (boolean): indicates whether information about the</span>
+<span class="sd">        computation should be printed (default: False)</span>
+<span class="sd">      level (int): depth of the recursion (default: 0)</span>
+
+<span class="sd">    Returns (list of lists): permutations of length n of values in p</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">n</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">((</span><span class="s2">&quot;    &quot;</span> <span class="o">*</span> <span class="n">level</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;permutations(</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="p">[[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">p</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">((</span><span class="s2">&quot;    &quot;</span> <span class="o">*</span> <span class="n">level</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;result: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rv</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">rv</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">((</span><span class="s2">&quot;    &quot;</span> <span class="o">*</span> <span class="n">level</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;result: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">([</span><span class="n">p</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">p</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">p</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">((</span><span class="s2">&quot;    &quot;</span> <span class="o">*</span> <span class="n">level</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> with...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+            <span class="n">rem</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">p</span> <span class="k">if</span> <span class="n">v</span> <span class="o">!=</span> <span class="n">x</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">perms</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="n">rem</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="n">level</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">rv</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">perms</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">((</span><span class="s2">&quot;    &quot;</span> <span class="o">*</span> <span class="n">level</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;result: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rv</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">rv</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ps</span> <span class="o">=</span> <span class="n">permutations</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="mi">3</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">permutations([1, 2, 3], 3)</span>
+<span class="go">1 with...</span>
+<span class="go">    permutations([2, 3], 2)</span>
+<span class="go">    2 with...</span>
+<span class="go">        permutations([3], 1)</span>
+<span class="go">        result: [[3]]</span>
+<span class="go">    3 with...</span>
+<span class="go">        permutations([2], 1)</span>
+<span class="go">        result: [[2]]</span>
+<span class="go">    result: [[2, 3], [3, 2]]</span>
+
+<span class="go">2 with...</span>
+<span class="go">    permutations([1, 3], 2)</span>
+<span class="go">    1 with...</span>
+<span class="go">        permutations([3], 1)</span>
+<span class="go">        result: [[3]]</span>
+<span class="go">    3 with...</span>
+<span class="go">        permutations([1], 1)</span>
+<span class="go">        result: [[1]]</span>
+<span class="go">    result: [[1, 3], [3, 1]]</span>
+
+<span class="go">3 with...</span>
+<span class="go">    permutations([1, 2], 2)</span>
+<span class="go">    1 with...</span>
+<span class="go">        permutations([2], 1)</span>
+<span class="go">        result: [[2]]</span>
+<span class="go">    2 with...</span>
+<span class="go">        permutations([1], 1)</span>
+<span class="go">        result: [[1]]</span>
+<span class="go">    result: [[1, 2], [2, 1]]</span>
+
+<span class="go">result: [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="binary-search">
+<h2><span class="section-number">3.2.5. </span>Binary Search<a class="headerlink" href="#binary-search" title="Permalink to this heading"></a></h2>
+<p>Now that we’ve started to learn how to think recursively, we’ll
+work through another example to highlight how a recursive
+algorithm can have multiple base cases and multiple recursive
+cases. This algorithm can
+be written very intuitively and elegantly using recursion,
+while the equivalent iterative solution is, arguably, not
+as intuitive.</p>
+<p>Let’s say we have the following sorted list of integers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">51</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>How can we determine whether a given value exists in the list?  We
+could loop through the list (or use the <code class="docutils literal notranslate"><span class="pre">in</span></code> operator). This method
+is called a <em>linear</em> search. This algorithm is very simple, but its
+complexity is <span class="math notranslate nohighlight">\(O(n)\)</span>. For example: what if we want to check
+whether 51 is in the list? We have to iterate through the whole list
+before we get there.</p>
+<p>However, we can exploit the fact that the numbers in the list are
+sorted. We can start by accessing the middle element of the list,
+and then constrain the rest of our search to either the
+first half or the second half of the list. Then, once we
+know which half to focus on, we can do the same thing again: choose the
+middle element of that sub-list, and focus our search on the first or the
+second half of <em>that</em> sub-list. And so on and so forth until we either find the value or run out of elements to check.</p>
+<p>For example, let’s say we want to find whether 12 is contained in the list.
+This list has 14 elements in it, so the index of its middle element
+will be 14 divided by 2: 7. The first thing we do is check whether
+that position contains 12 (if it does, then we’re done). It, however,
+contains 25, which tells us that we can constrain our search
+to the sublist containing all the elements before 25:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lst2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Now, we repeat this process. The middle element of this list is 9. We
+now know that we should constrain our search to all the elements that
+come after 9 in <code class="docutils literal notranslate"><span class="pre">lst2</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lst3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Now, the middle element is 13, so we only need to look at the elements before
+that element:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lst4</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The middle element of this list is 12, the value we’re looking for,
+so we are done and the algorithm will return that 12 <em>is</em> contained in
+the list.</p>
+<p>Now let’s see what happens when we look for a value that <em>doesn’t</em>
+exist in the list: 17. The first steps are similar to the ones above:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">51</span><span class="p">]</span>
+<span class="c1"># Middle element is 25, we look at elements before it</span>
+<span class="n">lst2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+<span class="c1"># Middle element is 9, we look at elements after it</span>
+<span class="n">lst3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Now, the middle element is 13, so now we need to look at the elements
+after it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lst4</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>At this point, we could realize that the list contains a single element,
+and that this element is not the one we’re looking for but, to be consistent
+with how we’ve done the other steps, we’re going to look at the list of
+elements before the middle element, which will simply be the empty list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lst5</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+<p>Notice that this feels like a recursive solution: we keep doing a
+search on progressively smaller lists until we reach a trivial case.</p>
+<p>This algorithm is called <em>binary search</em>: we progressively divide the
+search space in half until we find the element we’re seeking (or
+realize it doesn’t exist in the list). Unlike linear search,
+which has a complexity of <span class="math notranslate nohighlight">\(O(n)\)</span>, the complexity
+of binary search is <span class="math notranslate nohighlight">\(O(\log_2 n)\)</span> because we split the search space
+in half with each step.</p>
+<p>Binary search is also an example of an
+algorithm with two base cases and two recursive cases. We will follow
+the same steps we followed in the permutations example to
+flesh out the exact algorithm.</p>
+<p><strong>Step #1: Determine the input(s) and output(s) to the function.</strong>
+The input to our function is going to be a list <code class="docutils literal notranslate"><span class="pre">lst</span></code> and a
+value <code class="docutils literal notranslate"><span class="pre">x</span></code>. We want to determine whether <code class="docutils literal notranslate"><span class="pre">x</span></code> is contained
+in <code class="docutils literal notranslate"><span class="pre">lst</span></code>, so it will be enough to return a boolean value
+(<code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>). It would not be hard to modify
+the algorithm to return the <em>index</em> of <code class="docutils literal notranslate"><span class="pre">x</span></code> in <code class="docutils literal notranslate"><span class="pre">lst</span></code>,
+but we will stick with returning a boolean value for simplicity.</p>
+<p><strong>Step #2: Determine the base case(s) for the function.</strong> In the examples
+we worked through above, we identified <em>two</em> base cases:</p>
+<ol class="arabic simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">lst</span></code> is the empty list, then we return <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p>If the middle element of <code class="docutils literal notranslate"><span class="pre">lst</span></code> is <code class="docutils literal notranslate"><span class="pre">x</span></code>, then we return <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ol>
+<p>We can write this in code like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Does x occur in lst?</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      lst (list of ints): sorted list of values</span>
+<span class="sd">      x (int): value to find</span>
+
+<span class="sd">    Returns (boolean): return True if x occurs in lst, and False</span>
+<span class="sd">      otherwise.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">middle</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+
+        <span class="k">if</span> <span class="n">lst</span><span class="p">[</span><span class="n">middle</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># TODO: Recursive cases</span>
+            <span class="k">pass</span>
+</pre></div>
+</div>
+<p><strong>Step #3: Determine the recursive case(s) for the function.</strong>
+If we do not hit one of the base cases, we need to do
+a binary search on a sublist of <code class="docutils literal notranslate"><span class="pre">lst</span></code>. If <code class="docutils literal notranslate"><span class="pre">x</span></code> is less than
+the middle element of <code class="docutils literal notranslate"><span class="pre">lst</span></code>, then we search the sublist
+containing all the elements to the left of <code class="docutils literal notranslate"><span class="pre">lst</span></code> (i.e., <code class="docutils literal notranslate"><span class="pre">lst[:middle]</span></code>).
+If <code class="docutils literal notranslate"><span class="pre">x</span></code> is greater than the middle element of <code class="docutils literal notranslate"><span class="pre">lst</span></code>, then we
+search the sublist containing all the elements to the right
+of <code class="docutils literal notranslate"><span class="pre">lst</span></code> (i.e., <code class="docutils literal notranslate"><span class="pre">lst[middle+1:]</span></code>).</p>
+<p>As with the permutations example, we make the recursive call under
+the assumption that it will “just work” as long as we pass values
+that get us progressively closer to the base cases (which we do
+by passing progressively smaller lists in each recursive call).</p>
+<p>Our code with the recursive cases will look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Does x occur in lst?</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      lst (list of ints): sorted list of values</span>
+<span class="sd">      x (int): value to find</span>
+
+<span class="sd">    Returns (boolean): return True if x occurs in lst, and False</span>
+<span class="sd">      otherwise.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">middle</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+
+        <span class="k">if</span> <span class="n">lst</span><span class="p">[</span><span class="n">middle</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">elif</span> <span class="n">lst</span><span class="p">[</span><span class="n">middle</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">middle</span><span class="p">],</span> <span class="n">x</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">lst</span><span class="p">[</span><span class="n">middle</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="n">middle</span><span class="o">+</span><span class="mi">1</span><span class="p">:],</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition-a-common-pitfall admonition">
+<p class="admonition-title">A common pitfall</p>
+<p>A common pitfall when writing recursive functions is to make
+the recursive call correctly, but then not do anything with the
+return value of that recursive call. A common mistake
+when writing the above code would be to write the recursive
+cases like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">elif</span> <span class="n">lst</span><span class="p">[</span><span class="n">middle</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">:</span>
+   <span class="n">binary_search</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">middle</span><span class="p">],</span> <span class="n">x</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">lst</span><span class="p">[</span><span class="n">middle</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">:</span>
+   <span class="n">binary_search</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="n">middle</span><span class="o">+</span><span class="mi">1</span><span class="p">:],</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The recursive calls are correct, but we are not using
+their return value. In the permutations example,
+we took the permutations returned by the recursive call to
+create more permutations, and then returned those permutations.
+Here, we directly return whatever the recursive call returns.</p>
+</div>
+<p>If we run this function, we can see it behaves as expected:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">51</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">binary_search</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">binary_search</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">binary_search</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">binary_search</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">binary_search</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">binary_search</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Earlier we said that the complexity of binary search is <span class="math notranslate nohighlight">\(O(\log_2 n)\)</span>,
+but that is actually not true of the implementation we have provided
+above. The reason is subtle: We slice the list in each recursive
+call, and slicing makes a copy of the slice, so we’re using
+more space and time than necessary.  These are things we need to be
+mindful of when writing code: no operation comes for free, and even
+seemingly trivial operations have costs that can add up.</p>
+<p>In fact, if we use IPython to test the runtime of our algorithm,
+we’ll see it actually take <em>longer</em> than a linear search!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">large_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">))</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">large_list</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000000</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="mi">100</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">4.01</span> <span class="n">ms</span> <span class="n">per</span> <span class="n">loop</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">large_list</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000000</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="mi">100</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">7.69</span> <span class="n">ms</span> <span class="n">per</span> <span class="n">loop</span>
+</pre></div>
+</div>
+<p>We can solve this problem by making sure that we pass the complete
+list in each recursive call (remember: this approach will pass a <em>reference</em>
+to the list, not a copy, so we don’t incur the cost of making copies of the list)
+and adding two parameters, <code class="docutils literal notranslate"><span class="pre">lb</span></code> and <code class="docutils literal notranslate"><span class="pre">ub</span></code>, that specify the lower and upper
+bound of the sublist we will be searching within (<code class="docutils literal notranslate"><span class="pre">lb</span></code> inclusive, <code class="docutils literal notranslate"><span class="pre">ub</span></code> exclusive).
+We’ve also added a <code class="docutils literal notranslate"><span class="pre">verbose</span></code> parameter to print messages that can help us
+see how the recursion unfolds.</p>
+<p>So, our function becomes this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binary_search_r</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lb</span><span class="p">,</span> <span class="n">ub</span><span class="p">,</span> <span class="n">verbose</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">    Does x occur in lst between the indexes lb (inclusive) and ub</span>
+<span class="sd">    (exclusive)?</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      lst (list of ints): sorted list of values</span>
+<span class="sd">      x (int): value to find</span>
+<span class="sd">      lb (int): lower bound (inclusive)</span>
+<span class="sd">      ub (int): upper bound (exclusive)</span>
+<span class="sd">      verbose (boolean): indicates whether information about the</span>
+<span class="sd">        computation should be printed</span>
+
+<span class="sd">    Returns (boolean): return True if x occurs in lst, and False</span>
+<span class="sd">      otherwise.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;binary_search_r(lst, </span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">lb</span><span class="p">,</span> <span class="n">ub</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">lb</span> <span class="o">&gt;=</span> <span class="n">ub</span><span class="p">):</span>
+        <span class="c1"># out of values to consider in the list</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">lb</span> <span class="o">+</span> <span class="n">ub</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    middle = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">middle</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="n">middle</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="n">middle</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">binary_search_r</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lb</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="n">middle</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">binary_search_r</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">middle</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">ub</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Notice how some of the operations have been re-written in terms of <code class="docutils literal notranslate"><span class="pre">lb</span></code> and <code class="docutils literal notranslate"><span class="pre">ub</span></code>.
+For example, the first base case now checks whether the lower bound is greater than
+or equal to the upper bound (which would be equivalent to searching on an empty
+list). As written, this function would require passing <code class="docutils literal notranslate"><span class="pre">0</span></code> as the lower bound
+and <code class="docutils literal notranslate"><span class="pre">len(lst)</span></code> as the upper bound any time we wanted to search through the
+entire list. In such cases, we can write a <em>wrapper</em> function to make the
+initial call to the function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binary_search_alt</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Does x occur in lst?</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      lst (list of ints): sorted list of values</span>
+<span class="sd">      x (int): value to find</span>
+<span class="sd">      verbose (boolean): indicates whether information about the</span>
+<span class="sd">        computation should be printed (default: False)</span>
+
+<span class="sd">    Returns (boolean): return True if x occurs in lst, and False</span>
+<span class="sd">      otherwise.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="n">binary_search_r</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">),</span> <span class="n">verbose</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let’s give the function a try:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">51</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">binary_search_alt</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">binary_search_r(lst, 12, 0, 14)</span>
+<span class="go">    middle = 7</span>
+<span class="go">binary_search_r(lst, 12, 0, 7)</span>
+<span class="go">    middle = 3</span>
+<span class="go">binary_search_r(lst, 12, 4, 7)</span>
+<span class="go">    middle = 5</span>
+<span class="go">binary_search_r(lst, 12, 4, 5)</span>
+<span class="go">    middle = 4</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">binary_search_alt</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">binary_search_r(lst, 17, 0, 14)</span>
+<span class="go">    middle = 7</span>
+<span class="go">binary_search_r(lst, 17, 0, 7)</span>
+<span class="go">    middle = 3</span>
+<span class="go">binary_search_r(lst, 17, 4, 7)</span>
+<span class="go">    middle = 5</span>
+<span class="go">binary_search_r(lst, 17, 6, 7)</span>
+<span class="go">    middle = 6</span>
+<span class="go">binary_search_r(lst, 17, 6, 6)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<div class="admonition-a-common-pitfall admonition">
+<p class="admonition-title">A common pitfall</p>
+<p>In the above implementation, the values of <code class="docutils literal notranslate"><span class="pre">lst</span></code>, <code class="docutils literal notranslate"><span class="pre">x</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">verbose</span></code> are the same in all recursive calls, and we modify only
+one of <code class="docutils literal notranslate"><span class="pre">lb</span></code> or <code class="docutils literal notranslate"><span class="pre">ub</span></code> in each recursive call. While this may seem
+inefficient, the cost of passing these values as parameters is
+negligible compared to the rest of the algorithm. Resist
+the urge to make parameters like <code class="docutils literal notranslate"><span class="pre">lst</span></code>, <code class="docutils literal notranslate"><span class="pre">x</span></code>, and <code class="docutils literal notranslate"><span class="pre">verbose</span></code>
+global variables simply because their values will be the same in all
+the recursive calls.</p>
+</div>
+<p>Now, if we test the performance of this version, we’ll see that we do get a notable
+running time improvement compared to linear search:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">large_list</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000000</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="mi">100</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">3.73</span> <span class="n">ms</span> <span class="n">per</span> <span class="n">loop</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">binary_search_alt</span><span class="p">(</span><span class="n">large_list</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000000</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="mi">100000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">5.58</span> <span class="n">µs</span> <span class="n">per</span> <span class="n">loop</span>
+</pre></div>
+</div>
+<p>Finally, let’s look at the iterative version of binary search:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binary_search_iter</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Does x occur in lst?</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      lst (list of ints): sorted list of values</span>
+<span class="sd">      x (int): value to find</span>
+
+<span class="sd">    Returns (boolean): return True if x occurs in lst, and False</span>
+<span class="sd">      otherwise.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">lb</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ub</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">lb</span> <span class="o">&lt;</span> <span class="n">ub</span><span class="p">:</span>
+        <span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">lb</span> <span class="o">+</span> <span class="n">ub</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="n">middle</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="n">middle</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">):</span>
+            <span class="n">ub</span> <span class="o">=</span> <span class="n">middle</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="n">middle</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">):</span>
+            <span class="n">lb</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>We can see that it works as expected:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">51</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">binary_search_iter</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">binary_search_iter</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">binary_search_iter</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">binary_search_iter</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">binary_search_iter</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">binary_search_iter</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>The amount of code is not substantially different from that of the recursive
+solution but it is arguably not as intuitive as the recursive solution. Because
+binary search is defined recursively, its recursive implementation more closely
+mirrors its actual definition. With iteration, we are simply taking the recursive
+implementation and shoehorning it into a while loop. In this case, we only
+required a single while loop but more complex recursive algorithms cannot
+be restated iteratively as easily.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../functions/index.html" class="btn btn-neutral float-left" title="3.1. Functional Programming" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../trees/index.html" class="btn btn-neutral float-right" title="3.3. Trees" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Anne Rogers and Borja Sotomayor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

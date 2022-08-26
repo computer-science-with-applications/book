@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.2. Dictionaries and Sets &mdash; Computer Science with Applications  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/csapps.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.3. Implementing a Data Structure: Stacks and Queues" href="../stacks_queues/index.html" />
+    <link rel="prev" title="2.1. Lists, Tuples, and Strings" href="../lists/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Computer Science with Applications
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../preface.html">Preface</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">2. Data Structures</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../lists/index.html">2.1. Lists, Tuples, and Strings</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.2. Dictionaries and Sets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#useful-operations-with-dictionaries">2.2.1. Useful operations with dictionaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other-ways-to-construct-dictionaries">2.2.2. Other ways to construct dictionaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accumulating-values-with-dictionaries">2.2.3. Accumulating values with dictionaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nested-dictionaries">2.2.4. Nested dictionaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-structures-and-their-complexity">2.2.5. Data structures and their complexity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sets">2.2.6. Sets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../stacks_queues/index.html">2.3. Implementing a Data Structure: Stacks and Queues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../classes/index.html">2.4. Classes and Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../functions/index.html">3. Functional Programming and Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working_with_data/index.html">4. Working with Data</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Computer Science with Applications</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">2. </span>Data Structures</a> &raquo;</li>
+      <li><span class="section-number">2.2. </span>Dictionaries and Sets</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/data_structures/dictionaries/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="dictionaries-and-sets">
+<span id="chapter-dictionaries"></span><h1><span class="section-number">2.2. </span>Dictionaries and Sets<a class="headerlink" href="#dictionaries-and-sets" title="Permalink to this heading"></a></h1>
+<p>In the previous chapter, we saw that lists allow us to store multiple
+values in a single data structure, but they do so in a very specific
+way: the values are stored in a sequence. Python makes it very easy to
+iterate over that sequence, as well as access items at specific
+positions of the list.  This design makes lists a great data structure
+for some use cases but not for others.</p>
+<p>For example, suppose we were working with data on contributions to political
+campaigns, with the following
+information for each contribution:</p>
+<ul class="simple">
+<li><p>First name of contributor</p></li>
+<li><p>Last name of contributor</p></li>
+<li><p>ZIP Code where contributor lives</p></li>
+<li><p>Campaign that received the contribution</p></li>
+<li><p>Contribution amount</p></li>
+</ul>
+<p>We could represent an individual contribution like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;Doe&quot;</span><span class="p">,</span> <span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;Kang for President 2016&quot;</span><span class="p">,</span> <span class="mf">27.50</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>And a list of contributions like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">contributions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;Doe&quot;</span><span class="p">,</span> <span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;Kang for President 2016&quot;</span><span class="p">,</span> <span class="mf">27.50</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Jane&quot;</span><span class="p">,</span> <span class="s2">&quot;Doe&quot;</span><span class="p">,</span> <span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;Kodos for President 2016&quot;</span><span class="p">,</span> <span class="mf">100.00</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;James&quot;</span><span class="p">,</span> <span class="s2">&quot;Roe&quot;</span><span class="p">,</span> <span class="s2">&quot;07974&quot;</span><span class="p">,</span> <span class="s2">&quot;Kang for President 2016&quot;</span><span class="p">,</span> <span class="mf">50.00</span><span class="p">]</span>
+    <span class="p">]</span>
+</pre></div>
+</div>
+<p>Accessing the individual values inside this list requires using their
+positions in the list, which can lead to code that is difficult to
+read. For example, suppose we wanted to write a function that adds up
+all the contributions made to a given campaign. The function would
+look something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">total_contributions_candidate</span><span class="p">(</span><span class="n">contributions</span><span class="p">,</span> <span class="n">campaign</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute total contributions to a candidate&#39;s campaign</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      contributions (list of lists): one list per contribution</span>
+<span class="sd">      campaign (string): the name of the campaign</span>
+
+<span class="sd">    Returns (float): total amount contributed</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">contribution</span> <span class="ow">in</span> <span class="n">contributions</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">campaign</span> <span class="o">==</span> <span class="n">contribution</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span>
+            <span class="n">total</span> <span class="o">+=</span> <span class="n">contribution</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">total</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">total_contributions_candidate</span><span class="p">(</span><span class="n">contributions</span><span class="p">,</span> <span class="s2">&quot;Kang for President 2016&quot;</span><span class="p">)</span>
+<span class="go">77.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">total_contributions_candidate</span><span class="p">(</span><span class="n">contributions</span><span class="p">,</span> <span class="s2">&quot;Kodos for President 2016&quot;</span><span class="p">)</span>
+<span class="go">100.0</span>
+</pre></div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">contribution[3]</span></code> to access the name of the campaign and
+<code class="docutils literal notranslate"><span class="pre">contribution[4]</span></code> to access the contribution amount makes the code
+hard to read. There are ways to make it a bit more readable, such as
+defining variables to store the position of each value (e.g., we could
+define <code class="docutils literal notranslate"><span class="pre">CAMPAIGN_INDEX</span> <span class="pre">=</span> <span class="pre">3</span></code> and the access the campaign by writing
+<code class="docutils literal notranslate"><span class="pre">contribution[CAMPAIGN_INDEX</span></code>]), but this approach is error-prone. We
+could easily use the wrong value for the constant or the format of the data might
+change over time.  In the latter case, we would need to check the
+fields we are using carefully to ensure that we are still accessing
+the correct positions.</p>
+<p>For this application, it would be better to use a data structure
+called a <em>dictionary</em>. Like lists, dictionaries can be used to
+store multiple values, but do so by associating each value
+with a unique <em>key</em> rather than with a position in a sequence.
+This arrangement is similar to a physical dictionary: the words
+are the “keys” and the definitions are the “values”.</p>
+<p>We could store an individual contribution in a dictionary like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;zip_code&quot;</span><span class="p">:</span> <span class="s2">&quot;60637&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;campaign&quot;</span><span class="p">:</span> <span class="s2">&quot;Kang for President 2016&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="mf">27.50</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Notice that we have a sequence of entries separated by commas where
+each entry is a key-value pair separated by a colon. Instead of
+accessing values by their positions in the data structure, we access
+them by their keys.  For example, if we wanted to access the ZIP Code
+of this contribution, we would use the key <code class="docutils literal notranslate"><span class="pre">&quot;zip_code&quot;</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;zip_code&quot;</span><span class="p">]</span>
+<span class="go">&#39;60637&#39;</span>
+</pre></div>
+</div>
+<p>Because values are accessed by key rather than by position, dictionaries are also
+referred to in other programming languages as “associative arrays” or “maps”
+(in the sense that they associate or map a key to a value).</p>
+<p>In this example, all of the keys are strings. Although this design is
+fairly common, it is not required. In fact, many different Python
+types can be used for keys in a dictionary.  For now, we’ll restrict
+ourselves to types with values that cannot be changed
+(i.e. <em>immutable</em> types), which includes strings, integers, booleans,
+tuples of strings, etc.  We’ll come back to the question of acceptable
+types for dictionary keys briefly after we introduce Python classes.</p>
+<p>While the types used for dictionary keys are restricted, the values
+can have any type and different keys can have values with different
+types.  Notice, for example, that not all of the keys in our example
+have values with the same type: the value for <code class="docutils literal notranslate"><span class="pre">&quot;amount&quot;</span></code> is a float,
+while the rest are strings.</p>
+<p>Our list of contributions would now look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">contributions</span> <span class="o">=</span> <span class="p">[</span>
+   <span class="p">{</span><span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;zip_code&quot;</span><span class="p">:</span> <span class="s2">&quot;60637&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;campaign&quot;</span><span class="p">:</span> <span class="s2">&quot;Kang for President 2016&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="mf">27.50</span><span class="p">},</span>
+   <span class="p">{</span><span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Jane&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;zip_code&quot;</span><span class="p">:</span> <span class="s2">&quot;60637&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;campaign&quot;</span><span class="p">:</span> <span class="s2">&quot;Kodos for President 2016&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="mf">100.00</span><span class="p">},</span>
+   <span class="p">{</span><span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="s2">&quot;James&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Roe&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;zip_code&quot;</span><span class="p">:</span> <span class="s2">&quot;07974&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;campaign&quot;</span><span class="p">:</span> <span class="s2">&quot;Kang for President 2016&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="mf">50.00</span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>And our function to compute the total contributions now looks like
+this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">total_contributions_candidate</span><span class="p">(</span><span class="n">contributions</span><span class="p">,</span> <span class="n">campaign</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute total contributions to a candidate&#39;s campaign</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      contributions (list of dictionaries): one dictionary per</span>
+<span class="sd">        contribution</span>
+<span class="sd">      campaign (string): the name of the campaign</span>
+
+<span class="sd">    Returns (float): total amount contributed</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">contribution</span> <span class="ow">in</span> <span class="n">contributions</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">campaign</span> <span class="o">==</span> <span class="n">contribution</span><span class="p">[</span><span class="s2">&quot;campaign&quot;</span><span class="p">]:</span>
+            <span class="n">total</span> <span class="o">+=</span> <span class="n">contribution</span><span class="p">[</span><span class="s2">&quot;amount&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">total</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">total_contributions_candidate</span><span class="p">(</span><span class="n">contributions</span><span class="p">,</span> <span class="s2">&quot;Kang for President 2016&quot;</span><span class="p">)</span>
+<span class="go">77.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">total_contributions_candidate</span><span class="p">(</span><span class="n">contributions</span><span class="p">,</span> <span class="s2">&quot;Kodos for President 2016&quot;</span><span class="p">)</span>
+<span class="go">100.0</span>
+</pre></div>
+</div>
+<p>The new function looks very similar to the original, but it is easier
+to read and maintain.</p>
+<p>Dictionaries do more than simply provide convenient syntax for
+accessing values by key instead of position.  As we’ll see later in
+the chapter, dictionaries can also perform certain operations much
+more efficiently than lists and allow us to implement certain
+algorithms more elegantly.</p>
+<p>It is very common to use a dictionary to represent a single “object”
+(in this case, a single contribution to a campaign, with each
+attribute of the contribution represented by a key in the dictionary),
+especially when exchanging data between different systems. In fact,
+later in the book, we will see a data format, JSON, that works well
+with Python dictionaries and lists. Later on, we will also see how
+<em>object-oriented programming</em> provides a third way of working with
+“objects” in our programs.</p>
+<div class="admonition-a-possible-pitfall-floats-as-keys admonition">
+<p class="admonition-title">A possible pitfall: floats as keys</p>
+<p>Before we move on talking about useful dictionary operations, we’d
+like to stop and consider a simple example an example that may
+surprise you:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.3</span><span class="p">:</span> <span class="s2">&quot;found&quot;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s2">&quot;not found&quot;</span><span class="p">)</span>
+<span class="go">&#39;not found&#39;</span>
+</pre></div>
+</div>
+<p>Using your understanding of real numbers, you might except <code class="docutils literal notranslate"><span class="pre">get</span></code>
+to return <code class="docutils literal notranslate"><span class="pre">&quot;found&quot;</span></code>, the value associated with <code class="docutils literal notranslate"><span class="pre">0.3</span></code>.  Using
+floats, however, <code class="docutils literal notranslate"><span class="pre">0.1</span> <span class="pre">+</span> <span class="pre">0.1</span> <span class="pre">+</span> <span class="pre">0.1</span></code> does not equal <code class="docutils literal notranslate"><span class="pre">0.3</span></code> and so,
+<code class="docutils literal notranslate"><span class="pre">get</span></code> does not find the key in the dictionary and returns the
+default value <code class="docutils literal notranslate"><span class="pre">&quot;not_found&quot;</span></code>.</p>
+<p>So, while you technically use floats as keys for a dictionary, you
+should only do so when you are using values that can be represented
+exactly with a power of two or as the sum of powers of two.</p>
+</div>
+<div class="section" id="useful-operations-with-dictionaries">
+<h2><span class="section-number">2.2.1. </span>Useful operations with dictionaries<a class="headerlink" href="#useful-operations-with-dictionaries" title="Permalink to this heading"></a></h2>
+<p>Earlier, we saw that we can define a dictionary like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;zip_code&quot;</span><span class="p">:</span> <span class="s2">&quot;60637&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;campaign&quot;</span><span class="p">:</span> <span class="s2">&quot;Kang for President 2016&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="mf">27.50</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>And access individual values by their keys like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;zip_code&quot;</span><span class="p">]</span>
+<span class="go">&#39;60637&#39;</span>
+</pre></div>
+</div>
+<p>Note that when we attempt to <em>access</em> values in the dictionary, specifying a key
+that doesn’t exist in the dictionary produces an error:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;affiliation&quot;</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">KeyError</span>: <span class="n">&#39;affiliation&#39;</span>
+</pre></div>
+</div>
+<p>In addition to the square-bracket notation, we can access a value
+using the <code class="docutils literal notranslate"><span class="pre">get</span></code> method, which method returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if the
+dictionary does not contain the specified key.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">st</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;first_name&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
+<span class="go">John</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;affiliation&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
+<span class="go">None</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">get</span></code> method also takes an optional second parameter to specify a default value that
+should be returned if the key doesn’t exist in the dictionary:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;affiliation&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">)</span>
+<span class="go">&#39;Unknown&#39;</span>
+</pre></div>
+</div>
+<p>We can check if a dictionary contains a given key using the <code class="docutils literal notranslate"><span class="pre">in</span></code> operator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;first_name&quot;</span> <span class="ow">in</span> <span class="n">d</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;affiliation&quot;</span> <span class="ow">in</span> <span class="n">d</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Dictionaries are also mutable: we can update the value associated with
+a key in a dictionary and add new key-value pairs.  We assign a new
+value to a key like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;zip_code&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;94305&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;zip_code&quot;</span><span class="p">]</span>
+<span class="go">&#39;94305&#39;</span>
+</pre></div>
+</div>
+<p>and add a new key-value pair using the same syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;affiliation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Kodosican&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span>
+<span class="go">{&#39;first_name&#39;: &#39;John&#39;, &#39;last_name&#39;: &#39;Doe&#39;, &#39;zip_code&#39;: &#39;94305&#39;, &#39;campaign&#39;: &#39;Kang for President 2016&#39;, &#39;amount&#39;: 27.5, &#39;affiliation&#39;: &#39;Kodosican&#39;}</span>
+</pre></div>
+</div>
+<p>We can also create a dictionary by starting from an empty (or partial)
+dictionary and assigning values:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">d</span><span class="p">[</span><span class="s2">&quot;first_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;John&quot;</span>
+<span class="n">d</span><span class="p">[</span><span class="s2">&quot;last_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Doe&quot;</span>
+<span class="n">d</span><span class="p">[</span><span class="s2">&quot;zip_code&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;60637&quot;</span>
+<span class="n">d</span><span class="p">[</span><span class="s2">&quot;campaign&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Kang for President 2016&quot;</span>
+<span class="n">d</span><span class="p">[</span><span class="s2">&quot;amount&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">27.50</span>
+<span class="n">d</span><span class="p">[</span><span class="s2">&quot;affiliation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Kodosican&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span>
+<span class="go">{&#39;first_name&#39;: &#39;John&#39;, &#39;last_name&#39;: &#39;Doe&#39;, &#39;zip_code&#39;: &#39;60637&#39;, &#39;campaign&#39;: &#39;Kang for President 2016&#39;, &#39;amount&#39;: 27.5, &#39;affiliation&#39;: &#39;Kodosican&#39;}</span>
+</pre></div>
+</div>
+<p>We can remove an entry in the dictionary using the <code class="docutils literal notranslate"><span class="pre">del</span></code> operator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span>
+<span class="go">{&#39;first_name&#39;: &#39;John&#39;, &#39;last_name&#39;: &#39;Doe&#39;, &#39;zip_code&#39;: &#39;60637&#39;, &#39;campaign&#39;: &#39;Kang for President 2016&#39;, &#39;amount&#39;: 27.5, &#39;affiliation&#39;: &#39;Kodosican&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;affiliation&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span>
+<span class="go">{&#39;first_name&#39;: &#39;John&#39;, &#39;last_name&#39;: &#39;Doe&#39;, &#39;zip_code&#39;: &#39;60637&#39;, &#39;campaign&#39;: &#39;Kang for President 2016&#39;, &#39;amount&#39;: 27.5}</span>
+</pre></div>
+</div>
+<p>We can iterate over the keys in a dictionary using the dictionary’s
+<code class="docutils literal notranslate"><span class="pre">keys</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">first_name</span>
+<span class="go">last_name</span>
+<span class="go">zip_code</span>
+<span class="go">campaign</span>
+<span class="go">amount</span>
+</pre></div>
+</div>
+<p>This operation is sufficiently common that Python provides a
+shorthand: iterating over the dictionary itself is equivalent to
+iterating over the keys.  That is, when you iterate over a dictionary,
+the loop variable will iterate over the <em>keys</em> of the dictionary:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">first_name</span>
+<span class="go">last_name</span>
+<span class="go">zip_code</span>
+<span class="go">campaign</span>
+<span class="go">amount</span>
+</pre></div>
+</div>
+<p>We can also iterate over the values using the dictionary’s <code class="docutils literal notranslate"><span class="pre">values</span></code>
+method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">John</span>
+<span class="go">Doe</span>
+<span class="go">60637</span>
+<span class="go">Kang for President 2016</span>
+<span class="go">27.5</span>
+</pre></div>
+</div>
+<p>And, finally, we can iterate over both the keys and the values using
+the dictionary’s <code class="docutils literal notranslate"><span class="pre">items</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">first_name John</span>
+<span class="go">last_name Doe</span>
+<span class="go">zip_code 60637</span>
+<span class="go">campaign Kang for President 2016</span>
+<span class="go">amount 27.5</span>
+</pre></div>
+</div>
+<p>Notice that the keys and values are not printed in any particular
+order. Most notably, the keys are not shown in the order in which they
+were added to the dictionary, nor are they printed in alphabetical
+order. This behavior is another big difference between
+dictionaries and lists: lists store values in a specific order, and
+iterating over a list will always yield those values in that
+order. There is no such guarantee with dictionaries: if we iterate
+over the contents of a dictionary, we cannot assume any specific order
+and, in fact, that order can even change from one <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to
+another!</p>
+<div class="admonition-a-common-pitfall-changing-the-set-of-keys-in-a-dictionary-as-you-iterate-over-it admonition">
+<p class="admonition-title">A common pitfall: changing the set of keys in a dictionary as you iterate over it</p>
+<p>There is an algorithm that allows us to compute the <em>K</em> most
+frequently seen items in a stream of data. We are not going to
+present the whole algorithm here. Instead, we will focus on a
+specific task within that algorithm that is used to exclude keys
+that have not been seen recently: take a dictionary that maps
+strings to positive integers, decrement all the values by one and
+remove any key-value pair where the resulting value is zero.</p>
+<p>You might be tempted to write the following <strong>incorrect</strong> function to do this
+task:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">decr_and_remove</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Given a dictionary that maps keys to positive integers,</span>
+<span class="sd">    decrement the values and remove any key-value pair in which</span>
+<span class="sd">    the decremented value becomes zero</span>
+
+<span class="sd">    Input:</span>
+<span class="sd">       d (dictionary): maps keys to positive integers</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">d</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This code is not valid because you <em>cannot</em> modify a data
+structure as you iterate over it!  Here’s one alternative solution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">decr_and_remove</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Given a dictionary that maps keys to positive integers,</span>
+<span class="sd">    decrement the values and remove any key-value pair in which</span>
+<span class="sd">    the decremented value becomes zero</span>
+
+
+<span class="sd">    Input:</span>
+<span class="sd">       d (dictionary): maps keys to positive integers</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">keys_to_remove</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">keys_to_remove</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys_to_remove</span><span class="p">:</span>
+        <span class="k">del</span> <span class="n">d</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Here’s another that computes and returns a new dictionary with the
+desired keys rather than removing the keys from the input dictionary.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">decr_and_keep_pos</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Given a dictionary that maps keys to positive integers,</span>
+<span class="sd">    subtract one from each value and include in the result only</span>
+<span class="sd">    those key-value pairs that still have positive values after</span>
+<span class="sd">    the decrement.</span>
+
+<span class="sd">    Input:</span>
+<span class="sd">      d (dictionary): keys to positive integers</span>
+
+<span class="sd">    Returns (dictionary): keys to positive integers</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">rv</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">rv</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">rv</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="other-ways-to-construct-dictionaries">
+<h2><span class="section-number">2.2.2. </span>Other ways to construct dictionaries<a class="headerlink" href="#other-ways-to-construct-dictionaries" title="Permalink to this heading"></a></h2>
+<p>As we have seen, we can construct dictionaries using dictionary
+literals or updating an empty dictionary with
+new key-value pairs.  We can also construct dictionaries use the
+<code class="docutils literal notranslate"><span class="pre">dict</span></code> function and dictionary comprehensions.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">dict</span></code> function allows us to construct a <em>new</em> dictionary from a
+variety of different types of values including a list of key-value
+pairs or another dictionary.  For example, here are three different
+ways to construct the same dictionary: the first uses a dictionary
+literal, the second uses a call to <code class="docutils literal notranslate"><span class="pre">dict</span></code> with a list of pairs, and
+the third uses a call to <code class="docutils literal notranslate"><span class="pre">dict</span></code> with a dictionary as the argument.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;zip_code&quot;</span><span class="p">:</span> <span class="s2">&quot;60637&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;campaign&quot;</span><span class="p">:</span> <span class="s2">&quot;Kang for President 2016&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="mf">27.50</span><span class="p">}</span>
+
+<span class="n">keys_and_data</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;John&quot;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;Doe&quot;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s2">&quot;zip_code&quot;</span><span class="p">,</span> <span class="s2">&quot;60637&quot;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s2">&quot;campaign&quot;</span><span class="p">,</span> <span class="s2">&quot;Kang for President 2016&quot;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s2">&quot;amount&quot;</span><span class="p">,</span> <span class="mf">27.50</span><span class="p">)]</span>
+
+<span class="n">d_from_list</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">keys_and_data</span><span class="p">)</span>
+
+<span class="n">d_from_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Dictionary comprehensions are similar to list comprehensions.  In
+place of one transformation expression, dictionary comprehensions require two: one
+that yields a key and another that yields a value.  For example,
+here’s another way to construct our sample dictionary:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">keys_and_data</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>This example uses very simple expressions for the key and the value,
+but in general, you can use arbitrarily complex expressions for either.
+You can also specify a boolean expression to use as a filter.  For
+example, we could rewrite the <code class="docutils literal notranslate"><span class="pre">decr_and_keep_pos</span></code> function from the
+previous section using a dictionary comprehension with a filter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">decr_and_keep_pos</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Given a dictionary that maps keys to positive integers,</span>
+<span class="sd">    subtract one from each value and include in the result only</span>
+<span class="sd">    those key-value pairs that still have positive values after the</span>
+<span class="sd">    decrement.</span>
+
+<span class="sd">    Input:</span>
+<span class="sd">      d (dictionary): maps keys to positive integers</span>
+
+<span class="sd">    Returns (dictionary): maps keys to positive integers</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>A key-value pair from the input dictionary will be used in the
+construction of the result only if the original value is greater than
+one.</p>
+</div>
+<div class="section" id="accumulating-values-with-dictionaries">
+<h2><span class="section-number">2.2.3. </span>Accumulating values with dictionaries<a class="headerlink" href="#accumulating-values-with-dictionaries" title="Permalink to this heading"></a></h2>
+<p>Dictionaries are often used to accumulate a value based on a key.  For example,
+earlier we computed the total number of contributions for a specific
+campaign.  What if we wanted to compute the total contributions for
+each campaign?  We could call our previous function over and over
+again, once per campaign, but there is a better approach.  A
+dictionary that maps a campaign’s name to the total contributions to
+that campaign is a perfect tool for this task.  We start with an
+empty dictionary and add new entries as we encounter new campaigns:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">total_contributions_by_campaign</span><span class="p">(</span><span class="n">contributions</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute total contributions by campaign</span>
+
+<span class="sd">    Input:</span>
+<span class="sd">      contributions (list of dictionaries): one dictionary per</span>
+<span class="sd">        contribution</span>
+
+<span class="sd">    Returns (dictionary): maps campaign names to floats</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">rv</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">contribution</span> <span class="ow">in</span> <span class="n">contributions</span><span class="p">:</span>
+        <span class="n">campaign</span> <span class="o">=</span> <span class="n">contribution</span><span class="p">[</span><span class="s2">&quot;campaign&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">campaign</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">rv</span><span class="p">:</span>
+            <span class="n">rv</span><span class="p">[</span><span class="n">campaign</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">rv</span><span class="p">[</span><span class="n">campaign</span><span class="p">]</span> <span class="o">+=</span> <span class="n">contribution</span><span class="p">[</span><span class="s2">&quot;amount&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">rv</span>
+</pre></div>
+</div>
+<p>Here’s a sample run of this function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">total_contributions_by_campaign</span><span class="p">(</span><span class="n">contributions</span><span class="p">)</span>
+<span class="go">{&#39;Kang for President 2016&#39;: 77.5, &#39;Kodos for President 2016&#39;: 100.0}</span>
+</pre></div>
+</div>
+<p>Notice that the result is a dictionary.</p>
+<p>This implementation uses the <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">in</span></code> operator to identify campaigns
+that are being seen for the first time.  An alternative is to use
+<code class="docutils literal notranslate"><span class="pre">get</span></code> with a default value of zero for previously unseen campaigns:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">total_contributions_by_campaign</span><span class="p">(</span><span class="n">contributions</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute total contributions by campaign</span>
+
+<span class="sd">    Input:</span>
+<span class="sd">      contributions (list of dictionaries): one dictionary per</span>
+<span class="sd">        contribution</span>
+
+<span class="sd">    Returns (dictionary): maps campaign names to floats</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">rv</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">contribution</span> <span class="ow">in</span> <span class="n">contributions</span><span class="p">:</span>
+        <span class="n">campaign</span> <span class="o">=</span> <span class="n">contribution</span><span class="p">[</span><span class="s2">&quot;campaign&quot;</span><span class="p">]</span>
+        <span class="n">rv</span><span class="p">[</span><span class="n">campaign</span><span class="p">]</span> <span class="o">=</span> <span class="n">rv</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">campaign</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">contribution</span><span class="p">[</span><span class="s2">&quot;amount&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">rv</span>
+</pre></div>
+</div>
+<p>Accumulating values in this way is very common.</p>
+</div>
+<div class="section" id="nested-dictionaries">
+<h2><span class="section-number">2.2.4. </span>Nested dictionaries<a class="headerlink" href="#nested-dictionaries" title="Permalink to this heading"></a></h2>
+<p>Dictionaries can be nested, meaning that the value associated with a
+key can itself be a dictionary. For example, we might have a
+dictionary that maps each candidate to a dictionary that maps a ZIP
+Code as a string to the total contributions to that candidate from
+that ZIP Code. Here’s a version of this dictionary constructed using
+the contributions listed above:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">contributions_by_cand_by_zipcode</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Kodos for President 2016&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;60637&quot;</span><span class="p">:</span> <span class="mf">100.00</span><span class="p">},</span>
+    <span class="s2">&quot;Kang for President 2016&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;07974&quot;</span><span class="p">:</span> <span class="mf">50.00</span><span class="p">,</span>
+                                <span class="s2">&quot;60637&quot;</span><span class="p">:</span> <span class="mf">27.50</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that we chose to represent ZIP Codes as strings, not integers, to
+make sure ZIP Codes like 07974 don’t lose their leading zero and
+become 7974.</p>
+<p>We can extract the the total amount of contributions from <code class="docutils literal notranslate"><span class="pre">60637</span></code> to
+the <code class="docutils literal notranslate"><span class="pre">Kang</span> <span class="pre">for</span> <span class="pre">President</span> <span class="pre">2016</span></code> campaign using this expression:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">contributions_by_cand_by_zipcode</span><span class="p">[</span><span class="s2">&quot;Kang for President 2016&quot;</span><span class="p">][</span><span class="s2">&quot;60637&quot;</span><span class="p">]</span>
+<span class="go">27.5</span>
+</pre></div>
+</div>
+<p>The first set of square brackets extracts the sub-dictionary
+associated with <code class="docutils literal notranslate"><span class="pre">&quot;Kang</span> <span class="pre">for</span> <span class="pre">President</span> <span class="pre">2016&quot;</span></code> in
+<code class="docutils literal notranslate"><span class="pre">contributions_by_cand_by_zipcode</span></code>, while the second retrieves the
+value associated with <code class="docutils literal notranslate"><span class="pre">&quot;60637&quot;</span></code> from that sub-dictionary.</p>
+<p>The code to compute this dictionary is not that much more complex than
+the code for accumulating total contributions by candidate.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">total_contributions_by_campaign_by_zip</span><span class="p">(</span><span class="n">contributions</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute the total contributions from each ZIP Code for each</span>
+<span class="sd">    campaign</span>
+
+<span class="sd">    Input:</span>
+<span class="sd">      contributions (list of dictionaries): one dictionary per</span>
+<span class="sd">        contribution</span>
+
+<span class="sd">    Returns (dictionary): maps a campaign name to a sub-dictionary</span>
+<span class="sd">      that maps ZIP Codes (as strings) to floats</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">rv</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">contribution</span> <span class="ow">in</span> <span class="n">contributions</span><span class="p">:</span>
+        <span class="n">campaign</span> <span class="o">=</span> <span class="n">contribution</span><span class="p">[</span><span class="s2">&quot;campaign&quot;</span><span class="p">]</span>
+        <span class="n">zipcode</span> <span class="o">=</span> <span class="n">contribution</span><span class="p">[</span><span class="s2">&quot;zip_code&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">campaign</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">rv</span><span class="p">:</span>
+            <span class="n">rv</span><span class="p">[</span><span class="n">campaign</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">rv</span><span class="p">[</span><span class="n">campaign</span><span class="p">][</span><span class="n">zipcode</span><span class="p">]</span> <span class="o">=</span> <span class="n">rv</span><span class="p">[</span><span class="n">campaign</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">zipcode</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">contribution</span><span class="p">[</span><span class="s2">&quot;amount&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">rv</span>
+</pre></div>
+</div>
+<p>For each contribution, we first ensure that the campaign is
+initialized properly in the return value.  We then use the <code class="docutils literal notranslate"><span class="pre">get</span></code>
+method to retrieve the total for contributions seen thus far from this
+zipcode for the campaign, which will be zero for the first
+contribution from this zipcode.  Once we have that value , we can just
+add in the amount of the current contribution and update the
+dictionary.  Here’s a sample run of the function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">total_contributions_by_campaign_by_zip</span><span class="p">(</span><span class="n">contributions</span><span class="p">)</span>
+<span class="go">{&#39;Kang for President 2016&#39;: {&#39;60637&#39;: 27.5, &#39;07974&#39;: 50.0}, &#39;Kodos for President 2016&#39;: {&#39;60637&#39;: 100.0}}</span>
+</pre></div>
+</div>
+<p>Notice that, as expected, the result contains nested dictionaries.</p>
+</div>
+<div class="section" id="data-structures-and-their-complexity">
+<h2><span class="section-number">2.2.5. </span>Data structures and their complexity<a class="headerlink" href="#data-structures-and-their-complexity" title="Permalink to this heading"></a></h2>
+<p>The complexity of a computational solution to a problem, and how well
+that solution performs, depends not only on the algorithm we use, but
+also on our choice of data structures for that solution. Now that you
+know about two data structures, lists and dictionaries, it is
+important to understand the implications of using one or the
+other. This decision will not be just a matter of personal preference:
+your choice of data structure can have a considerable impact on how
+well (or how poorly) your code performs.</p>
+<p>For example, our political contribution data only has postal ZIP Codes
+for the contributions, but not full addresses. One thing we might want
+to do is compute the total contributions in each state and, to do so,
+we need some way to map ZIP Codes to states. For the purposes of this
+example, let’s assume we only care about three ZIP Codes: 60637 in
+Illinois, 07974 in New Jersey, and 94043 in California.</p>
+<p>We could represent this data easily enough with a dictionary:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zip_codes_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;60637&quot;</span><span class="p">:</span> <span class="s2">&quot;IL&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;07974&quot;</span><span class="p">:</span> <span class="s2">&quot;NJ&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;94305&quot;</span><span class="p">:</span> <span class="s2">&quot;CA&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>But we could also store this mapping from ZIP Codes to states in a list of tuples, where each
+tuple represents a mapping from a ZIP Code to that ZIP Code’s state:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zip_codes_list</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;IL&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;07974&quot;</span><span class="p">,</span> <span class="s2">&quot;NJ&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;94305&quot;</span><span class="p">,</span> <span class="s2">&quot;CA&quot;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>Of course, the actual list of all the ZIP Codes would be much larger, with
+more than 40,000 entries.</p>
+<p>Given a ZIP Code, obtaining that ZIP Code’s state would involve
+iterating through the list until we find the tuple that contains the
+mapping from that ZIP Code to the corresponding state. We can write a
+simple function to perform this operation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_state_from_zip</span><span class="p">(</span><span class="n">zip_code</span><span class="p">,</span> <span class="n">zip_codes_list</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Find the state associated with a given ZIP Code</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      zip_code (string): a ZIP Code</span>
+<span class="sd">      zip_codes_list (list): pairs of ZIP Codes and state abbreviations</span>
+
+<span class="sd">    Returns (string): state abbreviation or None, if the ZIP Code</span>
+<span class="sd">      does not appear in the list</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">for</span> <span class="n">zc</span><span class="p">,</span> <span class="n">st</span> <span class="ow">in</span> <span class="n">zip_codes_list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">zc</span> <span class="o">==</span> <span class="n">zip_code</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">st</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_state_from_zip</span><span class="p">(</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="n">zip_codes_list</span><span class="p">)</span>
+<span class="go">&#39;IL&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_state_from_zip</span><span class="p">(</span><span class="s2">&quot;90210&quot;</span><span class="p">,</span> <span class="n">zip_codes_list</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Notice that, if there is no corresponding ZIP Code in our list, the
+function simply returns <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<p>So, at this point we have two solutions that, essentially, accomplish
+the same task:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">zip_codes_dict</span>
+<span class="go">{&#39;60637&#39;: &#39;IL&#39;, &#39;07974&#39;: &#39;NJ&#39;, &#39;94305&#39;: &#39;CA&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zip_codes_list</span>
+<span class="go">[(&#39;60637&#39;, &#39;IL&#39;), (&#39;07974&#39;, &#39;NJ&#39;), (&#39;94305&#39;, &#39;CA&#39;)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zip_codes_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;60637&quot;</span><span class="p">)</span>
+<span class="go">&#39;IL&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_state_from_zip</span><span class="p">(</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="n">zip_codes_list</span><span class="p">)</span>
+<span class="go">&#39;IL&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zip_codes_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;07974&quot;</span><span class="p">)</span>
+<span class="go">&#39;NJ&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_state_from_zip</span><span class="p">(</span><span class="s2">&quot;07974&quot;</span><span class="p">,</span> <span class="n">zip_codes_list</span><span class="p">)</span>
+<span class="go">&#39;NJ&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zip_codes_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;94305&quot;</span><span class="p">)</span>
+<span class="go">&#39;CA&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_state_from_zip</span><span class="p">(</span><span class="s2">&quot;94305&quot;</span><span class="p">,</span> <span class="n">zip_codes_list</span><span class="p">)</span>
+<span class="go">&#39;CA&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zip_codes_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;11111&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_state_from_zip</span><span class="p">(</span><span class="s2">&quot;11111&quot;</span><span class="p">,</span> <span class="n">zip_codes_list</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finding a given ZIP Code’s state in the list, however, takes an amount
+of time that is proportional to the size of the list. If we had 40,000
+ZIP Codes, and the ZIP Code we’re looking for is at the end of the
+list, we would have to traverse the entire list to find that
+value. While it’s true that sometimes we’ll search for a value that
+is towards the start of the list, the time to find a value will <em>on
+average</em> be proportional to the number of elements in the list. If
+we had 20,000,000 values in the list, the average time to find a value
+would be larger than if we have 40,000 values in the list.</p>
+<p>Dictionaries, on the other hand,
+are implemented internally using a data structure called a <em>hash
+table</em> that is optimized to access key-value mappings
+very quickly.  In fact, the amount of time it takes to access a
+key-value mapping is <em>not</em> proportional to the size of the input (in
+this case, the ZIP Codes).  So, finding a value in a dictionary with
+40,000 values will (roughly) take the same time as finding it in a
+dictionary with 20,000,000 values.</p>
+<div class="admonition-big-o-notation admonition">
+<p class="admonition-title">Big-O notation</p>
+<p>The performance or <em>complexity</em> of an algorithm or, in this case, of an operation
+on a data structure, is typically specified using <em>big-O notation</em>.</p>
+<p>While big-O notation has a formal definition, it is not
+essential to understand the concept.  In a
+nutshell, if <span class="math notranslate nohighlight">\(n\)</span> is the size of the input to a problem (e.g.,
+in this example, <span class="math notranslate nohighlight">\(n\)</span> would be the number of ZIP Codes), then
+saying that something runs in <span class="math notranslate nohighlight">\(O(n^2)\)</span> means that its running
+time is <em>roughly proportional</em> to <span class="math notranslate nohighlight">\(n^2\)</span> (i.e., as <cite>n</cite> gets
+bigger, the running time grows quadratically).  On the other hand,
+if an algorithm runs in <span class="math notranslate nohighlight">\(O(\log n)\)</span>, its running time grows
+logarithmically.</p>
+<p>Big-O notation helps us compare the performance of algorithms
+or individual operations on data structures. If one data structure
+can perform an operation in <span class="math notranslate nohighlight">\(O(n)\)</span> and another data structure can
+perform that same operation in <span class="math notranslate nohighlight">\(O(n^2)\)</span>, we know that,
+on average, the first data structure performs that operation faster
+than the second data structure.</p>
+<p>However, there is no “golden data structure” that beats every other
+data structure in every possible operation.  In fact, when a data
+structure provides good performance in one operation, there will
+usually be a trade-off: other operations may be less efficient, or
+even not supported by the data structure. So, choosing the right
+data structure often involves asking yourself what operations you
+will be using the most, and whether each data structure can perform
+those operations efficiently.</p>
+<p>In this case, we are looking at just one operation: finding a value in a list
+versus finding a value (through its key) in a dictionary. If <span class="math notranslate nohighlight">\(n\)</span> is the
+number of values, this operation can be done on lists in <span class="math notranslate nohighlight">\(O(n)\)</span>
+(the running time is <em>linearly</em> proportional to <span class="math notranslate nohighlight">\(n\)</span>), while
+this operation can be done on dictionaries in <span class="math notranslate nohighlight">\(O(1)\)</span>, meaning that the
+running time is <em>not</em> proportional to <span class="math notranslate nohighlight">\(n\)</span> (this is often referred to as
+“constant time”; strictly speaking, this operation is done in something
+called “amortized constant time”, but you don’t need to concern yourself
+with this distinction).    So, in this case, a dictionary would be a better choice.</p>
+<p>However, you should not jump to the conclusion that we should now
+use dictionaries for everything. If we were evaluating a different
+operation, it could turn out that lists would be a better
+choice. We explore this proposition in more detail below.</p>
+</div>
+<p>We can observe this difference in performance empirically by running our code with
+the full ZIP Code database. We will show you the result of doing this experiment but,
+if you would like to follow along, you can use the following files provided in our
+<a class="reference internal" href="../../preface.html#example-code"><span class="std std-ref">example code</span></a>: the <code class="docutils literal notranslate"><span class="pre">data_structures/dictionaries/zipcodes.py</span></code> module,
+as well as the ZIP Code database, <code class="docutils literal notranslate"><span class="pre">data_structures/dictionaries/us_postal_codes.csv</span></code>.
+You will also need to use IPython, not the regular Python interpreter (make sure to run
+it in the same directory that contains the <code class="docutils literal notranslate"><span class="pre">zipcodes.py</span></code> and <code class="docutils literal notranslate"><span class="pre">us_postal_codes.csv</span></code> files.</p>
+<p>From the IPython interpreter, run the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">run</span> <span class="n">zipcodes</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>This command will run the code in <code class="docutils literal notranslate"><span class="pre">zipcodes.py</span></code>, which reads the ZIP
+Code database and loads it into both a list (<code class="docutils literal notranslate"><span class="pre">zip_codes_list</span></code>) and a
+dictionary (<code class="docutils literal notranslate"><span class="pre">zip_codes_dict</span></code>). It will also define the
+<code class="docutils literal notranslate"><span class="pre">get_state_from_zip</span></code> function we wrote earlier, as well as a
+function called <code class="docutils literal notranslate"><span class="pre">gen_random_zip</span></code> that generates a random ZIP
+Code. We can see that they work as expected:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">get_state_from_zip</span><span class="p">(</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="n">zip_codes_list</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="s1">&#39;IL&#39;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">get_state_from_zip</span><span class="p">(</span><span class="s2">&quot;90210&quot;</span><span class="p">,</span> <span class="n">zip_codes_list</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="s1">&#39;CA&#39;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">zip_codes_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;60637&quot;</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="s1">&#39;IL&#39;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">zip_codes_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;90210&quot;</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="s1">&#39;CA&#39;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">gen_random_zip</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="s1">&#39;48344&#39;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">gen_random_zip</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="s1">&#39;22219&#39;</span>
+</pre></div>
+</div>
+<p>Note: You will very likely get different ZIP Codes when you call <code class="docutils literal notranslate"><span class="pre">gen_random_zip</span></code>.</p>
+<p>When you make these individual calls, they may seem to be returning
+nearly instantaneously.  Unfortunately, testing code performance informally in the
+interpreter obscures what will happen when you write a program that
+involves calling a function thousands or even millions of times.</p>
+<p>IPython includes a handy <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> command that will allow us to see how a piece of code performs when
+run many times. As it turns out, the dictionary version is nearly 200 times faster than the list-based
+version!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">zip_codes_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">gen_random_zip</span><span class="p">())</span>
+<span class="mi">100000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">4.9</span> <span class="n">µs</span> <span class="n">per</span> <span class="n">loop</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">get_state_from_zip</span><span class="p">(</span><span class="n">gen_random_zip</span><span class="p">(),</span> <span class="n">zip_codes_list</span><span class="p">)</span>
+<span class="mi">1000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">955</span> <span class="n">µs</span> <span class="n">per</span> <span class="n">loop</span>
+</pre></div>
+</div>
+<p>Note: You will likely get different running times, but the order of magnitude between the two times
+should be roughly the same.</p>
+<p>Things get more interesting if we actually look at how these running times change depending
+on the size of the dataset. Our <code class="docutils literal notranslate"><span class="pre">zipcodes.py</span></code> file also defines a <code class="docutils literal notranslate"><span class="pre">small_zip_codes_list</span></code>
+and a <code class="docutils literal notranslate"><span class="pre">small_zip_codes_dict</span></code> with just 500 ZIP Codes, and a <code class="docutils literal notranslate"><span class="pre">medium_zip_codes_list</span></code>
+and a <code class="docutils literal notranslate"><span class="pre">medium_zip_codes_dict</span></code> with just 2000 ZIP Codes. If we use the <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> command
+to time our list-based and dictionary-based implementations with these datasets, we get
+the following times:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>n = 5000</p></th>
+<th class="head"><p>n = 20000</p></th>
+<th class="head"><p>n =  43624</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Lists</p></td>
+<td><p>0.142 ms</p></td>
+<td><p>0.493 ms</p></td>
+<td><p>1.01 ms</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dictionaries</p></td>
+<td><p>0.00477 ms</p></td>
+<td><p>0.00478 ms</p></td>
+<td><p>0.0048 ms</p></td>
+</tr>
+</tbody>
+</table>
+<p>So, not only are dictionaries faster than lists in an absolute sense, their performance is independent
+of the size of the input. On the other hand, notice that as the dataset grows the list-based
+implementation takes more and more time.</p>
+<p>This result occurs because, as we saw earlier, finding the mapping
+from a ZIP Code to a state in a list takes <span class="math notranslate nohighlight">\(O(n)\)</span> time, while
+finding a mapping in a dictionary takes <span class="math notranslate nohighlight">\(O(1)\)</span> time.  If
+<span class="math notranslate nohighlight">\(n\)</span> is the number of ZIP Codes in our dataset, then the running
+time of a <span class="math notranslate nohighlight">\(O(n)\)</span> solution will increase (roughly) linearly as
+our dataset gets bigger, while the running time of a <span class="math notranslate nohighlight">\(O(1)\)</span>
+operation will remain (roughly) constant.</p>
+<p>So, based on all this, it sounds like we should just use dictionaries everywhere instead
+of lists, right? Not so fast! As we mentioned earlier, there is no such thing as a
+“golden data structure” that performs every possible operation in an optimal fashion.
+There is, however, “the right data structure for this job” and, if “this job” is
+finding a mapping between a key and a value, then dictionaries are definitely the
+right data structure.</p>
+<p>There are other operations, however, for which dictionaries are not so great. Most notably,
+as we saw earlier, dictionaries are <em>unordered</em> data structures, which means that iterating
+over a dictionary is not guaranteed to yield the keys in any particular order (and that
+order can even change from one <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to another). On top of that, even if we don’t
+care about the order in which the values are processed, a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop over a dictionary
+will usually be slower than a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop over a list containing the same values.
+So, if the order of the data matters, or if we are going to process it in sequence often,
+then using a list will probably be a better choice.</p>
+<div class="admonition-info-note admonition">
+<p class="admonition-title">Note</p>
+<p>Why did we use random ZIP Codes instead of just testing the code with a fixed ZIP Code?
+If we used a fixed ZIP Code, the results could be skewed depending on where that ZIP Code is
+located in the list. For example, if we used 00210 (the first ZIP Code in the list),
+our list implementation would always find that ZIP Code very quickly (because it doesn’t
+have to iterate through the rest of the list), making it look like the list version
+is just as good as the dictionary version:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">zip_codes_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;00210&quot;</span><span class="p">)</span>
+<span class="n">The</span> <span class="n">slowest</span> <span class="n">run</span> <span class="n">took</span> <span class="mf">21.25</span> <span class="n">times</span> <span class="n">longer</span> <span class="n">than</span> <span class="n">the</span> <span class="n">fastest</span><span class="o">.</span> <span class="n">This</span> <span class="n">could</span> <span class="n">mean</span> <span class="n">that</span> <span class="n">an</span> <span class="n">intermediate</span> <span class="n">result</span> <span class="ow">is</span> <span class="n">being</span> <span class="n">cached</span>
+<span class="mi">10000000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">63.3</span> <span class="n">ns</span> <span class="n">per</span> <span class="n">loop</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">get_state_from_zip</span><span class="p">(</span><span class="s2">&quot;00210&quot;</span><span class="p">,</span> <span class="n">zip_codes_list</span><span class="p">)</span>
+<span class="n">The</span> <span class="n">slowest</span> <span class="n">run</span> <span class="n">took</span> <span class="mf">17.80</span> <span class="n">times</span> <span class="n">longer</span> <span class="n">than</span> <span class="n">the</span> <span class="n">fastest</span><span class="o">.</span> <span class="n">This</span> <span class="n">could</span> <span class="n">mean</span> <span class="n">that</span> <span class="n">an</span> <span class="n">intermediate</span> <span class="n">result</span> <span class="ow">is</span> <span class="n">being</span> <span class="n">cached</span>
+<span class="mi">10000000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">127</span> <span class="n">ns</span> <span class="n">per</span> <span class="n">loop</span>
+</pre></div>
+</div>
+<p>In this case, the dictionary version is only two times faster than the list version. Notice
+that we also get a message about “an intermediate result being cached”. This phrase refers to the
+fact that computers are usually smart about detecting when a location in memory is being
+accessed frequently, and making sure it is “cached” in higher-speed memory in the computer’s
+processor (instead of having to go to the computer’s main memory, which is slower). Testing
+our implementation with the same inputs over and over again could show performance
+gains that are due to this caching mechanism, not the efficiency of the data structure itself.</p>
+</div>
+</div>
+<div class="section" id="sets">
+<h2><span class="section-number">2.2.6. </span>Sets<a class="headerlink" href="#sets" title="Permalink to this heading"></a></h2>
+<p>Dictionaries are great for associating values to unique keys, but sometimes
+we may simply want to have a collection of unique keys that we can access
+as efficiently as a dictionary, but without associating a value with each key.
+To do this, we can simply use a <em>set</em> data structure, which allows us
+to store an unordered collection of distinct elements.</p>
+<p>Typical set operations include:</p>
+<ul class="simple">
+<li><p><em>membership</em> (<span class="math notranslate nohighlight">\(e \in S\)</span>): which tests whether a given element, <span class="math notranslate nohighlight">\(e\)</span>, appears in the set <span class="math notranslate nohighlight">\(S\)</span>,</p></li>
+<li><p><em>subset</em> (<span class="math notranslate nohighlight">\(S \subseteq T\)</span>): which tests whether every element in <span class="math notranslate nohighlight">\(S\)</span> also appears as an element in <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
+<li><p><em>union</em> (<span class="math notranslate nohighlight">\(S \cup T\)</span>): which yields a new set that contains the elements <span class="math notranslate nohighlight">\(e\)</span> where <span class="math notranslate nohighlight">\(e \in S\)</span> and/or <span class="math notranslate nohighlight">\(e \in T\)</span>,</p></li>
+<li><p><em>intersection</em> (<span class="math notranslate nohighlight">\(S \cap T\)</span>): which yields a new set that contains the elements <span class="math notranslate nohighlight">\(e\)</span> where <span class="math notranslate nohighlight">\(e \in S\)</span> <em>and</em> <span class="math notranslate nohighlight">\(e \in T\)</span>, and</p></li>
+<li><p><em>difference</em> (<span class="math notranslate nohighlight">\(S - T\)</span>): which yields a new set that contains the elements <span class="math notranslate nohighlight">\(e\)</span> where <span class="math notranslate nohighlight">\(e \in S\)</span> and <span class="math notranslate nohighlight">\(e \notin T\)</span>.</p></li>
+</ul>
+<p>Sets are sufficiently useful that Python provides a built-in <code class="docutils literal notranslate"><span class="pre">set</span></code>
+data structure.</p>
+<p>We can define a set literal by surrounding the initial elements of the
+set with curly braces or using the built-in <code class="docutils literal notranslate"><span class="pre">set</span></code> function with a
+sequence (list, string, etc.) as the parameter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;07974&quot;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span>
+<span class="go">{&#39;07974&#39;, &#39;60637&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;07974&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span>
+<span class="go">{&#39;07974&#39;, &#39;60637&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vowels</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="s2">&quot;aeiou&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vowels</span>
+<span class="go">{&#39;e&#39;, &#39;a&#39;, &#39;o&#39;, &#39;u&#39;, &#39;i&#39;}</span>
+</pre></div>
+</div>
+<p>To construct an empty set, we use the <code class="docutils literal notranslate"><span class="pre">set</span></code> function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">empty_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>We cannot use curly braces to create an empty set, because Python
+interprets <code class="docutils literal notranslate"><span class="pre">{}</span></code> as an empty dictionary.</p>
+<p>We can determine the number of elements in a set using the <code class="docutils literal notranslate"><span class="pre">len</span></code>
+function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">empty_set</span><span class="p">)</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">zipcodes</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">vowels</span><span class="p">)</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<p>and we can test for set membership using the <code class="docutils literal notranslate"><span class="pre">in</span></code> operator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;14850&quot;</span> <span class="ow">in</span> <span class="n">zipcodes</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;60637&quot;</span> <span class="ow">in</span> <span class="n">zipcodes</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>We can determine whether one set is a subset of another set using the
+<code class="docutils literal notranslate"><span class="pre">issubset</span></code> method.  Specifically, a call of the form
+<code class="docutils literal notranslate"><span class="pre">S.issubset(T)</span></code> tests whether the set <code class="docutils literal notranslate"><span class="pre">S</span></code> is a subset of the set
+<code class="docutils literal notranslate"><span class="pre">T</span></code>.  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="s2">&quot;07974&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">zipcodes</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;14850&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">zipcodes</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Sets are mutable: we can add and remove elements.  We can add elements
+to a set using the <code class="docutils literal notranslate"><span class="pre">add</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;14850&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;60637&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span>
+<span class="go">{&#39;14850&#39;, &#39;07974&#39;, &#39;60637&#39;}</span>
+</pre></div>
+</div>
+<p>The second example illustrates an important point about sets: adding
+an element that is already a member of the set has no effect.</p>
+<p>We can take elements out of a set using either the <code class="docutils literal notranslate"><span class="pre">remove</span></code> method
+or the <code class="docutils literal notranslate"><span class="pre">discard</span></code> method.  The <code class="docutils literal notranslate"><span class="pre">remove</span></code> method removes a value from
+a set, if it is a member, and throws a <code class="docutils literal notranslate"><span class="pre">KeyError</span></code> exception if it is
+not.  The <code class="docutils literal notranslate"><span class="pre">discard</span></code> method, in contrast, removes the value if it is
+a member of the set and does nothing if the value is not a member of
+the set.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;60637&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;60615&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">KeyError</span>: <span class="n">&#39;60615&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span>
+<span class="go">{&#39;14850&#39;, &#39;07974&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="s2">&quot;14850&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="s2">&quot;60615&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span>
+<span class="go">{&#39;07974&#39;}</span>
+</pre></div>
+</div>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">add</span></code> method and <code class="docutils literal notranslate"><span class="pre">len</span></code> function, we can easily write
+a function to determine how many different ZIP Codes had at least one
+contribution.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_num_zipcodes</span><span class="p">(</span><span class="n">contributions</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute the number of zipcodes with at least one contribution</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      contributions (list of dictionaries): one dictionary per</span>
+<span class="sd">        contribution</span>
+
+<span class="sd">    Returns (int): the number of zipcodes with at least one</span>
+<span class="sd">      contribution.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">zipcodes_seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">contribution</span> <span class="ow">in</span> <span class="n">contributions</span><span class="p">:</span>
+        <span class="n">zipcodes_seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">contribution</span><span class="p">[</span><span class="s2">&quot;zip_code&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">zipcodes_seen</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">compute_num_zipcodes</span><span class="p">(</span><span class="n">contributions</span><span class="p">)</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+<p>Alternatively, we can use set comprehensions, which are like
+dictionary comprehensions with only keys, to do the same
+computation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_num_zipcodes</span><span class="p">(</span><span class="n">contributions</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute the number of zipcodes with at least one contribution</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      contributions (list of dictionaries): one dictionary per</span>
+<span class="sd">        contribution</span>
+
+<span class="sd">    Returns (int): the number of zipcodes with at least one</span>
+<span class="sd">      contribution</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">zipcodes_seen</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;zip_code&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">contributions</span><span class="p">}</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">zipcodes_seen</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">compute_num_zipcodes</span><span class="p">(</span><span class="n">contributions</span><span class="p">)</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+<p>Sets come with a variety of useful operations. We can compute a <em>new</em>
+set that is the union of two sets using the <code class="docutils literal notranslate"><span class="pre">|</span></code> operator or the
+<code class="docutils literal notranslate"><span class="pre">union</span></code> method, the intersection of two sets using the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>
+operator or the <code class="docutils literal notranslate"><span class="pre">intersection</span></code> method, and the difference of two
+sets using the <code class="docutils literal notranslate"><span class="pre">-</span></code> operator or the <code class="docutils literal notranslate"><span class="pre">difference</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;07974&quot;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span> <span class="o">|</span> <span class="p">{</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;60615&quot;</span><span class="p">}</span>
+<span class="go">{&#39;60615&#39;, &#39;07974&#39;, &#39;60637&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span><span class="o">.</span><span class="n">union</span><span class="p">({</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;60615&quot;</span><span class="p">})</span>
+<span class="go">{&#39;60615&#39;, &#39;07974&#39;, &#39;60637&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;60615&quot;</span><span class="p">}</span>
+<span class="go">{&#39;60637&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span><span class="o">.</span><span class="n">intersection</span><span class="p">({</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;60615&quot;</span><span class="p">})</span>
+<span class="go">{&#39;60637&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span> <span class="o">-</span> <span class="p">{</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;60615&quot;</span><span class="p">}</span>
+<span class="go">{&#39;07974&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span><span class="o">.</span><span class="n">difference</span><span class="p">({</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;60615&quot;</span><span class="p">})</span>
+<span class="go">{&#39;07974&#39;}</span>
+</pre></div>
+</div>
+<p>Finally, since sets are collections, we can iterate over the
+elements in a set:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">zc</span> <span class="ow">in</span> <span class="n">zipcodes</span><span class="p">:</span>
+<span class="gp">... </span>     <span class="nb">print</span><span class="p">(</span><span class="n">zc</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">07974</span>
+<span class="go">60637</span>
+</pre></div>
+</div>
+<p>As with dictionaries, sets are unordered and so the elements will be
+printed in an arbitrary order.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../lists/index.html" class="btn btn-neutral float-left" title="2.1. Lists, Tuples, and Strings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../stacks_queues/index.html" class="btn btn-neutral float-right" title="2.3. Implementing a Data Structure: Stacks and Queues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Anne Rogers and Borja Sotomayor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

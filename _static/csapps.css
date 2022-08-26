@@ -1,0 +1,82 @@
+/* SPECIAL SECTIONS */
+
+/* This is the common style for the icon that appears before the title.
+   The actual icon is specified later in the stylesheet */
+.section-technical-details h2:before,
+.section-common-pitfalls h2:before,
+.section-tip h2:before {
+    font-family: FontAwesome;
+    display: inline-block;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    margin-right: 6px;
+}
+
+
+/* NOTES */
+
+.rst-content .admonition-info-note {
+    background: #e7f2fa;
+}
+
+.rst-content .admonition-info-note .admonition-title {
+    background: #6ab0de;
+}
+
+.admonition-info-note .admonition-title:before,
+.section-info-note h2:before {
+    /* circle-info icon: https://fontawesome.com/v6.0/icons/circle-info */
+    content: "\f05a";
+}
+
+
+/* TECHNICAL DETAILS */
+
+.rst-content .admonition-technical-details {
+    background: #dbfaf4;
+}
+
+.rst-content .admonition-technical-details .admonition-title {
+    background: #1abc9c;
+}
+
+.admonition-technical-details .admonition-title:before,
+.section-technical-details h2:before {
+    /* gears icon: https://fontawesome.com/v6.0/icons/gears */
+    content: "\f085";
+}
+
+
+/* Common Pitfalls */
+
+.rst-content .admonition-common-pitfalls {
+    background: #ffedcc;
+}
+
+.rst-content .admonition-common-pitfalls .admonition-title {
+    background: #f0b37e;
+}
+
+.admonition-common-pitfalls .admonition-title:before,
+.section-common-pitfalls h2:before {
+    /* bug icon: https://fontawesome.com/v6.0/icons/bug */
+    content: "\f188";
+}
+
+
+/* Tip */
+
+.rst-content .admonition-tip {
+    background: #e7c4ef;
+}
+
+.rst-content .admonition-tip .admonition-title {
+    background: #a91cce;
+}
+
+.admonition-tip .admonition-title:before,
+.section-tip h2:before{
+    /* triangle-exclamation icon: https://fontawesome.com/v6.0/icons/triangle-exclamation */
+    content: "\f0a4";
+}

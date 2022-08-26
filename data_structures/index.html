@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. Data Structures &mdash; Computer Science with Applications  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/csapps.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.1. Lists, Tuples, and Strings" href="lists/index.html" />
+    <link rel="prev" title="1.7. Example: A Game of Chance" href="../getting_started/example/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Computer Science with Applications
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Data Structures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lists/index.html">2.1. Lists, Tuples, and Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dictionaries/index.html">2.2. Dictionaries and Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stacks_queues/index.html">2.3. Implementing a Data Structure: Stacks and Queues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes/index.html">2.4. Classes and Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../functions/index.html">3. Functional Programming and Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_data/index.html">4. Working with Data</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Computer Science with Applications</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><span class="section-number">2. </span>Data Structures</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/data_structures/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="data-structures">
+<h1><span class="section-number">2. </span>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lists/index.html">2.1. Lists, Tuples, and Strings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lists/index.html#creating-lists">2.1.1. Creating lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists/index.html#accessing-elements-in-a-list">2.1.2. Accessing elements in a list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists/index.html#iterating-over-a-list">2.1.3. Iterating over a list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists/index.html#modifying-a-list">2.1.4. Modifying a list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists/index.html#creating-a-list-based-on-another-list">2.1.5. Creating a list based on another list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists/index.html#other-operations-on-lists">2.1.6. Other operations on lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists/index.html#variables-revisited">2.1.7. Variables revisited</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists/index.html#the-heap">2.1.8. The heap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists/index.html#list-parameters">2.1.9. List parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists/index.html#lists-of-lists">2.1.10. Lists of lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists/index.html#shallow-copy-versus-deep-copy">2.1.11. Shallow copy versus deep copy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists/index.html#tuples">2.1.12. Tuples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists/index.html#strings">2.1.13. Strings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dictionaries/index.html">2.2. Dictionaries and Sets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dictionaries/index.html#useful-operations-with-dictionaries">2.2.1. Useful operations with dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dictionaries/index.html#other-ways-to-construct-dictionaries">2.2.2. Other ways to construct dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dictionaries/index.html#accumulating-values-with-dictionaries">2.2.3. Accumulating values with dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dictionaries/index.html#nested-dictionaries">2.2.4. Nested dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dictionaries/index.html#data-structures-and-their-complexity">2.2.5. Data structures and their complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dictionaries/index.html#sets">2.2.6. Sets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="stacks_queues/index.html">2.3. Implementing a Data Structure: Stacks and Queues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="stacks_queues/index.html#interfaces-and-apis">2.3.1. Interfaces and APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stacks_queues/index.html#stacks">2.3.2. Stacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stacks_queues/index.html#queues">2.3.3. Queues</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="classes/index.html">2.4. Classes and Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classes/index.html#defining-a-new-class">2.4.1. Defining a new class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes/index.html#composition">2.4.2. Composition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes/index.html#public-vs-private-attributes">2.4.3. Public vs private attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes/index.html#properties">2.4.4. Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes/index.html#class-static-attributes-vs-instance-attributes">2.4.5. Class/static attributes vs instance attributes</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../getting_started/example/index.html" class="btn btn-neutral float-left" title="1.7. Example: A Game of Chance" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lists/index.html" class="btn btn-neutral float-right" title="2.1. Lists, Tuples, and Strings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Anne Rogers and Borja Sotomayor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

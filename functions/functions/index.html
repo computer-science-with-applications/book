@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1. Functional Programming &mdash; Computer Science with Applications  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/csapps.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3.2. Recursion" href="../recursion/index.html" />
+    <link rel="prev" title="3. Functional Programming and Recursion" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Computer Science with Applications
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../preface.html">Preface</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_structures/index.html">2. Data Structures</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. Functional Programming and Recursion</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.1. Functional Programming</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#higher-order-functions">3.1.1. Higher-order functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#anonymous-functions">3.1.2. Anonymous functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#map-reduce-filter">3.1.3. map(), reduce(), filter()</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#list-comprehensions-revisited">3.1.3.1. List comprehensions revisited</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#returning-a-function">3.1.4. Returning a function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scoping-and-inner-functions">3.1.5. Scoping and inner functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../recursion/index.html">3.2. Recursion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../trees/index.html">3.3. Trees</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../working_with_data/index.html">4. Working with Data</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Computer Science with Applications</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">3. </span>Functional Programming and Recursion</a> &raquo;</li>
+      <li><span class="section-number">3.1. </span>Functional Programming</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/functions/functions/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="functional-programming">
+<h1><span class="section-number">3.1. </span>Functional Programming<a class="headerlink" href="#functional-programming" title="Permalink to this heading"></a></h1>
+<p>Programming languages are often classified into one of several
+paradigms.  For example, in <em>imperative</em> programming languages,
+computation is expressed as sequences of statements that update the
+state of the computation, including control flow statements like
+conditional and looping statements. In this context, “imperative” means “to give
+commands” (where statements are commands that are
+“given” in a program). Python is an imperative programming language,
+as are many others: C, C++, Java, etc.</p>
+<p>We have also seen the <em>object-oriented (OO) paradigm</em>, where programs
+manipulate objects encapsulating some data (their attributes)
+and operations on the objects (their methods). Languages like
+Java are known as pure OO languages, because we <em>must</em> use classes
+and objects everywhere in our program. Python, along with C++ and
+others, is a multi-paradigm language: we can use OO features,
+but can stick with just imperative constructs if we like.</p>
+<p>Another major paradigm of programming languages is the <em>functional</em>
+paradigm, in which functions are primarily used to compute values, rather
+than for their side effects (e.g., updating variables, printing).
+Functional programming languages include LISP, Scheme, Haskell,
+SML, and others. Python is not a pure functional language, but it does
+support a number of features commonly found in functional programming
+languages that are not traditionally found in languages like
+C, C++, Java, etc. (although some of these languages are starting to
+include features that are influenced by functional programming languages).</p>
+<p>In this chapter, we will focus on two aspects of functional
+programming that Python supports: higher-order functions and anonymous
+functions.</p>
+<div class="section" id="higher-order-functions">
+<h2><span class="section-number">3.1.1. </span>Higher-order functions<a class="headerlink" href="#higher-order-functions" title="Permalink to this heading"></a></h2>
+<p>Let’s say we wanted to find the value of an integral:</p>
+<div class="math notranslate nohighlight">
+\[\int_{10}^{20} x^2\,dx\]</div>
+<p>One way to do this is to apply integration rules, which tell us
+that the antiderivative of <span class="math notranslate nohighlight">\(x^2\)</span> is <span class="math notranslate nohighlight">\(\frac{x^3}{3}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\int_{10}^{20} x^2\,dx = \left[\frac{x^3}{3}\right]_{10}^{20} = \frac{20^3}{3} - \frac{10^3}{3} = \frac{8000}{3} - \frac{1000}{3} = \frac{7000}{3} = 2333.\overline{3}\]</div>
+<p>While it is possible to write a program that
+applies integration rules to evaluate a given integral, programs more
+commonly evaluate integrals using
+<em>numerical methods</em>, or ways to approximate
+the value of the integral.</p>
+<p>A common numerical method for computing integrals is the <em>rectangle method</em>,
+in which the area under the curve is approximated by <span class="math notranslate nohighlight">\(N\)</span>
+rectangles. If we are computing the integral between <span class="math notranslate nohighlight">\(a\)</span> and
+<span class="math notranslate nohighlight">\(b\)</span>, then the width of each rectangle will be:</p>
+<div class="math notranslate nohighlight">
+\[\Delta=\frac{b - a}{N}\]</div>
+<p>We can then approximate the integral as follows:</p>
+<div class="math notranslate nohighlight">
+\[\int_{a}^{b} f(x)\,dx \approx \sum_{i=0}^{N-1} \Delta \cdot f\left(a + \Delta \cdot (i+0.5)\right)\]</div>
+<p>In other words, we divide the range between <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> into <span class="math notranslate nohighlight">\(N\)</span>
+subranges, all of width <span class="math notranslate nohighlight">\(\Delta\)</span>. For each subrange, we compute the area of
+a rectangle, where the height of the rectangle is simply the value of
+the function at the midpoint of the subrange (using the start or end of the
+subrange is not desirable for reasons that are not worth getting into here) The
+sum of the areas of all those rectangles approximates the value of the
+integral between <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>.</p>
+<div class="figure align-default">
+<img alt="../../_images/integration_plot.png" src="../../_images/integration_plot.png" />
+</div>
+<p>We can easily write a function that implements this approach. Let’s assume the
+function we’re integrating is the square function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>Our integration function, which simply implements the above summation
+using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, would look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">integrate_square</span><span class="p">(</span><span class="n">lb</span><span class="p">,</span> <span class="n">ub</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute the integral of the square function between the</span>
+<span class="sd">    specified bounds using the rectangle method.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      lb (float): lower bound of the range</span>
+<span class="sd">      ub (float): upper bound of the range</span>
+<span class="sd">      N (int): the number of rectangles to use</span>
+
+<span class="sd">    Returns (float): an approximation of the area under the curve</span>
+<span class="sd">      between the specified bounds.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">delta</span> <span class="o">=</span> <span class="p">(</span><span class="n">ub</span> <span class="o">-</span> <span class="n">lb</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="nb">sum</span> <span class="o">+=</span> <span class="n">delta</span> <span class="o">*</span> <span class="n">square</span><span class="p">(</span><span class="n">lb</span> <span class="o">+</span> <span class="n">delta</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">sum</span>
+</pre></div>
+</div>
+<p>If we run this function with <code class="docutils literal notranslate"><span class="pre">N</span></code> equal to 100, we get a reasonable approximation to
+the expected value of the integral (<span class="math notranslate nohighlight">\(2333.\overline{3}\)</span>)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">integrate_square</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="go">2333.3250000000007</span>
+</pre></div>
+</div>
+<p>And, as we divide the area under the function into more rectangles, we
+get more accurate results, at the expense of more computation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">integrate_square</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="go">2333.3332500000006</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">integrate_square</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="go">2333.3333325000003</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">integrate_square</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
+<span class="go">2333.3333333249616</span>
+</pre></div>
+</div>
+<p>But what if we want to compute the integral of other functions? We would
+need to create functions that repeat essentially the same code! So,
+to integrate <span class="math notranslate nohighlight">\(f(x)=2\cdot x\)</span> we would have to write the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">double</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+
+<span class="k">def</span> <span class="nf">integrate_double</span><span class="p">(</span><span class="n">lb</span><span class="p">,</span> <span class="n">ub</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute the integral of the double function between the</span>
+<span class="sd">    specified bounds using the rectangle method.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      lb (float): lower bound of the range</span>
+<span class="sd">      ub (float): upper bound of the range</span>
+<span class="sd">      N (int): the number of rectangles to use</span>
+
+<span class="sd">    Returns (float): an approximation of the area under the curve</span>
+<span class="sd">      between the specified bounds</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">delta</span> <span class="o">=</span> <span class="p">(</span><span class="n">ub</span> <span class="o">-</span> <span class="n">lb</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="nb">sum</span> <span class="o">+=</span> <span class="n">delta</span> <span class="o">*</span> <span class="n">double</span><span class="p">(</span><span class="n">lb</span> <span class="o">+</span> <span class="n">delta</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">sum</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">integrate_double</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="go">299.9999999999999</span>
+</pre></div>
+</div>
+<p>If we compare <code class="docutils literal notranslate"><span class="pre">integrate_square</span></code> and <code class="docutils literal notranslate"><span class="pre">integrate_double</span></code>, we can
+see that they are identical except for the call to the function
+that is being integrated. In Python, and in most functional
+programming languages, we address this code duplication by writing
+a general purpose <code class="docutils literal notranslate"><span class="pre">integrate</span></code> function that, instead
+of integrating a specific hard-coded function, takes
+a function <em>as a parameter</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">integrate</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">lb</span><span class="p">,</span> <span class="n">ub</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute the integral of the specified function between the</span>
+<span class="sd">    specified lower and upper bounds using the rectangle method.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      fn (function): function to be integrated.  Must take a float</span>
+<span class="sd">        and return a float</span>
+<span class="sd">      lb (float): lower bound of the range</span>
+<span class="sd">      ub (float): upper bound of the range</span>
+<span class="sd">      N (int): the number of rectangles to use</span>
+
+<span class="sd">    Returns (float): an approximation of the area under the curve</span>
+<span class="sd">      (specified by the function parameter) between the bounds.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+
+    <span class="n">delta</span> <span class="o">=</span> <span class="p">(</span><span class="n">ub</span> <span class="o">-</span> <span class="n">lb</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="nb">sum</span> <span class="o">+=</span> <span class="n">delta</span> <span class="o">*</span> <span class="n">fn</span><span class="p">(</span><span class="n">lb</span> <span class="o">+</span> <span class="n">delta</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">sum</span>
+</pre></div>
+</div>
+<p>A call to this function looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">integrate</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="go">2333.3333325000003</span>
+</pre></div>
+</div>
+<p>Notice that <code class="docutils literal notranslate"><span class="pre">integrate</span></code> is nearly identical to both <code class="docutils literal notranslate"><span class="pre">integrate_square</span></code>
+and <code class="docutils literal notranslate"><span class="pre">integrate_double</span></code>, except we have added a parameter called <code class="docutils literal notranslate"><span class="pre">fn</span></code>
+that must be a function. When we call <code class="docutils literal notranslate"><span class="pre">integrate</span></code>, we are passing
+the <code class="docutils literal notranslate"><span class="pre">square</span></code> function itself (not the result of calling <code class="docutils literal notranslate"><span class="pre">square</span></code>
+with some specific values).</p>
+<p>Because <code class="docutils literal notranslate"><span class="pre">integrate</span></code> takes a function parameter, we refer to it as
+a <em>higher-order function</em>. A higher-order function is any function that takes
+another function as a parameter or, as we’ll see later on, returns
+a function as its result. Notice that we don’t define
+higher-order functions in any special way; the syntax is the same as what
+we’ve seen so far.</p>
+<p>So, since the function to be integrated is now a parameter to <code class="docutils literal notranslate"><span class="pre">integrate</span></code>,
+integrating a different function is as simple as calling
+<code class="docutils literal notranslate"><span class="pre">integrate</span></code> with the function we want to integrate:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">integrate</span><span class="p">(</span><span class="n">double</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="go">299.9999999999999</span>
+</pre></div>
+</div>
+<p>We can also use functions included with Python:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">integrate</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="go">38.54662833413495</span>
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">integrate</span></code> will only work if we pass it a function that takes
+a single float parameter and returns a float value. If we pass any other
+type of function, our code will fail:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+   <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">integrate</span><span class="p">(</span><span class="n">multiply</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">21</span>, in <span class="n">integrate</span>
+<span class="gr">TypeError</span>: <span class="n">multiply() missing 1 required positional argument: &#39;b&#39;</span>
+</pre></div>
+</div>
+<p>The exact type of failure will depend on the function.  In this case,
+for example, we passed a function with two required parameters where a
+function of one parameter was needed.</p>
+</div>
+<div class="section" id="anonymous-functions">
+<h2><span class="section-number">3.1.2. </span>Anonymous functions<a class="headerlink" href="#anonymous-functions" title="Permalink to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">integrate</span></code> function can take a function as a parameter, but it
+requires defining a separate function (like <code class="docutils literal notranslate"><span class="pre">square</span></code> and <code class="docutils literal notranslate"><span class="pre">double</span></code>)
+to pass as a parameter.  Instead of defining a function just for the
+purposes of passing it as a parameter to another function, we can
+instead use <em>anonymous functions</em> (also known as <em>lambdas</em>). An
+anonymous function is basically a function we define on the fly
+without using the <code class="docutils literal notranslate"><span class="pre">def</span></code> statement to give it a name. For example,
+here is an anonymous function to compute the square of a single
+parameter <code class="docutils literal notranslate"><span class="pre">x</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>And here is an anonymous function to add two parameters <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</pre></div>
+</div>
+<p>The general syntax of an anonymous function is the following:</p>
+<pre class="literal-block"><strong>lambda</strong> <em>&lt;parameters&gt;</em>: <em>&lt;expression&gt;</em></pre>
+<p>Notice that anonymous functions contain a single expression. They don’t
+contain statements like a regular function (so you cannot use
+conditional statements or loops), nor do they have a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement. The
+value the function will return is simply the result of the evaluating
+the expression specified in the <code class="docutils literal notranslate"><span class="pre">lambda</span></code> using the values supplied
+for the parameters.</p>
+<p>And, since they’re anonymous, functions defined using <code class="docutils literal notranslate"><span class="pre">lambda</span></code> need
+to be given a name before they can be called.  Anonymous functions are
+most commonly used as parameters to other functions.  For example, the
+following piece of code is equivalent to passing the <code class="docutils literal notranslate"><span class="pre">square</span></code>
+function to <code class="docutils literal notranslate"><span class="pre">integrate</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">integrate</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="go">2333.3333325000003</span>
+</pre></div>
+</div>
+<p>And the following piece of code is equivalent to passing the <code class="docutils literal notranslate"><span class="pre">double</span></code> function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">integrate</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="go">299.9999999999999</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="map-reduce-filter">
+<h2><span class="section-number">3.1.3. </span>map(), reduce(), filter()<a class="headerlink" href="#map-reduce-filter" title="Permalink to this heading"></a></h2>
+<p>Python provides a few very useful higher-order functions for working with
+lists.</p>
+<p>Let’s say we had the following list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>If we wanted to create a new list that contains the above values,
+but with each value incremented by one. We could do it like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lst2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
+    <span class="n">lst2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">lst2</span><span class="p">)</span>
+<span class="go">[2, 3, 4, 5, 6]</span>
+</pre></div>
+</div>
+<p>Functional programming languages provide a different mechanism
+for processing lists in this way. In fact, most functional programming
+languages lack looping constructs like <code class="docutils literal notranslate"><span class="pre">for</span></code> or <code class="docutils literal notranslate"><span class="pre">while</span></code> and, instead,
+provide mechanisms to apply functions to sequences of values
+in different ways (in the next chapter we will also see the general
+mechanism that functional programming languages use to repeat operations: <em>recursion</em>)</p>
+<p>For example, if we wanted to increment each value of the list by one,
+we would define a function that increments a single value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">incr</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Then, we would call that function on each value of the list, and
+place the resulting values in a new list. However, instead of doing
+this task with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, we can do it with a single call to
+the built-in <code class="docutils literal notranslate"><span class="pre">map</span></code> function</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">map</span><span class="p">(</span><span class="n">incr</span><span class="p">,</span> <span class="n">lst</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The return value of this call is actually not a new list, but rather
+an iterable object (like the kind of value that we get from a call to
+<code class="docutils literal notranslate"><span class="pre">range</span></code>) that we can then use in a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop or any other
+context, such as a call to <code class="docutils literal notranslate"><span class="pre">map</span></code>, that requires an iterable, or
+which we can convert to a new list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">map</span><span class="p">(</span><span class="n">incr</span><span class="p">,</span> <span class="n">lst</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">2</span>
+<span class="go">3</span>
+<span class="go">4</span>
+<span class="go">5</span>
+<span class="go">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">incr</span><span class="p">,</span> <span class="n">lst</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst2</span>
+<span class="go">[2, 3, 4, 5, 6]</span>
+</pre></div>
+</div>
+<p>As we saw with the <code class="docutils literal notranslate"><span class="pre">integrate</span></code> function, we don’t need to define
+a new function before calling <code class="docutils literal notranslate"><span class="pre">map</span></code> and, instead, we can just
+use an anonymous function as the first parameter to <code class="docutils literal notranslate"><span class="pre">map</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[1, 2, 3, 4, 5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">lst</span><span class="p">))</span>
+<span class="go">[2, 4, 6, 8, 10]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[1, 2, 3, 4, 5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">lst</span><span class="p">))</span>
+<span class="go">[1, 4, 9, 16, 25]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[1, 2, 3, 4, 5]</span>
+</pre></div>
+</div>
+<p>Notice that <code class="docutils literal notranslate"><span class="pre">map</span></code> does not change the list it operates on.</p>
+<p>If we would like to create a new list with elements copied from an
+input list <em>only</em> if they meet a given condition, we can instead use the
+built-in <code class="docutils literal notranslate"><span class="pre">filter</span></code> function.  This function takes a function that
+returns a boolean result and a list as arguments. If, for a given
+value in the list, the supplied function returns <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the
+value will be included in the resulting list. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_odd</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[1, 2, 3, 4, 5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">is_odd</span><span class="p">,</span> <span class="n">lst</span><span class="p">))</span>
+<span class="go">[1, 3, 5]</span>
+</pre></div>
+</div>
+<p>Or, equivalently:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="n">lst</span><span class="p">))</span>
+<span class="go">[1, 3, 5]</span>
+</pre></div>
+</div>
+<p>Another useful function found in many functional programming
+languages is the <code class="docutils literal notranslate"><span class="pre">reduce</span></code> function. Unlike <code class="docutils literal notranslate"><span class="pre">map</span></code> and <code class="docutils literal notranslate"><span class="pre">filter</span></code>,
+it does not apply a function to each value in the list; instead,
+it repeatedly applies the function to reduce the list to a single value. For example, say we had
+the following list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>If we wanted to multiply all the values in the list, we could
+write the following loop:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">p</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>24
+</pre></div>
+</div>
+<p>Notice that this code boils down to evaluating this expression:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">((</span><span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">lst</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">*</span> <span class="n">lst</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="go">24</span>
+</pre></div>
+</div>
+<p>If we define a <code class="docutils literal notranslate"><span class="pre">multiply</span></code> function, we could rewrite this expression
+as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+   <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">multiply</span><span class="p">(</span><span class="n">multiply</span><span class="p">(</span><span class="n">multiply</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">lst</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="n">lst</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="go">24</span>
+</pre></div>
+</div>
+<p>And this repeated application of a function is exactly what <code class="docutils literal notranslate"><span class="pre">reduce</span></code> does:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reduce</span><span class="p">(</span><span class="n">multiply</span><span class="p">,</span> <span class="n">lst</span><span class="p">)</span>
+<span class="go">24</span>
+</pre></div>
+</div>
+<p>Notice that unlike <code class="docutils literal notranslate"><span class="pre">map</span></code> and <code class="docutils literal notranslate"><span class="pre">filter</span></code>, <code class="docutils literal notranslate"><span class="pre">reduce</span></code> needs to be
+imported from the <code class="docutils literal notranslate"><span class="pre">functools</span></code> library.</p>
+<p>Or, using a <code class="docutils literal notranslate"><span class="pre">lambda</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">,</span> <span class="n">lst</span><span class="p">)</span>
+<span class="go">24</span>
+</pre></div>
+</div>
+<div class="section" id="list-comprehensions-revisited">
+<span id="id1"></span><h3><span class="section-number">3.1.3.1. </span>List comprehensions revisited<a class="headerlink" href="#list-comprehensions-revisited" title="Permalink to this heading"></a></h3>
+<p>In <a class="reference internal" href="../../data_structures/lists/index.html#chapter-lists"><span class="std std-ref">Lists, Tuples, and Strings</span></a>, we briefly described <em>list comprehensions</em>
+as shorthand notation for producing a new list based on an
+existing list. In particular, the following piece of code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">original_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">new_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">original_list</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">new_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">new_list</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[1, 9, 16]
+</pre></div>
+</div>
+<p>Can be written more compactly using a list comprehension:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">new_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">original_list</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">new_list</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[1, 9, 16]
+</pre></div>
+</div>
+<p>Another way of thinking about list comprehensions is that they are a
+more readable notation for combining a <code class="docutils literal notranslate"><span class="pre">map</span></code> and <code class="docutils literal notranslate"><span class="pre">filter</span></code> on a
+list. The above list comprehension is equivalent to this code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">new_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span> <span class="n">original_list</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">new_list</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[1, 9, 16]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="returning-a-function">
+<h2><span class="section-number">3.1.4. </span>Returning a function<a class="headerlink" href="#returning-a-function" title="Permalink to this heading"></a></h2>
+<p>Recall that we defined higher-order functions as functions that can
+take other functions as arguments and return functions as results.  So
+far, we’ve seen how higher-order functions can take a function as a
+parameter.  In this section, we explain how to write functions that
+return new functions as results.  For example, let’s say that, given
+an arbitrary function, <span class="math notranslate nohighlight">\(f\)</span> that takes a single float and returns
+a float, we want to compute a new function to give us the value of the
+derivative of <span class="math notranslate nohighlight">\(f\)</span> at a given point.  In other words, the end
+result would look something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">square</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="go">81</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">square_prime</span> <span class="o">=</span> <span class="n">derivative</span><span class="p">(</span><span class="n">square</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">square_prime</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="go">18</span>
+</pre></div>
+</div>
+<p>Notice that the <code class="docutils literal notranslate"><span class="pre">derivative</span></code> function returns a function that we can
+then call later in our code. <code class="docutils literal notranslate"><span class="pre">square_prime</span></code> is a variable, but one that refers
+to a new function (instead of containing a value like an integer, or
+referring to a list or dictionary).  Furthermore, note that we want the
+<code class="docutils literal notranslate"><span class="pre">derivative</span></code> function to work for <em>any</em> arbitrary function, so we
+should also be able to write code like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cube_prime</span> <span class="o">=</span> <span class="n">derivative</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube_prime</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">27</span>
+</pre></div>
+</div>
+<p>To explain how to do this, let’s start by explaining how we can compute
+the derivative of a single function. As we did with integration, we will
+compute the value of the derivative <em>numerically</em>.</p>
+<p>The derivative of a function <span class="math notranslate nohighlight">\(f\)</span> at point <span class="math notranslate nohighlight">\(x\)</span> is its slope
+at that point. We can approximate the slope by computing the value <span class="math notranslate nohighlight">\(f(x)\)</span>
+and the value of the function at a nearby point <span class="math notranslate nohighlight">\(f(x + dx)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[f'(x) = \frac{f(x+dx)-f(x)}{dx}\]</div>
+<p>In calculus, you consider the limit as <span class="math notranslate nohighlight">\(dx\)</span> goes to zero. Here we
+will just assume <span class="math notranslate nohighlight">\(dx\)</span> is a small value like <code class="docutils literal notranslate"><span class="pre">0.00001</span></code>.</p>
+<p>So, if we had the following function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cube</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>We could follow the above definition to define its derivative like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cube_slope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute the slope of the cube function at the specified point.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      x (float): point at which to evaluate the slope</span>
+<span class="sd">      dx (float): difference (default: 0.0001)</span>
+
+<span class="sd">    Returns (float): approximation to the slope of the cube</span>
+<span class="sd">      function at the input point.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">cube</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">)</span> <span class="o">-</span> <span class="n">cube</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="n">dx</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cube</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">1000</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube_slope</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">300.0002999897333</span>
+</pre></div>
+</div>
+<p>The derivate of <span class="math notranslate nohighlight">\(x^3\)</span> is <span class="math notranslate nohighlight">\(3x^2\)</span>, so we are correctly approximating
+its slope (which would be 300 at <span class="math notranslate nohighlight">\(x=10\)</span>).</p>
+<p>Now, if we wanted to compute the derivative for a different function, the resulting functions
+would look very similar:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
+
+<span class="k">def</span> <span class="nf">square_slope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute the slope of the square function at the specified point</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      x (float): point at which to evaluate the slope</span>
+<span class="sd">      dx (float): difference (default: 0.0001)</span>
+
+<span class="sd">    Returns (float): approximation to the slope of the square</span>
+<span class="sd">      function at the input point.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">)</span> <span class="o">-</span> <span class="n">square</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="n">dx</span>
+</pre></div>
+</div>
+<p>One first approach at generating this code could be to create a
+general purpose <code class="docutils literal notranslate"><span class="pre">slope</span></code> function, like we did with our integration
+function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">slope</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute the slope of the specified function at the specified</span>
+<span class="sd">    point</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      f (function): function to take the slope of.  The function</span>
+<span class="sd">        must a float and return a float</span>
+<span class="sd">      x (float): point at which to evaluate the slope of f.</span>
+<span class="sd">      dx (float): difference (default: 0.0001)</span>
+
+<span class="sd">    Returns (float): approximation to the slope of the specified</span>
+<span class="sd">      function function at the input point.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="n">dx</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">slope</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">300.0002999897333</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">slope</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">20.00000999942131</span>
+</pre></div>
+</div>
+<p>However, we actually want to generate <em>new</em> functions (so we don’t have to pass
+<code class="docutils literal notranslate"><span class="pre">cube</span></code> or <code class="docutils literal notranslate"><span class="pre">square</span></code> as a parameter every time we want to compute its derivative).
+We do this by defining
+one function <em>inside</em> another function, and having the outer function return
+the inner function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">derivative</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Create a function of one variable that computes the derivative</span>
+<span class="sd">    of the specified function.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      fn (function): function to be differentiated.  Must take a</span>
+<span class="sd">        float and return a float</span>
+
+<span class="sd">    Returns: a function that computes the derivative of the</span>
+<span class="sd">      specified function at a given point with an optional</span>
+<span class="sd">      parameter for dx.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">slope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dx</span> <span class="o">=</span> <span class="mf">0.00001</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Compute the slope of f at the specified point &#39;&#39;&#39;</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">)</span><span class="o">-</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="n">dx</span>
+
+    <span class="k">return</span> <span class="n">slope</span>
+</pre></div>
+</div>
+<p>In this case <code class="docutils literal notranslate"><span class="pre">slope</span></code>, the inner function, is the function we want to generate.
+Notice that it does not need to take a function as a parameter. Instead, because it
+is in the same scope as the parameter <code class="docutils literal notranslate"><span class="pre">f</span></code>, it can access <code class="docutils literal notranslate"><span class="pre">f</span></code> directly. The outer
+function, <code class="docutils literal notranslate"><span class="pre">derivative</span></code>, takes a function parameter and will return a <code class="docutils literal notranslate"><span class="pre">slope</span></code>
+function that will use that function to compute the slope.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cube_prime</span> <span class="o">=</span> <span class="n">derivative</span><span class="p">(</span><span class="n">cube</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube_prime</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">12.000060000261213</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube_prime</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">75.00014999664018</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube_prime</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mf">0.0000001</span><span class="p">)</span>
+<span class="go">75.00000165805432</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">quad_prime</span> <span class="o">=</span> <span class="n">derivative</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">quad_prime</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">108.0005400012851</span>
+</pre></div>
+</div>
+<p>Because the derivative of a function of one variable, is itself a
+function of one variable, we can apply our derivative function
+repeatedly to get functions that compute the second derivative, third
+derivative, etc.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cube_prime</span> <span class="o">=</span> <span class="n">derivative</span><span class="p">(</span><span class="n">cube</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube_double_prime</span> <span class="o">=</span> <span class="n">derivative</span><span class="p">(</span><span class="n">cube_prime</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube_triple_prime</span> <span class="o">=</span> <span class="n">derivative</span><span class="p">(</span><span class="n">cube_double_prime</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube_prime</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">300.0002999897333</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube_double_prime</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">59.99936547596007</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube_triple_prime</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">227.37367544323203</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scoping-and-inner-functions">
+<h2><span class="section-number">3.1.5. </span>Scoping and inner functions<a class="headerlink" href="#scoping-and-inner-functions" title="Permalink to this heading"></a></h2>
+<p>Before we move on to our next topic, recursion, let’s revisit the
+topic of scoping.  Recall that every variable is defined and
+accessible within a specific part of the program, known as the variable’s scope.
+Our earlier discussion (see <a class="reference internal" href="../../getting_started/intro_functions/index.html#chapter-functions-variable-scope"><span class="std std-ref">Variable scope</span></a>) covered local variables,
+which have scope that is local to a specific function and global
+variables, which are defined outside the context of any function.
+Adding inner functions to the mix introduces in a third kind of scope:
+<em>nonlocal</em>.  A local variable or parameter in an outer function, such
+as the parameter <code class="docutils literal notranslate"><span class="pre">f</span></code> in our <code class="docutils literal notranslate"><span class="pre">derivative</span></code> function, is visible as a
+nonlocal variable in an inner function as long as it is not <em>shadowed</em>
+by a variable or parameter of the same name in the inner function.
+Like globals, nonlocal variables are read-only within an inner
+function unless the programmer explicitly declares them as
+<code class="docutils literal notranslate"><span class="pre">nonlocal</span></code>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="3. Functional Programming and Recursion" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../recursion/index.html" class="btn btn-neutral float-right" title="3.2. Recursion" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Anne Rogers and Borja Sotomayor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

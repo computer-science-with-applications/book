@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.2. NumPy &mdash; Computer Science with Applications  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/csapps.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="4.3. The pandas library" href="../pandas/index.html" />
+    <link rel="prev" title="4.1. Working with Files" href="../files/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Computer Science with Applications
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../preface.html">Preface</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_structures/index.html">2. Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../functions/index.html">3. Functional Programming and Recursion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. Working with Data</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../files/index.html">4.1. Working with Files</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.2. NumPy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#importing-numpy">4.2.1. Importing NumPy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-arrays">4.2.2. Creating arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#array-indexing-and-slicing">4.2.3. Array indexing and slicing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#operations-on-arrays">4.2.4. Operations on arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reshaping-arrays">4.2.5. Reshaping arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reductions">4.2.6. Reductions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fancy-indexing">4.2.7. Fancy indexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#advanced-topics">4.2.8. Advanced topics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#broadcasting">4.2.8.1. Broadcasting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-standardizing-features-revisited">4.2.8.2. Example: Standardizing features, revisited</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linear-algebra">4.2.8.3. Linear algebra</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#numpy-s-matrix-type">4.2.8.4. NumPy’s matrix type</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/index.html">4.3. The pandas library</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Computer Science with Applications</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">4. </span>Working with Data</a> &raquo;</li>
+      <li><span class="section-number">4.2. </span>NumPy</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/working_with_data/numpy/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="numpy">
+<span id="chapter-numpy"></span><h1><span class="section-number">4.2. </span>NumPy<a class="headerlink" href="#numpy" title="Permalink to this heading"></a></h1>
+<p>NumPy is a Python library that supplies two major features. First, it
+provides better support for large multi-dimensional arrays. Second, it
+provides high-level mathematical functions that operate on them.</p>
+<p>Unlike many other languages, Python doesn’t include a native type for
+arrays or matrices. Instead, we could use lists, lists-of-lists,
+lists-of-lists-of-lists, etc. Although these data structures can be
+used to represent multi-dimensional arrays, working with them can get
+pretty messy.  As an example, let’s look at some data from the
+National Institute of Diabetes and Digestive and Kidney
+Diseases.  (The data is available at the <a class="reference external" href="http://archive.ics.uci.edu/ml/datasets/Pima+Indians+Diabetes">UCI Machine Learning
+Repository</a>)
+During this study, information was collected for a group of patients
+from the Pima Indian Tribe.  We can represent this data with a matrix
+in which each row corresponds to the data collected for an individual
+patient and each column corresponds to a specific feature (e.g.,
+diastolic blood pressure) for all the patients. Here is subset of the
+data that includes information for ten patients for four features
+(plasma glucose level, diastolic blood pressure, triceps skin
+foldthickness, and two-hour serum insulin):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mf">89.0</span><span class="p">,</span> <span class="mf">66.0</span><span class="p">,</span> <span class="mf">23.0</span><span class="p">,</span> <span class="mf">94.0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mf">137.0</span><span class="p">,</span> <span class="mf">40.0</span><span class="p">,</span> <span class="mf">35.0</span><span class="p">,</span> <span class="mf">168.0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mf">78.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="mf">32.0</span><span class="p">,</span> <span class="mf">88.0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mf">197.0</span><span class="p">,</span> <span class="mf">70.0</span><span class="p">,</span> <span class="mf">45.0</span><span class="p">,</span> <span class="mf">543.0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mf">189.0</span><span class="p">,</span> <span class="mf">60.0</span><span class="p">,</span> <span class="mf">23.0</span><span class="p">,</span> <span class="mf">846.0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mf">166.0</span><span class="p">,</span> <span class="mf">72.0</span><span class="p">,</span> <span class="mf">19.0</span><span class="p">,</span> <span class="mf">175.0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mf">118.0</span><span class="p">,</span> <span class="mf">84.0</span><span class="p">,</span> <span class="mf">47.0</span><span class="p">,</span> <span class="mf">230.0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mf">103.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">38.0</span><span class="p">,</span> <span class="mf">83.0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mf">115.0</span><span class="p">,</span> <span class="mf">70.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">96.0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mf">126.0</span><span class="p">,</span> <span class="mf">88.0</span><span class="p">,</span> <span class="mf">41.0</span><span class="p">,</span> <span class="mf">235.0</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Before applying classification or prediction algorithms, statisticians
+often standardize data such that each feature (or variable) in the
+matrix for analysis has a mean of zero and standard deviation of
+one. Let’s consider this common pre-processing step.  Specifically,
+the values in the standardized matrix, <span class="math notranslate nohighlight">\(m^{\prime}\)</span> should be
+computed using the following formulas:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mu_{j} &amp;= 1/N*\sum_{i=0}^{N-1} m_{i,j} \\
+\\
+\sigma_{j} &amp;= \sqrt{1/N*\sum_{i=0}^{N-1} (m_{i,j}-\mu_{j})^2} \\
+\\
+m^{\prime}_{i,j} &amp;=  (m_{i,j} - \mu_{j})/\sigma_j \\\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(m_{i,j}\)</span> is the value of the jth feature for patient i,
+<span class="math notranslate nohighlight">\(\mu_{j}\)</span> is the mean of the jth feature, and <span class="math notranslate nohighlight">\(\sigma_{j}\)</span> is
+its standard deviation.</p>
+<p>We can translate these formulas into code that uses for loops and
+list indexing to process data that is represented as a list of lists:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_feature_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute the mean of feature (column) j</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      data (list of list of floats)</span>
+
+<span class="sd">    Returns (float): mean of feature j</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">total</span><span class="o">/</span><span class="n">N</span>
+
+
+<span class="k">def</span> <span class="nf">compute_feature_stdev</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute the standard deviation of feature (column) j</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      data (list of lists of floats)</span>
+
+<span class="sd">    Returns (float): standard deviation of feature j</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">compute_feature_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">N</span> <span class="o">*</span> <span class="n">total</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">standardize_features</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Standardize features to have mean 0.0 and standard deviation</span>
+<span class="sd">    1.0.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      data (list of list of floats): data to be standardized</span>
+
+<span class="sd">    Returns (list of list of floats): standardized data</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># initialize the result w/ NxM list of lists of zeros.</span>
+    <span class="n">rv</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">rv</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">M</span><span class="p">)</span>
+
+    <span class="c1"># for each feature</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+        <span class="n">mu</span> <span class="o">=</span> <span class="n">compute_feature_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="n">compute_feature_stdev</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+
+        <span class="c1"># standardized feature</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+            <span class="n">rv</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span><span class="o">/</span><span class="n">sigma</span>
+
+    <span class="k">return</span> <span class="n">rv</span>
+</pre></div>
+</div>
+<p>While this code is straightforward, it is nowhere near as compact as
+the mathematics and it is easy to get the indexing wrong.  Also, the
+functions <code class="docutils literal notranslate"><span class="pre">compute_feature_mean</span></code> and <code class="docutils literal notranslate"><span class="pre">compute_feature_stdev</span></code> are
+not as general as one might like.  For example, they are not
+particularly useful for computing the mean of a list or the standard
+deviation of a row in a list-of-lists.</p>
+<p>We can use list comprehensions to make the helper functions more
+compact, but the resulting code is still not as general as one would
+like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_feature_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute the mean of feature (column) j.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      data (list of lists of floats)</span>
+
+<span class="sd">    Returns (float): mean of feature j</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)])</span> <span class="o">/</span> <span class="n">N</span>
+
+<span class="k">def</span> <span class="nf">compute_feature_stdev</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute the standard deviation of feature (column) j.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      data (list of lists of floats)</span>
+
+<span class="sd">    Returns (float): standard deviation of feature j</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">compute_feature_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">N</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">([(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]))</span>
+</pre></div>
+</div>
+<p>List-of-lists do not provide an easy way to operate on a subset of the
+elements of the data structure, such as the elements of a column, as a unit.
+Consequently, our functions are awkward and unwieldy.
+As you will see later in this chapter, NumPy’s array data
+structure supports operations that work on the elements of an array
+collectively and allows programmers to apply these operations to
+operands of different sizes and shapes. It also provides easy ways to
+read and update sub-arrays.</p>
+<p>Using these mechanisms, we can write code that is substantially more
+compact and resembles the underlying mathematics. The function
+<code class="docutils literal notranslate"><span class="pre">standardize_features</span></code>, for example, can be written as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">standardize_features</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Standardize features to have mean 0.0 and standard deviation</span>
+<span class="sd">    1.0.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      data (2D NumPy array of floats): data to be standardized</span>
+
+<span class="sd">    Returns (2D NumPy array of floats): standardized data</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span>
+</pre></div>
+</div>
+<p>Although we do not expect you to grasp the details of this function
+right now, you can see that this version is more compact. Once you
+have finished this chapter, we hope that you will find this version easier to
+understand and reproduce than the loops and lists version.</p>
+<div class="section" id="importing-numpy">
+<h2><span class="section-number">4.2.1. </span>Importing NumPy<a class="headerlink" href="#importing-numpy" title="Permalink to this heading"></a></h2>
+<p>Before we can use NumPy, we need to import it.  Traditionally,
+programmers use the <code class="docutils literal notranslate"><span class="pre">as</span></code> option with <code class="docutils literal notranslate"><span class="pre">import</span></code> to import NumPy and
+assign it a short alias (<code class="docutils literal notranslate"><span class="pre">np</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-arrays">
+<h2><span class="section-number">4.2.2. </span>Creating arrays<a class="headerlink" href="#creating-arrays" title="Permalink to this heading"></a></h2>
+<p>There are a variety of ways to create arrays.  The easiest is to call
+the NumPy <code class="docutils literal notranslate"><span class="pre">array</span></code> method with a list as a parameter. We use
+as many levels of list nesting as desired dimensions in the array.
+Here’s code, for example, that allocates sample arrays that have one
+(<code class="docutils literal notranslate"><span class="pre">a1d</span></code>), two (<code class="docutils literal notranslate"><span class="pre">a2d</span></code>), and three (<code class="docutils literal notranslate"><span class="pre">a3d</span></code>) dimensions and shows
+their values:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a1d</span>
+<span class="go">array([1, 2, 3])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="p">,</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span> <span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a2d</span>
+<span class="go">array([[1, 2, 3],</span>
+<span class="go">       [4, 5, 6]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a3d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="p">,</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span> <span class="p">]</span> <span class="p">,</span> <span class="p">[</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">]</span> <span class="p">,</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">60</span><span class="p">]</span> <span class="p">]</span> <span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a3d</span>
+<span class="go">array([[[ 1,  2,  3],</span>
+<span class="go">        [ 4,  5,  6]],</span>
+
+<span class="go">       [[10, 20, 30],</span>
+<span class="go">        [40, 50, 60]]])</span>
+</pre></div>
+</div>
+<p>Unlike lists, all of the elements in an array must have the same type
+and the size of an array is fixed once it has been created. These
+limitations help enable operations on Numpy arrays to be
+more efficient than similar list operations.</p>
+<p>Arrays have several useful properties: we can determine the array’s number of
+dimensions using the <code class="docutils literal notranslate"><span class="pre">ndim</span></code> property and sizes of dimensions using the
+<code class="docutils literal notranslate"><span class="pre">shape</span></code> property, which evaluates to a
+tuple with one integer value per dimension:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a3d has&quot;</span><span class="p">,</span> <span class="n">a3d</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span> <span class="s2">&quot;dimensions&quot;</span><span class="p">)</span>
+<span class="go">a3d has 3 dimensions</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a3&#39;s shape is:&quot;</span><span class="p">,</span> <span class="n">a3d</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="go">a3&#39;s shape is: (2, 2, 3)</span>
+</pre></div>
+</div>
+<p>An array’s <code class="docutils literal notranslate"><span class="pre">size</span></code> property yields the number of elements in the
+array, or the product of its shape.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a3 has&quot;</span><span class="p">,</span> <span class="n">a3d</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="s2">&quot;values&quot;</span><span class="p">)</span>
+<span class="go">a3 has 12 values</span>
+</pre></div>
+</div>
+<p>We can construct arrays of all zeros or all ones using the NumPy
+library routines <code class="docutils literal notranslate"><span class="pre">zeros</span></code> and <code class="docutils literal notranslate"><span class="pre">ones</span></code>.  These methods will construct
+a one-dimensional array of length <code class="docutils literal notranslate"><span class="pre">N</span></code> if called with an integer
+argument, <code class="docutils literal notranslate"><span class="pre">N</span></code>, or an N-dimensional array if called with a tuple of
+integers of length <code class="docutils literal notranslate"><span class="pre">N</span></code>.  Here are some examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="go">array([[0., 0.],</span>
+<span class="go">       [0., 0.]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="go">array([[[1., 1.],</span>
+<span class="go">        [1., 1.]],</span>
+
+<span class="go">       [[1., 1.],</span>
+<span class="go">        [1., 1.]],</span>
+
+<span class="go">       [[1., 1.],</span>
+<span class="go">        [1., 1.]]])</span>
+</pre></div>
+</div>
+<p>NumPy also includes a couple of routines, <code class="docutils literal notranslate"><span class="pre">arange</span></code> and
+<code class="docutils literal notranslate"><span class="pre">linspace</span></code>, for constructing arrays that range over a set of
+values.  Both functions are more versatile than Python’s <code class="docutils literal notranslate"><span class="pre">range</span></code>
+function.  The <code class="docutils literal notranslate"><span class="pre">arange</span></code> function creates arrays of values that range
+from a lower bound up to but not including an upper bound in specified
+increments.  The lower bound, upper bound, and increment can all be
+floating point values.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="go">array([1. , 1.5, 2. , 2.5])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="go">array([3. , 2.5, 2. , 1.5])</span>
+</pre></div>
+</div>
+<p>As with the <code class="docutils literal notranslate"><span class="pre">range</span></code> function, the lower bound is optional and
+defaults to zero.  The increment is also optional and defaults to one.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">array([0, 1, 2])</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">linspace</span></code> function is similar, but takes the desired number of
+values in the resulting array as an argument, instead of the interval
+between values, and the upper bound is included in the result. For
+example, if we wanted to create an array with seven equally-spaced
+values between 0 and 100 (inclusive), we would just use the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="go">array([  0.        ,  16.66666667,  33.33333333,  50.        ,</span>
+<span class="go">        66.66666667,  83.33333333, 100.        ])</span>
+</pre></div>
+</div>
+<p>Finally, NumPy includes a function, <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code>, for loading data from
+a file into an array.  This function takes the name of the file as a
+required argument.  Programmers can also specify the data type of the
+values, a number of header rows to skip (<code class="docutils literal notranslate"><span class="pre">skiprow</span></code>), the delimiter
+that is used to separate values in a row (<code class="docutils literal notranslate"><span class="pre">delimiter</span></code>), etc.  We
+can load the data shown above from a file named
+<code class="docutils literal notranslate"><span class="pre">pima-indians-diabetes.csv</span></code> into an array named <code class="docutils literal notranslate"><span class="pre">data</span></code> with this
+call to the <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code> function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;pima-indians-diabetes.csv&quot;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span>
+<span class="go">array([[  6.   , 148.   ,  72.   , ...,   0.627,  50.   ,   1.   ],</span>
+<span class="go">       [  1.   ,  85.   ,  66.   , ...,   0.351,  31.   ,   0.   ],</span>
+<span class="go">       [  8.   , 183.   ,  64.   , ...,   0.672,  32.   ,   1.   ],</span>
+<span class="go">       ...,</span>
+<span class="go">       [  5.   , 121.   ,  72.   , ...,   0.245,  30.   ,   0.   ],</span>
+<span class="go">       [  1.   , 126.   ,  60.   , ...,   0.349,  47.   ,   1.   ],</span>
+<span class="go">       [  1.   ,  93.   ,  70.   , ...,   0.315,  23.   ,   0.   ]])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="array-indexing-and-slicing">
+<h2><span class="section-number">4.2.3. </span>Array indexing and slicing<a class="headerlink" href="#array-indexing-and-slicing" title="Permalink to this heading"></a></h2>
+<p>NumPy arrays support a variety of ways to access the stored data.  The
+most familiar mechanism uses square brackets to index the array and
+looks like list indexing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a1d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a2d</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a3d</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">60</span>
+</pre></div>
+</div>
+<p>Experienced NumPy programmers, however, typically use an alternate
+format that accepts tuples as indexes.  The first item in the tuple
+specifies the row index, which is the first dimension, the second
+item specifies the column index, which is the second dimension, and so on.
+Our first example above does not change because <code class="docutils literal notranslate"><span class="pre">a1d</span></code> is one-dimensional.
+The latter two examples, however, would be written by an
+experienced programmer as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a2d</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="go">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a3d</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="go">60</span>
+</pre></div>
+</div>
+<p>Like lists, array elements are mutable, and can be updated using an
+array index on the left side of an assignment statement.  For example,
+notice the change in the value of <code class="docutils literal notranslate"><span class="pre">a1d</span></code> shown before and after
+the assignment statement in the following code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a1d</span>
+<span class="go">array([1, 2, 3])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a1d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a1d</span>
+<span class="go">array([7, 2, 3])</span>
+</pre></div>
+</div>
+<p>Programmers can slice NumPy arrays using slicing notation familiar
+from lists.  Let’s look at some examples of slicing using a
+one-dimensional array, named <code class="docutils literal notranslate"><span class="pre">a</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span>   <span class="mi">1</span><span class="p">,</span>   <span class="mi">4</span><span class="p">,</span>   <span class="mi">9</span><span class="p">,</span>  <span class="mi">16</span><span class="p">,</span>  <span class="mi">25</span><span class="p">,</span>  <span class="mi">36</span><span class="p">,</span>  <span class="mi">49</span><span class="p">,</span>  <span class="mi">64</span><span class="p">,</span>  <span class="mi">81</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">121</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
+<span class="go">array([ 1,  4,  9, 16, 25, 36])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">array([ 9, 25, 49, 81])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[:]</span>
+<span class="go">array([  0,   1,   4,   9,  16,  25,  36,  49,  64,  81, 100, 121])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">array([100,  81,  64,  49,  36,  25,  16])</span>
+</pre></div>
+</div>
+<p>Recall that the format for specifying a slice is: <code class="docutils literal notranslate"><span class="pre">X:Y:Z</span></code>, where <code class="docutils literal notranslate"><span class="pre">X</span></code>
+specifies an inclusive lower bound, <code class="docutils literal notranslate"><span class="pre">Y</span></code> specifies an exclusive upper
+bound, and <code class="docutils literal notranslate"><span class="pre">Z</span></code> specifies the increment.  If omitted, the
+lower bound defaults to zero, the upper bound defaults to <code class="docutils literal notranslate"><span class="pre">N</span></code>, where
+<code class="docutils literal notranslate"><span class="pre">N</span></code> is the size of a one-dimensional array and the size of the
+corresponding dimension for a multi-dimensional array, and finally,
+the increment defaults to one.  The second colon is typically omitted
+when the desired increment is one.  Using a single colon (<code class="docutils literal notranslate"><span class="pre">:</span></code>) to
+specify a slice combines these defaults and is equivalent to
+specifying <code class="docutils literal notranslate"><span class="pre">0:N:1</span></code> as the slice.</p>
+<p>Slicing one-dimensional arrays is not all that different from slicing
+lists.  Things get more interesting when slicing multi-dimensional arrays.  Here are a few examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+<span class="gp">... </span>              <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">49</span><span class="p">],</span>
+<span class="gp">... </span>              <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">121</span><span class="p">],</span>
+<span class="gp">... </span>              <span class="p">[</span><span class="mi">144</span><span class="p">,</span> <span class="mi">169</span><span class="p">,</span> <span class="mi">196</span><span class="p">,</span> <span class="mi">225</span><span class="p">],</span>
+<span class="gp">... </span>              <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">289</span><span class="p">,</span> <span class="mi">324</span><span class="p">,</span> <span class="mi">361</span><span class="p">],</span>
+<span class="gp">... </span>              <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">441</span><span class="p">,</span> <span class="mi">484</span><span class="p">,</span> <span class="mi">529</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="go">array([[ 16,  25,  36],</span>
+<span class="go">       [ 64,  81, 100],</span>
+<span class="go">       [144, 169, 196]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="go">array([  4,  36, 100, 196, 324, 484])</span>
+</pre></div>
+</div>
+<p>The first example extracts the value of a 3x3 sub-array that consists of
+the first three columns (written as <code class="docutils literal notranslate"><span class="pre">0:3:1</span></code> in long form or <code class="docutils literal notranslate"><span class="pre">:3</span></code>,
+using the defaults) from rows one, two, and three (<code class="docutils literal notranslate"><span class="pre">1:4:1</span></code> or
+<code class="docutils literal notranslate"><span class="pre">1:4</span></code>) of <code class="docutils literal notranslate"><span class="pre">b</span></code>.  The second extracts all the values in column two
+as a <em>one-dimensional</em> array.</p>
+<p>Sub-arrays, like single elements, can be updated by specifying a slice
+on the left side of an assignment statement and an array with the same
+shape and type as the slice on the right side. (We’ll see later that
+the same-shape requirement can be relaxed in some cases.)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">array([[  0,   1,   7,   9],</span>
+<span class="go">       [ 16,  25,   7,  49],</span>
+<span class="go">       [ 64,  81,   7, 121],</span>
+<span class="go">       [144, 169,   7, 225],</span>
+<span class="go">       [256, 289,   7, 361],</span>
+<span class="go">       [400, 441,   7, 529]])</span>
+</pre></div>
+</div>
+<p>This ability to extract and modify columns and, more generally,
+sub-arrays, with ease explains, in part, the appeal of NumPy as a tool.
+In many cases, NumPy will allow us to perform, in just one or two
+lines of code, operations that would typically require using one or
+more loops with lists.</p>
+<p>To make this idea concrete, let’s return to our standardization
+example.  We can replace the list comprehension in our second
+implementation of <code class="docutils literal notranslate"><span class="pre">compute_feature_mean</span></code> with a slice:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_feature_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute the mean of feature (column) j.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      data (2D NumPy array of floats)</span>
+
+<span class="sd">    Returns (float): mean of feature j</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">N</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="n">j</span><span class="p">])</span> <span class="o">/</span> <span class="n">N</span>
+</pre></div>
+</div>
+<p>As you might expect, the built-in <code class="docutils literal notranslate"><span class="pre">sum</span></code> function returns the sum of
+elements when it is called on an array.</p>
+</div>
+<div class="section" id="operations-on-arrays">
+<h2><span class="section-number">4.2.4. </span>Operations on arrays<a class="headerlink" href="#operations-on-arrays" title="Permalink to this heading"></a></h2>
+<p>NumPy supports a rich set of operations that behave quite differently
+than similar-looking operations on lists.  In particular,
+many operations operate element-by-element rather than on the array as
+a unit.  Let’s use the array <code class="docutils literal notranslate"><span class="pre">a2d</span></code> defined earlier as an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a2d</span>
+<span class="go">array([[1, 2, 3],</span>
+<span class="go">       [4, 5, 6]])</span>
+</pre></div>
+</div>
+<p>If we multiply <code class="docutils literal notranslate"><span class="pre">a2d</span></code> by the integer <code class="docutils literal notranslate"><span class="pre">2</span></code>, we get back a new array in
+which element (i, j) has the value <code class="docutils literal notranslate"><span class="pre">a2d[i,</span> <span class="pre">j]</span> <span class="pre">*</span> <span class="pre">2</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a2d</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="go">array([[ 2,  4,  6],</span>
+<span class="go">       [ 8, 10, 12]])</span>
+</pre></div>
+</div>
+<p>The same operation on a list, in contrast, would perform repeated
+concatenation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">l2</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l2</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="go">[[1, 2, 3], [4, 5, 6], [1, 2, 3], [4, 5, 6]]</span>
+</pre></div>
+</div>
+<p>Here are a few more examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a2d</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="go">array([[3, 4, 5],</span>
+<span class="go">       [6, 7, 8]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a2d</span> <span class="o">&gt;</span> <span class="mi">2</span>
+<span class="go">array([[False, False,  True],</span>
+<span class="go">       [ True,  True,  True]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a2d</span> <span class="o">==</span> <span class="mi">2</span>
+<span class="go">array([[False,  True, False],</span>
+<span class="go">       [False, False, False]])</span>
+</pre></div>
+</div>
+<p>Notice that the second and third examples yield results that have the
+same shape as <code class="docutils literal notranslate"><span class="pre">a2d</span></code>, but that the elements are booleans rather than
+floats.  These operations will turn out to be very useful when we
+discuss boolean indexing later in the chapter.</p>
+<p>We can use these scalar operations plus slicing to rewrite our
+<code class="docutils literal notranslate"><span class="pre">compute_feature_stdev</span></code> function more compactly:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_feature_stdev</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute the standard deviation of feature (column) j.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      data (2D NumPy array of floats)</span>
+
+<span class="sd">    Returns (float): standard deviation of feature j</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">N</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">compute_feature_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">N</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">((</span><span class="n">data</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>This version of the function uses slicing to extract the feature as a
+one-dimensional array. It then subtracts the mean (<code class="docutils literal notranslate"><span class="pre">mu</span></code>), which is a
+float, from the values in this array and compute the squares of the
+subtracted values.  In both operations, one operand is a
+one-dimensional array and the other is a scalar (a float, in this
+case).  The rest of the expression uses standard floating point
+operations and the square root function from the <code class="docutils literal notranslate"><span class="pre">math</span></code> library.</p>
+<p>In addition to these scalar operations, NumPy also supports operations
+where both operands are arrays.  In the simplest case, both operands
+have the same shape and the operation is performed element-by-element.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>
+<span class="gp">... </span>              <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a2d</span> <span class="o">+</span> <span class="n">x</span>
+<span class="go">array([[11, 22, 33],</span>
+<span class="go">       [44, 55, 66]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a2d</span> <span class="o">/</span> <span class="n">x</span>
+<span class="go">array([[0.1, 0.1, 0.1],</span>
+<span class="go">       [0.1, 0.1, 0.1]])</span>
+</pre></div>
+</div>
+<p>Using these element-wise operations, we can rewrite our code to
+standardize features more compactly:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">standardize_features</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Standardize features to have mean 0.0 and standard deviation</span>
+<span class="sd">    1.0.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">    data (2D NumPy array of floats): data to be standardized</span>
+
+<span class="sd">    Returns (2D NumPy array of floats): standardized data</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">N</span><span class="p">,</span><span class="n">M</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="n">mus</span> <span class="o">=</span> <span class="p">[</span><span class="n">compute_feature_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">)]</span>
+    <span class="n">mu_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mus</span><span class="p">)</span>
+    <span class="n">sigmas</span> <span class="o">=</span> <span class="p">[</span><span class="n">compute_feature_stdev</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">)]</span>
+    <span class="n">sigma_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sigmas</span><span class="p">)</span>
+
+    <span class="c1"># initialize the result w/ NxM list of lists of zeros.</span>
+    <span class="n">rv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="c1"># for each row</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">rv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu_vec</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma_vec</span>
+
+    <span class="k">return</span> <span class="n">rv</span>
+</pre></div>
+</div>
+<p>This version constructs arrays with the means and standard deviations
+of features and then uses element-wise subtraction and division to
+standardize the rows of the data.</p>
+<div class="admonition-a-common-pitfall admonition">
+<p class="admonition-title">A common pitfall</p>
+<p>What do you think is the result of using the <code class="docutils literal notranslate"><span class="pre">*</span></code> operator?</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span>
+<span class="go">array([[1, 2],</span>
+<span class="go">       [3, 4]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e</span>
+<span class="go">array([[1, 0],</span>
+<span class="go">       [0, 1]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">*</span> <span class="n">e</span>
+<span class="go">array([[1, 0],</span>
+<span class="go">       [0, 4]])</span>
+</pre></div>
+</div>
+<p>It’s element-wise multiplication, not matrix multiplication!  We
+need to use the <code class="docutils literal notranslate"><span class="pre">dot</span></code> method to compute a matrix product.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+<span class="go">array([[1, 2],</span>
+<span class="go">       [3, 4]])</span>
+</pre></div>
+</div>
+</div>
+<p>NumPy also supports a large number of mathematical functions, such as
+<code class="docutils literal notranslate"><span class="pre">np.sin</span></code>, that are applied element-wise:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span>
+<span class="go">array([[ 1.        , -1.        ],</span>
+<span class="go">       [ 3.14159265, -3.14159265]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="go">array([[ 0.54030231,  0.54030231],</span>
+<span class="go">       [-1.        , -1.        ]])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reshaping-arrays">
+<h2><span class="section-number">4.2.5. </span>Reshaping arrays<a class="headerlink" href="#reshaping-arrays" title="Permalink to this heading"></a></h2>
+<p>Before we discuss more complex operations on arrays, we must introduce the
+notion of reshaping an array.  We can change an array’s shape using
+the <code class="docutils literal notranslate"><span class="pre">reshape</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ra</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ra</span>
+<span class="go">array([[ 0,  1,  2,  3],</span>
+<span class="go">       [ 4,  5,  6,  7],</span>
+<span class="go">       [ 8,  9, 10, 11]])</span>
+</pre></div>
+</div>
+<p>Be aware that the original array and the reshaped
+array share the same underlying data.  This design has two
+consequences. First, the size (i.e., the number of elements) of the
+original array and the size of the reshaped array must be the same.
+So, this expression:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>which creates a one-dimensional array with 10 elements and then
+resizes it into a two-dimensional array that spreads these ten values
+over two rows with five values each, is acceptable. On the other hand,
+this expression:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>which tries to reshape an array with seven elements into one with ten
+elements, is not.</p>
+<p>Second, if you reshape an array, updating either the original or the reshaped array updates both arrays!  Notice in this code, for example, that both <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">ra</span></code> change as a result of the update to <code class="docutils literal notranslate"><span class="pre">a[0]</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([ 7,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ra</span>
+<span class="go">array([[ 7,  1,  2,  3],</span>
+<span class="go">       [ 4,  5,  6,  7],</span>
+<span class="go">       [ 8,  9, 10, 11]])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reductions">
+<h2><span class="section-number">4.2.6. </span>Reductions<a class="headerlink" href="#reductions" title="Permalink to this heading"></a></h2>
+<p>Reduction methods allow us to “reduce” an array to a single value. For
+example, we might want to compute the mean of all of the values, the
+standard deviation of all of the values, etc. Given an array <code class="docutils literal notranslate"><span class="pre">b</span></code>, for
+example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">array([[  0,   1,   4,   9],</span>
+<span class="go">       [ 16,  25,  36,  49],</span>
+<span class="go">       [ 64,  81, 100, 121],</span>
+<span class="go">       [144, 169, 196, 225],</span>
+<span class="go">       [256, 289, 324, 361],</span>
+<span class="go">       [400, 441, 484, 529]])</span>
+</pre></div>
+</div>
+<p>we can compute the mean and standard deviation using the <code class="docutils literal notranslate"><span class="pre">mean</span></code>
+and <code class="docutils literal notranslate"><span class="pre">std</span></code> methods:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The mean of b is:&quot;</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="go">The mean of b is: 180.16666666666666</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The standard deviation of b is:&quot;</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+<span class="go">The standard deviation of b is: 164.84883648023995</span>
+</pre></div>
+</div>
+<p>These operations can also be applied along different dimensions to
+yield an array of values.  For example, we might want to compute the
+means of the rows or the standard deviations of the values in each
+column.  Such tasks can be accomplished by specifying an axis as an
+optional argument to the reduction method. For example, to compute row means,
+we could use the expression:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">array([  3.5,  31.5,  91.5, 183.5, 307.5, 463.5])</span>
+</pre></div>
+</div>
+<p>and to compute the standard deviations of the columns, we could use
+the expression:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">array([142.33606555, 155.49776704, 168.73911488, 182.04273003])</span>
+</pre></div>
+</div>
+<p>If you are like us, your immediate reaction to these expressions is,
+“wait a minute, why are you specifying axis 1 to get the mean of
+the rows instead of axis 0?”</p>
+<p>An axis specifies a family of arrays
+over which to compute some desired value.  Let’s think about the two-dimensional
+case first and use <code class="docutils literal notranslate"><span class="pre">b</span></code> as an example.  If the axis is
+<code class="docutils literal notranslate"><span class="pre">0</span></code> , the family will have four values: <code class="docutils literal notranslate"><span class="pre">b[:,</span> <span class="pre">0]</span></code>, <code class="docutils literal notranslate"><span class="pre">b[:,</span> <span class="pre">1]</span></code>,
+<code class="docutils literal notranslate"><span class="pre">b[:,</span> <span class="pre">2]</span></code>, and <code class="docutils literal notranslate"><span class="pre">b[:,</span> <span class="pre">3]</span></code>.  The family is constructed by slicing
+<code class="docutils literal notranslate"><span class="pre">b</span></code> using a colon in the axis dimension and each of
+the possible index values in the non-axis dimension.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">col_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">b</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+<span class="gp">... </span>                      <span class="n">b</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+<span class="gp">... </span>                      <span class="n">b</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+<span class="gp">... </span>                      <span class="n">b</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="n">col_means</span>
+<span class="go">array([ True,  True,  True,  True])</span>
+</pre></div>
+</div>
+<p>If the axis is <code class="docutils literal notranslate"><span class="pre">1</span></code>, the family is constructed by slicing <code class="docutils literal notranslate"><span class="pre">b</span></code> with a
+colon for dimension one, which picks up all the columns in a row, and
+each of the possible row indices for non-axis or row dimension.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">row_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+<span class="gp">... </span>                      <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+<span class="gp">... </span>                      <span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+<span class="gp">... </span>                      <span class="n">b</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+<span class="gp">... </span>                      <span class="n">b</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+<span class="gp">... </span>                      <span class="n">b</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">()])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">row_means</span>
+<span class="go">array([ True,  True,  True,  True,  True,  True])</span>
+</pre></div>
+</div>
+<p>In general, if an array  <cite>D</cite>  has <span class="math notranslate nohighlight">\(N\)</span> dimensions and shape
+<span class="math notranslate nohighlight">\((d_0, ..., d_{i-1}, d_i, d_{i+1}, ..., d_{N-1})\)</span>, the result of
+a reduction along axis <span class="math notranslate nohighlight">\(i\)</span> will have <span class="math notranslate nohighlight">\(N-1\)</span>
+dimensions and shape <span class="math notranslate nohighlight">\((d_0, ..., d_{i-1}, d_{i+1}, ...,d_{N-1})\)</span>.
+The value at index <span class="math notranslate nohighlight">\((j_0, ..., j_{i-1}, j_{i+1}, ..., j_{N-1})\)</span> will be the result of applying the reduction operation to the slice <span class="math notranslate nohighlight">\(D[j_0, ..., j_{i-1}, :, j_{i+1}, ..., j_{N-1}]\)</span>.</p>
+<p>To make this concrete, let’s reshape <code class="docutils literal notranslate"><span class="pre">b</span></code> into a three-dimensional array and take the sum
+along axis one:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b2</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b2</span>
+<span class="go">array([[[  0,   1,   4,   9],</span>
+<span class="go">        [ 16,  25,  36,  49]],</span>
+
+<span class="go">       [[ 64,  81, 100, 121],</span>
+<span class="go">        [144, 169, 196, 225]],</span>
+
+<span class="go">       [[256, 289, 324, 361],</span>
+<span class="go">        [400, 441, 484, 529]]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b2</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">array([[ 16,  26,  40,  58],</span>
+<span class="go">       [208, 250, 296, 346],</span>
+<span class="go">       [656, 730, 808, 890]])</span>
+</pre></div>
+</div>
+<p>As expected, the resulting array has shape <span class="math notranslate nohighlight">\((3, 4)\)</span>
+and the resulting value at index <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">2)</span></code>, for example, is the
+sum of slice <code class="docutils literal notranslate"><span class="pre">b2[1,</span> <span class="pre">:,</span> <span class="pre">2]</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b2</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="go">array([100, 196])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sum</span><span class="p">(</span><span class="n">b2</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="go">296</span>
+</pre></div>
+</div>
+<p>Returning to our example, we can replace the code to compute the mean
+and standard deviation arrays with reductions along axis 0:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">standardize_features</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Standardize features to have mean 0.0 and standard deviation</span>
+<span class="sd">    1.0.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      data (2D NumPy array of floats): data to be standardized</span>
+
+<span class="sd">    Returns (2D NumPy array of floats): standardized data</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">N</span><span class="p">,</span><span class="n">M</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="n">mu_vec</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">sigma_vec</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># initialize the result w/ NxM list of lists of zeros.</span>
+    <span class="n">rv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="c1"># for each row</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">rv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu_vec</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma_vec</span>
+
+    <span class="k">return</span> <span class="n">rv</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fancy-indexing">
+<h2><span class="section-number">4.2.7. </span>Fancy indexing<a class="headerlink" href="#fancy-indexing" title="Permalink to this heading"></a></h2>
+<p>NumPy supports fancier ways of indexing that are more powerful than
+those provided for regular Python lists.  The simplest of these
+mechanisms allows us to specify the desired indexes with a list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">112</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span> <span class="p">]</span>
+<span class="go">array([101, 103, 106])</span>
+</pre></div>
+</div>
+<p>In this case, the result is a one-dimensional array with three values:
+<code class="docutils literal notranslate"><span class="pre">a[1]</span></code>, <code class="docutils literal notranslate"><span class="pre">a[3]</span></code>, and <code class="docutils literal notranslate"><span class="pre">a[6]</span></code>.</p>
+<p>If we use a multi-dimensional array as the index, the values at the
+specified indices in the data array are returned in an array of the same shape
+as the index array.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="p">,</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span> <span class="p">])</span> <span class="p">]</span>
+<span class="go">array([[101, 103],</span>
+<span class="go">       [110, 107]])</span>
+</pre></div>
+</div>
+<p>Indexing with an array of booleans yields a <em>flattened</em>, that is,
+one-dimensional, array.  A value from the data array is included in
+the result if the corresponding value in the index array has the value
+<code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])]</span>
+<span class="go">array([100, 300])</span>
+</pre></div>
+</div>
+<p>This indexing method is most useful in combination with relational
+operators:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">array([[  0,   1,   4,   9],</span>
+<span class="go">       [ 16,  25,  36,  49],</span>
+<span class="go">       [ 64,  81, 100, 121],</span>
+<span class="go">       [144, 169, 196, 225],</span>
+<span class="go">       [256, 289, 324, 361],</span>
+<span class="go">       [400, 441, 484, 529]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">&gt;</span> <span class="mi">100</span>
+<span class="go">array([[False, False, False, False],</span>
+<span class="go">       [False, False, False, False],</span>
+<span class="go">       [False, False, False,  True],</span>
+<span class="go">       [ True,  True,  True,  True],</span>
+<span class="go">       [ True,  True,  True,  True],</span>
+<span class="go">       [ True,  True,  True,  True]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">[</span><span class="n">b</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">]</span>
+<span class="go">array([121, 144, 169, 196, 225, 256, 289, 324, 361, 400, 441, 484, 529])</span>
+</pre></div>
+</div>
+<p>When we use this mechanism with assignments, the elements specified by
+the filter are updated.  For example, here’s a statement that sets all
+elements in <code class="docutils literal notranslate"><span class="pre">b</span></code> greater than 100 to zero:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">[</span><span class="n">b</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">array([[  0,   1,   4,   9],</span>
+<span class="go">       [ 16,  25,  36,  49],</span>
+<span class="go">       [ 64,  81, 100,   0],</span>
+<span class="go">       [  0,   0,   0,   0],</span>
+<span class="go">       [  0,   0,   0,   0],</span>
+<span class="go">       [  0,   0,   0,   0]])</span>
+</pre></div>
+</div>
+<p>Filters can be combined using the element-wise and (<code class="docutils literal notranslate"><span class="pre">&amp;</span></code>), or
+(<code class="docutils literal notranslate"><span class="pre">|</span></code>), and xor (exclusive or) operations (<code class="docutils literal notranslate"><span class="pre">^</span></code>).  Here, for example, is a
+statement that replaces the odd values greater than 100 with zeros in
+<code class="docutils literal notranslate"><span class="pre">b</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">[(</span><span class="n">b</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">b</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">array([[  0,   1,   4,   9],</span>
+<span class="go">       [ 16,  25,  36,  49],</span>
+<span class="go">       [ 64,  81, 100,   0],</span>
+<span class="go">       [144,   0, 196,   0],</span>
+<span class="go">       [256,   0, 324,   0],</span>
+<span class="go">       [400,   0, 484,   0]])</span>
+</pre></div>
+</div>
+<p>If we put all of the above together, we can do some pretty elaborate
+computations with arrays/matrices in just a few lines.  For example,
+we might want to filter out all outliers in <code class="docutils literal notranslate"><span class="pre">b</span></code> that are more than
+one standard deviation away from the mean:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b2</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">b</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">b2</span> <span class="o">/</span> <span class="n">b2</span><span class="o">.</span><span class="n">std</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">]</span>
+<span class="go">array([ 16,  25,  36,  49,  64,  81, 100, 121, 144, 169, 196, 225, 256,</span>
+<span class="go">       289, 324])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="advanced-topics">
+<h2><span class="section-number">4.2.8. </span>Advanced topics<a class="headerlink" href="#advanced-topics" title="Permalink to this heading"></a></h2>
+<p>This section covers advanced topics: broadcasting, the linear algebra
+library, and matrices.  You can safely skip this part on your first
+read.  Understanding broadcasting is helpful, but it is a complex
+topic that may be easier to grasp after you’ve had some experience with
+arrays.</p>
+<div class="section" id="broadcasting">
+<h3><span class="section-number">4.2.8.1. </span>Broadcasting<a class="headerlink" href="#broadcasting" title="Permalink to this heading"></a></h3>
+<p>In the previous section, we described operations with one array and
+one scalar operand and operations on two arrays of the same shape.  In
+this section, we will discuss the process of broadcasting, which makes
+it possible to perform operations on arrays that have compatible but
+not identical shapes.  In these cases, NumPy <em>logically</em> constructs
+intermediate values that have the same shape using <em>broadcasting</em> before
+performing the element-by-element operations.  For the sake of efficiency,
+NumPy does not actually construct these intermediate values in memory,
+but we’ll describe the process as if it does because it makes
+broadcasting easier to understand.</p>
+<p>We’ll start our explanation by describing the broadcasting process
+using a pair of arrays that have the same number of dimensions and
+then discuss what to do when the arrays do not have the same
+number of dimensions.</p>
+<p>Assume we have two arrays, <span class="math notranslate nohighlight">\(D\)</span> and <span class="math notranslate nohighlight">\(E\)</span>, with shapes
+<span class="math notranslate nohighlight">\((d_0, d_1, ..., d_{N-1})\)</span> and <span class="math notranslate nohighlight">\((e_0, e_1, ..., e_{N-1})\)</span>
+respectively.  The arrays are <em>compatible</em> if <span class="math notranslate nohighlight">\(d_i = e_i\)</span>,
+<span class="math notranslate nohighlight">\(d_i = 1\)</span>, or <span class="math notranslate nohighlight">\(e_i = 1\)</span> for <span class="math notranslate nohighlight">\(0 \leq i &lt; N\)</span>.  That
+is, two arrays are compatible if, for every dimension, the arrays
+either have the same size along that dimension or one of them has size
+one for that dimension.</p>
+<p>Let’s make this more concrete by looking at the compatibility of a few
+different combinations of sample arrays.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a2by3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="gp">... </span>                  <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a2by3</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2, 3)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a1by3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a1by3</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(1, 3)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a3by3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">6</span><span class="p">],</span>
+<span class="gp">... </span>                  <span class="p">[</span><span class="mi">7</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span>  <span class="mi">9</span><span class="p">],</span>
+<span class="gp">... </span>                  <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a3by3</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(3, 3)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a2by1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span>                  <span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a2by1</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2, 1)</span>
+</pre></div>
+</div>
+<p>The arrays <code class="docutils literal notranslate"><span class="pre">a2by3</span></code> and <code class="docutils literal notranslate"><span class="pre">a1by3</span></code> are compatible because <code class="docutils literal notranslate"><span class="pre">a1by3</span></code> has
+size one for the first dimension and <code class="docutils literal notranslate"><span class="pre">a2by3</span></code> and <code class="docutils literal notranslate"><span class="pre">a1by3</span></code> both have
+the same size (<code class="docutils literal notranslate"><span class="pre">3</span></code>) in the second dimension.  Similar reasoning
+explains that <code class="docutils literal notranslate"><span class="pre">a1by3</span></code> and <code class="docutils literal notranslate"><span class="pre">a2by1</span></code> are also compatible.
+The arrays <code class="docutils literal notranslate"><span class="pre">a2by3</span></code> and <code class="docutils literal notranslate"><span class="pre">a3by3</span></code>, in contrast, are not compatible
+because they have different sizes for the first dimension and those
+sizes are both greater than one.  As a result, the expression
+<code class="docutils literal notranslate"><span class="pre">a2by3</span> <span class="pre">+</span> <span class="pre">a3by3</span></code> will fail when evaluated.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a2by3</span> <span class="o">+</span> <span class="n">a3by3</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">ValueError</span>: <span class="n">operands could not be broadcast together with shapes (2,3) (3,3) </span>
+</pre></div>
+</div>
+<p>The next step is to determine the shape of the arrays created by
+broadcasting, which is computed as a function of the shapes the
+underlying arrays: <span class="math notranslate nohighlight">\((max(d_0, e_0), max(d_1, e_1), ...,
+max(d_{N-1}, e_{N-1}))\)</span>.  Returning to our examples, the broadcast
+shape for <code class="docutils literal notranslate"><span class="pre">a2by3</span> <span class="pre">+</span> <span class="pre">a1by3</span></code> is <span class="math notranslate nohighlight">\((max(2, 1), max(3, 3))\)</span> or
+<span class="math notranslate nohighlight">\((2,3)\)</span>.  Similarly, the broadcast shape for <code class="docutils literal notranslate"><span class="pre">a1by3</span> <span class="pre">+</span> <span class="pre">a2by1</span></code> will
+be <span class="math notranslate nohighlight">\((max(1, 2), max(3, 1))\)</span> or <span class="math notranslate nohighlight">\((2,3)\)</span>.</p>
+<p>To create an array of the correct shape, broadcasting replicates
+values along the dimensions where the size of the original array is
+one and the size of broadcast value is greater than one.  Once this
+process is complete, NumPy can perform element-by-element operations
+on the intermediate arrays to produce a result.</p>
+<p>Let’s return to our example of <code class="docutils literal notranslate"><span class="pre">a2by3</span> <span class="pre">+</span> <span class="pre">a1by3</span></code>.  We know that the arrays are
+compatible and that the broadcast shape is <span class="math notranslate nohighlight">\((2, 3)\)</span>.  The array
+<code class="docutils literal notranslate"><span class="pre">a2by3</span></code> already has the right shape. The array <code class="docutils literal notranslate"><span class="pre">a1by3</span></code>, on the other
+hand, needs to be stretch from <span class="math notranslate nohighlight">\((1,3)\)</span> to <span class="math notranslate nohighlight">\((2,3)\)</span>, which
+is accomplished by replicating along the row dimension (that is,
+dimension 0):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>Once this intermediate value is computed, NumPy can add it to <code class="docutils literal notranslate"><span class="pre">a2by3</span></code> to
+get a final result of:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a2by3</span> <span class="o">+</span> <span class="n">a1by3</span>
+<span class="go">array([[ 5,  7,  9],</span>
+<span class="go">       [ 8, 10, 12]])</span>
+</pre></div>
+</div>
+<p>In this case, only one of the operands needed to be stretched to
+construct an intermediate value of the right shape. In other cases,
+both arrays need to be stretched.  For example, as noted above
+<code class="docutils literal notranslate"><span class="pre">a1by3</span> <span class="pre">+</span> <span class="pre">a2by1</span></code> will yield a value with a shape of <span class="math notranslate nohighlight">\((2,3)\)</span>, which
+requires NumPy to stretch <code class="docutils literal notranslate"><span class="pre">a1by3</span></code> from <span class="math notranslate nohighlight">\((1,3)\)</span> to <span class="math notranslate nohighlight">\((2,3)\)</span>
+as in the previous example, and to stretch <code class="docutils literal notranslate"><span class="pre">a2by1</span></code> from <span class="math notranslate nohighlight">\((2, 1)\)</span>
+to <span class="math notranslate nohighlight">\((2,3)\)</span>.  In the latter case, the values are replicated along
+column because <code class="docutils literal notranslate"><span class="pre">a2by1</span></code> has size one in the second dimension:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>Once both values are stretched, NumPy can construct the final result
+for <code class="docutils literal notranslate"><span class="pre">a1by3</span> <span class="pre">+</span> <span class="pre">a2by1</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a1by3</span> <span class="o">+</span> <span class="n">a2by1</span>
+<span class="go">array([[5, 6, 7],</span>
+<span class="go">       [6, 7, 8]])</span>
+</pre></div>
+</div>
+<p>Now, let’s consider what happens when one of the arrays has fewer
+dimensions than the other.  Since it does not matter for this
+computation which is smaller, let’s say that <span class="math notranslate nohighlight">\(E\)</span> is smaller and
+has shape <span class="math notranslate nohighlight">\((e_0, e_1, ..., e_M)\)</span> where <span class="math notranslate nohighlight">\(M &lt; N\)</span>.  To start
+the broadcasting process, NumPy reshapes <code class="docutils literal notranslate"><span class="pre">E</span></code> into an array with
+<code class="docutils literal notranslate"><span class="pre">N</span></code> dimensions.  The shape of that array is constructed by
+prepending <span class="math notranslate nohighlight">\(N-M\)</span> ones to the original shape of <code class="docutils literal notranslate"><span class="pre">E</span></code>: <span class="math notranslate nohighlight">\((1,
+..., 1, e_0, e_1, ..., e_M)\)</span>.  You can think of this transformation as
+being equivalent to wrapping one extra pair of square brackets around
+the list passed to <code class="docutils literal notranslate"><span class="pre">np.array</span></code> for each added dimension.  Once the
+array with fewer dimensions has been reshaped, the broadcasting
+process can proceed as described above.</p>
+<p>At the beginning of the previous section, we explained that NumPy
+supports operations with one array operand and one scalar operand.  We
+can explain now that these operations are supported through
+broadcasting.  A scalar can be thought of as a one dimension array of
+size 1.  For example, consider what happens when we compute <code class="docutils literal notranslate"><span class="pre">a2by3</span> <span class="pre">+</span>
+<span class="pre">2</span></code>, which is equivalent to <code class="docutils literal notranslate"><span class="pre">a2by3</span> <span class="pre">+</span> <span class="pre">np.array([2])</span></code>.  Since
+<code class="docutils literal notranslate"><span class="pre">a2by3</span></code> has shape <span class="math notranslate nohighlight">\((2,3)\)</span> and <code class="docutils literal notranslate"><span class="pre">np.array([2])</span></code> has shape
+<span class="math notranslate nohighlight">\((1,)\)</span>, NumPy will logically reshape <code class="docutils literal notranslate"><span class="pre">np.array([2])</span></code> into
+<code class="docutils literal notranslate"><span class="pre">np.array([[2]])</span></code>, which has a shape of <span class="math notranslate nohighlight">\((1,1)\)</span>, as a first
+step.  It will then determine that the broadcast shape for <code class="docutils literal notranslate"><span class="pre">a2by3</span> <span class="pre">+</span>
+<span class="pre">2</span></code> is <span class="math notranslate nohighlight">\((2,3)\)</span> and will replicate <code class="docutils literal notranslate"><span class="pre">np.array([[2]])</span></code> along both
+dimensions to create an intermediate value of the right shape:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>Finally, it will add <code class="docutils literal notranslate"><span class="pre">a2by3</span></code> to this intermediate value to yield:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>Let’s put all of these
+ideas together and look at what happens when we add <code class="docutils literal notranslate"><span class="pre">a1by3</span> <span class="pre">+</span> <span class="pre">a7</span></code> where <code class="docutils literal notranslate"><span class="pre">a7</span></code>
+is defined as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a1by3by1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span>                      <span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>                      <span class="p">[</span><span class="mi">3</span><span class="p">]]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a1by3by1</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(1, 3, 1)</span>
+</pre></div>
+</div>
+<p>Because <code class="docutils literal notranslate"><span class="pre">a1by3</span></code> and <code class="docutils literal notranslate"><span class="pre">a1by3by1</span></code> do not have the same number of dimensions,
+the first step will be for NumPy to logically construct a new array
+from <code class="docutils literal notranslate"><span class="pre">a1by3</span></code> that has the value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span> <span class="p">[</span> <span class="p">[</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span> <span class="p">]</span> <span class="p">]</span> <span class="p">])</span>
+</pre></div>
+</div>
+<p>This value, which has the shape: <span class="math notranslate nohighlight">\((1, 1, 3)\)</span>, has the same number
+of dimensions as <code class="docutils literal notranslate"><span class="pre">a1by3by1</span></code>.  NumPy will then determine that the broadcast
+shape of <code class="docutils literal notranslate"><span class="pre">a1by3</span> <span class="pre">+</span> <span class="pre">a1by3by1</span></code> is <span class="math notranslate nohighlight">\((1, 3, 3)\)</span> and it will construct intermediate
+results of the form:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[[</span> <span class="mf">4.</span><span class="p">,</span>  <span class="mf">5.</span><span class="p">,</span>  <span class="mf">6.</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">4.</span><span class="p">,</span>  <span class="mf">5.</span><span class="p">,</span>  <span class="mf">6.</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">4.</span><span class="p">,</span>  <span class="mf">5.</span><span class="p">,</span>  <span class="mf">6.</span><span class="p">]]])</span>
+</pre></div>
+</div>
+<p>and</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[[</span> <span class="mf">1.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">2.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">3.</span><span class="p">,</span>  <span class="mf">3.</span><span class="p">,</span>  <span class="mf">3.</span><span class="p">]]])</span>
+</pre></div>
+</div>
+<p>and finally combine them to yield a result of:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]])</span>
+</pre></div>
+</div>
+<p>With NumPy, an assignment is legal as long as the array on the right side can be
+broadcast to the same shape as the array or sub-array on the left side. This
+allows us to relax the requirement for arrays on either side
+of an assignment to have the same shape. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">array([[ 10,  20,   4,   9],</span>
+<span class="go">       [ 10,  20,  36,  49],</span>
+<span class="go">       [ 10,  20, 100, 121],</span>
+<span class="go">       [ 10,  20, 196, 225],</span>
+<span class="go">       [ 10,  20, 324, 361],</span>
+<span class="go">       [ 10,  20, 484, 529]])</span>
+</pre></div>
+</div>
+<p>The slice referenced on the left side of the assignment statement has
+shape <span class="math notranslate nohighlight">\((6, 2)\)</span>, while the array on the right-side has shape
+<span class="math notranslate nohighlight">\((2, )\)</span>.  To complete the assignment, NumPy broadcasts
+<code class="docutils literal notranslate"><span class="pre">np.array([10,</span> <span class="pre">20])</span></code> into:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>which has the expected shape of <span class="math notranslate nohighlight">\((6, 2)\)</span>, and then performs the
+update.</p>
+</div>
+<div class="section" id="example-standardizing-features-revisited">
+<h3><span class="section-number">4.2.8.2. </span>Example: Standardizing features, revisited<a class="headerlink" href="#example-standardizing-features-revisited" title="Permalink to this heading"></a></h3>
+<p>We now have all the pieces necessary to understand the NumPy solution
+to the task of standardizing features that we presented at the start
+of the chapter.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">standardize_features</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Standardize features to have mean 0.0 and standard deviation</span>
+<span class="sd">    1.0.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">      data (2D NumPy array of floats): data to be standardized</span>
+
+<span class="sd">    Returns (2D NumPy array of floats): standardized data</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">mu_vec</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">sigma_vec</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">mu_vec</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma_vec</span>
+</pre></div>
+</div>
+<p>We discussed the first couple of lines, which use reductions to
+compute the means and standard deviations of the features, above.  Only the
+last line is new.  The expression <code class="docutils literal notranslate"><span class="pre">(data</span> <span class="pre">-</span> <span class="pre">mu_vec)</span></code>
+yields an array with shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">M)</span></code>.  Notice that we do not need a
+loop to do this computation.  Instead, we rely on NumPy’s
+broadcasting mechanism to convert <code class="docutils literal notranslate"><span class="pre">mu</span></code> from a vector of length <code class="docutils literal notranslate"><span class="pre">M</span></code>
+into an <code class="docutils literal notranslate"><span class="pre">N</span></code> by <code class="docutils literal notranslate"><span class="pre">M</span></code> array and use element-wise subtraction to do the computation.
+In the new array, the jth column holds <code class="docutils literal notranslate"><span class="pre">N</span></code>
+copies of the mean of the jth feature.  Broadcasting also converts
+<code class="docutils literal notranslate"><span class="pre">sigma_vec</span></code> from <code class="docutils literal notranslate"><span class="pre">1</span></code> by <code class="docutils literal notranslate"><span class="pre">M</span></code> array into an <code class="docutils literal notranslate"><span class="pre">N</span></code> by <code class="docutils literal notranslate"><span class="pre">M</span></code> array,
+and allows us to do element-wise division to compute the desired
+<code class="docutils literal notranslate"><span class="pre">N</span></code> by <code class="docutils literal notranslate"><span class="pre">M</span></code> array.</p>
+</div>
+<div class="section" id="linear-algebra">
+<h3><span class="section-number">4.2.8.3. </span>Linear algebra<a class="headerlink" href="#linear-algebra" title="Permalink to this heading"></a></h3>
+<p>NumPy includes a linear algebra library (<code class="docutils literal notranslate"><span class="pre">numpy.linalg</span></code>), which
+is traditionally imported with the alias <code class="docutils literal notranslate"><span class="pre">la</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+</pre></div>
+</div>
+<p>This library includes functions for performing a few different
+decompositions (<code class="docutils literal notranslate"><span class="pre">cholesky</span></code>, <code class="docutils literal notranslate"><span class="pre">qr</span></code>, and <code class="docutils literal notranslate"><span class="pre">svd</span></code>), computing
+eigenvalues, eigenvectors, norms, and other values (e.g., <code class="docutils literal notranslate"><span class="pre">det</span></code>,
+<code class="docutils literal notranslate"><span class="pre">norm</span></code>, <code class="docutils literal notranslate"><span class="pre">matrix_rank</span></code>), and determining the inverse of a
+matrix.</p>
+<p>As an example, let’s use a few of these methods to solve the following
+system of equations:</p>
+<p>We can represent this system of equations using two arrays. We can
+write them mathematically as:</p>
+<p>and construct them using NumPy as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span> <span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="p">[</span><span class="mi">28</span><span class="p">]</span> <span class="p">])</span>
+</pre></div>
+</div>
+<p>One way to solve this system is to compute by the dot product of the
+inverse of <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">Y</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">iX</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iX</span>
+<span class="go">array([[ 4. , -1.5],</span>
+<span class="go">       [-1. ,  0.5]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">iX</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span>
+<span class="go">array([[2.],</span>
+<span class="go">       [3.]])</span>
+</pre></div>
+</div>
+<p>Another is to use the <code class="docutils literal notranslate"><span class="pre">linalg.solve</span></code> function.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span>
+<span class="go">array([[2.],</span>
+<span class="go">       [3.]])</span>
+</pre></div>
+</div>
+<p>In this case, both methods have similar performance.  In general,
+<code class="docutils literal notranslate"><span class="pre">la.solve()</span></code> is preferred because it will exploit properties of
+<code class="docutils literal notranslate"><span class="pre">X</span></code>, such as symmetry, to increase efficiency, when appropriate.</p>
+</div>
+<div class="section" id="numpy-s-matrix-type">
+<h3><span class="section-number">4.2.8.4. </span>NumPy’s matrix type<a class="headerlink" href="#numpy-s-matrix-type" title="Permalink to this heading"></a></h3>
+<p>NumPy also has a matrix type that is useful because some of the
+operators “make more sense” with matrices. e.g., * will do matrix
+multiplication, not element-wise multiplication:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">*</span> <span class="n">e</span>
+<span class="go">matrix([[1, 2],</span>
+<span class="go">        [3, 4]])</span>
+</pre></div>
+</div>
+<p>However, most NumPy developers recommend using the more general array
+type (anything you can do with a matrix, you can do with an array;
+e.g., matrix multiplication is just the <code class="docutils literal notranslate"><span class="pre">dot</span></code> method).  The converse
+is not true: matrices are always two-dimensional.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../files/index.html" class="btn btn-neutral float-left" title="4.1. Working with Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../pandas/index.html" class="btn btn-neutral float-right" title="4.3. The pandas library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Anne Rogers and Borja Sotomayor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

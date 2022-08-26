@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.1. Computational Thinking &mdash; Computer Science with Applications  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/csapps.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1.2. Programming Basics" href="../basics/index.html" />
+    <link rel="prev" title="1. Getting Started" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Computer Science with Applications
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../preface.html">Preface</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. Getting Started</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.1. Computational Thinking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#decomposition-and-abstraction">1.1.1. Decomposition and abstraction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#obtaining-the-plow-coordinates">1.1.1.1. Obtaining the plow coordinates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#converting-the-data-into-paths">1.1.1.2. Converting the data into paths</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#visualizing-and-querying-the-data">1.1.1.3. Visualizing and querying the data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#modeling">1.1.2. Modeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#algorithms">1.1.3. Algorithms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#complexity">1.1.4. Complexity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/index.html">1.2. Programming Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../control_structures/index.html">1.3. Control Flow Statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_functions/index.html">1.4. Introduction to Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../organization/index.html">1.5. Basics of Code Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exceptions/index.html">1.6. Understanding Errors and Catching Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../example/index.html">1.7. Example: A Game of Chance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_structures/index.html">2. Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../functions/index.html">3. Functional Programming and Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working_with_data/index.html">4. Working with Data</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Computer Science with Applications</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">1. </span>Getting Started</a> &raquo;</li>
+      <li><span class="section-number">1.1. </span>Computational Thinking</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/getting_started/introduction/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="computational-thinking">
+<span id="chapter-introduction"></span><h1><span class="section-number">1.1. </span>Computational Thinking<a class="headerlink" href="#computational-thinking" title="Permalink to this heading"></a></h1>
+<p>When Hurricane Harvey made landfall in the US in August 2017, it caused a
+massive amount of damage and flooding, leaving many people stranded in their
+homes. While considerable resources
+were devoted to rescuing people from the floods, one of the biggest
+challenges was determining <em>who</em> needed to be rescued.
+Ordinarily, a call to 911 could alert the authorities about
+a rescue situation, but most 911 call centers were backlogged and
+could not process most incoming calls. Instead, many people took to
+social media to post about their situation, using the <code class="docutils literal notranslate"><span class="pre">#HarveySOS</span></code>
+hashtag to alert others that they were in need of
+help or needed to be rescued.</p>
+<p>This ensured that information about who needed to be rescued was
+available to anyone who could act on it, including the Coast Guard
+and a number of volunteer organizations that sent boats into the flooded
+areas on rescue missions. However, sifting through all the uses of <code class="docutils literal notranslate"><span class="pre">#HarveySOS</span></code>
+is not easy: someone on a rescue boat can easily filter Twitter or
+Facebook posts by the <code class="docutils literal notranslate"><span class="pre">#HarveySOS</span></code> hashtag, but there is no
+easy way to find posts made close to the boat’s location. On top
+of that, some posts may refer to people who have already been rescued,
+so a rescue boat could be acting on outdated information.</p>
+<p>To facilitate rescue operations, the data needs to be presented to
+authorities and volunteers in a way that enables them
+to act on it, and there needs to be mechanisms to indicate whether
+someone who used the <code class="docutils literal notranslate"><span class="pre">#HarveySOS</span></code> hashtag has already been rescued.
+While this could be done manually, with volunteers reading each
+post and acting as intermediaries between rescuers and rescuees,
+this kind of task lends itself nicely to being
+automated using computational methods.</p>
+<p>In fact, that is what ended up happening in this case: a group of
+volunteers around the US and around the world developed tools to
+easily extract the <code class="docutils literal notranslate"><span class="pre">#HarveySOS</span></code> posts, put them in a database,
+display them on an online map that allowed easy access to all the
+information that rescue teams needed. Thousands of people were rescued
+thanks to this effort.</p>
+<p>The Harvey rescue map highlights how computation can be used to solve
+problems outside the realm of Computer Science. The people behind the
+Harvey rescue map were not developing the next killer app or some
+advanced piece of machinery. They had a problem that they cared deeply about,
+and they used computers to solve that problem faster and better.</p>
+<p>In fact, this book is written for people who don’t intend to become
+computer scientists or engineers. It is intended for people
+who want to harness the power of computation to solve problems
+that matter to them and, more generally, to their chosen field of study.
+This may be anything from analyzing some census data and testing a hypothesis
+about it to performing a complex simulation of housing segregation models.</p>
+<p>Doing so involves a lot more than just learning “how to program.”
+At the end of the day, learning how to write a computer program is not that hard.
+Take, for example, the following piece of Python code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Who&#39;s a good dog?&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">number_of_dogs</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You&#39;re a good dog!&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You&#39;re all good dogs!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Without getting into the weeds, you can tell that there appears to be a
+mechanism to print messages (<code class="docutils literal notranslate"><span class="pre">print</span></code>) and a mechanism to perform
+one action or another based on some condition (<code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">number_of_dogs</span> <span class="pre">==</span> <span class="pre">1</span></code> … <code class="docutils literal notranslate"><span class="pre">else</span></code>).
+While this piece of code is trivial, you can already tell that
+it is not written in some esoteric and cryptic language,
+understandable only by seasoned computer scientists. Computer programs
+actually tend to be fairly human-readable, and picking up the basics
+of a programming language is less intimidating than you may think.</p>
+<p>Programming is ultimately a <em>tool</em>. The challenge lies in
+learning how to <em>think computationally</em>: how to translate a problem into terms
+that a computer can solve efficiently. This is not unlike what happens
+in many other disciplines and crafts: you could learn how to use a
+variety of woodworking tools in a few hours, but it takes a lot more time
+than that to learn how to build a decent cabinet or carve a sculpture
+out of wood.</p>
+<p>In a sense, the goal of this book is to teach you to think computationally
+rather than to simply teach you to program. Don’t get us
+wrong: you <em>will</em> learn a <em>lot</em> of programming in this book, but it
+will be in service of computational thinking. Our ultimate goal is
+for you to be able to take problems that matter to you and figure out
+how to get a computer to solve them.</p>
+<p>So, what is computational thinking? Jeannette Wing, in a
+<a class="reference external" href="https://www.cs.cmu.edu/~15110-s13/Wing06-ct.pdf">seminal 2006 article</a>
+on the subject, wrote:</p>
+<blockquote>
+<div><p>Computational thinking involves solving problems, designing systems,
+and understanding human behavior, by drawing on the concepts fundamental
+to computer science.</p>
+</div></blockquote>
+<p>While the field of computer science is enormous and Wing’s article
+discusses many ideas, we will focus on a few concepts and skills that
+are integral to computational thinking:</p>
+<ul class="simple">
+<li><p>Decomposition and Abstraction</p></li>
+<li><p>Modeling</p></li>
+<li><p>Algorithms</p></li>
+<li><p>Complexity</p></li>
+</ul>
+<p>In the rest of this chapter we will discuss each of these in more detail and,
+throughout the book, we will often highlight the material we
+present relates back to these four points.</p>
+<div class="section" id="decomposition-and-abstraction">
+<h2><span class="section-number">1.1.1. </span>Decomposition and abstraction<a class="headerlink" href="#decomposition-and-abstraction" title="Permalink to this heading"></a></h2>
+<p>Computational thinking can help us solve large and complex problems in
+a more manageable way. For example, consider the following problem:
+how can we find out, after a snow storm in Chicago, whether a given
+street in the city has been plowed?</p>
+<p>In 2012, the City of Chicago launched a website called
+<a class="reference external" href="https://www.cityofchicago.org/city/en/depts/mayor/iframe/plow_tracker.html">Plow Tracker</a>
+that, originally, only allowed users to see the location of the city’s snow
+plows during a snow storm (at all other times, the Plow Tracker did not display anything).
+While that data is useful (in fact, the City of Chicago is a pioneer
+in <a class="reference external" href="https://data.cityofchicago.org/">openly publishing government data</a>),
+it doesn’t solve the problem we posed, unless we watch the plow
+tracker intently during a snow storm and wait to see whether a snow plow passes
+through a given street.</p>
+<p>So, several civic data enthusiasts in Chicago (most of whom, it should
+be noted, were not computer scientists) set out to solve this problem
+and publish their solution. They built a website, called <a class="reference external" href="http://clearstreets.org/">ClearStreets</a>, that allows anyone to
+determine whether a snow plow has passed through any address in Chicago
+since the last snow storm.  Building this system required
+breaking up this problem into multiple parts, which we will describe
+below.</p>
+<div class="admonition-info-note admonition">
+<p class="admonition-title">Note</p>
+<p>The ClearStreets website no longer collects snow plow data, not does
+it allow you to query their database, partially because the City of Chicago’s
+own Plow Tracker website now provides the functionality that ClearStreets originally
+set out to provide.</p>
+<p>However, ClearStreets is still a great case study on how ordinary citizens
+with some basic computational skills can build interesting and useful
+systems using openly-available data (which eventually nudged the city
+towards offering that same functionality themselves). The ClearStreet website itself
+still exists, and includes details and documentation on how the
+ClearStreets system was originally built. We encourage you to check it out after
+you’ve read this chapter!</p>
+</div>
+<div class="section" id="obtaining-the-plow-coordinates">
+<h3><span class="section-number">1.1.1.1. </span>Obtaining the plow coordinates<a class="headerlink" href="#obtaining-the-plow-coordinates" title="Permalink to this heading"></a></h3>
+<p>During a snow storm, the city’s Plow Tracker produces a sequence of
+GPS locations for every active plow. ClearStreets needs a program to
+monitor the Plow Tracker during a snow storm and store those GPS
+coordinates for use in subsequent queries.  They end up with a
+sequence of latitude and longitude coordinates at specific points in
+time, like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>...
+Plow 42 was at 41°47&#39;16.0&quot;N 87°36&#39;03.0&quot;W at 2017-03-14 11:55:19am
+Plow 42 was at 41°47&#39;16.0&quot;N 87°35&#39;53.9&quot;W at 2017-03-14 11:56:20am
+...
+</pre></div>
+</div>
+</div>
+<div class="section" id="converting-the-data-into-paths">
+<h3><span class="section-number">1.1.1.2. </span>Converting the data into paths<a class="headerlink" href="#converting-the-data-into-paths" title="Permalink to this heading"></a></h3>
+<p>The data obtained from the Plow Tracker aren’t particularly
+user-friendly: if someone wanted to find out whether their street had been
+plowed, they would need to know the latitude and longitude of their home.
+However, even if they converted each latitude/longitude to a street
+address, the data would not include all the addresses passed by the
+snow plow. For example, the coordinates shown above correspond to the
+following two addresses:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>1010 East 59th Street</p></li>
+<li><p>1130 East 59th Street</p></li>
+</ul>
+</div></blockquote>
+<p>What if they live at 1116 East 59th Street? The coordinates of
+that address are not in the data we collected, but the snow plow must’ve
+passed through that address (East 59th Street is a one-way street,
+and you can’t get from 1010 to 1130 without passing 1116).</p>
+<p>So, we need to extrapolate the paths of the snow plows from those
+sequences of coordinates. As it turns out, this can be a pretty
+complex problem. In the above example, we had a one-way
+street, but consider a plow that reports the following two
+locations:</p>
+<img alt="../../_images/streets1.png" src="../../_images/streets1.png" />
+<p>We might assume the plow took the shortest path from A to B:</p>
+<img alt="../../_images/streets2.png" src="../../_images/streets2.png" />
+<p>But that doesn’t take into account Chicago’s many one-way streets:</p>
+<img alt="../../_images/streets3.png" src="../../_images/streets3.png" />
+<p>Taking the shortest path would actually involve going the wrong way
+down a one-way street! It’s more likely that the plow followed
+this path:</p>
+<img alt="../../_images/streets4.png" src="../../_images/streets4.png" />
+<p>Fortunately, converting GPS coordinates to paths is a well-studied
+problem, and there are many existing software solutions
+available. ClearStreets actually uses a system called <a class="reference external" href="http://project-osrm.org/">OSRM</a> (Open Source Routing Machine) to convert
+the GPS coordinates from the Plow Tracker into plausible paths on a
+street map.</p>
+</div>
+<div class="section" id="visualizing-and-querying-the-data">
+<h3><span class="section-number">1.1.1.3. </span>Visualizing and querying the data<a class="headerlink" href="#visualizing-and-querying-the-data" title="Permalink to this heading"></a></h3>
+<p>Finally, ClearStreets had to provide an interface for users to query
+the data and easily visualize it.  These tasks are themselves quite
+complex and are handled using a combination of tools including CSS,
+HTML, JavaScript and CartoDB.  The end result looked like this:</p>
+<img alt="../../_images/clearstreets.png" src="../../_images/clearstreets.png" />
+<p>Through the <a class="reference external" href="http://clearstreets.org/">ClearStreets website</a>, users
+were able to type in an address, and then see on the map whether or not a plow
+passed through an area.</p>
+<hr class="docutils" />
+<p>The ClearStreets example shows how computational thinking involves
+<em>decomposing</em> complex problems into smaller, more manageable pieces
+that provide a layer of <em>abstraction</em> over all the details of the
+problem. This means that, instead of trying to solve one large problem,
+we can solve several smaller problems in a way that makes
+it easier to divide up the work among a team, as well as making each
+individual piece easier to test and maintain in the long run.</p>
+<p>This problem-solving approach has several benefits.
+First, it separates different
+parts of the program. The part of the program that converts
+coordinates to paths on a map only has to focus on solving that
+particular sub-problem, without being concerned with how the other
+parts of the program work. In fact, in a well-designed program, we
+should be able to replace the mechanism that converts points to paths
+(e.g., because we developed a better algorithm for this task) without
+the other parts of the program needing to know about this change.
+Similarly, if a given piece of code focuses on one specific task, it
+will be easier to test whether that code is implemented correctly.</p>
+<p>It also allows us to reuse code across projects. ClearStreets used
+an existing piece of software, OSRM, so that it would not have to solve
+the coordinates-to-paths problem from scratch. In fact, in most
+situations, it is considered better to solve a problem by using
+existing code (either written by yourself or your team, or provided by
+some other project, like OSRM) instead writing the entire solution
+from scratch.</p>
+<p>Of course, when we decompose a single problem into multiple parts, we must ensure
+that all of the pieces can work together.  This task is especially
+challenging when different people write each piece,
+which is very common in many software projects. To address this
+challenge, each piece must clearly define some sort of <em>interface</em>
+that specifies what kind of data it expects and what kind of data it
+produces.</p>
+<p>For example, it would be very easy to get a mismatch between the code
+that collects the plow coordinates and the code library used to
+convert coordinates to paths.  The person who was in charge of writing
+the code to collect plow coordinates might decide to write code that
+produces a sequence of addresses as output, because that format seems
+intuitively useful for the overall task of answering questions about
+whether a specific street has been plowed.  While this choice has some
+merit, it does not work well with the library that converts
+coordinates to paths, which expects a sequence of GPS coordinates
+(latitude/longitude) as input.</p>
+<p>Throughout the book, we will see that there are various ways
+to decompose a problem into smaller pieces, but that it
+will be important to define good interfaces when we do so.
+We will also be emphasizing that these smaller pieces
+need to be testable, and we’ll see that there are tools
+that allow us to automatically run tests on specific
+parts of our code.</p>
+</div>
+</div>
+<div class="section" id="modeling">
+<h2><span class="section-number">1.1.2. </span>Modeling<a class="headerlink" href="#modeling" title="Permalink to this heading"></a></h2>
+<p>Another aspect of making complex problems more manageable is to
+distill the problem into its essential components, so that we don’t
+waste time and effort on aspects of the problem that are irrelevant to solving
+it. This is different from decomposition and
+abstraction, in which we try to break down a complex problem into more
+manageable sub-problems. Now, we will focus coming up with a <em>model</em> that
+captures the essence of a given problem while allowing a computer program to
+solve it.</p>
+<p>Modeling is not unique to computational thinking. For example, you may be familiar
+with economic models, statistical models, or mathematical models. In
+general, models formalize an aspect of the real world in a way
+that allows us to reason about it.</p>
+<p>While modeling is not unique to computational thinking, it is a
+central aspect of it. As we will see throughout the book, a programmer
+has a number of <em>data structures</em> at their disposal when writing
+a program. Solving a problem computationally requires a programmer to figure out
+how to use data structures to represent aspects of the problem.
+Or, to put it another way, the programmer must figure out
+how to <em>model</em> the problem using those
+data structures before performing any computations.</p>
+<p>For example, let’s take a look at the problem of matching
+medical students to residency training programs.
+When someone graduates from
+medical school, they next complete a <em>residency</em> at a hospital
+under the supervision of an attending
+physician (a more senior physician that has already completed a residency).
+The <a class="reference external" href="https://en.wikipedia.org/wiki/National_Resident_Matching_Program">National Resident Matching Program</a>,
+also known, somewhat ominously, as “The Match”, matches medical students
+to resident positions in hospitals.</p>
+<p>This problem lends itself nicely to a computational solution but,
+before we can think about specific procedures to match students to
+hospitals (which we’ll discuss in the next section), we first need to
+decide on a model for this problem. In particular, consider that a
+student could say something like, “I prefer a hospital in the West
+Coast, but I’m open to hospitals in the Midwest as long as they’re
+highly-ranked”, and a hospital could say, “We prefer students
+from top schools, but will take truly exceptional
+students from lower-ranked schools”.  We need to represent these preferences in a
+way that a computer program will be able to process.</p>
+<p>One approach is to model every possible preference.
+For students, we would include location, quality of program, specialty, and so on, and
+for hospitals, we would include ranking of the student’s medical school, the student’s
+specialty, and so on. We would attach a numeric score to each, where 0 is
+“not important at all” and 10is “very important”.
+So, if a student scored “West Coast location” with a 10
+and “Midwest location” with a 5, the program would try to match
+that student with a West Coast hospital (or, possibly, a Midwest hospital
+if that hospital has other characteristics that score highly for that student).
+Notice that we would also have to model certain attributes of the students
+and the hospitals, like where the hospital is located and what specialty the student
+wants.</p>
+<p>Coming up with a model that captures every possible preference can
+quickly become intractable. While there are some problems where
+such an approach may be appropriate, this model
+should boil down the problem to its very essence. If we think
+about it, students are ultimately providing a series of
+rules to determine whether one hospital is better than another. So, a
+much simpler model would be to ask each student to rank the hospitals
+they are interested in. Similarly, hospitals would be asked to rank
+the students they are willing to hire as residents. This is, in fact,
+what The Match asks them to do.</p>
+<p>So, if we have five students (A, B, C, D, E) and four hospitals (H1, H2, H3, H4),
+we could model each student’s preferences as a ranked list of hospitals:</p>
+<ul class="simple">
+<li><p>Student A: H1, H4</p></li>
+<li><p>Student B: H1, H3</p></li>
+<li><p>Student C: H1, H2</p></li>
+<li><p>Student D: H2, H1, H3, H4</p></li>
+<li><p>Student E: H1, H2, H4, H3</p></li>
+</ul>
+<p>And each hospital’s preferences as a ranked list of students:</p>
+<ul class="simple">
+<li><p>Hospital H1: E, A, B, C, D</p></li>
+<li><p>Hospital H2: C</p></li>
+<li><p>Hospital H3: B, E, A, C, D</p></li>
+<li><p>Hospital H4: B, E, A, C, D</p></li>
+</ul>
+<p>We can further simplify our model. It doesn’t make sense to keep
+track of unrequited preferences. For example, Hospital H3 is willing to hire any of
+the five students, but only students B, D, and E listed H3 as a choice. We could
+represent these preferences graphically by connecting a student and a hospital with
+a line if and only if the student and the hospital both listed each other in their
+list of preferences. So, we would have something like this:</p>
+<a class="reference internal image-reference" href="../../_images/res0.jpg"><img alt="../../_images/res0.jpg" src="../../_images/res0.jpg" style="width: 60%;" /></a>
+<p>As it turns out, this is a data structure called a <em>graph</em>, where we
+model certain things as nodes (in this case, the students and
+hospitals) and we model a relationship between the nodes using
+lines or <em>edges</em> (in this case, whether a student and a hospital
+mutually prefer each other). Notice that there are no edges that connect
+students to other students or hospitals to other hospitals; this is a
+type of graph called a <em>bipartite graph</em> because the nodes are
+divided into two categories (students and hospitals) and each edge
+connects a node from one category with a node from the other.</p>
+<p>In this graph, an edge indicates a <em>potential match</em>. Notice that each
+student also has a ranked list of hospitals so, given two potential
+matches, we can tell which one is more desirable to the student. Likewise,
+the hospitals have ranked lists of students.</p>
+<p>Ultimately we have to produce the actual matches between students and hospitals, so our
+model needs to distinguish
+between edges that represent potential matches, and edges that represent actual matches.
+We can do so by having two types of edges: one for potential matches and one for
+actual matches. Graphically, we can represent actual matches with a thicker blue line:</p>
+<a class="reference internal image-reference" href="../../_images/res7a.jpg"><img alt="../../_images/res7a.jpg" src="../../_images/res7a.jpg" style="width: 60%;" /></a>
+<p>Keep in mind that any student will be matched with at most one
+hospital.  Notice that our model allows some
+students to be unmatched (in this case, Student D is not matched with
+any hospital).</p>
+<p>Hospitals usually have multiple residency programs, each with multiple
+slots, but we’re going to assume that
+each hospital hires at most one resident for simplicity.</p>
+<p>For this particular problem, this graph is our model. Anything that can’t be represented
+in this graph, and thus in our model, is outside of the scope of our computational
+solution.  In an actual computer program, we would probably use an existing
+software library that allows us to manipulate and query graphs, allowing us to implement
+the model we just designed. This is an example of abstraction: we don’t have to
+worry about the internal details of how a graph data structure is implemented, because
+we can probably find a software library that provides operations like “Add node called X
+to graph” , “Check whether node X and Y are connected”, “Change edge between Y and Z from
+potential match to actual match”, etc., in the same way that the
+developers of ClearStreets abstracted away the details of converting GPS coordinates
+to paths by using the OSRM library.</p>
+<p>Now that we have defined our model, we should also define what it means to have a “good match”
+in the context of our model. As it turns out, computer scientists have thoroughly studied
+matching problems like this one, and there is something called a “stable match”
+that suits our needs. A stable match is one where, for every possible pairing of a student S with a hospital H, the following
+two conditions are not both true:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>S is unmatched, or would prefer to go to H over the hospital that S is currently matched with.</p></li>
+<li><p>H is unmatched, or would prefer S over the student it is currently matched with.</p></li>
+</ol>
+</div></blockquote>
+<p>A more intuitive way to think about this is that a solution is stable if there is no
+(student, hospital) pair such that they both prefer each other over their current match
+(or lack of match).</p>
+<p>Our earlier matches are stable, even in the case
+of student D. For all the possible pairings of D with a hospital (D with H1, D with H2, D with H3, and D with H4), the first condition is true, because D is unmatched, but the second condition is never true: all the hospitals either did not want D, or they’re matched with a student that they ranked higher than D.</p>
+<p>As a counter example, here is a simple unstable match:</p>
+<a class="reference internal image-reference" href="../../_images/unstable-match.png"><img alt="../../_images/unstable-match.png" src="../../_images/unstable-match.png" style="width: 60%;" /></a>
+<p>Both matches break the conditions for stability: A would prefer to go to H0, <em>and</em> H1 would prefer
+B over A. Similarly, B would prefer to go to H1, <em>and</em> H0 would prefer A over B.</p>
+<hr class="docutils" />
+<p>This example highlights how we need to
+<em>model</em> a problem in a way that allows us to operate on it
+computationally before we can solve it. Since we haven’t started writing code yet, the
+graph model we present may still seem abstract.  Graphs, however, are
+a very common data structure. If we can model a
+problem as a graph, there is a good chance that we will be able solve
+it computationally.</p>
+<p>Of course, graphs are not the only way to model a problem. As we’ll
+see throughout the book, we have many data structures
+at our disposal and picking the right data structure is crucial to
+modeling a problem. Not just that,
+we can also build new data structures using
+a paradigm called object-oriented programming that will
+give us considerable flexibility to model the information we need
+to solve a problem computationally.</p>
+</div>
+<div class="section" id="algorithms">
+<h2><span class="section-number">1.1.3. </span>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this heading"></a></h2>
+<p>When explaining the National Resident Matching Program we provided a simple
+example where some students and hospitals ranked each other. This information,
+which we model as a graph, is the <em>input</em> of our problem, while the <em>output</em>
+of our problem is a stable match for the given input. In fact, at its most basic
+level, this is what a program does: it takes some input and, based on that input,
+performs a series of computations that produce some output:</p>
+<img alt="../../_images/producing_result.png" src="../../_images/producing_result.png" />
+<p>However, while we defined what constitutes a stable match, we did not explain <em>how</em> we arrived
+at the stable match we presented. We actually did so by going through each student, and trying
+to make the best possible match for that student, possibly unmatching another student
+if doing so results in a better match. Let’s work through this one step at a time. Our
+input looks like this:</p>
+<a class="reference internal image-reference" href="../../_images/res1.jpg"><img alt="../../_images/res1.jpg" src="../../_images/res1.jpg" style="width: 60%;" /></a>
+<p>Notice that, at this point, all students are unmatched. We will start with student A.
+Since A’s top choice is H1, we will make that match:</p>
+<a class="reference internal image-reference" href="../../_images/res2.jpg"><img alt="../../_images/res2.jpg" src="../../_images/res2.jpg" style="width: 60%;" /></a>
+<p>At this point, this is a <em>tentative</em> match because there could find a better
+match as we look at the rest of the students.</p>
+<p>We next look at B: that student also
+wants hospital H1. Because H1 prefers A over B, we don’t match B with H1. Instead,
+we tentatively match B with its next choice, H3:</p>
+<a class="reference internal image-reference" href="../../_images/res3.jpg"><img alt="../../_images/res3.jpg" src="../../_images/res3.jpg" style="width: 60%;" /></a>
+<p>Similarly, C won’t get matched with H1 because that hospital ranks A (its current tentative
+match) higher than C. Instead, we tentatively match C with H2:</p>
+<a class="reference internal image-reference" href="../../_images/res4.jpg"><img alt="../../_images/res4.jpg" src="../../_images/res4.jpg" style="width: 60%;" /></a>
+<p>Next, D cannot be matched with H1 (it prefers A), or with H3 (it prefers B), but we can
+tentatively match D with H4:</p>
+<a class="reference internal image-reference" href="../../_images/res5.jpg"><img alt="../../_images/res5.jpg" src="../../_images/res5.jpg" style="width: 60%;" /></a>
+<p>Things get interesting when we look at E. E’s top choice is H1, and H1 is tentatively
+matched with A. However, H1 prefers E over A, so we <em>unmatch</em> A and tentatively match
+E with H1:</p>
+<a class="reference internal image-reference" href="../../_images/res6.jpg"><img alt="../../_images/res6.jpg" src="../../_images/res6.jpg" style="width: 60%;" /></a>
+<p>At this point, we have made one pass through all of the students, but we do
+not yet have a stable match: A is unmatched, and
+one of the hospitals A wants, H4, is matched with a student, D, that is ranked lower
+than A. So we repeat the process for A: we can’t match A with H1, because H1 prefers
+E, but we can match A with H4, unmatching D in the process:</p>
+<a class="reference internal image-reference" href="../../_images/res7.jpg"><img alt="../../_images/res7.jpg" src="../../_images/res7.jpg" style="width: 60%;" /></a>
+<p>Finally, we make one last (unsuccessful) attempt to match D.</p>
+<p>At this point, we have arrived at a stable match and stop. We could define
+our steps a bit more formally like this:</p>
+<ol class="arabic simple">
+<li><p>Look at the first student. We will refer to that student as <em>S</em>.</p></li>
+<li><p>Look at the first hospital ranked by student <em>S</em>. We will refer to
+this hospital as <em>H</em>. Do the following:</p>
+<ol class="loweralpha simple">
+<li><p>If <em>H</em> is not matched to any student, tentatively match <em>H</em> with <em>S</em>,
+and go to step 3 (no need to look at other hospitals).</p></li>
+<li><p>If <em>H</em> is matched with another student <em>S’</em> and <em>H</em> prefers <em>S</em>
+to <em>S’</em>, then unmatch <em>S’</em>, tentatively match <em>H</em> with <em>S</em>, and go to
+step 3.</p></li>
+<li><p>If <em>H</em> is matched with another student <em>S’</em> and <em>H</em> does not prefer <em>S</em>
+to <em>S’</em>, then repeat steps 2(a)-2(c) with the next-ranked hospital as
+<em>H</em> (i.e., look at the next hospital for student <em>S</em>).</p></li>
+</ol>
+</li>
+<li><p>If we have made a pass through all the students without changing any matches,
+we have arrived at a stable match. Stop the program.</p></li>
+<li><p>Otherwise, we repeat steps 2-3 with the next unmatched student as <em>S</em>
+(if we’re looking at the last unmatched student, we return to
+the first one).</p></li>
+</ol>
+<p>Note that we don’t actually have to check whether a match is stable or not. Instead,
+we repeat a series of steps until we have made a pass through all the students
+without changing any matches.</p>
+<p>We call a concrete set of steps like this an <em>algorithm</em>. While we have described it here
+in English, it could instead be written in a programming language like Python, Java, or
+C++. As we’ll see in the next chapter, programming languages provide
+syntax to specify such steps, and can indicate whether to repeat
+some steps or to take some action based on the outcome of some test.</p>
+<p>Once we have written these
+steps in a programming language, a computer will be able to run through those steps
+automatically; we won’t need to manually go step-by-step like we did above. However, as
+we’ll soon see, programming languages are much less expressive than human languages
+like English. This means we can’t describe the steps in a hand-wavy fashion and
+trust that the computer can figure out the gaps. Instead, we must specify
+the steps to take precisely and without ambiguity.</p>
+<hr class="docutils" />
+<p>This algorithmic approach to solving problems, where we must specify the concrete
+steps we want to take, is a key aspect of computational thinking. It makes us better
+problem solvers because it requires us to think hard about the exact steps that
+will take us from a given input to some desired output.</p>
+<p>While we will have to figure out many algorithms on our own, there are
+also many existing algorithms that we can use and, more generally,
+various algorithmic approaches that we can try when we tackle a given
+problem. The algorithm shown above is an example of a
+<em>greedy</em> algorithm, where the general approach is to choose the best
+tentative match possible for each student. We happen to know this
+algorithm reaches a stable match because other computer scientists
+have formally proven that property for this particular algorithm.</p>
+<p>In fact, the algorithm we just described is essentially the same
+algorithm used in the National Resident Matching Program, and it
+produces very good results: in 2016, fourth year
+medical students in the US (of which there were more than 18,000)
+had a match rate of 93.8% and 96.2% of the
+positions were filled. The NRMP website used to include
+<a class="reference external" href="http://web.archive.org/web/20130121082051/http://www.nrmp.org/res_match/about_res/algorithms.html">a fairly detailed description of the algorithm</a>,
+which has since been replaced with <a class="reference external" href="https://www.youtube.com/watch?v=kvgfgGmemdA">this video</a>.</p>
+</div>
+<div class="section" id="complexity">
+<h2><span class="section-number">1.1.4. </span>Complexity<a class="headerlink" href="#complexity" title="Permalink to this heading"></a></h2>
+<p>The greedy algorithm is not the only algorithm for finding a stable
+match. For example, we could’ve taken a different approach. For example,
+we could have considered every
+possible match between students and hospitals and, for each, checked
+the match’s stability. This seems simpler
+than the greedy algorithm, but it is also a pretty terrible one:
+for <span class="math notranslate nohighlight">\(N\)</span> students and <span class="math notranslate nohighlight">\(M\)</span> hospitals, we would need to look at up to
+<span class="math notranslate nohighlight">\(\frac{N!}{(N-M)!}\)</span> possible matches and, for each of them, we would need
+to inspect every possible pair of students and hospitals (a total of <span class="math notranslate nohighlight">\(N\cdot M\)</span> pairs)
+to check the stability conditions. This is known as a <em>brute-force</em>
+algorithm, because we take the approach of producing every possible
+solution and checking whether it meets some conditions (in this case,
+whether the match is stable).</p>
+<p>Programs that implement brute-force
+algorithms typically take a very long time to run and, in most cases,
+inefficiently solve a given problem. The greedy algorithm, on the other hand, requires at
+most <span class="math notranslate nohighlight">\(N\cdot M\)</span> operations
+on the graph (this is much much much less than the <span class="math notranslate nohighlight">\(\frac{N!\cdot N \cdot M}{(N-M)!}\)</span> operations
+required by the brute-force algorithm).</p>
+<p>It’s not enough to select <em>an</em> algorithm, we must know how to compare algorithms
+and determine whether one is more efficient than another. Later in the book, we will present
+a more concrete way of thinking about this but, in a nutshell, we will want to be mindful
+of how the number of operations an algorithm performs grows relative to the size of
+the input. For example, the brute-force algorithm might actually be fine for small values
+of <span class="math notranslate nohighlight">\(N\)</span> and <span class="math notranslate nohighlight">\(M\)</span>, but its running time will grow exponentially with
+<span class="math notranslate nohighlight">\(N\)</span> and <span class="math notranslate nohighlight">\(M\)</span> (while the running time of the greedy algorithm won’t).</p>
+<p>Similarly, we must also know how to recognize when we are confronted by a
+hard problem:</p>
+<div class="figure align-default" id="id5">
+<img alt="../../_images/xkcd.png" src="../../_images/xkcd.png" />
+<p class="caption"><span class="caption-text">Source: <a class="reference external" href="https://xkcd.com/1425/">https://xkcd.com/1425/</a> (Randall Munroe, 2014, <a class="reference external" href="https://creativecommons.org/licenses/by-nc/2.5/">CC BY-NC 2.5</a>)</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</div>
+<p>In fact, there are entire categories of problems that cannot be solved efficiently
+by a computer. For example, we could tweak our model to allow students to specify
+partner constraints: some students may be in a relationship so they want to be
+matched with the same hospital, or with hospitals that are reasonably close to each other.
+In the following graph, the dotted lines represent relationships between students
+and hospitals that are close to each other:</p>
+<img alt="../../_images/couple1.jpg" src="../../_images/couple1.jpg" />
+<p>This seemingly simple tweak to our model actually makes the problem much harder to
+solve. In fact, not only is the greedy algorithm no longer valid, it turns out
+that the only guaranteed way to arrive at a stable match is by using the brute-force
+algorithm <em>and</em> there is no guarantee that such a stable match will exist. In a case
+like this, we would have to rely on other types of algorithms, such as probabilistic
+algorithms, that are not guaranteed to find the best possible match, but can usually
+find a near-optimal match in much less time than the brute force algorithm.</p>
+<p>The “difficulty” of a problem or of a given algorithm is referred to as its
+<em>complexity</em>. Throughout the book, we will highlight how we must be aware of
+the complexity of the algorithms we write, as well as of what data structures
+we choose for a given problem.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="1. Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../basics/index.html" class="btn btn-neutral float-right" title="1.2. Programming Basics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Anne Rogers and Borja Sotomayor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

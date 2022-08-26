@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.3. Control Flow Statements &mdash; Computer Science with Applications  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/csapps.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1.4. Introduction to Functions" href="../intro_functions/index.html" />
+    <link rel="prev" title="1.2. Programming Basics" href="../basics/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Computer Science with Applications
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../preface.html">Preface</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction/index.html">1.1. Computational Thinking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/index.html">1.2. Programming Basics</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.3. Control Flow Statements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#conditional-statements">1.3.1. Conditional Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#for-loops">1.3.2. <code class="docutils literal notranslate"><span class="pre">for</span></code> Loops</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nested-statements">1.3.2.1. Nested statements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iterating-over-ranges-of-integer">1.3.2.2. Iterating over ranges of integer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-primality-testing">1.3.2.3. Example: Primality testing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-break-statement">1.3.2.4. The <code class="docutils literal notranslate"><span class="pre">break</span></code> statement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#continue-statement">1.3.2.5. <code class="docutils literal notranslate"><span class="pre">continue</span></code> statement</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#while-loops">1.3.3. <code class="docutils literal notranslate"><span class="pre">while</span></code> loops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#putting-it-all-together">1.3.4. Putting it all together</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_functions/index.html">1.4. Introduction to Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../organization/index.html">1.5. Basics of Code Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exceptions/index.html">1.6. Understanding Errors and Catching Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../example/index.html">1.7. Example: A Game of Chance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_structures/index.html">2. Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../functions/index.html">3. Functional Programming and Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working_with_data/index.html">4. Working with Data</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Computer Science with Applications</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">1. </span>Getting Started</a> &raquo;</li>
+      <li><span class="section-number">1.3. </span>Control Flow Statements</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/getting_started/control_structures/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="control-flow-statements">
+<span id="chapter-control"></span><h1><span class="section-number">1.3. </span>Control Flow Statements<a class="headerlink" href="#control-flow-statements" title="Permalink to this heading"></a></h1>
+<p>In the previous chapter, we saw that a program is essentially a collection of
+instructions to a computer. We saw two specific instructions: assignment
+statements, which assign a value to a variable, and the <code class="docutils literal notranslate"><span class="pre">print</span></code> function, which prints a value on the screen. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;n is&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;n is now&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>n is 7
+n is now 10
+</pre></div>
+</div>
+<p>The “instructions” in a program are called <em>statements</em>.
+The above program has four statements: two assignment statements and two
+function call statements (remember that <code class="docutils literal notranslate"><span class="pre">print</span></code> is something called a
+“function”; we will explain this construct in more detail in the next
+chapter).</p>
+<p>You might notice that these calls to <code class="docutils literal notranslate"><span class="pre">print</span></code> look different than the calls
+you have seen thus far. Here, we pass two comma-separated values of different
+types to the function. In general,
+you can pass multiple values with different types to <code class="docutils literal notranslate"><span class="pre">print</span></code>,
+and the function will print each of them separated by spaces.</p>
+<div class="admonition-info-note admonition">
+<p class="admonition-title">Note</p>
+<p>Notice that we used a different format for showing code above. Instead of
+showing the execution of the program line by line in the interpreter,
+we showed all of the code followed by all of its output.
+In fact, if you saved the above code in a file named <code class="docutils literal notranslate"><span class="pre">statements.py</span></code>
+and ran <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">statements.py</span></code>
+from the terminal, you would see the output shown above.</p>
+<p>Of course, you can still run the above code in the interpreter. We are
+showing you the code and the output in a different way because,
+as we move on to more complex pieces of code, this format will be more
+readable than the interpreter format (which can get a bit cluttered
+with the <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> prompt for every statement).
+However, we will still be using
+the interpreter format for small pieces of code.</p>
+</div>
+<p>These statements are run in sequence (i.e., one after the other).
+Sometimes, though, we want the program to run a statement based
+on the outcome of a previous statement, or we may want to repeat a
+block of statements multiple times. To support this, most programming
+languages include <em>control flow statements</em>. In this chapter, we will
+focus on three types of control flow statements:</p>
+<ul class="simple">
+<li><p><strong>Conditional statements</strong>, also known as “if statements” or “if-then-else statements”,
+allow us to run a piece of code only if a given condition
+(expressed as a boolean expression) is true, and optionally allow us to run
+an alternate piece of code if the condition is false. For example,
+given a variable <code class="docutils literal notranslate"><span class="pre">x</span></code> containing an integer, we may want to perform
+a different action when <code class="docutils literal notranslate"><span class="pre">x</span></code> is positive than when <code class="docutils literal notranslate"><span class="pre">x</span></code> is zero or negative
+(we could express this condition using the boolean expression <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>).</p></li>
+<li><p><strong>Sequence-based loops</strong>, also known as “for loops”, allow
+us to repeat a piece of code based on a sequence of values. For example,
+given a list of numbers, we may want to determine, for each number, whether
+the number is prime. So, we want to “repeat” the code for testing primality
+for each number in the list.</p></li>
+<li><p><strong>Condition-based loops</strong>, also known as “while loops”, allow
+us to repeat a piece of code based on whether a boolean expression is true.
+For example, when performing a simulation, we may want to continue running
+the simulation until some stopping condition is met.</p></li>
+</ul>
+<p>In the next chapter, we will see additional statements that relate to
+<em>functions</em> and which also allow us to alter the control flow of our program.</p>
+<div class="section" id="conditional-statements">
+<h2><span class="section-number">1.3.1. </span>Conditional Statements<a class="headerlink" href="#conditional-statements" title="Permalink to this heading"></a></h2>
+<p>In the previous chapter, we learned that a boolean expression is an expression
+that evaluates to either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>A conditional statement allows the program to perform different actions
+based on the value of a boolean expression. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is a positive number&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the above code, the <code class="docutils literal notranslate"><span class="pre">print</span></code> statement will be run <em>only</em> if <code class="docutils literal notranslate"><span class="pre">n</span></code>
+is greater than zero.</p>
+<p>The conditional statement starts with a special keyword <code class="docutils literal notranslate"><span class="pre">if</span></code>, which
+is part of the syntax of the Python language. The keyword <code class="docutils literal notranslate"><span class="pre">if</span></code> is
+followed by a boolean expression and a colon.  The next line contains
+the first line of the the code to run <em>if</em> the boolean expression evaluates to
+<code class="docutils literal notranslate"><span class="pre">True</span></code>.  The spacing before <code class="docutils literal notranslate"><span class="pre">print</span></code> is important, and we’ll return to
+this detail soon.</p>
+<p>Let’s try out this code in the interpreter. Make sure you type four spaces before
+the call to <code class="docutils literal notranslate"><span class="pre">print</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is a positive number&quot;</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">5 is a positive number</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">if</span></code> statement spans multiple lines and the interpreter won’t
+run the statement until you’ve finished writing it. After you’ve written
+the <code class="docutils literal notranslate"><span class="pre">if</span></code> line, the interpreter will switch the prompt to <code class="docutils literal notranslate"><span class="pre">...</span></code> to
+indicate that it is still expecting input as part of a multi-line statement.
+After you write the <code class="docutils literal notranslate"><span class="pre">print</span></code> line, the interpreter will still show the
+<code class="docutils literal notranslate"><span class="pre">...</span></code> prompt because it isn’t sure whether you’re going to provide more lines
+in the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement. Pressing Enter on a blank line tells the interpreter that the code is ready to be run.</p>
+<div class="admonition-info-note admonition">
+<p class="admonition-title">Note</p>
+<p>Remember that the <code class="docutils literal notranslate"><span class="pre">...</span></code> prompt is an artifact of the Python interpreter.
+If you were to write this code in a file, you would not include
+the <code class="docutils literal notranslate"><span class="pre">...</span></code> characters. In fact, try saving this code in an <code class="docutils literal notranslate"><span class="pre">if.py</span></code>
+file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is a positive number&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And running <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">if.py</span></code> from the terminal. The output should be:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>5 is a positive number
+</pre></div>
+</div>
+</div>
+<p>Now, try it with a negative value of <code class="docutils literal notranslate"><span class="pre">n</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is a positive number&quot;</span><span class="p">)</span>
+<span class="gp">... </span>
+</pre></div>
+</div>
+<p>Notice that, after running the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement, the interpreter didn’t produce
+any output.  The value of <code class="docutils literal notranslate"><span class="pre">n</span></code> is not greater than zero and so, the
+<code class="docutils literal notranslate"><span class="pre">print</span></code> statement was not executed.</p>
+<p>In the above example, the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement contained a single statement to
+execute conditionally. However, conditional statements can contain multiple statements to
+execute as well. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is a positive number&quot;</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="o">-</span><span class="n">n</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;And now the number is negative:&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>5 is a positive number
+And now the number is negative: -5
+</pre></div>
+</div>
+<p>In this case, if the condition is true, then Python will run all of the
+statements under the <code class="docutils literal notranslate"><span class="pre">if</span></code>. More specifically, the <em>block</em> of statements
+under the <code class="docutils literal notranslate"><span class="pre">if</span></code>,  that is, all the statements at the same level of indentation
+(i.e., with the same number of spaces before them),  will be run. For example,
+consider this other version of the code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is a positive number&quot;</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="o">-</span><span class="n">n</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;And now the number is:&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>5 is a positive number
+And now the number is: -5
+</pre></div>
+</div>
+<p>And again with a negative number:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
+<span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is a positive number&quot;</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="o">-</span><span class="n">n</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;And now the number is:&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>And now the number is: -5
+</pre></div>
+</div>
+<p>Notice that the first <code class="docutils literal notranslate"><span class="pre">print</span></code> and the <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">-n</span></code> statement are run
+only if the condition is true, but the second <code class="docutils literal notranslate"><span class="pre">print</span></code> is <em>always</em>
+run. The second <code class="docutils literal notranslate"><span class="pre">print</span></code> is not part of the <code class="docutils literal notranslate"><span class="pre">if</span></code>
+statement but occurs <em>after</em> the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement.</p>
+<p>Python’s syntax uses indentation to
+delimit blocks of code, typically with four spaces corresponding to one
+level of indentation. As with other syntactical elements, Python is very
+picky about this detail and incorrect indentation will produce
+errors. For example, we’ll see an error if we do not indent the code in an
+<code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">statement</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is odd&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  File &quot;&lt;stdin&gt;&quot;, line 2
+    print(n, &quot;is odd&quot;)
+    ^
+IndentationError: expected an indented block
+</pre></div>
+</div>
+<p>Or if we use inconsistent indentation inside the same block of code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is odd&quot;</span><span class="p">)</span>
+     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This concludes the odd branch.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  File &quot;&lt;stdin&gt;&quot;, line 3
+    print(&quot;This concludes the odd branch.&quot;)
+    ^
+IndentationError: unexpected indent
+</pre></div>
+</div>
+<p>For this first <code class="docutils literal notranslate"><span class="pre">if</span></code> example, we walked you through all the syntactical
+elements of the statement but, as you get more comfortable with Python,
+it is easier to learn about new elements of the language by getting
+a more formal description of their syntax. In the case of the <code class="docutils literal notranslate"><span class="pre">if</span></code>
+statement, a formal description would look like this:</p>
+<pre class="literal-block"><strong>if</strong> <em>&lt;boolean expression&gt;</em>:
+    <em>&lt;statements&gt;</em></pre>
+<p>We will use this convention often when describing new statements and other
+aspects of Python. Words in <strong>bold</strong> represent keywords that are part of
+the language itself, whereas anything delimited with <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> means
+“substitute this for …” (i.e., you do not write the <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>
+characters themselves). Additionally, remember that indentation matters, so
+the statement or statements that constitute  <code class="docutils literal notranslate"><span class="pre">&lt;statements&gt;</span></code> all have the same level of indentation.</p>
+<p>So, now we can easily introduce a variant of the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement in which we
+specify an alternate block of statements to run if the condition is <em>false</em>:</p>
+<pre class="literal-block"><strong>if</strong> <em>&lt;boolean expression&gt;</em>:
+    <em>&lt;statements&gt;</em>
+<strong>else</strong>:
+    <em>&lt;statements&gt;</em></pre>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is odd&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is even&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>6 is even
+</pre></div>
+</div>
+<p>When written in this format, the block under the <code class="docutils literal notranslate"><span class="pre">if</span></code> is usually called
+the <em>if branch</em>, and the block under the <code class="docutils literal notranslate"><span class="pre">else</span></code> is called the
+<em>else branch</em>.</p>
+<p>In this example, each block has a single statement but, as we saw
+earlier, each block can have multiple statements:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is odd&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This concludes the odd branch.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is even&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This concludes the even branch.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>5 is odd
+This concludes the odd branch.
+</pre></div>
+</div>
+<p>An <code class="docutils literal notranslate"><span class="pre">if</span></code> statement can also have multiple if branches (but only one <code class="docutils literal notranslate"><span class="pre">else</span></code>,
+which is run only if none of the conditions are met). After the first <code class="docutils literal notranslate"><span class="pre">if</span></code>
+branch, subsequent branches start with the keyword <code class="docutils literal notranslate"><span class="pre">elif</span></code> (which stands for
+“else if”). For example:</p>
+<pre class="literal-block"><strong>if</strong> <em>&lt;boolean expression&gt;</em>:
+    <em>&lt;statements&gt;</em>
+<strong>elif</strong> <em>&lt;boolean expression&gt;</em>:
+    <em>&lt;statements&gt;</em>
+
+...
+
+<strong>else</strong>:
+    <em>&lt;statements&gt;</em></pre>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">17</span>
+<span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is negative&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is positive&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is zero&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>17 is positive
+</pre></div>
+</div>
+<p>When we have multiple branches, as soon as Python finds a true boolean
+condition, it will evaluate that branch and ignore all others. Python first
+evaluates the <code class="docutils literal notranslate"><span class="pre">if</span></code> branch’s condition, and moves to subsequent
+<code class="docutils literal notranslate"><span class="pre">elif</span></code> branches only if no prior condition is true. If no branch is true, Python will run the code in the <code class="docutils literal notranslate"><span class="pre">else</span></code> branch.</p>
+<p>An important note: for any <code class="docutils literal notranslate"><span class="pre">if</span></code> statement, <em>at most one branch will be run</em>, even if the conditions in multiple branches are true. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">17</span>
+<span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is negative&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is positive&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is odd&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is even&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>17 is positive
+</pre></div>
+</div>
+<p>In the above example, there are two conditions that are true when
+<code class="docutils literal notranslate"><span class="pre">n</span></code> is 17: <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;</span> <span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">%</span> <span class="pre">2</span> <span class="pre">==</span> <span class="pre">1</span></code>. Python, however, will only
+run the code for the <em>first</em> branch with a true condition (in this
+case, <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>). In general, it is good practice to make the
+conditions in an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement mutually exclusive (i.e., at most
+one of them can be true).</p>
+<p>You should also take care to distinguish between an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement
+with multiple branches and multiple <code class="docutils literal notranslate"><span class="pre">if</span></code> statements. For example,
+the code below is <em>not</em> equivalent to the code above:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">17</span>
+<span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is negative&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is positive&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is odd&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is even&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>17 is positive
+17 is odd
+</pre></div>
+</div>
+<p>The code above has four <em>separate</em> <code class="docutils literal notranslate"><span class="pre">if</span></code> statements (often referred
+to as <em>parallel</em> if statements), while the previous example had a
+<em>single</em> <code class="docutils literal notranslate"><span class="pre">if</span></code> statement with four branches. Since we have four
+separate statements, each conditional statement is evaluated and
+Python will run the block of code for any true conditional (in this
+case, the second and third <code class="docutils literal notranslate"><span class="pre">if</span></code> statements).</p>
+<div class="admonition-a-common-pitfall admonition">
+<p class="admonition-title">A Common Pitfall</p>
+<p>Using parallel <code class="docutils literal notranslate"><span class="pre">if</span></code> statements when you need a single <code class="docutils literal notranslate"><span class="pre">if</span></code>
+statement can lead to bugs that can be very hard to find.  For
+example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is positive&quot;</span><span class="p">)</span>
+   <span class="n">n</span> <span class="o">=</span> <span class="o">-</span><span class="n">n</span>
+<span class="k">elif</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is negative&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>7 is positive
+</pre></div>
+</div>
+<p>will yield a very different result than:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is positive&quot;</span><span class="p">)</span>
+   <span class="n">n</span> <span class="o">=</span> <span class="o">-</span><span class="n">n</span>
+
+<span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is negative&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>7 is positive
+-7 is negative
+</pre></div>
+</div>
+<p>Why? In the first example, the first branch of the conditional is
+true and so the second branch is never tested.  In the second
+example, the second conditional is a <em>separate</em> statement.  Its
+test <em>will</em> be evaluated and since, the value of <code class="docutils literal notranslate"><span class="pre">n</span></code> changes
+during the execution of the first conditional the result of that
+test will be <code class="docutils literal notranslate"><span class="pre">True</span></code> and its statement will be executed.</p>
+</div>
+<div class="admonition-tip admonition">
+<p class="admonition-title">Handling multiple conditions</p>
+<p>If you have a bug in code that has a conditional statement with
+multiple conditions, a good first step is to verify that the
+conditions (i.e. the boolean expressions) are mutually exclusive.
+If not, ask whether your application requires overlapping
+conditions.  If not, rewrite the conditions to make them mutually
+exclusive.  If so, check that the order you have chosen for the
+conditions makes sense for the application.  Also, make sure that
+you test each of the possible conditions.  Finally, verify that you
+have not used parallel if statements when a single if statement
+with multiple conditions is required.</p>
+<p>In general, it is a good practice to try out your code with values
+that will trigger the different conditions in a conditional
+statement.</p>
+</div>
+</div>
+<div class="section" id="for-loops">
+<h2><span class="section-number">1.3.2. </span><code class="docutils literal notranslate"><span class="pre">for</span></code> Loops<a class="headerlink" href="#for-loops" title="Permalink to this heading"></a></h2>
+<p><em>Loops</em> provide a mechanism for repeating work in a program.
+Loops are often used when we need to process a set of values and perform
+the same action for each.
+For example, given a list of prices, we may want to compute
+the tax on each price as well as keep a running total
+of all the taxes paid. To do this task, we will use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop
+(in the next section, we will see a different type of loop,
+the <code class="docutils literal notranslate"><span class="pre">while</span></code> loop, that operates differently).</p>
+<p><code class="docutils literal notranslate"><span class="pre">for</span></code> loops have the following syntax:</p>
+<pre class="literal-block"><strong>for</strong> <em>&lt;variable&gt;</em> in <em>&lt;sequence&gt;</em>:
+    <em>&lt;statements&gt;</em></pre>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">10</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The price is&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The price is 10
+The price is 25
+The price is 5
+The price is 70
+The price is 10
+</pre></div>
+</div>
+<p>Notice that the loop repeated the <code class="docutils literal notranslate"><span class="pre">print</span></code> statement five times, once for
+each value in a sequence of values. In each repetition, or <em>iteration</em>, of the
+loop, the variable <code class="docutils literal notranslate"><span class="pre">p</span></code> is set to the value of a specific element in the
+provided sequence of values, starting with the first and advancing
+through the provided sequence. Once all of the elements have been
+processed, the loop ends.</p>
+<p>The sequence in the above <code class="docutils literal notranslate"><span class="pre">for</span></code> loop (<code class="docutils literal notranslate"><span class="pre">[10,</span> <span class="pre">25,</span> <span class="pre">5,</span> <span class="pre">70,</span> <span class="pre">10]</span></code>) is
+called a <em>list</em>. We will take a deeper look at lists and other types of sequences in
+Chapter <a class="reference internal" href="../../data_structures/lists/index.html#chapter-lists"><span class="std std-ref">Lists, Tuples, and Strings</span></a>, but for now, will
+only use them in <code class="docutils literal notranslate"><span class="pre">for</span></code> loops. Lists are values and can be assigned to variables so
+instead of including the list of values directly in the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop,
+we could first store it in a variable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prices</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The price is&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The price is 10
+The price is 25
+The price is 5
+The price is 70
+The price is 10
+</pre></div>
+</div>
+<p>While in this case, we are specifying the value of <code class="docutils literal notranslate"><span class="pre">prices</span></code> directly
+in the program, you could imagine these prices being read from a
+file, or being scanned at the checkout counter of a store.</p>
+<p>Like <code class="docutils literal notranslate"><span class="pre">if</span></code> statements, we can include multiple statements in the loop:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prices</span><span class="p">:</span>
+    <span class="n">tax</span> <span class="o">=</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">p</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="n">tax</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The price (with tax) is&quot;</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The price (with tax) is 11.0
+The price (with tax) is 27.5
+The price (with tax) is 5.5
+The price (with tax) is 77.0
+The price (with tax) is 11.0
+</pre></div>
+</div>
+<p>The block of statements contained in a loop is usually called the <em>body</em> of the loop.</p>
+<p>Our loop example uses a list with five values as the sequence and the
+loop iterate five times and prints one line of output for each value.
+If we used a list with ten values for the sequence, the loop would
+iterate ten times, once per value.  If the list has zero values, which
+known as the empty list and is written as <code class="docutils literal notranslate"><span class="pre">[]</span></code>, then the loop will
+iterate zero times.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Before the loop&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prices</span><span class="p">:</span>
+    <span class="n">tax</span> <span class="o">=</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">p</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="n">tax</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The price (with tax) is&quot;</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After the loop&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Before the loop
+After the loop
+</pre></div>
+</div>
+<p>Notice that the calls to <code class="docutils literal notranslate"><span class="pre">print</span></code> before and after the loop, which
+are not controlled by the loop, are executed and generate output.  The
+call to <code class="docutils literal notranslate"><span class="pre">print</span></code> in the body of the loop, in contrast, is never
+executed and thus generates no output, because the loop iterates zero
+times.</p>
+<div class="admonition-tip admonition">
+<p class="admonition-title">Testing loops</p>
+<p>A good rule of thumb for testing loops: try the loop with a list
+that has zero values, a list that has exactly one value, and a list
+that has many values.</p>
+</div>
+<div class="section" id="nested-statements">
+<h3><span class="section-number">1.3.2.1. </span>Nested statements<a class="headerlink" href="#nested-statements" title="Permalink to this heading"></a></h3>
+<p>Suppose we wanted to compute the total tax on all the prices.
+We could accomplish this task with the following loop:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="n">total_tax</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prices</span><span class="p">:</span>
+    <span class="n">tax</span> <span class="o">=</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">p</span>
+    <span class="n">total_tax</span> <span class="o">=</span> <span class="n">total_tax</span> <span class="o">+</span> <span class="n">tax</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The total tax is&quot;</span><span class="p">,</span> <span class="n">total_tax</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The total tax is 12.0
+</pre></div>
+</div>
+<p>Notice that we used an additional variable, <code class="docutils literal notranslate"><span class="pre">total_tax</span></code> to add up the values
+of the tax. This kind of variable is usually referred to as an <em>accumulator</em>
+variable because it is used to add up (or accumulate) a set of values.</p>
+<p>Now, suppose that prices with a value less than 15 are not taxed. This means
+that, when computing the total tax, we should only add up the taxes of the
+prices that meet the following condition: <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">&gt;=</span> <span class="pre">15</span></code>.</p>
+<p>So far, the body of an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement or a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop has been a sequence
+of assignments or <code class="docutils literal notranslate"><span class="pre">print</span></code> statements (the only two other statements we know).
+It is certainly possible, however, for the body of a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to include
+<code class="docutils literal notranslate"><span class="pre">if</span></code> statements or even other <code class="docutils literal notranslate"><span class="pre">for</span></code> loops.</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="n">total_tax</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prices</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">p</span> <span class="o">&gt;=</span> <span class="mi">15</span><span class="p">:</span>
+        <span class="n">tax</span> <span class="o">=</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">p</span>
+        <span class="n">total_tax</span> <span class="o">=</span> <span class="n">total_tax</span> <span class="o">+</span> <span class="n">tax</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Skipping price&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The total tax is&quot;</span><span class="p">,</span> <span class="n">total_tax</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Skipping price 10
+Skipping price 5
+Skipping price 10
+The total tax is 9.5
+</pre></div>
+</div>
+<p>Notice the two levels of indentation: one level for the body of the loop, and
+another for the <code class="docutils literal notranslate"><span class="pre">if</span></code> and <code class="docutils literal notranslate"><span class="pre">else</span></code> branches. To be clear, we could have
+other statements at the same level of indentation as the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="n">total_tax</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prices</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Processing price&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">p</span> <span class="o">&gt;=</span> <span class="mi">15</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This price is taxable.&quot;</span><span class="p">)</span>
+        <span class="n">tax</span> <span class="o">=</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">p</span>
+        <span class="n">total_tax</span> <span class="o">=</span> <span class="n">total_tax</span> <span class="o">+</span> <span class="n">tax</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This price is not taxable.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The total tax is&quot;</span><span class="p">,</span> <span class="n">total_tax</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Processing price 10
+This price is not taxable.
+---
+Processing price 25
+This price is taxable.
+---
+Processing price 5
+This price is not taxable.
+---
+Processing price 70
+This price is taxable.
+---
+Processing price 10
+This price is not taxable.
+---
+The total tax is 9.5
+</pre></div>
+</div>
+<p>Suppose there were three tax rates (5%, 10%, and 15%) and we wanted to
+find the total value of the tax under each tax rate for each of the
+prices. If we only had one price to worry about, we could use this
+single loop to compute the different taxes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">tax_rates</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Price&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">tr</span> <span class="ow">in</span> <span class="n">tax_rates</span><span class="p">:</span>
+    <span class="n">tax</span> <span class="o">=</span> <span class="n">tr</span> <span class="o">*</span> <span class="n">p</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Taxed at&quot;</span><span class="p">,</span> <span class="n">tr</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="n">tax</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Price 10
+Taxed at 0.05 = 0.5
+Taxed at 0.1 = 1.0
+Taxed at 0.15 = 1.5
+</pre></div>
+</div>
+<p>If we had multiple prices to worry about, however, we would use a <em>nested</em>
+<code class="docutils literal notranslate"><span class="pre">for</span></code> loop. We can combine both of the single loop examples by <em>nesting</em> the
+loop over the prices inside of the loop over tax rates to find the total tax
+for different tax rates.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">tax_rates</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">tr</span> <span class="ow">in</span> <span class="n">tax_rates</span><span class="p">:</span>
+    <span class="n">total_tax</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prices</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="o">&gt;=</span> <span class="mi">15</span><span class="p">:</span>
+            <span class="n">tax</span> <span class="o">=</span> <span class="n">tr</span> <span class="o">*</span> <span class="n">p</span>
+            <span class="n">total_tax</span> <span class="o">=</span> <span class="n">total_tax</span> <span class="o">+</span> <span class="n">tax</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Taxed at&quot;</span><span class="p">,</span> <span class="n">tr</span><span class="p">,</span> <span class="s2">&quot;the total tax is&quot;</span><span class="p">,</span> <span class="n">total_tax</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Taxed at 0.05 the total tax is 4.75
+Taxed at 0.1 the total tax is 9.5
+Taxed at 0.15 the total tax is 14.25
+</pre></div>
+</div>
+<p>Notice that we replaced the fixed tax rate (<code class="docutils literal notranslate"><span class="pre">0.10</span></code>) from the
+original loop over the prices with the outer loop variable (<code class="docutils literal notranslate"><span class="pre">tr</span></code>).
+Let’s walk through this computation. For each iteration of the outer
+loop:</p>
+<ul class="simple">
+<li><p>the variable <code class="docutils literal notranslate"><span class="pre">total_tax</span></code> is set to zero, then</p></li>
+<li><p>the inner loop iterates through all the prices, checks whether each price (<code class="docutils literal notranslate"><span class="pre">p</span></code>) is taxable, and if so, updates the total tax using the current value of <code class="docutils literal notranslate"><span class="pre">tr</span></code>, and finally</p></li>
+<li><p>the print statement outputs the current tax rate (that is, the value of <code class="docutils literal notranslate"><span class="pre">tr</span></code>) and the computed total tax.</p></li>
+</ul>
+<p>When you use nested loops, it is very important to think carefully
+about where to initialize variables.  As a thought experiment,
+consider what would happen if we initialized <code class="docutils literal notranslate"><span class="pre">total_tax</span></code> to zero
+<em>before</em> (rather than in) the body of the outer loop.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">tax_rates</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">]</span>
+<span class="n">total_tax</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">tr</span> <span class="ow">in</span> <span class="n">tax_rates</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prices</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">p</span>  <span class="o">&gt;=</span> <span class="mi">15</span><span class="p">:</span>
+            <span class="n">tax</span> <span class="o">=</span> <span class="n">tr</span> <span class="o">*</span> <span class="n">p</span>
+            <span class="n">total_tax</span> <span class="o">=</span> <span class="n">total_tax</span> <span class="o">+</span> <span class="n">tax</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Taxed at&quot;</span><span class="p">,</span> <span class="n">tr</span><span class="p">,</span> <span class="s2">&quot;the total tax is&quot;</span><span class="p">,</span> <span class="n">total_tax</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Taxed at 0.05 the total tax is 4.75
+Taxed at 0.1 the total tax is 14.25
+Taxed at 0.15 the total tax is 28.5
+</pre></div>
+</div>
+<p>Notice that rather than restarting at zero for each new tax rate, the
+total tax from the previous iteration of the outer loop carries
+over. As a result, the answers are wrong.</p>
+<p>Do keep in mind that the right answer is context dependent.  If
+instead of representing different possible tax rates for a given
+taxing entity (such as, a city), the rates instead represented the tax
+rates for different tax domains, say the city, county, and state.  If
+your goal was to compute the total tax paid for all the prices across
+all the taxing domains, then it would make sense to initialize
+<code class="docutils literal notranslate"><span class="pre">total</span></code> before the loop nest.  In this use case, you would likely
+move the <code class="docutils literal notranslate"><span class="pre">print</span></code> statement out of the loops altogether as well.</p>
+<div class="admonition-tip admonition">
+<p class="admonition-title">Nested loops and initialization</p>
+<p>If you have a bug in code that uses nested loops, verify that you
+are initializing <em>all</em> the variables used in the loop in the right
+place for your specific application.</p>
+</div>
+</div>
+<div class="section" id="iterating-over-ranges-of-integer">
+<h3><span class="section-number">1.3.2.2. </span>Iterating over ranges of integer<a class="headerlink" href="#iterating-over-ranges-of-integer" title="Permalink to this heading"></a></h3>
+<p>A common way to use <code class="docutils literal notranslate"><span class="pre">for</span></code> loops is to do something with all the
+integers in a given <em>range</em>. Let’s say we wanted to print out
+which numbers between 1 and 10 are odd and even. We could do
+it with this simple loop, which also features a nested <code class="docutils literal notranslate"><span class="pre">if</span></code>
+statement:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is odd&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is even&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1 is odd
+2 is even
+3 is odd
+4 is even
+5 is odd
+6 is even
+7 is odd
+8 is even
+9 is odd
+10 is even
+</pre></div>
+</div>
+<p>What if we wanted to do this computation with the numbers between 1 and 100?
+While we could manually write out all those numbers, there is a better
+way of doing this task: we can use Python’s built-in <code class="docutils literal notranslate"><span class="pre">range</span></code> function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is odd&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is even&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1 is odd
+2 is even
+3 is odd
+4 is even
+5 is odd
+6 is even
+7 is odd
+8 is even
+9 is odd
+10 is even
+</pre></div>
+</div>
+<p>We specify two numbers for <code class="docutils literal notranslate"><span class="pre">range</span></code>: a lower bound and an upper
+bound.  The lower bound is inclusive, but the upper bound is not; i.e., <code class="docutils literal notranslate"><span class="pre">range</span></code> will allow
+you to iterate through every integer starting at the lower bound and
+up to but not including the upper bound.  To change this loop to do
+our computation on the numbers between 1 and 100, we would simply
+change the upper bound in the call to <code class="docutils literal notranslate"><span class="pre">range</span></code> from 11 to 101 (<em>i.e.</em>,
+<code class="docutils literal notranslate"><span class="pre">range(1,</span> <span class="pre">101)</span></code>).</p>
+<div class="admonition-a-common-pitfall admonition">
+<p class="admonition-title">A Common Pitfall</p>
+<p>You should think very carefully about the appropriate bounds when
+using <code class="docutils literal notranslate"><span class="pre">range</span></code>.  In particular, make sure you don’t make an
+“off-by-one” error,
+where you set a bound to be too low or too high by one. This type of
+mistake is very common and can be difficult to track down.</p>
+</div>
+</div>
+<div class="section" id="example-primality-testing">
+<h3><span class="section-number">1.3.2.3. </span>Example: Primality testing<a class="headerlink" href="#example-primality-testing" title="Permalink to this heading"></a></h3>
+<p>Let’s move on to a slightly more involved example: testing whether
+a number is prime. While there are very elaborate methods for
+testing primality, a naive way of testing whether a number <span class="math notranslate nohighlight">\(n\)</span>
+is prime is to divide that number by every integer between 2 and <span class="math notranslate nohighlight">\(n-1\)</span>.
+If any such integer evenly divides <span class="math notranslate nohighlight">\(n\)</span>, then <span class="math notranslate nohighlight">\(n\)</span> is <em>not</em> prime.</p>
+<p>Assume that we have a variable <code class="docutils literal notranslate"><span class="pre">n</span></code> containing the number we are testing.
+We could use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop that uses <code class="docutils literal notranslate"><span class="pre">range</span></code> to iterate over every integer
+between 2 and <span class="math notranslate nohighlight">\(n-1\)</span>. Inside the loop, we would check whether
+each of integer evenly divides <code class="docutils literal notranslate"><span class="pre">n</span></code> using the modulus
+operator (if the remainder of dividing <code class="docutils literal notranslate"><span class="pre">n</span></code> by another integer is zero,
+then that number can’t be prime).</p>
+<p>Let’s take a first stab at this problem
+by setting up the loop, but not solving the problem entirely:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">81</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Testing number&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;divides&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Testing done&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Testing number 81
+3 divides 81
+9 divides 81
+27 divides 81
+Testing done
+</pre></div>
+</div>
+<p>This code simply prints out the divisors of <code class="docutils literal notranslate"><span class="pre">n</span></code>. Now let’s try
+it with a prime number:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">83</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Testing number&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;divides&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Testing done&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Testing number 83
+Testing done
+</pre></div>
+</div>
+<p>Since 83 is a prime number and doesn’t have any divisors (other than 1 and itself),
+the program doesn’t print any divisors. So, it looks like our code is on the right
+track, even if it doesn’t give us a clean “yes” or “no” answer to whether <code class="docutils literal notranslate"><span class="pre">n</span></code>
+is prime or not.</p>
+<p>Solving a simple version of a complex problem is common practice in
+programming. Avoid the temptation to solve an entire problem at once,
+instead try solving simpler versions of the problem first to make sure
+you are on the right track.  For example, the code above reassures us
+that we’re checking divisibility correctly.</p>
+<p>So, how do we modify this code to check whether a number is prime?
+Well, if n has even a single divisor, it will not be prime. So, all we
+need to do is keep track of whether we have encountered a divisor or
+not. While we could do this with an integer (by keeping track of how
+many divisors we have encountered, and then checking whether the
+number is zero or not), we can get away with using only a boolean
+variable, since all we care about is whether we have encountered a
+divisor or not. We initialize this variable to <code class="docutils literal notranslate"><span class="pre">False</span></code>, since we haven’t
+encountered any divisors yet at the start of the program.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">encountered_divisor</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">83</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">encountered_divisor</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">if</span> <span class="n">encountered_divisor</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is NOT prime&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is prime&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>83 is prime
+</pre></div>
+</div>
+<p>Notice that the value of <code class="docutils literal notranslate"><span class="pre">encountered_divisor</span></code> will not change once
+it is set to <code class="docutils literal notranslate"><span class="pre">True</span></code>.  What would happen if we added an <code class="docutils literal notranslate"><span class="pre">else</span></code>
+clause that set the value of <code class="docutils literal notranslate"><span class="pre">encounter_divisor</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code> when
+<code class="docutils literal notranslate"><span class="pre">n</span></code> is not evenly divisible by <code class="docutils literal notranslate"><span class="pre">i</span></code>?  We’d have a bug: our code
+would declare all numbers to be prime.</p>
+<p>Finally, as an additional example of nesting one loop inside another,
+suppose we want to print whether each integer in a given range is prime or not.
+We could simply nest the primality testing
+code we wrote above inside another <code class="docutils literal notranslate"><span class="pre">for</span></code> loop that
+uses <code class="docutils literal notranslate"><span class="pre">range</span></code> to iterate over a sequence of integers, each of which
+we will test for primality:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">32</span><span class="p">):</span>
+    <span class="n">encountered_divisor</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">encountered_divisor</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">if</span> <span class="n">encountered_divisor</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is NOT prime&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is prime&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>2 is prime
+3 is prime
+4 is NOT prime
+5 is prime
+6 is NOT prime
+7 is prime
+8 is NOT prime
+9 is NOT prime
+10 is NOT prime
+11 is prime
+12 is NOT prime
+13 is prime
+14 is NOT prime
+15 is NOT prime
+16 is NOT prime
+17 is prime
+18 is NOT prime
+19 is prime
+20 is NOT prime
+21 is NOT prime
+22 is NOT prime
+23 is prime
+24 is NOT prime
+25 is NOT prime
+26 is NOT prime
+27 is NOT prime
+28 is NOT prime
+29 is prime
+30 is NOT prime
+31 is prime
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-break-statement">
+<h3><span class="section-number">1.3.2.4. </span>The <code class="docutils literal notranslate"><span class="pre">break</span></code> statement<a class="headerlink" href="#the-break-statement" title="Permalink to this heading"></a></h3>
+<p>The primality testing algorithm we just saw is a correct algorithm:
+for all values of <code class="docutils literal notranslate"><span class="pre">n</span></code> (where <span class="math notranslate nohighlight">\(n \geqslant 1\)</span>), the algorithm
+will correctly determine whether <code class="docutils literal notranslate"><span class="pre">n</span></code> is prime or not. However,
+it is nonetheless a <em>terrible</em> algorithm.</p>
+<p>Why? Suppose you wanted to test whether <span class="math notranslate nohighlight">\(2^{61}\)</span> is prime. It is
+clearly not prime (it is divisible by 2), but the algorithm we
+presented would nonetheless waste a lot of time iterating over all
+numbers from 2 to <span class="math notranslate nohighlight">\(2^{61}\)</span>, even though we would know <code class="docutils literal notranslate"><span class="pre">n</span></code>
+isn’t prime the moment we divided it by 2.  To make the cost more
+concrete, if we can perform 15,000 iterations of the loop in 1
+microsecond, then determining whether <span class="math notranslate nohighlight">\(2^{61}\)</span> is prime using
+the code above would take nearly five years.</p>
+<p>We need to tweak our algorithm so that we can “bail out” of the
+<code class="docutils literal notranslate"><span class="pre">for</span></code> loop as soon as we’ve found our answer.  We can use a
+<code class="docutils literal notranslate"><span class="pre">break</span></code> statement, which immediately exits the loop, to do this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">encountered_divisor</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">83</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">encountered_divisor</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">break</span>
+
+<span class="k">if</span> <span class="n">encountered_divisor</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is NOT prime&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is prime&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>83 is prime
+</pre></div>
+</div>
+<p>Notice how all we had to do was add a single <code class="docutils literal notranslate"><span class="pre">break</span></code> statement in
+the case when we find a divisor.  Making this simple change reduces
+the time to determine that <span class="math notranslate nohighlight">\(2^{61}\)</span> is not prime to under a
+microsecond.</p>
+<p>Even so, this algorithm is <em>still</em> not particularly great. For example, <span class="math notranslate nohighlight">\(2^{61}-1\)</span>
+happens to be prime and, if we used the above algorithm to test this number,
+we would still end up performing <span class="math notranslate nohighlight">\(2^{61}-1\)</span> divisions (about two quintillions, or <span class="math notranslate nohighlight">\(2\cdot 10^{18}\)</span>).</p>
+<p>So, adding the <code class="docutils literal notranslate"><span class="pre">break</span></code> statement only allowed us to optimize certain cases
+(which might be fine if we expect to run our algorithm only with small integers).</p>
+<p>Don’t forget that, as we discussed in Chapter <a class="reference internal" href="../introduction/index.html#chapter-introduction"><span class="std std-ref">Computational Thinking</span></a>,
+computational thinking includes thinking about the <em>complexity</em> of
+computational solutions. This small example highlights that you
+shouldn’t settle for an algorithm simply because it produces the correct
+answer. Instead, you should also ask yourself whether the algorithm
+is sufficiently efficient for your purposes.</p>
+<p>Sometimes, this process is as simple as asking yourself
+how your algorithm will perform in a couple representative cases. For example,
+the performance of this algorithm with a composite (not prime) number is
+probably fine, but the performance
+with very large prime numbers will be very bad. Other times, more elaborate
+analysis is required. We will be revisiting the notion of complexity several
+more times throughout this book.</p>
+<p>Before we move on, let’s change our nested loop example to use
+<code class="docutils literal notranslate"><span class="pre">break</span></code> and see what happens:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">32</span><span class="p">):</span>
+    <span class="n">encountered_divisor</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">encountered_divisor</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Breaking:&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;evenly divides&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+            <span class="k">break</span>
+
+    <span class="k">if</span> <span class="n">encountered_divisor</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is NOT prime&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;is prime&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>2 is prime
+3 is prime
+Breaking: 2 evenly divides 4
+4 is NOT prime
+5 is prime
+Breaking: 2 evenly divides 6
+6 is NOT prime
+7 is prime
+Breaking: 2 evenly divides 8
+8 is NOT prime
+Breaking: 3 evenly divides 9
+9 is NOT prime
+Breaking: 2 evenly divides 10
+10 is NOT prime
+11 is prime
+Breaking: 2 evenly divides 12
+12 is NOT prime
+13 is prime
+Breaking: 2 evenly divides 14
+14 is NOT prime
+Breaking: 3 evenly divides 15
+15 is NOT prime
+Breaking: 2 evenly divides 16
+16 is NOT prime
+17 is prime
+Breaking: 2 evenly divides 18
+18 is NOT prime
+19 is prime
+Breaking: 2 evenly divides 20
+20 is NOT prime
+Breaking: 3 evenly divides 21
+21 is NOT prime
+Breaking: 2 evenly divides 22
+22 is NOT prime
+23 is prime
+Breaking: 2 evenly divides 24
+24 is NOT prime
+Breaking: 5 evenly divides 25
+25 is NOT prime
+Breaking: 2 evenly divides 26
+26 is NOT prime
+Breaking: 3 evenly divides 27
+27 is NOT prime
+Breaking: 2 evenly divides 28
+28 is NOT prime
+29 is prime
+Breaking: 2 evenly divides 30
+30 is NOT prime
+31 is prime
+</pre></div>
+</div>
+<p>Upon encountering a <code class="docutils literal notranslate"><span class="pre">break</span></code>, Python exits the innermost enclosing
+loop. We added a <code class="docutils literal notranslate"><span class="pre">print</span></code> statement to highlight this behavior.  As
+you can see from the output, upon finding a value of <code class="docutils literal notranslate"><span class="pre">i</span></code> that evenly
+divides the current value of <code class="docutils literal notranslate"><span class="pre">n</span></code>, Python prints a message with the
+values of <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">n</span></code> and moves on to the conditional that follows
+the inner loop.</p>
+<p>Keep in mind that <code class="docutils literal notranslate"><span class="pre">break</span></code> statements are always used in a loop
+guarded by a conditional statement.  A loop with an unguarded
+<code class="docutils literal notranslate"><span class="pre">break</span></code> statement will execute at most once.  This loop, for
+example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prices</span><span class="s2">&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The value of p is:&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  File &quot;&lt;stdin&gt;&quot;, line 3
+    for p in prices&quot;
+                   ^
+SyntaxError: EOL while scanning string literal
+</pre></div>
+</div>
+<p>executes outputs exactly one line.  If list of prices happens to be
+empty, then the loop would not generate any output, which explains why
+we wrote that a loop with an unguarded break would execute “at most”
+once.</p>
+</div>
+<div class="section" id="continue-statement">
+<h3><span class="section-number">1.3.2.5. </span><code class="docutils literal notranslate"><span class="pre">continue</span></code> statement<a class="headerlink" href="#continue-statement" title="Permalink to this heading"></a></h3>
+<p>Python will immediately exit a loop when it encounters a <code class="docutils literal notranslate"><span class="pre">break</span></code>
+statement.  Sometimes, you just want to stop the current iteration and
+move on to the next one.  To illustrate this concept, we will rewrite
+an earlier example using <code class="docutils literal notranslate"><span class="pre">continue</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="n">total_tax</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prices</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mi">15</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Skipping price&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+        <span class="k">continue</span>
+    <span class="n">tax</span> <span class="o">=</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">p</span>
+    <span class="n">total_tax</span> <span class="o">=</span> <span class="n">total_tax</span> <span class="o">+</span> <span class="n">tax</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The total tax is&quot;</span><span class="p">,</span> <span class="n">total_tax</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Skipping price 10
+Skipping price 5
+Skipping price 10
+The total tax is 9.5
+</pre></div>
+</div>
+<p>In this version, we flipped the test to be <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">&lt;</span> <span class="pre">15</span></code> (rather than <code class="docutils literal notranslate"><span class="pre">p</span>
+<span class="pre">&gt;=</span> <span class="pre">15</span></code>), added a use of <code class="docutils literal notranslate"><span class="pre">continue</span></code> after the call to <code class="docutils literal notranslate"><span class="pre">print</span></code> in the
+conditional, and reduced the indentation for the rest of the loop
+body.</p>
+<p>While <code class="docutils literal notranslate"><span class="pre">continue</span></code> should be used sparingly as it can lead to
+confusing code, it can help improve readability when you have a
+complex deeply-nested piece of code that needs to be executed in some
+situations and not others.  Writing this code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="o">&lt;</span><span class="n">variable</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">sequence</span><span class="o">&gt;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="o">&lt;</span><span class="n">simple</span> <span class="n">test</span><span class="o">&gt;</span><span class="p">:</span>
+        <span class="o">&lt;</span><span class="nb">complex</span><span class="p">,</span> <span class="n">deeply</span> <span class="n">nested</span> <span class="n">code</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>this way:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="o">&lt;</span><span class="n">variable</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">sequence</span><span class="o">&gt;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="o">&lt;</span><span class="n">simple</span> <span class="n">test</span><span class="o">&gt;</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="o">&lt;</span><span class="nb">complex</span><span class="p">,</span> <span class="n">deeply</span> <span class="n">nested</span> <span class="n">code</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>may yield code that is easier to understand.  And so, while our
+example above is correct, we would not normally choose to write code
+that simple using <code class="docutils literal notranslate"><span class="pre">continue</span></code>.</p>
+<p>As with <code class="docutils literal notranslate"><span class="pre">break</span></code>, it does not make sense to use <code class="docutils literal notranslate"><span class="pre">continue</span></code> without
+a corresponding conditional to guard its execution as the code
+following an unguarded <code class="docutils literal notranslate"><span class="pre">continue</span></code> would never be executed.</p>
+</div>
+</div>
+<div class="section" id="while-loops">
+<h2><span class="section-number">1.3.3. </span><code class="docutils literal notranslate"><span class="pre">while</span></code> loops<a class="headerlink" href="#while-loops" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">while</span></code> loops are a more general type of loop that, instead of repeating an action <em>for</em> each
+element in a sequence, will repeat an action <em>while</em> a condition is true.
+The condition is expressed using a boolean expression, which allows us
+to write much more complex loops than <code class="docutils literal notranslate"><span class="pre">for</span></code> loops.</p>
+<p>The syntax for <code class="docutils literal notranslate"><span class="pre">while</span></code> loops is the following:</p>
+<pre class="literal-block"><strong>while</strong> <em>&lt;boolean expression&gt;</em>:
+    <em>&lt;statements&gt;</em></pre>
+<p>Python starts executing a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop by evaluating the boolean expression
+and, if it is true, running the block of statements (otherwise, the <code class="docutils literal notranslate"><span class="pre">while</span></code>
+loop is skipped entirely).
+After the statements are run, the boolean expression is evaluated <em>again</em>, and
+if it remains true, the statements are run again. This process is repeated
+until the boolean expression becomes false.</p>
+<p>For example, this <code class="docutils literal notranslate"><span class="pre">while</span></code> loop will add up all of the integers between 1 and <code class="docutils literal notranslate"><span class="pre">N</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">N</span><span class="p">:</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">+</span> <span class="n">i</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>55
+</pre></div>
+</div>
+<p>We use a <code class="docutils literal notranslate"><span class="pre">sum</span></code> variable to store the sum of all the integers, and initialize
+it to 0. Then, we use a variable <code class="docutils literal notranslate"><span class="pre">i</span></code> to represent the integer we are adding
+to the sum. We initialize it to one and, in each iteration of the loop, we add
+<code class="docutils literal notranslate"><span class="pre">i</span></code> to the sum, and increment <code class="docutils literal notranslate"><span class="pre">i</span></code> by one. As long as <code class="docutils literal notranslate"><span class="pre">i</span></code> is less than <code class="docutils literal notranslate"><span class="pre">N</span></code>,
+the loop will keep adding <code class="docutils literal notranslate"><span class="pre">i</span></code> to <code class="docutils literal notranslate"><span class="pre">sum</span></code>.</p>
+<p>Unlike a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop does not require a
+sequence of values. Instead, we <em>must</em> keep track of and update
+the integer we add in each iteration of the loop
+(stored in variable <code class="docutils literal notranslate"><span class="pre">i</span></code>).</p>
+<p>This difference is often the source of a common programming
+error: forgetting to include code to increment <code class="docutils literal notranslate"><span class="pre">i</span></code> (that is, the
+statement: <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">=</span> <span class="pre">i</span> <span class="pre">+</span> <span class="pre">1</span></code>). Without this statement, the loop
+becomes an <em>infinite loop</em>: the``while`` condition (<code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">&lt;=</span> <span class="pre">N</span></code>)
+will never become false because the value of
+<code class="docutils literal notranslate"><span class="pre">i</span></code> will always be one (and thus will
+never become greater than <code class="docutils literal notranslate"><span class="pre">N</span></code>). When this happens, your program (or
+the Python interpreter) will appear stuck. In most computer
+environments, you can force your program to exit by pressing the
+“Control” key and the “C” key (known as “Control-C”) at the same time.
+You may have to type “Control-C” a few times to get Python’s attention.</p>
+<p>In fact, precisely because of this issue, the above piece of code should be
+implemented using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, which is less error prone:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">+</span> <span class="n">i</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>55
+</pre></div>
+</div>
+<p>Notice that we cannot possibly fall into an infinite loop with this
+implementation, because the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop
+will <em>only</em> iterate over the specified range of values.</p>
+<p>So when should we use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop instead of a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop?
+As a rule of thumb, any time you need to iterate over a sequence of
+values, using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is typically the best option.
+Although a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop can get the job done, it
+can be more error-prone.</p>
+<p>There are, however, certain algorithms where the loop cannot naturally be
+stated as iterating over a sequence of values, so we need the more
+general mechanism provided by a boolean expression. We will
+see one such example in the next section.</p>
+</div>
+<div class="section" id="putting-it-all-together">
+<h2><span class="section-number">1.3.4. </span>Putting it all together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this heading"></a></h2>
+<p>In this section we are going to work through a slightly longer example
+that combines conditionals and loops and involves non-trivial logic.</p>
+<p>A few years ago Gil Kalai posed a question on his blog <a class="reference external" href="https://gilkalai.wordpress.com/2017/09/07/tyi-30-expected-number-of-dice-throws/">Combinatorics
+and more</a>:</p>
+<blockquote>
+<div><p>You throw a dice until you get 6. What is the expected number of
+throws (including the throw giving 6) conditioned on the event that
+all throws gave even numbers.</p>
+</div></blockquote>
+<p>The answer, somewhat paradoxically, is 1.5.  As noted by <a class="reference external" href="https://gilkalai.wordpress.com/2017/09/08/elchanan-mossels-amazing-dice-paradox-answers-to-tyi-30/">Dan Jacob
+Wallace</a>,
+the question can be answered using some probability theory and
+pre-calculus, but it can also be answered by simulating a simple game
+many times and averaging the number of throws per game.</p>
+<p>In the game, we will roll one fair six-sided die over and over again
+and count the number of rolls.  Since the problem is conditioned on
+all the throws being even numbers, we will stop a given game and
+declare it to be invalid as soon as we roll an odd number.  For valid
+games, we will keep rolling the die until we hit a six.</p>
+<p>Before we can translate this informal description into code, we need
+to find a way to simulate rolling a die.  We can use a function,
+<code class="docutils literal notranslate"><span class="pre">randint</span></code> from Python’s built-in <code class="docutils literal notranslate"><span class="pre">random</span></code> library for this
+purpose.  Given a lower bound and an upper bound, the function chooses
+a value uniformly at random between the lower bound and upper bound
+inclusive (that is, including both end points).  Since we are working
+with a six-sided die, we will call <code class="docutils literal notranslate"><span class="pre">random.randint(1,</span> <span class="pre">6)</span></code> repeatedly
+to get a randomly-chosen stream of values that range between <code class="docutils literal notranslate"><span class="pre">1</span></code> and
+<code class="docutils literal notranslate"><span class="pre">6</span></code> inclusive.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">random.randint</span></code> is a <em>function</em>, which we will be discussing in
+more detail in the next chapter. For now, all you need to so is that,
+like the <code class="docutils literal notranslate"><span class="pre">print</span></code> function, this function will
+perform a task for us and, in this case, it will be choosing a
+number randomly between <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">6</span></code>. In chapter <a class="reference internal" href="../organization/index.html#chapter-organization-basics"><span class="std std-ref">Basics of Code Organization</span></a>
+we will also discuss Python’s built-in libraries, like <code class="docutils literal notranslate"><span class="pre">random</span></code>
+in more detail.</p>
+</div>
+<p>To simulate the game, we will need to roll the die over and over again
+until one of two conditions is met: either (1) a six is rolled, which
+ends the (valid) game or (2) an odd number is rolled, which signals
+that the game is invalid and should end.  <code class="docutils literal notranslate"><span class="pre">while</span></code> loops are designed for
+exactly this type of computation: we want to execute a piece of code
+repeatedly while some conditions holds.  Here’s one–quite direct–way
+to translate this description into code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate a new game</span>
+<span class="n">is_valid_game</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="c1"># first roll</span>
+<span class="n">roll</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">game_num_rolls</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">roll</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">roll</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># stop: hit an odd number making the game invalid</span>
+        <span class="n">is_valid_game</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">break</span>
+    <span class="c1"># subsequent rolls</span>
+    <span class="n">roll</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">game_num_rolls</span> <span class="o">=</span> <span class="n">game_num_rolls</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>At the end of the game, the variable <code class="docutils literal notranslate"><span class="pre">game_num_rolls</span></code> will hold the
+number of times the die was thrown in the game and the variable
+<code class="docutils literal notranslate"><span class="pre">is_valid_game</span></code> will tell us whether the game was valid.</p>
+<p>Here is another less direct, but easier-to-read version:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># first roll</span>
+<span class="n">roll</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">game_num_rolls</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">roll</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">roll</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+    <span class="c1"># subsequent rolls</span>
+    <span class="n">roll</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">game_num_rolls</span> <span class="o">=</span> <span class="n">game_num_rolls</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">is_valid_game</span> <span class="o">=</span> <span class="p">(</span><span class="n">roll</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this version, we keep rolling the die until we hit something other
+than a <code class="docutils literal notranslate"><span class="pre">2</span></code> or a <code class="docutils literal notranslate"><span class="pre">4</span></code> (i.e., a <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">3</span></code>, <code class="docutils literal notranslate"><span class="pre">5</span></code>, or <code class="docutils literal notranslate"><span class="pre">6</span></code>). We
+mark the game as valid only if the last roll, the one that caused the
+game to stop, was a <code class="docutils literal notranslate"><span class="pre">6</span></code>.</p>
+<p>These two versions illustrate a common phenomenon: there is often more
+than one way to implement a task and thinking about it in a slightly
+different way may yield simpler code.</p>
+<p>Let’s move on to simulating our game many times and computing the
+answer.  We can run multiple games or trials by wrapping a for-loop
+around the code for simulating a game.  Our goal is to compute the
+average number of rolls per valid game.  To do so, we will track the
+number of valid games using the variable <code class="docutils literal notranslate"><span class="pre">num_valid_games</span></code> and the
+total number of rolls made in <em>valid</em> games using the variable
+<code class="docutils literal notranslate"><span class="pre">total_rolls_valid_games</span></code>.</p>
+<p>Here’s code that for the full task:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num_trials</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">num_valid_games</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">total_rolls_valid_games</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_trials</span><span class="p">):</span>
+    <span class="c1"># run a new game</span>
+    <span class="c1"># first roll</span>
+    <span class="n">roll</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">game_num_rolls</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">roll</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">roll</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="c1"># subsequent rolls</span>
+        <span class="n">roll</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="n">num_rolls</span> <span class="o">=</span> <span class="n">num_rolls</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">roll</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="c1"># the game was valid</span>
+        <span class="n">num_valid_games</span> <span class="o">=</span> <span class="n">num_valid_games</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">total_rolls_valid_games</span> <span class="o">=</span> <span class="n">total_rolls_valid_games</span> <span class="o">+</span> <span class="n">game_num_rolls</span>
+
+<span class="k">if</span> <span class="n">num_valid_games</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="n">total_rolls_valid_games</span><span class="o">/</span><span class="n">num_valid_games</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average number of rolls in valid games:&quot;</span><span class="p">,</span> <span class="n">ans</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No valid games.  Try again.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The value of the loop variable for the outer <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is not needed in the
+computation and so, we followed Python convention and named it <code class="docutils literal notranslate"><span class="pre">_</span></code>
+(underscore).</p>
+<p>Note that we dropped the name <code class="docutils literal notranslate"><span class="pre">is_valid_game</span></code> and simply used the
+expression <code class="docutils literal notranslate"><span class="pre">roll</span> <span class="pre">==</span> <span class="pre">6</span></code> as the test for a conditional that ensures
+that <code class="docutils literal notranslate"><span class="pre">num_valid_games</span></code> and <code class="docutils literal notranslate"><span class="pre">total_rolls_valid_games</span></code> are updated
+only for valid games.</p>
+<p>Finally, let’s review our decisions about where to initialize the
+variables used in the computation. The variables <code class="docutils literal notranslate"><span class="pre">num_valid_games</span></code>
+and <code class="docutils literal notranslate"><span class="pre">total_rolls_valid_games</span></code> are initialized before the outer loop
+because they are used to accumulate values across the whole
+computation.  In contrast, <code class="docutils literal notranslate"><span class="pre">roll</span></code> and <code class="docutils literal notranslate"><span class="pre">game_num_rolls</span></code> are
+re-initialized for every iteration of the outer loop, because they
+need to be reset to their initial values for each new game.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../basics/index.html" class="btn btn-neutral float-left" title="1.2. Programming Basics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../intro_functions/index.html" class="btn btn-neutral float-right" title="1.4. Introduction to Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Anne Rogers and Borja Sotomayor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

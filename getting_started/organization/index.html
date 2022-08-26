@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.5. Basics of Code Organization &mdash; Computer Science with Applications  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/csapps.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1.6. Understanding Errors and Catching Exceptions" href="../exceptions/index.html" />
+    <link rel="prev" title="1.4. Introduction to Functions" href="../intro_functions/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Computer Science with Applications
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../preface.html">Preface</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction/index.html">1.1. Computational Thinking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/index.html">1.2. Programming Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../control_structures/index.html">1.3. Control Flow Statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_functions/index.html">1.4. Introduction to Functions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.5. Basics of Code Organization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#python-modules">1.5.1. Python modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-vs-importing-a-module">1.5.2. Running vs importing a module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#computer-programs-revisited">1.5.3. Computer programs revisited</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-python-standard-library">1.5.4. The Python Standard Library</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../exceptions/index.html">1.6. Understanding Errors and Catching Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../example/index.html">1.7. Example: A Game of Chance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_structures/index.html">2. Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../functions/index.html">3. Functional Programming and Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working_with_data/index.html">4. Working with Data</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Computer Science with Applications</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">1. </span>Getting Started</a> &raquo;</li>
+      <li><span class="section-number">1.5. </span>Basics of Code Organization</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/getting_started/organization/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="basics-of-code-organization">
+<span id="chapter-organization-basics"></span><h1><span class="section-number">1.5. </span>Basics of Code Organization<a class="headerlink" href="#basics-of-code-organization" title="Permalink to this heading"></a></h1>
+<p>Back in <a class="reference internal" href="../basics/index.html#chapter-basics"><span class="std std-ref">Programming Basics</span></a>, we wrote our first program:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And saw that we could run it directly in the Python interpreter, like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
+<span class="go">Hello, world!</span>
+</pre></div>
+</div>
+<p>Or by placing the code in a file called <code class="docutils literal notranslate"><span class="pre">hello.py</span></code>, and running that file
+from the terminal:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python hello.py
+Hello, world!
+</pre></div>
+</div>
+<p>In the previous chapter, we also saw that it is possible to write function
+definitions in a Python file, such as the <code class="docutils literal notranslate"><span class="pre">primes.py</span></code> file that contained
+our <code class="docutils literal notranslate"><span class="pre">is_prime</span></code> function, and them “import” the contents of that file
+into the interpreter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">primes</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">primes</span><span class="o">.</span><span class="n">is_prime</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">primes</span><span class="o">.</span><span class="n">is_prime</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>So, it seems that Python files can serve two purposes: I can
+<em>run</em> a Python file, which may produce some result (like printing <code class="docutils literal notranslate"><span class="pre">Hello,</span> <span class="pre">world!</span></code>) or
+I can <em>import</em> a Python file, which allows me to use functions that are defined inside
+that file. In this chapter, we will expand on this distinction (running vs. importing)
+by introducing the notion of Python <em>modules</em>, and providing an introduction to
+how to organize Python code in a program.</p>
+<div class="section" id="python-modules">
+<h2><span class="section-number">1.5.1. </span>Python modules<a class="headerlink" href="#python-modules" title="Permalink to this heading"></a></h2>
+<p>A Python module is, quite simply, a file containing Python code. The <code class="docutils literal notranslate"><span class="pre">hello.py</span></code> file
+mentioned above is a Python module, as is the <code class="docutils literal notranslate"><span class="pre">primes.py</span></code> file from the previous
+chapter. However, as we saw earlier, we used each of these files in very different ways:
+we “ran” the <code class="docutils literal notranslate"><span class="pre">hello.py</span></code> file, but we <code class="docutils literal notranslate"><span class="pre">import</span></code>-ed the <code class="docutils literal notranslate"><span class="pre">primes.py</span></code> file. To
+explore this distinction, we’ll start by elaborating on what it means to “import” a module.
+To do this, we will use two
+modules which you can find in our <a class="reference internal" href="../../preface.html#example-code"><span class="std std-ref">example code</span></a>: <code class="docutils literal notranslate"><span class="pre">getting-started/code-organization/primes.py</span></code>
+and <code class="docutils literal notranslate"><span class="pre">getting-started/code-organization/mersenne.py</span></code> In Python, modules are usually referred
+to without the <code class="docutils literal notranslate"><span class="pre">.py</span></code> extension, so we will refer to these as the “<code class="docutils literal notranslate"><span class="pre">primes</span></code> modules” and the
+“<code class="docutils literal notranslate"><span class="pre">mersenne</span></code> module”.</p>
+<p>If you look at the <code class="docutils literal notranslate"><span class="pre">primes</span></code> module, you’ll see it contains two functions, <code class="docutils literal notranslate"><span class="pre">print_primes</span></code>
+and <code class="docutils literal notranslate"><span class="pre">is_prime</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_primes</span><span class="p">(</span><span class="n">max_n</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+
+<span class="k">def</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+</pre></div>
+</div>
+<p>The actual implementation of these functions won’t be relevant to our discussion of modules,
+as we’ll be focusing on how these functions are <em>called</em> across modules, and not on how they
+work internally. So, we won’t be digging into their implementation, but we nonetheless
+encourage you to take a quick look at the implementation of the <code class="docutils literal notranslate"><span class="pre">is_prime</span></code> function:
+it is a bit more complex than the one we saw in the previous chapter, because
+we need a faster algorithm for this chapter’s example, and it provides several examples
+of using conditional and looping statements in a non-trivial way.</p>
+<p>As we’ve seen previously, we can use the <code class="docutils literal notranslate"><span class="pre">import</span></code> statement to access the contents of
+the <code class="docutils literal notranslate"><span class="pre">primes</span></code> module from the interpreter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">primes</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">primes</span><span class="o">.</span><span class="n">is_prime</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">primes</span><span class="o">.</span><span class="n">is_prime</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">import</span></code> statement also allows us to import only specific functions from a module,
+like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">primes</span> <span class="kn">import</span> <span class="n">is_prime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_prime</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_prime</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>We can actually also import modules from <em>other</em> modules as well. In particular, the <code class="docutils literal notranslate"><span class="pre">mersenne</span></code>
+module provides a number of functions related to <em>Mersenne primes</em>, or prime numbers of the
+form <span class="math notranslate nohighlight">\(2^p-1\)</span>, where <span class="math notranslate nohighlight">\(p\)</span> is itself a prime number. One of these functions
+needs to call the <code class="docutils literal notranslate"><span class="pre">is_prime</span></code> function, located in the <code class="docutils literal notranslate"><span class="pre">primes</span></code> module, so we will
+need to import the <code class="docutils literal notranslate"><span class="pre">primes</span></code> module from the <code class="docutils literal notranslate"><span class="pre">mersenne</span></code> module, which looks something
+like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">primes</span>
+
+<span class="k">def</span> <span class="nf">is_mersenne_prime</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+
+<span class="k">def</span> <span class="nf">is_power_of_two</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+
+<span class="k">def</span> <span class="nf">print_mersenne_primes</span><span class="p">(</span><span class="n">max_p</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+</pre></div>
+</div>
+<p>As with the <code class="docutils literal notranslate"><span class="pre">primes</span></code> module, the exact implementation of these functions won’t be relevant to
+our discussion, but notice how the <code class="docutils literal notranslate"><span class="pre">print_mersenne_primes</span></code> function uses the <code class="docutils literal notranslate"><span class="pre">is_prime</span></code>
+function from the <code class="docutils literal notranslate"><span class="pre">primes</span></code> module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">primes</span><span class="o">.</span><span class="n">is_prime</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>We are able to use this function because we included the <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">primes</span></code> statement at the top
+of the <code class="docutils literal notranslate"><span class="pre">mersenne</span></code> module.</p>
+<p>Now, let’s try using a function from the <code class="docutils literal notranslate"><span class="pre">mersenne</span></code> module
+from the interpreter. Before doing so, exit the interpreter and start it again,
+so we can make sure the previous <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">primes</span></code> statement we ran from
+the interpreter isn’t affecting this next example.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mersenne</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mersenne</span><span class="o">.</span><span class="n">print_mersenne_primes</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="go">M1 is 2</span>
+<span class="go">M2 is 3</span>
+<span class="go">M3 is 5</span>
+<span class="go">M4 is 7</span>
+<span class="go">M5 is 13</span>
+<span class="go">M6 is 17</span>
+<span class="go">M7 is 19</span>
+<span class="go">M8 is 31</span>
+<span class="go">M9 is 61</span>
+<span class="go">M10 is 89</span>
+</pre></div>
+</div>
+<p>Notice how we are able to call the <code class="docutils literal notranslate"><span class="pre">print_mersenne_primes</span></code> function in the <code class="docutils literal notranslate"><span class="pre">mersenne</span></code> module,
+which internally requires using the <code class="docutils literal notranslate"><span class="pre">is_prime</span></code> function, located in a different module.
+However, we are not required to run <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">primes</span></code> ourselves in the interpreter,
+because it is already being imported from inside the <code class="docutils literal notranslate"><span class="pre">mersenne</span></code> module.</p>
+</div>
+<div class="section" id="running-vs-importing-a-module">
+<h2><span class="section-number">1.5.2. </span>Running vs importing a module<a class="headerlink" href="#running-vs-importing-a-module" title="Permalink to this heading"></a></h2>
+<p>So far, we’ve seen that Python modules can be imported from the interpreter and from
+other modules, but modules can also be <em>run</em> from the command-line. To better understand
+this distinction, we will use an <code class="docutils literal notranslate"><span class="pre">arithmetic</span></code> module which you can find in the
+<code class="docutils literal notranslate"><span class="pre">getting-started/code-organization/</span></code> directory of the examples. You’ll see that there
+are three versions of this module: <code class="docutils literal notranslate"><span class="pre">arithmetic</span></code>, <code class="docutils literal notranslate"><span class="pre">arithmetic_nomain</span></code>, and <code class="docutils literal notranslate"><span class="pre">arithmetic_main</span></code>.</p>
+<p>We’ll start by looking at the <code class="docutils literal notranslate"><span class="pre">arithmetic</span></code> module, which contains two very simple functions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span>
+
+
+<span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
+</pre></div>
+</div>
+<p>As expected, we can import this module and use it from the interpreter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">arithmetic</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arithmetic</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">13</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arithmetic</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">20</span>
+</pre></div>
+</div>
+<p>But what happens if we <em>run</em> this module from the command-line?</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python3 arithmetic.py
+$
+</pre></div>
+</div>
+<p>Nothing happens: Python returns immediately. The reason for this is
+that Python ran through all the code in the <code class="docutils literal notranslate"><span class="pre">arithmetic.py</span></code> file, and only encounters
+function definitions. Python internally makes a note that these functions have been defined,
+but there are no statements in the file that would make Python do something, like
+print a message or call the functions.</p>
+<p>So, let’s take a look at this slightly modified version, <code class="docutils literal notranslate"><span class="pre">arithmetic_nomain</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+
+<span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
+
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">multiply</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;add(2, 10) = &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;multiply(2, 10) =&quot;</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This version includes some statements after the function definitions. If we run
+this module we’ll see the following:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python3 arithmetic_nomain.py
+add<span class="o">(</span><span class="m">2</span>, <span class="m">10</span><span class="o">)</span> <span class="o">=</span>  <span class="m">12</span>
+multiply<span class="o">(</span><span class="m">2</span>, <span class="m">10</span><span class="o">)</span> <span class="o">=</span> <span class="m">20</span>
+$
+</pre></div>
+</div>
+<p>What’s happening here is that Python runs through the code, makes a note of that functions
+<code class="docutils literal notranslate"><span class="pre">add</span></code> and <code class="docutils literal notranslate"><span class="pre">multiply</span></code> have been defined, and then encounters code that calls those functions
+and prints something, and runs that code as well.</p>
+<p>This may seem like a convenient way to define a few functions, and then include some basic
+code to informally test those functions, but there is a snag: that code will also run
+when we import the module, resulting in this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">arithmetic_nomain</span>
+<span class="go">add(2, 10) =  12</span>
+<span class="go">multiply(2, 10) = 20</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arithmetic_nomain</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">12</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arithmetic_nomain</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">20</span>
+</pre></div>
+</div>
+<p>The reason for this is that importing a module also causes Python to run through
+all the code in the corresponding Python file, which is why we are then able
+to use the functions defined in that module. However, we may want to be selective
+about what code is run exactly and, in particular, we may want to separate out
+the code that should only run when the module is run from the command line.
+We can do this by placing the code in a <em>main block</em>.
+We can see what this looks like in the <code class="docutils literal notranslate"><span class="pre">arithmetic_main</span></code> module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+
+<span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">multiply</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;add(2, 10) = &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;multiply(2, 10) =&quot;</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When we run it, the code under <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span></code> runs as expected:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python3 arithmetic_main.py
+add<span class="o">(</span><span class="m">2</span>, <span class="m">10</span><span class="o">)</span> <span class="o">=</span>  <span class="m">12</span>
+multiply<span class="o">(</span><span class="m">2</span>, <span class="m">10</span><span class="o">)</span> <span class="o">=</span> <span class="m">20</span>
+$
+</pre></div>
+</div>
+<p>But that code <em>won’t</em> be run if we import the module:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">arithmetic_main</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arithmetic_main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">12</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arithmetic_main</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">20</span>
+</pre></div>
+</div>
+<p>All that said, this doesn’t mean that every Python module has to have a main block.
+In the next section, we will elaborate on what a computer program is, and how
+Python programs often span multiple modules (where typically only one module
+will have a main block).</p>
+<div class="admonition-common-pitfalls admonition">
+<p class="admonition-title">Reloading modules</p>
+<p>When you import a module from the interpreter, Python will import the current
+version of that module, and won’t track changes in that module. This means
+that, if you make a change to the module, that change won’t automatically
+propagate to the interpreter. For example, try doing the following:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">arithmetic</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arithmetic_main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">12</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Now, try modifying the <code class="docutils literal notranslate"><span class="pre">arithmetic.py</span></code> file modify the <code class="docutils literal notranslate"><span class="pre">add</span></code> function
+to look like this:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Let’s also add the following function:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">subtract</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>If you try to use the <code class="docutils literal notranslate"><span class="pre">add</span></code> function, you’ll see it still behaves according
+to the original (correct) version. Python will also tell you it can’t find
+a <code class="docutils literal notranslate"><span class="pre">subtract</span></code> function:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">arithmetic_main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">12</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arithmetic_main</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">AttributeError</span>: <span class="n">module &#39;arithmetic_main&#39; has no attribute &#39;subtract&#39;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Interestingly, importing the module again won’t actually resolve the situation:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">arithmetic</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arithmetic_main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">12</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arithmetic_main</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">AttributeError</span>: <span class="n">module &#39;arithmetic_main&#39; has no attribute &#39;subtract&#39;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>You need to explicitly reload the module using Python’s built-in <code class="docutils literal notranslate"><span class="pre">importlib</span></code> module:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">importlib</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">importlib</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">arithmetic</span><span class="p">)</span>
+<span class="go">&lt;module &#39;arithmetic&#39; from &#39;arithmetic.py&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arithmetic</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">13</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arithmetic</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">90</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="computer-programs-revisited">
+<h2><span class="section-number">1.5.3. </span>Computer programs revisited<a class="headerlink" href="#computer-programs-revisited" title="Permalink to this heading"></a></h2>
+<p>In <a class="reference internal" href="../basics/index.html#chapter-basics"><span class="std std-ref">Programming Basics</span></a>, we said that “a computer program is, at its
+core, a collection of instructions that the computer must perform”. We now have a better
+sense of what these instructions look like: <code class="docutils literal notranslate"><span class="pre">if</span></code> statements, <code class="docutils literal notranslate"><span class="pre">for</span></code> and <code class="docutils literal notranslate"><span class="pre">while</span></code> loops,
+assignments, function definitions, function calls, etc. And, as we’ve seen a few times
+already, the vessel for these instructions is text file with a name ending in <code class="docutils literal notranslate"><span class="pre">.py</span></code>, i.e.,
+a Python module.</p>
+<p>However, this doesn’t mean that a program is composed of exactly one module. While simple
+programs can often be implemented in one module, it is very common for programs to span
+multiple modules. To see an example of this, take a look at the  <code class="docutils literal notranslate"><span class="pre">prime-checker</span></code> module
+in the <code class="docutils literal notranslate"><span class="pre">getting-started/code-organization/</span></code> examples directory. This is a module
+with a main block that asks the user to enter a number, and will then print out
+some information about whether the number is prime or not, and whether it is a Mersenne
+prime or not:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">primes</span> <span class="kn">import</span> <span class="n">is_prime</span>
+<span class="kn">from</span> <span class="nn">mersenne</span> <span class="kn">import</span> <span class="n">is_mersenne_prime</span><span class="p">,</span> <span class="n">is_power_of_two</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter a number: &quot;</span><span class="p">)</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> is not a prime number.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">is_power_of_two</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">is_mersenne_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> is a double Mersenne prime: both </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> and 2^</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">-1 are Mersenne primes.&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> is a Mersenne prime (</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> == 2^</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">-1)&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">is_mersenne_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> is a prime number, but not a Mersenne prime (however, 2^</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">-1 is a Mersenne prime).&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> is a prime number, but not a Mersenne prime (and neither is 2^</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">-1).&quot;</span><span class="p">)</span>
+
+
+
+</pre></div>
+</div>
+<p>Here are some sample runs of this program:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python3 prime-checker.py
+Enter a number: <span class="m">16</span>
+<span class="m">16</span> is not a prime number.
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python3 prime-checker.py
+Enter a number: <span class="m">23</span>
+<span class="m">23</span> is a prime number, but not a Mersenne prime <span class="o">(</span>and neither is <span class="m">2</span>^23-1<span class="o">)</span>.
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python3 prime-checker.py
+Enter a number: <span class="m">61</span>
+<span class="m">61</span> is a prime number, but not a Mersenne prime <span class="o">(</span>however, <span class="m">2</span>^61-1 is a Mersenne prime<span class="o">)</span>.
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python3 prime-checker.py
+Enter a number: <span class="m">127</span>
+<span class="m">127</span> is a double Mersenne prime: both <span class="m">127</span> and <span class="m">2</span>^127-1 are Mersenne primes.
+</pre></div>
+</div>
+<p>However, all the logic involved in testing each number’s primality
+is contained in two other modules: <code class="docutils literal notranslate"><span class="pre">primes</span></code> and <code class="docutils literal notranslate"><span class="pre">mersenne</span></code>. Our program, thus,
+spans three modules: <code class="docutils literal notranslate"><span class="pre">prime-checker</span></code>, <code class="docutils literal notranslate"><span class="pre">primes</span></code>, and <code class="docutils literal notranslate"><span class="pre">mersenne</span></code>.</p>
+<p>This is a further example of <em>decomposition</em>: while we could have placed all the
+code in a single module, dividing it into distinct modules, each with a related
+set of functions, makes the code more manageable. It also improves the reusability
+of our code: if we wanted to write a different program that involves checking a
+number’s primality, all we need to do is import our <code class="docutils literal notranslate"><span class="pre">primes</span></code> module.</p>
+<p>All that said, this doesn’t mean that “a collection of modules” is a program.
+A program is specifically something that is <em>executable</em>, which is the technical term for
+“something I can run” (in the manner we’ve described above, as opposed to
+just importing a module). In a Python program, this often means that at least
+one of the modules must include a <code class="docutils literal notranslate"><span class="pre">__main__</span></code> block.</p>
+<p>On the other hand, when we have a collection of modules that provides some useful functionality,
+but which is not executable, that is what we would call a <em>software library</em>, or simply a <em>library</em>.
+For example, we could distribute the <code class="docutils literal notranslate"><span class="pre">primes</span></code> and <code class="docutils literal notranslate"><span class="pre">mersenne</span></code> modules as a “prime number library”.
+Neither of these modules has a <code class="docutils literal notranslate"><span class="pre">__main__</span></code> block and that is totally fine: these
+modules are not meant to be run but, rather, to be imported by other modules.</p>
+<p>While we may not develop that many libraries ourselves, we will almost certainly
+<em>use</em> existing libraries in our code. In particular, Python itself includes a vast collection of
+modules, called the Python Standard Library, that we can use in our code and
+which we describe next.</p>
+</div>
+<div class="section" id="the-python-standard-library">
+<h2><span class="section-number">1.5.4. </span>The Python Standard Library<a class="headerlink" href="#the-python-standard-library" title="Permalink to this heading"></a></h2>
+<p>When you install Python on your computer, you are not only getting a Python interpreter,
+but also access to a huge collection of modules that is already included with Python.
+This is known as the Python Standard Library, or PSL, and it provides all
+sorts of functionality that can come in handy when writing our code. It’s hard to overstate
+how large and useful this library is: it includes modules for most common tasks you can
+imagine, such as string processing, math functions, file and directory access, network utilities,
+and much, much more. You can see the full content of the PSL here: <a class="reference external" href="https://docs.python.org/3/library/">https://docs.python.org/3/library/</a></p>
+<p>We have actually already used two of the modules included with the PSL: the <code class="docutils literal notranslate"><span class="pre">random</span></code> module
+and the <code class="docutils literal notranslate"><span class="pre">math</span></code> module. Now that we know what modules are, we can better understand what is
+happening when we do this:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="go">76</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Based on what we saw earlier this chapter, it would seem that running <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">random</span></code> requires
+that there be a <code class="docutils literal notranslate"><span class="pre">random.py</span></code> file in the same directory as our code. Python <em>will</em> look for
+a <code class="docutils literal notranslate"><span class="pre">random.py</span></code> file in the same directory as our code first but, if it does not find it,
+it will check whether the PSL includes such a module (which it does). So, somewhere
+in the official Python code, there is a <code class="docutils literal notranslate"><span class="pre">random.py</span></code> file containing a bunch of functions
+related to random number generation, including a <code class="docutils literal notranslate"><span class="pre">randint</span></code> function (the actual <code class="docutils literal notranslate"><span class="pre">random.py</span></code>
+is actually a bit more complicated, and involves classes and objects, which we have not yet
+seen).</p>
+<div class="admonition-technical-details admonition">
+<p class="admonition-title">Where exactly is the PSL?</p>
+<p>When you install any piece of software, some of that software will usually be installed
+in a “system directory”, separate from the directories were you (a regular user) keep your own files.
+Without going to deep into how operating systems organize their filesystems, it is
+enough to know that the location of these system directories is well-known by applications
+running in your computer, including the Python interpreter.</p>
+<p>This means that the Python interpreter knows to search through
+those system directories if we ask it to import a module (and that module can’t be found
+in the same directory as our code). For example, this is where you would find the
+<code class="docutils literal notranslate"><span class="pre">random.py</span></code> in most operating systems:</p>
+<ul class="simple">
+<li><p>Windows: <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Python</span> <span class="pre">3.8\lib\random.py</span></code></p></li>
+<li><p>MacOS: <code class="docutils literal notranslate"><span class="pre">/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/random.py</span></code></p></li>
+<li><p>Linux: <code class="docutils literal notranslate"><span class="pre">/usr/lib/python3.8/random.py</span></code></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../intro_functions/index.html" class="btn btn-neutral float-left" title="1.4. Introduction to Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../exceptions/index.html" class="btn btn-neutral float-right" title="1.6. Understanding Errors and Catching Exceptions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Anne Rogers and Borja Sotomayor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

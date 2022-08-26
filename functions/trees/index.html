@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.3. Trees &mdash; Computer Science with Applications  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/csapps.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="4. Working with Data" href="../../working_with_data/index.html" />
+    <link rel="prev" title="3.2. Recursion" href="../recursion/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Computer Science with Applications
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../preface.html">Preface</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_structures/index.html">2. Data Structures</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. Functional Programming and Recursion</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../functions/index.html">3.1. Functional Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../recursion/index.html">3.2. Recursion</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.3. Trees</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-trees">3.3.1. Using Trees</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stimulus-package-data">3.3.2. Stimulus Package data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#internal-representation">3.3.3. Internal representation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#binary-search-tree">3.3.4. Binary Search Tree</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../working_with_data/index.html">4. Working with Data</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Computer Science with Applications</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">3. </span>Functional Programming and Recursion</a> &raquo;</li>
+      <li><span class="section-number">3.3. </span>Trees</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/functions/trees/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="trees">
+<h1><span class="section-number">3.3. </span>Trees<a class="headerlink" href="#trees" title="Permalink to this heading"></a></h1>
+<p>In the previous chapter, we introduced recursion as a different
+way of repeating operations, allowing us to write <em>recursive algorithms</em>
+to solve certain problem. Some data structures, like the <em>tree</em>
+data structure we will discuss in this chapter, also rely on recursion
+and, specifically, the definition of the data structure itself
+is recursive.</p>
+<p>A <em>tree</em> is a recursively-defined data structure that has multiple
+applications in computing. Informally, we can think of it as a root
+node that has multiple nodes as “branches”, and where each of these
+nodes, in turn, can have “branches” of its own. More formally, a tree is
+a rooted acyclic undirected graph. For example, this is a tree:</p>
+<div class="figure align-default">
+<img alt="../../_images/tree.png" src="../../_images/tree.png" />
+</div>
+<p>Notice how there is a root node at the top (unlike real trees, computer
+trees are drawn with the root at the top), and this node has four
+“child” nodes. The right-most child node, in turn, has four child nodes
+of its own. Etc.</p>
+<p>But why is this a recursively-defined data structure? If we look just
+at the right-most child node of the root node, we could “prune” it from
+the root and it would still be a tree:</p>
+<div class="figure align-default">
+<img alt="../../_images/subtree.png" src="../../_images/subtree.png" />
+</div>
+<p>So, informally, a tree is a root node that is connected to other trees.
+More formally, we could define a tree as…</p>
+<blockquote>
+<div><p>A node with <span class="math notranslate nohighlight">\(0\ldots N\)</span> subtrees (or <em>children</em>).</p>
+</div></blockquote>
+<p>Like a recursive algorithm, we have a base case and a recursive case.
+The base case is when we encounter a node with 0 subtrees
+(which is called a <em>leaf node</em>), and the recursive case is
+when we encounter a node that has other trees as subtrees.</p>
+<p>Under this definition, when <span class="math notranslate nohighlight">\(N=2\)</span>, we
+have what is called a <strong>binary tree</strong> (we will talk about these in more
+detail later).</p>
+<div class="figure align-default">
+<img alt="../../_images/binary_tree.png" src="../../_images/binary_tree.png" />
+</div>
+<p>Finally, it is common for each node in a tree to have one or more associated values.
+We will specifically consider each node to have an associated key/value pair.
+As we’ll see later on, there are certain algorithms that rely on trees
+where each node’s key is unique (but the value is not).</p>
+<div class="section" id="using-trees">
+<h2><span class="section-number">3.3.1. </span>Using Trees<a class="headerlink" href="#using-trees" title="Permalink to this heading"></a></h2>
+<p>We are going to start by presenting trees as opaque data structures: for now,
+we won’t worry about their internal representation or  how they work internally, and will interact with them through an API. We provide
+a <code class="docutils literal notranslate"><span class="pre">tree</span></code> module that contains a <code class="docutils literal notranslate"><span class="pre">Tree</span></code> class which we can use to work
+with trees. You can find this module in our <a class="reference internal" href="../../preface.html#example-code"><span class="std std-ref">example code</span></a>
+under <cite>functions/trees/tree.py</cite>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tree</span> <span class="kn">import</span> <span class="n">Tree</span>
+</pre></div>
+</div>
+<p>In particular, we will have access to the following methods:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a tree with a root node with the given key/value pair,</span>
+<span class="c1"># and no children. The key is required but the value is optional</span>
+<span class="c1"># (if ommitted, it will just be None)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+
+<span class="c1"># Properties to access the key and value of a tree (for reading and writing)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">key</span>
+<span class="n">t</span><span class="o">.</span><span class="n">value</span>
+
+<span class="c1"># Take an existing tree t2 and add it as a child to t</span>
+<span class="n">t</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">t2</span><span class="p">)</span>
+
+<span class="c1"># Read-only property that allows us to iterate over the</span>
+<span class="c1"># children of a tree</span>
+<span class="n">t</span><span class="o">.</span><span class="n">children</span>
+
+<span class="c1"># Read-only property that returns the number of children a tree has</span>
+<span class="n">t</span><span class="o">.</span><span class="n">num_children</span>
+
+<span class="c1"># Plot or print a tree</span>
+<span class="n">t</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">t</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Let’s create a tree (for now, we’ll leave the values blank by setting
+them to <code class="docutils literal notranslate"><span class="pre">None</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="s2">&quot;ROOT&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Right now, this tree is just a single node with no subtrees:</p>
+<img alt="../../_images/Trees_8_0.png" src="../../_images/Trees_8_0.png" />
+<p>We can add a child subtree using the <code class="docutils literal notranslate"><span class="pre">add_child</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t1</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="s2">&quot;CHILD 1&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And now we have the “ROOT” node with a single “CHILD 1” child node:</p>
+<img alt="../../_images/tree_single_child.png" src="../../_images/tree_single_child.png" />
+<p>If we add two more children to the root:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t2</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="s2">&quot;CHILD 2&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t3</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="s2">&quot;CHILD 3&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">t2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">t3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then this starts looking more like a tree:</p>
+<img alt="../../_images/tree_three_child.png" src="../../_images/tree_three_child.png" />
+<p>Finally, let’s add more subtrees to the child trees
+we just created:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t1</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span> <span class="n">Tree</span><span class="p">(</span><span class="s2">&quot;GRANDCHILD 1.1&quot;</span><span class="p">)</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t1</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span> <span class="n">Tree</span><span class="p">(</span><span class="s2">&quot;GRANDCHILD 1.2&quot;</span><span class="p">)</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t2</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span> <span class="n">Tree</span><span class="p">(</span><span class="s2">&quot;GRANDCHILD 2.1&quot;</span><span class="p">)</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t3</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span> <span class="n">Tree</span><span class="p">(</span><span class="s2">&quot;GRANDCHILD 3.1&quot;</span><span class="p">)</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t3</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span> <span class="n">Tree</span><span class="p">(</span><span class="s2">&quot;GRANDCHILD 3.2&quot;</span><span class="p">)</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t3</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span> <span class="n">Tree</span><span class="p">(</span><span class="s2">&quot;GRANDCHILD 3.3&quot;</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>And the resulting tree looks like this:</p>
+<img alt="../../_images/Trees_11_0.png" src="../../_images/Trees_11_0.png" />
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">print</span></code> method to get a text representation
+of the tree:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+
+<span class="go">ROOT: None</span>
+<span class="go">  │</span>
+<span class="go">  ├──CHILD 1: None</span>
+<span class="go">  │  │</span>
+<span class="go">  │  ├──GRANDCHILD 1.1: None</span>
+<span class="go">  │  │</span>
+<span class="go">  │  └──GRANDCHILD 1.2: None</span>
+<span class="go">  │</span>
+<span class="go">  ├──CHILD 2: None</span>
+<span class="go">  │  │</span>
+<span class="go">  │  └──GRANDCHILD 2.1: None</span>
+<span class="go">  │</span>
+<span class="go">  └──CHILD 3: None</span>
+<span class="go">     │</span>
+<span class="go">     ├──GRANDCHILD 3.1: None</span>
+<span class="go">     │</span>
+<span class="go">     ├──GRANDCHILD 3.2: None</span>
+<span class="go">     │</span>
+<span class="go">     └──GRANDCHILD 3.3: None</span>
+</pre></div>
+</div>
+<p>Notice how, if we call this method on <code class="docutils literal notranslate"><span class="pre">t1</span></code> (one of the children
+of the <code class="docutils literal notranslate"><span class="pre">t</span></code> tree), we get only the root of <code class="docutils literal notranslate"><span class="pre">t1</span></code> and its children:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t1</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+
+<span class="go">CHILD 1: None</span>
+<span class="go">  │</span>
+<span class="go">  ├──GRANDCHILD 1.1: None</span>
+<span class="go">  │</span>
+<span class="go">  └──GRANDCHILD 1.2: None</span>
+</pre></div>
+</div>
+<p>If we want to do this task for every child of <code class="docutils literal notranslate"><span class="pre">t</span></code>, we can use the
+<code class="docutils literal notranslate"><span class="pre">children</span></code> property to iterate over all of <code class="docutils literal notranslate"><span class="pre">t</span></code>’s
+child subtrees:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">st</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">st</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">()</span>
+<span class="gp">... </span>
+
+<span class="go">CHILD 1: None</span>
+<span class="go">  │</span>
+<span class="go">  ├──GRANDCHILD 1.1: None</span>
+<span class="go">  │</span>
+<span class="go">  └──GRANDCHILD 1.2: None</span>
+
+
+<span class="go">CHILD 2: None</span>
+<span class="go">  │</span>
+<span class="go">  └──GRANDCHILD 2.1: None</span>
+
+
+<span class="go">CHILD 3: None</span>
+<span class="go">  │</span>
+<span class="go">  ├──GRANDCHILD 3.1: None</span>
+<span class="go">  │</span>
+<span class="go">  ├──GRANDCHILD 3.2: None</span>
+<span class="go">  │</span>
+<span class="go">  └──GRANDCHILD 3.3: None</span>
+
+</pre></div>
+</div>
+<p>Now, let’s say we want to write a function to process the contents
+of a tree in some way. Because of their recursive nature, trees
+are easier to process using a recursive algorithm. For example,
+if we wanted to print the key of every node in the tree, we would use
+the following function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">num_children</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># BASE CASE: Leaf node. Print its key</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+       <span class="c1"># RECURSIVE CASE: A node with at least one</span>
+       <span class="c1"># subtree. Print the key of the tree&#39;s root</span>
+       <span class="c1"># node, and then process the subtrees</span>
+       <span class="c1"># recursively.</span>
+       <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+       <span class="k">for</span> <span class="n">st</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+           <span class="n">traverse</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">traverse</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="go">ROOT</span>
+<span class="go">CHILD 1</span>
+<span class="go">GRANDCHILD 1.1</span>
+<span class="go">GRANDCHILD 1.2</span>
+<span class="go">CHILD 2</span>
+<span class="go">GRANDCHILD 2.1</span>
+<span class="go">CHILD 3</span>
+<span class="go">GRANDCHILD 3.1</span>
+<span class="go">GRANDCHILD 3.2</span>
+<span class="go">GRANDCHILD 3.3</span>
+</pre></div>
+</div>
+<p>In this case, we defined a base case and a recursive case that
+matches the recursive definition of the data structure: if we
+encounter a leaf node, we just print its key and we don’t need
+to recurse further (because there are no subtrees) but, if we encounter
+a tree with subtrees, we print the root node’s key, and then recursively
+process the tree’s subtrees.</p>
+<p>We can also rewrite this algorithm like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">st</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+        <span class="n">traverse</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">traverse</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="go">ROOT</span>
+<span class="go">CHILD 1</span>
+<span class="go">GRANDCHILD 1.1</span>
+<span class="go">GRANDCHILD 1.2</span>
+<span class="go">CHILD 2</span>
+<span class="go">GRANDCHILD 2.1</span>
+<span class="go">CHILD 3</span>
+<span class="go">GRANDCHILD 3.1</span>
+<span class="go">GRANDCHILD 3.2</span>
+<span class="go">GRANDCHILD 3.3</span>
+</pre></div>
+</div>
+<p>These two implementations accomplish the exact same thing, but the second
+one doesn’t explicitly separate the base case from the recursive case.
+Instead, if implicitly prevents a recursive call from happening when
+<code class="docutils literal notranslate"><span class="pre">t</span></code> is a leaf node, because <code class="docutils literal notranslate"><span class="pre">t.children</span></code> will return an
+empty list in this case (and <code class="docutils literal notranslate"><span class="pre">traverse</span></code> won’t be called recursively,
+since the body of the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop will never be run).</p>
+<p>Similarly, we can recursively compute the <em>height</em> of a tree, which is
+the longest distance (in number of edges) from the root node to any leaf node.
+For example, the height of this tree is three:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tt</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="s2">&quot;R&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t1</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t2</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tt</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">t2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tt</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t11</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="s2">&quot;1.1&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t12</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="s2">&quot;1.2&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t13</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="s2">&quot;1.3&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t1</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">t11</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t1</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">t12</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t1</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">t13</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t121</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="s2">&quot;1.2.1&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t122</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="s2">&quot;1.2.2&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t12</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">t121</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t12</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">t122</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/tree_height.png" src="../../_images/tree_height.png" />
+<p>If we wanted to compute the height of the tree, one approach we could take is to
+first find all the leaf nodes, compute the distance from each leaf node
+to the root, and then take the maximum of those distances.</p>
+<p>However, we can solve this in a much more simple and elegant way by exploiting
+the recursive nature of the data structure:</p>
+<ol class="arabic simple">
+<li><p>Base case: A leaf node has a height of zero, because it is its own root,
+and thus there are no edges separating it and any other nodes.</p></li>
+<li><p>Recursive case: If we have a tree with a root node and subtrees, then
+we know that the height must be <em>at least</em> one, because there is one
+edge separating the root node and each of its subtrees. We just need
+to find the heights of all the subtrees (by making a recursive call),
+find the maximum of all those heights, and add one to it.</p></li>
+</ol>
+<p>So, we have the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">height</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">num_children</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">subtree_heights</span> <span class="o">=</span> <span class="p">[</span><span class="n">height</span><span class="p">(</span><span class="n">st</span><span class="p">)</span> <span class="k">for</span> <span class="n">st</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">]</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">subtree_heights</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">height</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="stimulus-package-data">
+<h2><span class="section-number">3.3.2. </span>Stimulus Package data<a class="headerlink" href="#stimulus-package-data" title="Permalink to this heading"></a></h2>
+<p>Trees can be very useful when processing data that is structured hierarchically.
+For example, in February 2009, Congress passed the American Recovery and Reinvestment
+Act (aka “the Stimulus Package”), which provided funds for many different
+purposes, including infrastructure projects. The stimulus data can be
+viewed as a tree: the root of the tree represents the whole country, the
+interior nodes in the tree represent states, cities, and categories of
+projects, and the leaves represent specific projects.</p>
+<div class="figure align-default">
+<img alt="../../_images/st.png" src="../../_images/st.png" />
+</div>
+<p>The data about the funds allocated by the stimulus is provided in a CSV
+file with the following fields:</p>
+<ol class="arabic simple">
+<li><p>City</p></li>
+<li><p>State</p></li>
+<li><p>Project description</p></li>
+<li><p>Jobs created by project</p></li>
+<li><p>Project cost</p></li>
+<li><p>Project program</p></li>
+</ol>
+<p>For example, here are four entries in the file corresponding to Addison,
+IL:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Addison</span><span class="p">;</span><span class="n">IL</span><span class="p">;</span><span class="n">Resurfacing</span> <span class="n">of</span> <span class="n">approximately</span> <span class="mi">10</span> <span class="n">miles</span> <span class="n">of</span> <span class="n">various</span> <span class="n">industrial</span> <span class="n">streets</span> <span class="n">within</span> <span class="n">the</span> <span class="n">village</span><span class="o">.</span> <span class="n">Our</span> <span class="n">industrial</span> <span class="n">streets</span> <span class="n">are</span> <span class="n">typical</span> <span class="mi">2</span><span class="o">-</span><span class="n">lanes</span><span class="p">,</span> <span class="mi">44</span> <span class="n">back</span> <span class="n">to</span> <span class="n">back</span> <span class="n">of</span> <span class="n">curb</span> <span class="ow">and</span> <span class="n">gutter</span><span class="o">.</span> <span class="n">It</span> <span class="n">will</span> <span class="n">be</span> <span class="n">resurfaced</span> <span class="k">with</span> <span class="mf">1.5</span> <span class="n">inches</span>  <span class="n">of</span> <span class="n">bituminous</span> <span class="n">asphalt</span><span class="p">,</span> <span class="n">some</span> <span class="n">storm</span> <span class="n">sewers</span><span class="p">,;</span><span class="mi">60</span><span class="p">;</span><span class="mi">12200000</span><span class="p">;</span><span class="n">Streets</span><span class="o">/</span><span class="n">Roads</span><span class="p">;[</span><span class="n">page</span><span class="p">]</span>
+<span class="n">Addison</span><span class="p">;</span><span class="n">IL</span><span class="p">;</span><span class="n">Resurfacing</span> <span class="n">of</span> <span class="n">approximately</span> <span class="mi">10</span> <span class="n">miles</span> <span class="n">of</span> <span class="n">various</span> <span class="n">residential</span> <span class="n">streets</span> <span class="n">within</span> <span class="n">the</span> <span class="n">village</span><span class="o">.</span> <span class="n">Our</span> <span class="n">residential</span> <span class="n">streets</span> <span class="n">are</span> <span class="n">typical</span> <span class="mi">2</span><span class="o">-</span><span class="n">lanes</span><span class="p">,</span> <span class="mi">34</span> <span class="n">back</span> <span class="n">to</span> <span class="n">back</span> <span class="n">of</span> <span class="n">curb</span> <span class="ow">and</span> <span class="n">gutter</span><span class="o">.</span> <span class="n">It</span> <span class="n">will</span> <span class="n">be</span> <span class="n">resurfaced</span> <span class="k">with</span> <span class="mf">1.5</span> <span class="n">inches</span>  <span class="n">of</span> <span class="n">bituminous</span> <span class="n">asphalt</span><span class="p">,</span> <span class="n">some</span> <span class="n">storm</span> <span class="n">sewers</span><span class="p">,;</span><span class="mi">60</span><span class="p">;</span><span class="mi">4400000</span><span class="p">;</span><span class="n">Streets</span><span class="o">/</span><span class="n">Roads</span><span class="p">;[</span><span class="n">page</span><span class="p">]</span>
+<span class="n">Addison</span><span class="p">;</span><span class="n">IL</span><span class="p">;</span><span class="n">Resurfacing</span> <span class="n">of</span> <span class="n">Swift</span> <span class="n">Road</span> <span class="kn">from</span> <span class="nn">US</span> <span class="mi">20</span> <span class="n">to</span> <span class="n">Collins</span> <span class="n">Avenue</span><span class="p">,</span> <span class="n">an</span> <span class="n">approximate</span> <span class="mi">4</span> <span class="n">mile</span> <span class="n">long</span> <span class="n">village</span> <span class="n">minor</span> <span class="n">arterial</span> <span class="n">roadway</span> <span class="k">with</span> <span class="n">a</span> <span class="n">five</span> <span class="n">lane</span> <span class="n">cross</span> <span class="n">section</span> <span class="p">(</span><span class="n">the</span> <span class="n">fifth</span> <span class="n">lane</span> <span class="n">dedicated</span> <span class="k">as</span> <span class="n">a</span> <span class="n">planted</span> <span class="n">median</span> <span class="n">strip</span> <span class="ow">or</span> <span class="n">left</span> <span class="n">turn</span> <span class="n">lane</span><span class="p">)</span> <span class="n">that</span> <span class="n">carries</span> <span class="n">about</span> <span class="mi">20</span><span class="p">,</span><span class="mi">000</span> <span class="n">vehicles</span><span class="p">;</span><span class="mi">60</span><span class="p">;</span><span class="mi">9245000</span><span class="p">;</span><span class="n">Streets</span><span class="o">/</span><span class="n">Roads</span><span class="p">;[</span><span class="n">page</span><span class="p">]</span>
+<span class="n">Addison</span><span class="p">;</span><span class="n">IL</span><span class="p">;</span><span class="n">Provide</span> <span class="n">water</span> <span class="n">to</span> <span class="n">the</span> <span class="mi">53</span> <span class="n">Estetes</span> <span class="n">subdivision</span> <span class="n">by</span> <span class="n">the</span> <span class="n">installation</span> <span class="n">of</span> <span class="n">eight</span> <span class="n">inches</span> <span class="n">diameter</span> <span class="n">watermains</span> <span class="ow">and</span> <span class="n">stubs</span><span class="p">,</span> <span class="n">valve</span> <span class="n">vaults</span><span class="p">,</span> <span class="n">fire</span> <span class="n">hydrants</span><span class="p">,</span> <span class="n">valve</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">bituminous</span> <span class="n">patching</span> <span class="ow">and</span> <span class="n">restoration</span> <span class="n">of</span> <span class="n">disturbed</span> <span class="n">areas</span> <span class="n">such</span> <span class="k">as</span> <span class="n">parkways</span><span class="p">,</span> <span class="n">driveways</span><span class="p">,</span> <span class="n">ditches</span> <span class="ow">and</span> <span class="n">draina</span><span class="p">;</span><span class="mi">50</span><span class="p">;</span><span class="mi">4400000</span><span class="p">;</span><span class="n">Water</span><span class="p">;[</span><span class="n">page</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>However, instead of processing the data row by row, we can load it into
+a tree and process it hierarchically. As shown in the diagram above, the root
+of the tree will be the US as a whole, the children of the root will be
+the states, the children of the state nodes will be the cities, etc. The
+key of each node will be a description, and the associated value for the
+node will be a cost.</p>
+<p>We provide a <code class="docutils literal notranslate"><span class="pre">stimulus</span></code> module that includes several functions to
+work with the stimulus data in a tree-like way:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">stimulus</span>
+</pre></div>
+</div>
+<p>You can find this module in our <a class="reference internal" href="../../preface.html#example-code"><span class="std std-ref">example code</span></a>
+under <cite>functions/trees/stimulus.py</cite>.</p>
+<p>In particular, the <code class="docutils literal notranslate"><span class="pre">read_stimulus_file</span></code> will return a <code class="docutils literal notranslate"><span class="pre">Tree</span></code>
+object. We’ll start by loading just the Addison, IL data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">stimt</span> <span class="o">=</span> <span class="n">stimulus</span><span class="o">.</span><span class="n">read_stimulus_file</span><span class="p">(</span><span class="s2">&quot;data/Addison.txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can now print the tree using the <code class="docutils literal notranslate"><span class="pre">Tree</span></code>’s <code class="docutils literal notranslate"><span class="pre">print</span></code> method.
+We use its <code class="docutils literal notranslate"><span class="pre">vformat</span></code> parameter to print the node values,
+which represent costs, as dollar amounts:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">stimt</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">vformat</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{:,}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="go">US: $0</span>
+<span class="go">  │</span>
+<span class="go">  └──IL: $0</span>
+<span class="go">     │</span>
+<span class="go">     └──Addison: $0</span>
+<span class="go">        │</span>
+<span class="go">        ├──Streets/Roads: $0</span>
+<span class="go">        │  │</span>
+<span class="go">        │  ├──Resurfacing of approximately 10 miles of various industrial</span>
+<span class="go">        │  │  streets within the village. Our industrial streets are typical</span>
+<span class="go">        │  │  2-lanes, 44 back to back of curb and gutter. It will be resurfaced</span>
+<span class="go">        │  │  with 1.5 inches  of bituminous asphalt, some storm sewers,:</span>
+<span class="go">        │  │  $12,200,000</span>
+<span class="go">        │  │</span>
+<span class="go">        │  ├──Resurfacing of approximately 10 miles of various residential</span>
+<span class="go">        │  │  streets within the village. Our residential streets are typical</span>
+<span class="go">        │  │  2-lanes, 34 back to back of curb and gutter. It will be resurfaced</span>
+<span class="go">        │  │  with 1.5 inches  of bituminous asphalt, some storm sewers,:</span>
+<span class="go">        │  │  $4,400,000</span>
+<span class="go">        │  │</span>
+<span class="go">        │  └──Resurfacing of Swift Road from US 20 to Collins Avenue, an</span>
+<span class="go">        │     approximate 4 mile long village minor arterial raodway with a five</span>
+<span class="go">        │     lane cross section (the fifth lane dedicated as a planted median</span>
+<span class="go">        │     strip or left turn lane) that carries about 20,000 vehicles:</span>
+<span class="go">        │     $9,245,000</span>
+<span class="go">        │</span>
+<span class="go">        └──Water: $0</span>
+<span class="go">           │</span>
+<span class="go">           └──Provide water to the 53 Estetes subdivision by the installation of</span>
+<span class="go">              eight inches diameter watermains and stubs, valve vaults, fire</span>
+<span class="go">              hydrants, valve boxes, bituminous patching and restoration of</span>
+<span class="go">              disturbed areas such as parkways, driveways, ditches and draina:</span>
+<span class="go">              $4,400,000</span>
+</pre></div>
+</div>
+<p>The module also includes a <code class="docutils literal notranslate"><span class="pre">print_stimulus_tree</span></code> function
+that will print the tree in the manner shown above.</p>
+<p>Notice how the tree includes the cost values for the individual projects, since
+that’s the data contained in the file. It would be nice if we could
+aggregate these values so, for example, the <code class="docutils literal notranslate"><span class="pre">IL</span></code> node contained the
+sum of all the project nodes under it:</p>
+<div class="figure align-default">
+<img alt="../../_images/st-il-addison.png" src="../../_images/st-il-addison.png" />
+</div>
+<p>Because trees are a recursive data structure, we can easily
+implement this task with a recursive algorithm:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">aggregate_stimulus_values</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">num_children</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># We&#39;ve reached a leaf node. The value of the</span>
+        <span class="c1"># node will be the cost of a project</span>
+        <span class="k">return</span> <span class="n">t</span><span class="o">.</span><span class="n">value</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># We&#39;re not at a leaf node yet, which means</span>
+        <span class="c1"># we need to aggregate the values from all</span>
+        <span class="c1"># the child trees</span>
+        <span class="n">total_cost</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">st</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="n">total_cost</span> <span class="o">+=</span> <span class="n">aggregate_stimulus_values</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
+
+        <span class="c1"># Once we have the total cost, we modify the value of this</span>
+        <span class="c1"># tree&#39;s root node to reflect that total cost.</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">total_cost</span>
+
+        <span class="k">return</span> <span class="n">total_cost</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aggregate_stimulus_values</span><span class="p">(</span><span class="n">stimt</span><span class="p">)</span>
+<span class="go">30245000</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stimulus</span><span class="o">.</span><span class="n">print_stimulus_tree</span><span class="p">(</span><span class="n">stimt</span><span class="p">)</span>
+
+<span class="go">US: $30,245,000</span>
+<span class="go">  │</span>
+<span class="go">  └──IL: $30,245,000</span>
+<span class="go">     │</span>
+<span class="go">     └──Addison: $30,245,000</span>
+<span class="go">        │</span>
+<span class="go">        ├──Streets/Roads: $25,845,000</span>
+<span class="go">        │  │</span>
+<span class="go">        │  ├──Resurfacing of approximately 10 miles of various industrial</span>
+<span class="go">        │  │  streets within the village. Our industrial streets are typical</span>
+<span class="go">        │  │  2-lanes, 44 back to back of curb and gutter. It will be resurfaced</span>
+<span class="go">        │  │  with 1.5 inches  of bituminous asphalt, some storm sewers,:</span>
+<span class="go">        │  │  $12,200,000</span>
+<span class="go">        │  │</span>
+<span class="go">        │  ├──Resurfacing of approximately 10 miles of various residential</span>
+<span class="go">        │  │  streets within the village. Our residential streets are typical</span>
+<span class="go">        │  │  2-lanes, 34 back to back of curb and gutter. It will be resurfaced</span>
+<span class="go">        │  │  with 1.5 inches  of bituminous asphalt, some storm sewers,:</span>
+<span class="go">        │  │  $4,400,000</span>
+<span class="go">        │  │</span>
+<span class="go">        │  └──Resurfacing of Swift Road from US 20 to Collins Avenue, an</span>
+<span class="go">        │     approximate 4 mile long village minor arterial raodway with a five</span>
+<span class="go">        │     lane cross section (the fifth lane dedicated as a planted median</span>
+<span class="go">        │     strip or left turn lane) that carries about 20,000 vehicles:</span>
+<span class="go">        │     $9,245,000</span>
+<span class="go">        │</span>
+<span class="go">        └──Water: $4,400,000</span>
+<span class="go">           │</span>
+<span class="go">           └──Provide water to the 53 Estetes subdivision by the installation of</span>
+<span class="go">              eight inches diameter watermains and stubs, valve vaults, fire</span>
+<span class="go">              hydrants, valve boxes, bituminous patching and restoration of</span>
+<span class="go">              disturbed areas such as parkways, driveways, ditches and draina:</span>
+<span class="go">              $4,400,000</span>
+</pre></div>
+</div>
+<p>Now, we can run this on the entire dataset:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">stimt</span> <span class="o">=</span> <span class="n">stimulus</span><span class="o">.</span><span class="n">read_stimulus_file</span><span class="p">(</span><span class="s2">&quot;data/Stimulus.txt&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stimulus</span><span class="o">.</span><span class="n">print_stimulus_tree</span><span class="p">(</span><span class="n">stimt</span><span class="p">,</span> <span class="n">maxdepth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="go">US: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──AK: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──AL: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──AR: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──AZ: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──CA: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──CO: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──CT: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──DC: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──DE: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──FL: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──GA: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──HI: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──IA: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──ID: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──IL: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──IN: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──KS: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──KY: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──LA: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──MA: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──MD: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──ME: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──MI: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──MN: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──MO: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──MS: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──MT: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──NC: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──ND: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──NE: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──NJ: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──NM: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──NV: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──NY: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──OH: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──OK: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──OR: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──PA: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──PR: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──RI: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──SC: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──SD: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──TN: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──TX: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──UT: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──VA: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──VT: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──WA: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──WI: $0</span>
+<span class="go">  │</span>
+<span class="go">  ├──WV: $0</span>
+<span class="go">  │</span>
+<span class="go">  └──WY: $0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aggregate_stimulus_values</span><span class="p">(</span><span class="n">stimt</span><span class="p">)</span>
+<span class="go">149758339820</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stimulus</span><span class="o">.</span><span class="n">print_stimulus_tree</span><span class="p">(</span><span class="n">stimt</span><span class="p">,</span> <span class="n">maxdepth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="go">US: $149,758,339,820</span>
+<span class="go">  │</span>
+<span class="go">  ├──AK: $415,682,000</span>
+<span class="go">  │</span>
+<span class="go">  ├──AL: $3,675,416,025</span>
+<span class="go">  │</span>
+<span class="go">  ├──AR: $1,059,150,740</span>
+<span class="go">  │</span>
+<span class="go">  ├──AZ: $5,574,053,214</span>
+<span class="go">  │</span>
+<span class="go">  ├──CA: $23,194,447,835</span>
+<span class="go">  │</span>
+<span class="go">  ├──CO: $2,447,922,036</span>
+<span class="go">  │</span>
+<span class="go">  ├──CT: $2,650,247,958</span>
+<span class="go">  │</span>
+<span class="go">  ├──DC: $91,700,000</span>
+<span class="go">  │</span>
+<span class="go">  ├──DE: $52,000,000</span>
+<span class="go">  │</span>
+<span class="go">  ├──FL: $15,644,718,735</span>
+<span class="go">  │</span>
+<span class="go">  ├──GA: $2,622,606,973</span>
+<span class="go">  │</span>
+<span class="go">  ├──HI: $2,390,826,455</span>
+<span class="go">  │</span>
+<span class="go">  ├──IA: $185,815,080</span>
+<span class="go">  │</span>
+<span class="go">  ├──ID: $884,584,750</span>
+<span class="go">  │</span>
+<span class="go">  ├──IL: $3,108,484,657</span>
+<span class="go">  │</span>
+<span class="go">  ├──IN: $2,598,965,295</span>
+<span class="go">  │</span>
+<span class="go">  ├──KS: $528,306,310</span>
+<span class="go">  │</span>
+<span class="go">  ├──KY: $1,519,552,354</span>
+<span class="go">  │</span>
+<span class="go">  ├──LA: $3,852,297,704</span>
+<span class="go">  │</span>
+<span class="go">  ├──MA: $1,072,920,450</span>
+<span class="go">  │</span>
+<span class="go">  ├──MD: $405,439,000</span>
+<span class="go">  │</span>
+<span class="go">  ├──ME: $219,461,480</span>
+<span class="go">  │</span>
+<span class="go">  ├──MI: $2,761,766,561</span>
+<span class="go">  │</span>
+<span class="go">  ├──MN: $983,556,849</span>
+<span class="go">  │</span>
+<span class="go">  ├──MO: $3,760,293,491</span>
+<span class="go">  │</span>
+<span class="go">  ├──MS: $2,433,551,064</span>
+<span class="go">  │</span>
+<span class="go">  ├──MT: $249,272,000</span>
+<span class="go">  │</span>
+<span class="go">  ├──NC: $1,976,159,270</span>
+<span class="go">  │</span>
+<span class="go">  ├──ND: $95,217,000</span>
+<span class="go">  │</span>
+<span class="go">  ├──NE: $380,458,530</span>
+<span class="go">  │</span>
+<span class="go">  ├──NJ: $2,685,299,405</span>
+<span class="go">  │</span>
+<span class="go">  ├──NM: $2,937,146,132</span>
+<span class="go">  │</span>
+<span class="go">  ├──NV: $1,521,987,313</span>
+<span class="go">  │</span>
+<span class="go">  ├──NY: $1,272,563,174</span>
+<span class="go">  │</span>
+<span class="go">  ├──OH: $4,233,069,611</span>
+<span class="go">  │</span>
+<span class="go">  ├──OK: $1,746,435,943</span>
+<span class="go">  │</span>
+<span class="go">  ├──OR: $909,352,610</span>
+<span class="go">  │</span>
+<span class="go">  ├──PA: $4,448,759,130</span>
+<span class="go">  │</span>
+<span class="go">  ├──PR: $22,093,053,760</span>
+<span class="go">  │</span>
+<span class="go">  ├──RI: $779,277,080</span>
+<span class="go">  │</span>
+<span class="go">  ├──SC: $1,462,423,985</span>
+<span class="go">  │</span>
+<span class="go">  ├──SD: $471,900,000</span>
+<span class="go">  │</span>
+<span class="go">  ├──TN: $338,370,000</span>
+<span class="go">  │</span>
+<span class="go">  ├──TX: $10,775,423,039</span>
+<span class="go">  │</span>
+<span class="go">  ├──UT: $1,698,190,678</span>
+<span class="go">  │</span>
+<span class="go">  ├──VA: $2,305,689,266</span>
+<span class="go">  │</span>
+<span class="go">  ├──VT: $145,075,439</span>
+<span class="go">  │</span>
+<span class="go">  ├──WA: $1,713,748,676</span>
+<span class="go">  │</span>
+<span class="go">  ├──WI: $1,234,364,263</span>
+<span class="go">  │</span>
+<span class="go">  ├──WV: $700,000</span>
+<span class="go">  │</span>
+<span class="go">  └──WY: $150,636,500</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="internal-representation">
+<h2><span class="section-number">3.3.3. </span>Internal representation<a class="headerlink" href="#internal-representation" title="Permalink to this heading"></a></h2>
+<p>So far, we have been working with trees by using a <code class="docutils literal notranslate"><span class="pre">Tree</span></code>
+class with a series of methods and properties that are useful
+when writing tree-based algorithms. But how do we represent
+trees internally? Earlier, we defined a tree as…</p>
+<blockquote>
+<div><p>A node with <span class="math notranslate nohighlight">\(0\ldots N\)</span> subtrees (or <em>children</em>).</p>
+</div></blockquote>
+<p>We also said that we would consider each node in a tree to
+store a key/value pair. So, a <code class="docutils literal notranslate"><span class="pre">Tree</span></code> object <code class="docutils literal notranslate"><span class="pre">t</span></code> must contain the information about
+that tree’s root node, and references to the other
+<code class="docutils literal notranslate"><span class="pre">Tree</span></code> objects that are <code class="docutils literal notranslate"><span class="pre">t</span></code>’s child subtrees. We can do this
+with three private attributes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_k</span></code>: The key of the root node</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_v</span></code>: The value of the root node</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_children</span></code>: The list of child subtrees.</p></li>
+</ul>
+<p>Whenever we create a <code class="docutils literal notranslate"><span class="pre">Tree</span></code> object, we’re creating a single node
+with no children (so the <code class="docutils literal notranslate"><span class="pre">_children</span></code> list will be empty). To build
+the rest of the tree, we add other <code class="docutils literal notranslate"><span class="pre">Tree</span></code> objects to the <code class="docutils literal notranslate"><span class="pre">_children</span></code>
+list by using the <code class="docutils literal notranslate"><span class="pre">add_child</span></code> method, which simply does the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other_tree</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">other_tree</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let’s take a look at the tree we created earlier:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+
+<span class="go">ROOT: None</span>
+<span class="go">  │</span>
+<span class="go">  ├──CHILD 1: None</span>
+<span class="go">  │  │</span>
+<span class="go">  │  ├──GRANDCHILD 1.1: None</span>
+<span class="go">  │  │</span>
+<span class="go">  │  └──GRANDCHILD 1.2: None</span>
+<span class="go">  │</span>
+<span class="go">  ├──CHILD 2: None</span>
+<span class="go">  │  │</span>
+<span class="go">  │  └──GRANDCHILD 2.1: None</span>
+<span class="go">  │</span>
+<span class="go">  └──CHILD 3: None</span>
+<span class="go">     │</span>
+<span class="go">     ├──GRANDCHILD 3.1: None</span>
+<span class="go">     │</span>
+<span class="go">     ├──GRANDCHILD 3.2: None</span>
+<span class="go">     │</span>
+<span class="go">     └──GRANDCHILD 3.3: None</span>
+</pre></div>
+</div>
+<p>We can see that its <code class="docutils literal notranslate"><span class="pre">_children</span></code> attribute is a list with three
+<code class="docutils literal notranslate"><span class="pre">Tree</span></code> objects (corresponding to <code class="docutils literal notranslate"><span class="pre">CHILD</span> <span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">CHILD</span> <span class="pre">2</span></code>,
+<code class="docutils literal notranslate"><span class="pre">CHILD</span> <span class="pre">3</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">_children</span>
+<span class="go">[&lt;tree.Tree object at 0x7f7e5bbefc10&gt;, &lt;tree.Tree object at 0x7f7e5bb93280&gt;, &lt;tree.Tree object at 0x7f7e5bb9d4f0&gt;]</span>
+</pre></div>
+</div>
+<p>If we look at its first child’s <code class="docutils literal notranslate"><span class="pre">_children</span></code> attribute, we
+will see it is a list with two <code class="docutils literal notranslate"><span class="pre">Tree</span></code> objects (corresponding
+to <code class="docutils literal notranslate"><span class="pre">GRANDCHILD</span> <span class="pre">1.1</span></code> and <code class="docutils literal notranslate"><span class="pre">GRANDCHILD</span> <span class="pre">1.2</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">_children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_children</span>
+<span class="go">[&lt;tree.Tree object at 0x7f7e5bbb8670&gt;, &lt;tree.Tree object at 0x7f7e5bbc1e50&gt;]</span>
+</pre></div>
+</div>
+<p>And if we look at the <code class="docutils literal notranslate"><span class="pre">_children</span></code> attribute of either of those
+trees, we will see they contain empty lists, because they are
+leaf nodes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">_children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_children</span>
+<span class="go">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">_children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_children</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">_children</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<p>So, the recursive nature of the tree data structure is embodied
+in the <code class="docutils literal notranslate"><span class="pre">_children</span></code> attribute, which can contain other <code class="docutils literal notranslate"><span class="pre">Tree</span></code>
+objects which, in turn, can contain other <code class="docutils literal notranslate"><span class="pre">Tree</span></code>
+objects, etc. However, we do not access values in the tree
+by writing endless chains of <code class="docutils literal notranslate"><span class="pre">._children[]</span></code> expressions. Instead,
+we exploit the recursive nature of the data structure to
+write recursive algorithms.</p>
+<p>While the above representation could be enough in many cases,
+it would not be enough to represent represent
+<span class="math notranslate nohighlight">\(n\)</span>-trees: trees where every node has exactly <span class="math notranslate nohighlight">\(n\)</span>
+subtrees. However, this would seem to prevent us from ever
+reaching a leaf node (which have <em>no</em> subtrees). An
+<span class="math notranslate nohighlight">\(n\)</span>-tree is actually defined as being:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>The null tree, or</p></li>
+<li><p>A node with <span class="math notranslate nohighlight">\(n\)</span> subtrees.</p></li>
+</ol>
+</div></blockquote>
+<p>In this definition, a “null tree” is similar to having a null set:
+it is a tree composed of zero nodes. A leaf node is then defined
+as a single node where all <span class="math notranslate nohighlight">\(n\)</span> subtrees of the leaf node
+are null trees. Our implementation of the <code class="docutils literal notranslate"><span class="pre">Tree</span></code> class, a null
+tree is simply a <code class="docutils literal notranslate"><span class="pre">Tree</span></code> object with all its attributes
+(<code class="docutils literal notranslate"><span class="pre">_k</span></code>, <code class="docutils literal notranslate"><span class="pre">_v</span></code>, and <code class="docutils literal notranslate"><span class="pre">_children</span></code>) set to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<p>Our implementation, however, does not require using <span class="math notranslate nohighlight">\(n\)</span>-trees.
+In fact, notice how none of the examples we have seen so far actually
+involved using null trees. However, if we wanted to use our <code class="docutils literal notranslate"><span class="pre">Tree</span></code>
+class to work with an <span class="math notranslate nohighlight">\(n\)</span>-tree, we would just need to make sure
+that every time we create a <code class="docutils literal notranslate"><span class="pre">Tree</span></code>, we initialize its list of children
+with null trees. We will see an example of this in the next section,
+where we will discuss a special kind of <span class="math notranslate nohighlight">\(n\)</span>-tree where <span class="math notranslate nohighlight">\(n=2\)</span>:
+binary search trees.</p>
+</div>
+<div class="section" id="binary-search-tree">
+<h2><span class="section-number">3.3.4. </span>Binary Search Tree<a class="headerlink" href="#binary-search-tree" title="Permalink to this heading"></a></h2>
+<p>A binary search tree, or BST, is a particular type of tree that has a
+number of interesting properties. It is a particular case of the general
+tree we’ve seen so far, but where every tree always has two child trees.
+We refer to these as the <em>left child</em> and the <em>right child</em>, and either
+or both of these child trees can be null.</p>
+<p>Binary search trees also have the following property:</p>
+<blockquote>
+<div><p>Given a non-null tree with key <span class="math notranslate nohighlight">\(k\)</span>, all the nodes in the left
+child must have keys that are strictly less than <span class="math notranslate nohighlight">\(k\)</span>, and all
+the nodes in the right child must have keys that are strictly
+greater than <span class="math notranslate nohighlight">\(k\)</span>.</p>
+</div></blockquote>
+<p>For example, this is a valid BST:</p>
+<div class="figure align-default">
+<img alt="../../_images/binary_tree_labelled.png" src="../../_images/binary_tree_labelled.png" />
+</div>
+<p>But this is not:</p>
+<div class="figure align-default">
+<img alt="Tree" src="../../_images/binary_tree_labelled_wrong.png" />
+</div>
+<p>Why? Key <code class="docutils literal notranslate"><span class="pre">47</span></code> appears on the right child of <code class="docutils literal notranslate"><span class="pre">50</span></code>, which violates the
+BST property. Notice how, if we looked at the right child in isolation
+(i.e., a tree rooted at <code class="docutils literal notranslate"><span class="pre">90</span></code>), that tree <em>would</em> be a valid BST.</p>
+<p>The operations on a BST are similar to those on a general tree, except
+we have to make sure the BST property is always maintained. So, for
+example, we can’t create subtrees in arbitrary places like we did with
+the <code class="docutils literal notranslate"><span class="pre">add_child</span></code> method. Instead, we have a BST-specific <code class="docutils literal notranslate"><span class="pre">insert</span></code>
+method that inserts a key into the tree in such a way that the
+BST property is maintained. In the following examples, we will
+be using a <code class="docutils literal notranslate"><span class="pre">bst</span></code> module that you can find in our <a class="reference internal" href="../../preface.html#example-code"><span class="std std-ref">example code</span></a>
+under <cite>functions/trees/bst.py</cite>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bst</span> <span class="kn">import</span> <span class="n">BST</span>
+
+<span class="n">bt</span> <span class="o">=</span> <span class="n">BST</span><span class="p">()</span>
+
+<span class="n">bt</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="s2">&quot;fifty&quot;</span><span class="p">)</span>
+<span class="n">bt</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;thirty&quot;</span><span class="p">)</span>
+<span class="n">bt</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;five&quot;</span><span class="p">)</span>
+<span class="n">bt</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="s2">&quot;twenty&quot;</span><span class="p">)</span>
+<span class="n">bt</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="s2">&quot;ninety&quot;</span><span class="p">)</span>
+<span class="n">bt</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="s2">&quot;seventy&quot;</span><span class="p">)</span>
+<span class="n">bt</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">110</span><span class="p">,</span> <span class="s2">&quot;one hundred and ten&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bt</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+
+<span class="go">50: fifty</span>
+<span class="go">  │</span>
+<span class="go">  ├──30: thirty</span>
+<span class="go">  │  │</span>
+<span class="go">  │  ├──5: five</span>
+<span class="go">  │  │  │</span>
+<span class="go">  │  │  ├──NULL</span>
+<span class="go">  │  │  │</span>
+<span class="go">  │  │  └──20: twenty</span>
+<span class="go">  │  │     │</span>
+<span class="go">  │  │     ├──NULL</span>
+<span class="go">  │  │     │</span>
+<span class="go">  │  │     └──NULL</span>
+<span class="go">  │  │</span>
+<span class="go">  │  └──NULL</span>
+<span class="go">  │</span>
+<span class="go">  └──90: ninety</span>
+<span class="go">     │</span>
+<span class="go">     ├──70: seventy</span>
+<span class="go">     │  │</span>
+<span class="go">     │  ├──NULL</span>
+<span class="go">     │  │</span>
+<span class="go">     │  └──NULL</span>
+<span class="go">     │</span>
+<span class="go">     └──110: one hundred and ten</span>
+<span class="go">        │</span>
+<span class="go">        ├──NULL</span>
+<span class="go">        │</span>
+<span class="go">        └──NULL</span>
+</pre></div>
+</div>
+<p>Notice how all the leaf nodes have two null trees as children.</p>
+<p>The BST property means that searching in trees is much more efficient
+than searching in lists, because we can progressively divide the search
+space in two, just like we did when using binary search. In fact,
+the algorithm to search a BST <em>is</em> binary search, except instead
+of splitting a list in two, we decide to look in either the
+left subtree or the right subtree.</p>
+<p>The following is the implementation of the <code class="docutils literal notranslate"><span class="pre">find</span></code> method. The
+<code class="docutils literal notranslate"><span class="pre">__left</span></code> and <code class="docutils literal notranslate"><span class="pre">__right</span></code> properties in this code refer to
+the left and right subtree of the current tree.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Finds a node with a given key in the tree.</span>
+
+<span class="sd">    If such a key exists, it returns a tuple with</span>
+<span class="sd">    True and the value associated with that key.</span>
+
+<span class="sd">    Otherwise, it returns (False, None)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_null</span><span class="p">():</span>
+       <span class="k">return</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+       <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__left</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+       <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__right</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+       <span class="k">return</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bt</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="go">(True, &#39;ninety&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bt</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="go">(False, None)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bt</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">51</span><span class="p">)</span>
+<span class="go">(False, None)</span>
+</pre></div>
+</div>
+<p>To compare the performance of a list versus a tree, let’s
+let’s create a list with 100,000 random integers, and
+then insert those integers into a BST:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">MAXSIZE</span> <span class="o">=</span> <span class="mi">100000</span>
+
+<span class="n">nums</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">MAXSIZE</span><span class="p">))</span>
+<span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+
+<span class="n">numst</span> <span class="o">=</span> <span class="n">BST</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+    <span class="n">numst</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, we can use IPython’s <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> to compare how
+long it takes to find random values inside the list
+and inside the BST:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">nums</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">MAXSIZE</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="mi">1000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">749</span> <span class="n">µs</span> <span class="n">per</span> <span class="n">loop</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">numst</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">MAXSIZE</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="mi">100000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">11.1</span> <span class="n">µs</span> <span class="n">per</span> <span class="n">loop</span>
+</pre></div>
+</div>
+<p>Finding in an unsorted list takes <em>linear</em> time: we may have to search all the way
+to the end of the list to find the value we’re looking for. Finding in a
+tree takes <em>logarithmic</em> time, since we can use binary search to divide the
+search space in half in each step.</p>
+<p>However, this requires loading all the data into the tree first. Inserting <span class="math notranslate nohighlight">\(n\)</span>
+values into a BST takes <span class="math notranslate nohighlight">\(O(n\cdot \log_2 n)\)</span> time (each individual insertion
+takes  <span class="math notranslate nohighlight">\(O(\log_2 n)\)</span> time), while inserting <span class="math notranslate nohighlight">\(n\)</span> values into a list
+takes <span class="math notranslate nohighlight">\(O(n)\)</span> time. Of course, if we’re going to perform many search operations,
+the increased cost of loading the data into the tree (which is a one-time operation)
+may be worthwhile.</p>
+<p>There is a caveat, though: finding an element in a tree takes <span class="math notranslate nohighlight">\(O(\log_2 n)\)</span>
+if the tree is <em>balanced</em>. A tree is said to be balanced if the difference in the
+height of left and right subtree is not be greater than 1. The insertion
+algorithm we’ve implemented in our BST does not guarantee this property.
+In fact, our trees will usually look like this:</p>
+<img alt="../../_images/Trees_73_0.png" src="../../_images/Trees_73_0.png" />
+<p>And, in the worse case scenario, if we insert all the values into the tree
+in order, we could end up with a tree that looks like this:</p>
+<img alt="../../_images/Trees_75_0.png" src="../../_images/Trees_75_0.png" />
+<p>In the above tree, all the left subtrees are null, which means we’ve
+effectively ended up with a list. While our BST implementation makes
+no attempt to keep the tree balanced, there are other types of BSTs
+(such as AVL trees or Red-Black trees)
+that keep the tree balanced, at the expense of more complex insertion
+algorithms.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../recursion/index.html" class="btn btn-neutral float-left" title="3.2. Recursion" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../working_with_data/index.html" class="btn btn-neutral float-right" title="4. Working with Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Anne Rogers and Borja Sotomayor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
