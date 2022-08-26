@@ -1,0 +1,953 @@
+{
+  "CMSC 33600":{
+    "Instructor(s)":"D. MacQueen",
+    "Note(s)":"CMSC 22100 recommended.",
+    "name":"Type Systems for Programming Languages",
+    "Terms Offered":"Winter",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"Consent of departmental counselor",
+    "desc":"This course covers the basic ideas of type systems, their formal properties, their role in programming language design, and their implementation. Exercises involving design and implementation explore the various options and issues"
+  },
+  "CMSC 23340":{
+    "Instructor(s)":"I. Foster",
+    "name":"Grid Computing",
+    "Prerequisite(s)":"Substantial programming experience",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Winter. Not offered 2011\u201312.",
+    "desc":"The new Open Grid Services Architecture (OGSA) defines interfaces and protocols that promise to make it far easier to construct decentralized, dynamic, large-scale systems. We explore and evaluate this technology by using it to develop a range of scalable distributed services. We use the Globus Toolkit, an open source implementation of key OGSA standards, to design and build services. We then evaluate our implementations from the perspectives of performance and programmability"
+  },
+  "CMSC 11200":{
+    "Instructor(s)":"W. Sterner",
+    "Note(s)":"Offered in alternate years. Some experience with computers helpful. This course does not meet the general education requirement in the mathematical sciences.",
+    "name":"Introduction to Interactive Logic",
+    "Terms Offered":"Not offered 2011\u201312",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"MATH 10600, or placement into 13100 or equivalent",
+    "desc":"No programming skills are assumed, but those with some programming background do projects with HyperCard, a Computer Assisted Design package, Prolog, or other software. The course continues in the same spirit as CMSC 11000-11100, but they are not prerequisites. This hands-on course presents logic as a concrete discipline that is used for understanding and creating human-computer technology in the context of science, technology, and society. We look at computer science, logic, philosophy, aesthetics, design, and the study of technology, as well as at the software packages of Tarski's World and possibly HyperProof"
+  },
+  "CMSC 27100":{
+    "Instructor(s)":"C. Klivans",
+    "Note(s)":"This is a directed course in mathematical topics and techniques that is a prerequisite for courses such as CMSC 2720 and 27400.",
+    "name":"Discrete Mathematics",
+    "Terms Offered":"Autumn",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"CMSC 15300, or placement into MATH 15100 or equivalent",
+    "desc":"This course emphasizes mathematical discovery and rigorous proof, which are illustrated on a refreshing variety of accessible and useful topics. Basic counting is a recurring theme and provides the most important source for sequences, which is another recurring theme. Further topics include proof by induction; recurrences and Fibonacci numbers; graph theory and trees; number theory, congruences, and Fermat's little theorem; counting, factorials, and binomial coefficients; combinatorial probability; random variables, expected value, and variance; and limits of sequences, asymtotic equality, and rates of growth"
+  },
+  "CMSC 29900":{
+    "Note(s)":"Open to fourth-year students who are candidates for honors in Computer Science",
+    "name":"Bachelor's Thesis",
+    "Prerequisite(s)":"Consent of instructor and departmental counselor. Students are required to submit the College Reading and Research Course Form.",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Summer, Autumn, Winter, Spring",
+    "desc":""
+  },
+  "CMSC 25400":{
+    "Equivalent Course(s)":"STAT 27725",
+    "name":"Machine Learning",
+    "Prerequisite(s)":"CMSC 15300, CMSC 15400. STAT 22000 or STAT 23400 strongly recommended.",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Winter",
+    "desc":"This course offers a practical, problem-centered introduction to machine learning. Topics covered include the Perceptron and other online algorithms; boosting; graphical models and message passing; dimensionality reduction and manifold learning; SVMs and other kernel methods; and a short introduction to statistical learning theory. Weekly programming assignments give students the opportunity to try out each learning algorithm on real world datasets."
+  },
+  "CMSC 37000":{
+    "Instructor(s)":"L. Babai",
+    "name":"Algorithms",
+    "Prerequisite(s)":"Consent of departmental counselor. CMSC 27200 or consent of instructor.",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Winter",
+    "desc":"The focus of this course is the analysis and design of efficient algorithms, with emphasis on ideas rather than on implementation. Algorithmic questions include sorting and searching, discrete optimization, algorithmic graph theory, algorithmic number theory, and cryptography. Design techniques include \"divide-and-conquer\" methods, dynamic programming, greedy algorithms, and graph search, as well as the design of efficient data structures. Methods of algorithm analysis include asymptotic notation, evaluation of recurrent inequalities, the concepts of polynomial-time algorithms, and NP-completeness"
+  },
+  "CMSC 22200":{
+    "Instructor(s)":"R. Stevens",
+    "name":"Computer Architecture",
+    "Prerequisite(s)":"CMSC 15400",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn",
+    "desc":"This course is a survey of contemporary computer organization covering CPU design, instruction sets, control, processors, busses, ALU, memory, pipelined computers, multiprocessors, networking, and case studies. We focus on the techniques of quantitative analysis and evaluation of modern computing systems, such as the selection of appropriate benchmarks to reveal and compare the performance of alternative design choices in system design. We emphasize major component subsystems of high-performance computers: pipelining, instruction-level parallelism, memory hierarchies, input/output, and network-oriented interconnections"
+  },
+  "CMSC 38815":{
+    "Instructor(s)":"K. Mulmuley",
+    "Note(s)":"Background in algebraic geometry or representation theory not required",
+    "name":"Geometric Complexity",
+    "Terms Offered":"Autumn",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"Consent of departmental counselor and instructor",
+    "desc":"This course provides a basic introduction to geometric complexity theory, an approach to the P vs. NP and related problems through algebraic geometry and representation theory"
+  },
+  "CMSC 39600":{
+    "name":"Topics in Theoretical Computer Science",
+    "Prerequisite(s)":"Consent of departmental counselor and instructor",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn, Winter, Spring",
+    "desc":"This course is a seminar on current research in theoretical computer science"
+  },
+  "CMSC 34710":{
+    "Instructor(s)":"R. Stevens",
+    "name":"Wireless Sensor Networks",
+    "Prerequisite(s)":"Consent of departmental counselor. Graduate-level understanding of Unix/Linux operating systems, networking, computer architecture, and programming",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Not offered 2011\u201312",
+    "desc":"This course introduces the concepts and technologies for building embedded systems and wireless sensors nets by focusing on four areas: low-power hardware, wireless networking, embedded operating systems, and sensors. Two assignments provide hands-on experience by deploying small wireless sensor motes running TinyOS to form an ad-hoc peer-to-peer network that can collect environmental data and forward it back to an 802.11b-equiped embedded Linux module. Students also read and summarize papers, participate in classroom discussions, and work on a team research project"
+  },
+  "CMSC 37110":{
+    "Instructor(s)":"L. Babai",
+    "name":"Discrete Mathematics",
+    "Prerequisite(s)":"Consent of departmental counselor and instructor",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn",
+    "desc":"This course emphasizes mathematical discovery and rigorous proof, illustrated on a variety of accessible and useful topics, including basic number theory, asymptotic growth of sequences, combinatorics and graph theory, discrete probability, and finite Markov chains. This course includes an introduction to linear algebra"
+  },
+  "CMSC 27700-27800":{
+    "title":"Mathematical Logic I-II",
+    "is sequence":true,
+    "desc":"Mathematical Logic I-II"
+  },
+  "CMSC 12100-12200-12300":{
+    "title":"Computer Science with Applications I-II-III",
+    "is sequence":true,
+    "desc":"This three-quarter sequence teaches computational thinking and skills to students who are majoring in the sciences, mathematics, and economics. Lectures cover topics in (1) programming, such as recursion, abstract data types, and processing data; (2) computer science, such as clustering methods, event-driven simulation, and theory of computation; and to a lesser extent (3) numerical computation, such as approximating functions and their derivatives and integrals, solving systems of linear equations, and simple Monte Carlo techniques. Applications from a wide variety of fields serve both as examples in lectures and as the basis for programming assignments. In recent offerings, students have written programs to evaluate betting strategies, determine the number of machines needed at a polling place, and predict the size of extinct marsupials. Students learn Java, Python, R and C++."
+  },
+  "CMSC 15400":{
+    "Instructor(s)":"G. Kindlmann",
+    "Note(s)":"Required of students who are majoring in Computer Science.",
+    "name":"Introduction to Computer Systems",
+    "Terms Offered":"Spring",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"CMSC 15200 or 12200",
+    "desc":"This course covers the basics of computer systems from a programmer's perspective. Topics include data representation, machine language programming, exceptions, code optimization, performance measurement, memory systems, and system-level I/O. Extensive programming required"
+  },
+  "CMSC 34000":{
+    "Instructor(s)":"L. R. Scott",
+    "Note(s)":"This course is offered in alernate years.",
+    "name":"Scientific Parallel Computing",
+    "Terms Offered":"Autumn",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"Consent of departmental counselor and instructor required; experience in scientific computing recommended",
+    "desc":"This course covers the use of multiple processors cooperating to solve a common task, as well as related issues in computer architecture, performance analysis, prediction and measurement, programming languages, and algorithms for large-scale computation. Programming at least one parallel computer is required. Possibilities include one of the clusters of workstations connected by high-speed networks on campus. We focus on state-of-the-art parallel algorithms for scientific computing. Topics are based on interest. General principles of parallel computing are emphasized"
+  },
+  "CMSC 10100":{
+    "Instructor(s)":"W. Sterner",
+    "Note(s)":"This course does not meet the general education requirement in the mathematical sciences.",
+    "name":"Introduction to Programming for the World Wide Web I",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Winter",
+    "desc":"This course teaches the basics of building and maintaining a site on the World Wide Web. We discuss Internet terminology and how the Internet and its associated technologies work. Topics include programming websites, hypertext markup language (HTML), Cascading Style Sheets (CSS), and Common Gateway Interface (CGI) scripts (using PERL). Students also learn how to use JavaScript to add client-side functionality"
+  },
+  "CMSC 22610":{
+    "Instructor(s)":"D. MacQueen",
+    "Note(s)":"Prior experience with ML programming not required. This course is offered in alternate years.",
+    "name":"Implementation of Computer Languages I",
+    "Terms Offered":"Winter",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"CMSC 15300 and 15400 required; CMSC 22100 recommended",
+    "desc":"This course covers principles and techniques for implementing computer languages (e.g., programming languages, query languages, specification languages, domain-specific languages). Topics include lexical analysis, parsing, tree representations of programs (both parse trees and abstract syntax trees), types and type checking, interpreters, abstract machines, and run-time systems. This is a project-based course involving the implementation of a small language using Standard ML"
+  },
+  "CMSC 37811":{
+    "Equivalent Course(s)":"STAT 31000",
+    "name":"Mathematical Computation II: Optimization and Simulation",
+    "Prerequisite(s)":"Solid grounding in multivariate calculus, linear algebra, and probability theory",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Winter",
+    "desc":"This course covers the fundamentals of continuous optimization, including constrained optimization, and introduces the use of Monte Carlo methods in computer simulation and combinatorial optimization problems. Several substantial programming projects (using MATLAB) are completed during the course."
+  },
+  "CMSC 32620":{
+    "Equivalent Course(s)":"CMSC 22620",
+    "Note(s)":"This course is offered in alternate years.",
+    "name":"Implementation of Computer Languages II",
+    "Terms Offered":"Spring",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"CMSC 22610 required; CMSC 22100 strongly recommended",
+    "desc":"This course is a continuation of CMSC 22610, covering compilers for general-purpose languages. Topics include compiler-immediate representations, continuation-passing style, runtime representations, code generation, code optimization, register allocation, instruction scheduling, and garbage collection. This is a project-based course in which students construct a complete, working compiler for a small language using Standard ML."
+  },
+  "CMSC 37812":{
+    "Equivalent Course(s)":"STAT 31100",
+    "name":"Mathematical Computation III: Numerical Methods for PDE's",
+    "Prerequisite(s)":"Some prior exposure to differential equations and linear algebra",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Spring",
+    "desc":"The first part of this course introduces basic properties of PDE\u2019s; finite difference discretizations; and stability, consistency, convergence, and Lax\u2019s equivalence theorem.  We also cover examples of finite difference schemes; simple stability analysis; convergence analysis and order of accuracy; consistency analysis and errors (i.e., dissipative and dispersive errors); and unconditional stability and implicit schemes. The second part of this course includes solution of stiff systems in 1, 2, and 3D; direct vs. iterative methods (i.e., banded and sparse LU factorizations); and Jacobi, Gauss-Seidel, multigrid, conjugate gradient, and GMRES iterations.."
+  },
+  "CMSC 27200":{
+    "Instructor(s)":"P. Felzenszwalb",
+    "name":"Theory of Algorithms",
+    "Prerequisite(s)":"CMSC 27100 or consent of instructor",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Winter",
+    "desc":"This course covers design and analysis of efficient algorithms, with emphasis on ideas rather than on implementation. Algorithmic questions include sorting and searching, discrete optimization, algorithmic graph theory, algorithmic number theory, and cryptography. Design techniques include \"divide-and-conquer\" methods, dynamic programming, greedy algorithms, and graph search, as well as the design of efficient data structures. Methods of algorithm analysis include asymptotic notation, evaluation of recurrent inequalities, the concepts of polynomial-time algorithms, and NP-completeness"
+  },
+  "CMSC 28510":{
+    "Instructor(s)":"T. Dupont",
+    "Note(s)":"This course is offered in alternate years.",
+    "name":"Introduction to Scientific Computing",
+    "Terms Offered":"Autumn",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"A year of calculus (MATH 15300 or higher), a quarter of linear algebra (MATH 19620 or higher), and CMSC 10600 or higher; or consent of instructor",
+    "desc":"Basic processes of numerical computation are examined from both an experimental and theoretical point of view. This course deals with numerical linear algebra, approximation of functions, approximate integration and differentiation, Fourier transformation, solution of nonlinear equations, and the approximate solution of initial value problems for ordinary differential equations. We concentrate on a few widely used methods in each area covered"
+  },
+  "CMSC 12200":{
+    "Instructor(s)":"A. Rogers",
+    "Note(s)":"This course meets the general education requirement in the mathematical sciences.",
+    "name":"Computer Science with Applications II",
+    "Terms Offered":"Winter",
+    "sequence number":"CMSC 12100-12200",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"Placement into MATH 15200 or higher, or consent of instructor",
+    "desc":""
+  },
+  "CMSC 35400":{
+    "Equivalent Course(s)":"STAT 37710",
+    "name":"Machine Learning",
+    "Prerequisite(s)":"Consent of departmental counselor. CMSC 25010 or consent of instructor.",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Spring. Not offered 2011-12.",
+    "desc":"This course introduces the theory and practice of machine learning, emphasizing statistical approaches to the problem. Topics include pattern recognition, empirical risk minimization and the Vapnik Chervonenkis theory, neural networks, decision trees, genetic algorithms, unsupervised learning, and multiple classifiers"
+  },
+  "CMSC 23500":{
+    "name":"Introduction to Database Systems",
+    "Prerequisite(s)":"CMSC 15300 and 15400",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Spring",
+    "desc":"This course is an introduction to database design and programming using the relational model. Topics include DBMS architecture, entity-relationship and relational models, relational algebra, relational calculus, functional dependencies and normal forms, web DBs and PHP, query optimization, and physical data organization. The lab section guides students through the collaborative implementation of a relational database management system, allowing students to see topics such as physical data organization and DBMS architecture in practice, and exercise general skills such as collaborative software development"
+  },
+  "CMSC 37800":{
+    "Equivalent Course(s)":"STAT 30700",
+    "name":"Numerical Computation",
+    "Prerequisite(s)":"Consent of departmental counselor. STAT 34300 or consent of instructor.",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn. Not offered 2011-12.",
+    "desc":"This course covers topics in numerical methods and computation that are useful in statistical research (e.g., simulation, random number generation, Monte Carlo methods, quadrature, optimization, matrix methods)"
+  },
+  "CMSC 27800":{
+    "Equivalent Course(s)":"MATH 27800",
+    "name":"Mathematical Logic II",
+    "Prerequisite(s)":"MATH 27700 or equivalent",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Winter",
+    "desc":"Topics include number theory, Peano arithmetic, Turing compatibility, unsolvable problems, G\u00f6del's incompleteness theorem, undecidable theories (e.g., the theory of groups), quantifier elimination, and decidable theories (e.g., the theory of algebraically closed fields)"
+  },
+  "CMSC 38100":{
+    "Equivalent Course(s)":"MATH 30300",
+    "Instructor(s)":"R. Soare",
+    "name":"Computability Theory II",
+    "Terms Offered":"Winter, Spring",
+    "sequence number":"CMSC 38000-38100",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"Consent of departmental counselor. MATH 25500 or consent of instructor.",
+    "desc":"CMSC 38100 treats classification of sets by the degree of information they encode, algebraic structure and degrees of recursively enumerable sets, advanced priority methods, and generalized recursion theory"
+  },
+  "CMSC 15100":{
+    "Note(s)":"This course meets the general education requirement in the mathematical sciences.",
+    "name":"Introduction to Computer Science I",
+    "Terms Offered":"Autumn, Summer",
+    "sequence number":"CMSC 15100-15200",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"Placement into MATH 15100 or equivalent, or consent of departmental counselor",
+    "desc":""
+  },
+  "CMSC 27610":{
+    "Instructor(s)":"L. R. Scott",
+    "Note(s)":"High school chemistry is helpful.",
+    "name":"Digital Biology",
+    "Terms Offered":"Winter",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"MATH 15100-15200 and ability to program. All prerequisites will be provided in class.",
+    "desc":"Explores the digital nature of biology at the molecular scale. Focuses on the role of hydrophobic effect in protein/ligand associations. Utilizes data-mining as a tool both to understand basic biophysics and to explain protein-ligand associations. Shows how such analog interactions can lead to digital devices (e.g., switches). No biochemistry background will be assumed"
+  },
+  "CMSC 22620":{
+    "Equivalent Course(s)":"CMSC 32620",
+    "Instructor(s)":"D. MacQueen",
+    "Note(s)":"This course is offered in alternate years.",
+    "name":"Implementation of Computer Languages II",
+    "Terms Offered":"Spring",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"CMSC 22610 required; CMSC 22100 strongly recommended",
+    "desc":"This course is a continuation of CMSC 22610, covering compilers for general-purpose languages. Topics include compiler-immediate representations, continuation-passing style, runtime representations, code generation, code optimization, register allocation, instruction scheduling, and garbage collection. This is a project-based course in which students construct a complete, working compiler for a small language using Standard ML"
+  },
+  "CMSC 10500":{
+    "Instructor(s)":"S. Salveter",
+    "Note(s)":"CMSC 10500 and 10600 may be taken in sequence or individually.",
+    "name":"Fundamentals of Computer Programming I",
+    "Terms Offered":"Autumn",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"MATH 10600, or placement into 13100 or equivalent; or consent of departmental counselor required; previous computer experience and advanced mathematical knowledge not required",
+    "desc":"This course meets the general education requirement in the mathematical sciences. This course introduces computer programming using the functional programming language Scheme. We emphasize design, algorithm construction, and procedural/functional/data abstraction"
+  },
+  "CMSC 33501":{
+    "name":"Topics in Databases",
+    "Prerequisite(s)":"Consent of departmental counselor and instructor",
+    "units":"0 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn, Winter, Spring",
+    "desc":"This course covers a selection of advanced topics in database systems"
+  },
+  "CMSC 32201":{
+    "name":"Topics in Computer Architecture",
+    "Prerequisite(s)":"Consent of departmental counselor and instructor",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn, Winter, Spring",
+    "desc":"This course covers a selection of advanced topics in computer architecture"
+  },
+  "CMSC 22100":{
+    "Instructor(s)":"D. MacQueen",
+    "name":"Programming Languages",
+    "Prerequisite(s)":"CMSC 15300",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn",
+    "desc":"Programming language design aims at the closest possible correspondence between the structures of a program and the task it performs. This course studies some of the structural concepts affecting programming languages: iterative and recursive control flow, data types and type checking, procedural versus functional programming, modularity and encapsulation, fundamentals of interpreting and compiling, and formal descriptions of syntax and semantics. Students write short programs in radically different languages to illuminate the variety of possible designs"
+  },
+  "CMSC 28501":{
+    "name":"Topics in Scientific Computing",
+    "Prerequisite(s)":"Consent of instructor",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn, Winter, Spring",
+    "desc":"This course covers current topics in scientific computing"
+  },
+  "CMSC 38000-38100":{
+    "title":"Computability Theory I-II",
+    "is sequence":true,
+    "desc":"The courses in this sequence are offered in alternate years"
+  },
+  "CMSC 23200":{
+    "Instructor(s)":"A. Feldman",
+    "name":"Introduction to Computer Security",
+    "Prerequisite(s)":"CMSC 15400",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn",
+    "desc":"This course introduces the principles and practice of computer security. It aims to teach how to model threats to computer systems and how to think like a potential attacker. It presents standard cryptographic functions and protocols and gives an overview of threats and defenses for software, host systems, networks, and the Web.  It also touches on some of the legal, policy, and ethical issues surrounding computer security in areas such as privacy, surveillance, and the disclosure of security vulnerabilities. The goal of this course is to provide a foundation for further study in computer security and to help better understand how to design, build, and use computer systems more securely."
+  },
+  "CMSC 34200":{
+    "Instructor(s)":"T. Dupont",
+    "name":"Numerical Hydrodynamics",
+    "Prerequisite(s)":"Consent of departmental counselor. Ability to program; and familiarity with elementary numerical methods and modeling physical systems by systems of differential equations",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Winter",
+    "desc":"This course covers numerical methods for the solution of fluid flow problems. We also make a theoretical evaluation of the methods and experimental study based on the opinionated book Fundamentals of Computational Fluid Dynamics by PatrickJ. Roache"
+  },
+  "CMSC 33710":{
+    "Equivalent Course(s)":"CMSC 23710",
+    "Instructor(s)":"G. Kindlmann",
+    "name":"Scientific Visualization",
+    "Terms Offered":"Autumn",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"Strong programming skills and basic knowledge of linear algebra and calculus. Consent of departmental counselor.",
+    "desc":"Scientific visualization combines the image synthesis methods of computer graphics, numerical methods of scientific computing, and mathematical models of the physical world to create a visual framework for discovering, understanding, and solving scientific problems. This course describes the context, methods, and application of modern scientific visualization, giving students the skills required to evaluate, design, and create effective visualizations. This course, which uses mainly Python software and packages that have convenient Python interfaces, is also intended for nonmajors with scientific data visualization needs. This course is offered in alternate years"
+  },
+  "CMSC 25010":{
+    "name":"Artificial Intelligence",
+    "Prerequisite(s)":"CMSC 15300",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Winter",
+    "desc":"This course introduces the theoretical, technical, and philosophical issues of AI. The emphasis is on computational and mathematical modes of inquiry into the structure and function of intelligent systems. Topics include learning and inference, speech and language, vision and robotics, search and reasoning"
+  },
+  "CMSC 37701":{
+    "name":"Topics in Bioinformatics",
+    "Prerequisite(s)":"Consent of Consent of departmental counselor and instructor",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn, Winter, Spring",
+    "desc":"This course covers current topics in bioinformatics"
+  },
+  "CMSC 38500":{
+    "Equivalent Course(s)":"MATH 30500",
+    "Instructor(s)":"A. Razborov",
+    "name":"Computability and Complexity Theory",
+    "Terms Offered":"Winter",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"Consent of departmental counselor and instructor",
+    "desc":"Part one of this course consists of models for defining computable functions: primitive recursive functions, (general) recursive functions, and Turing machines; the Church-Turing Thesis; unsolvable problems; diagonalization; and properties of computably enumerable sets. Part two of this course deals with Kolmogorov (resource bounded) complexity: the quantity of information in individual objects. Part three of this course covers functions computable with time and space bounds of the Turing machine: polynomial time computability, the classes P and NP, NP-complete problems, polynomial time hierarchy, and P-space complete problems"
+  },
+  "CMSC 37100":{
+    "name":"Topics in Algorithms",
+    "Prerequisite(s)":"Consent of departmental counselor. CMSC 27200 or consent of instructor.",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn, Winter, Spring",
+    "desc":"This course covers current topics in algorithms"
+  },
+  "CMSC 27600":{
+    "Instructor(s)":"N. Hinrichs",
+    "Note(s)":"This course is offered in alternate years.",
+    "name":"Computational Biology",
+    "Terms Offered":"Winter",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"Familiarity with basic discrete mathematics/statistics/algorithms and biology recommended but not required.",
+    "desc":"This course serves as a general introduction to the basic algorithms used to understand current problems in biology. Topics may include sequence alignment algorithms to study DNA and protein sequences, algorithms and experiments for protein structure prediction, dynamics, and folding, clustering and machine learning methods for gene expression analysis, computational models of RNA structure, and DNA computing and self-assembly"
+  },
+  "CMSC 27700":{
+    "Equivalent Course(s)":"MATH 27700",
+    "name":"Mathematical Logic I",
+    "Prerequisite(s)":"MATH 25400 or 25700; open to students who are majoring in Computer Science and have taken CMSC 15400 along with MATH 16300 or MATH 19900",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn",
+    "desc":"This course introduces mathematical logic. Topics include propositional and predicate logic and the syntactic notion of proof versus the semantic notion of truth (e.g., soundness, completeness). We also discuss the G\u00f6del completeness theorem, the compactness theorem, and applications of compactness to algebraic problems"
+  },
+  "CMSC 22630":{
+    "Instructor(s)":"J. Reppy",
+    "name":"Advanced Implementation of Computer Languages",
+    "Prerequisite(s)":"CMSC 22100 and 22620, or equivalent",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn. Not offered 2011\u201312.",
+    "desc":"This course explores advanced topics in the implementation of high-level programming languages that vary each year (e.g., control-flow analysis algorithms, abstract interpretation, partial evaluation, advanced optimizations, runtime system representations, garbage collection algorithms, foreign-function interfaces). Students are expected to develop both a foundational and applied understanding of these topics"
+  },
+  "CMSC 15300":{
+    "Note(s)":"Required of students who are majoring in Computer Science.  Students who have credit for MATH 13300 or higher should see the Department Counselor for prior approval to substitute CMSC 28000 or 27700.",
+    "name":"Foundations of Software",
+    "Prerequisite(s)":"CMSC 15200 or 12200",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn",
+    "desc":"This course is concerned with the mathematical foundations of computer software. We introduce a number of mathematical areas used in the modeling of programming languages and software, including prepositional and predicate logic, basic set theory, relations, and automata theory. The connection between mathematics and software is made via examples and small programming assignments"
+  },
+  "CMSC 25030":{
+    "units":"100 Units",
+    "desc":"",
+    "is sequence":false,
+    "Terms Offered":"Not offered in 2011/12",
+    "name":"Computational Models of Speech"
+  },
+  "CMSC 37400":{
+    "Instructor(s)":"K. Mulmuley",
+    "name":"Constructive Combinatorics",
+    "Prerequisite(s)":"Consent of departmental counselor. Advanced knowledge of mathematics and consent of instructor.",
+    "units":"0 Units",
+    "is sequence":false,
+    "Terms Offered":"Spring",
+    "desc":"This course covers constructive combinatorial techniques in areas such as enumerative combinatorics, invariant theory, and representation theory of symmetric groups. Constructive techniques refer to techniques that have algorithmic flavor, such as those that are against purely existential techniques based on counting"
+  },
+  "CMSC 12300":{
+    "units":"100 Units",
+    "desc":"The course revolves around core ideas behind the management and computation of large volumes of data (\"Big Data\"). Topics include (1) Statistical methods for large data analysis, (2) Parallelism and concurrency, including models of parallelism and synchronization primitives, and (3) Distributed computing, including distributed architectures and the algorithms and techniques that enable these architectures to be fault-tolerant, reliable, and scalable.  Students will continue to use R, and will also learn C++ and distributed computing tools and platforms, including Amazon AWS and Hadoop. This course includes a project where students will have to formulate hypotheses about a large dataset, develop statistical models to test those hypothesis, implement a prototype that performs an initial exploration of the data, and a final system to process the entire dataset.",
+    "is sequence":false,
+    "sequence number":"CMSC 12100-12200-12300",
+    "name":"Computer Science with Applications III"
+  },
+  "CMSC 12100-12200":{
+    "title":"Computer Science with Applications I-II",
+    "is sequence":true,
+    "desc":"This two-quarter sequence teaches computational thinking and skills to students who are majoring in the sciences, mathematics, and economics. Lectures cover topics in (1) programming, such as recursion, abstract data types, and processing data; (2) computer science, such as clustering methods, event-driven simulation, and theory of computation; and to a lesser extent (3) numerical computation, such as approximating functions and their derivatives and integrals, solving systems of linear equations, and simple Monte Carlo techniques. Applications from a wide variety of fields serve both as examples in lectures and as the basis for programming assignments. In recent offerings, students have written programs to evaluate betting strategies, determine the number of machines needed at a polling place, and predict the size of extinct marsupials. Students learn Java and Python"
+  },
+  "CMSC 38512":{
+    "Instructor(s)":"J. Simon",
+    "name":"Kolmogorov Complexity",
+    "Prerequisite(s)":"Consent of departmental counselor and instructor",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn. Not offered 2011\u201312.",
+    "desc":"This course introduces the theory of Kolmogorov Complexity with an emphasis on its use in theoretical computer science, mostly in computational complexity. If time permits, we may briefly touch on its uses in statics, prediction, and learning"
+  },
+  "CMSC 16100-16200":{
+    "title":"Honors Introduction to Computer Science I-II",
+    "is sequence":true,
+    "desc":"Both courses in this sequence meet the general education requirement in the mathematical sciences; students who are majoring in Computer Science must use either CMSC 15200 or 16200 to meet requirements for the major."
+  },
+  "CMSC 28100":{
+    "Equivalent Course(s)":"MATH 28100",
+    "name":"Introduction to Complexity Theory",
+    "Prerequisite(s)":"CMSC 27100, or MATH 19900 or 25500; and experience with mathematical proofs",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Spring",
+    "desc":"Computability topics are discussed (e.g., the s-m-n theorem and the recursion theorem, resource-bounded computation). This course introduces complexity theory. Relationships between space and time, determinism and non-determinism, NP-completeness, and the P versus NP question are investigated"
+  },
+  "CMSC 38600":{
+    "name":"Complexity Theory A",
+    "Prerequisite(s)":"Consent of departmental counselor and instructor",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Spring",
+    "desc":"This course covers topics in computational complexity theory, with an emphasis on machine-based complexity classes"
+  },
+  "CMSC 27900":{
+    "Equivalent Course(s)":"MATH 29200,PHYS 25100",
+    "Instructor(s)":"Staff",
+    "name":"Chaos, Complexity, and Computers",
+    "Terms Offered":"Autumn",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"PHYS 13300 or 14300; PHYS 25000 or prior programming experience.",
+    "desc":"This course presents the mathematical bases for the complex, scale-independent behavior seen in chaotic dynamics and fractal patterns.  It illustrates these principles from physical and biological phenomena.  It explores these behaviors concretely using extensive computer simulation exercises, thus developing simulation and data analysis skills. L."
+  },
+  "CMSC 27410":{
+    "Instructor(s)":"L. Babai",
+    "Note(s)":"This course is offered in alternate years.",
+    "name":"Honors Combinatorics",
+    "Terms Offered":"Winter",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"MATH 19900 or 25400, or CMSC 27100, or consent of instructor. Experience with mathematical proofs.",
+    "desc":"Methods of enumeration, construction, and proof of existence of discrete structures are discussed in conjunction with the basic concepts of probability theory over a finite sample space. Enumeration techniques are applied to the calculation of probabilities, and, conversely, probabilistic arguments are used in the analysis of combinatorial structures. Other topics include basic counting, linear recurrences, generating functions, Latin squares, finite projective planes, graph theory, Ramsey theory, coloring graphs and set systems, random variables, independence, expected value, standard deviation, and Chebyshev's and Chernoff's inequalities"
+  },
+  "CMSC 33400":{
+    "Equivalent Course(s)":"CMSC 23400",
+    "Instructor(s)":"A. Chien",
+    "name":"Mobile Computing",
+    "Terms Offered":"Winter",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"CMSC 23000 or 23300 or equivalent are required.",
+    "desc":"Mobile computing is proliferating at an extraordinary pace and changing nearly every aspect of society. Increased sensing and awareness capabilities of mobile devices have triggered a radical transformation of the modalities of interaction and applications. Mobile devices are also reshaping many aspects of computing\u2014usage, networking, interface, computing models, etc. We explore elements of the core and emerging technologies underlying mobile computing. Past focus areas include visual experience, computational photography, augmented reality, synchronicity and proximity for shared social experiences. Students engage in a series of labs which expose them to elements of the software and hardware capabilities of mobile computing systems, and develop the capability to envision radical new applications. Students engage in extensive experiments and a large-scale project. Where possible, project teams are mentored by domain experts to shape their projects for greater impact."
+  },
+  "CMSC 10600":{
+    "Instructor(s)":"S. Salveter",
+    "Note(s)":"CMSC 10500 and 10600 may be taken in sequence or individually.",
+    "name":"Fundamentals of Computer Programming II",
+    "Terms Offered":"Winter",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"MATH 10600, or placement into 13100 or equivalent; or consent of departmental counselor",
+    "desc":"This course meets the general education requirement in the mathematical sciences. This course is an introduction to computer programming using the object-oriented programming language C++. We emphasize algorithm design and construction. Topics include complex types, iteration, recursion, procedural/functional/data abstraction, classes, methods, inheritance, and polymorphism"
+  },
+  "CMSC 22001":{
+    "Instructor(s)":"S. Lu",
+    "name":"Software Construction",
+    "Prerequisite(s)":"CMSC 15400",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn",
+    "desc":"Large software systems are difficult to build. The course discusses both the empirical aspects of software engineering and the underlying theory. Topics will include, among others, software specifications, software design, software architecture, software testing, software reliability, and software maintenance. Students will be expected to actively participate in team projects in this course."
+  },
+  "CMSC 16100":{
+    "Instructor(s)":"S. Kurtz",
+    "name":"Honors Introduction to Computer Science I",
+    "Terms Offered":"Autumn",
+    "sequence number":"CMSC 16100-16200",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"Placement into MATH 15100 or equivalent and programming experience, or consent of departmental counselor",
+    "desc":"Programming in a functional language (currently Haskell), including higher-order functions, type definition, algebraic data types, modules, parsing, I/O, and monads. Basic data structures, including lists, binary search trees, and tree balancing. Basic mathematics for reasoning about programs, including induction, inductive definition, propositional logic, and proofs. Search in graphs, including depth-first and breadth-first search. Search in metric graphs, including greedy and A* search, with applications"
+  },
+  "CMSC 23300":{
+    "Instructor(s)":"B. Sotomayor",
+    "name":"Networks and Distributed Systems",
+    "Prerequisite(s)":"CMSC 15400",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Winter",
+    "desc":"This course focuses on the principles and techniques used in the development of networked and distributed software. Topics include programming with sockets;   concurrent programming; data link layer (Ethernet, packet switching, etc.); internet and routing protocols (UDP, TCP); and other commonly used network protocols and techniques. This is a project-oriented course in which students are required to develop software in C on a UNIX environment"
+  },
+  "CMSC 37720":{
+    "Instructor(s)":"R. Stevens",
+    "name":"Computational Systems Biology",
+    "Prerequisite(s)":"Consent of departmental counselor and instructor",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn. Not offered 2011\u201312.",
+    "desc":"This course introduces concepts of systems biology. We also discuss computational methods for analysis, reconstruction, visualization, modeling, and simulation of complex cellular networks (e.g., biochemical pathways for metabolism, regulation, and signaling). Students explore systems of their own choosing and participate in developing algorithms and tools for comparative genomic analysis, metabolic pathway construction, stoichiometeric analysis, flux analysis, metabolic modeling, and cell simulation. We also focus on understanding the computer science challenges in the engineering of prokaryotic organisms"
+  },
+  "CMSC 11000-11100":{
+    "title":"Multimedia Programming as an Interdisciplinary Art I-II",
+    "is sequence":true,
+    "desc":"Either course in this sequence meets the general education requirement in the mathematical sciences. Like other classic Chicago general education courses, this sequence provides students with both practical programming skills and core ideas in computer science in interdisciplinary applications. Students learn how to perform in a multi-platform (Mac/Linux/Windows) environment using a high-level prototyping language (revTalk) that allows for the quick creation of useful multimedia applications. As a classic Core course in the Chicago tradition, the course presents introductory techniques of problem solving, algorithm construction, program coding, and debugging as interdisciplinary arts adaptable to a wide range of disciplines with their specialized problems. The first course moves through a sequence from step-by-step introductory labs, to labs that require independent analysis and solution, to a student-designed final project. The second course consists of several scientific and humanistic projects such as Turing Machines, biological modeling, and language manipulation with another final project"
+  },
+  "CMSC 35100":{
+    "name":"Natural Language Processing",
+    "Prerequisite(s)":"Consent of departmental counselor. CMSC 25010 or consent of instructor.",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Spring. Not offered 2011-12.",
+    "desc":"This course introduces the theory and practice of natural language processing, with applications to both text and speech. Topics include regular expressions, finite state automata, morphology, part of speech tagging, context free grammars, parsing, semantics, discourse, and dialogue. Symbolic and probabilistic models are presented. Techniques for automatic acquisition of linguistic knowledge are emphasized"
+  },
+  "CMSC 15100-15200":{
+    "title":"Introduction to Computer Science I-II",
+    "is sequence":true,
+    "desc":"This course, which is recommended for all students planning to take more advanced courses in computer science, introduces computer science using both functional (Scheme) and object-oriented (C++) programming languages. Topics include control and data abstraction, self-reference, time and space analysis, and data structures. NOTE: Nonmajors may use either course in this sequence to meet the general education requirement in the mathematical sciences; students who are majoring in Computer Science must use either CMSC 15100-15200 or 16100-16200 to meet requirements for the major"
+  },
+  "CMSC 11100":{
+    "Instructor(s)":"W. Sterner",
+    "name":"Multimedia Programming as an Interdisciplinary Art II",
+    "Terms Offered":"Spring",
+    "sequence number":"CMSC 11000-11100",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"MATH 10600, or placement into 13100 or equivalent; or consent of instructor",
+    "desc":""
+  },
+  "CMSC 35900":{
+    "name":"Topics in Artificial Intelligence",
+    "Prerequisite(s)":"Consent of departmental counselor and instructor",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn, Winter, Spring",
+    "desc":"This course covers topics in artificial intelligence"
+  },
+  "CMSC 31100":{
+    "name":"Big Ideas in Computer Science",
+    "Prerequisite(s)":"Consent of departmental counselor and instructor",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn",
+    "desc":"This course introduces many of the important concepts in the broad area of computer science. Each week a different professor gives a three-lecture sequence on a big idea in their field of specialty. Previous ideas have included undecidability, randomness, cryptography, stability of numerical algorithms, structural operational semantics, software engineering, and the Internet"
+  },
+  "CMSC 23310":{
+    "Instructor(s)":"B. Sotomayor",
+    "name":"Advanced Distributed Systems",
+    "Prerequisite(s)":"CMSC 23300 or consent of instructor",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Spring",
+    "desc":"This course explores advanced topics in distributed systems. Topics include supercomputing (architectures, applications, programming models, etc.); grid computing with an emphasis on Globus technologies; Infrastructure-as-a-Service clouds (virtual infrastructure management, Amazon EC2, etc.), Platform-as-a-Service clouds (Google App Engine, etc.), and the Software-as-a-Service model; and other current topics related to using and building distributed systems. The course includes a substantial practical component but also requires students to read papers and articles on current advances in the field"
+  },
+  "CMSC 23700":{
+    "name":"Introduction to Computer Graphics",
+    "Prerequisite(s)":"CMSC 15400",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Winter",
+    "desc":"This course introduces the basic concepts and techniques used in three-dimensional computer graphics. The focus is on real-time rendering techniques, such as those found in computer games. These include coordinate systems and transformations, the graphics pipeline, basic geometric algorithms, texture mapping, level-of detail optimizations, and shadows. Students are required to complete both written assignments and programming projects using OpenGL"
+  },
+  "CMSC 29700":{
+    "Note(s)":"Open both to students who are majoring in Computer Science and to nonmajors. Students are required to submit the College Reading and Research Course Form.",
+    "name":"Reading and Research in Computer Science",
+    "Prerequisite(s)":"Consent of instructor and approval of departmental counselor",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Summer, Autumn, Winter, Spring",
+    "desc":"Students do reading and research in an area of computer science under the guidance of a faculty member. A written report is typically required"
+  },
+  "CMSC 25020":{
+    "Equivalent Course(s)":"LING 28600",
+    "Instructor(s)":"J. Goldsmith",
+    "name":"Computational Linguistics",
+    "Terms Offered":"Autumn",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"CMSC 15200 or 12200, or competence in a programming language",
+    "desc":"This course introduces the problems of computational linguistics and the techniques used to deal with them. Topics are drawn primarily from phonology, morphology, and syntax. Special topics include automatic learning of grammatical structure and the treatment of languages other than English"
+  },
+  "CMSC 25025":{
+    "Equivalent Course(s)":"STAT 37601",
+    "Instructor(s)":"J. Lafferty",
+    "name":"Machine Learning and Large-Scale Data Analysis",
+    "Terms Offered":"Spring",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"CMSC 15400 (or CMSC 12200 and either STAT 22400 or STAT 24400), or consent of the instructor",
+    "desc":"This course is an introduction to machine learning and the analysis of large data sets using distributed computation and storage infrastructure. Basic machine learning methodology and relevant statistical theory will be presented in lectures. Homework exercises will give students hands-on experience with the methods on different types of data. Methods include algorithms for clustering, binary classification, and hierarchical Bayesian modeling. Data types include images, archives of scientific articles, online ad clickthrough logs, and public records of the City of Chicago. Programming will be based on Python and R, but previous exposure to these languages is not assumed."
+  },
+  "CMSC 22010":{
+    "Instructor(s)":"I. Foster & R. Stevens",
+    "name":"Digital Fabrication",
+    "Prerequisite(s)":"CMSC 15400 and some experience with 3D modeling concepts.",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn",
+    "desc":"Digital fabrication involves translation of a digital design into a physical object. While digital fabrication has been around for decades, only now has it become possible for individuals to take advantage of this technology through low cost 3D printers and open source tools for 3D design and modeling.  In this course we will cover the foundations of 3D object design including computational geometry, the type of models that can and can\u2019t be fabricated, the uses and applications of digital fabrication, the algorithms, methods and tools for conversion of 3D models to representations that can be directly manufactured using computer controlled machines, the concepts and technology used in additive manufacturing (aka 3D printing) and the research and practical challenges of developing self-replicating machines.  We will have several 3D printers available for use during the class and students will design and fabricate several parts during the course."
+  },
+  "CMSC 39000":{
+    "Instructor(s)":"K. Mulmuley",
+    "name":"Computational Geometry",
+    "Prerequisite(s)":"Consent of departmental counselor and instructor",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Spring",
+    "desc":"This course is a seminar on topics in computational geometry"
+  },
+  "CMSC 38300":{
+    "Equivalent Course(s)":"MATH 38300",
+    "Instructor(s)":"L. R. Scott",
+    "name":"Numerical Solutions to Partial Differential Equations",
+    "Terms Offered":"Spring",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"Consent of departmental counselor and instructor",
+    "desc":"This course covers the basic mathematical theory behind numerical solution of partial differential equations. We investigate the convergence properties of finite element, finite difference and other discretization methods for solving partial differential equations, introducing Sobolev spaces and polynomial approximation theory. We emphasize error estimators, adaptivity, and optimal-order solvers for linear systems arising from PDEs. Special topics include PDEs of fluid mechanics, max-norm error estimates, and Banach-space operator-interpolation techniques"
+  },
+  "CMSC 36500":{
+    "Equivalent Course(s)":"MATH 37500",
+    "Instructor(s)":"L. Babai",
+    "Note(s)":"This course is offered in alternate years.",
+    "name":"Algorithms in Finite Groups",
+    "Terms Offered":"Spring",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"Consent of departmental counselor. Linear algebra, finite fields, and a first course in group theory (Jordan-Holder and Sylow theorems) required; prior knowledge of algorithms not required",
+    "desc":"We consider the asymptotic complexity of some of the basic problems of computational group theory. The course demonstrates the relevance of a mix of mathematical techniques, ranging from combinatorial ideas, the elements of probability theory, and elementary group theory, to the theories of rapidly mixing Markov chains, applications of simply stated consequences of the Classification of Finite Simple Groups (CFSG), and, occasionally, detailed information about finite simple groups. No programming problems are assigned"
+  },
+  "CMSC 22311":{
+    "Instructor(s)":"S. Kurtz",
+    "name":"Functional Systems in Haskell",
+    "Prerequisite(s)":"CMSC 16100 and CMSC 15400, or consent of instructor",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Spring",
+    "desc":"Advanced and systems programming in Haskell, including testing, meta-programming, exceptions, concurrency, web, IO, and network programming."
+  },
+  "CMSC 10500-10600":{
+    "title":"Fundamentals of Computer Programming I-II",
+    "is sequence":true,
+    "desc":"This sequence meets the general education requirement in the mathematical sciences."
+  },
+  "CMSC 10200":{
+    "Note(s)":"This course meets the general education requirement in the mathematical sciences.  May not be taken for credit by students who have credit for CMSC 10600, 12100, 15200, or 16200.",
+    "name":"Introduction to Programming for the World Wide Web II",
+    "Prerequisite(s)":"MATH 10600, or placement into 13100 or equivalent; and knowledge of HTML",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Spring",
+    "desc":"This course introduces computer programming in Java with a focus on designing and implementing software for the World Wide Web. We first introduce the fundamentals of programming, giving particular attention to basic object-oriented techniques. We employ Java Server Pages to develop programs that interact with users through web browsers. Finally, we study relational databases and, integrating that study with general-purpose Java programming, build database-backed web applications"
+  },
+  "CMSC 28000":{
+    "Equivalent Course(s)":"MATH 28000",
+    "Instructor(s)":"S. Kurtz",
+    "name":"Introduction to Formal Languages",
+    "Terms Offered":"Autumn",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"CMSC 15300, or MATH 19900 or 25500",
+    "desc":"This course is a basic introduction to computability theory and formal languages. Topics include automata theory, regular languages, context-free languages, and Turing machines"
+  },
+  "CMSC 23010":{
+    "Instructor(s)":"H. Hoffman",
+    "name":"Parallel Computing",
+    "Prerequisite(s)":"CMSC 15400 and one of the following: CMSC 22000 (Architecture),  CMSC 23000 (Operating Systems), or CMSC 23300 (Networks and Distributed Systems), or consent of the instructor.",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Winter",
+    "desc":"This course provides an introduction to the concepts of parallel programming, with an emphasis on programming multicore processors. Topics include: Processes and threads, shared memory, message passing, direct-memory access (DMA), hardware mechanisms for parallel computing, synchronization and communication, patterns of parallel programming.  The course will involve a substantial programming project implementing a parallel computations."
+  },
+  "CMSC 16200":{
+    "Instructor(s)":"S. Kurtz",
+    "Note(s)":"Students who have taken CMSC 15100 may take 16200 with consent of instructor.",
+    "name":"Honors Introduction to Computer Science II",
+    "Terms Offered":"Winter",
+    "sequence number":"CMSC 16100-16200",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"CMSC 16100 or equivalent and programming experience, or consent of departmental counselor",
+    "desc":"This course emphasizes the C Programming Language, but not in isolation. Instead, C is developed as a part of a larger programming toolkit that includes the shell (specifically ksh), shell programming, and standard Unix utilities (including awk). Nonshell scripting languages, in particular perl and python, are introduced, as well as interpreter (#!) files that use the command-line version of DrScheme. We cover various standard data structures, both abstractly, and in terms of concrete implementations\u2014primarily in C, but also from time to time in other contexts like scheme and ksh. The course uses a team programming approach. There is a mixture of individual programming assignments that focus on current lecture material, together with team programming assignments that can be tackled using any Unix technology. Team projects are assessed based on correctness, elegance, and quality of documentation. We teach the \"Unix way\" of breaking a complex computational problem into smaller pieces, most or all of which can be solved using pre-existing, well-debugged, and documented components, and then composed in a variety of ways"
+  },
+  "CMSC 11710":{
+    "Instructor(s)":"J. Simon",
+    "Note(s)":"Necessary mathematical concepts will be presented in class.",
+    "name":"Networks",
+    "Terms Offered":"Spring",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"Completion of the College Mathematical Sciences requirement, and familiarity with basic concepts of probability at the high school level.",
+    "desc":"Networks help explain phenomena in such technological, social, and biological domains as the spread of opinions, knowledge, and infectious diseases. Networks also help us understand properties of financial markets, food webs, and web technologies. At the same time, the structure and evolution of networks is determined by the set of interactions in the domain. Our study of networks will employ formalisms such as graph theory, game theory, information networks, and network dynamics, with the goal of building formal models and translating their observed properties into qualitative explanations"
+  },
+  "CMSC 25050":{
+    "Instructor(s)":"Y. Amit",
+    "name":"Computer Vision",
+    "Prerequisite(s)":"CMSC 25010",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Winter. Not offered 2011-12.",
+    "desc":"This course covers methods and models for computer vision. Topics include segmentation and feature detection"
+  },
+  "CMSC 23710":{
+    "Instructor(s)":"G. Kindlmann",
+    "Note(s)":"This course is offered in alternate years.",
+    "name":"Scientific Visualization",
+    "Terms Offered":"Autumn",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"Strong programming skills and basic knowledge of linear algebra and calculus",
+    "desc":"Scientific visualization combines the image synthesis methods of computer graphics, numerical methods of scientific computing, and mathematical models of the physical world to create a visual framework for discovering, understanding, and solving scientific problems. This course describes the context, methods, and application of modern scientific visualization, giving students the skills required to evaluate, design, and create effective visualizations. This course, which uses mainly Python software and packages that have convenient Python interfaces, is also intended for nonmajors with scientific data visualization needs"
+  },
+  "CMSC 38700":{
+    "Instructor(s)":"A. Razborov",
+    "name":"Complexity Theory B",
+    "Prerequisite(s)":"Consent of departmental counselor and instructor",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Spring. Not offered 2011-12.",
+    "desc":"This course covers topics in computational complexity theory, with an emphasis on combinatorial problems in complexity"
+  },
+  "CMSC 22300":{
+    "Instructor(s)":"D. MacQueen",
+    "name":"Functional Programming",
+    "Prerequisite(s)":"CMSC 15300",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Not offered 2011\u201312",
+    "desc":"This course presents the functional programming paradigm, based on the idea of functions as \"first-class\" values that can be manipulated like other data. This idea leads to great power of expression while maintaining simplicity, making it easier to write correct and maintainable software. We use the languages Haskell and ML as representatives of the two main schools of functional programming, the pure and the impure. After learning the basic elements of these languages, we explore functional programming techniques that can be exploited in many areas of application using a surprising variety of languages (e.g., C#, Python) that have included first-class functions as a feature. We compare functional and object oriented programming and include an brief overview of concurrent functional programming in ML and Haskell"
+  },
+  "CMSC 35000":{
+    "Instructor(s)":"P. Felzenszwalb",
+    "name":"Introduction to Artificial Intelligence",
+    "Prerequisite(s)":"Consent of departmental counselor; CMSC 25010.",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Spring",
+    "desc":"This course introduces the theoretical, technical, and philosophical aspects of Artificial Intelligence. We emphasize computational and mathematical modes of inquiry into the structure and function of intelligent systems. Topics include learning and inference, speech and language, vision and robotics, and reasoning and search"
+  },
+  "CMSC 11000":{
+    "Instructor(s)":"W. Sterner",
+    "name":"Multimedia Programming as an Interdisciplinary Art I",
+    "Terms Offered":"Winter",
+    "sequence number":"CMSC 11000-11100",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"MATH 10600, or placement into 13100 or equivalent; or consent of instructor",
+    "desc":""
+  },
+  "CMSC 23800":{
+    "Equivalent Course(s)":"CSPP 53800",
+    "Instructor(s)":"J. Reppy",
+    "name":"Game Construction",
+    "Terms Offered":"Spring. Not offered 2011\u201312.",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"CMSC 15400, and at least two of the following courses: CMSC 23700, CMSC 25000, CMSC 23000, CMSC 23300, CMSC 23500. Strong background in programming and expertise in at least two technical areas underlying computer games (e.g., AI, graphics, scientific computing, networking).",
+    "desc":"Computer games are one of the most exciting applications of computer technology. They also are large software systems that embody cutting-edge graphics, as well as techniques from AI, scientific simulation, networking, and databases. This course introduces the student to the basic algorithms and techniques used in computer-game construction. Students work in teams to design and create games using existing libraries for graphics, physics simulation, and so forth"
+  },
+  "CMSC 23000":{
+    "Note(s)":"This course is offered in altenate years.",
+    "name":"Operating Systems",
+    "Prerequisite(s)":"CMSC 15400, and one of the following: CMSC 22200, CMSC 22610, CMSC 23300, CMSC 23500, CMSC 23700, or CMSC 23800",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Winter",
+    "desc":"This course provides an introduction to the basic concepts and techniques used to implement operating systems. Topics include processes and threads, interprocess communication and synchronization, memory management, segmentation, paging, linking and loading, scheduling, file systems, and input/output. The course will revolve around the implementation of an x86 operating system kernel"
+  },
+  "CMSC 27500":{
+    "Instructor(s)":"A. Razborov",
+    "name":"Graph Theory",
+    "Prerequisite(s)":"CMSC 15300",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Spring",
+    "desc":"This course covers the basics of the theory of finite graphs. Topics include shortest paths, spanning trees, counting techniques, matchings, Hamiltonian cycles, chromatic number, extremal graph theory, Turan's theorem, planarity, Menger's theorem, the max-flow/min-cut theorem, Ramsey theory, directed graphs, strongly connected components, directed acyclic graphs, and tournaments. Techniques studied include the probabilistic method"
+  },
+  "CMSC 25040":{
+    "Instructor(s)":"P. Felzenszwalb",
+    "Note(s)":"This course is offered in alternate years.",
+    "name":"Introduction to Computer Vision",
+    "Terms Offered":"Spring",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"CMSC 25010",
+    "desc":"This course covers the fundamentals of digital image formation; image processing, detection and analysis of visual features; representation shape and recovery of 3D information from images and video; analysis of motion. We also study some prominent applications of modern computer vision such as face recognition and object and scene classification. Our emphasis is on basic principles, mathematical models, and efficient algorithms established in modern computer vision"
+  },
+  "CMSC 35500":{
+    "Equivalent Course(s)":"STAT 37900,CMSC 25050",
+    "Instructor(s)":"Y. Amit",
+    "name":"Computer Vision",
+    "Terms Offered":"Winter. Not offered 2011\u201312.",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"Consent of departmental counselor and instructor",
+    "desc":"This course covers deformable models for detecting objects in images. Topics include one-dimensional models to identify object contours and boundaries; two-dimensional models for image matching; and sparse models for efficient detection of objects in complex scenes. Mathematical tools needed to define the models and associated algorithms are developed. Applications include detecting contours in medical images, matching brains, and detecting faces in images. Neural network implementations of some of the algorithms are presented, and connections to the functions of the biological visual system are discussed"
+  },
+  "CMSC 23400":{
+    "Equivalent Course(s)":"CMSC 33400",
+    "Instructor(s)":"A. Chien",
+    "name":"Mobile Computing",
+    "Terms Offered":"Winter",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"CMSC 15200 and 15400 are required and CMSC 23000 or 23300 are recommended.",
+    "desc":"Mobile computing is proliferating at an extraordinary pace and changing nearly every aspect of society. Increased sensing and awareness capabilities of mobile devices have triggered a radical transformation of the modalities of interaction and applications. Mobile devices are also reshaping many aspects of computing\u2014usage, networking, interface, computing models, etc. We explore elements of the core and emerging technologies underlying mobile computing. Past focus areas include visual experience, computational photography, augmented reality, synchronicity and proximity for shared social experiences. Students engage in a series of labs which expose them to elements of the software and hardware capabilities of mobile computing systems, and develop the capability to envision radical new applications. Students engage in extensive experiments and a large-scale project. Where possible, project teams are mentored by domain experts to shape their projects for greater impact."
+  },
+  "CMSC 37810":{
+    "Equivalent Course(s)":"STAT 30900",
+    "name":"Mathematical Computation I: Matrix Computation Course",
+    "Prerequisite(s)":"Linear algebra (STAT 24300 or equivalent) and some previous experience with statistics",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn",
+    "desc":"This course covers the theory and practice of matrix computation, starting with the LU and Cholesky decompositions, the QR decompositions with applications to least squares, iterative methods for solving eigenvalue problems, iterative methods for solving large systems of equations, and (time permitting) the basics of the fast Fourier and fast wavelet transforms. The mathematical theory underlying the algorithms is emphasized, as well as their implementation in code."
+  },
+  "CMSC 37200":{
+    "Instructor(s)":"L. Babai",
+    "name":"Combinatorics",
+    "Prerequisite(s)":"Consent of departmental counselor. Linear algebra, basic combinatorics, or consent of instructor.",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Winter",
+    "desc":"Methods of enumeration, construction, and proof of existence of discrete structures are discussed. The course emphasizes applications of linear algebra, number theory, and the probabilistic method to combinatorics. Applications to the theory of computing are indicated, and open problems are discussed"
+  },
+  "CMSC 38000":{
+    "Equivalent Course(s)":"MATH 30200",
+    "Instructor(s)":"R. Soare",
+    "name":"Computability Theory I",
+    "Terms Offered":"Winter",
+    "sequence number":"CMSC 38000-38100",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"Consent of departmental counselor. MATH 25500 or consent of instructor.",
+    "desc":"CMSC 38000 is concerned with recursive (computable) functions and sets generated by an algorithm (recursively enumerable sets). Topics include various mathematical models for computations (e.g., Turing machines and Kleene schemata, enumeration and s-m-n theorems, the recursion theorem, classification of unsolvable problems, priority methods for the construction of recursively enumerable sets and degrees)"
+  },
+  "CMSC 15200":{
+    "Note(s)":"This course meets the general education requirement in the mathematical sciences.",
+    "name":"Introduction to Computer Science II",
+    "Terms Offered":"Winter, Summer",
+    "sequence number":"CMSC 15100-15200",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"Placement into MATH 15100 or equivalent, or consent of departmental counselor",
+    "desc":""
+  },
+  "CMSC 38410":{
+    "Instructor(s)":"A. Razborov",
+    "name":"Quantum Computing",
+    "Prerequisite(s)":"Consent of departmental counselor. Basic knowledge of computational complexity and linear algebra required; knowledge of quantum mechanics not required",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Winter. This course is offered in alternate years.",
+    "desc":"This course covers mathematical and complexity aspects of quantum computing, putting aside all questions pertaining to its physical realizability. Possible topics include: (1) quantum model of computation, quantum complexity classes, and relations to their classical counterparts; (2) famous quantum algorithms (including Shor and Grover); (3) black-box quantum models (lower and upper bounds); (4) quantum communication complexity (lower and upper bounds); and (5) quantum information theory"
+  },
+  "CMSC 12100":{
+    "Instructor(s)":"A. Rogers",
+    "Note(s)":"This course meets the general education requirement in the mathematical sciences.",
+    "name":"Computer Science with Applications I",
+    "Terms Offered":"Autumn",
+    "sequence number":"CMSC 12100-12200",
+    "units":"100 Units",
+    "is sequence":false,
+    "Prerequisite(s)":"Placement into MATH 15200 or higher, or consent of instructor",
+    "desc":""
+  },
+  "CMSC 32001":{
+    "name":"Topics in Programming Languages",
+    "Prerequisite(s)":"Consent of departmental counselor and instructor",
+    "units":"100 Units",
+    "is sequence":false,
+    "Terms Offered":"Autumn, Winter, Spring",
+    "desc":"This course covers a selection of advanced topics in programming languages"
+  }
+}

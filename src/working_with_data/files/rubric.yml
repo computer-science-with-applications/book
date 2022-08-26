@@ -1,0 +1,27 @@
+    Points:
+        Tests:
+            Points Possible: 50
+            Points Obtained: 45
+
+        Implementing foo():
+            Points Possible: 20
+            Points Obtained: 10
+
+        Implementing bar():
+            Points Possible: 20
+            Points Obtained: 20
+
+        Code Style:
+            Points Possible: 10
+            Points Obtained: 7.5
+
+    Penalties:
+        Code comments are written in Old English: -5
+
+    Bonuses:
+        Worked alone: 10
+
+    Total Points: 87.5 / 100
+
+    Comments: >
+        Well done!
