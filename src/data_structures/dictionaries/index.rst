@@ -207,7 +207,7 @@ with Python dictionaries and lists. Later on, we will also see how
       d = {0.3: "found"}
       d.get(0.1 + 0.1 + 0.1, "not found")
 
-   Using your understanding of real numbers, you might except ``get``
+   Using your understanding of real numbers, you might expect ``get``
    to return ``"found"``, the value associated with ``0.3``.  Using
    floats, however, ``0.1 + 0.1 + 0.1`` does not equal ``0.3`` and so,
    ``get`` does not find the key in the dictionary and returns the
