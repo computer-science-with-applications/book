@@ -312,7 +312,8 @@ whether the code succeeded or failed.  For example:
 
 .. python-run::
    :formatting: separate
-
+   import sys
+   
    def divide(a,b):
        ''' Divide a by b and catch exceptions'''
 
