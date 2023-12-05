@@ -19,7 +19,7 @@ def divide(a, b):
 
 def print_divisions(N):
     ''' Print result of dividing N by integers less than N. '''
-    for i in range(1, N):
+    for i in range(0, N):
         d = divide(N, i)
         print(N, "/", i, "=", d)
 
