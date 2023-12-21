@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2.1. Lists, Tuples, and Strings &mdash; Computer Science with Applications  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -56,10 +57,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#other-operations-on-lists">2.1.6. Other operations on lists</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#variables-revisited">2.1.7. Variables revisited</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-heap">2.1.8. The heap</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#list-parameters">2.1.9. List parameters</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#aliases-revisited">2.1.9.1. Aliases revisited</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#list-parameters">2.1.9. List parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#lists-of-lists">2.1.10. Lists of lists</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#shallow-copy-versus-deep-copy">2.1.11. Shallow copy versus deep copy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tuples">2.1.12. Tuples</a></li>
@@ -104,7 +102,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="lists-tuples-and-strings">
+  <section id="lists-tuples-and-strings">
 <span id="chapter-lists"></span><h1><span class="section-number">2.1. </span>Lists, Tuples, and Strings<a class="headerlink" href="#lists-tuples-and-strings" title="Permalink to this heading"></a></h1>
 <p>Up to this point, we have worked with simple data types:
 integers, floats, strings, and booleans. Whenever we used these data types,
@@ -149,7 +147,7 @@ are not, however, the be-all and end-all of working with multiple values:
 later in the book we will see other types, such as dictionaries
 and classes, that allow us to work with collections of values
 in other ways.</p>
-<div class="section" id="creating-lists">
+<section id="creating-lists">
 <h2><span class="section-number">2.1.1. </span>Creating lists<a class="headerlink" href="#creating-lists" title="Permalink to this heading"></a></h2>
 <p>To create a list, we type the values in the list separated by commas
 and delimit the beginning and end of the list with square
@@ -238,8 +236,8 @@ built-in <code class="docutils literal notranslate"><span class="pre">len</span>
 <span class="go">20</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="accessing-elements-in-a-list">
+</section>
+<section id="accessing-elements-in-a-list">
 <h2><span class="section-number">2.1.2. </span>Accessing elements in a list<a class="headerlink" href="#accessing-elements-in-a-list" title="Permalink to this heading"></a></h2>
 <p>Once we have a list, we can access and update individual values within that list.
 To do so, we specify the variable containing the list followed
@@ -322,7 +320,7 @@ index expression is implicit in the second version.</p>
 <span class="gr">IndexError</span>: <span class="n">list index out of range</span>
 </pre></div>
 </div>
-<div class="section" id="list-slicing">
+<section id="list-slicing">
 <h3><span class="section-number">2.1.2.1. </span>List slicing<a class="headerlink" href="#list-slicing" title="Permalink to this heading"></a></h3>
 <p>In addition to accessing a single value from a list, we can also
 access all of the elements between two specified indexes of a list. This operation is called
@@ -494,9 +492,9 @@ For example, the following code replaces the first two elements of
 </pre></div>
 </div>
 <p>This usage is much less common and should be used sparingly.</p>
-</div>
-</div>
-<div class="section" id="iterating-over-a-list">
+</section>
+</section>
+<section id="iterating-over-a-list">
 <h2><span class="section-number">2.1.3. </span>Iterating over a list<a class="headerlink" href="#iterating-over-a-list" title="Permalink to this heading"></a></h2>
 <p>Often, you will need to perform some action for each element
 of a list. Processing a list element by element is usually
@@ -609,8 +607,8 @@ we could write:</p>
 </div>
 <p>Notice that <code class="docutils literal notranslate"><span class="pre">p</span></code>, which iterates over the preferences, is used as an
 index into the list <code class="docutils literal notranslate"><span class="pre">lang</span></code>.</p>
-</div>
-<div class="section" id="modifying-a-list">
+</section>
+<section id="modifying-a-list">
 <h2><span class="section-number">2.1.4. </span>Modifying a list<a class="headerlink" href="#modifying-a-list" title="Permalink to this heading"></a></h2>
 <p>So far, we have seen how to create a list with a number of elements,
 and then access or modify those elements.  We are not limited to
@@ -762,8 +760,8 @@ clear:</p>
 </div>
 <p>Are we expecting to get <code class="docutils literal notranslate"><span class="pre">[1]</span></code> or <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">5]</span></code>?</p>
 </div>
-</div>
-<div class="section" id="creating-a-list-based-on-another-list">
+</section>
+<section id="creating-a-list-based-on-another-list">
 <h2><span class="section-number">2.1.5. </span>Creating a list based on another list<a class="headerlink" href="#creating-a-list-based-on-another-list" title="Permalink to this heading"></a></h2>
 <p>Now that we’ve seen how to iterate over a list as well
 as how to use the <code class="docutils literal notranslate"><span class="pre">append</span></code> method, we can discuss another common way
@@ -888,8 +886,8 @@ expands into this code:</p>
 <a class="reference internal" href="../../functions/functions/index.html#list-comprehensions-revisited"><span class="std std-ref">List comprehensions revisited</span></a> to discuss an alternate way to
 think about the computation captured by the list comprehension
 shorthand.</p>
-</div>
-<div class="section" id="other-operations-on-lists">
+</section>
+<section id="other-operations-on-lists">
 <h2><span class="section-number">2.1.6. </span>Other operations on lists<a class="headerlink" href="#other-operations-on-lists" title="Permalink to this heading"></a></h2>
 <p>Lists are a very versatile data structure in Python and we have a
 large number of operators, functions, and methods at our disposal to
@@ -994,8 +992,8 @@ call to <code class="docutils literal notranslate"><span class="pre">sorted</spa
 <span class="go">[107, 101, 47, 23, 23, 17, 5]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="variables-revisited">
+</section>
+<section id="variables-revisited">
 <span id="section-variables-revisited"></span><h2><span class="section-number">2.1.7. </span>Variables revisited<a class="headerlink" href="#variables-revisited" title="Permalink to this heading"></a></h2>
 <p>In <a class="reference internal" href="../../getting_started/basics/index.html#chapter-basics"><span class="std std-ref">Programming Basics</span></a> we described variables as symbolic names representing
 locations in the computer’s memory. When we assign a value to a variable,
@@ -1092,9 +1090,9 @@ happen to contain lists with the same values). We can actually see
 these values (the location of the lists in memory) using the
 built-in <code class="docutils literal notranslate"><span class="pre">id</span></code> function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst3</span><span class="p">)</span>
-<span class="go">140181492535872</span>
+<span class="go">140193399299648</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst4</span><span class="p">)</span>
-<span class="go">140181492521920</span>
+<span class="go">140193398756288</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst3</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">lst4</span><span class="p">)</span>
 <span class="go">False</span>
 </pre></div>
@@ -1105,9 +1103,9 @@ however, should not be the same as the one for <code class="docutils literal not
 <p>In contrast, the <code class="docutils literal notranslate"><span class="pre">lst1</span></code> and <code class="docutils literal notranslate"><span class="pre">lst2</span></code> variables we created earlier do have the
 same <code class="docutils literal notranslate"><span class="pre">id</span></code> value, since they both refer to the same list in memory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst1</span><span class="p">)</span>
-<span class="go">140181493770112</span>
+<span class="go">140193395521280</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst2</span><span class="p">)</span>
-<span class="go">140181493770112</span>
+<span class="go">140193395521280</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst1</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">lst2</span><span class="p">)</span>
 <span class="go">True</span>
 </pre></div>
@@ -1161,8 +1159,8 @@ if we were to modify an element in <code class="docutils literal notranslate"><s
 <span class="go">[1, 2, 3, 4]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="the-heap">
+</section>
+<section id="the-heap">
 <h2><span class="section-number">2.1.8. </span>The heap<a class="headerlink" href="#the-heap" title="Permalink to this heading"></a></h2>
 <p>In the previous section, we explained that variables refer to lists
 and that more than one variable can refer to the same list.  Where do
@@ -1174,8 +1172,8 @@ system called the <em>garbage collector</em>.</p>
 <p>The garbage collector allocates space in the heap when you create a
 new list or add values to an existing list and it is responsible for
 reclaiming space when it is no longer needed.</p>
-</div>
-<div class="section" id="list-parameters">
+</section>
+<section id="list-parameters">
 <h2><span class="section-number">2.1.9. </span>List parameters<a class="headerlink" href="#list-parameters" title="Permalink to this heading"></a></h2>
 <p>In <a class="reference internal" href="../../getting_started/intro_functions/index.html#chapter-functions"><span class="std std-ref">Introduction to Functions</span></a>, we saw that Python functions use a type of parameter passing
 called <em>call-by-value</em> where the arguments to a function are evaluated <em>before</em> the
@@ -1189,7 +1187,7 @@ of the list) that is used to initialize the formal parameters.</p>
 it in-place so that each value in the list is scaled by a given <code class="docutils literal notranslate"><span class="pre">factor</span></code>.
 We could write the function like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Multiplies the values in a list in-place by a specified factor.</span>
 
 <span class="sd">    Inputs:</span>
@@ -1249,7 +1247,7 @@ return anything. However, we could write a similar version of
 <code class="docutils literal notranslate"><span class="pre">scale</span></code> that, instead of modifying the list in place, creates and
 returns a new list, leaving the original list intact:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Multiplies the values in a list by a specified factor.</span>
 
 <span class="sd">    Inputs:</span>
@@ -1277,7 +1275,7 @@ returns a new list, leaving the original list intact:</p>
 construct the new list.  We can also write the function using list
 comprehension:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Multiplies the values in a list by a specified factor.</span>
 
 <span class="sd">    Inputs:</span>
@@ -1304,72 +1302,8 @@ list passed as a parameter.</p>
 <li><p>Think carefully about whether you want to modify the list in-place or return a new list with modified values; and finally,</p></li>
 <li><p>Record your choice in your function’s docstring!</p></li>
 </ul>
-<div class="section-technical-details section" id="aliases-revisited">
-<h3><span class="section-number">2.1.9.1. </span>Aliases revisited<a class="headerlink" href="#aliases-revisited" title="Permalink to this heading"></a></h3>
-<p>Earlier in this chapter, we mentioned that it is possible to introduce
-aliases–a second name for a data structure–using an assignment
-statement.  For example, in this code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lst1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
-<span class="n">lst2</span> <span class="o">=</span> <span class="n">lst1</span>
-<span class="n">lst1</span> <span class="ow">is</span> <span class="n">lst2</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">lst1</span></code> and <code class="docutils literal notranslate"><span class="pre">lst2</span></code> are aliases: they both refer to the same list,
-which contains the values <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>, etc.</p>
-<p>Function parameters provide another way to introduce aliases.</p>
-<p>For
-example, here’s a function, <code class="docutils literal notranslate"><span class="pre">remove_vals</span></code>, that takes two lists and
-removes that values from <code class="docutils literal notranslate"><span class="pre">lst2</span></code> that appear in <code class="docutils literal notranslate"><span class="pre">lst1</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_vals</span><span class="p">(</span><span class="n">lst1</span><span class="p">,</span> <span class="n">lst2</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Remove the values that appear in lst2 from lst1.</span>
-
-<span class="sd">    Inputs:</span>
-<span class="sd">      lst1: a list of unique values</span>
-<span class="sd">      lst2: a list of unique values</span>
-
-<span class="sd">    Modifies: lst1</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">lst2</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">lst1</span><span class="p">:</span>
-            <span class="n">lst1</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Notice that the docstring states that the inputs to this function are
-expected to be lists of unique values, that is, any given value
-appears at most once in a list.  This restriction is included because
-the <code class="docutils literal notranslate"><span class="pre">remove</span></code> method removes the first occurrence of a value in a
-list, not all of the occurrences of a value in a list.  If we wanted
-to allow a value to appear (and be removed) multiple times, we’d need
-to add an inner loop.</p>
-<p>Let’s first look at a call to this function that uses two different lists:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lstA</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
-<span class="n">lstB</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
-<span class="n">remove_vals</span><span class="p">(</span><span class="n">lstA</span><span class="p">,</span> <span class="n">lstB</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>During the call to <code class="docutils literal notranslate"><span class="pre">remove_vals</span></code>, memory will look like this:</p>
-<p>After the call, it will look like this:</p>
-<p>Notice that <code class="docutils literal notranslate"><span class="pre">lstA</span></code> has fewer elements: the two values that appeared
-in <code class="docutils literal notranslate"><span class="pre">lstB</span></code> have been removed as expected.</p>
-<p>Now let’s look at a call to this function that uses the <em>same</em> list for both arguments:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lst3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
-<span class="n">remove_vals</span><span class="p">(</span><span class="n">lst3</span><span class="p">,</span> <span class="n">lst3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;lst3 after the call to remove_vals(lst3, lst3):&quot;</span><span class="p">,</span> <span class="n">lst3</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>lst3 after the call to remove_vals(lst3, lst3): [20, 40]
-</pre></div>
-</div>
-<p>It is natural to expect the result of the function to be the empty
-list (<code class="docutils literal notranslate"><span class="pre">[]</span></code>), since the all the elements in the first parameter occur
-in the second parameter.  But since <code class="docutils literal notranslate"><span class="pre">lst1</span></code> and <code class="docutils literal notranslate"><span class="pre">lst2</span></code> inside the
-function are aliases for the same list, the result will be
-unpredictable.  We</p>
-</div>
-</div>
-<div class="section" id="lists-of-lists">
+</section>
+<section id="lists-of-lists">
 <h2><span class="section-number">2.1.10. </span>Lists of lists<a class="headerlink" href="#lists-of-lists" title="Permalink to this heading"></a></h2>
 <p>The lists we have seen so far contain simple values like integers or strings,
 but lists can, themselves, contain other lists. For example, the following
@@ -1560,8 +1494,8 @@ in your code (specially if you have to use higher-dimensional
 matrices), you may want to consider using a library like <a class="reference external" href="http://www.numpy.org/">NumPy</a>, which is specifically optimized for
 manipulating matrices and vectors, and which we will cover later in
 the book.</p>
-</div>
-<div class="section" id="shallow-copy-versus-deep-copy">
+</section>
+<section id="shallow-copy-versus-deep-copy">
 <h2><span class="section-number">2.1.11. </span>Shallow copy versus deep copy<a class="headerlink" href="#shallow-copy-versus-deep-copy" title="Permalink to this heading"></a></h2>
 <p>Earlier in the section, we saw how to use slicing to make a copy of a
 list:</p>
@@ -1641,8 +1575,8 @@ loops back onto itself, such as:</p>
 </pre></div>
 </div>
 <img alt="../../_images/lists-13.png" src="../../_images/lists-13.png" />
-</div>
-<div class="section" id="tuples">
+</section>
+<section id="tuples">
 <h2><span class="section-number">2.1.12. </span>Tuples<a class="headerlink" href="#tuples" title="Permalink to this heading"></a></h2>
 <p>Tuples, another data structure available in Python, are very similar
 to lists. We can use them to store sequences of values and can create
@@ -1708,7 +1642,7 @@ with different types, such as a person’s name and salary (<code class="docutil
 values:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
 <span class="k">def</span> <span class="nf">compute_basic_stats</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 
 <span class="sd">    Compute the mean and standard deviation of a list of numbers.</span>
 
@@ -1841,8 +1775,8 @@ The price (with tax) of element 3 is 77.0
 The price (with tax) of element 4 is 11.0
 </pre></div>
 </div>
-</div>
-<div class="section" id="strings">
+</section>
+<section id="strings">
 <span id="section-strings"></span><h2><span class="section-number">2.1.13. </span>Strings<a class="headerlink" href="#strings" title="Permalink to this heading"></a></h2>
 <p>Back in <a class="reference internal" href="../../getting_started/basics/index.html#chapter-basics"><span class="std std-ref">Programming Basics</span></a> we introduced one of the basic data types
 in Python: strings. Strings allow us to store “text” or, more concretely, sequences (or
@@ -1871,7 +1805,7 @@ characters in a string:</p>
 <span class="gr">TypeError</span>: <span class="n">&#39;str&#39; object does not support item assignment</span>
 </pre></div>
 </div>
-<div class="section" id="string-formatting">
+<section id="string-formatting">
 <h3><span class="section-number">2.1.13.1. </span>String formatting<a class="headerlink" href="#string-formatting" title="Permalink to this heading"></a></h3>
 <p>So far, whenever we had to print a combination of strings and other values,
 we would just use the <code class="docutils literal notranslate"><span class="pre">print</span></code> function, which prints its parameters
@@ -1934,8 +1868,8 @@ the number of decimal places we want to print for <code class="docutils literal 
 see the full description of how to specify formats for different types
 of values in the <a class="reference external" href="https://docs.python.org/3/library/string.html#formatstrings">Python documentation</a> for
 this method</p>
-</div>
-<div class="section" id="other-operations-on-strings">
+</section>
+<section id="other-operations-on-strings">
 <h3><span class="section-number">2.1.13.2. </span>Other operations on strings<a class="headerlink" href="#other-operations-on-strings" title="Permalink to this heading"></a></h3>
 <p>Like lists, Python provides a large number of functions and methods to operate on strings. For example, we can use the <code class="docutils literal notranslate"><span class="pre">in</span></code>
 operator to determine whether a given string is contained within
@@ -2025,9 +1959,9 @@ literal:</p>
 <p>This section describes a small sample of what you can do with strings. To see
 a full list of methods, see the <a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#string-methods">Python documentation</a>
 or run <code class="docutils literal notranslate"><span class="pre">help(str)</span></code> from the Python interpreter.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1.1. Computational Thinking &mdash; Computer Science with Applications  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -94,7 +95,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="computational-thinking">
+  <section id="computational-thinking">
 <span id="chapter-introduction"></span><h1><span class="section-number">1.1. </span>Computational Thinking<a class="headerlink" href="#computational-thinking" title="Permalink to this heading"></a></h1>
 <p>When Hurricane Harvey made landfall in the US in August 2017, it caused a
 massive amount of damage and flooding, leaving many people stranded in their
@@ -192,7 +193,7 @@ are integral to computational thinking:</p>
 <p>In the rest of this chapter we will discuss each of these in more detail and,
 throughout the book, we will often highlight the material we
 present relates back to these four points.</p>
-<div class="section" id="decomposition-and-abstraction">
+<section id="decomposition-and-abstraction">
 <h2><span class="section-number">1.1.1. </span>Decomposition and abstraction<a class="headerlink" href="#decomposition-and-abstraction" title="Permalink to this heading"></a></h2>
 <p>Computational thinking can help us solve large and complex problems in
 a more manageable way. For example, consider the following problem:
@@ -228,7 +229,7 @@ still exists, and includes details and documentation on how the
 ClearStreets system was originally built. We encourage you to check it out after
 you’ve read this chapter!</p>
 </div>
-<div class="section" id="obtaining-the-plow-coordinates">
+<section id="obtaining-the-plow-coordinates">
 <h3><span class="section-number">1.1.1.1. </span>Obtaining the plow coordinates<a class="headerlink" href="#obtaining-the-plow-coordinates" title="Permalink to this heading"></a></h3>
 <p>During a snow storm, the city’s Plow Tracker produces a sequence of
 GPS locations for every active plow. ClearStreets needs a program to
@@ -242,8 +243,8 @@ Plow 42 was at 41°47&#39;16.0&quot;N 87°35&#39;53.9&quot;W at 2017-03-14 11:56
 ...
 </pre></div>
 </div>
-</div>
-<div class="section" id="converting-the-data-into-paths">
+</section>
+<section id="converting-the-data-into-paths">
 <h3><span class="section-number">1.1.1.2. </span>Converting the data into paths<a class="headerlink" href="#converting-the-data-into-paths" title="Permalink to this heading"></a></h3>
 <p>The data obtained from the Plow Tracker aren’t particularly
 user-friendly: if someone wanted to find out whether their street had been
@@ -281,8 +282,8 @@ problem, and there are many existing software solutions
 available. ClearStreets actually uses a system called <a class="reference external" href="http://project-osrm.org/">OSRM</a> (Open Source Routing Machine) to convert
 the GPS coordinates from the Plow Tracker into plausible paths on a
 street map.</p>
-</div>
-<div class="section" id="visualizing-and-querying-the-data">
+</section>
+<section id="visualizing-and-querying-the-data">
 <h3><span class="section-number">1.1.1.3. </span>Visualizing and querying the data<a class="headerlink" href="#visualizing-and-querying-the-data" title="Permalink to this heading"></a></h3>
 <p>Finally, ClearStreets had to provide an interface for users to query
 the data and easily visualize it.  These tasks are themselves quite
@@ -342,9 +343,9 @@ We will also be emphasizing that these smaller pieces
 need to be testable, and we’ll see that there are tools
 that allow us to automatically run tests on specific
 parts of our code.</p>
-</div>
-</div>
-<div class="section" id="modeling">
+</section>
+</section>
+<section id="modeling">
 <h2><span class="section-number">1.1.2. </span>Modeling<a class="headerlink" href="#modeling" title="Permalink to this heading"></a></h2>
 <p>Another aspect of making complex problems more manageable is to
 distill the problem into its essential components, so that we don’t
@@ -503,8 +504,8 @@ we can also build new data structures using
 a paradigm called object-oriented programming that will
 give us considerable flexibility to model the information we need
 to solve a problem computationally.</p>
-</div>
-<div class="section" id="algorithms">
+</section>
+<section id="algorithms">
 <h2><span class="section-number">1.1.3. </span>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this heading"></a></h2>
 <p>When explaining the National Resident Matching Program we provided a simple
 example where some students and hospitals ranked each other. This information,
@@ -604,8 +605,8 @@ had a match rate of 93.8% and 96.2% of the
 positions were filled. The NRMP website used to include
 <a class="reference external" href="http://web.archive.org/web/20130121082051/http://www.nrmp.org/res_match/about_res/algorithms.html">a fairly detailed description of the algorithm</a>,
 which has since been replaced with <a class="reference external" href="https://www.youtube.com/watch?v=kvgfgGmemdA">this video</a>.</p>
-</div>
-<div class="section" id="complexity">
+</section>
+<section id="complexity">
 <h2><span class="section-number">1.1.4. </span>Complexity<a class="headerlink" href="#complexity" title="Permalink to this heading"></a></h2>
 <p>The greedy algorithm is not the only algorithm for finding a stable
 match. For example, we could’ve taken a different approach. For example,
@@ -635,10 +636,12 @@ of <span class="math notranslate nohighlight">\(N\)</span> and <span class="math
 <span class="math notranslate nohighlight">\(N\)</span> and <span class="math notranslate nohighlight">\(M\)</span> (while the running time of the greedy algorithm won’t).</p>
 <p>Similarly, we must also know how to recognize when we are confronted by a
 hard problem:</p>
-<div class="figure align-default" id="id5">
+<figure class="align-default" id="id5">
 <img alt="../../_images/xkcd.png" src="../../_images/xkcd.png" />
-<p class="caption"><span class="caption-text">Source: <a class="reference external" href="https://xkcd.com/1425/">https://xkcd.com/1425/</a> (Randall Munroe, 2014, <a class="reference external" href="https://creativecommons.org/licenses/by-nc/2.5/">CC BY-NC 2.5</a>)</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Source: <a class="reference external" href="https://xkcd.com/1425/">https://xkcd.com/1425/</a> (Randall Munroe, 2014, <a class="reference external" href="https://creativecommons.org/licenses/by-nc/2.5/">CC BY-NC 2.5</a>)</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 <p>In fact, there are entire categories of problems that cannot be solved efficiently
 by a computer. For example, we could tweak our model to allow students to specify
 partner constraints: some students may be in a relationship so they want to be
@@ -657,8 +660,8 @@ find a near-optimal match in much less time than the brute force algorithm.</p>
 <em>complexity</em>. Throughout the book, we will highlight how we must be aware of
 the complexity of the algorithms we write, as well as of what data structures
 we choose for a given problem.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

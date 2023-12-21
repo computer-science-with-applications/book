@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3.3. Trees &mdash; Computer Science with Applications  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -85,7 +86,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="trees">
+  <section id="trees">
 <h1><span class="section-number">3.3. </span>Trees<a class="headerlink" href="#trees" title="Permalink to this heading"></a></h1>
 <p>In the previous chapter, we introduced recursion as a different
 way of repeating operations, allowing us to write <em>recursive algorithms</em>
@@ -98,9 +99,9 @@ applications in computing. Informally, we can think of it as a root
 node that has multiple nodes as “branches”, and where each of these
 nodes, in turn, can have “branches” of its own. More formally, a tree is
 a rooted acyclic undirected graph. For example, this is a tree:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../../_images/tree.png" src="../../_images/tree.png" />
-</div>
+</figure>
 <p>Notice how there is a root node at the top (unlike real trees, computer
 trees are drawn with the root at the top), and this node has four
 “child” nodes. The right-most child node, in turn, has four child nodes
@@ -108,9 +109,9 @@ of its own. Etc.</p>
 <p>But why is this a recursively-defined data structure? If we look just
 at the right-most child node of the root node, we could “prune” it from
 the root and it would still be a tree:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../../_images/subtree.png" src="../../_images/subtree.png" />
-</div>
+</figure>
 <p>So, informally, a tree is a root node that is connected to other trees.
 More formally, we could define a tree as…</p>
 <blockquote>
@@ -123,14 +124,14 @@ when we encounter a node that has other trees as subtrees.</p>
 <p>Under this definition, when <span class="math notranslate nohighlight">\(N=2\)</span>, we
 have what is called a <strong>binary tree</strong> (we will talk about these in more
 detail later).</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../../_images/binary_tree.png" src="../../_images/binary_tree.png" />
-</div>
+</figure>
 <p>Finally, it is common for each node in a tree to have one or more associated values.
 We will specifically consider each node to have an associated key/value pair.
 As we’ll see later on, there are certain algorithms that rely on trees
 where each node’s key is unique (but the value is not).</p>
-<div class="section" id="using-trees">
+<section id="using-trees">
 <h2><span class="section-number">3.3.1. </span>Using Trees<a class="headerlink" href="#using-trees" title="Permalink to this heading"></a></h2>
 <p>We are going to start by presenting trees as opaque data structures: for now,
 we won’t worry about their internal representation or  how they work internally, and will interact with them through an API. We provide
@@ -379,8 +380,8 @@ find the maximum of all those heights, and add one to it.</p></li>
 <span class="go">2</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="stimulus-package-data">
+</section>
+<section id="stimulus-package-data">
 <h2><span class="section-number">3.3.2. </span>Stimulus Package data<a class="headerlink" href="#stimulus-package-data" title="Permalink to this heading"></a></h2>
 <p>Trees can be very useful when processing data that is structured hierarchically.
 For example, in February 2009, Congress passed the American Recovery and Reinvestment
@@ -389,9 +390,9 @@ purposes, including infrastructure projects. The stimulus data can be
 viewed as a tree: the root of the tree represents the whole country, the
 interior nodes in the tree represent states, cities, and categories of
 projects, and the leaves represent specific projects.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../../_images/st.png" src="../../_images/st.png" />
-</div>
+</figure>
 <p>The data about the funds allocated by the stimulus is provided in a CSV
 file with the following fields:</p>
 <ol class="arabic simple">
@@ -474,9 +475,9 @@ that will print the tree in the manner shown above.</p>
 that’s the data contained in the file. It would be nice if we could
 aggregate these values so, for example, the <code class="docutils literal notranslate"><span class="pre">IL</span></code> node contained the
 sum of all the project nodes under it:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../../_images/st-il-addison.png" src="../../_images/st-il-addison.png" />
-</div>
+</figure>
 <p>Because trees are a recursive data structure, we can easily
 implement this task with a recursive algorithm:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">aggregate_stimulus_values</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
@@ -754,8 +755,8 @@ implement this task with a recursive algorithm:</p>
 <span class="go">  └──WY: $150,636,500</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="internal-representation">
+</section>
+<section id="internal-representation">
 <h2><span class="section-number">3.3.3. </span>Internal representation<a class="headerlink" href="#internal-representation" title="Permalink to this heading"></a></h2>
 <p>So far, we have been working with trees by using a <code class="docutils literal notranslate"><span class="pre">Tree</span></code>
 class with a series of methods and properties that are useful
@@ -862,8 +863,8 @@ that every time we create a <code class="docutils literal notranslate"><span cla
 with null trees. We will see an example of this in the next section,
 where we will discuss a special kind of <span class="math notranslate nohighlight">\(n\)</span>-tree where <span class="math notranslate nohighlight">\(n=2\)</span>:
 binary search trees.</p>
-</div>
-<div class="section" id="binary-search-tree">
+</section>
+<section id="binary-search-tree">
 <h2><span class="section-number">3.3.4. </span>Binary Search Tree<a class="headerlink" href="#binary-search-tree" title="Permalink to this heading"></a></h2>
 <p>A binary search tree, or BST, is a particular type of tree that has a
 number of interesting properties. It is a particular case of the general
@@ -878,13 +879,13 @@ the nodes in the right child must have keys that are strictly
 greater than <span class="math notranslate nohighlight">\(k\)</span>.</p>
 </div></blockquote>
 <p>For example, this is a valid BST:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../../_images/binary_tree_labelled.png" src="../../_images/binary_tree_labelled.png" />
-</div>
+</figure>
 <p>But this is not:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="Tree" src="../../_images/binary_tree_labelled_wrong.png" />
-</div>
+</figure>
 <p>Why? Key <code class="docutils literal notranslate"><span class="pre">47</span></code> appears on the right child of <code class="docutils literal notranslate"><span class="pre">50</span></code>, which violates the
 BST property. Notice how, if we looked at the right child in isolation
 (i.e., a tree rooted at <code class="docutils literal notranslate"><span class="pre">90</span></code>), that tree <em>would</em> be a valid BST.</p>
@@ -953,7 +954,7 @@ left subtree or the right subtree.</p>
 <code class="docutils literal notranslate"><span class="pre">__left</span></code> and <code class="docutils literal notranslate"><span class="pre">__right</span></code> properties in this code refer to
 the left and right subtree of the current tree.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Finds a node with a given key in the tree.</span>
 
 <span class="sd">    If such a key exists, it returns a tuple with</span>
@@ -1030,8 +1031,8 @@ no attempt to keep the tree balanced, there are other types of BSTs
 (such as AVL trees or Red-Black trees)
 that keep the tree balanced, at the expense of more complex insertion
 algorithms.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

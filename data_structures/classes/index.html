@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2.4. Classes and Objects &mdash; Computer Science with Applications  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -87,7 +88,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="classes-and-objects">
+  <section id="classes-and-objects">
 <span id="chapter-classes"></span><h1><span class="section-number">2.4. </span>Classes and Objects<a class="headerlink" href="#classes-and-objects" title="Permalink to this heading"></a></h1>
 <p>In the previous chapter, we saw that we can define new data types by creating an
 API of functions to operate on that data type (like we did for stacks
@@ -160,7 +161,7 @@ data type. OO also allows for a cleaner separation between the
 <em>public</em> attributes and operations that any programmer can access,
 and the <em>private</em> ones that only the data type implementor should
 be allowed to modify.</p>
-<div class="section" id="defining-a-new-class">
+<section id="defining-a-new-class">
 <h2><span class="section-number">2.4.1. </span>Defining a new class<a class="headerlink" href="#defining-a-new-class" title="Permalink to this heading"></a></h2>
 <p>In OO, a <em>class</em> is the definition of a new type, while <em>objects</em> are
 specific instances of that data type. One of way to think about this
@@ -424,8 +425,8 @@ above, we are able to manipulate locations with relatively simple operations:</p
 <span class="go">1155076.7723381526</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="composition">
+</section>
+<section id="composition">
 <h2><span class="section-number">2.4.2. </span>Composition<a class="headerlink" href="#composition" title="Permalink to this heading"></a></h2>
 <p>So far, we have defined a new data type, <code class="docutils literal notranslate"><span class="pre">Location</span></code>, that encapsulates
 two <code class="docutils literal notranslate"><span class="pre">float</span></code> values. However, attributes are not limited to the
@@ -694,8 +695,8 @@ stations in the Divvy system:</p>
 <span class="go">Franklin St &amp; Jackson Blvd     9784</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="public-vs-private-attributes">
+</section>
+<section id="public-vs-private-attributes">
 <h2><span class="section-number">2.4.3. </span>Public vs private attributes<a class="headerlink" href="#public-vs-private-attributes" title="Permalink to this heading"></a></h2>
 <p>As you may have noticed, once we create a <code class="docutils literal notranslate"><span class="pre">Location</span></code> object, we can
 access its attributes freely:</p>
@@ -935,8 +936,8 @@ a single underscore will allow us to do that, while signalling to
 programmers that use the classes that they should not use those
 attributes directly. On the other hand, using two underscores will prevent
 other classes from accessing those attributes.</p>
-</div>
-<div class="section" id="properties">
+</section>
+<section id="properties">
 <h2><span class="section-number">2.4.4. </span>Properties<a class="headerlink" href="#properties" title="Permalink to this heading"></a></h2>
 <p>Switching to private attributes, and adding getters/setters, gives us
 greater control on how users of the <code class="docutils literal notranslate"><span class="pre">Point</span></code> class interact with its
@@ -1148,8 +1149,8 @@ access to private attributes is either managed through the use of
 getters/setters or properties or hidden from the client all
 together.</p>
 </div>
-</div>
-<div class="section" id="class-static-attributes-vs-instance-attributes">
+</section>
+<section id="class-static-attributes-vs-instance-attributes">
 <h2><span class="section-number">2.4.5. </span>Class/static attributes vs instance attributes<a class="headerlink" href="#class-static-attributes-vs-instance-attributes" title="Permalink to this heading"></a></h2>
 <p>In the <code class="docutils literal notranslate"><span class="pre">Point</span></code> class, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are <em>instance</em> attributes. This
 means that each <code class="docutils literal notranslate"><span class="pre">Point</span></code> object (or <em>instance</em> of the <code class="docutils literal notranslate"><span class="pre">Point</span></code> class)
@@ -1233,8 +1234,8 @@ is incremented every time we construct a new <code class="docutils literal notra
 <span class="go">4</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

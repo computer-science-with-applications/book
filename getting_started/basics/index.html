@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1.2. Programming Basics &mdash; Computer Science with Applications  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -110,7 +111,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="programming-basics">
+  <section id="programming-basics">
 <span id="chapter-basics"></span><h1><span class="section-number">1.2. </span>Programming Basics<a class="headerlink" href="#programming-basics" title="Permalink to this heading"></a></h1>
 <p>A computer program is, at its core, a collection of instructions that the
 computer must perform. It could be as simple as telling the computer to
@@ -131,7 +132,7 @@ programs that provide a computational solution to a given problem.
 Python just happens to be a very convenient language to get started
 with, but many of the concepts and skills you will learn will
 carry over to other languages.</p>
-<div class="section" id="tools">
+<section id="tools">
 <h2><span class="section-number">1.2.1. </span>Tools<a class="headerlink" href="#tools" title="Permalink to this heading"></a></h2>
 <p>Before we get started, let’s review the tools you’ll need to follow
 along as we introduce concepts.  Specifically, you’ll need:</p>
@@ -183,8 +184,8 @@ edit code and run it, you will be in good shape,</p>
 <p>If you choose to use different tools, please keep in mind that the
 prompts and the format of output may be slightly different from our
 examples below.</p>
-</div>
-<div class="section" id="your-first-program">
+</section>
+<section id="your-first-program">
 <h2><span class="section-number">1.2.2. </span>Your First Program<a class="headerlink" href="#your-first-program" title="Permalink to this heading"></a></h2>
 <p>Traditionally, the first program you write is a simple program that instructs
 the computer to print out the following message on the screen:</p>
@@ -212,13 +213,13 @@ of running the program: interactively entering Python code into an
 <p>These two ways of running code (storing it in a file or running it interactively
 in an interpreter) are complementary. We will see how to do both in Python,
 and then discuss when it makes sense to use one or the other.</p>
-<div class="section" id="using-the-python-interpreter">
+<section id="using-the-python-interpreter">
 <h3><span class="section-number">1.2.2.1. </span>Using the Python interpreter<a class="headerlink" href="#using-the-python-interpreter" title="Permalink to this heading"></a></h3>
 <p>The Python interpreter is a program that allows us to interactively run
 Python code one line at a time. So, let’s start the Python interpreter!
 From the terminal, run the <code class="docutils literal notranslate"><span class="pre">python</span></code> command. You should see something like the following:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span> <span class="mf">3.8</span><span class="o">.</span><span class="mi">3</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Jul</span>  <span class="mi">2</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">11</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">31</span><span class="p">)</span>
-<span class="p">[</span><span class="n">Clang</span> <span class="mf">10.0</span><span class="o">.</span><span class="mi">0</span> <span class="p">]</span> <span class="p">::</span> <span class="n">Anaconda</span><span class="p">,</span> <span class="n">Inc</span><span class="o">.</span> <span class="n">on</span> <span class="n">darwin</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span> <span class="mf">3.8.3</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Jul</span>  <span class="mi">2</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">11</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">31</span><span class="p">)</span>
+<span class="p">[</span><span class="n">Clang</span> <span class="mf">10.0.0</span> <span class="p">]</span> <span class="p">::</span> <span class="n">Anaconda</span><span class="p">,</span> <span class="n">Inc</span><span class="o">.</span> <span class="n">on</span> <span class="n">darwin</span>
 <span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
 <span class="o">&gt;&gt;&gt;</span>
 </pre></div>
@@ -280,8 +281,8 @@ sure you included all of the necessary syntax and did not introduce any typos.</
 of chapters, we’ll explain how to interpret the information presented
 in error messages in more detail.  For now, you can ignore most it;
 just look at the last line to find out type of error occurred.</p>
-</div>
-<div class="section" id="running-code-from-a-file">
+</section>
+<section id="running-code-from-a-file">
 <h3><span class="section-number">1.2.2.2. </span>Running code from a file<a class="headerlink" href="#running-code-from-a-file" title="Permalink to this heading"></a></h3>
 <p>Instead of typing and running a program line by line in the
 interpreter, we can also store that program in a file, typically named
@@ -306,8 +307,8 @@ contains your <code class="docutils literal notranslate"><span class="pre">hello
 </pre></div>
 </div>
 <p>And then immediately return to the terminal.</p>
-</div>
-<div class="section" id="running-code-interactively-vs-from-a-file">
+</section>
+<section id="running-code-interactively-vs-from-a-file">
 <span id="chapter-basics-sec-interactive-vs-file"></span><h3><span class="section-number">1.2.2.3. </span>Running code interactively vs. from a file<a class="headerlink" href="#running-code-interactively-vs-from-a-file" title="Permalink to this heading"></a></h3>
 <p>We have seen two ways of running Python code: by entering the code line by line
 ourselves into the interpreter, and by saving the code in a text file
@@ -363,9 +364,9 @@ will see examples of how you can experiment with Python’s standard
 library in the interpreter, as well as other <em>third-party libraries</em>
 (such as Pandas for data manipulation and Matplotlib for visualizing
 data).</p>
-</div>
-</div>
-<div class="section" id="the-basics">
+</section>
+</section>
+<section id="the-basics">
 <h2><span class="section-number">1.2.3. </span>The Basics<a class="headerlink" href="#the-basics" title="Permalink to this heading"></a></h2>
 <p>So far, the only “instruction” we’ve seen is <code class="docutils literal notranslate"><span class="pre">print</span></code>, which allows
 us to print some text on the screen (as we’ll see later on, <code class="docutils literal notranslate"><span class="pre">print</span></code>
@@ -390,8 +391,8 @@ concepts found in nearly every programming language:</p>
 to do with these constructs alone, so don’t worry if they seem a bit
 abstract at first. In no time, you will find yourself using variables,
 types, and expressions in all of your programs.</p>
-</div>
-<div class="section" id="variables">
+</section>
+<section id="variables">
 <h2><span class="section-number">1.2.4. </span>Variables<a class="headerlink" href="#variables" title="Permalink to this heading"></a></h2>
 <p>A fundamental part of writing a computer program is keeping track of
 certain information throughout the lifetime of the program (i.e., while the
@@ -465,8 +466,8 @@ sequence of new values to the <code class="docutils literal notranslate"><span c
 </div>
 <p>Assigning a new value to an existing variable is often referred to as
 <em>updating</em> the variable.</p>
-</div>
-<div class="section" id="types">
+</section>
+<section id="types">
 <h2><span class="section-number">1.2.5. </span>Types<a class="headerlink" href="#types" title="Permalink to this heading"></a></h2>
 <p>In the above example, the <code class="docutils literal notranslate"><span class="pre">message</span></code> variable contained a piece of text
 (<code class="docutils literal notranslate"><span class="pre">&quot;Hello,</span> <span class="pre">world!&quot;</span></code>). However, variables can also contain other <em>types</em>
@@ -502,7 +503,7 @@ variable like this:</p>
 </div>
 <p>In a statically-typed language, once the type of a variable is set,
 it remains the same for the remainder of the program’s lifetime.</p>
-<div class="section" id="integers">
+<section id="integers">
 <h3><span class="section-number">1.2.5.1. </span>Integers<a class="headerlink" href="#integers" title="Permalink to this heading"></a></h3>
 <p>An integer is a number without a fractional component. We can use the assignment
 operator to assign an integer value to a variable:</p>
@@ -522,8 +523,8 @@ of a variable. Note how we can also specify <em>negative</em> integers.</p>
 </div>
 <p>As we will see soon, we will also be able to perform common arithmetic operations
 with integers.</p>
-</div>
-<div class="section" id="real-numbers">
+</section>
+<section id="real-numbers">
 <h3><span class="section-number">1.2.5.2. </span>Real numbers<a class="headerlink" href="#real-numbers" title="Permalink to this heading"></a></h3>
 <p>Similarly, we can also assign real numbers to variables:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mf">14.3</span>
@@ -594,8 +595,8 @@ stores:</p>
 </div>
 <p>Notice how variable <code class="docutils literal notranslate"><span class="pre">c</span></code> first stored an integer, but then switched to being
 a <code class="docutils literal notranslate"><span class="pre">float</span></code> variable once we assigned a float to it.</p>
-</div>
-<div class="section" id="strings">
+</section>
+<section id="strings">
 <h3><span class="section-number">1.2.5.3. </span>Strings<a class="headerlink" href="#strings" title="Permalink to this heading"></a></h3>
 <p>We have already seen one way to assign a string value to a variable:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Hello, world!&quot;</span>
@@ -672,8 +673,8 @@ string literal and a variable name. For example, try this:</p>
 is a the name of a variable, not a string. And since we haven’t
 defined a <code class="docutils literal notranslate"><span class="pre">Hello</span></code> variable, we will get a <code class="docutils literal notranslate"><span class="pre">NameError</span></code> telling you
 as much.</p>
-</div>
-<div class="section" id="booleans">
+</section>
+<section id="booleans">
 <h3><span class="section-number">1.2.5.4. </span>Booleans<a class="headerlink" href="#booleans" title="Permalink to this heading"></a></h3>
 <p>Variables can also contain a <em>boolean</em> value. This value can be
 either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>:</p>
@@ -698,8 +699,8 @@ the Python interpreter, yields an error</p>
 variable, rather than as a boolean value.</p>
 <p>Right now, there’s not much we can do with boolean variables or values,
 but we’ll see soon that they’ll come in handy.</p>
-</div>
-<div class="section" id="the-value-none">
+</section>
+<section id="the-value-none">
 <h3><span class="section-number">1.2.5.5. </span>The value <code class="docutils literal notranslate"><span class="pre">None</span></code><a class="headerlink" href="#the-value-none" title="Permalink to this heading"></a></h3>
 <p>Sometimes, we may want to define a variable but not assign any
 value to it just yet.
@@ -740,8 +741,8 @@ of a value.</p>
 wondering about the type of <code class="docutils literal notranslate"><span class="pre">None</span></code>.  It has the type
 <code class="docutils literal notranslate"><span class="pre">NoneType</span></code>, which has exactly one value: <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </div>
-</div>
-<div class="section" id="scalar-types">
+</section>
+<section id="scalar-types">
 <h3><span class="section-number">1.2.5.6. </span>Scalar types<a class="headerlink" href="#scalar-types" title="Permalink to this heading"></a></h3>
 <p>Atomic values, those of type <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">bool</span></code>, and
 <code class="docutils literal notranslate"><span class="pre">NoneType</span></code> plus values from a couple of types–<code class="docutils literal notranslate"><span class="pre">complex</span></code> and
@@ -753,9 +754,9 @@ direction).  If you don’t have experience with linear algebra, just
 remember that the term scalar is used to mean a single value–like
 <code class="docutils literal notranslate"><span class="pre">5</span></code>, <code class="docutils literal notranslate"><span class="pre">5.0</span></code>, or <code class="docutils literal notranslate"><span class="pre">True</span></code> –that cannot be broken into smaller
 components.</p>
-</div>
-</div>
-<div class="section" id="expressions">
+</section>
+</section>
+<section id="expressions">
 <h2><span class="section-number">1.2.6. </span>Expressions<a class="headerlink" href="#expressions" title="Permalink to this heading"></a></h2>
 <p>Now that we’ve seen variables, some basic types, and their corresponding literals, we can
 combine them together into <em>expressions</em>. An expression is a piece of Python code
@@ -1177,7 +1178,7 @@ filibuster example:</p>
 three <code class="docutils literal notranslate"><span class="pre">or</span></code> clauses evaluates to <code class="docutils literal notranslate"><span class="pre">True</span></code>.  As a result, the values
 of <code class="docutils literal notranslate"><span class="pre">num_yea</span></code>, <code class="docutils literal notranslate"><span class="pre">num_nay</span></code>, etc can be set to zero or to <code class="docutils literal notranslate"><span class="pre">None</span></code> or
 not at all, for that matter, if <code class="docutils literal notranslate"><span class="pre">unanimous_consent</span></code> is true.</p>
-<div class="section" id="string-expressions">
+<section id="string-expressions">
 <h3><span class="section-number">1.2.6.1. </span>String expressions<a class="headerlink" href="#string-expressions" title="Permalink to this heading"></a></h3>
 <p>Strings also support many of the operations we just described.
 Addition, for example, works with strings and results in the
@@ -1295,9 +1296,9 @@ often requires the use of external libraries, like <a class="reference external"
 </div>
 <p>We have only described a small subset of the operations supported by
 strings here.  We discuss lots more later in <a class="reference internal" href="../../data_structures/lists/index.html#chapter-lists"><span class="std std-ref">Lists, Tuples, and Strings</span></a>.</p>
-</div>
-</div>
-<div class="section" id="casting">
+</section>
+</section>
+<section id="casting">
 <h2><span class="section-number">1.2.7. </span>Casting<a class="headerlink" href="#casting" title="Permalink to this heading"></a></h2>
 <p>There are times when we need to convert a value from one type to
 another. For example, we might get a real number represented as a
@@ -1335,8 +1336,8 @@ negative, <code class="docutils literal notranslate"><span class="pre">int</span
 <span class="go">-3</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="dynamic-typing-revisited">
+</section>
+<section id="dynamic-typing-revisited">
 <h2><span class="section-number">1.2.8. </span>Dynamic Typing Revisited<a class="headerlink" href="#dynamic-typing-revisited" title="Permalink to this heading"></a></h2>
 <p>Now that we’ve seen some basic types as well as expressions, we can
 see some of the implications of dynamic typing in a bit more detail.
@@ -1395,8 +1396,8 @@ its type throughout the lifetime of a program doesn’t mean it
 should. As you take your first steps with Python, you should try to be
 disciplined about choosing a type for a variable and then sticking
 with it throughout the program.</p>
-</div>
-<div class="section" id="code-comments">
+</section>
+<section id="code-comments">
 <h2><span class="section-number">1.2.9. </span>Code Comments<a class="headerlink" href="#code-comments" title="Permalink to this heading"></a></h2>
 <p>Before we move on to the next chapter, there’s one final element of Python
 syntax we need to discuss: code comments. When writing code in a Python file, you can include notes for the reader, known as <em>comments</em>, in your
@@ -1416,8 +1417,8 @@ after the hash character:</p>
 <p>You will see comments in many of the examples we will provide,
 and it is good practice to use comments to document your code,
 especially when your code is not self-explanatory.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

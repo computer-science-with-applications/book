@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1.6. Understanding Errors and Catching Exceptions &mdash; Computer Science with Applications  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -85,7 +86,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="understanding-errors-and-catching-exceptions">
+  <section id="understanding-errors-and-catching-exceptions">
 <span id="chapter-exceptions"></span><h1><span class="section-number">1.6. </span>Understanding Errors and Catching Exceptions<a class="headerlink" href="#understanding-errors-and-catching-exceptions" title="Permalink to this heading"></a></h1>
 <p>When Python detects something wrong in your code, it will <em>raise</em> an
 <em>exception</em> to indicate that an error condition has occurred and it is
@@ -120,11 +121,11 @@ the complete sequence of function calls that led to the exception.</p>
 the result of dividing an integer N by all the positive integers less
 than N.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39; divide a by b &#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; divide a by b &#39;&#39;&#39;</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
 
 <span class="k">def</span> <span class="nf">print_divisions</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39; Print result of dividing N by integers less than N. &#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Print result of dividing N by integers less than N. &#39;&#39;&#39;</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
         <span class="n">d</span> <span class="o">=</span> <span class="n">divide</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
@@ -138,9 +139,9 @@ something like this:</p>
 <span class="gt">Traceback (most recent call last):</span>
   File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
   File <span class="nb">&quot;exc.py&quot;</span>, line <span class="m">8</span>, in <span class="n">print_divisions</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="n">divide</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+<span class="w">    </span><span class="n">d</span> <span class="o">=</span> <span class="n">divide</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
   File <span class="nb">&quot;exc.py&quot;</span>, line <span class="m">3</span>, in <span class="n">divide</span>
-    <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+<span class="w">    </span><span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
 <span class="gr">ZeroDivisionError</span>: <span class="n">division by zero</span>
 </pre></div>
 </div>
@@ -183,26 +184,11 @@ want to avoid the value zero, so the <code class="docutils literal notranslate">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
 </pre></div>
 </div>
-<p>If we make this change to <code class="docutils literal notranslate"><span class="pre">exc.py</span></code> and run <code class="docutils literal notranslate"><span class="pre">exc.print_divisions(12)</span></code>
-within the same session of the python interpreter, we’ll get the exact
-same error as before:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exc</span><span class="o">.</span><span class="n">print_divisions</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
-<span class="gt">Traceback (most recent call last):</span>
-  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
-  File <span class="nb">&quot;exc.py&quot;</span>, line <span class="m">8</span>, in <span class="n">print_divisions</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="n">divide</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-  File <span class="nb">&quot;exc.py&quot;</span>, line <span class="m">3</span>, in <span class="n">divide</span>
-    <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
-<span class="gr">ZeroDivisionError</span>: <span class="n">division by zero</span>
-</pre></div>
-</div>
-<p>Wait, didn’t we fix this problem?  Yes, but Python does not
-automatically reload your code when you change it.  We can use the
-<code class="docutils literal notranslate"><span class="pre">reload</span></code> function from <code class="docutils literal notranslate"><span class="pre">importlib</span></code> to fix our problem:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">importlib</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">importlib</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span>
-<span class="go">&lt;module &#39;exc&#39; from &#39;exc.py&#39;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">exc</span><span class="o">.</span><span class="n">print_divisions</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<p>Instead of changing <code class="docutils literal notranslate"><span class="pre">exc.py</span></code>, we will copy the file to a new file
+named <code class="docutils literal notranslate"><span class="pre">exc_fixed.py</span></code> and then fix the copy.  If import the corrected
+version and run <code class="docutils literal notranslate"><span class="pre">exc_fixed.print_divisions(12)</span></code>, we will get:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">exc_fixed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exc_fixed</span><span class="o">.</span><span class="n">print_divisions</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
 <span class="go">12 / 1 = 12.0</span>
 <span class="go">12 / 2 = 6.0</span>
 <span class="go">12 / 3 = 4.0</span>
@@ -225,7 +211,7 @@ else in your code.  The stack trace provides some hints as to where to
 look for the error.  Systematically adding <code class="docutils literal notranslate"><span class="pre">print</span></code> statements that
 highlight the value of crucial variables can help you isolate the
 source of the error.</p>
-<div class="section" id="catching-exceptions">
+<section id="catching-exceptions">
 <h2><span class="section-number">1.6.1. </span>Catching exceptions<a class="headerlink" href="#catching-exceptions" title="Permalink to this heading"></a></h2>
 <p>While exceptions can alert us to errors in our code, they can also be
 <em>caught</em> and handled in a way that is consistent with the goals of the
@@ -235,22 +221,30 @@ not defined when <code class="docutils literal notranslate"><span class="pre">b<
 <p>We can catch an exception with a <code class="docutils literal notranslate"><span class="pre">try</span></code> statement, also known as a
 <code class="docutils literal notranslate"><span class="pre">try</span></code> .. <code class="docutils literal notranslate"><span class="pre">except</span></code> block.  For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39; divide a by b &#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; divide a by b &#39;&#39;&#39;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">ret_val</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
     <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
         <span class="c1"># Send None back to the caller to signal</span>
-        <span class="c1"># that a/b is not defined.</span>
+        <span class="c1"># that a / b is not defined.</span>
         <span class="n">ret_val</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">return</span> <span class="n">ret_val</span>
 </pre></div>
 </div>
-<p>If we replace the <code class="docutils literal notranslate"><span class="pre">divide</span></code> function with the above version, reload
-the file, and call <code class="docutils literal notranslate"><span class="pre">print_divisions</span></code>, we will see:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">importlib</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span>
-<span class="go">&lt;module &#39;exc&#39; from &#39;exc.py&#39;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">exc</span><span class="o">.</span><span class="n">print_divisions</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
-<span class="go">12 / 1 = None</span>
+<p>We will store this version of <code class="docutils literal notranslate"><span class="pre">divide</span></code> along with the original code
+for <code class="docutils literal notranslate"><span class="pre">print_divisions</span></code> (shown below) in a file named <code class="docutils literal notranslate"><span class="pre">exc_try.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_divisions</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&#39;&#39;&#39; Print result of dividing N by integers less than N. &#39;&#39;&#39;</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+      <span class="n">d</span> <span class="o">=</span> <span class="n">divide</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If we run this new version, we will get:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">exc_try</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exc_try</span><span class="o">.</span><span class="n">print_divisions</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="go">12 / 0 = None</span>
+<span class="go">12 / 1 = 12.0</span>
 <span class="go">12 / 2 = 6.0</span>
 <span class="go">12 / 3 = 4.0</span>
 <span class="go">12 / 4 = 3.0</span>
@@ -270,7 +264,7 @@ the division in the first call to <code class="docutils literal notranslate"><sp
 exception and the code in the <code class="docutils literal notranslate"><span class="pre">except</span></code> clause will be run and will
 set <code class="docutils literal notranslate"><span class="pre">ret_val</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code>.  Once the code in the <code class="docutils literal notranslate"><span class="pre">except</span></code> clause
 is finished, the <code class="docutils literal notranslate"><span class="pre">return</span></code> statement that follows the <code class="docutils literal notranslate"><span class="pre">try</span></code>
-statement will be executed and the value of <code class="docutils literal notranslate"><span class="pre">ret_val</span></code> will be
+statement will be executed.  The value of <code class="docutils literal notranslate"><span class="pre">ret_val</span></code> will be
 returned to <code class="docutils literal notranslate"><span class="pre">print_divisions</span></code>, which, in turn, will simply print it
 as the result of the division.  None of the subsequent calls to
 <code class="docutils literal notranslate"><span class="pre">divide</span></code> in the loop will raise the exception.  In these cases,
@@ -279,11 +273,11 @@ returned as expected.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">divide</span></code> function as written now handles division by zero
 without failing.  Notice, however, that it can still fail.  For
 example, notice what happens if we pass it non-numeric arguments:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exc</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exc_try</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
 <span class="gt">Traceback (most recent call last):</span>
   File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
   File <span class="nb">&quot;exc.py&quot;</span>, line <span class="m">4</span>, in <span class="n">divide</span>
-    <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+<span class="w">    </span><span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
 <span class="gr">TypeError</span>: <span class="n">unsupported operand type(s) for /: &#39;str&#39; and &#39;str&#39;</span>
 </pre></div>
 </div>
@@ -293,7 +287,8 @@ the <code class="docutils literal notranslate"><span class="pre">TypeError</span
 stops, and the stack trace message shown above is printed,</p>
 <p>Fortunately, we can catch multiple types of exceptions in the same
 <code class="docutils literal notranslate"><span class="pre">try</span></code> statement:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">ret_val</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
     <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
@@ -309,7 +304,7 @@ stops, and the stack trace message shown above is printed,</p>
 </div>
 <p>Now when we call <code class="docutils literal notranslate"><span class="pre">divide</span></code> on strings, our error message is printed
 and the execution ends on the call to <code class="docutils literal notranslate"><span class="pre">sys.exit(1)</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exc</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exc_try</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
 <span class="go">Type error: unsupported operand type(s) for /: &#39;str&#39; and &#39;str&#39;</span>
 </pre></div>
 </div>
@@ -327,7 +322,8 @@ changed and can now raise a broader set of exceptions).  If we want to
 make sure to deal with all possible types of exceptions, we can catch
 the generic exception <code class="docutils literal notranslate"><span class="pre">Exception</span></code>.  This exception is best used to
 handle unexpected exceptions, as in:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">try</span><span class="p">:</span>
 <span class="gp">... </span>        <span class="n">ret_val</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
 <span class="gp">... </span>    <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
@@ -357,8 +353,9 @@ gets run whether an exception is raised or not. This clause is useful
 when there are any cleanup operations that need to be performed
 (closing files, closing database connections, etc.) regardless of
 whether the code succeeded or failed.  For example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39; Divide a by b and catch exceptions&#39;&#39;&#39;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Divide a by b and catch exceptions&#39;&#39;&#39;</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="n">ret_val</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
@@ -381,11 +378,6 @@ whether the code succeeded or failed.  For example:</p>
 <span class="go">3.0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">divide</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="go">divide() was called with 6 and 0</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">divide</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">)</span>
-<span class="gt">Traceback (most recent call last):</span>
-  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
-  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">10</span>, in <span class="n">divide</span>
-<span class="gr">NameError</span>: <span class="n">name &#39;sys&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Before we close this chapter, let’s look at what happens when we catch
@@ -394,8 +386,9 @@ higher up the call stack.  Specifically, we’ll return to the example
 from the start of the chapter.  We’ve modified <code class="docutils literal notranslate"><span class="pre">divide</span></code> to catch the
 <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>, but not <code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code>.  Instead, we’ll handle
 that error in <code class="docutils literal notranslate"><span class="pre">print_divisions</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39; Divide a by b and catch exceptions&#39;&#39;&#39;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Divide a by b and catch exceptions&#39;&#39;&#39;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">ret_val</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
     <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
@@ -405,7 +398,7 @@ that error in <code class="docutils literal notranslate"><span class="pre">print
     <span class="k">return</span> <span class="n">ret_val</span>
 
 <span class="k">def</span> <span class="nf">print_divisions</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39; Print result of dividing N by integers less than N. &#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Print result of dividing N by integers less than N. &#39;&#39;&#39;</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">d</span> <span class="o">=</span> <span class="n">divide</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
@@ -446,8 +439,8 @@ now know enough to read error messages and handle simple exception
 processing.  We’ll return to the topic of exceptions later in the book
 to look ways to catch related types of errors in one <code class="docutils literal notranslate"><span class="pre">except</span></code> clause
 and how to define and raise your own exceptions.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

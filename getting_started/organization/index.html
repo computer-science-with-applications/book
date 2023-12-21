@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1.5. Basics of Code Organization &mdash; Computer Science with Applications  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -89,7 +90,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="basics-of-code-organization">
+  <section id="basics-of-code-organization">
 <span id="chapter-organization-basics"></span><h1><span class="section-number">1.5. </span>Basics of Code Organization<a class="headerlink" href="#basics-of-code-organization" title="Permalink to this heading"></a></h1>
 <p>Back in <a class="reference internal" href="../basics/index.html#chapter-basics"><span class="std std-ref">Programming Basics</span></a>, we wrote our first program:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
@@ -102,8 +103,8 @@
 </div>
 <p>Or by placing the code in a file called <code class="docutils literal notranslate"><span class="pre">hello.py</span></code>, and running that file
 from the terminal:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python hello.py
-Hello, world!
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>hello.py
+Hello,<span class="w"> </span>world!
 </pre></div>
 </div>
 <p>In the previous chapter, we also saw that it is possible to write function
@@ -123,7 +124,7 @@ I can <em>import</em> a Python file, which allows me to use functions that are d
 that file. In this chapter, we will expand on this distinction (running vs. importing)
 by introducing the notion of Python <em>modules</em>, and providing an introduction to
 how to organize Python code in a program.</p>
-<div class="section" id="python-modules">
+<section id="python-modules">
 <h2><span class="section-number">1.5.1. </span>Python modules<a class="headerlink" href="#python-modules" title="Permalink to this heading"></a></h2>
 <p>A Python module is, quite simply, a file containing Python code. The <code class="docutils literal notranslate"><span class="pre">hello.py</span></code> file
 mentioned above is a Python module, as is the <code class="docutils literal notranslate"><span class="pre">primes.py</span></code> file from the previous
@@ -217,8 +218,8 @@ the interpreter isn’t affecting this next example.</p>
 which internally requires using the <code class="docutils literal notranslate"><span class="pre">is_prime</span></code> function, located in a different module.
 However, we are not required to run <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">primes</span></code> ourselves in the interpreter,
 because it is already being imported from inside the <code class="docutils literal notranslate"><span class="pre">mersenne</span></code> module.</p>
-</div>
-<div class="section" id="running-vs-importing-a-module">
+</section>
+<section id="running-vs-importing-a-module">
 <h2><span class="section-number">1.5.2. </span>Running vs importing a module<a class="headerlink" href="#running-vs-importing-a-module" title="Permalink to this heading"></a></h2>
 <p>So far, we’ve seen that Python modules can be imported from the interpreter and from
 other modules, but modules can also be <em>run</em> from the command-line. To better understand
@@ -243,7 +244,7 @@ are three versions of this module: <code class="docutils literal notranslate"><s
 </pre></div>
 </div>
 <p>But what happens if we <em>run</em> this module from the command-line?</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python3 arithmetic.py
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python3<span class="w"> </span>arithmetic.py
 $
 </pre></div>
 </div>
@@ -270,9 +271,9 @@ print a message or call the functions.</p>
 </div>
 <p>This version includes some statements after the function definitions. If we run
 this module we’ll see the following:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python3 arithmetic_nomain.py
-add<span class="o">(</span><span class="m">2</span>, <span class="m">10</span><span class="o">)</span> <span class="o">=</span>  <span class="m">12</span>
-multiply<span class="o">(</span><span class="m">2</span>, <span class="m">10</span><span class="o">)</span> <span class="o">=</span> <span class="m">20</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python3<span class="w"> </span>arithmetic_nomain.py
+add<span class="o">(</span><span class="m">2</span>,<span class="w"> </span><span class="m">10</span><span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">12</span>
+multiply<span class="o">(</span><span class="m">2</span>,<span class="w"> </span><span class="m">10</span><span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span>
 $
 </pre></div>
 </div>
@@ -315,9 +316,9 @@ We can see what this looks like in the <code class="docutils literal notranslate
 </pre></div>
 </div>
 <p>When we run it, the code under <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span></code> runs as expected:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python3 arithmetic_main.py
-add<span class="o">(</span><span class="m">2</span>, <span class="m">10</span><span class="o">)</span> <span class="o">=</span>  <span class="m">12</span>
-multiply<span class="o">(</span><span class="m">2</span>, <span class="m">10</span><span class="o">)</span> <span class="o">=</span> <span class="m">20</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python3<span class="w"> </span>arithmetic_main.py
+add<span class="o">(</span><span class="m">2</span>,<span class="w"> </span><span class="m">10</span><span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">12</span>
+multiply<span class="o">(</span><span class="m">2</span>,<span class="w"> </span><span class="m">10</span><span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span>
 $
 </pre></div>
 </div>
@@ -399,8 +400,8 @@ a <code class="docutils literal notranslate"><span class="pre">subtract</span></
 </div>
 </div></blockquote>
 </div>
-</div>
-<div class="section" id="computer-programs-revisited">
+</section>
+<section id="computer-programs-revisited">
 <h2><span class="section-number">1.5.3. </span>Computer programs revisited<a class="headerlink" href="#computer-programs-revisited" title="Permalink to this heading"></a></h2>
 <p>In <a class="reference internal" href="../basics/index.html#chapter-basics"><span class="std std-ref">Programming Basics</span></a>, we said that “a computer program is, at its
 core, a collection of instructions that the computer must perform”. We now have a better
@@ -443,24 +444,24 @@ prime or not:</p>
 </pre></div>
 </div>
 <p>Here are some sample runs of this program:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python3 prime-checker.py
-Enter a number: <span class="m">16</span>
-<span class="m">16</span> is not a prime number.
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python3<span class="w"> </span>prime-checker.py
+Enter<span class="w"> </span>a<span class="w"> </span>number:<span class="w"> </span><span class="m">16</span>
+<span class="m">16</span><span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>a<span class="w"> </span>prime<span class="w"> </span>number.
 </pre></div>
 </div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python3 prime-checker.py
-Enter a number: <span class="m">23</span>
-<span class="m">23</span> is a prime number, but not a Mersenne prime <span class="o">(</span>and neither is <span class="m">2</span>^23-1<span class="o">)</span>.
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python3<span class="w"> </span>prime-checker.py
+Enter<span class="w"> </span>a<span class="w"> </span>number:<span class="w"> </span><span class="m">23</span>
+<span class="m">23</span><span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>prime<span class="w"> </span>number,<span class="w"> </span>but<span class="w"> </span>not<span class="w"> </span>a<span class="w"> </span>Mersenne<span class="w"> </span>prime<span class="w"> </span><span class="o">(</span>and<span class="w"> </span>neither<span class="w"> </span>is<span class="w"> </span><span class="m">2</span>^23-1<span class="o">)</span>.
 </pre></div>
 </div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python3 prime-checker.py
-Enter a number: <span class="m">61</span>
-<span class="m">61</span> is a prime number, but not a Mersenne prime <span class="o">(</span>however, <span class="m">2</span>^61-1 is a Mersenne prime<span class="o">)</span>.
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python3<span class="w"> </span>prime-checker.py
+Enter<span class="w"> </span>a<span class="w"> </span>number:<span class="w"> </span><span class="m">61</span>
+<span class="m">61</span><span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>prime<span class="w"> </span>number,<span class="w"> </span>but<span class="w"> </span>not<span class="w"> </span>a<span class="w"> </span>Mersenne<span class="w"> </span>prime<span class="w"> </span><span class="o">(</span>however,<span class="w"> </span><span class="m">2</span>^61-1<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>Mersenne<span class="w"> </span>prime<span class="o">)</span>.
 </pre></div>
 </div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python3 prime-checker.py
-Enter a number: <span class="m">127</span>
-<span class="m">127</span> is a double Mersenne prime: both <span class="m">127</span> and <span class="m">2</span>^127-1 are Mersenne primes.
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python3<span class="w"> </span>prime-checker.py
+Enter<span class="w"> </span>a<span class="w"> </span>number:<span class="w"> </span><span class="m">127</span>
+<span class="m">127</span><span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>double<span class="w"> </span>Mersenne<span class="w"> </span>prime:<span class="w"> </span>both<span class="w"> </span><span class="m">127</span><span class="w"> </span>and<span class="w"> </span><span class="m">2</span>^127-1<span class="w"> </span>are<span class="w"> </span>Mersenne<span class="w"> </span>primes.
 </pre></div>
 </div>
 <p>However, all the logic involved in testing each number’s primality
@@ -485,8 +486,8 @@ modules are not meant to be run but, rather, to be imported by other modules.</p
 <em>use</em> existing libraries in our code. In particular, Python itself includes a vast collection of
 modules, called the Python Standard Library, that we can use in our code and
 which we describe next.</p>
-</div>
-<div class="section" id="the-python-standard-library">
+</section>
+<section id="the-python-standard-library">
 <h2><span class="section-number">1.5.4. </span>The Python Standard Library<a class="headerlink" href="#the-python-standard-library" title="Permalink to this heading"></a></h2>
 <p>When you install Python on your computer, you are not only getting a Python interpreter,
 but also access to a huge collection of modules that is already included with Python.
@@ -530,8 +531,8 @@ in the same directory as our code). For example, this is where you would find th
 <li><p>Linux: <code class="docutils literal notranslate"><span class="pre">/usr/lib/python3.8/random.py</span></code></p></li>
 </ul>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

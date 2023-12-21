@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1.4. Introduction to Functions &mdash; Computer Science with Applications  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -104,7 +105,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="introduction-to-functions">
+  <section id="introduction-to-functions">
 <span id="chapter-functions"></span><h1><span class="section-number">1.4. </span>Introduction to Functions<a class="headerlink" href="#introduction-to-functions" title="Permalink to this heading"></a></h1>
 <p>Up to this point, we have seen enough programming concepts to express
 non-trivial algorithms, such as determining whether a
@@ -152,10 +153,12 @@ refer to them as <em>subroutines</em> or <em>subprograms</em>).</p>
 functions in Python take some input values,
 called the <em>parameters</em>, and produce a new value,
 called the <em>return value</em>:</p>
-<div class="figure align-default" id="id2">
+<figure class="align-default" id="id2">
 <img alt="Function" src="../../_images/function.png" />
-<p class="caption"><span class="caption-text">Function</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Function</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 <p>We have already <em>seen</em> uses of functions in some of our
 examples, like the function
 <code class="docutils literal notranslate"><span class="pre">random.randint</span></code>, which returns a random integer:</p>
@@ -202,13 +205,13 @@ point out then, you can safely skip those low-level details for now, but may wan
 them once you’re more comfortable with functions, and definitely before we
 the Functional Programming and Recursion chapters, where we explore more
 advanced concepts involving functions.</p>
-<div class="section" id="anatomy-of-a-function">
+<section id="anatomy-of-a-function">
 <h2><span class="section-number">1.4.1. </span>Anatomy of a function<a class="headerlink" href="#anatomy-of-a-function" title="Permalink to this heading"></a></h2>
 <p>To describe the basic elements of a Python function, we will start
 with a very simple function that takes two integers and returns
 the product of those two integers:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute the product of two values.</span>
 
 <span class="sd">    Inputs:</span>
@@ -253,12 +256,12 @@ later on, this statement is not strictly required.</p></li>
 </ul>
 <p>Try typing in the function into the interpreter:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="sd">&#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="gp">... </span><span class="sd">    Compute the product of two values.</span>
-<span class="gp">... </span><span class="sd"></span>
+<span class="gp">... </span>
 <span class="gp">... </span><span class="sd">    Inputs:</span>
 <span class="gp">... </span><span class="sd">      a, b: the values to be multiplied.</span>
-<span class="gp">... </span><span class="sd"></span>
+<span class="gp">... </span>
 <span class="gp">... </span><span class="sd">    Returns: the product of the inputs</span>
 <span class="gp">... </span><span class="sd">    &#39;&#39;&#39;</span>
 <span class="gp">... </span>
@@ -355,7 +358,7 @@ Our <code class="docutils literal notranslate"><span class="pre">multiply</span>
 returns the product of its two arguments.</p>
 <p>Let’s look a similar function that prints the result instead:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Print the product of two values.</span>
 
 <span class="sd">    Inputs:</span>
@@ -410,15 +413,15 @@ is not valid do use a call to <code class="docutils literal notranslate"><span c
 that you want to use elsewhere, make sure that you <em>return</em> that
 value. Printing it is not sufficient.</p>
 </div>
-</div>
-<div class="section" id="encapsulating-primality-testing">
+</section>
+<section id="encapsulating-primality-testing">
 <h2><span class="section-number">1.4.2. </span>Encapsulating primality testing<a class="headerlink" href="#encapsulating-primality-testing" title="Permalink to this heading"></a></h2>
 <p>We can use a function to encapsulate our primality testing code,
 allowing us to use it easily and in more places.  Our
 function will take an integer as a parameter and return <code class="docutils literal notranslate"><span class="pre">True</span></code> if
 the integer is prime and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is not.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Determines whether the input is prime.</span>
 
 <span class="sd">    Inputs:</span>
@@ -481,7 +484,7 @@ as an argument properly:</p>
 <p>We could fix this problem by using a more complex expression in the
 return statement:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Determines whether the input is prime.</span>
 
 <span class="sd">    Inputs:</span>
@@ -510,14 +513,14 @@ return statement:</p>
 </div>
 <p>But as you will see in the next section, there is a better way to
 resolve this problem.</p>
-</div>
-<div class="section" id="return-statements">
+</section>
+<section id="return-statements">
 <h2><span class="section-number">1.4.3. </span>Return statements<a class="headerlink" href="#return-statements" title="Permalink to this heading"></a></h2>
 <p>The functions we’ve seen so far have a single return statement at the
 end of the function. A return statement can appear anywhere in the
 function and can appear multiple times. For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">absolute</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute the absolute value of a number.</span>
 
 <span class="sd">    Inputs:</span>
@@ -544,7 +547,7 @@ can modify the function to treat one as a special case, immediately
 returning <code class="docutils literal notranslate"><span class="pre">False</span></code> when the function is called with <code class="docutils literal notranslate"><span class="pre">1</span></code> as the
 parameter.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Determines whether the input is prime.</span>
 
 <span class="sd">    Inputs:</span>
@@ -572,7 +575,7 @@ by <code class="docutils literal notranslate"><span class="pre">i</span></code>,
 through the whole <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, then <code class="docutils literal notranslate"><span class="pre">n</span></code> must be
 prime:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Determines whether the input is prime.</span>
 
 <span class="sd">    Inputs:</span>
@@ -618,8 +621,8 @@ returns from the current function as soon as it encounters a
 never execute more than one iteration (and possibly, a partial
 iteration at that).</p>
 </div>
-</div>
-<div class="section" id="advantages-of-using-functions">
+</section>
+<section id="advantages-of-using-functions">
 <h2><span class="section-number">1.4.4. </span>Advantages of using functions<a class="headerlink" href="#advantages-of-using-functions" title="Permalink to this heading"></a></h2>
 <p>Functions help us organize and abstract code.
 We’ll look at simulating <em>Going to Boston</em>, a simple
@@ -631,12 +634,12 @@ value, then roll the remaining two dice and set aside
 the largest one, and finally, roll the remaining die.  The sum of
 the resulting face values is their score for the round.  The players
 keep a running total of their scores until one reaches 500 and wins.</p>
-<div class="section" id="reusability">
+<section id="reusability">
 <h3><span class="section-number">1.4.4.1. </span>Reusability<a class="headerlink" href="#reusability" title="Permalink to this heading"></a></h3>
 <p>Let’s think about how to implement the code for a single round.  We
 could write code that implements the rules directly:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">play_round</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Play a round of the game Going to Boston using three dice.</span>
 
 <span class="sd">    Inputs: none</span>
@@ -693,7 +696,7 @@ die).  To abstract this task into a function, we will take the number
 of dice as a parameter and replace the calls(s) to <code class="docutils literal notranslate"><span class="pre">max</span></code> with a
 single call.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_largest_roll</span><span class="p">(</span><span class="n">num_dice</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Roll a specified number of dice and return the largest face</span>
 <span class="sd">    value.</span>
 
@@ -718,7 +721,7 @@ single call.</p>
 <p>Given this function, we can replace the similar
 blocks of code with functions calls that have appropriate inputs:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">play_round</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Play a round of the game Going to Boston using three dice.</span>
 
 <span class="sd">    Inputs: None</span>
@@ -739,7 +742,7 @@ Going to Boston with exactly three dice.  We
 could have chosen to generalize it by taking the number of
 dice as a parameter.  For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">play_round_generalized</span><span class="p">(</span><span class="n">num_dice</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Play a round of the game Going to Boston.</span>
 
 <span class="sd">    Inputs:</span>
@@ -756,15 +759,15 @@ dice as a parameter.  For example:</p>
 </div>
 <p>A good rule of thumb is to start with a simple version of a function
 and generalize as you find new uses.</p>
-</div>
-<div class="section" id="composability">
+</section>
+<section id="composability">
 <h3><span class="section-number">1.4.4.2. </span>Composability<a class="headerlink" href="#composability" title="Permalink to this heading"></a></h3>
 <p>In addition to reducing repeated code, we also use functions as building
 blocks for more complex pieces of code.  For example, we can use our
 <code class="docutils literal notranslate"><span class="pre">play_round</span></code> function to simulate a two-person version of Going to
 Boston.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">play_going_to_boston</span><span class="p">(</span><span class="n">goal</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Simulate one game of Going to Boston.</span>
 
 <span class="sd">    Inputs:</span>
@@ -821,7 +824,7 @@ for answering the question of “is there a significant benefit to going
 first?”  A better design would separate these tasks into
 two functions:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">play_one_game</span><span class="p">(</span><span class="n">goal</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Simulate one game of Going to Boston.</span>
 
 <span class="sd">    Inputs:</span>
@@ -843,7 +846,7 @@ two functions:</p>
 
 
 <span class="k">def</span> <span class="nf">play_going_to_boston</span><span class="p">(</span><span class="n">goal</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Simulate one game of Going to Boston and print the winner.</span>
 
 <span class="sd">    Inputs:</span>
@@ -861,7 +864,7 @@ two functions:</p>
 <p>This design allows us to simulate many games to see if the first
 player has an advantage:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulate_many_games</span><span class="p">(</span><span class="n">num_trials</span><span class="p">,</span> <span class="n">goal</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Simulate num_trials games of Going to Boston and print the</span>
 <span class="sd">    average number of wins.</span>
 
@@ -889,8 +892,8 @@ advantage to going first: <code class="docutils literal notranslate"><span class
 <span class="go">0.6129</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="testability">
+</section>
+<section id="testability">
 <h3><span class="section-number">1.4.4.3. </span>Testability<a class="headerlink" href="#testability" title="Permalink to this heading"></a></h3>
 <p>Finally, functions make code easier to test. A
 piece of code that fulfills a specific purpose (e.g., to determine whether a
@@ -904,9 +907,9 @@ value.  Of course, manually testing functions in the interpreter can
 still be cumbersome. The process of testing code can be largely
 automated using <em>unit test frameworks</em> that allow us to specify
 a series of tests, and easily run all of them.</p>
-</div>
-</div>
-<div class="section" id="variable-scope">
+</section>
+</section>
+<section id="variable-scope">
 <span id="chapter-functions-variable-scope"></span><h2><span class="section-number">1.4.5. </span>Variable scope<a class="headerlink" href="#variable-scope" title="Permalink to this heading"></a></h2>
 <p>In Python and other programming languages, variables have a
 specific <em>scope</em>, meaning that they are only valid and can only be
@@ -927,7 +930,7 @@ in the code where
 the function was called.  Let’s look more carefully at what happens
 during a call to <code class="docutils literal notranslate"><span class="pre">play_round</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">play_round</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Play a round of the game Going to Boston using three dice.</span>
 
 <span class="sd">    Inputs: None</span>
@@ -980,15 +983,15 @@ over again to evaluate the third call.</p>
 <p>In all, three distinct sets of the local variables for
 <code class="docutils literal notranslate"><span class="pre">get_largest_roll</span></code> will be created and discarded over the course of
 a single execution of <code class="docutils literal notranslate"><span class="pre">play_round</span></code>.</p>
-</div>
-<div class="section" id="parameters">
+</section>
+<section id="parameters">
 <h2><span class="section-number">1.4.6. </span>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
 <p>Understanding how parameters work is an important aspect of learning
 how to design and write functions. So far, we have seen some fairly
 simple parameters, but, as we’ll see in this section, parameters
 have several features and nuances that we need
 to be aware of when writing functions.</p>
-<div class="section" id="call-by-value">
+<section id="call-by-value">
 <h3><span class="section-number">1.4.6.1. </span>Call-by-value<a class="headerlink" href="#call-by-value" title="Permalink to this heading"></a></h3>
 <p>As discussed above, expressions used as arguments for a function call are
 evaluated <em>before</em> the function call, and their <em>values</em> are
@@ -1067,8 +1070,8 @@ The value of x after the the call to add_one is 5
 <p>Why? Because the variable <code class="docutils literal notranslate"><span class="pre">x</span></code> defined in function <code class="docutils literal notranslate"><span class="pre">h</span></code> and the
 formal parameter <code class="docutils literal notranslate"><span class="pre">x</span></code> in <code class="docutils literal notranslate"><span class="pre">add_one</span></code> are <em>different</em> variables that
 just happen to have the same name.</p>
-</div>
-<div class="section" id="default-parameter-values">
+</section>
+<section id="default-parameter-values">
 <h3><span class="section-number">1.4.6.2. </span>Default parameter values<a class="headerlink" href="#default-parameter-values" title="Permalink to this heading"></a></h3>
 <p>Suppose we wanted to write a function that simulates flipping a coin
 <code class="docutils literal notranslate"><span class="pre">n</span></code> times. The function itself would have a single parameter, <code class="docutils literal notranslate"><span class="pre">n</span></code>,
@@ -1079,7 +1082,7 @@ either a 0 or a 1 (arbitrarily setting 0 to be heads and 1 to be tails):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
 
 <span class="k">def</span> <span class="nf">flip_coins</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Flip a coin n times and report the number that comes up heads.</span>
 
 <span class="sd">    Input:</span>
@@ -1126,7 +1129,7 @@ with parameters <code class="docutils literal notranslate"><span class="pre">0.0
 as indicating that the coin flip resulted in heads, and
 values greater than or equal to <code class="docutils literal notranslate"><span class="pre">prob_heads</span></code> to indicate tails:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">flip_coins</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">prob_heads</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Flip a weighted coin n times and report the number that come up</span>
 <span class="sd">    heads.</span>
 
@@ -1164,7 +1167,7 @@ allows us to specify a <em>default value</em> for parameters. To do this, we
 write the parameter in the form of an assignment, with the default value
 “assigned” to the parameter:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">flip_coins</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">prob_heads</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Flip a weighted coin n times and report the number that come up</span>
 <span class="sd">    heads.</span>
 
@@ -1202,7 +1205,7 @@ write the parameter in the form of an assignment, with the default value
 those without default values must come first, followed by
 those with default values (if there are any). Notice that the following code fails:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">flip_coins</span><span class="p">(</span><span class="n">prob_heads</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Flip a weighted coin n times and report the number that come up</span>
 <span class="sd">    heads.</span>
 
@@ -1228,8 +1231,8 @@ those with default values (if there are any). Notice that the following code fai
 SyntaxError: non-default argument follows default argument
 </pre></div>
 </div>
-</div>
-<div class="section" id="positional-and-keyword-arguments">
+</section>
+<section id="positional-and-keyword-arguments">
 <h3><span class="section-number">1.4.6.3. </span>Positional and keyword arguments<a class="headerlink" href="#positional-and-keyword-arguments" title="Permalink to this heading"></a></h3>
 <p>So far, whenever we have called a function, we have specified the arguments in that function call in the same order as they appear in the function’s list of parameters (with the ability to omit some of those parameters that have a default value).  These are referred to as <em>positional arguments</em>,
 because how they map to specific parameters depends on their <em>position</em>
@@ -1269,8 +1272,8 @@ although in that case the positional arguments must come first.</p>
 <span class="gr">SyntaxError</span>: <span class="n">positional argument follows keyword argument</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="dynamic-typing-revisited">
+</section>
+<section id="dynamic-typing-revisited">
 <h3><span class="section-number">1.4.6.4. </span>Dynamic typing revisited<a class="headerlink" href="#dynamic-typing-revisited" title="Permalink to this heading"></a></h3>
 <p>Let’s return to our <code class="docutils literal notranslate"><span class="pre">multiply</span></code> function and revisit the impact of
 dynamic typing.  In this case, we’ve defined a function that is
@@ -1304,9 +1307,9 @@ computation fail with a type error.  In a statically-typed
 language, we would specify the types of the parameters. Doing so
 can make the definition more rigid, but enables us to catch errors
 more quickly.</p>
-</div>
-</div>
-<div class="section" id="global-variables">
+</section>
+</section>
+<section id="global-variables">
 <h2><span class="section-number">1.4.7. </span>Global variables<a class="headerlink" href="#global-variables" title="Permalink to this heading"></a></h2>
 <p>As mentioned earlier, variables defined in a function are known as <em>local</em>
 variables.  Variables defined outside the context of a function are
@@ -1320,7 +1323,7 @@ code, we could move the definition out of the functions altogether.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">NUM_SIDES</span> <span class="o">=</span> <span class="mi">6</span>
 
 <span class="k">def</span> <span class="nf">get_largest_roll</span><span class="p">(</span><span class="n">num_dice</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Roll a specified number of dice and return the largest face</span>
 <span class="sd">    value.</span>
 
@@ -1340,7 +1343,7 @@ code, we could move the definition out of the functions altogether.</p>
     <span class="k">return</span> <span class="n">largest</span>
 
 <span class="k">def</span> <span class="nf">sum_throw</span><span class="p">(</span><span class="n">num_dice</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Throw a specified number dice and sum up the resulting rolls.</span>
 
 <span class="sd">    Inputs:</span>
@@ -1388,7 +1391,7 @@ about the die in some cases and not others:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">NUM_SIDES</span> <span class="o">=</span> <span class="mi">6</span>
 
 <span class="k">def</span> <span class="nf">get_largest_roll</span><span class="p">(</span><span class="n">num_dice</span><span class="p">,</span> <span class="n">die_num_sides</span><span class="o">=</span><span class="n">NUM_SIDES</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Roll a specified number of dice and return the largest face</span>
 <span class="sd">    value.</span>
 
@@ -1422,7 +1425,7 @@ local variable <em>shadows</em> the global variable.  That is, the local variabl
 takes precedence.  Here is a simple example of this behavior:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">add_c</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="sd">&#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="gp">... </span><span class="sd">    Add x and c</span>
 <span class="gp">... </span><span class="sd">    &#39;&#39;&#39;</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span>
@@ -1438,7 +1441,7 @@ global <code class="docutils literal notranslate"><span class="pre">c</span></co
 <p>Here is a related example that illustrates another aspect of shadowing:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">add_10</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="sd">&#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="gp">... </span><span class="sd">    Add 10 to x</span>
 <span class="gp">... </span><span class="sd">    &#39;&#39;&#39;</span>
 <span class="gp">... </span>    <span class="n">c</span> <span class="o">=</span> <span class="mi">10</span>
@@ -1463,7 +1466,7 @@ global variable within a function by declaring that it is
 use of this feature:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">update_c</span><span class="p">(</span><span class="n">new_c</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="sd">&#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="gp">... </span><span class="sd">    Update the value of the global variable c</span>
 <span class="gp">... </span><span class="sd">    &#39;&#39;&#39;</span>
 <span class="gp">... </span>
@@ -1488,8 +1491,8 @@ Instead, it updates the global variable <code class="docutils literal notranslat
 use of updates to global variables often yields code that is buggy
 and hard to understand.</strong></p>
 </div>
-</div>
-<div class="section" id="the-function-call-stack">
+</section>
+<section id="the-function-call-stack">
 <span id="call-stack"></span><h2><span class="section-number">1.4.8. </span>The function call stack<a class="headerlink" href="#the-function-call-stack" title="Permalink to this heading"></a></h2>
 <p>Understanding what happens under the hood during a function call helps us
 understand scoping and many other
@@ -1504,7 +1507,7 @@ function calls that are in progress. When a program begins to run, the call
 stack is empty because no functions have been called. Now, let’s suppose we have
 these three simple functions:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tax</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">rate</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute the tax for a given price.</span>
 
 <span class="sd">    Inputs:</span>
@@ -1517,7 +1520,7 @@ these three simple functions:</p>
     <span class="k">return</span> <span class="n">t</span>
 
 <span class="k">def</span> <span class="nf">taxed_price</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute the price with tax.</span>
 
 <span class="sd">    Inputs:</span>
@@ -1531,7 +1534,7 @@ these three simple functions:</p>
     <span class="k">return</span> <span class="n">price</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute and print the price 100 with tax.</span>
 
 <span class="sd">    Inputs: none</span>
@@ -1825,8 +1828,8 @@ and they do not persist into future function calls. For example, if we called
 <code class="docutils literal notranslate"><span class="pre">tax</span></code> again, it would not “remember” that a previous call already set a value
 for its local variable <code class="docutils literal notranslate"><span class="pre">t</span></code>.</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

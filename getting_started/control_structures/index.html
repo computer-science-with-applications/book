@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1.3. Control Flow Statements &mdash; Computer Science with Applications  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -96,7 +97,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="control-flow-statements">
+  <section id="control-flow-statements">
 <span id="chapter-control"></span><h1><span class="section-number">1.3. </span>Control Flow Statements<a class="headerlink" href="#control-flow-statements" title="Permalink to this heading"></a></h1>
 <p>In the previous chapter, we saw that a program is essentially a collection of
 instructions to a computer. We saw two specific instructions: assignment
@@ -163,7 +164,7 @@ the simulation until some stopping condition is met.</p></li>
 </ul>
 <p>In the next chapter, we will see additional statements that relate to
 <em>functions</em> and which also allow us to alter the control flow of our program.</p>
-<div class="section" id="conditional-statements">
+<section id="conditional-statements">
 <h2><span class="section-number">1.3.1. </span>Conditional Statements<a class="headerlink" href="#conditional-statements" title="Permalink to this heading"></a></h2>
 <p>In the previous chapter, we learned that a boolean expression is an expression
 that evaluates to either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>:</p>
@@ -285,8 +286,8 @@ errors. For example, we’ll see an error if we do not indent the code in an
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  File &quot;&lt;stdin&gt;&quot;, line 2
     print(n, &quot;is odd&quot;)
-    ^
-IndentationError: expected an indented block
+    ^^^^^
+IndentationError: expected an indented block after &#39;if&#39; statement on line 1
 </pre></div>
 </div>
 <p>Or if we use inconsistent indentation inside the same block of code:</p>
@@ -297,7 +298,6 @@ IndentationError: expected an indented block
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  File &quot;&lt;stdin&gt;&quot;, line 3
     print(&quot;This concludes the odd branch.&quot;)
-    ^
 IndentationError: unexpected indent
 </pre></div>
 </div>
@@ -477,8 +477,8 @@ with multiple conditions is required.</p>
 that will trigger the different conditions in a conditional
 statement.</p>
 </div>
-</div>
-<div class="section" id="for-loops">
+</section>
+<section id="for-loops">
 <h2><span class="section-number">1.3.2. </span><code class="docutils literal notranslate"><span class="pre">for</span></code> Loops<a class="headerlink" href="#for-loops" title="Permalink to this heading"></a></h2>
 <p><em>Loops</em> provide a mechanism for repeating work in a program.
 Loops are often used when we need to process a set of values and perform
@@ -579,7 +579,7 @@ times.</p>
 that has zero values, a list that has exactly one value, and a list
 that has many values.</p>
 </div>
-<div class="section" id="nested-statements">
+<section id="nested-statements">
 <h3><span class="section-number">1.3.2.1. </span>Nested statements<a class="headerlink" href="#nested-statements" title="Permalink to this heading"></a></h3>
 <p>Suppose we wanted to compute the total tax on all the prices.
 We could accomplish this task with the following loop:</p>
@@ -753,8 +753,8 @@ move the <code class="docutils literal notranslate"><span class="pre">print</spa
 are initializing <em>all</em> the variables used in the loop in the right
 place for your specific application.</p>
 </div>
-</div>
-<div class="section" id="iterating-over-ranges-of-integer">
+</section>
+<section id="iterating-over-ranges-of-integer">
 <h3><span class="section-number">1.3.2.2. </span>Iterating over ranges of integer<a class="headerlink" href="#iterating-over-ranges-of-integer" title="Permalink to this heading"></a></h3>
 <p>A common way to use <code class="docutils literal notranslate"><span class="pre">for</span></code> loops is to do something with all the
 integers in a given <em>range</em>. Let’s say we wanted to print out
@@ -818,8 +818,8 @@ using <code class="docutils literal notranslate"><span class="pre">range</span><
 where you set a bound to be too low or too high by one. This type of
 mistake is very common and can be difficult to track down.</p>
 </div>
-</div>
-<div class="section" id="example-primality-testing">
+</section>
+<section id="example-primality-testing">
 <h3><span class="section-number">1.3.2.3. </span>Example: Primality testing<a class="headerlink" href="#example-primality-testing" title="Permalink to this heading"></a></h3>
 <p>Let’s move on to a slightly more involved example: testing whether
 a number is prime. While there are very elaborate methods for
@@ -951,8 +951,8 @@ we will test for primality:</p>
 31 is prime
 </pre></div>
 </div>
-</div>
-<div class="section" id="the-break-statement">
+</section>
+<section id="the-break-statement">
 <h3><span class="section-number">1.3.2.4. </span>The <code class="docutils literal notranslate"><span class="pre">break</span></code> statement<a class="headerlink" href="#the-break-statement" title="Permalink to this heading"></a></h3>
 <p>The primality testing algorithm we just saw is a correct algorithm:
 for all values of <code class="docutils literal notranslate"><span class="pre">n</span></code> (where <span class="math notranslate nohighlight">\(n \geqslant 1\)</span>), the algorithm
@@ -1086,23 +1086,20 @@ guarded by a conditional statement.  A loop with an unguarded
 example,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
 
-<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prices</span><span class="s2">&quot;</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prices</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The value of p is:&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
     <span class="k">break</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  File &quot;&lt;stdin&gt;&quot;, line 3
-    for p in prices&quot;
-                   ^
-SyntaxError: EOL while scanning string literal
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The value of p is: 10
 </pre></div>
 </div>
 <p>executes outputs exactly one line.  If list of prices happens to be
 empty, then the loop would not generate any output, which explains why
 we wrote that a loop with an unguarded break would execute “at most”
 once.</p>
-</div>
-<div class="section" id="continue-statement">
+</section>
+<section id="continue-statement">
 <h3><span class="section-number">1.3.2.5. </span><code class="docutils literal notranslate"><span class="pre">continue</span></code> statement<a class="headerlink" href="#continue-statement" title="Permalink to this heading"></a></h3>
 <p>Python will immediately exit a loop when it encounters a <code class="docutils literal notranslate"><span class="pre">break</span></code>
 statement.  Sometimes, you just want to stop the current iteration and
@@ -1154,9 +1151,9 @@ that simple using <code class="docutils literal notranslate"><span class="pre">c
 <p>As with <code class="docutils literal notranslate"><span class="pre">break</span></code>, it does not make sense to use <code class="docutils literal notranslate"><span class="pre">continue</span></code> without
 a corresponding conditional to guard its execution as the code
 following an unguarded <code class="docutils literal notranslate"><span class="pre">continue</span></code> would never be executed.</p>
-</div>
-</div>
-<div class="section" id="while-loops">
+</section>
+</section>
+<section id="while-loops">
 <h2><span class="section-number">1.3.3. </span><code class="docutils literal notranslate"><span class="pre">while</span></code> loops<a class="headerlink" href="#while-loops" title="Permalink to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">while</span></code> loops are a more general type of loop that, instead of repeating an action <em>for</em> each
 element in a sequence, will repeat an action <em>while</em> a condition is true.
@@ -1232,8 +1229,8 @@ can be more error-prone.</p>
 stated as iterating over a sequence of values, so we need the more
 general mechanism provided by a boolean expression. We will
 see one such example in the next section.</p>
-</div>
-<div class="section" id="putting-it-all-together">
+</section>
+<section id="putting-it-all-together">
 <h2><span class="section-number">1.3.4. </span>Putting it all together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this heading"></a></h2>
 <p>In this section we are going to work through a slightly longer example
 that combines conditionals and loops and involves non-trivial logic.</p>
@@ -1335,8 +1332,8 @@ total number of rolls made in <em>valid</em> games using the variable
     <span class="n">game_num_rolls</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">while</span> <span class="n">roll</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">roll</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
         <span class="c1"># subsequent rolls</span>
-        <span class="n">roll</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-        <span class="n">num_rolls</span> <span class="o">=</span> <span class="n">num_rolls</span> <span class="o">+</span> <span class="mi">1</span>
+       <span class="n">roll</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+       <span class="n">game_num_rolls</span> <span class="o">=</span> <span class="n">game_num_rolls</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="n">roll</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
         <span class="c1"># the game was valid</span>
         <span class="n">num_valid_games</span> <span class="o">=</span> <span class="n">num_valid_games</span> <span class="o">+</span> <span class="mi">1</span>
@@ -1363,8 +1360,8 @@ because they are used to accumulate values across the whole
 computation.  In contrast, <code class="docutils literal notranslate"><span class="pre">roll</span></code> and <code class="docutils literal notranslate"><span class="pre">game_num_rolls</span></code> are
 re-initialized for every iteration of the outer loop, because they
 need to be reset to their initial values for each new game.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

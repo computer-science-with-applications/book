@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1.7. Example: A Game of Chance &mdash; Computer Science with Applications  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -88,7 +89,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="example-a-game-of-chance">
+  <section id="example-a-game-of-chance">
 <span id="chapter-hazard"></span><h1><span class="section-number">1.7. </span>Example: A Game of Chance<a class="headerlink" href="#example-a-game-of-chance" title="Permalink to this heading"></a></h1>
 <p>Hazard is a game of chance that was popular in medieval England.  To
 play, a designated player named the <em>caster</em> throws a pair of
@@ -295,13 +296,13 @@ pass the dice on to another player.</p>
 <p>Given that brief explanation, let’s look at some code for simulating
 this game.  The first thing we need to do is simulate
 rolling a pair of dice.</p>
-<div class="section" id="rolling-dice">
+<section id="rolling-dice">
 <h2><span class="section-number">1.7.1. </span>Rolling dice<a class="headerlink" href="#rolling-dice" title="Permalink to this heading"></a></h2>
 <p>In Hazard, we throw of pair of dice and add the face values
 together.  Because we will use this computation often in our simulation,
 it makes sense to write a very short function to do it:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">throw_dice</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Throw a pair of six-sided dice</span>
 
 <span class="sd">    Returns (int): the sum of the dice</span>
@@ -314,8 +315,8 @@ it makes sense to write a very short function to do it:</p>
 <p>We chose to use a constant for number of sides for the die, but we could have
 easily written this function to take the number of sides as
 an argument.</p>
-</div>
-<div class="section" id="playing-a-round">
+</section>
+<section id="playing-a-round">
 <h2><span class="section-number">1.7.2. </span>Playing a round<a class="headerlink" href="#playing-a-round" title="Permalink to this heading"></a></h2>
 <p>The work needed to play a round is sufficiently complex that it makes
 sense to encapsulate it in a function.  Since the caster chooses the main,
@@ -326,7 +327,7 @@ We can return this information as a boolean: <code class="docutils literal notra
 <code class="docutils literal notranslate"><span class="pre">False</span></code> for a loss.  Putting these design decisions together gives
 us the following function header:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">play_one_round</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Play one round of Hazard.</span>
 
 <span class="sd">    Inputs:</span>
@@ -398,7 +399,7 @@ increase clarity, while others consider them unnecessary distractions.
 You can decide for yourself.</p>
 <p>We can put these pieces together to get the following complete function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">play_one_round</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Play one round of Hazard.</span>
 
 <span class="sd">    Inputs:</span>
@@ -429,8 +430,8 @@ You can decide for yourself.</p>
     <span class="k">return</span> <span class="p">(</span><span class="n">roll</span> <span class="o">==</span> <span class="n">chance</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="simulating-a-player">
+</section>
+<section id="simulating-a-player">
 <h2><span class="section-number">1.7.3. </span>Simulating a player<a class="headerlink" href="#simulating-a-player" title="Permalink to this heading"></a></h2>
 <p>We will also encapsulate the code for simulating an individual caster’s turn
 in a function.  Similar to <code class="docutils literal notranslate"><span class="pre">play_one_round</span></code>, this function will take
@@ -448,7 +449,7 @@ increment its value.  On a win, we will reset it to zero.</p>
 the while loop will be false and the function will return the number
 of rounds won.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulate_caster</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Simulate rounds until the caster loses two rounds in a row.</span>
 
 <span class="sd">    Inputs:</span>
@@ -470,8 +471,8 @@ of rounds won.</p>
     <span class="k">return</span> <span class="n">num_wins</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="estimating-win-rate">
+</section>
+<section id="estimating-win-rate">
 <h2><span class="section-number">1.7.4. </span>Estimating win rate<a class="headerlink" href="#estimating-win-rate" title="Permalink to this heading"></a></h2>
 <p>Finally, we can easily reuse our function <code class="docutils literal notranslate"><span class="pre">play_one_round</span></code> to print
 a table of estimated per-round win rates for the different possible choices for
@@ -488,7 +489,7 @@ specified upper bound.  The inner loop will both simulate the desired
 number of rounds and keep track of the number of rounds won for the
 current value of <code class="docutils literal notranslate"><span class="pre">chosen_main</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_win_rate_table</span><span class="p">(</span><span class="n">num_rounds</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Print a table with the win rates for the possible choices for main</span>
 
 <span class="sd">    Inputs:</span>
@@ -508,8 +509,8 @@ count for each possible value of <code class="docutils literal notranslate"><spa
 <code class="docutils literal notranslate"><span class="pre">win</span></code> gets reset to zero for each iteration of the outer loop.  As
 we noted in our earlier discussion of loops, initializing variables in
 the wrong place is a very common source of bugs.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

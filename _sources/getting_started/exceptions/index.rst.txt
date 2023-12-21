@@ -115,27 +115,14 @@ want to avoid the value zero, so the ``range`` should start at one:
 
    for i in range(1, N):
 
-If we make this change to ``exc.py`` and run ``exc.print_divisions(12)``
-within the same session of the python interpreter, we'll get the exact
-same error as before:
+Instead of changing ``exc.py``, we will copy the file to a new file
+named ``exc_fixed.py`` and then fix the copy.  If import the corrected
+version and run ``exc_fixed.print_divisions(12)``, we will get:
 
-   >>> exc.print_divisions(12)
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-     File "exc.py", line 8, in print_divisions
-       d = divide(N, i)
-     File "exc.py", line 3, in divide
-       return a / b
-   ZeroDivisionError: division by zero
+.. code:: python
 
-Wait, didn't we fix this problem?  Yes, but Python does not
-automatically reload your code when you change it.  We can use the
-``reload`` function from ``importlib`` to fix our problem::
-
-   >>> import importlib
-   >>> importlib.reload(exc)
-   <module 'exc' from 'exc.py'>
-   >>> exc.print_divisions(12)
+   >>> import exc_fixed
+   >>> exc_fixed.print_divisions(12)
    12 / 1 = 12.0
    12 / 2 = 6.0
    12 / 3 = 4.0
@@ -179,19 +166,29 @@ We can catch an exception with a ``try`` statement, also known as a
            ret_val = a / b
        except ZeroDivisionError:
            # Send None back to the caller to signal
-	   # that a/b is not defined.
+	   # that a / b is not defined.
            ret_val = None
        return ret_val
 
-If we replace the ``divide`` function with the above version, reload
-the file, and call ``print_divisions``, we will see:
+We will store this version of ``divide`` along with the original code
+for ``print_divisions`` (shown below) in a file named ``exc_try.py``:
 
 .. code:: python
 
-   >>> importlib.reload(exc)
-   <module 'exc' from 'exc.py'>
-   >>> exc.print_divisions(12)
-   12 / 1 = None
+     def print_divisions(N):
+       ''' Print result of dividing N by integers less than N. '''
+       for i in range(N):
+           d = divide(N, i)
+           print(N, "/", i, "=", d)
+
+If we run this new version, we will get:
+
+.. code:: python
+
+   >>> import exc_try
+   >>> exc_try.print_divisions(12)
+   12 / 0 = None
+   12 / 1 = 12.0
    12 / 2 = 6.0
    12 / 3 = 4.0
    12 / 4 = 3.0
@@ -210,7 +207,7 @@ the division in the first call to ``divide`` will trigger the
 exception and the code in the ``except`` clause will be run and will
 set ``ret_val`` to ``None``.  Once the code in the ``except`` clause
 is finished, the ``return`` statement that follows the ``try``
-statement will be executed and the value of ``ret_val`` will be
+statement will be executed.  The value of ``ret_val`` will be
 returned to ``print_divisions``, which, in turn, will simply print it
 as the result of the division.  None of the subsequent calls to
 ``divide`` in the loop will raise the exception.  In these cases,
@@ -223,7 +220,7 @@ example, notice what happens if we pass it non-numeric arguments:
 
 .. code:: python
 
-   >>> exc.divide("abc", "a")
+   >>> exc_try.divide("abc", "a")
    Traceback (most recent call last):
      File "<stdin>", line 1, in <module>
      File "exc.py", line 4, in divide
@@ -240,6 +237,7 @@ Fortunately, we can catch multiple types of exceptions in the same
 
 .. code:: python
 
+   import sys
    def divide(a, b):
        try:
            ret_val = a / b
@@ -259,7 +257,7 @@ and the execution ends on the call to ``sys.exit(1)``:
 
 .. code:: python
 
-   >>> exc.divide("abc", "a")
+   >>> exc_try.divide("abc", "a")
    Type error: unsupported operand type(s) for /: 'str' and 'str'
 
 This example also illustrates another feature of exceptions: we can
@@ -280,6 +278,7 @@ handle unexpected exceptions, as in:
 
 .. python-run::
 
+   import sys
    def divide(a, b):
        try:
            ret_val = a / b
@@ -313,6 +312,7 @@ whether the code succeeded or failed.  For example:
 .. python-run::
    :formatting: separate
 
+   import sys
    def divide(a,b):
        ''' Divide a by b and catch exceptions'''
 
@@ -335,7 +335,6 @@ whether the code succeeded or failed.  For example:
 
    divide(6, 2)
    divide(6, 0)
-   divide(6, "foo")
 
 
 Before we close this chapter, let's look at what happens when we catch
@@ -348,6 +347,7 @@ that error in ``print_divisions``.
 .. python-run::
    :formatting: separate
 
+   import sys
    def divide(a,b):
        ''' Divide a by b and catch exceptions'''
        try:

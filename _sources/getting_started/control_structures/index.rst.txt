@@ -937,7 +937,7 @@ example,
 
    prices = [10, 25, 5, 70, 10]
 
-   for p in prices"
+   for p in prices:
        print("The value of p is:", p)
        break
      		
@@ -1216,8 +1216,8 @@ Here's code that for the full task:
        game_num_rolls = 1
        while roll == 2 or roll == 4:
            # subsequent rolls
-           roll = random.randint(1, 6)
-           num_rolls = num_rolls + 1
+          roll = random.randint(1, 6)
+          game_num_rolls = game_num_rolls + 1
        if roll == 6:
            # the game was valid
 	   num_valid_games = num_valid_games + 1

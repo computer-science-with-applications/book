@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>4.1. Working with Files &mdash; Computer Science with Applications  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -85,7 +86,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="working-with-files">
+  <section id="working-with-files">
 <h1><span class="section-number">4.1. </span>Working with Files<a class="headerlink" href="#working-with-files" title="Permalink to this heading"></a></h1>
 <p>A very common programming pattern proceeds as follows:</p>
 <ol class="arabic simple">
@@ -98,7 +99,7 @@ into data-processing pipelines.</p>
 <p>In this chapter, we’ll discuss how to work with several different file
 formats.  We’ll start with the most basic mechanisms and work our way
 up to higher-level tools and more complex formats.</p>
-<div class="section" id="basic-file-i-o">
+<section id="basic-file-i-o">
 <h2><span class="section-number">4.1.1. </span>Basic file I/O<a class="headerlink" href="#basic-file-i-o" title="Permalink to this heading"></a></h2>
 <p>Reading file input and writing file output is often referred to as
 I/O, or input/output.  We’ll start our discussion of basic file I/O
@@ -258,8 +259,8 @@ we can combine a familiar pattern for constructing lists with a use of
 <span class="gp">&gt;&gt;&gt; </span><span class="n">email_addresses</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="writing-data-to-a-file">
+</section>
+<section id="writing-data-to-a-file">
 <h2><span class="section-number">4.1.2. </span>Writing data to a file<a class="headerlink" href="#writing-data-to-a-file" title="Permalink to this heading"></a></h2>
 <p>To write to a file, we must open the file in write mode (note the use of
 <code class="docutils literal notranslate"><span class="pre">&quot;w&quot;</span></code> as a second parameter to <code class="docutils literal notranslate"><span class="pre">open</span></code> to specify that we’re opening
@@ -312,11 +313,11 @@ may not get written back to disk.</p>
 with a list of email addresses into a new file with the domain name
 (that is, <code class="docutils literal notranslate"><span class="pre">&#64;cs.uchicago.edu</span></code>) stripped off.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">strip_domain</span><span class="p">(</span><span class="n">input_filename</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="sd">&#39;&#39;&#39;</span>
-<span class="gp">... </span><span class="sd"></span>
+<span class="gp">... </span><span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="gp">... </span>
 <span class="gp">... </span><span class="sd">    Strip the domain names off the email address from the input</span>
 <span class="gp">... </span><span class="sd">    file and write the resulting usernames to the output file.</span>
-<span class="gp">... </span><span class="sd"></span>
+<span class="gp">... </span>
 <span class="gp">... </span><span class="sd">    Inputs:</span>
 <span class="gp">... </span><span class="sd">      input_filename: (string) name of a file with email addresses</span>
 <span class="gp">... </span><span class="sd">      output_filename: (string) name for the output file.</span>
@@ -352,8 +353,8 @@ files. In the next few sections, we’ll introduce a few existing data
 formats and libraries that it make it easy to work with them.  In
 general, it is better to use an existing format and its associated
 libraries, if you can, than to invent your own ad hoc format.</p>
-</div>
-<div class="section" id="csv">
+</section>
+<section id="csv">
 <h2><span class="section-number">4.1.3. </span>CSV<a class="headerlink" href="#csv" title="Permalink to this heading"></a></h2>
 <p>The acronym CSV stands for Comma Separated Values. CSV files contain
 values separated by commas (and sometimes by other delimiters) and are
@@ -456,8 +457,8 @@ field names specified in the header row or using the optional
 <p>The <code class="docutils literal notranslate"><span class="pre">csv</span></code> module also has <code class="docutils literal notranslate"><span class="pre">reader</span></code> and <code class="docutils literal notranslate"><span class="pre">writer</span></code> classes that use
 lists to represent rows rather than dictionaries. This allows us to
 interact with the fields positionally instead of by name.</p>
-</div>
-<div class="section" id="json">
+</section>
+<section id="json">
 <h2><span class="section-number">4.1.4. </span>JSON<a class="headerlink" href="#json" title="Permalink to this heading"></a></h2>
 <p>JSON (JavaScript Object Notation) is a <em>lightweight</em> data-interchange
 format that web services commonly use.  It is also used as a
@@ -554,8 +555,8 @@ file, and returns the decoded data structure:</p>
 <span class="go">[&#39;foo&#39;, {&#39;bar&#39;: [&#39;baz&#39;, None, 1.0, 2]}]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="yaml">
+</section>
+<section id="yaml">
 <h2><span class="section-number">4.1.5. </span>YAML<a class="headerlink" href="#yaml" title="Permalink to this heading"></a></h2>
 <p>YAML (YAML Ain’t Markup Language) is, like JSON, a lightweight data
 format that is intended to be both machine-readable and
@@ -614,8 +615,8 @@ can use it:</p>
 </div>
 <p>Notice that the nesting of the dictionary reflects the nesting of the
 indentation above.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

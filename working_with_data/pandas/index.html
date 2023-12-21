@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>4.3. The pandas library &mdash; Computer Science with Applications  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -87,7 +88,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="the-pandas-library">
+  <section id="the-pandas-library">
 <h1><span class="section-number">4.3. </span>The pandas library<a class="headerlink" href="#the-pandas-library" title="Permalink to this heading"></a></h1>
 <p><a class="reference external" href="http://pandas.pydata.org/">Pandas</a> is a data analysis toolkit for Python that makes it easy to
 work with certain types of data, specially:</p>
@@ -143,7 +144,7 @@ library.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
-<div class="section" id="dataframes">
+<section id="dataframes">
 <h2><span class="section-number">4.3.1. </span>DataFrames<a class="headerlink" href="#dataframes" title="Permalink to this heading"></a></h2>
 <p>We’ll start by loading the tree data into a data structure.  Data frames,
 the main data structure in Pandas, were inspired by the data structure
@@ -493,12 +494,12 @@ columns, we can specify the names of the columns of interest to
 <code class="docutils literal notranslate"><span class="pre">pd.read_csv</span></code> and get the slimmer data frame to start.  Here’s a
 function that uses this approach to construct the desired data frame:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">get_tree_data</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="sd">&#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="gp">... </span><span class="sd">    Read slim version of the tree data and clean up the labels.</span>
-<span class="gp">... </span><span class="sd"></span>
+<span class="gp">... </span>
 <span class="gp">... </span><span class="sd">    Inputs:</span>
 <span class="gp">... </span><span class="sd">        filename: name of the file with the tree data</span>
-<span class="gp">... </span><span class="sd"></span>
+<span class="gp">... </span>
 <span class="gp">... </span><span class="sd">    Returns: DataFrame</span>
 <span class="gp">... </span><span class="sd">    &#39;&#39;&#39;</span>
 <span class="gp">... </span>    <span class="n">cols_to_keep</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tree_id&#39;</span><span class="p">,</span> <span class="s1">&#39;spc_common&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;health&#39;</span><span class="p">,</span> <span class="s1">&#39;boroname&#39;</span><span class="p">,</span>
@@ -521,8 +522,8 @@ dictionary that maps the old name of a label to a new name using the
 <code class="docutils literal notranslate"><span class="pre">columns</span></code> parameter.  Finally, by default, <code class="docutils literal notranslate"><span class="pre">rename</span></code> constructs a
 new dataframe.  Calling it with the <code class="docutils literal notranslate"><span class="pre">inplace</span></code> parameter set to
 <code class="docutils literal notranslate"><span class="pre">True</span></code>, causes frame updated in place, instead.</p>
-</div>
-<div class="section" id="a-note-about-missing-values">
+</section>
+<section id="a-note-about-missing-values">
 <h2><span class="section-number">4.3.2. </span>A note about missing values<a class="headerlink" href="#a-note-about-missing-values" title="Permalink to this heading"></a></h2>
 <p>As we noted when we described the tree data, some attributes are not
 included for some entries.  The entries for stumps and dead trees, for
@@ -544,8 +545,8 @@ value <code class="docutils literal notranslate"><span class="pre">NaN</span></c
 inserted in place of missing values by default by <code class="docutils literal notranslate"><span class="pre">pd.read_csv</span></code>.
 We’ll talk about how Pandas handles these values as we explore the
 trees data set.</p>
-</div>
-<div class="section" id="series">
+</section>
+<section id="series">
 <h2><span class="section-number">4.3.3. </span>Series<a class="headerlink" href="#series" title="Permalink to this heading"></a></h2>
 <p>Now that we have the data in a form suitable for computation, let’s look at what is
 required to answer the first two questions: “How many different
@@ -731,8 +732,8 @@ call to <code class="docutils literal notranslate"><span class="pre">value_count
 <span class="go">Name: status, dtype: float64</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="filtering">
+</section>
+<section id="filtering">
 <h2><span class="section-number">4.3.4. </span>Filtering<a class="headerlink" href="#filtering" title="Permalink to this heading"></a></h2>
 <p>Now let’s move on to our third and fourth questions: “What is the most
 common street tree species in Brooklyn?” and “What percentage of the
@@ -836,8 +837,8 @@ we’ll split the filtering into two pieces:</p>
 <p>The first two lines build a data frame for the trees in Queens
 (excluding stumps), while the second and third lines filter this new data
 frame further to find the dead trees and trees in poor health.</p>
-</div>
-<div class="section" id="grouping">
+</section>
+<section id="grouping">
 <h2><span class="section-number">4.3.5. </span>Grouping<a class="headerlink" href="#grouping" title="Permalink to this heading"></a></h2>
 <p>To answer our last question— “How does tree health differ by
 borough?”—we will compute a data frame similar to Table X, which has
@@ -1301,8 +1302,8 @@ of the column name as a proxy for the column as a series.  That is,
 <span class="go">Staten Island  78.494654  13.801060  4.024003  1.775575  1.903758</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="pivoting">
+</section>
+<section id="pivoting">
 <h2><span class="section-number">4.3.6. </span>Pivoting<a class="headerlink" href="#pivoting" title="Permalink to this heading"></a></h2>
 <p>In the previous section, we used <code class="docutils literal notranslate"><span class="pre">unstack</span></code> to convert a series with
 a hierarchical index into a data frame with a flat index.  In this
@@ -1471,8 +1472,8 @@ with zeros.  We can do this task easily using the <code class="docutils literal 
 <p>As in other cases, adding <code class="docutils literal notranslate"><span class="pre">inplace=True</span></code> as a parameter instructs
 <code class="docutils literal notranslate"><span class="pre">fillna</span></code> to make the changes in place rather construct a new data
 frame.</p>
-</div>
-<div class="section" id="saving-space-with-categoricals">
+</section>
+<section id="saving-space-with-categoricals">
 <h2><span class="section-number">4.3.7. </span>Saving space with Categoricals<a class="headerlink" href="#saving-space-with-categoricals" title="Permalink to this heading"></a></h2>
 <p>Our tree data set contains nearly 700,000 rows, so a natural question
 to ask is: how large is the memory footprint?  We can answer this
@@ -1598,14 +1599,14 @@ variable from the sample diastolic blood pressures using <code class="docutils l
 labelled as having “normal” diastolic blood pressure, patients 2 and 6
 are labelled with “pre-hypertension” and patients 0 and 5 are labelled
 has having high diastolic blood pressure.</p>
-</div>
-<div class="section" id="summary">
+</section>
+<section id="summary">
 <h2><span class="section-number">4.3.8. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this heading"></a></h2>
 <p>Pandas is very complex library and we have barely skimmed the surface
 of its many useful features. We strongly encourage you to look at the
 documentation to explore the wealth of options it provides.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

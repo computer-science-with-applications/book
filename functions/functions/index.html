@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3.1. Functional Programming &mdash; Computer Science with Applications  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -89,7 +90,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="functional-programming">
+  <section id="functional-programming">
 <h1><span class="section-number">3.1. </span>Functional Programming<a class="headerlink" href="#functional-programming" title="Permalink to this heading"></a></h1>
 <p>Programming languages are often classified into one of several
 paradigms.  For example, in <em>imperative</em> programming languages,
@@ -118,7 +119,7 @@ include features that are influenced by functional programming languages).</p>
 <p>In this chapter, we will focus on two aspects of functional
 programming that Python supports: higher-order functions and anonymous
 functions.</p>
-<div class="section" id="higher-order-functions">
+<section id="higher-order-functions">
 <h2><span class="section-number">3.1.1. </span>Higher-order functions<a class="headerlink" href="#higher-order-functions" title="Permalink to this heading"></a></h2>
 <p>Let’s say we wanted to find the value of an integral:</p>
 <div class="math notranslate nohighlight">
@@ -148,9 +149,9 @@ the function at the midpoint of the subrange (using the start or end of the
 subrange is not desirable for reasons that are not worth getting into here) The
 sum of the areas of all those rectangles approximates the value of the
 integral between <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../../_images/integration_plot.png" src="../../_images/integration_plot.png" />
-</div>
+</figure>
 <p>We can easily write a function that implements this approach. Let’s assume the
 function we’re integrating is the square function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -160,7 +161,7 @@ function we’re integrating is the square function:</p>
 <p>Our integration function, which simply implements the above summation
 using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, would look like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">integrate_square</span><span class="p">(</span><span class="n">lb</span><span class="p">,</span> <span class="n">ub</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute the integral of the square function between the</span>
 <span class="sd">    specified bounds using the rectangle method.</span>
 
@@ -203,7 +204,7 @@ to integrate <span class="math notranslate nohighlight">\(f(x)=2\cdot x\)</span>
     <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
 
 <span class="k">def</span> <span class="nf">integrate_double</span><span class="p">(</span><span class="n">lb</span><span class="p">,</span> <span class="n">ub</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute the integral of the double function between the</span>
 <span class="sd">    specified bounds using the rectangle method.</span>
 
@@ -235,7 +236,7 @@ a general purpose <code class="docutils literal notranslate"><span class="pre">i
 of integrating a specific hard-coded function, takes
 a function <em>as a parameter</em>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">integrate</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">lb</span><span class="p">,</span> <span class="n">ub</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute the integral of the specified function between the</span>
 <span class="sd">    specified lower and upper bounds using the rectangle method.</span>
 
@@ -304,8 +305,8 @@ type of function, our code will fail:</p>
 <p>The exact type of failure will depend on the function.  In this case,
 for example, we passed a function with two required parameters where a
 function of one parameter was needed.</p>
-</div>
-<div class="section" id="anonymous-functions">
+</section>
+<section id="anonymous-functions">
 <h2><span class="section-number">3.1.2. </span>Anonymous functions<a class="headerlink" href="#anonymous-functions" title="Permalink to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">integrate</span></code> function can take a function as a parameter, but it
 requires defining a separate function (like <code class="docutils literal notranslate"><span class="pre">square</span></code> and <code class="docutils literal notranslate"><span class="pre">double</span></code>)
@@ -345,8 +346,8 @@ function to <code class="docutils literal notranslate"><span class="pre">integra
 <span class="go">299.9999999999999</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="map-reduce-filter">
+</section>
+<section id="map-reduce-filter">
 <h2><span class="section-number">3.1.3. </span>map(), reduce(), filter()<a class="headerlink" href="#map-reduce-filter" title="Permalink to this heading"></a></h2>
 <p>Python provides a few very useful higher-order functions for working with
 lists.</p>
@@ -487,7 +488,7 @@ imported from the <code class="docutils literal notranslate"><span class="pre">f
 <span class="go">24</span>
 </pre></div>
 </div>
-<div class="section" id="list-comprehensions-revisited">
+<section id="list-comprehensions-revisited">
 <span id="id1"></span><h3><span class="section-number">3.1.3.1. </span>List comprehensions revisited<a class="headerlink" href="#list-comprehensions-revisited" title="Permalink to this heading"></a></h3>
 <p>In <a class="reference internal" href="../../data_structures/lists/index.html#chapter-lists"><span class="std std-ref">Lists, Tuples, and Strings</span></a>, we briefly described <em>list comprehensions</em>
 as shorthand notation for producing a new list based on an
@@ -523,9 +524,9 @@ list. The above list comprehension is equivalent to this code:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[1, 9, 16]
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="returning-a-function">
+</section>
+</section>
+<section id="returning-a-function">
 <h2><span class="section-number">3.1.4. </span>Returning a function<a class="headerlink" href="#returning-a-function" title="Permalink to this heading"></a></h2>
 <p>Recall that we defined higher-order functions as functions that can
 take other functions as arguments and return functions as results.  So
@@ -575,7 +576,7 @@ will just assume <span class="math notranslate nohighlight">\(dx\)</span> is a s
 </div>
 <p>We could follow the above definition to define its derivative like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cube_slope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute the slope of the cube function at the specified point.</span>
 
 <span class="sd">    Inputs:</span>
@@ -603,7 +604,7 @@ would look very similar:</p>
     <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
 
 <span class="k">def</span> <span class="nf">square_slope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute the slope of the square function at the specified point</span>
 
 <span class="sd">    Inputs:</span>
@@ -621,7 +622,7 @@ would look very similar:</p>
 general purpose <code class="docutils literal notranslate"><span class="pre">slope</span></code> function, like we did with our integration
 function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">slope</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute the slope of the specified function at the specified</span>
 <span class="sd">    point</span>
 
@@ -650,7 +651,7 @@ We do this by defining
 one function <em>inside</em> another function, and having the outer function return
 the inner function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">derivative</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Create a function of one variable that computes the derivative</span>
 <span class="sd">    of the specified function.</span>
 
@@ -664,7 +665,7 @@ the inner function:</p>
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="k">def</span> <span class="nf">slope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dx</span> <span class="o">=</span> <span class="mf">0.00001</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39; Compute the slope of f at the specified point &#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Compute the slope of f at the specified point &#39;&#39;&#39;</span>
 
         <span class="k">return</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">)</span><span class="o">-</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="n">dx</span>
 
@@ -703,8 +704,8 @@ derivative, etc.</p>
 <span class="go">227.37367544323203</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="scoping-and-inner-functions">
+</section>
+<section id="scoping-and-inner-functions">
 <h2><span class="section-number">3.1.5. </span>Scoping and inner functions<a class="headerlink" href="#scoping-and-inner-functions" title="Permalink to this heading"></a></h2>
 <p>Before we move on to our next topic, recursion, let’s revisit the
 topic of scoping.  Recall that every variable is defined and
@@ -720,8 +721,8 @@ by a variable or parameter of the same name in the inner function.
 Like globals, nonlocal variables are read-only within an inner
 function unless the programmer explicitly declares them as
 <code class="docutils literal notranslate"><span class="pre">nonlocal</span></code>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

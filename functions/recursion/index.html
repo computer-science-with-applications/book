@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3.2. Recursion &mdash; Computer Science with Applications  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -86,7 +87,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="recursion">
+  <section id="recursion">
 <h1><span class="section-number">3.2. </span>Recursion<a class="headerlink" href="#recursion" title="Permalink to this heading"></a></h1>
 <p>As we have seen throughout the book, there are many cases where we must repeat
 operations and can do so with a <code class="docutils literal notranslate"><span class="pre">for</span></code> or <code class="docutils literal notranslate"><span class="pre">while</span></code> loop.
@@ -104,7 +105,7 @@ will require less code and will result in cleaner and more intuitive code
 than the equivalent iterative solution.
 In this chapter, we will introduce recursion and work through several problems that
 lend themselves naturally to a recursive solution.</p>
-<div class="section" id="factorials">
+<section id="factorials">
 <h2><span class="section-number">3.2.1. </span>Factorials<a class="headerlink" href="#factorials" title="Permalink to this heading"></a></h2>
 <p>Let’s look at the factorial operation:</p>
 <div class="math notranslate nohighlight">
@@ -114,7 +115,7 @@ lend themselves naturally to a recursive solution.</p>
 \[n!=\prod_{k=1}^n k \!\]</div>
 <p>We can implement this definition using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;  Compute n! iteratively &#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;  Compute n! iteratively &#39;&#39;&#39;</span>
 
     <span class="n">rv</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
@@ -185,7 +186,7 @@ we would fall into infinite recursion.</p>
 <p>We can implement our recursive definition of factorial
 in Python like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial_r</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;  Compute n! recursively &#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;  Compute n! recursively &#39;&#39;&#39;</span>
 
     <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
        <span class="k">return</span> <span class="mi">1</span>
@@ -211,8 +212,8 @@ in a recursive function. After that, we will work through several
 examples of recursive algorithms that will help us to understand
 how to design recursive functions, as well as when to use a recursive
 algorithm instead of an iterative solution.</p>
-</div>
-<div class="section" id="the-anatomy-of-a-recursive-function-call">
+</section>
+<section id="the-anatomy-of-a-recursive-function-call">
 <h2><span class="section-number">3.2.2. </span>The anatomy of a recursive function call<a class="headerlink" href="#the-anatomy-of-a-recursive-function-call" title="Permalink to this heading"></a></h2>
 <p>To show what happens in the <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code> function,
 we have prepared a more verbose version that will do the
@@ -222,7 +223,7 @@ you don’t understand how we’re formatting the output (especially
 how we indent the messages, which requires using an extra parameter).
 Focus instead on following what happens during each recursive call.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial_r</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute n! recursively and print information about the</span>
 <span class="sd">    computation along the way.</span>
 
@@ -540,7 +541,7 @@ fact in mind can help avoid a common mistake: thinking that the
 recursive call simply “jumps” back to the beginning of the
 function. For example, in the <code class="docutils literal notranslate"><span class="pre">factorial_r</span></code> function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial_r</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;  Compute n! recursively &#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;  Compute n! recursively &#39;&#39;&#39;</span>
 
     <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
        <span class="k">return</span> <span class="mi">1</span>
@@ -556,13 +557,13 @@ entry in the function call stack is created, with its own values for
 <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">x</span></code>. If you find yourself struggling to understand how
 a recursive function works, try working through the function
 call stack step-by-step as we did above.</p>
-</div>
-<div class="section" id="recursion-vs-iteration">
+</section>
+<section id="recursion-vs-iteration">
 <h2><span class="section-number">3.2.3. </span>Recursion vs. iteration<a class="headerlink" href="#recursion-vs-iteration" title="Permalink to this heading"></a></h2>
 <p>At this point, we have seen that we can implement the factorial
 function using iteration:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;  Compute n! iteratively &#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;  Compute n! iteratively &#39;&#39;&#39;</span>
 
     <span class="n">rv</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
@@ -572,7 +573,7 @@ function using iteration:</p>
 </div>
 <p>And using recursion:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial_r</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;  Compute n! recursively &#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;  Compute n! recursively &#39;&#39;&#39;</span>
 
     <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
        <span class="k">return</span> <span class="mi">1</span>
@@ -598,7 +599,7 @@ between a lower bound <code class="docutils literal notranslate"><span class="pr
 simply with iteration (for the sake of argument, let’s assume
 we cannot use the <code class="docutils literal notranslate"><span class="pre">range</span></code> function):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gen_nums</span><span class="p">(</span><span class="n">lb</span><span class="p">,</span> <span class="n">ub</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Generate a list of integers from a lower bound to an upper</span>
 <span class="sd">    bound inclusive.</span>
 
@@ -626,7 +627,7 @@ we cannot use the <code class="docutils literal notranslate"><span class="pre">r
 <p>Although we can also write a recursive solution to this problem,
 it is arguably not as easy to understand as the equivalent iterative solution:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gen_nums_r</span><span class="p">(</span><span class="n">lb</span><span class="p">,</span> <span class="n">ub</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Generate a list of integers from a lower bound to an upper</span>
 <span class="sd">    bound inclusive.</span>
 
@@ -671,8 +672,8 @@ for repetition), however, tend to use recursion only when dealing with problems
 that have an inherently recursive definition because it is easier
 to translate the problem into code using that definition rather than trying
 to figure out the equivalent iterative solution.</p>
-</div>
-<div class="section" id="permutations-or-how-to-think-recursively">
+</section>
+<section id="permutations-or-how-to-think-recursively">
 <h2><span class="section-number">3.2.4. </span>Permutations (or how to think recursively)<a class="headerlink" href="#permutations-or-how-to-think-recursively" title="Permalink to this heading"></a></h2>
 <p><em>Generating permutations</em> is a good example of a problem that has a
 simple recursive definition: given <span class="math notranslate nohighlight">\(n\)</span> elements, the
@@ -781,7 +782,7 @@ permutation: the permutation with that element.</p>
 <p>So, we can start writing our <code class="docutils literal notranslate"><span class="pre">permutations_r</span></code> function
 as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">permutations_r</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute all the permutations of the values in p.</span>
 
 <span class="sd">    Inputs:</span>
@@ -811,7 +812,7 @@ value of our function would be a <em>list</em> of permutations (and
 want to get from the function is <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">[1]</span> <span class="pre">]</span></code>. So we re-write
 the function as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">permutations_r</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute all the permutations of the values in p.</span>
 
 <span class="sd">    Inputs:</span>
@@ -852,7 +853,7 @@ approach: if you are writing a function that takes some input
 function with a <em>smaller value</em> for <span class="math notranslate nohighlight">\(x\)</span> will “just work”.</p>
 <p>For example, let’s go back to the factorial function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial_r</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;  Compute n! recursively &#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;  Compute n! recursively &#39;&#39;&#39;</span>
 
     <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
        <span class="k">return</span> <span class="mi">1</span>
@@ -907,7 +908,7 @@ will return the correct permutations. First of all,
 we said our function will return a list of permutations,
 so let’s start there:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">permutations_r</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute all the permutations of the values in p.</span>
 
 <span class="sd">    Inputs:</span>
@@ -931,7 +932,7 @@ so let’s start there:</p>
 <p>Then, for each element of <code class="docutils literal notranslate"><span class="pre">p</span></code>, we want to obtain the permutations
 resulting from removing that element.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">permutations_r</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute all the permutations of the values in p.</span>
 
 <span class="sd">    Inputs:</span>
@@ -991,7 +992,7 @@ recursive call.  For each permutation, we construct a new list
 containing <code class="docutils literal notranslate"><span class="pre">x</span></code> and the values from permutation and add it to the
 list we are going to return:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">permutations_r</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute all the permutations of the values in p.</span>
 
 <span class="sd">    Inputs:</span>
@@ -1050,7 +1051,7 @@ recursion for printing purposes.  Notice that the code handles the
 fact that there might be more than one element in <code class="docutils literal notranslate"><span class="pre">p</span></code> when <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">==</span>
 <span class="pre">1</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">permutations</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute all the permutations of length n of the values in p.</span>
 
 <span class="sd">    Inputs:</span>
@@ -1121,8 +1122,8 @@ fact that there might be more than one element in <code class="docutils literal 
 
 </pre></div>
 </div>
-</div>
-<div class="section" id="binary-search">
+</section>
+<section id="binary-search">
 <h2><span class="section-number">3.2.5. </span>Binary Search<a class="headerlink" href="#binary-search" title="Permalink to this heading"></a></h2>
 <p>Now that we’ve started to learn how to think recursively, we’ll
 work through another example to highlight how a recursive
@@ -1219,7 +1220,7 @@ we worked through above, we identified <em>two</em> base cases:</p>
 </ol>
 <p>We can write this in code like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Does x occur in lst?</span>
 
 <span class="sd">    Inputs:</span>
@@ -1256,7 +1257,7 @@ that get us progressively closer to the base cases (which we do
 by passing progressively smaller lists in each recursive call).</p>
 <p>Our code with the recursive cases will look like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Does x occur in lst?</span>
 
 <span class="sd">    Inputs:</span>
@@ -1344,7 +1345,7 @@ We’ve also added a <code class="docutils literal notranslate"><span class="pre
 see how the recursion unfolds.</p>
 <p>So, our function becomes this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binary_search_r</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lb</span><span class="p">,</span> <span class="n">ub</span><span class="p">,</span> <span class="n">verbose</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 
 <span class="sd">    Does x occur in lst between the indexes lb (inclusive) and ub</span>
 <span class="sd">    (exclusive)?</span>
@@ -1388,7 +1389,7 @@ and <code class="docutils literal notranslate"><span class="pre">len(lst)</span>
 entire list. In such cases, we can write a <em>wrapper</em> function to make the
 initial call to the function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binary_search_alt</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Does x occur in lst?</span>
 
 <span class="sd">    Inputs:</span>
@@ -1451,7 +1452,7 @@ running time improvement compared to linear search:</p>
 </div>
 <p>Finally, let’s look at the iterative version of binary search:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binary_search_iter</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Does x occur in lst?</span>
 
 <span class="sd">    Inputs:</span>
@@ -1501,8 +1502,8 @@ mirrors its actual definition. With iteration, we are simply taking the recursiv
 implementation and shoehorning it into a while loop. In this case, we only
 required a single while loop but more complex recursive algorithms cannot
 be restated iteratively as easily.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

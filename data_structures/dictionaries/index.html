@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2.2. Dictionaries and Sets &mdash; Computer Science with Applications  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -88,7 +89,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="dictionaries-and-sets">
+  <section id="dictionaries-and-sets">
 <span id="chapter-dictionaries"></span><h1><span class="section-number">2.2. </span>Dictionaries and Sets<a class="headerlink" href="#dictionaries-and-sets" title="Permalink to this heading"></a></h1>
 <p>In the previous chapter, we saw that lists allow us to store multiple
 values in a single data structure, but they do so in a very specific
@@ -124,7 +125,7 @@ read. For example, suppose we wanted to write a function that adds up
 all the contributions made to a given campaign. The function would
 look something like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">total_contributions_candidate</span><span class="p">(</span><span class="n">contributions</span><span class="p">,</span> <span class="n">campaign</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute total contributions to a candidate&#39;s campaign</span>
 
 <span class="sd">    Inputs:</span>
@@ -218,7 +219,7 @@ while the rest are strings.</p>
 <p>And our function to compute the total contributions now looks like
 this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">total_contributions_candidate</span><span class="p">(</span><span class="n">contributions</span><span class="p">,</span> <span class="n">campaign</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute total contributions to a candidate&#39;s campaign</span>
 
 <span class="sd">    Inputs:</span>
@@ -267,7 +268,7 @@ surprise you:</p>
 <span class="go">&#39;not found&#39;</span>
 </pre></div>
 </div>
-<p>Using your understanding of real numbers, you might except <code class="docutils literal notranslate"><span class="pre">get</span></code>
+<p>Using your understanding of real numbers, you might expect <code class="docutils literal notranslate"><span class="pre">get</span></code>
 to return <code class="docutils literal notranslate"><span class="pre">&quot;found&quot;</span></code>, the value associated with <code class="docutils literal notranslate"><span class="pre">0.3</span></code>.  Using
 floats, however, <code class="docutils literal notranslate"><span class="pre">0.1</span> <span class="pre">+</span> <span class="pre">0.1</span> <span class="pre">+</span> <span class="pre">0.1</span></code> does not equal <code class="docutils literal notranslate"><span class="pre">0.3</span></code> and so,
 <code class="docutils literal notranslate"><span class="pre">get</span></code> does not find the key in the dictionary and returns the
@@ -276,7 +277,7 @@ default value <code class="docutils literal notranslate"><span class="pre">&quot
 should only do so when you are using values that can be represented
 exactly with a power of two or as the sum of powers of two.</p>
 </div>
-<div class="section" id="useful-operations-with-dictionaries">
+<section id="useful-operations-with-dictionaries">
 <h2><span class="section-number">2.2.1. </span>Useful operations with dictionaries<a class="headerlink" href="#useful-operations-with-dictionaries" title="Permalink to this heading"></a></h2>
 <p>Earlier, we saw that we can define a dictionary like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
@@ -432,7 +433,7 @@ remove any key-value pair where the resulting value is zero.</p>
 <p>You might be tempted to write the following <strong>incorrect</strong> function to do this
 task:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">decr_and_remove</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Given a dictionary that maps keys to positive integers,</span>
 <span class="sd">    decrement the values and remove any key-value pair in which</span>
 <span class="sd">    the decremented value becomes zero</span>
@@ -450,7 +451,7 @@ task:</p>
 <p>This code is not valid because you <em>cannot</em> modify a data
 structure as you iterate over it!  Here’s one alternative solution:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">decr_and_remove</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Given a dictionary that maps keys to positive integers,</span>
 <span class="sd">    decrement the values and remove any key-value pair in which</span>
 <span class="sd">    the decremented value becomes zero</span>
@@ -473,7 +474,7 @@ structure as you iterate over it!  Here’s one alternative solution:</p>
 <p>Here’s another that computes and returns a new dictionary with the
 desired keys rather than removing the keys from the input dictionary.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">decr_and_keep_pos</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Given a dictionary that maps keys to positive integers,</span>
 <span class="sd">    subtract one from each value and include in the result only</span>
 <span class="sd">    those key-value pairs that still have positive values after</span>
@@ -493,8 +494,8 @@ desired keys rather than removing the keys from the input dictionary.</p>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="other-ways-to-construct-dictionaries">
+</section>
+<section id="other-ways-to-construct-dictionaries">
 <h2><span class="section-number">2.2.2. </span>Other ways to construct dictionaries<a class="headerlink" href="#other-ways-to-construct-dictionaries" title="Permalink to this heading"></a></h2>
 <p>As we have seen, we can construct dictionaries using dictionary
 literals or updating an empty dictionary with
@@ -536,7 +537,7 @@ You can also specify a boolean expression to use as a filter.  For
 example, we could rewrite the <code class="docutils literal notranslate"><span class="pre">decr_and_keep_pos</span></code> function from the
 previous section using a dictionary comprehension with a filter:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">decr_and_keep_pos</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Given a dictionary that maps keys to positive integers,</span>
 <span class="sd">    subtract one from each value and include in the result only</span>
 <span class="sd">    those key-value pairs that still have positive values after the</span>
@@ -554,8 +555,8 @@ previous section using a dictionary comprehension with a filter:</p>
 <p>A key-value pair from the input dictionary will be used in the
 construction of the result only if the original value is greater than
 one.</p>
-</div>
-<div class="section" id="accumulating-values-with-dictionaries">
+</section>
+<section id="accumulating-values-with-dictionaries">
 <h2><span class="section-number">2.2.3. </span>Accumulating values with dictionaries<a class="headerlink" href="#accumulating-values-with-dictionaries" title="Permalink to this heading"></a></h2>
 <p>Dictionaries are often used to accumulate a value based on a key.  For example,
 earlier we computed the total number of contributions for a specific
@@ -566,7 +567,7 @@ dictionary that maps a campaign’s name to the total contributions to
 that campaign is a perfect tool for this task.  We start with an
 empty dictionary and add new entries as we encounter new campaigns:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">total_contributions_by_campaign</span><span class="p">(</span><span class="n">contributions</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute total contributions by campaign</span>
 
 <span class="sd">    Input:</span>
@@ -595,7 +596,7 @@ empty dictionary and add new entries as we encounter new campaigns:</p>
 that are being seen for the first time.  An alternative is to use
 <code class="docutils literal notranslate"><span class="pre">get</span></code> with a default value of zero for previously unseen campaigns:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">total_contributions_by_campaign</span><span class="p">(</span><span class="n">contributions</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute total contributions by campaign</span>
 
 <span class="sd">    Input:</span>
@@ -613,8 +614,8 @@ that are being seen for the first time.  An alternative is to use
 </pre></div>
 </div>
 <p>Accumulating values in this way is very common.</p>
-</div>
-<div class="section" id="nested-dictionaries">
+</section>
+<section id="nested-dictionaries">
 <h2><span class="section-number">2.2.4. </span>Nested dictionaries<a class="headerlink" href="#nested-dictionaries" title="Permalink to this heading"></a></h2>
 <p>Dictionaries can be nested, meaning that the value associated with a
 key can itself be a dictionary. For example, we might have a
@@ -645,7 +646,7 @@ value associated with <code class="docutils literal notranslate"><span class="pr
 <p>The code to compute this dictionary is not that much more complex than
 the code for accumulating total contributions by candidate.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">total_contributions_by_campaign_by_zip</span><span class="p">(</span><span class="n">contributions</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute the total contributions from each ZIP Code for each</span>
 <span class="sd">    campaign</span>
 
@@ -679,8 +680,8 @@ dictionary.  Here’s a sample run of the function:</p>
 </pre></div>
 </div>
 <p>Notice that, as expected, the result contains nested dictionaries.</p>
-</div>
-<div class="section" id="data-structures-and-their-complexity">
+</section>
+<section id="data-structures-and-their-complexity">
 <h2><span class="section-number">2.2.5. </span>Data structures and their complexity<a class="headerlink" href="#data-structures-and-their-complexity" title="Permalink to this heading"></a></h2>
 <p>The complexity of a computational solution to a problem, and how well
 that solution performs, depends not only on the algorithm we use, but
@@ -714,7 +715,7 @@ iterating through the list until we find the tuple that contains the
 mapping from that ZIP Code to the corresponding state. We can write a
 simple function to perform this operation:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_state_from_zip</span><span class="p">(</span><span class="n">zip_code</span><span class="p">,</span> <span class="n">zip_codes_list</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Find the state associated with a given ZIP Code</span>
 
 <span class="sd">    Inputs:</span>
@@ -954,8 +955,8 @@ processor (instead of having to go to the computer’s main memory, which is slo
 our implementation with the same inputs over and over again could show performance
 gains that are due to this caching mechanism, not the efficiency of the data structure itself.</p>
 </div>
-</div>
-<div class="section" id="sets">
+</section>
+<section id="sets">
 <h2><span class="section-number">2.2.6. </span>Sets<a class="headerlink" href="#sets" title="Permalink to this heading"></a></h2>
 <p>Dictionaries are great for associating values to unique keys, but sometimes
 we may simply want to have a collection of unique keys that we can access
@@ -977,13 +978,13 @@ set with curly braces or using the built-in <code class="docutils literal notran
 sequence (list, string, etc.) as the parameter:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;07974&quot;</span><span class="p">}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span>
-<span class="go">{&#39;07974&#39;, &#39;60637&#39;}</span>
+<span class="go">{&#39;60637&#39;, &#39;07974&#39;}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;07974&quot;</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span>
-<span class="go">{&#39;07974&#39;, &#39;60637&#39;}</span>
+<span class="go">{&#39;60637&#39;, &#39;07974&#39;}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">vowels</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="s2">&quot;aeiou&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">vowels</span>
-<span class="go">{&#39;e&#39;, &#39;a&#39;, &#39;o&#39;, &#39;u&#39;, &#39;i&#39;}</span>
+<span class="go">{&#39;u&#39;, &#39;a&#39;, &#39;o&#39;, &#39;i&#39;, &#39;e&#39;}</span>
 </pre></div>
 </div>
 <p>To construct an empty set, we use the <code class="docutils literal notranslate"><span class="pre">set</span></code> function:</p>
@@ -1024,7 +1025,7 @@ to a set using the <code class="docutils literal notranslate"><span class="pre">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;14850&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;60637&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span>
-<span class="go">{&#39;14850&#39;, &#39;07974&#39;, &#39;60637&#39;}</span>
+<span class="go">{&#39;14850&#39;, &#39;60637&#39;, &#39;07974&#39;}</span>
 </pre></div>
 </div>
 <p>The second example illustrates an important point about sets: adding
@@ -1052,7 +1053,7 @@ the set.</p>
 a function to determine how many different ZIP Codes had at least one
 contribution.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_num_zipcodes</span><span class="p">(</span><span class="n">contributions</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute the number of zipcodes with at least one contribution</span>
 
 <span class="sd">    Inputs:</span>
@@ -1077,7 +1078,7 @@ contribution.</p>
 dictionary comprehensions with only keys, to do the same
 computation:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_num_zipcodes</span><span class="p">(</span><span class="n">contributions</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Compute the number of zipcodes with at least one contribution</span>
 
 <span class="sd">    Inputs:</span>
@@ -1103,9 +1104,9 @@ operator or the <code class="docutils literal notranslate"><span class="pre">int
 sets using the <code class="docutils literal notranslate"><span class="pre">-</span></code> operator or the <code class="docutils literal notranslate"><span class="pre">difference</span></code> method:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;07974&quot;</span><span class="p">}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span> <span class="o">|</span> <span class="p">{</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;60615&quot;</span><span class="p">}</span>
-<span class="go">{&#39;60615&#39;, &#39;07974&#39;, &#39;60637&#39;}</span>
+<span class="go">{&#39;60615&#39;, &#39;60637&#39;, &#39;07974&#39;}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span><span class="o">.</span><span class="n">union</span><span class="p">({</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;60615&quot;</span><span class="p">})</span>
-<span class="go">{&#39;60615&#39;, &#39;07974&#39;, &#39;60637&#39;}</span>
+<span class="go">{&#39;60615&#39;, &#39;60637&#39;, &#39;07974&#39;}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;60615&quot;</span><span class="p">}</span>
 <span class="go">{&#39;60637&#39;}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span><span class="o">.</span><span class="n">intersection</span><span class="p">({</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;60615&quot;</span><span class="p">})</span>
@@ -1121,14 +1122,14 @@ elements in a set:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">zc</span> <span class="ow">in</span> <span class="n">zipcodes</span><span class="p">:</span>
 <span class="gp">... </span>     <span class="nb">print</span><span class="p">(</span><span class="n">zc</span><span class="p">)</span>
 <span class="gp">... </span>
-<span class="go">07974</span>
 <span class="go">60637</span>
+<span class="go">07974</span>
 </pre></div>
 </div>
 <p>As with dictionaries, sets are unordered and so the elements will be
 printed in an arbitrary order.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
