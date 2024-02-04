@@ -611,7 +611,7 @@ could write code that implements the rules directly:
         die1 = random.randint(1, NUM_SIDES)
         die2 = random.randint(1, NUM_SIDES)
         die3 = random.randint(1, NUM_SIDES)
-	largest = max(die1, max(die1, die2))
+	largest = max(die1, die2, die3)
         score +=  largest
 
         # roll 2 dice, choose largest
