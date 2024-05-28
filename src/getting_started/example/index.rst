@@ -323,7 +323,7 @@ earlier discussion of loops, initializing variables in the wrong place
 is a very common source of bugs.
 
 Also, notice that we used a sigle underscore character (that is,
-``_``) as the name for the for the loop variable.  A single underscore
+``_``) as the name for the loop variable.  A single underscore
 is often used in situations, such as this one, where Python's syntax
 requires a name, but the value will not be used.
 
