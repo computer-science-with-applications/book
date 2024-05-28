@@ -1,57 +1,70 @@
+"""
+A program to estimate the success rates of different mains in the game Hazard.
+
+Sample use:
+
+    $ python3 hazard.py
+    Number of rounds: 1000
+    5 0.498
+    6 0.499
+    7 0.483
+    8 0.504
+    9 0.493
+"""
+
 import random
+import sys
 
 def throw_dice():
-    '''
+    """
     Throw a pair of six-sided dice
 
     Returns (int): the sum of the dice
-    '''
-    NUM_SIDES = 6
-    val = random.randint(1,NUM_SIDES) + random.randint(1,NUM_SIDES)
-    return val
+    """
+    num_sides = 6
+    return random.randint(1, num_sides) + random.randint(1, num_sides)
 
 
 def play_one_round(chosen_main):
-    '''
+    """
     Play one round of Hazard.
 
-    Inputs:
+    Args:
         chosen_main (int): a value between 5 and 9 inclusive.
     
-    Returns (boolean): True, if player wins the round and False, otherwise.
-    '''
+    Returns (bool): True, if player wins the round and False, otherwise.
+    """
 
     chance = throw_dice()
 
     if chance == chosen_main:
         return True
-    elif (chance == 2) or (chance == 3):
+    if chance == 2 or chance == 3:
         return False
-    elif (chance == 11) or (chance == 12):
-        if (chosen_main == 5) or (chosen_main == 9):
+    if chance == 11 or chance == 12:
+        if chosen_main == 5 or chosen_main == 9:
             return False
-        elif (chosen_main == 6) or (chosen_main == 8):
-            return (chance == 12)
-        else:
-            # chosen_main is 7
-            return (chance == 11)
+        if chosen_main == 6 or chosen_main == 8:
+            return chance == 12
+        # chosen_main is 7
+        return chance == 11
 
     roll = throw_dice()
-    while not ((roll == chance) or (roll == chosen_main)):
+    while roll != chance and roll != chosen_main:
         roll = throw_dice()
 
-    return (roll == chance)
+    return roll == chance
 
 
 def simulate_caster(chosen_main):
-    '''
+    """
     Simulate rounds until the caster loses two rounds in a row.
 
-    Inputs:
+    Args:
         chosen_main (int): a value between 5 and 9 inclusive.
 
     Returns (int): the number of rounds won
-    '''
+    """
 
     num_wins = 0
     consecutive_losses = 0
@@ -67,40 +80,34 @@ def simulate_caster(chosen_main):
 
 
 def print_win_rate_table(num_rounds):
-    '''
+    """
     Print a table with the win rates for the possible choices for main
 
-    Inputs:
+    Args:
         num_rounds (int): the number of rounds to simulate
-    '''
+
+    Returns: None
+    """
 
     for chosen_main in range(5, 10):
         num_wins = 0
-        for i in range(num_rounds):
+        for _ in range(num_rounds):
             if play_one_round(chosen_main):
                 num_wins = num_wins + 1
         print(chosen_main, num_wins/num_rounds)
 
 
-####### I don't think we want to use these functions in the example. ########
-def estimate_num_rounds(num_trials, chosen_main):
-    total_num_rounds = 0
-    total_wins = 0
-    for t in range(num_trials):
-        (rounds, wins) = simulate_caster(chosen_main)
-        total_num_rounds = total_num_rounds + rounds
-        total_wins = total_wins + wins
-
-    return total_num_rounds/num_trials, total_num_rounds-total_wins
-
-def gen_num_rounds_tab(num_trials):
-    for chosen_main in range(5, 10):
-        print(chosen_main, estimate_num_rounds(num_trials, chosen_main))
-
-
-'''
 if __name__ == "__main__":
-    print(estimate_num_rounds(100, 4))
-'''    
-        
-        
+    error_msg = "The number of rounds needs to be a positive integer. Goodbye."
+    n = input("Number of rounds: ")
+    try:
+        num_rounds = int(n)
+    except valueError:
+        print(error_msg)
+        sys.exit(1)
+
+    if num_rounds > 0:
+        print_win_rate_table(num_rounds)
+    else:
+        print(error_msg)
+        sys.exit(1)        

@@ -31,10 +31,10 @@ The error message contains a *stack trace* or a synopsis of the state of
 the call stack when the error is detected.  
 
 Specifically, in this example, the first two lines constitute the
-stack trace.  Because we directly typed ``x = 42 / 0`` into
-the interpreter, these lines don't provide a lot of information in
-this case (it is immediately apparent that the error originated in the
-code we just typed).  
+stack trace.  Because we directly typed ``x = 42 / 0`` into the
+interpreter, these lines don't provide a lot of information (it is
+immediately apparent that the error originated in the code we just
+typed).
 
 The stack trace is much more useful when an exception is raised inside
 a function, as it will tell us the exact line inside that function
@@ -48,14 +48,14 @@ than N.
 .. code:: python
 
    def divide(a, b):
-       ''' divide a by b '''
+       """ divide a by b """
        return a / b
     
    def print_divisions(N):
-       ''' Print result of dividing N by integers less than N. '''
+       """ Print result of dividing N by integers less than N. """
        for i in range(N):
            d = divide(N, i)
-           print(N, "/", i, "=", d)
+           print(f"{N} / {i} = {d}")
 
 If we store this code in a file named ``exc.py``, import it into
 python, and then call the ``print_divisions`` function, we'll see
@@ -71,9 +71,8 @@ something like this::
        return a / b
    ZeroDivisionError: division by zero
 
-Notice how this stack trace is much more informative. In particular,
-it tells us than an exception happened after the following sequence of
-events:
+This stack trace is much more informative. In particular, it tells us
+than an exception happened after the following sequence of events:
 
 * Python ran ``exc.print_divisions(12)`` in the interpreter (shown in the stack trace as as ``File "<stdin>", line 1,  in <module>``).
 * During the call to ``print_divisions``, Python ran the line
@@ -82,9 +81,9 @@ events:
   located in line 3 of ``exc.py``. This last entry in the stack
   trace produced a ``ZeroDivisionError`` exception.
 
-Notice that this is simply a printed version of the function call
-stack, which we covered in section :ref:`call-stack` of the previous
-chapter.
+Notice that this trace is simply a printed version of the function
+call stack, which we covered in section :ref:`call-stack` of the
+chapter that introduced functions.
 
 There is clearly something wrong in our code, and the exception's
 stack trace can be very useful to figure out exactly what is wrong.
@@ -116,7 +115,7 @@ want to avoid the value zero, so the ``range`` should start at one:
    for i in range(1, N):
 
 Instead of changing ``exc.py``, we will copy the file to a new file
-named ``exc_fixed.py`` and then fix the copy.  If import the corrected
+named ``exc_fixed.py`` and then fix the copy.  If we import the corrected
 version and run ``exc_fixed.print_divisions(12)``, we will get:
 
 .. code:: python
@@ -138,13 +137,20 @@ version and run ``exc_fixed.print_divisions(12)``, we will get:
 Now, we get the result we expect.  The loop starts at ``1`` and no
 longer triggers the divide-by-zero exception.
 
-So, when your code raises an exception, try not to fixate on the exact
-line that raises the exception. While that line could be wrong, it is
-just as likely that the actual origin of the exception is somewhere
-else in your code.  The stack trace provides some hints as to where to
-look for the error.  Systematically adding ``print`` statements that
-highlight the value of crucial variables can help you isolate the
-source of the error.
+Making mistakes is an important part of learning to program and, it is
+a normal part of writing and debugging code even, for experience
+programmers.  Learning to use the clues provided by an error message
+to identify the source of a bug takes time and patience.  When your
+code raises an exception, try not to get too frustrated and try not
+fixate on the exact line that raises the exception.  Instead, start by
+reading the last line of the error message to understand exactly which
+exception was raised and then work your way through the stack trace,
+starting with the line that raised the exception and working backwards
+through the call chain.  Using the insight you gained from that
+process to decide where to add print statements to highight the value
+of crucial variables and to reason careully about the flow of control
+will help lead you to the source of the problem.
+   
 
 Catching exceptions
 -------------------
@@ -161,7 +167,7 @@ We can catch an exception with a ``try`` statement, also known as a
 .. code:: python
 
    def divide(a, b):
-       ''' divide a by b '''
+       """ divide a by b """
        try:
            ret_val = a / b
        except ZeroDivisionError:
@@ -176,10 +182,10 @@ for ``print_divisions`` (shown below) in a file named ``exc_try.py``:
 .. code:: python
 
      def print_divisions(N):
-       ''' Print result of dividing N by integers less than N. '''
+       """ Print result of dividing N by integers less than N. """
        for i in range(N):
            d = divide(N, i)
-           print(N, "/", i, "=", d)
+           print(f"{N} / {i} = {d}")
 
 If we run this new version, we will get:
 
@@ -201,8 +207,8 @@ If we run this new version, we will get:
    12 / 11 = 1.0909090909090908
 
 A ``try`` statement allows us to "try" a piece of code, which we write
-after the ``try`` and, if it raises an exception, run an alternate
-piece of code, which can be found after the ``except``.  In this case,
+after the ``try:`` and, if it raises an exception, run an alternate
+piece of code, which can be found after the ``except:``.  In this case,
 the division in the first call to ``divide`` will trigger the
 exception and the code in the ``except`` clause will be run and will
 set ``ret_val`` to ``None``.  Once the code in the ``except`` clause
@@ -247,7 +253,7 @@ Fortunately, we can catch multiple types of exceptions in the same
            ret_val = None
        except TypeError as err:
            # Fail: no way to move forward.
-           print("Type error:, err)
+           print("Type error:", err)
 	   sys.exit(1)
        return ret_val
 
@@ -305,7 +311,7 @@ better served by handling different exceptions in different ways.
 
 The ``try`` statement also has an optional ``finally`` clause that
 gets run whether an exception is raised or not. This clause is useful
-when there are any cleanup operations that need to be performed
+when there are cleanup operations that need to be performed
 (closing files, closing database connections, etc.) regardless of
 whether the code succeeded or failed.  For example:
 
@@ -314,7 +320,7 @@ whether the code succeeded or failed.  For example:
 
    import sys
    def divide(a,b):
-       ''' Divide a by b and catch exceptions'''
+       """ Divide a by b and catch exceptions"""
 
        try:
            ret_val = a / b
@@ -327,7 +333,7 @@ whether the code succeeded or failed.  For example:
            print("Unexpected Error:", err)
            sys.exit(1)
        finally:
-           print("divide() was called with {} and {}".format(a, b))
+           print(f"divide() was called with {a} and {b}")
 
        return ret_val
 
@@ -349,7 +355,7 @@ that error in ``print_divisions``.
 
    import sys
    def divide(a,b):
-       ''' Divide a by b and catch exceptions'''
+       """ Divide a by b and catch exceptions"""
        try:
            ret_val = a / b
        except TypeError as err:
@@ -359,13 +365,13 @@ that error in ``print_divisions``.
        return ret_val
 
    def print_divisions(N):
-       ''' Print result of dividing N by integers less than N. '''
+       """ Print result of dividing N by integers less than N. """
        for i in range(N):
            try:
                d = divide(N, i)
-               print(N, "/", i, "=", d)
+               print(f"{N} / {i} = {d}")
            except ZeroDivisionError:
-	       print(N, "/", i, "is undefined")
+	       print(f"{N} / {i} is undefined")
 
    print_divisions(12)
 

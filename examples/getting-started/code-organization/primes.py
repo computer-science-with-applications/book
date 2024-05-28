@@ -2,12 +2,29 @@ import math
 
 
 def print_primes(max_n):
-    for n in range(2, max_n+1):
+    """
+    Print the primes between 2 and max_n inclusive.
+
+    Args:
+        max_n (int): the lower bound of the range
+
+    Returns: None
+    """
+    for n in range(2, max_n + 1):
         if is_prime(n):
             print(n)
 
 
 def is_prime(n):
+    """
+    Is n a prime number?
+
+    Args:
+        n (int): the value to check
+
+    Returns (bool): True if n is prime and False otherwise.
+    """
+
     # Directly check for 1, 2, and 3 (as well as
     # values less than 1)
     if n <= 1:
@@ -32,6 +49,7 @@ def is_prime(n):
         # Check if n is divisible by 6*k-1
         if n % (i-1) == 0:
             return False
+
         # Check if n is divisible by 6*k+1
         if n % (i+1) == 0:
             return False

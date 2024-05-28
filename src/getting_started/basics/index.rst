@@ -639,6 +639,44 @@ defined a ``Hello`` variable, we will get a ``NameError`` telling you
 as much.
 
 
+F-strings
+~~~~~~~~~
+
+In addition to regular strings, Python provides f-strings (or more
+formally, formatted string literals) as a way to construct a string
+from a combination of basic text and computed values.  An f-string is
+a string that has a lower-case or upper-case ``f`` before the opening
+quotation mark and can contain one or more expressions enclosed in
+curly braces in addition to regular text.
+
+Python converts an f-string into a regular string by evaluating each
+expression in curly braces and then replacing it, including the
+curly braces, with the resulting value.  Here is an example:
+
+.. python-run::
+
+   x = 5
+   y = 6
+   print(f'The value of x is {x} and the value of y is {y}.')
+
+Notice that Python replaced ``{x}`` with ``5``, the value of the
+variable ``x``, and ``{y}`` with ``6``, the value of variable ``{y}``.
+
+The code in the curly braces can be more complex than just a variable
+name.  In general, it can be an arbitrarily complex expression.  For
+example:
+
+.. python-run::
+
+   x = 5
+   y = 6
+   print(f'The value of x * y is {x * y}.')
+
+F-strings also allow users to specify how to format the result of
+evaluating the expression. We'll discuss this aspect of f-strings
+later in :ref:`string_formatting`.
+
+
 Booleans
 ~~~~~~~~
 

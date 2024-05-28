@@ -57,9 +57,9 @@ called the *return value*:
 
    Function
 
-We have already *seen* uses of functions in some of our
-examples, like the function
-``random.randint``, which returns a random integer:
+We have already *seen* uses of functions in some of our examples, like
+the function ``random.randint``, which returns a randomly generated integer:
+
 
 .. python-run::
 
@@ -96,7 +96,7 @@ a value return the special value ``None``.
 As we will explore, functions are an important
 *abstraction* mechanism. They allow us to *encapsulate* a piece of code and
 then reuse that code, without being concerned with how that piece of code
-works (other than knowing its purpose, parameters and return value). For example,
+works (other than knowing its purpose, parameters, and return value). For example,
 when we used ``random.randint``, we did not have to worry about the
 exact algorithm used to produce a random number. We just incorporated
 this functionality into our code, *abstracting* away the internal details
@@ -105,7 +105,7 @@ of ``random.randint``.
 In this chapter, we will cover the basics of writing our own functions, and
 also dig into some of the lower-level aspects of how functions work. As we will
 point out then, you can safely skip those low-level details for now, but may want to revisit
-them once you're more comfortable with functions, and definitely before we
+them once you're more comfortable with functions, and definitely before we get to
 the Functional Programming and Recursion chapters, where we explore more
 advanced concepts involving functions.
 
@@ -121,14 +121,15 @@ the product of those two integers:
    :formatting: separate
 
    def multiply(a, b):
-       '''
+       """
        Compute the product of two values.
 
-       Inputs:
-         a, b: the values to be multiplied.
+       Args:
+           a (numeric): first operand
+	   b (numeric): second operand
 
-       Returns: the product of the inputs
-       '''
+       Returns (numeric): the product of the inputs
+       """
 
        n = a * b
        return n
@@ -168,14 +169,15 @@ Try typing in the function into the interpreter:
 .. python-run::
 
    def multiply(a, b):
-       '''
+       """
        Compute the product of two values.
 
-       Inputs:
-         a, b: the values to be multiplied.
+       Args:
+           a (numeric): first operand
+	   b (numeric): second operand
 
-       Returns: the product of the inputs
-       '''
+       Returns (numeric): the product of the inputs
+       """
 
        n = a * b
        return n
@@ -253,13 +255,13 @@ expected type. For example:
    x = 3
    y = 5
    multiply(x, y)
-   multiply(x-1, y+1)
+   multiply(x - 1, y + 1)
    
 
 The actual parameter expressions are evaluated *before* the ``multiply`` function is
 called. As a result, the first call to ``multiply`` uses 3 and 5 
 (the values of ``x`` and ``y`` respectively) as parameters. The 
-second call to ``multiply`` uses ``x-1``, or 2, and ``y+1``, or 6, 
+second call to ``multiply`` uses ``x - 1``, or 2, and ``y + 1``, or 6, 
 as the initial values for ``a`` and ``b``. 
 
 In fact, the parameters to a function can themselves be function
@@ -287,14 +289,15 @@ to ``multiply``. The outer call essentially becomes ``multiply(4, 6)``.
      :formatting: separate
    
      def print_multiply(a, b):
-         '''
+         """
 	 Print the product of two values.
 
-	 Inputs:
-           a, b: the values to be multiplied.
+	 Args:
+             a (numeric): first operand
+    	     b (numeric): second operand
 
          Returns: None
-         '''
+         """
 
          n = a * b
          print(n)
@@ -356,15 +359,14 @@ the integer is prime and ``False`` if it is not.
    :formatting: separate
 
    def is_prime(n):
-       '''
+       """
        Determines whether the input is prime.
 
-       Inputs:
-         n (int): value to be checked
+       Args:
+           n (int): value to be checked
 
-       Returns (boolean): True if the input is prime and False
-         otherwise
-       '''
+       Returns (bool): True if the input is prime and False otherwise
+       """
 
        encountered_divisor = False
        for i in range(2, n):
@@ -426,15 +428,14 @@ return statement:
    :formatting: separate
 
    def is_prime(n):
-       '''
+       """
        Determines whether the input is prime.
 
-       Inputs:
-         n (int): value to be checked
+       Args:
+           n (int): value to be checked
 
-       Returns (boolean): True if the input is prime and False
-         otherwise 
-       '''
+       Returns (bool): True if the input is prime and False otherwise 
+       """
 
        encountered_divisor = False
        for i in range(2, n):
@@ -453,6 +454,31 @@ return statement:
 But as you will see in the next section, there is a better way to
 resolve this problem.
 
+Practice Problem
+~~~~~~~~~~~~~~~~
+
+**Problem 1** Write a function ``print_categories`` that takes two integers, a lower
+bound and an upper bound on a range (inclusive), and prints each number
+in the range with an indication of whether the number is prime or composite
+(that is, not prime).  Here is a sample use of this function:
+
+.. code::
+
+   >>> print_categories(2, 10)
+   2 prime
+   3 prime
+   4 composite
+   5 prime
+   6 composite
+   7 prime
+   8 composite
+   9 composite
+   10 composite
+
+Your solution should use ``is_prime``, rather than repeat the
+primality testing code.
+
+
 Return statements
 -----------------
 
@@ -464,14 +490,14 @@ function and can appear multiple times. For example:
    :formatting: separate
    
    def absolute(x):
-       '''
+       """
        Compute the absolute value of a number.
 
-       Inputs:
-           n (number): operand
+       Args:
+           n (numeric): operand
 
-       Returns (number): the magnitude of the input
-       '''
+       Returns (numeric): the magnitude of the input
+       """
 
        if x < 0:
            return -x
@@ -494,15 +520,14 @@ parameter.
    :formatting: separate
    
    def is_prime(n):
-       '''
+       """
        Determines whether the input is prime.
 
-       Inputs:
-         n (int): value to be checked
+       Args:
+           n (int): value to be checked
 
-       Returns (boolean): True if the input is prime and False
-       otherwise
-       '''
+       Returns (bool): True if the input is prime and False otherwise
+       """
 
        if n == 1:
            return False   
@@ -525,15 +550,14 @@ prime:
    :formatting: separate
    
    def is_prime(n):
-       '''
+       """
        Determines whether the input is prime.
 
-       Inputs:
-         n (int): value to be checked
+       Args:
+           n (int): value to be checked
 
-       Returns (boolean): True, if the input is prime and False
-       otherwise
-       '''
+       Returns (bool): True, if the input is prime and False otherwise
+       """
 
        if n == 1:
            return False   
@@ -596,32 +620,32 @@ could write code that implements the rules directly:
     :formatting: separate
 
     def play_round():
-        '''
+        """
         Play a round of the game Going to Boston using three dice.
 
-        Inputs: none
+        Args: none
 
-        Return (int): score earned
-        '''
+        Returns (int): score earned
+        """
 
-        NUM_SIDES = 6
+        num_sides = 6
         score = 0
 
         # roll 3 dice, choose largest
-        die1 = random.randint(1, NUM_SIDES)
-        die2 = random.randint(1, NUM_SIDES)
-        die3 = random.randint(1, NUM_SIDES)
+        die1 = random.randint(1, num_sides)
+        die2 = random.randint(1, num_sides)
+        die3 = random.randint(1, num_sides)
 	largest = max(die1, die2, die3)
-        score +=  largest
+        score += largest
 
         # roll 2 dice, choose largest
-        die1 = random.randint(1, NUM_SIDES)
-        die2 = random.randint(1, NUM_SIDES)
+        die1 = random.randint(1, num_sides)
+        die2 = random.randint(1, num_sides)
 	largest = max(die1, die2)
         score += largest
 
         # roll 1 die, choose largest
-        largest = random.randint(1, NUM_SIDES)
+        largest = random.randint(1, num_sides)
 	score += largest
 
         return score
@@ -635,7 +659,7 @@ over and over again to play as many rounds as we want:
    play_round()
    play_round()
 
-Although this implementation works, it has repeated code, a
+Although this implementation works, it has repeated code, which is a
 sign of a poor design.  We should
 abstract and separate the repeated work into a
 function.  At times, this task will be easy because your implementation will have
@@ -656,23 +680,23 @@ single call.
     :formatting: separate   
 
     def get_largest_roll(num_dice):
-        '''
+        """
         Roll a specified number of dice and return the largest face
         value.
     
-        Inputs:
-          num_dice (int): the number of dice to roll
+        Args:
+            num_dice (int): the number of dice to roll
 
         Returns (int): the largest face value rolled
-        '''
+        """
 
-        NUM_SIDES = 6
+        num_sides = 6
 
         # initialize largest with a value smaller than the smallest
         # possible roll.
         largest = 0
         for i in range(num_dice):
-            roll = random.randint(1, NUM_SIDES)
+            roll = random.randint(1, num_sides)
             largest = max(roll, largest)
 
         return largest
@@ -695,17 +719,21 @@ dice as a parameter.  For example:
     :formatting: separate   
 
     def play_round_generalized(num_dice):
-        '''
+        """
         Play a round of the game Going to Boston.
 
-        Inputs:
-          num_dice (int): the number of dice to use
+        Args:
+            num_dice (int): the number of dice to use
 
         Returns (int): score earned
-        '''
+        """
 
         score = 0
-        for nd in range(1, num_dice+1):
+
+	# run the loop from num_dice down to one to mimic the
+        # orginal code that rolls # three dice, then two, and then
+	# finally, just one.
+        for nd in range(num_dice, 0, -1):
 	    score += get_largest_roll(nd)
         return score
 
@@ -742,8 +770,8 @@ test is needed.
 
 In general, we want to design functions that allow the function's user 
 to focus on the function's purpose and *interface* (the number 
-and types of arguments the function expects and the number and 
-types of value the function returns), and to ignore the
+and types of arguments the function expects and the 
+type of the value the function returns), and to ignore the
 details of the implementation. In this case,  
 we didn't need to understand how rounds are played to design the loop; 
 we only needed to know that ``play_round`` does not take any arguments
@@ -764,15 +792,14 @@ two functions:
    :formatting: separate
 
    def play_one_game(goal):
-       '''
+       """
        Simulate one game of Going to Boston.
 
-       Inputs:
-         goal (int): threshold for a win
+       Args:
+           goal (int): threshold for a win
 
-       Returns (boolean): True if player1 wins and False, if player2
-         wins.
-       '''
+       Returns (bool): True if player1 wins and False, if player2 wins.
+       """
 
        player1 = 0
        player2 = 0
@@ -786,14 +813,14 @@ two functions:
 
 
    def play_going_to_boston(goal):
-       '''
+       """
        Simulate one game of Going to Boston and print the winner.
 
-       Inputs:
-         goal (int): threshold for a win
+       Args:
+           goal (int): threshold for a win
        
        Returns: None
-       '''
+       """
 
        if play_one_game(goal):
            print("player1 wins")
@@ -807,16 +834,16 @@ player has an advantage:
    :formatting: separate
 
    def simulate_many_games(num_trials, goal):
-       '''
+       """
        Simulate num_trials games of Going to Boston and print the
-       average number of wins.
+       average number of wins for player 1.
 
-       Inputs:
-         num_trials (int): number of trial games to play
-         goal (int): threshold for a win
+       Args:
+           num_trials (int): number of trial games to play
+           goal (int): threshold for a win
 
        Returns: None
-       '''
+       """
 
        wins = 0
        for i in range(num_trials):
@@ -889,13 +916,13 @@ Python will:
 - evaluate the argument (``3``),
 - create the parameter ``num_dice`` and initialize it to the result of evaluating the argument (3),
 - transfer control to the body of ``get_largest_roll``, 
-- execute the first two statements, which create new variables named ``NUM_SIDES`` and ``largest``, and initialize them to 6 and 0, respectively,
-- execute the loop, which itself introduces new variables, named ``i`` and ``roll``, that are reset for each iteration, 
+- execute the first two statements, which create new variables named ``num_sides`` and ``largest``, and initialize them to 6 and 0, respectively,
+- execute the loop, which itself introduces new variables, named ``i`` and ``roll``, that are updated for each iteration, 
 - set the return value of the function call to be the value of ``largest``, 
-- discard the variables it created during the function evaluation (e.g., ``num_dice`` and ``NUM_SIDES``), and
+- discard the variables it created during the function evaluation (e.g., ``num_dice`` and ``num_sides``), and
 - transfer control back to the first statement of ``play_round``.
 
-The variables ``NUM_SIDES``, ``largest``, ``i``, and ``roll`` are
+The variables ``num_sides``, ``largest``, ``i``, and ``roll`` are
 valid only within ``get_largest_roll``.  We would get an error if we
 tried to use one them or the parameter (``num_dice``) outside of
 the context of this function.  For example, this code will fail,
@@ -913,7 +940,7 @@ The second and third statements in ``play_round`` also call
 ``get_largest_roll`` and update the variable ``score``.  Python will go
 through exactly the same steps to evaluate the second call, including
 creating *fresh* versions of the parameter (``num_dice``) and the rest
-of the local variables (``NUM_SIDES``, ``largest``, ``i``, and
+of the local variables (``num_sides``, ``largest``, ``i``, and
 ``roll``), initializing them appropriately, and eventually discarding
 them when the function returns.  Finally, it will complete the same process all
 over again to evaluate the third call.
@@ -930,7 +957,7 @@ Understanding how parameters work is an important aspect of learning
 how to design and write functions. So far, we have seen some fairly
 simple parameters, but, as we'll see in this section, parameters
 have several features and nuances that we need
-to be aware of when writing functions.
+to keep in mind when writing functions.
 
 Call-by-value
 ~~~~~~~~~~~~~
@@ -940,7 +967,6 @@ evaluated *before* the function call, and their *values* are
 used to initialize fresh copies of the formal parameters.  This type of
 parameter passing is known as *call-by-value*.
 
-
 Let's consider a trivial example to illustrate one impact of this
 design.  Here's a function that updates the value of its formal
 parameter and three functions that use it:
@@ -949,9 +975,9 @@ parameter and three functions that use it:
    :formatting: separate
 
    def add_one(x):
-       print("The value of x at the start of add_one is", x)
+       print("  The value of x at the start of add_one is", x)
        x = x + 1
-       print("The value of x at the end of add_one is", x)
+       print("  The value of x at the end of add_one is", x)
        return x
 
    def f():
@@ -974,6 +1000,8 @@ parameter and three functions that use it:
        z = add_one(x)
        print("The value returned by the call to add_one is", z)
        print("The value of x after the the call to add_one is", x)
+
+(We omitted docstrings from the functions to save space.)
 
 Here's what happens when we call function ``f``:
 
@@ -1010,6 +1038,55 @@ formal parameter ``x`` in ``add_one`` are *different* variables that
 just happen to have the same name.
 
 
+Practice Problem
+~~~~~~~~~~~~~~~~
+
+**Problem 2** Given the following functions:
+
+.. code::
+
+   def fun1(i):
+       i = i - 2
+       return i
+
+   def fun2(i):
+       return fun1(i) + fun1(i)
+
+   def fun3(i):
+       return fun1(i * 2)
+
+   def fun4(i):
+       i = fun3(i)
+       return fun2(i)
+
+What is the result of evaluating this call: ``fun4(6)``?
+
+**Problem 3**  Given the following code:
+
+.. code::
+
+    def fun1(x, y, z):
+        if x % y == z:
+            return x + y + z
+        else:
+            return 1
+
+    def fun2(i,j):
+        i = i + 2
+        j = j + 3
+
+    def fun3(x, y, z=2):
+        for i in range(4, x):
+            for j in range(2, y):
+                a = fun1(i, j, z)
+                if a >= 10:
+                    fun2(i,j)
+                    return i + j
+        return -1
+
+What is the result of evaluating ``fun(6, 4, 2)``?
+	
+
 Default parameter values
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1026,19 +1103,19 @@ either a 0 or a 1 (arbitrarily setting 0 to be heads and 1 to be tails):
    import random
    
    def flip_coins(n):
-       '''
+       """
        Flip a coin n times and report the number that comes up heads.
 
-       Input:
-         n (int): number of times to flip the coin
+       Args:
+           n (int): number of times to flip the coin
 
        Returns (int): number of flips that come up heads.  
-       '''
+       """
 
        num_heads = 0
        
        for i in range(n):
-           flip = random.randint(0,1)
+           flip = random.randint(0, 1)
            if flip == 0:
                num_heads = num_heads + 1
        
@@ -1069,27 +1146,28 @@ heads (for a fair coin, this value would be ``0.5``):
 
    def flip_coins(n, prob_heads):
 
-Of course, we also have to change the implementation of the function. We will
-now use a different function from the ``random`` module: the ``uniform(a,b)`` function.
-This function returns a *float* between ``a`` and ``b``. If we call the function
-with parameters ``0.0`` and ``1.0``, we can simply use values less than ``prob_heads`` 
-as indicating that the coin flip resulted in heads, and 
-values greater than or equal to ``prob_heads`` to indicate tails: 
+Of course, we also have to change the implementation of the
+function. We will now use a different function from the ``random``
+module: the ``uniform(a,b)`` function.  This function returns a
+randomly chosen *float* between ``a`` and ``b``. If we call the function with
+parameters ``0.0`` and ``1.0``, we can simply use values less than
+``prob_heads`` as indicating that the coin flip resulted in heads, and
+values greater than or equal to ``prob_heads`` to indicate tails:
 
 .. python-run::
    :formatting: separate
 
    def flip_coins(n, prob_heads):
-       '''
+       """
        Flip a weighted coin n times and report the number that come up
        heads.
 
-       Input:
-         n (int): number of times to flip the coin
-         prob_heads (float): probability that the coin comes up heads
+       Args:
+           n (int): number of times to flip the coin
+           prob_heads (float): probability that the coin comes up heads
 
        Returns (int): number of flips that came up heads.
-       '''
+       """
 
        num_heads = 0
        
@@ -1122,17 +1200,17 @@ write the parameter in the form of an assignment, with the default value
    :formatting: separate
 
    def flip_coins(n, prob_heads=0.5):
-       '''
+       """
        Flip a weighted coin n times and report the number that come up
        heads.
 
-       Input:
-         n (int): number of times to flip the coin
-         prob_heads (float): probability that the coin comes up heads
-           (default: 0.5)
+       Args:
+           n (int): number of times to flip the coin
+           prob_heads (float): probability that the coin comes up heads
+             (default: 0.5)
 
        Returns (int): number of flips that came up heads.
-       '''
+       """
 
        num_heads = 0
        
@@ -1158,23 +1236,23 @@ But, if we omit the parameter, Python will use ``0.5`` by default:
 
 When you specify a function's parameters, 
 those without default values must come first, followed by
-those with default values (if there are any). Notice that the following code fails:
+those with default values (if there are any). Notice, for example, that the following code fails:
 
 .. python-run::
    :formatting: separate
 
    def flip_coins(prob_heads=0.5, n):
-       '''
+       """
        Flip a weighted coin n times and report the number that come up
        heads.
 
-       Input:
-         prob_heads (float): probability that the coin comes up heads
-           (default: 0.5)
-         n (int): number of times to flip the coin
+       Args:
+           prob_heads (float): probability that the coin comes up heads
+             (default: 0.5)
+           n (int): number of times to flip the coin
 
        Returns (int): number of flips that came up heads.
-       '''
+       """
 
        num_heads = 0
        
@@ -1188,7 +1266,7 @@ those with default values (if there are any). Notice that the following code fai
 Positional and keyword arguments
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-So far, whenever we have called a function, we have specified the arguments in that function call in the same order as they appear in the function’s list of parameters (with the ability to omit some of those parameters that have a default value).  These are referred to as *positional arguments*,
+So far, whenever we have called a function, we have specified the arguments in that function call in the same order as they appear in the function’s list of parameters (with the ability to omit some of those parameters that have a default value).  These types of arguments are referred to as *positional arguments*,
 because how they map to specific parameters depends on their *position*
 in the list of arguments. For example:
 
@@ -1240,7 +1318,7 @@ Dynamic typing revisited
 Let's return to our ``multiply`` function and revisit the impact of
 dynamic typing.  In this case, we've defined a function that is
 intended to work with numbers. One of the nice things about Python is
-that, as defined, the function will also seamlessly work with floats:
+that, as defined, the function will also seamlessly work with floats as well as with the integers that we used in our initial examples:
 
 .. python-run::
 
@@ -1290,15 +1368,15 @@ code, we could move the definition out of the functions altogether.
     NUM_SIDES = 6
 
     def get_largest_roll(num_dice):
-        '''
+        """
         Roll a specified number of dice and return the largest face
         value.
     
-        Inputs:
-          num_dice (int): the number of dice to roll
+        Args:
+            num_dice (int): the number of dice to roll
 
         Returns (int): the largest face value rolled
-        '''
+        """
 
         # initialize largest with a value smaller than the smallest
         # possible roll.
@@ -1310,14 +1388,14 @@ code, we could move the definition out of the functions altogether.
         return largest
 
     def sum_throw(num_dice):
-        '''
+        """
 	Throw a specified number dice and sum up the resulting rolls.
 
-        Inputs:
-          num_dice (int): the number of dice to roll
+        Args:
+            num_dice (int): the number of dice to roll
 
         Returns (int): the sum of the face values rolled
-	'''
+	"""
    
         total = 0
         for i in range(num_dice):
@@ -1328,7 +1406,8 @@ code, we could move the definition out of the functions altogether.
 
 In this example, the variable ``NUM_SIDES`` is defined and then used
 in both functions.  As an aside, it is common to use names with all
-capital letters to signal that a value is a constant.
+capital letters to signal that a variable is a constant (that is, its
+value will not change once it is set).
 
 This is an excellent use of a global variable.  We avoid repeated code
 (i.e., multiple definitions of the same value) and, since the value
@@ -1365,16 +1444,17 @@ current value.
         NUM_SIDES = 6
 
         def get_largest_roll(num_dice, die_num_sides=NUM_SIDES):
-            '''
+            """
             Roll a specified number of dice and return the largest face
             value.
     
-            Inputs:
+            Args:
                 num_dice (int): the number of dice to roll
-	        die_num_sides (int): the number of sides on a die (default: 6)
+	        die_num_sides (int): the number of sides on a
+		  die (default: 6)
 
             Returns (int): the largest face value rolled
-            '''
+            """
 
             # initialize largest with a value smaller than the smallest
             # possible roll.
@@ -1403,9 +1483,7 @@ takes precedence.  Here is a simple example of this behavior:
    c = 5
 
    def add_c(x, c):
-       '''
-       Add x and c
-       '''
+       """ Add x and c """
        return x + c
 
    add_c(10, 20)
@@ -1421,9 +1499,7 @@ Here is a related example that illustrates another aspect of shadowing:
    c = 5
 
    def add_10(x):
-       '''
-       Add 10 to x
-       '''
+       """ Add 10 to x """
        c = 10
        return x + c
 
@@ -1447,9 +1523,7 @@ global variable of the same name; the global ``c`` still has the value
       c = 5
 
       def update_c(new_c):
-          '''
-	  Update the value of the global variable c
-	  '''
+          """ Update the value of the global variable c  """
 	  
           global c
 	  c = new_c
@@ -1496,40 +1570,40 @@ these three simple functions:
    :formatting: separate
 
    def tax(p, rate):
-       '''
+       """
        Compute the tax for a given price.
 
-       Inputs:
-         p (float): price
-	 rate (float): tax rate
+       Args:
+           p (float): price
+	   rate (float): tax rate
 
        Returns (float): the computed tax
-       '''
+       """
        t = p * rate
        return t
     
-   def taxed_price(price, t):
-       '''
+   def taxed_price(price, rate):
+       """
        Compute the price with tax.
        
-       Inputs:
-         price (float): price
-	 rate (float): tax rate
+       Args:
+           price (float): price
+           rate (float): tax rate
 
        Returns (float): price with tax
-       '''
+       """
 
-       price = price + tax(price, t)
+       price = price + tax(price, rate)
        return price
        
    def main():
-       '''
+       """
        Compute and print the price 100 with tax.
 
-       Inputs: none
+       Args: none
 
        Returns: None
-       '''
+       """
 
        p = 100
        
@@ -1537,10 +1611,9 @@ these three simple functions:
        
        print("The taxed price of", p, "is", tp)
 
-``taxed_price`` takes a price (``price``) and a tax rate (``t``) and
+``taxed_price`` takes a price (``price``) and a tax rate (``rate``) and
 computes the price with tax. ``tax`` takes the same parameters and
-computes just the tax (although note how the tax rate parameter is
-called ``rate``; this naming choice was a conscious decision). The
+computes just the tax. The
 ``main`` function calls ``taxed_price`` and prints information about
 the price with and without taxes.
 
@@ -1633,7 +1706,7 @@ By convention, we draw the new frame stacked below the existing frame:
 | **Parameters**:               |
 |                               |
 | * ``price``: 100              |
-| * ``t``: 0.10                 |
+| * ``rate``: 0.10              |
 |                               |
 | **Variables**: None           |
 |                               |
@@ -1645,7 +1718,7 @@ program needs to remember the state ``main`` was in before the call to
 ``taxed_price`` (such as the value of its local variables) so that it
 can return to that exact same state when ``taxed_price`` returns.
 
-Next, notice that the value of parameter ``price`` is set to 100.  Why?
+Next, notice that the value of parameter ``price`` is set to 100 and the value of the parameter ``rate`` is set to 0.10.  Why?
 Because we called ``taxed_price`` like this:
 
 .. code:: python
@@ -1656,7 +1729,7 @@ We can now see why passing a variable as a parameter to a function
 doesn't modify that variable. The function receives
 the *value* of the variable, not the variable itself. This means that changes made inside the function
 won't change the variable itself. In this case, ``taxed_price`` receives
-the value of ``p`` (100), but does not modify ``p`` itself. 
+the value of ``p`` (100), but does not modify ``p`` itself.
 
 Now, in ``taxed_price`` we will run the following statement:
 
@@ -1685,7 +1758,7 @@ call stack:
 | **Parameters**:               |
 |                               |
 | * ``price``: 100              |
-| * ``t``: 0.10                 |
+| * ``rate``: 0.10              |
 |                               |
 | **Variables**: None           |
 |                               |
@@ -1759,7 +1832,7 @@ is run, the stack will look like this:
 | **Parameters**:               |
 |                               |
 | * ``price``: 100              |
-| * ``t``: 0.10                 |
+| * ``rate``: 0.10              |
 |                               |
 | **Variables**:                |
 |                               |
@@ -1815,6 +1888,33 @@ there are a few important takeaways:
   ``tax`` again, it would not "remember" that a previous call already set a value
   for its local variable ``t``.
   
+
+Practice Problem Solutions
+--------------------------
+
+**Problem 1**:
+
+.. code::
+
+    import primes
+    
+    def print_categories(lb, ub):
+        """
+        Print the primes between lb and ub inclusive.
+
+        Args:
+            lb (int): the lower bound of the range
+            ub (int): the lower bound of the range
+
+        Returns: None
+        """
+        for n in range(lb, ub + 1):
+            if is_prime(n):
+                print(n, "prime")
+            else:
+                print(n, "composite")
+
+**Problem 2**: 16
 
 ..
     Global Variables
@@ -2016,3 +2116,5 @@ there are a few important takeaways:
        nums = [9.9, 10.0, 7.6, 6.6, 12.0, 7.8, 11.0, 7.3, 7.4, 9.2]
        norm = get_normalized(nums)
        print(norm)
+
+       

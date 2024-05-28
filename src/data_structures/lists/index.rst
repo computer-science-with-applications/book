@@ -1815,6 +1815,8 @@ characters in a string:
 
 
 
+.. _string_formatting:
+
 String formatting
 ~~~~~~~~~~~~~~~~~
 

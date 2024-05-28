@@ -1,5 +1,5 @@
 def divide(a, b):
-    ''' divide a by b '''
+    """ divide a by b """
     try:
         ret_val = a / b
     except ZeroDivisionError:
@@ -10,10 +10,10 @@ def divide(a, b):
     return ret_val
 
 def print_divisions(N):
-    ''' Print result of dividing N by integers less than N. '''
+    """ Print result of dividing N by integers less than N. """
     for i in range(1, N):
         d = divide(N, i)
-        print(N, "/", i, "=", d)
+        print(f"{N} / {i} = {d}")
 
 
 
