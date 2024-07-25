@@ -26,7 +26,7 @@ the total price (with tax) of a collection of prices:
    for p in prices:
        tax = 0.10 * p
        total = p + tax
-       print("The price (with tax) is", total)
+       print(f"The price (with tax) is {total}")
 
 The ``prices`` variable contains a *list* of integers, as opposed to a
 single integer. In Python, a list allows us to store and manipulate an
@@ -89,6 +89,9 @@ them:
    lst
 
 
+Lists created by enclosing a sequence of values in square brackets,
+such as ``[ 1, 2, 3]``, are known as *list literals*.
+
 We can also create *new*
 lists by concatenating existing lists using the ``+`` operator:
 
@@ -146,6 +149,21 @@ built-in ``len`` function:
    lst
    len(lst)
 
+
+Practice Problems
+~~~~~~~~~~~~~~~~~
+
+**Problem 1**
+
+Construct a list literal with the string values ``"one"``, ``"two"``,
+and ``"three"`` in that order.
+
+**Problem 2**
+
+Write an expression to construct a list that contains the values 1, 2,
+and 3 repeated 5 times.
+
+
 Accessing elements in a list
 ----------------------------
 
@@ -172,7 +190,7 @@ type is appropriate. For example:
 Lists are *mutable*: we can change both the contents and the
 size of a list.  To update the value at an index, we assign a value to the
 list element at that index using the same indexing notation as when we read a 
-value from the list:
+value from the list, but on the left side of an assignment statement:
 
 .. python-run::
 
@@ -308,8 +326,9 @@ If both are omitted, the slice contains the entire list:
    lang
    lang[:]
    
-Remember that each slice itself is a new list, so the default slice
-notation (``[:]``) is commonly used to create a copy of the list.
+Remember that evaluating a slice yields a new list, so the default slice
+notation (``[:]``) is commonly used as an idiom for creating a copy of
+a list.
 
 
 .. python-run::
@@ -422,6 +441,36 @@ For example, the following code replaces the first two elements of
 This usage is much less common and should be used sparingly.
 
 
+Practice Problems
+~~~~~~~~~~~~~~~~~
+
+**Problem 3**
+
+*Part 1* Given the following list:
+
+::
+
+   lst = ["one", "two", "three", "four", "five", "six"]
+
+what is the result evaluating the following expressions:
+
+- ``lst[3]``
+- ``lst[-4]``
+- ``lst[2:5]``
+- ``lst[:10]``
+- ``lst[1::3]``
+
+
+*Part 2*
+
+For each of the following, write an expression to extract the specified value(s):
+
+- ``"five"`` from ``lst``;
+- ``"five"`` from ``lst`` using negative indexing;
+- the last four values in ``lst``;
+- the last three values in ``lst`` in reverse order.
+
+
 Iterating over a list 
 ---------------------
 
@@ -438,7 +487,7 @@ we can use a ``for`` loop to do this work:
    for p in prices:
        tax = 0.10 * p
        total = p + tax
-       print("The price (with tax) is", total)
+       print(f"The price (with tax) is {total}")
 
 Notice that the loop starts at the beginning of the list and proceeds
 through the list elements in order. In each iteration of the loop, the
@@ -459,7 +508,7 @@ to access the list:
    for i in range(len(prices)):
        tax = 0.10 * prices[i]
        total = prices[i] + tax
-       print("The price (with tax) is", total)
+       print(f"The price (with tax) is {total}")
        
 The above code produces the exact same result as the previous version,
 but it is considered poor style (you
@@ -496,7 +545,7 @@ Here's a variant of the task above that uses both the index (named
    for i, price in enumerate(prices):
        tax = 0.10 * price
        total = price + tax
-       print("The price (with tax) of element", i, "is", total)
+       print(f"The price (with tax) of element {i} is {total}")
 
 
 .. tip::
@@ -529,6 +578,39 @@ we could write:
 
 Notice that ``p``, which iterates over the preferences, is used as an
 index into the list ``lang``.
+
+Practice Problems
+~~~~~~~~~~~~~~~~~
+
+**Problem 4**
+
+Write a function, ``print_matching_indexes``, that takes a list of
+integers and a value and prints the index of every occurrence of the
+value in the list.  For example, given the list ``[1, 3, 4, 1, 5, 7]``
+and ``1`` as the value, the function should print ``0`` and ``3``.
+Given the same list and ``9`` as the value, your function should not
+print anything, because ``9`` does not occur in the list.
+
+What might make good test cases (in addition to the the sample inputs
+listed above) for this function?
+
+**Problem 5**
+
+Write a function, ``find_idx_first_match``, that takes two lists of
+the same length and finds the first index where the two lists have the
+same value.  If no match is found, the function should return ``-1``.
+
+For example, the call ``find_idx_first_match([1, 2, 3, 7], [2, 5, 3,
+7]``) would return ``2``, since both lists contain the value ``3`` at
+index ``2`` and do not match at any of the indexes less than 2.  The
+call ``find_idx_first_match([1, 2, 3], [3, 2, 1])`` the function would
+return ``-1``, since there is no index at which the lists match.
+
+What might make good test cases (in addition to the the sample inputs
+listed above) for this function?
+
+How would your implementation change if the lists were not guaranteed
+to be the same length?
 
 Modifying a list
 ----------------
@@ -702,6 +784,32 @@ removed.
    Are we expecting to get ``[1]`` or ``[1, 2, 5]``?
 
 
+Practice Problems
+~~~~~~~~~~~~~~~~~
+
+**Problem 6**
+
+Given the following list:
+
+::
+
+   lst = ["one", "two", "three", "four", "five", "six"]
+
+For each of the following operations, determine the result of
+evaluating the operation and the value of ``lst`` afterwards.  Assume
+the operations are done in order, so changes made by one operation are
+visible to the next operation:
+
+- ``lst.append("seven")``
+- ``lst.pop()``
+- ``lst.pop(2)``
+- ``del  lst[2]``
+- ``lst.extend(["eight", "nine", "ten"])``
+- ``lst.append(["eleven", "twelve"])``
+- ``lst.insert(2, "thirteen")``
+
+
+
 Creating a list based on another list
 -------------------------------------
 
@@ -800,8 +908,8 @@ the list comprehension:
 
 yields a list of ten zeros.
 
-List comprehensions also allow us to filter which values from the
-original list will be included in the computation of the new list. For
+List comprehensions also allow us to filter the values from the
+original list that will be included in the computation of the new list. For
 example, suppose we wanted to create a ``discounted_prices`` list, but 
 only wanted to include prices (before the discount) that are greater
 than 10. If we were using a ``for`` loop, we might write something like
@@ -848,10 +956,44 @@ expands into this code:
            new_val = *<transformational expression >*
            *<list name>*.append(new_val)
 
-We will return to this topic again Section
+We will return to this topic again in
 :ref:`list_comprehensions_revisited` to discuss an alternate way to
 think about the computation captured by the list comprehension
 shorthand.
+
+
+Practice Problems
+~~~~~~~~~~~~~~~~~
+
+.. todo::
+
+   How can we write ith where the i is in itatics?  Or is there a better way to
+   express this problem?
+
+**Problem 7**
+
+Write a function ``compute_str_lengths`` that takes a list of strings
+and constructs a new list where the ith entry in the result is the
+length of the ith string in the input list. For example, given ``["abc",
+"d", "efgh", ""]``, the result would be ``[3, 1, 4, 0]``. (You can find the
+length of a string using the built-in ``len`` function. For example, ``len(“abc”)`` yields
+``3``.)
+
+What would make good test cases in addition to the the sample input
+listed above?
+
+
+**Problem 8**
+
+Write a function ``find_long_strs`` that takes a list of strings and a
+threshold length and returns a new list that contains all the strings
+in the input list that are least the specified threshold in length.
+For example, ``find_long_strs(["abc", "d", "efgh", ""], 3)`` would
+yield ``["abc", "efgh"]``, while ``find_long_strs(["abc", "d", "efgh",""], 10)`` would yield ``[]``, because none of the strings have at
+least ten characters.
+
+What would make good test cases in addition to the the sample input
+listed above?
 
 
 Other operations on lists
@@ -963,6 +1105,38 @@ call to ``sorted``:
 .. python-run::
 
    sorted(lst, reverse=True)
+
+
+
+Practice Problems
+~~~~~~~~~~~~~~~~~
+
+**Problem 9**
+
+Given the following list:
+
+::
+
+   lst = [1.5, 1.2, 7.3, 4.4, 6.5, 0.3, 1.2, 1.2]
+
+For each of the following pieces of code, determine the result of
+evaluating the code and the value of ``lst`` afterwards.  Assume the
+operations are done in order, so changes made by one operation are
+visible to the next operation:
+
+- ``min(lst)``
+- ``max(lst)``
+- ``sum(lst)``
+- ``lst.count(1.2)``
+- ``lst.count(4.4)``
+- ``lst.count(0.0)``
+- ``lst[::-1]``
+- ``lst.reverse()``
+- ``sorted(lst)``  
+- ``lst.sort()``
+
+
+
 
 
 .. _section-variables-revisited:
@@ -1107,7 +1281,7 @@ built-in ``id`` function:
    id(lst3) == id(lst4)
 
 Note: if you run this code yourself, you will very likely not see the
-same ``id`` values shown above. The ``id`` value for ``lst3``,
+same ``id`` values as shown above. The ``id`` value for ``lst3``,
 however, should not be the same as the one for ``lst4``.
 
 In contrast, the ``lst1`` and ``lst2`` variables we created earlier do have the
@@ -1203,24 +1377,15 @@ We could write the function like this:
        ''' 
        Multiplies the values in a list in-place by a specified factor.
 
-       Inputs:
-           lst: a list
-           factor: the factor to multiply by
+       Args:
+           lst (List[number]): a list
+           factor (number): the factor to multiply by
 
        Returns: None
        ''' 
 
-       for i in range(len(lst)):
-           lst[i] = lst[i] * factor
-
-Earlier, we said that iterating over the range of indexes is
-considered "not Pythonic", but this is one case where it
-is justified, as we need to use the indexes of the list
-to update it (just iterating over the values would not
-allow us to do so). Later in the chapter we will see that
-there is a built-in function called ``enumerate`` that is
-generally preferred whenever we need to iterate over
-both the indexes and values of a list.
+       for i, val in enumerate(lst):
+           lst[i] = val * factor
 
 Let's try out this function:
 
@@ -1258,7 +1423,7 @@ frame goes away and we are left with ``nums`` and the modified list.
 
 As the client of a function, you need to be mindful that when you pass
 a list as a parameter to a function any changes made inside the
-function will affect the original list.  If you write a function that,
+function to the parameter will affect the original list.  If you write a function that,
 like ``scale``, modifies a list in-place, make sure this behavior is
 properly documented so that anyone using the function is aware that
 the list that they are passing to the function will be modified.  In
@@ -1279,12 +1444,13 @@ returns a new list, leaving the original list intact:
        Multiplies the values in a list by a specified factor.
 
        Inputs:
-           lst: a list
-           factor: the factor to multiply by
+           lst (List[number]): a list
+           factor (number): the factor to multiply by
 
-       Returns: a list of the same type as the input
+       Returns (List[number): a list of the same type as factor
+           where the ith value is the ith value of the input list
+	   multiplied by the factor.
        ''' 
-
        new_lst = []
        for x in lst:
            new_lst.append(x * factor)
@@ -1309,14 +1475,14 @@ comprehension:
        Multiplies the values in a list by a specified factor.
 
        Inputs:
-           lst: a list
-           factor: the factor to multiply by
+           lst (List[number]): a list
+           factor (number): the factor to multiply by
 
-       Returns: a list of the same type as the input
+       Returns (List[number): a list of the same type as the factor
+           where the ith value is the ith value of the input list
+	   multiplied by the factor.
        ''' 
-
        return [x * factor for x in lst]
-
 
 In both versions, a list is constructed in the heap and a reference to
 the newly constructed list is returned.
@@ -1333,6 +1499,21 @@ When taking lists as parameters to functions, you should:
 * Be mindful that any changes you make to the list *will* have an effect outside the function's scope; 
 * Think carefully about whether you want to modify the list in-place or return a new list with modified values; and finally,
 * Record your choice in your function's docstring!
+
+
+Practice Problems
+~~~~~~~~~~~~~~~~~
+
+**Problem 10**
+
+Write a function, ``add_in_element_wise``, that takes two lists of
+equal length and updates the first list with the element-wise sum of
+the two lists.  That is, the i-th value of the first list should be
+sum of the original i-th value of the first list and the i-th value of the
+second list.
+
+What would make good test cases in addition to the the sample input
+listed above?
 
 
 Lists of lists
@@ -1464,18 +1645,21 @@ same list is confusing, please re-read the
 
 
 Instead of using multiplication on a nested list to initialize the
-matrix, we will use a loop:
+matrix, we will use a pair of nested loops:
 
 .. python-run::
 
    m = []
    for i in range(5):
-      m.append([0]*5)
+       # create a row for the matrix
+       row = []
+       for j in range(5):
+           row.append(0)
+       # add the row to the matrix.
+       m.append(row)
 
 
-Because the expression ``[0]*5`` is reevaluated in each iteration of
-the loop, a new list of five zeros is constructed and then appended to
-``m`` on every iteration.  The new version of ``m`` can be depicted as
+The new version of ``m`` created using version can be depicted as
 follows:
 
 .. image:: lists-10.png
@@ -1490,18 +1674,126 @@ row now:
    for row in m:
        print(row)
 
+There are two other ways we could built ``m``: one uses a loop combined
+with list multiplication and the other uses a list comprehension:
+
+Here is the loop plus list multiplication version:
+
+.. python-run::
+
+   m = []
+   for i in range(5):
+      m.append([0]*5)
+
+
+Why does this work?  Because the expression ``[0]*5`` is reevaluated in each iteration of
+the loop, a new list of five zeros is constructed and then a reference to that new list is appended to
+``m`` on every iteration. 
+
+And here is the list comprehension version:
+
+.. python-run::
+
+   m = [ [0] * 5 for _ in range(5) ]
+
+As in the previous version, a new list of five zeros is constructed
+for each value in the range.
 
 In sum, while lists-of-lists can be used to manipulate matrix-like
-data, they must constructed used with care. 
-
-The way Python stores the lists internally means that many matrix
-operations (like matrix multiplication) can be quite inefficient. If
-you find yourself needing to manipulate matrix-like data extensively
-in your code (specially if you have to use higher-dimensional
-matrices), you may want to consider using a library like `NumPy
+data, they must constructed used with care.  Also, the way Python
+stores the lists internally means that many matrix operations (like
+matrix multiplication) can be quite inefficient. If you find yourself
+needing to manipulate matrix-like data extensively in your code
+(specially if you have to use higher-dimensional matrices), you may
+want to consider using a library like `NumPy
 <http://www.numpy.org/>`_, which is specifically optimized for
 manipulating matrices and vectors, and which we will cover later in
 the book.
+
+
+Practice Problems
+~~~~~~~~~~~~~~~~~
+
+**Problem 11**
+
+Write a function, ``add_constant_2D``, that takes a matrix,
+represented as a list of lists, and a constant ``c`` and adds ``c`` to
+every element in the matrix in-place.
+
+For example, given:
+
+::
+
+   m1 = [[1, 2, 3],
+         [3, 4, 5]]
+
+the value of ``m1`` after a call to ``add_constant_2D(m1, 10)`` would be:
+
+::
+
+   [[11, 12, 33],
+    [14, 15, 66]]
+
+What would make good test cases in addition to the the sample input
+listed above?
+
+
+**Problem 12**
+
+Write a function, ``average_rows``, that takes a matrix represented as
+a list of list of floats and returns a list of floats where the i-th
+float is the average of the values in the i-th row.  For example given:
+
+.. python-run::
+   
+  matrix = [[1.0, 2.0, 3.1],
+            [4.5, 5.0, 6.0],
+            [7.0, 8.3, 9.0]]
+
+
+the function would return ``[2.033333333333333, 5.166666666666667,
+8.1]``.
+
+
+**Problem 13**
+
+Write a function, ``average_columns``, that takes a matrix represented
+as a list of list of floats and returns a list of floats where the
+i-th float is the average of the values in the i-th column.  Given the
+matrix in Problem 12, the result would be ``[4.166666666666667,
+5.1000000000000005, 6.033333333333334]``.
+
+**Problem 14**
+
+The **shape** of a matrix is the number of rows (that is, the length
+of the outer list) and columns (that is, the length of
+the inner list) in the matrix.
+
+Write a function, ``add_2D`` that takes two matrices, represented as
+list of lists, with the same shape and returns a new matrix (with the
+same shape) with element-wise sum of the inputs.
+
+For example, given:
+
+::
+
+   m1 = [[1, 2, 3],
+         [3, 4, 5]]
+
+   m2 = [[10, 20, 30],
+         [40, 50, 60]]
+
+the result of calling ``add_2D(m1, m2)`` would be:
+
+::
+
+   [[11, 22, 33],
+    [44, 55, 66]]
+
+
+   
+What would make good test cases in addition to the the sample input
+listed above?
 
 
 Shallow copy versus deep copy
@@ -1573,17 +1865,19 @@ original and the copy.
 .. image:: lists-12.png
 
 
-The deep copy function needs to be used with care; it will get stuck
-in an infinite computation, if it is called on a data structure that
-loops back onto itself, such as:
+.. 
+    This is no longer an issue.  Deep copy now uses memoization to handle
+    cycles.
+    The deep copy function needs to be used with care; it will get stuck
+    in an infinite computation, if it is called on a data structure that
+    loops back onto itself, such as:
 
-.. python-run::
+    .. python-run::
 
-   list_with_cycle = [1, 2, 3]
-   list_with_cycle.append(list_with_cycle)
+       list_with_cycle = [1, 2, 3]
+       list_with_cycle.append(list_with_cycle)
 
-.. image:: lists-13.png
-
+     .. image:: lists-13.png
 
 
 Tuples
@@ -1655,10 +1949,10 @@ values:
 
        Compute the mean and standard deviation of a list of numbers.
 
-       Inputs:
-         lst: list of numbers
+       Args:
+         lst (List[number]): list of numbers
 
-       Returns: tuple with the mean and standard deviation.  
+       Returns (Tuple[float, float]): the mean and standard deviation of the values in nums.  
        '''
 
        mean = sum(nums) / len(nums)
@@ -1667,7 +1961,7 @@ values:
        return (mean, stdev)
 
 We can call this function with a list of numbers, assign the result
-to a variable, and then extract the results by indexing:
+to a variable, and then extract the results using indexing:
 
 .. python-run::
    :formatting: separate
@@ -1779,6 +2073,36 @@ processed in the body of the loop.
 
 .. _section-strings:
 
+Practice Problems
+~~~~~~~~~~~~~~~~~
+
+**Problem 15**
+
+Write a function, ``print_component``, that takes a list of tuples of
+length two (that is, 2-tuples or pairs) and a boolean, and prints the
+first element in each pair if the boolean is ``True`` and the second
+if the boolean is ``False``.  For example, given [("one", 10), ("two",
+29), ("three", 30)] and ``True``, your code should print: ``one``,
+``two``, and ``three``.  Given the same list and ``False``, your
+function should print: ``10``, ``20``, and ``30``.
+
+What would make good test cases in addition to the the sample input
+listed above?
+
+
+**Problem 16**
+
+Write a function ``combine_triples``, that takes a list of tuples of
+length 3 (that is, a 3-tuple or triple), compute a tuple of length
+three , where the i-th element in the tuple is the sum of the i-th
+element from all the tuples from the input list. For example, given
+``[(1, 2, 3), (4, 5, 6), (7, 8, 9)]`` the result should be ``(12, 15,
+18)``, because 1+4+7 is 12, 2+5+8 is 15, and 3+6+9 is 18.
+
+What would make good test cases in addition to the the sample input
+listed above?
+
+
 Strings
 -------
 
@@ -1820,41 +2144,37 @@ characters in a string:
 String formatting
 ~~~~~~~~~~~~~~~~~
 
-So far, whenever we had to print a combination of strings and other values,
-we would just use the ``print`` function, which prints its parameters
-separated by spaces:
+In :ref:`f_strings`, we introduced formatted string literals (known as
+f-strings as a way to construct a string from a combination of basic
+text and computed values.
 
-.. python-run::
-
-   a = 37
-   print("Here is a number:", a)
-   
-Strings also have a ``format`` method that allows us to combine values
-into a string in many different ways. When using this method, we
-include curly braces (``{}``) in any place where we want to embed
+Python strings also have a method called ``format`` that can also be
+used to construct a string from a combination of basic text and
+computed values.  When using this method, we include curly braces
+(``{}``) in any place in the format string where we want to embed
 another value.  For example:
 
 .. python-run::
 
-   s = "Here is a number: {}"
+   fmt_str = "Here is a number: {}"
 
 Then, we call the ``format`` method, and pass the value (or values) we
 want to embed in the string as a parameter (or parameters):
 
 .. python-run::
 
-   s.format(a)
-   s.format(100)
-   s.format(3.1415)
-   s.format("Not a number, but this still works")
+   fmt_str.format(a)
+   fmt_str.format(100)
+   fmt_str.format(3.1415)
+   fmt_str.format("Not a number, but this still works")
    
-Note how ``format`` returns a new string; it does not modify
-the format string itself. If we want to print the resulting string, we can 
+Note how ``format`` returns a new string; it does not modify the
+format string itself. If we want to print the resulting string, we can
 pass the return value of ``format`` to ``print``:
 
 .. python-run::
 
-   print(s.format(a))
+   print(fmt_str.format(a))
 
 In practice, it is common to call ``format`` directly on a string literal. This usage may
 look weird at first, but it is no different from calling ``format`` on a string variable:
@@ -1871,9 +2191,10 @@ We can also embed multiple values into the string:
    b = 7
    print("{} times {} is {}".format(a, b, a*b))
 
-And we can also control the way in which the embedded values are formatted.
-For example, when embedding a float, we can write ``{:.Nf}``, substituting 
-the number of decimal places we want to print for ``N``:
+Using format strings, we can control the way in which the embedded
+values are formatted.  For example, when embedding a float, we can
+write ``{:.Nf}``, substituting the number of decimal places we want to
+print for ``N``:
     
 .. python-run::
 
@@ -1886,6 +2207,23 @@ see the full description of how to specify formats for different types
 of values in the `Python documentation
 <https://docs.python.org/3/library/string.html#formatstrings>`__ for
 this method
+
+Format specifiers can also be used with f-strings.  The
+expression-to-be-evaluated goes before the colon in the specifier:
+
+.. python-run::
+
+   PI = 3.141592653589793
+   print(f"The value of pi is {PI:.2f}")
+   r = 2.0
+   print(f"The circumference of circle of radius {r} is {2 * PI * r:.1f}")
+
+
+For simple tasks, f-strings are preferred over format strings.  Format
+strings can be useful when you want to build up a complex string over
+time or when you want to setup the formatting for a string ahead of
+the computation of the values that will be used to complete the
+string.
 
 
 Other operations on strings
@@ -1944,7 +2282,8 @@ delimiters removed. For example:
    values
     
 The parameter to ``split`` is optional; if we omit it, ``split`` will
-assume that any whitespace characters (spaces, tabs, etc.) are the separator. For example:
+assume treat any run of whitespace characters (spaces, tabs, etc.) as
+a separator. For example:
 
 .. python-run::
 
@@ -1988,3 +2327,414 @@ or run ``help(str)`` from the Python interpreter.
 .. todo::
 
    Does it make sense to add a section here about sequences in general?
+
+
+Practice Problems
+~~~~~~~~~~~~~~~~~
+
+**Problem 17**
+
+Write a function ``count_suffix``_matches which takes a list of works
+and a suffix and computes the number of words in the list that end in
+the specified suffix. Both the words and the suffix will be
+represented as strings.  For example, ``count_suffix_matches(["hello",
+"jello", "ham", "cello"], "ello")`` evaluates to ``3`` and
+``count_suffix_matches(["hello"], "bye")`` evaluates to ``0``. 
+
+Write one solution that uses the string ``endswith`` method and
+another one that does not.
+
+**Problem 18**
+
+Write a function ``find_first_word``, which takes a sentence
+represented as a string and a single letter, also represented as a
+string, and finds the first word in the sentence that contains that
+letter. For the purposes of this task, we will define a word to be a
+sequence of non-white-space characters.  For example, given the
+sentence ``"I am learning a lot and having fun this quarter"`` and the
+letter ``"n"``, find_first_word should return the word ``"learning"``.
+
+Write one version using the string ``split`` method and another that
+does not.  The string ``isspace()`` method, which returns ``True`` if
+all the characters in a string are whitespaces and ``False``,
+otherwise, will be useful for the second implementation.
+
+
+Practice Problem Solutions
+--------------------------
+
+**Problem 1**
+
+.. python-run::
+
+   ["one", "two", "three"]
+
+**Problem 2**
+
+This problem could be solved by writing down a list with 15 numbers,
+but using list multiplication is a better choice:
+
+.. python-run::
+
+   [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3]
+   [1, 2, 3] * 5
+
+**Problem 3**
+
+.. python-run::
+
+  lst = ["one", "two", "three", "four", "five", "six"]
+  lst[3]
+  lst[-4]
+  lst[2:5]
+  lst[:10]
+  lst[1::3]
+
+Here are two ways to extract ``"five"`` from ``lst``:
+
+.. python-run::
+
+  lst[4]
+  lst[-2]
+
+Here are two ways to extract the last four values from ``lst``:
+
+.. python-run::
+
+
+  lst[2:]
+  lst[-4:]
+  
+Here are three ways to extract the last three values from ``lst`` in reverse order:
+
+.. python-run::
+
+  lst[5:2:-1]
+  lst[-1:-4:-1]
+  lst[:-4:-1]
+
+**Problem 4**
+
+Here is a possible solution:
+
+.. literalinclude:: solutions/print_matching_indexes.py
+    :pyobject: print_matching_indexes
+
+Our solution uses ``enumerate``, because we need both the index and
+the value.  This approach is less error-prone than using a loop that
+iterates over the list and maintains a seperate index variable.  It is
+also less error-prone than using a loop that iterates over the
+index-space of the list using ``range`` and then uses indexing to
+extract the value from the list.
+	       
+Here is some test code for ``print_matching_indexes``:
+
+.. literalinclude:: solutions/print_matching_indexes.py
+    :pyobject: test_print_matching_indexes
+
+.. literalinclude:: solutions/print_matching_indexes.py
+    :pyobject: test_print_matching_indexes_all
+       
+Notice that we followed the zero-one-many rule-of-thumb: we have test
+cases for the empty list, a one-element list with different
+values-to-match, and several tests with multi-element lists.
+
+
+**Problem 5**
+
+Here is a possible solution for ``find_idx_first_match``:
+
+.. literalinclude:: solutions/find_idx_first_match.py
+    :pyobject: find_idx_first_match
+
+
+Here is an alternative solution that uses indexing for both
+``lst1`` and ``lst2``:
+
+.. literalinclude:: solutions/find_idx_first_match.py
+    :pyobject: find_idx_first_match_1
+
+Some programmers prefer the second version, because the relationship
+between the two values being compared is more explicit.  The name
+``_`` is often used in situations where a variable name is needed for
+syntactic purposes, but the value of the variable will not be used.
+
+Here is a solution that works even if the lists are not the same
+length:
+
+.. literalinclude:: solutions/find_idx_first_match.py
+    :pyobject: find_idx_first_match_2
+
+The first conditional in this solution handles with the case where
+``lst2`` is shorter than ``lst1``.  We do not need special code to
+handle the case where ``lst1`` is shorter than ``lst2``, because the
+loop will end when it runs out of values in ``lst1`` and so, there is
+no danger of an out-of-bounds error.
+
+We chose to use ``break`` rather than ``return -1``, because it limits
+the number of places that would need to be changed if we decided to
+change the "not found" return value.
+
+Here is some simple test code for this problem:
+
+.. literalinclude:: solutions/find_idx_first_match.py
+    :pyobject: test_find_idx_first_match
+
+This code only tests the firsts solution.  We could easily add calls
+to the other two implemetations, if needed.  The test cases that we
+have are not sufficient for testing the third version, which allows
+lists of different lengths.  What might be some good test cases 
+for checking that the last version works for lists of different lengths?
+
+**Problem 6**
+
+In the code below, we compare the result of an operation with ``None``
+to highlight the operations that modify the list in-place and return
+``None``.
+
+.. python-run::
+
+  lst = ["one", "two", "three", "four", "five", "six"]
+  lst.append("seven") is None
+  lst
+  lst.pop()
+  lst
+  lst.pop(2)
+  lst
+  del  lst[2]
+  lst
+  lst.extend(["eight", "nine", "ten"]) is None
+  lst
+  lst.append(["eleven", "twelve"]) is None
+  lst
+  lst.insert(2, "thirteen") is None
+  lst
+
+Notice the difference between extending a list with the values from another list and appending a list value to a list.
+
+**Problem 7**
+
+Here is a solution for ``compute_str_lengths`` that uses an explicit loop and the list ``append`` method:
+
+.. literalinclude:: solutions/compute_str_lengths.py
+    :pyobject: compute_str_lengths
+
+and here is one that uses a list comprehension:
+
+.. literalinclude:: solutions/compute_str_lengths.py
+    :pyobject: compute_str_lengths_1
+
+Here is some simple test code:
+
+.. literalinclude:: solutions/compute_str_lengths.py
+    :pyobject: test_compute_str_lengths
+
+
+
+**Problem 8**
+
+
+Here is a solution for ``find_long_strs`` that uses an explicit loop and the list ``append`` method:
+
+.. literalinclude:: solutions/find_long_strs.py
+    :pyobject: find_long_strs
+
+and here is one that uses a list comprehension:
+
+.. literalinclude:: solutions/find_long_strs.py
+    :pyobject: find_long_strs_1
+
+Here is some simple test code:
+
+.. literalinclude:: solutions/find_long_strs.py
+    :pyobject: test_find_long_strs
+
+
+**Problem 9**       
+
+In the code below, we compare the result of an operation with ``None``
+to highlight the operations that modify the list in-place and return
+``None``.
+
+.. python-run::
+
+  lst = [1.5, 1.2, 7.3, 4.4, 6.5, 0.3, 1.2, 1.2]
+  min(lst)
+  lst
+  max(lst)
+  lst
+  sum(lst)
+  lst
+  lst.count(1.2)
+  lst
+  lst.count(4.4)
+  lst
+  lst.count(0.0)
+  lst
+  lst[::-1]
+  lst
+  lst.reverse() is None
+  lst
+  sorted(lst)
+  lst
+  lst.sort() is None
+  lst
+
+
+**Problem 10**       
+
+Here is a possible solution for ``add_in_element_wise``:
+
+.. literalinclude:: solutions/add_in_element_wise.py
+    :pyobject: add_in_element_wise
+
+Our solution uses enumerate, because we need the index to update the
+value at each index of ``lst1``.  Our use of ``+=`` eliminates the
+need to access ``lst1[i]`` explictly.  We use ``_`` as the variable
+name for second component of the tuple generated by ``enumerate`` to
+signal that its value will not be used.
+
+Here is some simple test code for this function:
+
+.. literalinclude:: solutions/add_in_element_wise.py
+    :pyobject: test_single_add_in_element_wise
+
+.. literalinclude:: solutions/add_in_element_wise.py
+    :pyobject: test_add_in_element_wise
+
+**Problem 11**
+
+Here is a solution for ``add_constant_2D``:
+
+.. literalinclude:: solutions/add_constant_2D.py
+    :pyobject: add_constant_2D
+
+	       
+And here is some test code for this function:
+
+.. literalinclude:: solutions/add_constant_2D.py
+    :pyobject: test_add_constant_2D
+
+
+**Problem 12**
+
+Here is a solution for ``average_rows``:
+
+.. literalinclude:: solutions/average_rows.py
+    :pyobject: average_rows
+
+And here is some test code for this function:
+
+.. literalinclude:: solutions/average_rows.py
+    :pyobject: test_single_average_rows
+
+.. literalinclude:: solutions/average_rows.py
+    :pyobject: test_average_rows
+       
+
+
+**Problem 13**
+
+
+Here is a solution for ``average_columns``:
+
+.. literalinclude:: solutions/average_columns.py
+    :pyobject: average_columns
+
+And here are some test code for this function:
+
+.. literalinclude:: solutions/average_columns.py
+    :pyobject: test_single_average_columns
+
+.. literalinclude:: solutions/average_columns.py
+    :pyobject: test_average_columns
+
+**Problem 14**       
+
+Here is a solution for ``add_2D``:
+
+.. literalinclude:: solutions/add_2D.py
+    :pyobject: add_2D
+
+And here are some test cases for this function: 
+
+.. literalinclude:: solutions/add_2D.py
+    :pyobject: test_add_2D
+
+
+
+**Problem 15**
+
+Here is a possible solution for ``print_component``:
+
+.. literalinclude:: solutions/print_component.py
+    :pyobject: print_component
+
+And here is some simple test code for this function:
+
+.. literalinclude:: solutions/print_component.py
+    :pyobject: test_single_print_component
+
+.. literalinclude:: solutions/print_component.py
+    :pyobject: test_print_component
+
+
+**Problem 16**	       
+
+Here is a possible solution for ``combined_triples``:
+
+.. literalinclude:: solutions/combine_triples.py
+    :pyobject: combine_triples
+
+And here is some test code for this function:
+
+.. literalinclude:: solutions/combine_triples.py
+    :pyobject: test_combine_triples
+
+Notice that the test cases are represented using a list of tuples and
+that using tuple-unpacking in the loop allows for test code that is
+simple and compact.  We will use this style of test code in our
+solutions for problems later in the book.
+
+	       
+**Problem 17**
+
+Here is an implementation of ``count_suffix_matches`` that uses ``endswith``
+
+
+.. literalinclude:: solutions/count_suffix_matches.py
+    :pyobject: count_suffix_matches
+
+
+And here is one that uses slicing:	       
+
+.. literalinclude:: solutions/count_suffix_matches.py
+    :pyobject: count_suffix_matches_1
+
+Here is some simple test code for this function:
+
+.. literalinclude:: solutions/count_suffix_matches.py
+    :pyobject: test_count_suffix_matches
+
+	       
+
+**Problem 18**
+
+Here is an implementation of ``find_first_word` that uses
+the string ``split`` method
+
+
+.. literalinclude:: solutions/find_first_word.py
+   :pyobject: find_first_word
+
+Here is an implementation that does not use ``split``:	      
+
+.. literalinclude:: solutions/find_first_word.py
+   :pyobject: find_first_word_1
+
+And here is some simple test code for this function:
+
+.. literalinclude:: solutions/find_first_word.py
+   :pyobject: test/test_first_word
+
+

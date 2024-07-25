@@ -423,6 +423,42 @@ case, the second and third ``if`` statements).
    statement.
 
 
+Practice Problems
+~~~~~~~~~~~~~~~~~
+
+**Problem 1**
+
+Assume you have an integer variable named ``year`` that holds a a year
+represented as a positive integer.  Write a block of code that prints
+the year and either ``"is leap year"`` or ``"is not leap year"``.
+
+To gain practice with conditionals, we recommend using conditional
+statements instead of logical operators (that is, ``and``, ``or``,
+``not``, etc) in your solution.
+
+Before you try to solve this problem, try to come up with some sample
+values for year and the expected results.
+
+**Problem 2**
+
+An instructor would like you to write block of code to determine a student's grade based the following rules: the student's grade is a(n):
+
+- A if the student's midterm, final, and hw are all at least 90 
+- B if the student's midterm, final, and hw are all at least 80 
+- C if the student's midterm, final, and hw are all at least 70 
+- B if the student's hw is at least 90, their midterm and final are both at least 50 and their final is at least 20 points higher than their midterm.  Otherwise the student should receive an F.  
+
+Your code should set a variable named ``grade`` to the letter grade
+the student earned based on the following three floating point
+variables:
+
+- ``hw``, which holds a student's homework average,
+- ``midterm``, which holds a student's midterm exam score, and
+- ``final``, which holds a student's final exam score.
+
+What would make good sample values for ``hw``, ``midterm``, and ``final``?
+
+
 ``for`` Loops
 -------------
 
@@ -521,6 +557,37 @@ times.
    A good rule of thumb for testing loops: try the loop with a list
    that has zero values, a list that has exactly one value, and a list
    that has many values.
+
+
+Practice Problems
+~~~~~~~~~~~~~~~~~
+
+**Problem 3**
+
+Given a list of integers named ``lst``, compute a variable ``total``
+that contains the sum of the absolute values of the elements (that is,
+the values) in the list. (e.g. the list ``[-1, 2, 1]`` would set
+``total`` to ``4``).  Use the built-in function ``abs`` to compute the
+absolute value of a number.  Here is are some example uses of ``abs``:
+
+.. python-run::
+
+   x0 = 5
+   abs(x0)
+   x1 = -5
+   abs(x1)
+
+Before you write a solution, make a list of a few sample test cases
+and the corresponding expected results.
+
+**Problem 4**
+
+Given a list of booleans named ``lst``, write code to determine set a
+variable ``contains_false`` to ``True`` if the list contains the value
+``False`` and to ``False`` otherwise.
+
+Before you write a solution, make a list of a few sample test cases
+and the corresponding expected results.
 
 
 Nested statements
@@ -682,6 +749,19 @@ move the ``print`` statement out of the loops altogether as well.
    If you have a bug in code that uses nested loops, verify that you
    are initializing *all* the variables used in the loop in the right
    place for your specific application.  
+
+
+
+Practice Problems
+~~~~~~~~~~~~~~~~~
+
+**Problem 5**
+
+Rewrite your solution to Problem 3 to use a conditional rather than a call to ``abs``.
+
+**Problem 6**
+
+
 
 
 Iterating over ranges of integer
@@ -1247,28 +1327,151 @@ computation.  In contrast, ``roll`` and ``game_num_rolls`` are
 re-initialized for every iteration of the outer loop, because they
 need to be reset to their initial values for each new game.
 
+Practice Problem Solutions
+--------------------------
+
+**Problem 1**:
+
+Here are some sample values for ``year`` and the expected output::
+
+    2024 is a leap year
+    2000 is a leap year
+    1900 is not a leap year
+    2027 is not a leap year
+
+Here is one approach to using conditional statements and relationalal
+operators to determine whether a year ``year`` with a positive integer
+represents a leap year:
+
+.. literalinclude:: practice_problem_solutions.py
+   :language: python
+   :lines: 16-24
+
+Here is an alternative way to write this code:
+
+.. literalinclude:: practice_problem_solutions.py
+   :language: python
+   :lines: 39-47
+
+And here is a **incorrect** approach:
+
+.. literalinclude:: practice_problem_solutions.py
+   :language: python
+   :lines: 60-69
+
+This code produces the right answer for three of the four sample
+years.  Which years will be tagged correctly and which year will be
+tagged incorrectly?  Why?
 
 
-   
+**Problem 2**
+
+Here are some possible test cases as the expected value for ``grade``:
+
+.. list-table:: Sample test cases
+   :widths: 50 50 50 20
+   :header-rows: 1
+
+   * - Midterm
+     - Final
+     - Homework
+     - Grade
+   * - 90.0
+     - 90.0
+     - 92.0
+     - A
+   * - 80.0
+     - 85.5
+     - 80.0
+     - B
+   * - 70.0
+     - 70.0
+     - 73.5
+     - C
+   * - 70.0
+     - 50.0
+     - 90.0
+     - B
+   * - 50.0
+     - 70.0
+     - 90.0
+     - F
+   * - 50.0
+     - 70.0
+     - 85.0
+     - F
+
+Here is a block of code that sets the variable ``grade`` to the grade
+a student earned using their homework (``hw``), final (``final``), and
+midterm (``midterm``) scores:
+
+.. literalinclude:: practice_problem_solutions.py
+   :language: python
+   :lines: 106-115
 
 
 
+**Problem 3**
 
-	
-       
+.. list-table:: Sample test cases
+   :widths: 50 20
+   :header-rows: 1
 
+   * - ``lst``
+     - ``total``
+   * - ``[]``
+     - 0
+   * - ``[5]``
+     - 5
+   * - ``[-5]``
+     - 5
+   * - ``[10, -10, 10, -10, 3, 0]``
+     - 43
 
+Here is a block of code that computes the sum of the absolute values in ``lst``:
 
+.. literalinclude:: practice_problem_solutions.py
+   :language: python
+   :lines: 144-147
 
+**Problem 4**
 
+Here are some sample test cases:
 
+.. list-table:: Sample test cases
+   :widths: 50 20
+   :header-rows: 1
 
+   * - ``lst``
+     - ``total``
+   * - ``[]``
+     - ``False``
+   * - ``[True]``
+     - ``False``
+   * - ``[False]``
+     - ``True``
+   * - ``[True, True, True, True, False]``
+     - ``True``
+   * - ``[False True, True, True, True, True]``
+     - ``True``
+   * - ``[True, False, False, True, False]``
+     - ``True``
+   * - ``[True, True, True, True]``
+     - ``False``
 
+.. literalinclude:: practice_problem_solutions.py
+   :language: python
+   :lines: 197-202
 
+**Problem 5**
 
+Here is a version of the code that computes the sum of the absolute
+values in a list using a conditional rather than a call to ``abs``.
 
+.. literalinclude:: practice_problem_solutions.py
+   :language: python
+   :lines: 161-166
 
+	   
 
-
-   
-
+	   

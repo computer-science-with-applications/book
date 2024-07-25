@@ -639,6 +639,9 @@ defined a ``Hello`` variable, we will get a ``NameError`` telling you
 as much.
 
 
+
+.. _f_strings:
+
 F-strings
 ~~~~~~~~~
 
