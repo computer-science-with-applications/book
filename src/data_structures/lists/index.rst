@@ -2430,10 +2430,10 @@ extract the value from the list.
 Here is some test code for ``print_matching_indexes``:
 
 .. literalinclude:: solutions/print_matching_indexes.py
-    :pyobject: test_print_matching_indexes
+    :pyobject: test_single_print_matching_indexes
 
 .. literalinclude:: solutions/print_matching_indexes.py
-    :pyobject: test_print_matching_indexes_all
+    :pyobject: test_print_matching_indexes
        
 Notice that we followed the zero-one-many rule-of-thumb: we have test
 cases for the empty list, a one-element list with different
@@ -2735,6 +2735,6 @@ Here is an implementation that does not use ``split``:
 And here is some simple test code for this function:
 
 .. literalinclude:: solutions/find_first_word.py
-   :pyobject: test/test_first_word
+   :pyobject: test_find_first_word
 
 
