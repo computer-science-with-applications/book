@@ -603,7 +603,7 @@ same value.  If no match is found, the function should return ``-1``.
 For example, the call ``find_idx_first_match([1, 2, 3, 7], [2, 5, 3,
 7]``) would return ``2``, since both lists contain the value ``3`` at
 index ``2`` and do not match at any of the indexes less than 2.  The
-call ``find_idx_first_match([1, 2, 3], [3, 2, 1])`` the function would
+call ``find_idx_first_match([1, 2, 3], [2, 3, 1])`` the function would
 return ``-1``, since there is no index at which the lists match.
 
 What might make good test cases (in addition to the the sample inputs
@@ -1725,14 +1725,14 @@ For example, given:
 ::
 
    m1 = [[1, 2, 3],
-         [3, 4, 5]]
+         [4, 5, 6]]
 
 the value of ``m1`` after a call to ``add_constant_2D(m1, 10)`` would be:
 
 ::
 
-   [[11, 12, 33],
-    [14, 15, 66]]
+   [[11, 12, 13],
+    [14, 15, 16]]
 
 What would make good test cases in addition to the the sample input
 listed above?
@@ -1778,7 +1778,7 @@ For example, given:
 ::
 
    m1 = [[1, 2, 3],
-         [3, 4, 5]]
+         [4, 5, 6]]
 
    m2 = [[10, 20, 30],
          [40, 50, 60]]
@@ -2334,7 +2334,7 @@ Practice Problems
 
 **Problem 17**
 
-Write a function ``count_suffix``_matches which takes a list of works
+Write a function, ``count_suffix_matches``, which takes a list of words
 and a suffix and computes the number of words in the list that end in
 the specified suffix. Both the words and the suffix will be
 represented as strings.  For example, ``count_suffix_matches(["hello",
@@ -2356,7 +2356,7 @@ letter ``"n"``, find_first_word should return the word ``"learning"``.
 
 Write one version using the string ``split`` method and another that
 does not.  The string ``isspace()`` method, which returns ``True`` if
-all the characters in a string are whitespaces and ``False``,
+all the characters in a string are whitespaces and ``False``
 otherwise, will be useful for the second implementation.
 
 
