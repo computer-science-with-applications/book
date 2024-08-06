@@ -1327,6 +1327,8 @@ computation.  In contrast, ``roll`` and ``game_num_rolls`` are
 re-initialized for every iteration of the outer loop, because they
 need to be reset to their initial values for each new game.
 
+
+	   
 Practice Problem Solutions
 --------------------------
 
@@ -1339,9 +1341,10 @@ Here are some sample values for ``year`` and the expected output::
     1900 is not a leap year
     2027 is not a leap year
 
-Here is one approach to using conditional statements and relationalal
-operators to determine whether a year ``year`` with a positive integer
-represents a leap year:
+Here is one approach to using conditional statements and relational
+operators, but not logical ``and`` or logical ``or`` to determine
+whether a year ``year`` with a positive integer represents a leap
+year:
 
 .. literalinclude:: practice_problem_solutions.py
    :language: python
@@ -1471,7 +1474,5 @@ values in a list using a conditional rather than a call to ``abs``.
 .. literalinclude:: practice_problem_solutions.py
    :language: python
    :lines: 161-166
-
-	   
 
 	   
