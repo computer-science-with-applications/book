@@ -394,5 +394,139 @@ to look ways to catch related types of errors in one ``except`` clause
 and how to define and raise your own exceptions.
 
 
+Practice Problems
+-----------------
+
+The practice problems in this section refer to the following functions:
+
+.. python-run::
+
+    def some_func(x):
+        """ Docstring left out on purpose """
+        if x < 0:
+            # Will raise a TypeError if x is not a string.
+            return str(x) + x
+        elif x == 0:
+            # Will raise a ZeroDivisionError
+            return str(10 / x)
+        elif x < 10:
+            # Will raise an AssertionError
+            assert False
+
+	return "some_func does not raise an exception"
+
+    def some_other_func(x):
+        """ Docstring left out on purpose """
+        try:
+            result = some_func(x + 1)
+        except TypeError:
+            return "Caught TypeError in some_other_func"
+        except ZeroDivisionError:
+            return "Caught ZeroDivisionError in some_other_func"
+        return result
+
+    def yet_another_func(x):
+        """ Docstring left out on purpose """
+        try:
+            result = some_other_func(x - 2)
+        except TypeError:
+	    return "Caught TypeError in yet_another_func"
+        except ZeroDivisionError:
+            return "Caught ZeroDivisionError in yet_another_func"
+        except Exception as err:
+            result = f"Caught {err} in yet_another_func"
+        return result
+
+**Problem 1**
+
+- What value(s) could you pass to ``some_func`` to cause it to raise a ``TypeError``,
+- What value(s) could you pass to ``some_func`` to cause it to raise a ``ZeroDivisionError``,
+- What value(s) could you pass to ``some_func`` to cause it to raise an ``AssertionError``, and
+- What value(s) could you pass to ``some_func`` to cause it return a value rather than raise an exception?
+
+**Problem 2**
+
+- What value(s) could you pass to ``some_other_func`` that will cause it to return ``"some_func does not raise an exception"``,
+- What value(s) could you pass to ``some_other_func`` that will cause it to return ``"Caught TypeError in some_other_func"``,  and
+- What value(s) could you pass to ``some_other_func`` that will cause it to return ``"Caught ZeroDivisionError in some_other_func"``.
+
+**Problem 3**
+
+What is the result of evaluating ``some_other_func(5)``?
+
+**Problem 4**
+
+What is the result of evaluating the following calls:
+
+- ``yet_another_func(0)``,
+- ``yet_another_func(1)``,
+- ``yet_another_func(5)``,
+- ``yet_another_func(15)``?
+
+  
+Practice Problem Solutions
+--------------------------
+
+**Problem 1**
+
+- Any call to ``some_func`` with a value less than zero (e.g.  ``some_func(-1)``) will raise a ``TypeError``.
+- The ``some_func(0)`` will raise a ``ZeroDivisionError``.
+- Any call with a value between one and nine (inclusive) (e.g. ``some_func(5)``) will raise an ``AssertionError``.
+- Any call with a value greater than or equal to ten (e.g. ``some_func(20)``) will not raise an exception and will return the string ``'some_func does not raise an exception'``.
+
+**Problem 2**
 
 
+- Any call to ``some_other_func`` with a value greater than or equal to nine (e.g. ``some_other_func(9)`` return the string ``'some_func does not raise an exception'``.  The call to ``some_func`` in the body of the ``try`` block of ``some_other_func`` does not raise an exception and so, none of the exception handlers are executed and and ``some_other_func`` executes the final return statement.
+  
+- Any call with a value less than -1 (e.g. ``some_other_func(-2)``) will return ``'Caught TypeError in some_other_func'``.  The call to ``some_func`` in the ``try`` block will raise a ``TypeError``.  Since the error is not caught by ``some_func`` it is propagated to ``some_other_func`` where it is caught by the exception handler.  The exception handler returns the string.
+  
+-  The call ``some_other_func(-1)`` will return ``'Caught ZeroDivisionError in some_other_func'``. The call to ``some_func`` in the ``try`` block will raise a ``ZeroDivisionError``.  Since the error is not caught by ``some_func`` it is propagated to ``some_other_func`` where it is caught by the exception handler.  The exception handler returns the string.
+
+**Problem 3**
+
+.. python-run::
+
+    some_other_func(5)
+
+This function raises an exception because the call to ``some_func`` raises an ``AssertionError`` and neither ``some_func`` nor ``some_other_func`` catch that type of exception, so it is propagated to top-level.
+
+**Problem 4**
+
+Each call to ``yet_another_func`` calls ``some_other_func``, which in
+turn calls ``some_func``.  Some of the calls to ``some_func`` raise
+exceptions, others do not.
+
+
+.. python-run::
+
+    yet_another_func(0)
+
+In this case, the call to ``some_func`` raises a ``TypeError``, which
+caught and handled by the ``TypeError`` clause the ``try`` block in ``some_other_func``.  That
+handler has a normal return statement, so the call to
+``some_other_func`` finishes normally and the ``try`` block in ``yet_another_func`` finishes normally.
+
+.. python-run::
+   
+    yet_another_func(1)
+
+Similar to the previous example, the exception, ``ZeroDivisionError``, is handled by ``some_other_func``.
+
+.. python-run::
+    yet_another_func(5)
+
+In this case, the call to ``some_func`` raises an ``AssertionError``.
+That error is not caught in either ``some_func`` or
+``some_other_func`` and so, it is propagated to the ``try`` block in
+``yet_other_func``, where it is caught and handled by the
+``Exception`` clause.
+
+
+.. python-run::
+   
+    yet_another_func(15)
+
+This call does not raise any exceptions.
+
+   

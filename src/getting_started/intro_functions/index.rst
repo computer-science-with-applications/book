@@ -457,10 +457,11 @@ resolve this problem.
 Practice Problem
 ~~~~~~~~~~~~~~~~
 
-**Problem 1** Write a function ``print_categories`` that takes two integers, a lower
-bound and an upper bound on a range (inclusive), and prints each number
-in the range with an indication of whether the number is prime or composite
-(that is, not prime).  Here is a sample use of this function:
+**Problem 1** Write a function ``print_categories`` that takes two
+integers, a lower bound and an upper bound on a range (inclusive), and
+prints each number in the range with an indication of whether the
+number is prime or composite (that is, not prime).  Here is a sample
+use of this function:
 
 .. code::
 
@@ -475,7 +476,7 @@ in the range with an indication of whether the number is prime or composite
    9 composite
    10 composite
 
-Your solution should use ``is_prime``, rather than repeat the
+Your solution should call ``is_prime``, rather than repeat the
 primality testing code.
 
 
@@ -593,6 +594,30 @@ during the third call (``is_prime(7)``).
    ``return`` statement, a loop with an unguarded ``return`` will
    never execute more than one iteration (and possibly, a partial
    iteration at that).
+
+
+Practice Problem
+~~~~~~~~~~~~~~~~
+
+**Problem 2**
+
+Let's return to the problem of writing code to help an instructor
+determine a student's grade.  The instructor has decided that a
+student will earn a(n):
+
+- A if the student's midterm, final, and hw are all at least 90 
+- B if the student's midterm, final, and hw are all at least 80 
+- C if the student's midterm, final, and hw are all at least 70 
+- B if the student's hw is at least 90, their midterm and final are both at least 50 and their final is at least 20 points higher than their midterm.  Otherwise the student should receive an F.  
+
+In the previous chapter, you wrote code to set a variable to the grade
+a student earned given variables with the student's homework average
+and their grades on the midterm and final exams.
+
+For this problem, your task is to write a function, ``compute_grade``,
+that takes those three values as floats and returns the student's
+grade as a string.
+
 
 
 Advantages of using functions
@@ -1041,7 +1066,7 @@ just happen to have the same name.
 Practice Problem
 ~~~~~~~~~~~~~~~~
 
-**Problem 2** Given the following functions:
+**Problem 3** Given the following functions:
 
 .. code::
 
@@ -1061,7 +1086,7 @@ Practice Problem
 
 What is the result of evaluating this call: ``fun4(6)``?
 
-**Problem 3**  Given the following code:
+**Problem 4**  Given the following code:
 
 .. code::
 
@@ -1084,7 +1109,7 @@ What is the result of evaluating this call: ``fun4(6)``?
                     return i + j
         return -1
 
-What is the result of evaluating ``fun(6, 4, 2)``?
+What is the result of evaluating ``fun3(6, 4, 2)``?
 	
 
 Default parameter values
@@ -1310,6 +1335,96 @@ But this call doesn't:
 .. python-run::
 
    flip_coins(prob_heads=0.7, 100000)
+
+
+Practice Problem
+~~~~~~~~~~~~~~~~
+
+**Problem 5**
+
+Test code is designed to help validate the behavior of a piece for
+code for a given set of values.  How do we test computations that use
+randomness given that the generated random values change each time we
+run the computation?  One way to address this problem is to set the
+seed used to by the random number generator to compute the sequence of
+values it returns.  The seed is set by calling ``random.seed`` with an
+integer value.  If ``random.seed`` is called with the value ``None``,
+the value of the system clock time at the time of the call is used as
+the seed.  This function is typically called once at the start of the
+computation.
+
+Here is a simple illustration of how the seed works:
+
+.. python-run::
+
+   random.seed(5000)
+   random.uniform(0.0, 1.0)
+   random.uniform(0.0, 1.0)
+   random.uniform(0.0, 1.0)
+   random.seed(5000)
+   random.uniform(0.0, 1.0)
+   random.uniform(0.0, 1.0)
+   random.uniform(0.0, 1.0)
+
+Notice that the second three calls to ``random.uniform`` generate the
+exact same values as the first three calls.
+   
+Rewrite ``flip_coins`` to take a seed as a second optional parameter
+and to include a call to ``random.seed``.  Make sure to update the
+docstring to include the extra parameter.
+
+Once you have writen your function, write function calls that provide:
+
+- only a value for ``n``,
+- a value for ``n`` and a value for ``prob_heads``,
+- a value for ``n`` and a value for the seed  parameter, but not ``prob_heads``, and 
+- values for all three parameters.
+
+**Problem 6**
+
+A common trick when debugging a complex function is to include a
+parameter called ``debug_level`` that is used to specify how much
+information the function should print out during the computation.
+During regular use, the debug level might be set to zero, while during
+active debugging, it might be set higher.
+
+For example, if we were to add a debug level parameter to
+``flip_coin`` from ``Problem 5``, we might have:
+
+
+- ``0`` mean do not print any information about the computation,
+- ``1`` mean print the values of the parameters passed to the function, and
+- ``2`` mean print the parameters and the values of ``flip`` and ``num_heads`` for coin flip.
+
+For example, the call ``flip_coins(5, 0.5, 5000, debug_level=0)``
+would not print any extra information; the call ``flip_coins(5, 0.5, 5000, debug_level=1)``
+would print something like:
+
+::
+
+   Debug 1: flip_coins(n=5, prob_heads0.5, seed=5000, debug_level=1)
+
+the call ``flip_coins(5, 0.5, 5000, 1)`` would print something like:
+
+::
+
+   Debug 2: flip_coins(n=5, prob_heads0.5, seed=5000, debug_level=2)
+   Debug 2: flip: 0.2330654737797524	num_heads: 1
+   Debug 2: flip: 0.7830144643540888	num_heads: 1
+   Debug 2: flip: 0.4553051301153339	num_heads: 2
+   Debug 2: flip: 0.501694756752729	num_heads: 2
+   Debug 2: flip: 0.8394352573499935	num_heads: 2
+
+The return value for all three calls, which is not shown, would be
+``2`` as expected from the debugging output.
+
+Update your solution for ``Problem 5`` to take a ``debug_level``
+parameter and to use it to decide what information to print
+using above description.
+
+The exact output you will see when you run your implementation will
+depend on the exact format you use in the necessary print statements
+and the version of the ``random`` library that you are using.
 
 
 Dynamic typing revisited
@@ -1894,10 +2009,10 @@ Practice Problem Solutions
 
 **Problem 1**:
 
+Here is a solution that assumes that the functions ``is_prime`` and ``print_categories`` are in the same file.
+
 .. code::
 
-    import primes
-    
     def print_categories(lb, ub):
         """
         Print the primes between lb and ub inclusive.
@@ -1914,7 +2029,176 @@ Practice Problem Solutions
             else:
                 print(n, "composite")
 
-**Problem 2**: 16
+
+And here is one that assumes that ``is_prime`` and
+``print_categories`` are in different files and that ``is_prime`` is
+in a file named ``primes.py``.
+
+.. code::
+
+    import primes
+
+    def print_categories(lb, ub):
+        """
+        Print the primes between lb and ub inclusive.
+
+        Args:
+            lb (int): the lower bound of the range
+            ub (int): the lower bound of the range
+
+        Returns: None
+        """
+        for n in range(lb, ub + 1):
+            if primes.is_prime(n):
+                print(n, "prime")
+            else:
+                print(n, "composite")
+
+
+
+**Problem 2**
+
+Here is a solution that uses a single return statement:
+
+.. literalinclude:: compute_grade_v1.py
+   :language: python
+   :pyobject: compute_grade
+
+And here is a solution that uses multiple return statements:
+
+.. literalinclude:: compute_grade_v2.py
+   :language: python
+   :pyobject: compute_grade
+
+Which do you find easier to understand?
+
+Here is some basic test code for this function:
+
+.. literalinclude:: compute_grade_v2.py
+   :language: python
+   :pyobject: test_compute_grade
+
+This test function must either be in the same file as
+``compute_grade`` or the that contains the test code must include an
+import statement that imports the function by name.  For example, if
+``compute_grade`` is in a file call ``instructor.py``, the inport
+statement would have the form:
+
+::
+
+   from instructor import compute_grade
+
+
+**Problem 3**:
+
+.. python-run::
+
+   def fun1(i):
+       i = i - 2
+       return i
+
+   def fun2(i):
+       return fun1(i) + fun1(i)
+
+   def fun3(i):
+       return fun1(i * 2)
+
+   def fun4(i):
+       i = fun3(i)
+       return fun2(i)
+
+   print(f"fun4(6): {fun4(6)}")
+
+**Problem 4**
+
+.. python-run::
+
+    def fun1(x, y, z):
+        if x % y == z:
+            return x + y + z
+        else:
+            return 1
+
+    def fun2(i,j):
+        i = i + 2
+        j = j + 3
+
+    def fun3(x, y, z=2):
+        for i in range(4, x):
+            for j in range(2, y):
+                a = fun1(i, j, z)
+                if a >= 10:
+                    fun2(i,j)
+                    return i + j
+        return -1
+
+    print(f"fun3(6, 4, 2): {fun3(6, 4, 2)}")
+
+
+**Problem 5**
+
+Here is ``flip_coin`` augmented to take the seed for the random number
+generator as an optional parameter:
+
+
+.. python-run::
+
+   def flip_coins(n, prob_heads=0.5, seed=None):
+    """
+    Flip a weighted coin n times and report the number that come up
+    heads.
+
+    Args:
+        n (int): number of times to flip the coin
+        prob_heads (float): probability that the coin comes up heads
+            (default: 0.5)
+        seed (int | None): the seed for the random number generator
+            (default: None)
+
+
+    Returns (int): number of flips that came up heads.
+    """
+
+    random.seed(seed)
+
+    num_heads = 0
+    
+    for i in range(n):
+        flip = random.uniform(0.0, 1.0)
+        if flip < prob_heads:
+            num_heads = num_heads + 1
+    
+    return num_heads
+    
+Here are some sample uses of this function:
+
+.. python-run::
+
+   flip_coins(5)
+   
+   flip_coins(5, prob_heads=0.8)
+
+   flip_coins(5, seed=5000)
+
+   flip_coins(5, prob_heads=0.8, seed=5000)
+
+   flip_coins(5, 0.8, 5000)
+
+
+Depending on which version of the Python ``random`` library you are
+running, you may get different results.
+
+
+**Problem 6**
+
+Here is the implement of ``flip_coin`` from Problem 5 augmented to take the debug level as parameter:
+
+.. literalinclude:: flip_v2.py
+   :language: python
+   :pyobject: flip_coins
+
+
+The escape sequence ``\t``, used in the coin flip print statement, corresponds to a tab character.
 
 ..
     Global Variables

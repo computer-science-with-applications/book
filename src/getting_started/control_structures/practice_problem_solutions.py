@@ -266,10 +266,50 @@ def test_has_false():
     assert not has_false_v2([True, True, True, True])
 
 
+def find_nearest_power2_ge(n):
+    """
+    Find the nearest power of 2 greater than or equal to N
+    
+    Inputs:
+      n (int): the value to check
+    """
+    assert n > 0
+
+    nearest = 1
+    while (nearest < n):
+        nearest = nearest * 2
+    return nearest
+
+def test_nearest_power2_ge():
+    print("Testing find_nearest_power2_ge")
+    assert find_nearest_power2_ge(1) == 1
+    assert find_nearest_power2_ge(2) == 2
+    assert find_nearest_power2_ge(5) == 8
+
+def find_nearest_power2_le(n):
+    """
+    Find the nearest power of 2 less or equal to N
+    
+    Inputs:
+      n (int): the value to check
+    """
+    nearest = 1
+    while (2*nearest <= n):
+        nearest = nearest * 2
+
+    return nearest
+
+def test_nearest_power2_le():
+    print("Testing find_nearest_power2_le")
+    assert find_nearest_power2_le(1) == 1
+    assert find_nearest_power2_le(2) == 2
+    assert find_nearest_power2_le(23) == 16
+
 
 if __name__ == "__main__":
     test_leap_year()
     test_grade()
     test_abs_sum()
     test_has_false()
-
+    test_nearest_power2_ge()
+    test_nearest_power2_le()    

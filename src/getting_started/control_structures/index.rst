@@ -582,8 +582,8 @@ and the corresponding expected results.
 
 **Problem 4**
 
-Given a list of booleans named ``lst``, write code to determine set a
-variable ``contains_false`` to ``True`` if the list contains the value
+Given a list of booleans named ``lst``, write code to set a variable
+``contains_false`` to ``True`` if the list contains the value
 ``False`` and to ``False`` otherwise.
 
 Before you write a solution, make a list of a few sample test cases
@@ -1027,6 +1027,15 @@ we wrote that a loop with an unguarded break would execute "at most"
 once.
 
 
+Practice Problems
+~~~~~~~~~~~~~~~~~
+
+**Problem 6**
+
+Rewrite your solution to Problem 4 to stop the loop looking at values
+once you find the first ``False`` in the list.
+
+
 ``continue`` statement
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1173,6 +1182,27 @@ There are, however, certain algorithms where the loop cannot naturally be
 stated as iterating over a sequence of values, so we need the more
 general mechanism provided by a boolean expression. We will
 see one such example in the next section.
+
+
+Practice Problems
+~~~~~~~~~~~~~~~~~
+
+**Problem 7**
+
+Using only arithmetic and relational operators, conditional
+statements, and a while loop: determine the nearest power of 2 that is
+greater than or equal to a value ``N``.  You may assume that ``N >
+0``.
+
+What would make good test cases for this computation?
+
+**Problem 8**
+
+Using only arithmetic and relational operators, conditional
+statements, and a while loop: determine the nearest power of 2 that is
+less than or equal to a value ``N``.  You may assume that ``N > 0``.
+
+What would make good test cases for this computation?
 
 
 Putting it all together
@@ -1391,12 +1421,12 @@ Here are some possible test cases as the expected value for ``grade``:
      - 70.0
      - 73.5
      - C
-   * - 70.0
-     - 50.0
-     - 90.0
-     - B
    * - 50.0
      - 70.0
+     - 90.0
+     - B
+   * - 70.0
+     - 50.0
      - 90.0
      - F
    * - 50.0
@@ -1466,6 +1496,10 @@ Here are some sample test cases:
    :language: python
    :lines: 197-202
 
+Notice that this solution looks at every value in the list even though
+we know the value of ``result`` won't change once it is set to
+``True``.  We'll see a better way to write this code in Exercise 6.
+
 **Problem 5**
 
 Here is a version of the code that computes the sum of the absolute
@@ -1476,3 +1510,62 @@ values in a list using a conditional rather than a call to ``abs``.
    :lines: 161-166
 
 	   
+**Problem 6**
+
+This code uses ``break`` to stop the loop upon finding the first
+instance of ``False`` in the list.
+
+.. literalinclude:: practice_problem_solutions.py
+   :language: python
+   :lines: 235-240
+
+**Problem 7**
+
+Here are some sample tests:
+
+.. list-table:: Sample test cases
+   :widths: 20 20
+   :header-rows: 1
+
+   * - Value of ``N``
+     - Expected value for ``nearest``
+   * - 1
+     - 1
+   * - 2
+     - 2
+   * - 5
+     - 8
+   
+
+And here is a solution:
+
+.. literalinclude:: practice_problem_solutions.py
+   :language: python
+   :lines: 278-280
+
+
+
+**Problem 8**
+
+Here are some test cases:
+
+.. list-table:: Sample test cases
+   :widths: 20 20
+   :header-rows: 1
+
+   * - Value of ``N``
+     - Expected value for ``nearest``
+   * - 1
+     - 1
+   * - 2
+     - 2
+   * - 23
+     - 16
+
+
+
+And here is a solution:
+
+.. literalinclude:: practice_problem_solutions.py
+   :language: python
+   :lines: 296-298
