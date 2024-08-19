@@ -294,7 +294,7 @@ def find_nearest_power2_le(n):
       n (int): the value to check
     """
     nearest = 1
-    while (2*nearest <= n):
+    while (2 * nearest <= n):
         nearest = nearest * 2
 
     return nearest
