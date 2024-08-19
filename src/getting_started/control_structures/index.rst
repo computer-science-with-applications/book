@@ -428,9 +428,14 @@ Practice Problems
 
 **Problem 1**
 
-Assume you have an integer variable named ``year`` that holds a a year
+Assume you have an integer variable named ``year`` that holds a year
 represented as a positive integer.  Write a block of code that prints
 the year and either ``"is leap year"`` or ``"is not leap year"``.
+
+..
+    I would clarify the rules for determining a leap year being used. Most people
+    know the four year rule but if we want them to use the 100 and 400 year rules
+    I think we should list them here.
 
 To gain practice with conditionals, we recommend using conditional
 statements instead of logical operators (that is, ``and``, ``or``,
@@ -565,10 +570,10 @@ Practice Problems
 **Problem 3**
 
 Given a list of integers named ``lst``, compute a variable ``total``
-that contains the sum of the absolute values of the elements (that is,
-the values) in the list. (e.g. the list ``[-1, 2, 1]`` would set
-``total`` to ``4``).  Use the built-in function ``abs`` to compute the
-absolute value of a number.  Here is are some example uses of ``abs``:
+that contains the sum of the absolute values of the elements in the list. For
+instance, the list ``[-1, 2, 1]`` would set ``total`` to ``4``.  
+Use the built-in function ``abs`` to compute the absolute value of a number.  
+Here is are some example uses of ``abs``:
 
 .. python-run::
 
@@ -758,9 +763,6 @@ Practice Problems
 **Problem 5**
 
 Rewrite your solution to Problem 3 to use a conditional rather than a call to ``abs``.
-
-**Problem 6**
-
 
 
 
