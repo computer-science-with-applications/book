@@ -434,7 +434,7 @@ The practice problems in this section refer to the following functions:
         except ZeroDivisionError:
             return "Caught ZeroDivisionError in yet_another_func"
         except Exception as err:
-            result = f"Caught {err} in yet_another_func"
+            result = f"Caught {type(err)} in yet_another_func"
         return result
 
 **Problem 1**
@@ -514,6 +514,7 @@ handler has a normal return statement, so the call to
 Similar to the previous example, the exception, ``ZeroDivisionError``, is handled by ``some_other_func``.
 
 .. python-run::
+
     yet_another_func(5)
 
 In this case, the call to ``some_func`` raises an ``AssertionError``.
@@ -521,7 +522,6 @@ That error is not caught in either ``some_func`` or
 ``some_other_func`` and so, it is propagated to the ``try`` block in
 ``yet_other_func``, where it is caught and handled by the
 ``Exception`` clause.
-
 
 .. python-run::
    
