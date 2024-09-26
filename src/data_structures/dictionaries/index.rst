@@ -3,16 +3,21 @@
 Dictionaries and Sets
 =====================
 
-In the previous chapter, we saw that lists allow us to store multiple
-values in a single data structure, but they do so in a very specific
-way: the values are stored in a sequence. Python makes it very easy to
-iterate over that sequence, as well as access items at specific
-positions of the list.  This design makes lists a great data structure
-for some use cases but not for others.
+This chapter introduces two new structures: dictionaries and sets.
+
+
+Introducing Dictionaries
+------------------------
+
+In the previous chapter, we saw that lists and tuples allow us to
+store multiple values in a single data structure, but they do so in a
+very specific way: the values are stored in a sequence. Python makes
+it very easy to iterate over that sequence, as well as access items at
+specific positions of the sequence.  This design makes lists, tuples,
+etc great data structures for some use cases but not for others.
 
 For example, suppose we were working with data on contributions to political
-campaigns, with the following
-information for each contribution:
+campaigns, with the following information for each contribution:
 
 - First name of contributor
 - Last name of contributor
@@ -25,7 +30,7 @@ We could represent an individual contribution like this:
 .. python-run::
    :formatting: separate
 
-   c = ["John", "Doe", "60637", "Kang for President 2016", 27.50]
+   c = ("John", "Doe", "60637", "Kang for President 2016", 27.50)
    
 And a list of contributions like this:
 
@@ -33,31 +38,30 @@ And a list of contributions like this:
    :formatting: separate
 
    contributions = [
-       ["John", "Doe", "60637", "Kang for President 2016", 27.50],
-       ["Jane", "Doe", "60637", "Kodos for President 2016", 100.00],
-       ["James", "Roe", "07974", "Kang for President 2016", 50.00]
+       ("John", "Doe", "60637", "Kang for President 2016", 27.50),
+       ("Jane", "Doe", "60637", "Kodos for President 2016", 100.00),
+       ("James", "Roe", "07974", "Kang for President 2016", 50.00)
        ]
                
-Accessing the individual values inside this list requires using their
-positions in the list, which can lead to code that is difficult to
-read. For example, suppose we wanted to write a function that adds up
-all the contributions made to a given campaign. The function would
-look something like this:
+Accessing the individual values inside a contribution requires using
+the values' positions in the tuple, which can lead to code that is
+difficult to read.  For example, suppose we wanted to write a function
+that adds up all the contributions made to a given campaign. The
+function would look something like this:
 
 .. python-run::
    :formatting: separate
 
    def total_contributions_candidate(contributions, campaign):
-       '''
+       """
        Compute total contributions to a candidate's campaign
 
-       Inputs:
-         contributions (list of lists): one list per contribution
-         campaign (string): the name of the campaign
+       Args:
+           contributions (List[Tuple(str, str, str, str, int)]]): one list per contribution
+           campaign (str): the name of the campaign
 
        Returns (float): total amount contributed
-       '''
-
+       """
        total = 0
        for contribution in contributions:
            if campaign == contribution[3]:
@@ -73,8 +77,8 @@ Using ``contribution[3]`` to access the name of the campaign and
 ``contribution[4]`` to access the contribution amount makes the code
 hard to read. There are ways to make it a bit more readable, such as
 defining variables to store the position of each value (e.g., we could
-define ``CAMPAIGN_INDEX = 3`` and the access the campaign by writing
-``contribution[CAMPAIGN_INDEX``]), but this approach is error-prone. We
+define ``CAMPAIGN_INDEX = 3`` and then access the campaign by writing
+``contribution[CAMPAIGN_INDEX]``), but this approach is error-prone. We
 could easily use the wrong value for the constant or the format of the data might
 change over time.  In the latter case, we would need to check the
 fields we are using carefully to ensure that we are still accessing
@@ -156,16 +160,16 @@ this:
    :formatting: separate
 
    def total_contributions_candidate(contributions, campaign):
-       '''
+       """
        Compute total contributions to a candidate's campaign
 
-       Inputs:
-         contributions (list of dictionaries): one dictionary per
+       Args:
+         contributions (List[Dict[str, (str | float)]]): one dictionary per
            contribution
          campaign (string): the name of the campaign
 
        Returns (float): total amount contributed
-       '''
+       """
 
        total = 0
        for contribution in contributions:
@@ -195,6 +199,46 @@ later in the book, we will see a data format, JSON, that works well
 with Python dictionaries and lists. Later on, we will also see how
 *object-oriented programming* provides a third way of working with
 "objects" in our programs.
+
+Practice Problems
+~~~~~~~~~~~~~~~~~
+
+The practice problems in this chapter use a data set that contains customer complaints.  Each complaint includes:
+
+- the name of the company,
+- the date the complaint was received,
+- a unique ID,
+- the issue,
+- the product,
+- the consumer's complaint narrative,
+- the company's public response, and 
+- the consumer's home state.
+
+This information will be stored in a dictionary where both the keys
+and the values are strings (i.e., the type of the dictionaries will be
+``Dict[str, str]``) .  Here's an example complaint:
+
+::
+
+    complaint_as_dict = 
+       {'Company': "Smith's Forge",
+        'Date received': '07/29/2013',
+        'Complaint ID': '468882',
+        'Issue': 'Managing the loan or lease',
+        'Product': 'Consumer Loan',
+        'Consumer complaint narrative': '',
+        'Company response to consumer': 'Closed with explanation',
+        'State': 'VA'}
+
+
+**Problem 1**
+
+Write a function, ``count_complaints_about``, that takes a list of
+complaints and the name of a company and returns the number of
+complaints in the list for that company.
+
+What might make good test cases for this function?
+
 
 .. admonition:: A possible pitfall: floats as keys
 
@@ -315,12 +359,9 @@ We can remove an entry in the dictionary using the ``del`` operator:
 
 .. python-run::
 
-   d
+   "affiliation" in d
    del d["affiliation"]
-   d
-
-
-
+   "affiliation" in d
 
 
 We can iterate over the keys in a dictionary using the dictionary's
@@ -357,16 +398,16 @@ the dictionary's ``items`` method:
    for key, value in d.items():
        print(key, value)
 
-Notice that the keys and values are not printed in any particular
-order. Most notably, the keys are not shown in the order in which they
-were added to the dictionary, nor are they printed in alphabetical
-order. This behavior is another big difference between
-dictionaries and lists: lists store values in a specific order, and
-iterating over a list will always yield those values in that
-order. There is no such guarantee with dictionaries: if we iterate
-over the contents of a dictionary, we cannot assume any specific order
-and, in fact, that order can even change from one ``for`` loop to
-another!
+The keys and values are not printed in any particular order. Most
+notably, the keys are not shown in alphabetical order. (They may
+happen to be shown in the order that they are added to the dictionary,
+but that is not guaranteed.) This behavior is another big difference
+between dictionaries and lists: lists store values in a specific
+order, and iterating over a list will always yield those values in
+that order. There is no such guarantee with dictionaries: if we
+iterate over the contents of a dictionary, we cannot assume any
+specific order and, in fact, that order can even change from one
+``for`` loop to another!
 
 
 .. admonition:: A common pitfall: changing the set of keys in a dictionary as you iterate over it
@@ -387,15 +428,18 @@ another!
       :formatting: separate
 
       def decr_and_remove(d): 
-          ''' 
+          """ 
           Given a dictionary that maps keys to positive integers,
           decrement the values and remove any key-value pair in which
           the decremented value becomes zero
 
-          Input:
-             d (dictionary): maps keys to positive integers
-          '''
+	  Modifies the dictionary in-place.
 
+          Args:
+             d (Dict[str, int]): maps keys to positive integers
+
+	  Returns: None
+          """
           for key, value in d.items():
               d[key] = value - 1
               if d[key] == 0:
@@ -408,16 +452,18 @@ another!
       :formatting: separate
 
       def decr_and_remove(d): 
-          ''' 
+          """ 
           Given a dictionary that maps keys to positive integers,
           decrement the values and remove any key-value pair in which
           the decremented value becomes zero
 
+	  Modifies the dictionary in-place.
 
-          Input: 
-             d (dictionary): maps keys to positive integers
-          '''
+          Args: 
+             d (Dict[str, int]): maps keys to positive integers
 
+	  Returns: None
+          """
           keys_to_remove = []
           for key, value in d.items():
               d[key] = value - 1
@@ -435,18 +481,20 @@ another!
       :formatting: separate
 
       def decr_and_keep_pos(d):
-          '''
+          """
           Given a dictionary that maps keys to positive integers,
           subtract one from each value and include in the result only
           those key-value pairs that still have positive values after
           the decrement.
 
-          Input:
-            d (dictionary): keys to positive integers
+          Args:
+            d (Dict[str, int]): keys to positive integers
 
-          Returns (dictionary): keys to positive integers
-          '''
-
+          Returns (Dict[str, int]): a new dictionary that maps a key to
+	      an integer value, where the keys are the keys from the
+	      original dictionary that had values greater than one and
+	      the original values have been decremented by one.
+          """
           rv = {}
           for key, value in d.items():
               if value > 1:
@@ -508,19 +556,21 @@ previous section using a dictionary comprehension with a filter:
    :formatting: separate
 
    def decr_and_keep_pos(d):
-       '''
-       Given a dictionary that maps keys to positive integers,
-       subtract one from each value and include in the result only
-       those key-value pairs that still have positive values after the
-       decrement.
+      """
+      Given a dictionary that maps keys to positive integers,
+      subtract one from each value and include in the result only
+      those key-value pairs that still have positive values after
+      the decrement.
 
-       Input:
-         d (dictionary): maps keys to positive integers
+      Args:
+          d (Dict[str, int]): keys to positive integers
 
-       Returns (dictionary): maps keys to positive integers
-       '''
-
-       return {key: value - 1 for key, value in d.items() if value > 1}
+      Returns (Dict[str, int]): a new dictionary that maps a key to
+          an integer value, where the keys are the keys from the
+          original dictionary that had values greater than one.
+          The values have been decremented by one.
+      """
+      return {key: value - 1 for key, value in d.items() if value > 1}
 
 A key-value pair from the input dictionary will be used in the
 construction of the result only if the original value is greater than
@@ -544,16 +594,16 @@ empty dictionary and add new entries as we encounter new campaigns:
    :formatting: separate
 
    def total_contributions_by_campaign(contributions): 
-       ''' 
+       """ 
        Compute total contributions by campaign
 
-       Input:
-         contributions (list of dictionaries): one dictionary per
-           contribution
+       Args:
+         contributions (List[Dict[str, (str | float)]]): one dictionary per
+             contribution
 
-       Returns (dictionary): maps campaign names to floats
-       '''
-
+       Returns (Dict[str, float]): a dictionary that maps a campaign name to the
+           total contributions to the campaign.
+       """
        rv = {}
        for contribution in contributions:
            campaign = contribution["campaign"]
@@ -563,7 +613,8 @@ empty dictionary and add new entries as we encounter new campaigns:
        return rv
 
 
-Here's a sample run of this function:
+Here's a sample run of this function using the sample contributions
+list defined earlier:
 
 .. python-run::
 
@@ -583,16 +634,16 @@ that are being seen for the first time.  An alternative is to use
    :formatting: separate
 
    def total_contributions_by_campaign(contributions):
-       ''' 
+       """ 
        Compute total contributions by campaign
 
-       Input:
-         contributions (list of dictionaries): one dictionary per
+       Args:
+         contributions (List[Dict[str, (str | float)]]): one dictionary per
            contribution
 
-       Returns (dictionary): maps campaign names to floats
-       '''
-
+       Returns (Dict[str, float]): a dictionary that maps a campaign name to the
+           total contributions to the campaign.
+       """
        rv = {}
        for contribution in contributions:
            campaign = contribution["campaign"]
@@ -600,6 +651,17 @@ that are being seen for the first time.  An alternative is to use
        return rv
 
 Accumulating values in this way is very common.
+
+Practice Problems
+~~~~~~~~~~~~~~~~~
+
+**Problem 2**
+
+Write a function, ``count_complaints_by_state``, that take a list of
+complaint dictionaries and computes a dictionary that maps each state
+to the count the number of complaints received for that state.  The
+result should include only states that have at least one complaint.
+
 
 Nested dictionaries
 -------------------
@@ -624,7 +686,7 @@ Note that we chose to represent ZIP Codes as strings, not integers, to
 make sure ZIP Codes like 07974 don't lose their leading zero and
 become 7974.
 
-We can extract the the total amount of contributions from ``60637`` to
+We can extract the total amount of contributions from ``60637`` to
 the ``Kang for President 2016`` campaign using this expression:
 
 .. python-run::
@@ -644,18 +706,19 @@ the code for accumulating total contributions by candidate.
    :formatting: separate
 
    def total_contributions_by_campaign_by_zip(contributions):
-       ''' 
+       """ 
        Compute the total contributions from each ZIP Code for each
        campaign
 
-       Input:
-         contributions (list of dictionaries): one dictionary per
+       Args:
+         contributions (List[Dict[str, (str | float)]]): one dictionary per
            contribution
 
-       Returns (dictionary): maps a campaign name to a sub-dictionary
-         that maps ZIP Codes (as strings) to floats
-       '''
-
+       Returns (Dict[str, Dict[str, float]]): a dictionary that maps a
+         campaign name to a sub-dictionary that map a ZIP Codes (represented as
+         a string) to the total contributions to that campaign from that zipcode
+         (represented as a float).
+       """
        rv = {}
        for contribution in contributions:
            campaign = contribution["campaign"]
@@ -671,13 +734,66 @@ method to retrieve the total for contributions seen thus far from this
 zipcode for the campaign, which will be zero for the first
 contribution from this zipcode.  Once we have that value , we can just
 add in the amount of the current contribution and update the
-dictionary.  Here's a sample run of the function:
+dictionary.  Here's a sample run of the function using the list of
+contributions defined earlier in the chapter:
 
 .. python-run::
 
    total_contributions_by_campaign_by_zip(contributions)
 
 Notice that, as expected, the result contains nested dictionaries.
+
+Practice Problems
+~~~~~~~~~~~~~~~~~
+
+**Problem 3**
+
+Here is an example dictionary, ``complaints_by_company`` that maps a
+company name to a list of complaints about that company:
+
+::
+
+   complaints_by_company = \
+     {"Smith's Forge": [{'Company': "Smith's Forge",
+                                 'Date received': '07/29/2013',
+                                 'Complaint ID': '468882',
+                                 'Issue': 'Managing the loan or lease',
+                                 'Product': 'Consumer Loan',
+                                 'Consumer complaint narrative': '',
+                                 'Company response to consumer': 'Closed with explanation',
+                                 'State': 'VA'}],
+      'Acme Anvils': [{'Company': 'Acme Anvils',
+                       'Date received': '08/23/2013',
+                       'Complaint ID': '567783',
+                       'Issue': 'Not heavy enough',
+                       'Product': 'Anvil',
+                       'Consumer complaint narrative': '',
+                       'Company response to consumer': 'Closed without explanation',
+                       'State': 'IL'},
+                      {'Company': 'Acme Anvils',
+                       'Date received': '09/17/2013',
+                       'Complaint ID': '779986',
+                       'Issue': 'too heavy enough',
+                       'Product': 'Anvil',
+                       'Consumer complaint narrative': '',
+                       'Company response to consumer': 'Closed with explanation',
+                       'State': 'VA'}]}
+
+What is the result of evaluating the following expressions:
+
+- ``len(complaints_by_company['Acme Anvils'])``
+- ``complaints_by_company["Smith's Forge"][0]``
+- ``complaints_by_company['Acme Anvils'][1]``
+
+Write an expression that extracts the state from the first complaint in the list associated with ``'Acme Anvils```.
+
+**Problem 4**
+
+Write a function, ``organize_complaints_by_company``, that takes list
+of complaint dictionaries, creates a new dictionary that maps the name
+of a company to a list of the complaint dictionaries that concern that
+company.  For example, the dictionary shown in Problem 3 was created
+by our implementation of this function.
 
 
 Data structures and their complexity
@@ -728,17 +844,16 @@ simple function to perform this operation:
    :formatting: separate
 
    def get_state_from_zip(zip_code, zip_codes_list):
-       '''
+       """
        Find the state associated with a given ZIP Code
 
-       Inputs:
-         zip_code (string): a ZIP Code
-         zip_codes_list (list): pairs of ZIP Codes and state abbreviations
+       Args:
+         zip_code (str): a ZIP Code
+         zip_codes_list (List[Tuple[str, str]]): pairs of ZIP Codes and state abbreviations
 
-       Returns (string): state abbreviation or None, if the ZIP Code
+       Returns (str | None): state abbreviation or None, if the ZIP Code
          does not appear in the list
-       '''
-
+       """
        for zc, st in zip_codes_list:
            if zc == zip_code:
                return st
@@ -983,7 +1098,7 @@ Sets
 
   Do we want to use mathematical definitions for the set operations instead of or in addition to the prose definitions?
 
-Dictionaries are great for associating values to unique keys, but sometimes
+Dictionaries are great for associating values with unique keys, but sometimes
 we may simply want to have a collection of unique keys that we can access
 as efficiently as a dictionary, but without associating a value with each key.
 To do this, we can simply use a *set* data structure, which allows us
@@ -1019,7 +1134,7 @@ sequence (list, string, etc.) as the parameter:
    vowels = set("aeiou")
    vowels
 
-To construct an empty set, we use the ``set`` function:
+To construct an empty set, we use the ``set`` function with no arguments:
 
 .. python-run::
 
@@ -1065,6 +1180,7 @@ to a set using the ``add`` method:
 
 .. python-run::
 
+   zipcodes
    zipcodes.add("14850")
    zipcodes.add("60637")
    zipcodes
@@ -1081,6 +1197,7 @@ the set.
 
 .. python-run::
 
+   zipcodes
    zipcodes.remove("60637")
    zipcodes.remove("60615")
    zipcodes
@@ -1097,16 +1214,16 @@ contribution.
    :formatting: separate
 
    def compute_num_zipcodes(contributions):
-       '''
+       """
        Compute the number of zipcodes with at least one contribution
 
-       Inputs:
-         contributions (list of dictionaries): one dictionary per
+       Args:
+         contributions (List[Dict[str, (str | float)]]): one dictionary per
            contribution
 
        Returns (int): the number of zipcodes with at least one
          contribution.
-       '''
+       """
 
        zipcodes_seen = set()
        for contribution in contributions:
@@ -1126,16 +1243,16 @@ computation:
    :formatting: separate
 
    def compute_num_zipcodes(contributions):
-       '''
+       """
        Compute the number of zipcodes with at least one contribution
 
-       Inputs:
-         contributions (list of dictionaries): one dictionary per
+       Args:
+         contributions (List[Dict[str, (str | float)]]): one dictionary per
            contribution
 
        Returns (int): the number of zipcodes with at least one
          contribution
-       '''
+       """
 
        zipcodes_seen = {c["zip_code"] for c in contributions}
        return len(zipcodes_seen)
@@ -1178,10 +1295,129 @@ elements in a set:
 As with dictionaries, sets are unordered and so the elements will be
 printed in an arbitrary order.
 
+Practice Problem
+~~~~~~~~~~~~~~~~
+
+**Problem 5**
+
+Write a function, ``count_unique_states_per_company``, that takes a
+list of complaint dictionaries and returns a dictionary that maps a
+company name to the number of different states that had complaints
+about that company.  For example, if a company had two complaints from
+Viginia and two from New Jersey, the result for that company would be
+two.
+
+Hint: build an intermediate data structure that maps the name of a
+company to set a of the states that had at least one complaint for
+that company.
 
 
 
+Practice Problem Solutions
+--------------------------
 
+Here is an example list of complaints that will be used in test
+code for the practice problems.
+
+.. literalinclude:: solutions/practice_problems.py
+    :lines: 1-27
+
+**Problem 1**
+
+Here is a simple solution for this problem:
+
+.. literalinclude:: solutions/practice_problems.py
+    :pyobject: count_complaints_about
+
+And here is some simple test code:
+
+.. literalinclude:: solutions/practice_problems.py
+    :pyobject: test_count_complaints_about
+
+
+**Problem 2**
+
+
+Here is a solution for this problem that uses the ``in`` operator:
+
+.. literalinclude:: solutions/practice_problems.py
+    :pyobject: count_complaints_by_state
+
+And here is a solution that uses the dictionary ``get`` method:
+
+.. literalinclude:: solutions/practice_problems.py
+    :pyobject: count_complaints_by_state
+
+And here is some simple test code:
+
+.. literalinclude:: solutions/practice_problems.py
+    :pyobject: test_count_complaints_by_state
+
+**Problem 3**
+
+.. python-run::
+
+   complaints_by_company = \
+     {"Smith's Forge": [{'Company': "Smith's Forge",
+                         'Date received': '07/29/2013',
+                         'Complaint ID': '468882',
+                         'Issue': 'Way way too hot',
+                         'Product': 'Consumer Loan',
+                         'Consumer complaint narrative': '',
+                         'Company response to consumer': 'Closed with explanation',
+                         'State': 'VA'}],
+      'Acme Anvils': [{'Company': 'Acme Anvils',
+                       'Date received': '08/23/2013',
+                       'Complaint ID': '567783',
+                       'Issue': 'Not heavy enough',
+                       'Product': 'Anvil',
+                       'Consumer complaint narrative': '',
+                       'Company response to consumer': 'Closed without explanation',
+                       'State': 'IL'},
+                      {'Company': 'Acme Anvils',
+                       'Date received': '09/17/2013',
+                       'Complaint ID': '779986',
+                       'Issue': 'too heavy',
+                       'Product': 'Anvil',
+                       'Consumer complaint narrative': '',
+                       'Company response to consumer': 'Closed with explanation',
+                       'State': 'VA'}]}
+
+   len(complaints_by_company['Acme Anvils'])
+   complaints_by_company["Smith's Forge"][0]
+   complaints_by_company['Acme Anvils'][1]
+   complaints_by_company['Acme Anvils'][0]['State']
+
+
+**Problem 4**
+
+Here is a solution for this problem:
+
+.. literalinclude:: solutions/practice_problems.py
+    :pyobject: organize_complaints_by_company
+
+And here is some simple test code:
+
+.. literalinclude:: solutions/practice_problems.py
+    :pyobject: test_organize_complaints_by_company
+
+**Problem 5**
+
+Here is a solution for this problem:
+
+.. literalinclude:: solutions/practice_problems.py
+    :pyobject: test_count_unique_states_per_company
+
+Our solution uses an intermediate data structure that maps the name of
+a company to a set of the states that had at least one complaint from
+that company. It then uses a dictionary comprehesion to compute the
+final result.  Notice the use of the ``items``  method in the
+dictionary comprehension.
+
+Here is some simple test code for this problem:
+
+.. literalinclude:: solutions/practice_problems.py
+    :pyobject: test_count_unique_states_per_company
 
 
 
@@ -1217,17 +1453,17 @@ printed in an arbitrary order.
        :formatting: separate
 
        def generate_dna_kmers(k):
-           '''
+           """
            Compute a list of all possible substrings of length k using
            only characters A, C, T, and G
 
-           Inputs:
+           Args:
              k (int): size of substrings
 
            Returns (list of strings): list of all possible mers of
              length k
 
-           '''
+           """
            bases = ["A", "C", "T", "G"]
         
            last = bases
