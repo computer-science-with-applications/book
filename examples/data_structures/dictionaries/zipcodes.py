@@ -6,10 +6,11 @@ def get_state_from_zip(zip_code, zip_codes):
     Look up the state associated with a ZIP code
 
     Inputs:
-      zip_code: string
-      zip_codes: list of (ZIP Code, State) tuples
+      zip_code (str): the zip code of interest
+      zip_codes (List[Tuple[str, str]]): list of (ZIP Code, State) pairs
 
-    Returns: string or None
+    Returns (str | None): the state associated with a zip code or
+      None, if the zipcode does not appear in the list.
     """
     state = None
     
