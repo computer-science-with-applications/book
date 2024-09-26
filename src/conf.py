@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('../ext'))
 # -- Project information -----------------------------------------------------
 
 project = 'Computer Science with Applications'
-copyright = '2021, Anne Rogers and Borja Sotomayor'
+copyright = '2021-2024, Anne Rogers and Borja Sotomayor'
 author = 'Anne Rogers and Borja Sotomayor'
 
 
@@ -76,7 +76,7 @@ latex_elements = {
      'preamble': r"""
 \usepackage{pmboxdraw}
 \usepackage{awesomebox}
-\usepackage{fontawesome}
+\usepackage{fontawesome5}
 \usepackage{newunicodechar}
 
 \newunicodechar{🤔}{\includegraphics[height=\fontcharht\font`X]{emoji.pdf}}
@@ -101,7 +101,7 @@ latex_elements = {
 {\end{awesomeblock}}
 
 \newenvironment{tip}[1]%
-{\begin{awesomeblock}[tipcolor]{2pt}{\faHandORight}{tipcolor}\textbf{#1}\setlength{\parskip}{1ex}}%
+{\begin{awesomeblock}[tipcolor]{2pt}{\faHandPointRight}{tipcolor}\textbf{#1}\setlength{\parskip}{1ex}}%
 {\end{awesomeblock}}
 """,
 
