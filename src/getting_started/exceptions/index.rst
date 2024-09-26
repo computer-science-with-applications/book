@@ -514,6 +514,7 @@ handler has a normal return statement, so the call to
 Similar to the previous example, the exception, ``ZeroDivisionError``, is handled by ``some_other_func``.
 
 .. python-run::
+
     yet_another_func(5)
 
 In this case, the call to ``some_func`` raises an ``AssertionError``.
