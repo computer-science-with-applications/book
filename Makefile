@@ -50,6 +50,7 @@ autobuild:
 
 deploy:
 	echo gitdir: $(shell pwd)/.git/worktrees/html > $(BUILDDIR)/html/.git
+	echo book.cs-apps.org > $(BUILDDIR)/html/CNAME
 	cp $(BUILDDIR)/latex/computersciencewithapplications.pdf $(BUILDDIR)/html/cs-apps-book.pdf
 	git --work-tree=$(BUILDDIR)/html/ --git-dir=$(BUILDDIR)/html/.git add -A .
 	git --work-tree=$(BUILDDIR)/html/ --git-dir=$(BUILDDIR)/html/.git commit -m"Updated website"
