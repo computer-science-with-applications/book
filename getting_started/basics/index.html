@@ -60,9 +60,10 @@
 <li class="toctree-l4"><a class="reference internal" href="#integers">1.2.5.1. Integers</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#real-numbers">1.2.5.2. Real numbers</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#strings">1.2.5.3. Strings</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#booleans">1.2.5.4. Booleans</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#the-value-none">1.2.5.5. The value <code class="docutils literal notranslate"><span class="pre">None</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#scalar-types">1.2.5.6. Scalar types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#f-strings">1.2.5.4. F-strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#booleans">1.2.5.5. Booleans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-value-none">1.2.5.6. The value <code class="docutils literal notranslate"><span class="pre">None</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#scalar-types">1.2.5.7. Scalar types</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#expressions">1.2.6. Expressions</a><ul>
@@ -262,7 +263,7 @@ instead of <code class="docutils literal notranslate"><span class="pre">print</s
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
 <span class="gt">Traceback (most recent call last):</span>
   File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
-<span class="gr">NameError</span>: <span class="n">name &#39;Print&#39; is not defined</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;Print&#39; is not defined. Did you mean: &#39;print&#39;?</span>
 </pre></div>
 </div>
 <p>Every bit of syntax, even if it seems redundant, plays a role, so forgetting
@@ -674,8 +675,40 @@ is a the name of a variable, not a string. And since we haven’t
 defined a <code class="docutils literal notranslate"><span class="pre">Hello</span></code> variable, we will get a <code class="docutils literal notranslate"><span class="pre">NameError</span></code> telling you
 as much.</p>
 </section>
+<section id="f-strings">
+<span id="id1"></span><h3><span class="section-number">1.2.5.4. </span>F-strings<a class="headerlink" href="#f-strings" title="Permalink to this heading"></a></h3>
+<p>In addition to regular strings, Python provides f-strings (or more
+formally, formatted string literals) as a way to construct a string
+from a combination of basic text and computed values.  An f-string is
+a string that has a lower-case or upper-case <code class="docutils literal notranslate"><span class="pre">f</span></code> before the opening
+quotation mark and can contain one or more expressions enclosed in
+curly braces in addition to regular text.</p>
+<p>Python converts an f-string into a regular string by evaluating each
+expression in curly braces and then replacing it, including the
+curly braces, with the resulting value.  Here is an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The value of x is </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1"> and the value of y is </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+<span class="go">The value of x is 5 and the value of y is 6.</span>
+</pre></div>
+</div>
+<p>Notice that Python replaced <code class="docutils literal notranslate"><span class="pre">{x}</span></code> with <code class="docutils literal notranslate"><span class="pre">5</span></code>, the value of the
+variable <code class="docutils literal notranslate"><span class="pre">x</span></code>, and <code class="docutils literal notranslate"><span class="pre">{y}</span></code> with <code class="docutils literal notranslate"><span class="pre">6</span></code>, the value of variable <code class="docutils literal notranslate"><span class="pre">{y}</span></code>.</p>
+<p>The code in the curly braces can be more complex than just a variable
+name.  In general, it can be an arbitrarily complex expression.  For
+example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The value of x * y is </span><span class="si">{</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+<span class="go">The value of x * y is 30.</span>
+</pre></div>
+</div>
+<p>F-strings also allow users to specify how to format the result of
+evaluating the expression. We’ll discuss this aspect of f-strings
+later in <a class="reference internal" href="../../data_structures/lists/index.html#string-formatting"><span class="std std-ref">String formatting</span></a>.</p>
+</section>
 <section id="booleans">
-<h3><span class="section-number">1.2.5.4. </span>Booleans<a class="headerlink" href="#booleans" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">1.2.5.5. </span>Booleans<a class="headerlink" href="#booleans" title="Permalink to this heading"></a></h3>
 <p>Variables can also contain a <em>boolean</em> value. This value can be
 either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="kc">True</span>
@@ -692,7 +725,7 @@ the Python interpreter, yields an error</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">true</span>
 <span class="gt">Traceback (most recent call last):</span>
   File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
-<span class="gr">NameError</span>: <span class="n">name &#39;true&#39; is not defined</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;true&#39; is not defined. Did you mean: &#39;True&#39;?</span>
 </pre></div>
 </div>
 <p>because Python interprets <code class="docutils literal notranslate"><span class="pre">true</span></code> as the name of a non-existent
@@ -701,7 +734,7 @@ variable, rather than as a boolean value.</p>
 but we’ll see soon that they’ll come in handy.</p>
 </section>
 <section id="the-value-none">
-<h3><span class="section-number">1.2.5.5. </span>The value <code class="docutils literal notranslate"><span class="pre">None</span></code><a class="headerlink" href="#the-value-none" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">1.2.5.6. </span>The value <code class="docutils literal notranslate"><span class="pre">None</span></code><a class="headerlink" href="#the-value-none" title="Permalink to this heading"></a></h3>
 <p>Sometimes, we may want to define a variable but not assign any
 value to it just yet.
 In some cases, we can simply assign a reasonable default value to a variable. For
@@ -743,7 +776,7 @@ wondering about the type of <code class="docutils literal notranslate"><span cla
 </div>
 </section>
 <section id="scalar-types">
-<h3><span class="section-number">1.2.5.6. </span>Scalar types<a class="headerlink" href="#scalar-types" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">1.2.5.7. </span>Scalar types<a class="headerlink" href="#scalar-types" title="Permalink to this heading"></a></h3>
 <p>Atomic values, those of type <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">bool</span></code>, and
 <code class="docutils literal notranslate"><span class="pre">NoneType</span></code> plus values from a couple of types–<code class="docutils literal notranslate"><span class="pre">complex</span></code> and
 <code class="docutils literal notranslate"><span class="pre">bytes</span></code> –that we will not discuss, are often referred to as

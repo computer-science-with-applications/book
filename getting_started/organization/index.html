@@ -133,16 +133,33 @@ we “ran” the <code class="docutils literal notranslate"><span class="pre">he
 explore this distinction, we’ll start by elaborating on what it means to “import” a module.
 To do this, we will use two
 modules which you can find in our <a class="reference internal" href="../../preface.html#example-code"><span class="std std-ref">example code</span></a>: <code class="docutils literal notranslate"><span class="pre">getting-started/code-organization/primes.py</span></code>
-and <code class="docutils literal notranslate"><span class="pre">getting-started/code-organization/mersenne.py</span></code> In Python, modules are usually referred
+and <code class="docutils literal notranslate"><span class="pre">getting-started/code-organization/mersenne.py</span></code>. In Python, modules are usually referred
 to without the <code class="docutils literal notranslate"><span class="pre">.py</span></code> extension, so we will refer to these as the “<code class="docutils literal notranslate"><span class="pre">primes</span></code> modules” and the
 “<code class="docutils literal notranslate"><span class="pre">mersenne</span></code> module”.</p>
 <p>If you look at the <code class="docutils literal notranslate"><span class="pre">primes</span></code> module, you’ll see it contains two functions, <code class="docutils literal notranslate"><span class="pre">print_primes</span></code>
 and <code class="docutils literal notranslate"><span class="pre">is_prime</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_primes</span><span class="p">(</span><span class="n">max_n</span><span class="p">):</span>
-    <span class="c1"># ...</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Print the primes between 2 and max_n inclusive.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        max_n (int): the upper bound on the range</span>
+
+<span class="sd">    Returns: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># code omitted</span>
+
 
 <span class="k">def</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="c1"># ...</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Is n a prime number?</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n (int): the value to check</span>
+
+<span class="sd">    Returns (bool): True if n is prime and False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># code omitted</span>
 </pre></div>
 </div>
 <p>The actual implementation of these functions won’t be relevant to our discussion of modules,
@@ -178,40 +195,58 @@ need to import the <code class="docutils literal notranslate"><span class="pre">
 like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">primes</span>
 
-<span class="k">def</span> <span class="nf">is_mersenne_prime</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-    <span class="c1"># ...</span>
+<span class="k">def</span> <span class="nf">is_mersenne_prime_exponent</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="c1"># docstring and code omitted</span>
 
-<span class="k">def</span> <span class="nf">is_power_of_two</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="c1"># ...</span>
+
+<span class="k">def</span> <span class="nf">get_power_of_two_exponent</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># docstring and code omitted</span>
+
 
 <span class="k">def</span> <span class="nf">print_mersenne_primes</span><span class="p">(</span><span class="n">max_p</span><span class="p">):</span>
-    <span class="c1"># ...</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Print the mersenne primes that have an exponent in the range from</span>
+<span class="sd">      1 to max_p (non-inclusive).</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        max_p (int): the upper bound (non-inclusive) for the range of</span>
+<span class="sd">          exponents to consider.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_p</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">primes</span><span class="o">.</span><span class="n">is_prime</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">is_mersenne_prime_exponent</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">p</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;M</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2"> = 2**</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> - 1&quot;</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
 </pre></div>
 </div>
-<p>As with the <code class="docutils literal notranslate"><span class="pre">primes</span></code> module, the exact implementation of these functions won’t be relevant to
-our discussion, but notice how the <code class="docutils literal notranslate"><span class="pre">print_mersenne_primes</span></code> function uses the <code class="docutils literal notranslate"><span class="pre">is_prime</span></code>
-function from the <code class="docutils literal notranslate"><span class="pre">primes</span></code> module:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">primes</span><span class="o">.</span><span class="n">is_prime</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-</pre></div>
-</div>
-<p>We are able to use this function because we included the <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">primes</span></code> statement at the top
-of the <code class="docutils literal notranslate"><span class="pre">mersenne</span></code> module.</p>
+<p>As with the <code class="docutils literal notranslate"><span class="pre">primes</span></code> module, the exact implementation of these
+functions won’t be relevant to our discussion, but notice how the
+<code class="docutils literal notranslate"><span class="pre">print_mersenne_primes</span></code> function uses the <code class="docutils literal notranslate"><span class="pre">is_prime</span></code> function from
+the <code class="docutils literal notranslate"><span class="pre">primes</span></code> module.</p>
+<p>We are able to use this function because we included the <code class="docutils literal notranslate"><span class="pre">import</span>
+<span class="pre">primes</span></code> statement at the top of the <code class="docutils literal notranslate"><span class="pre">mersenne</span></code> module.  If you look
+at <code class="docutils literal notranslate"><span class="pre">mersenne.py</span></code>, you’ll see that the the <code class="docutils literal notranslate"><span class="pre">math</span></code> library is also
+imported, because the <code class="docutils literal notranslate"><span class="pre">get_power_of_two_exponent</span></code> function (which is
+not shown) uses <code class="docutils literal notranslate"><span class="pre">math.log2</span></code>.</p>
 <p>Now, let’s try using a function from the <code class="docutils literal notranslate"><span class="pre">mersenne</span></code> module
 from the interpreter. Before doing so, exit the interpreter and start it again,
 so we can make sure the previous <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">primes</span></code> statement we ran from
 the interpreter isn’t affecting this next example.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mersenne</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mersenne</span><span class="o">.</span><span class="n">print_mersenne_primes</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="go">M1 is 2</span>
-<span class="go">M2 is 3</span>
-<span class="go">M3 is 5</span>
-<span class="go">M4 is 7</span>
-<span class="go">M5 is 13</span>
-<span class="go">M6 is 17</span>
-<span class="go">M7 is 19</span>
-<span class="go">M8 is 31</span>
-<span class="go">M9 is 61</span>
-<span class="go">M10 is 89</span>
+<span class="go">M1: 3 = 2**2 - 1</span>
+<span class="go">M2: 7 = 2**3 - 1</span>
+<span class="go">M3: 31 = 2**5 - 1</span>
+<span class="go">M4: 127 = 2**7 - 1</span>
+<span class="go">M5: 8191 = 2**13 - 1</span>
+<span class="go">M6: 131071 = 2**17 - 1</span>
+<span class="go">M7: 524287 = 2**19 - 1</span>
+<span class="go">M8: 2147483647 = 2**31 - 1</span>
+<span class="go">M9: 2305843009213693951 = 2**61 - 1</span>
+<span class="go">M10: 618970019642690137449562111 = 2**89 - 1</span>
 </pre></div>
 </div>
 <p>Notice how we are able to call the <code class="docutils literal notranslate"><span class="pre">print_mersenne_primes</span></code> function in the <code class="docutils literal notranslate"><span class="pre">mersenne</span></code> module,
@@ -228,10 +263,12 @@ this distinction, we will use an <code class="docutils literal notranslate"><spa
 are three versions of this module: <code class="docutils literal notranslate"><span class="pre">arithmetic</span></code>, <code class="docutils literal notranslate"><span class="pre">arithmetic_nomain</span></code>, and <code class="docutils literal notranslate"><span class="pre">arithmetic_main</span></code>.</p>
 <p>We’ll start by looking at the <code class="docutils literal notranslate"><span class="pre">arithmetic</span></code> module, which contains two very simple functions:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Add x and y &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span>
 
 
 <span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Multiply x and y &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
 </pre></div>
 </div>
@@ -255,10 +292,12 @@ but there are no statements in the file that would make Python do something, lik
 print a message or call the functions.</p>
 <p>So, let’s take a look at this slightly modified version, <code class="docutils literal notranslate"><span class="pre">arithmetic_nomain</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Add x and y &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
 
 
 <span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Multiply x and y &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
 
 
@@ -300,10 +339,12 @@ the code that should only run when the module is run from the command line.
 We can do this by placing the code in a <em>main block</em>.
 We can see what this looks like in the <code class="docutils literal notranslate"><span class="pre">arithmetic_main</span></code> module:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Add x and y &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
 
 
 <span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Multiply x and y &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
 
 
@@ -313,6 +354,7 @@ We can see what this looks like in the <code class="docutils literal notranslate
 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;add(2, 10) = &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;multiply(2, 10) =&quot;</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+    
 </pre></div>
 </div>
 <p>When we run it, the code under <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span></code> runs as expected:</p>
@@ -416,8 +458,12 @@ in the <code class="docutils literal notranslate"><span class="pre">getting-star
 with a main block that asks the user to enter a number, and will then print out
 some information about whether the number is prime or not, and whether it is a Mersenne
 prime or not:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">primes</span> <span class="kn">import</span> <span class="n">is_prime</span>
-<span class="kn">from</span> <span class="nn">mersenne</span> <span class="kn">import</span> <span class="n">is_mersenne_prime</span><span class="p">,</span> <span class="n">is_power_of_two</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Simple program for checking primes.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">primes</span> <span class="kn">import</span> <span class="n">is_prime</span>
+<span class="kn">from</span> <span class="nn">mersenne</span> <span class="kn">import</span> <span class="n">is_mersenne_prime_exponent</span><span class="p">,</span> <span class="n">get_power_of_two_exponent</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter a number: &quot;</span><span class="p">)</span>
@@ -427,20 +473,20 @@ prime or not:</p>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> is not a prime number.&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="n">is_power_of_two</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">get_power_of_two_exponent</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">p</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">is_mersenne_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> is a double Mersenne prime: both </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> and 2^</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">-1 are Mersenne primes.&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">is_mersenne_prime_exponent</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> is a double Mersenne prime: both </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  and 2**</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> - 1 are both Mersenne primes.&quot;</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> is a Mersenne prime (</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> == 2^</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">-1)&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> is a Mersenne prime (</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> == 2**</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> - 1.&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">is_mersenne_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> is a prime number, but not a Mersenne prime (however, 2^</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">-1 is a Mersenne prime).&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">is_mersenne_prime_exponent</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> is a prime number, but not a Mersenne prime&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   (however, 2**</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> - 1 is a Mersenne prime).&quot;</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> is a prime number, but not a Mersenne prime (and neither is 2^</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">-1).&quot;</span><span class="p">)</span>
-
-
-
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> is a prime number, but not a Mersenne prime&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  and neither is 2**</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> - 1.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Here are some sample runs of this program:</p>
@@ -464,9 +510,10 @@ Enter<span class="w"> </span>a<span class="w"> </span>number:<span class="w"> </
 <span class="m">127</span><span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>double<span class="w"> </span>Mersenne<span class="w"> </span>prime:<span class="w"> </span>both<span class="w"> </span><span class="m">127</span><span class="w"> </span>and<span class="w"> </span><span class="m">2</span>^127-1<span class="w"> </span>are<span class="w"> </span>Mersenne<span class="w"> </span>primes.
 </pre></div>
 </div>
-<p>However, all the logic involved in testing each number’s primality
-is contained in two other modules: <code class="docutils literal notranslate"><span class="pre">primes</span></code> and <code class="docutils literal notranslate"><span class="pre">mersenne</span></code>. Our program, thus,
-spans three modules: <code class="docutils literal notranslate"><span class="pre">prime-checker</span></code>, <code class="docutils literal notranslate"><span class="pre">primes</span></code>, and <code class="docutils literal notranslate"><span class="pre">mersenne</span></code>.</p>
+<p>All the logic involved in actually testing each number’s primality is
+contained in two other modules: <code class="docutils literal notranslate"><span class="pre">primes</span></code> and <code class="docutils literal notranslate"><span class="pre">mersenne</span></code>. Our
+program, thus, spans three modules: <code class="docutils literal notranslate"><span class="pre">prime-checker</span></code>, <code class="docutils literal notranslate"><span class="pre">primes</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">mersenne</span></code>.</p>
 <p>This is a further example of <em>decomposition</em>: while we could have placed all the
 code in a single module, dividing it into distinct modules, each with a related
 set of functions, makes the code more manageable. It also improves the reusability
@@ -502,7 +549,7 @@ happening when we do this:</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="go">76</span>
+<span class="go">65</span>
 </pre></div>
 </div>
 </div></blockquote>

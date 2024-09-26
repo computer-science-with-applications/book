@@ -50,8 +50,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../control_structures/index.html">1.3. Control Flow Statements</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">1.4. Introduction to Functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#anatomy-of-a-function">1.4.1. Anatomy of a function</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#encapsulating-primality-testing">1.4.2. Encapsulating primality testing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#return-statements">1.4.3. Return statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#encapsulating-primality-testing">1.4.2. Encapsulating primality testing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#practice-problem">1.4.2.1. Practice Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#return-statements">1.4.3. Return statements</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">1.4.3.1. Practice Problem</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#advantages-of-using-functions">1.4.4. Advantages of using functions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#reusability">1.4.4.1. Reusability</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#composability">1.4.4.2. Composability</a></li>
@@ -61,13 +67,16 @@
 <li class="toctree-l3"><a class="reference internal" href="#variable-scope">1.4.5. Variable scope</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#parameters">1.4.6. Parameters</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#call-by-value">1.4.6.1. Call-by-value</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#default-parameter-values">1.4.6.2. Default parameter values</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#positional-and-keyword-arguments">1.4.6.3. Positional and keyword arguments</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#dynamic-typing-revisited">1.4.6.4. Dynamic typing revisited</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">1.4.6.2. Practice Problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#default-parameter-values">1.4.6.3. Default parameter values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#positional-and-keyword-arguments">1.4.6.4. Positional and keyword arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">1.4.6.5. Practice Problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dynamic-typing-revisited">1.4.6.6. Dynamic typing revisited</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#global-variables">1.4.7. Global variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-function-call-stack">1.4.8. The function call stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#practice-problem-solutions">1.4.9. Practice Problem Solutions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../organization/index.html">1.5. Basics of Code Organization</a></li>
@@ -153,19 +162,18 @@ refer to them as <em>subroutines</em> or <em>subprograms</em>).</p>
 functions in Python take some input values,
 called the <em>parameters</em>, and produce a new value,
 called the <em>return value</em>:</p>
-<figure class="align-default" id="id2">
+<figure class="align-default" id="id5">
 <img alt="Function" src="../../_images/function.png" />
 <figcaption>
-<p><span class="caption-text">Function</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Function</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
-<p>We have already <em>seen</em> uses of functions in some of our
-examples, like the function
-<code class="docutils literal notranslate"><span class="pre">random.randint</span></code>, which returns a random integer:</p>
+<p>We have already <em>seen</em> uses of functions in some of our examples, like
+the function <code class="docutils literal notranslate"><span class="pre">random.randint</span></code>, which returns a randomly generated integer:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The value of n is&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-<span class="go">The value of n is 60</span>
+<span class="go">The value of n is 804</span>
 </pre></div>
 </div>
 <p>When calling an existing function, you specify parameters in
@@ -194,7 +202,7 @@ a value return the special value <code class="docutils literal notranslate"><spa
 <p>As we will explore, functions are an important
 <em>abstraction</em> mechanism. They allow us to <em>encapsulate</em> a piece of code and
 then reuse that code, without being concerned with how that piece of code
-works (other than knowing its purpose, parameters and return value). For example,
+works (other than knowing its purpose, parameters, and return value). For example,
 when we used <code class="docutils literal notranslate"><span class="pre">random.randint</span></code>, we did not have to worry about the
 exact algorithm used to produce a random number. We just incorporated
 this functionality into our code, <em>abstracting</em> away the internal details
@@ -202,7 +210,7 @@ of <code class="docutils literal notranslate"><span class="pre">random.randint</
 <p>In this chapter, we will cover the basics of writing our own functions, and
 also dig into some of the lower-level aspects of how functions work. As we will
 point out then, you can safely skip those low-level details for now, but may want to revisit
-them once you’re more comfortable with functions, and definitely before we
+them once you’re more comfortable with functions, and definitely before we get to
 the Functional Programming and Recursion chapters, where we explore more
 advanced concepts involving functions.</p>
 <section id="anatomy-of-a-function">
@@ -211,14 +219,15 @@ advanced concepts involving functions.</p>
 with a very simple function that takes two integers and returns
 the product of those two integers:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the product of two values.</span>
 
-<span class="sd">    Inputs:</span>
-<span class="sd">      a, b: the values to be multiplied.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        a (numeric): first operand</span>
+<span class="sd">        b (numeric): second operand</span>
 
-<span class="sd">    Returns: the product of the inputs</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    Returns (numeric): the product of the inputs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">n</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
     <span class="k">return</span> <span class="n">n</span>
@@ -256,14 +265,15 @@ later on, this statement is not strictly required.</p></li>
 </ul>
 <p>Try typing in the function into the interpreter:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-<span class="gp">... </span><span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="gp">... </span><span class="sd">    Compute the product of two values.</span>
 <span class="gp">... </span>
-<span class="gp">... </span><span class="sd">    Inputs:</span>
-<span class="gp">... </span><span class="sd">      a, b: the values to be multiplied.</span>
+<span class="gp">... </span><span class="sd">    Args:</span>
+<span class="gp">... </span><span class="sd">        a (numeric): first operand</span>
+<span class="gp">... </span><span class="sd">        b (numeric): second operand</span>
 <span class="gp">... </span>
-<span class="gp">... </span><span class="sd">    Returns: the product of the inputs</span>
-<span class="gp">... </span><span class="sd">    &#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="sd">    Returns (numeric): the product of the inputs</span>
+<span class="gp">... </span><span class="sd">    &quot;&quot;&quot;</span>
 <span class="gp">... </span>
 <span class="gp">... </span>    <span class="n">n</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="n">n</span>
@@ -332,14 +342,14 @@ expected type. For example:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="go">15</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">multiply</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">multiply</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 <span class="go">12</span>
 </pre></div>
 </div>
 <p>The actual parameter expressions are evaluated <em>before</em> the <code class="docutils literal notranslate"><span class="pre">multiply</span></code> function is
 called. As a result, the first call to <code class="docutils literal notranslate"><span class="pre">multiply</span></code> uses 3 and 5
 (the values of <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> respectively) as parameters. The
-second call to <code class="docutils literal notranslate"><span class="pre">multiply</span></code> uses <code class="docutils literal notranslate"><span class="pre">x-1</span></code>, or 2, and <code class="docutils literal notranslate"><span class="pre">y+1</span></code>, or 6,
+second call to <code class="docutils literal notranslate"><span class="pre">multiply</span></code> uses <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">-</span> <span class="pre">1</span></code>, or 2, and <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">+</span> <span class="pre">1</span></code>, or 6,
 as the initial values for <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p>
 <p>In fact, the parameters to a function can themselves be function
 calls:</p>
@@ -358,14 +368,15 @@ Our <code class="docutils literal notranslate"><span class="pre">multiply</span>
 returns the product of its two arguments.</p>
 <p>Let’s look a similar function that prints the result instead:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Print the product of two values.</span>
 
-<span class="sd">    Inputs:</span>
-<span class="sd">      a, b: the values to be multiplied.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        a (numeric): first operand</span>
+<span class="sd">        b (numeric): second operand</span>
 
 <span class="sd">    Returns: None</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">n</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -405,7 +416,7 @@ is not valid do use a call to <code class="docutils literal notranslate"><span c
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">print_multiply</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">print_multiply</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="gt">Traceback (most recent call last):</span>
   File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
-  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">11</span>, in <span class="n">print_multiply</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">12</span>, in <span class="n">print_multiply</span>
 <span class="gr">TypeError</span>: <span class="n">unsupported operand type(s) for *: &#39;int&#39; and &#39;NoneType&#39;</span>
 </pre></div>
 </div>
@@ -421,15 +432,14 @@ allowing us to use it easily and in more places.  Our
 function will take an integer as a parameter and return <code class="docutils literal notranslate"><span class="pre">True</span></code> if
 the integer is prime and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is not.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Determines whether the input is prime.</span>
 
-<span class="sd">    Inputs:</span>
-<span class="sd">      n (int): value to be checked</span>
+<span class="sd">    Args:</span>
+<span class="sd">        n (int): value to be checked</span>
 
-<span class="sd">    Returns (boolean): True if the input is prime and False</span>
-<span class="sd">      otherwise</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    Returns (bool): True if the input is prime and False otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">encountered_divisor</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
@@ -484,15 +494,14 @@ as an argument properly:</p>
 <p>We could fix this problem by using a more complex expression in the
 return statement:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Determines whether the input is prime.</span>
 
-<span class="sd">    Inputs:</span>
-<span class="sd">      n (int): value to be checked</span>
+<span class="sd">    Args:</span>
+<span class="sd">        n (int): value to be checked</span>
 
-<span class="sd">    Returns (boolean): True if the input is prime and False</span>
-<span class="sd">      otherwise</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    Returns (bool): True if the input is prime and False otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">encountered_divisor</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
@@ -513,6 +522,28 @@ return statement:</p>
 </div>
 <p>But as you will see in the next section, there is a better way to
 resolve this problem.</p>
+<section id="practice-problem">
+<h3><span class="section-number">1.4.2.1. </span>Practice Problem<a class="headerlink" href="#practice-problem" title="Permalink to this heading"></a></h3>
+<p><strong>Problem 1</strong> Write a function <code class="docutils literal notranslate"><span class="pre">print_categories</span></code> that takes two
+integers, a lower bound and an upper bound on a range (inclusive), and
+prints each number in the range with an indication of whether the
+number is prime or composite (that is, not prime).  Here is a sample
+use of this function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">print_categories</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">2 prime</span>
+<span class="go">3 prime</span>
+<span class="go">4 composite</span>
+<span class="go">5 prime</span>
+<span class="go">6 composite</span>
+<span class="go">7 prime</span>
+<span class="go">8 composite</span>
+<span class="go">9 composite</span>
+<span class="go">10 composite</span>
+</pre></div>
+</div>
+<p>Your solution should call <code class="docutils literal notranslate"><span class="pre">is_prime</span></code>, rather than repeat the
+primality testing code.</p>
+</section>
 </section>
 <section id="return-statements">
 <h2><span class="section-number">1.4.3. </span>Return statements<a class="headerlink" href="#return-statements" title="Permalink to this heading"></a></h2>
@@ -520,14 +551,14 @@ resolve this problem.</p>
 end of the function. A return statement can appear anywhere in the
 function and can appear multiple times. For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">absolute</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the absolute value of a number.</span>
 
-<span class="sd">    Inputs:</span>
-<span class="sd">        n (number): operand</span>
+<span class="sd">    Args:</span>
+<span class="sd">        n (numeric): operand</span>
 
-<span class="sd">    Returns (number): the magnitude of the input</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    Returns (numeric): the magnitude of the input</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="n">x</span>
@@ -547,15 +578,14 @@ can modify the function to treat one as a special case, immediately
 returning <code class="docutils literal notranslate"><span class="pre">False</span></code> when the function is called with <code class="docutils literal notranslate"><span class="pre">1</span></code> as the
 parameter.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Determines whether the input is prime.</span>
 
-<span class="sd">    Inputs:</span>
-<span class="sd">      n (int): value to be checked</span>
+<span class="sd">    Args:</span>
+<span class="sd">        n (int): value to be checked</span>
 
-<span class="sd">    Returns (boolean): True if the input is prime and False</span>
-<span class="sd">    otherwise</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    Returns (bool): True if the input is prime and False otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
@@ -575,15 +605,14 @@ by <code class="docutils literal notranslate"><span class="pre">i</span></code>,
 through the whole <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, then <code class="docutils literal notranslate"><span class="pre">n</span></code> must be
 prime:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Determines whether the input is prime.</span>
 
-<span class="sd">    Inputs:</span>
-<span class="sd">      n (int): value to be checked</span>
+<span class="sd">    Args:</span>
+<span class="sd">        n (int): value to be checked</span>
 
-<span class="sd">    Returns (boolean): True, if the input is prime and False</span>
-<span class="sd">    otherwise</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    Returns (bool): True, if the input is prime and False otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
@@ -621,6 +650,25 @@ returns from the current function as soon as it encounters a
 never execute more than one iteration (and possibly, a partial
 iteration at that).</p>
 </div>
+<section id="id1">
+<h3><span class="section-number">1.4.3.1. </span>Practice Problem<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p><strong>Problem 2</strong></p>
+<p>Let’s return to the problem of writing code to help an instructor
+determine a student’s grade.  The instructor has decided that a
+student will earn a(n):</p>
+<ul class="simple">
+<li><p>A if the student’s midterm, final, and hw are all at least 90</p></li>
+<li><p>B if the student’s midterm, final, and hw are all at least 80</p></li>
+<li><p>C if the student’s midterm, final, and hw are all at least 70</p></li>
+<li><p>B if the student’s hw is at least 90, their midterm and final are both at least 50 and their final is at least 20 points higher than their midterm.  Otherwise the student should receive an F.</p></li>
+</ul>
+<p>In the previous chapter, you wrote code to set a variable to the grade
+a student earned given variables with the student’s homework average
+and their grades on the midterm and final exams.</p>
+<p>For this problem, your task is to write a function, <code class="docutils literal notranslate"><span class="pre">compute_grade</span></code>,
+that takes those three values as floats and returns the student’s
+grade as a string.</p>
+</section>
 </section>
 <section id="advantages-of-using-functions">
 <h2><span class="section-number">1.4.4. </span>Advantages of using functions<a class="headerlink" href="#advantages-of-using-functions" title="Permalink to this heading"></a></h2>
@@ -639,32 +687,32 @@ keep a running total of their scores until one reaches 500 and wins.</p>
 <p>Let’s think about how to implement the code for a single round.  We
 could write code that implements the rules directly:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">play_round</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Play a round of the game Going to Boston using three dice.</span>
 
-<span class="sd">    Inputs: none</span>
+<span class="sd">    Args: none</span>
 
-<span class="sd">    Return (int): score earned</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    Returns (int): score earned</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">NUM_SIDES</span> <span class="o">=</span> <span class="mi">6</span>
+    <span class="n">num_sides</span> <span class="o">=</span> <span class="mi">6</span>
     <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="c1"># roll 3 dice, choose largest</span>
-    <span class="n">die1</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">NUM_SIDES</span><span class="p">)</span>
-    <span class="n">die2</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">NUM_SIDES</span><span class="p">)</span>
-    <span class="n">die3</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">NUM_SIDES</span><span class="p">)</span>
-    <span class="n">largest</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">die1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">die1</span><span class="p">,</span> <span class="n">die2</span><span class="p">))</span>
-    <span class="n">score</span> <span class="o">+=</span>  <span class="n">largest</span>
+    <span class="n">die1</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_sides</span><span class="p">)</span>
+    <span class="n">die2</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_sides</span><span class="p">)</span>
+    <span class="n">die3</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_sides</span><span class="p">)</span>
+    <span class="n">largest</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">die1</span><span class="p">,</span> <span class="n">die2</span><span class="p">,</span> <span class="n">die3</span><span class="p">)</span>
+    <span class="n">score</span> <span class="o">+=</span> <span class="n">largest</span>
 
     <span class="c1"># roll 2 dice, choose largest</span>
-    <span class="n">die1</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">NUM_SIDES</span><span class="p">)</span>
-    <span class="n">die2</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">NUM_SIDES</span><span class="p">)</span>
+    <span class="n">die1</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_sides</span><span class="p">)</span>
+    <span class="n">die2</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_sides</span><span class="p">)</span>
     <span class="n">largest</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">die1</span><span class="p">,</span> <span class="n">die2</span><span class="p">)</span>
     <span class="n">score</span> <span class="o">+=</span> <span class="n">largest</span>
 
     <span class="c1"># roll 1 die, choose largest</span>
-    <span class="n">largest</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">NUM_SIDES</span><span class="p">)</span>
+    <span class="n">largest</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_sides</span><span class="p">)</span>
     <span class="n">score</span> <span class="o">+=</span> <span class="n">largest</span>
 
     <span class="k">return</span> <span class="n">score</span>
@@ -677,10 +725,10 @@ over and over again to play as many rounds as we want:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">play_round</span><span class="p">()</span>
 <span class="go">11</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">play_round</span><span class="p">()</span>
-<span class="go">14</span>
+<span class="go">11</span>
 </pre></div>
 </div>
-<p>Although this implementation works, it has repeated code, a
+<p>Although this implementation works, it has repeated code, which is a
 sign of a poor design.  We should
 abstract and separate the repeated work into a
 function.  At times, this task will be easy because your implementation will have
@@ -696,23 +744,23 @@ die).  To abstract this task into a function, we will take the number
 of dice as a parameter and replace the calls(s) to <code class="docutils literal notranslate"><span class="pre">max</span></code> with a
 single call.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_largest_roll</span><span class="p">(</span><span class="n">num_dice</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Roll a specified number of dice and return the largest face</span>
 <span class="sd">    value.</span>
 
-<span class="sd">    Inputs:</span>
-<span class="sd">      num_dice (int): the number of dice to roll</span>
+<span class="sd">    Args:</span>
+<span class="sd">        num_dice (int): the number of dice to roll</span>
 
 <span class="sd">    Returns (int): the largest face value rolled</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">NUM_SIDES</span> <span class="o">=</span> <span class="mi">6</span>
+    <span class="n">num_sides</span> <span class="o">=</span> <span class="mi">6</span>
 
     <span class="c1"># initialize largest with a value smaller than the smallest</span>
     <span class="c1"># possible roll.</span>
     <span class="n">largest</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_dice</span><span class="p">):</span>
-        <span class="n">roll</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">NUM_SIDES</span><span class="p">)</span>
+        <span class="n">roll</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_sides</span><span class="p">)</span>
         <span class="n">largest</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">roll</span><span class="p">,</span> <span class="n">largest</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">largest</span>
@@ -724,7 +772,7 @@ blocks of code with functions calls that have appropriate inputs:</p>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Play a round of the game Going to Boston using three dice.</span>
 
-<span class="sd">    Inputs: None</span>
+<span class="sd">    Args: None</span>
 
 <span class="sd">    Returns: the score earned by the player as an integer.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
@@ -742,17 +790,21 @@ Going to Boston with exactly three dice.  We
 could have chosen to generalize it by taking the number of
 dice as a parameter.  For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">play_round_generalized</span><span class="p">(</span><span class="n">num_dice</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Play a round of the game Going to Boston.</span>
 
-<span class="sd">    Inputs:</span>
-<span class="sd">      num_dice (int): the number of dice to use</span>
+<span class="sd">    Args:</span>
+<span class="sd">        num_dice (int): the number of dice to use</span>
 
 <span class="sd">    Returns (int): score earned</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">nd</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_dice</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+
+    <span class="c1"># run the loop from num_dice down to one to mimic the</span>
+    <span class="c1"># orginal code that rolls # three dice, then two, and then</span>
+    <span class="c1"># finally, just one.</span>
+    <span class="k">for</span> <span class="n">nd</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_dice</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">score</span> <span class="o">+=</span> <span class="n">get_largest_roll</span><span class="p">(</span><span class="n">nd</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">score</span>
 </pre></div>
@@ -770,8 +822,8 @@ Boston.</p>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Simulate one game of Going to Boston.</span>
 
-<span class="sd">    Inputs:</span>
-<span class="sd">      goal (int): threshold for a win.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        goal (int): threshold for a win.</span>
 
 <span class="sd">    Returns: None</span>
 <span class="sd">    &#39;&#39;&#39;</span>
@@ -779,7 +831,7 @@ Boston.</p>
     <span class="n">player1</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">player2</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="k">while</span> <span class="p">(</span><span class="n">player1</span> <span class="o">&lt;</span> <span class="n">goal</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">player2</span> <span class="o">&lt;</span> <span class="n">GOAL</span><span class="p">):</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">player1</span> <span class="o">&lt;</span> <span class="n">goal</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">player2</span> <span class="o">&lt;</span> <span class="n">goal</span><span class="p">):</span>
         <span class="n">player1</span> <span class="o">+=</span> <span class="n">play_round</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">player1</span> <span class="o">&gt;=</span> <span class="n">goal</span><span class="p">:</span>
             <span class="k">break</span>
@@ -807,8 +859,8 @@ becomes clear that an algorithm that is more efficient or easier to
 test is needed.</p>
 <p>In general, we want to design functions that allow the function’s user
 to focus on the function’s purpose and <em>interface</em> (the number
-and types of arguments the function expects and the number and
-types of value the function returns), and to ignore the
+and types of arguments the function expects and the
+type of the value the function returns), and to ignore the
 details of the implementation. In this case,
 we didn’t need to understand how rounds are played to design the loop;
 we only needed to know that <code class="docutils literal notranslate"><span class="pre">play_round</span></code> does not take any arguments
@@ -824,15 +876,14 @@ for answering the question of “is there a significant benefit to going
 first?”  A better design would separate these tasks into
 two functions:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">play_one_game</span><span class="p">(</span><span class="n">goal</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Simulate one game of Going to Boston.</span>
 
-<span class="sd">    Inputs:</span>
-<span class="sd">      goal (int): threshold for a win</span>
+<span class="sd">    Args:</span>
+<span class="sd">        goal (int): threshold for a win</span>
 
-<span class="sd">    Returns (boolean): True if player1 wins and False, if player2</span>
-<span class="sd">      wins.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    Returns (bool): True if player1 wins and False, if player2 wins.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">player1</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">player2</span> <span class="o">=</span> <span class="mi">0</span>
@@ -846,14 +897,14 @@ two functions:</p>
 
 
 <span class="k">def</span> <span class="nf">play_going_to_boston</span><span class="p">(</span><span class="n">goal</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Simulate one game of Going to Boston and print the winner.</span>
 
-<span class="sd">    Inputs:</span>
-<span class="sd">      goal (int): threshold for a win</span>
+<span class="sd">    Args:</span>
+<span class="sd">        goal (int): threshold for a win</span>
 
 <span class="sd">    Returns: None</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">play_one_game</span><span class="p">(</span><span class="n">goal</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;player1 wins&quot;</span><span class="p">)</span>
@@ -864,16 +915,16 @@ two functions:</p>
 <p>This design allows us to simulate many games to see if the first
 player has an advantage:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulate_many_games</span><span class="p">(</span><span class="n">num_trials</span><span class="p">,</span> <span class="n">goal</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Simulate num_trials games of Going to Boston and print the</span>
-<span class="sd">    average number of wins.</span>
+<span class="sd">    average number of wins for player 1.</span>
 
-<span class="sd">    Inputs:</span>
-<span class="sd">      num_trials (int): number of trial games to play</span>
-<span class="sd">      goal (int): threshold for a win</span>
+<span class="sd">    Args:</span>
+<span class="sd">        num_trials (int): number of trial games to play</span>
+<span class="sd">        goal (int): threshold for a win</span>
 
 <span class="sd">    Returns: None</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">wins</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_trials</span><span class="p">):</span>
@@ -885,11 +936,11 @@ player has an advantage:</p>
 <p>Simulating 10,000 trials with a goal of 500 shows that there is a big
 advantage to going first: <code class="docutils literal notranslate"><span class="pre">player1</span></code> wins roughly 60% of the time.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">simulate_many_games</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
-<span class="go">0.6061</span>
+<span class="go">0.6092</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">simulate_many_games</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
-<span class="go">0.6101</span>
+<span class="go">0.6156</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">simulate_many_games</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
-<span class="go">0.6129</span>
+<span class="go">0.6108</span>
 </pre></div>
 </div>
 </section>
@@ -933,7 +984,7 @@ during a call to <code class="docutils literal notranslate"><span class="pre">pl
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Play a round of the game Going to Boston using three dice.</span>
 
-<span class="sd">    Inputs: None</span>
+<span class="sd">    Args: None</span>
 
 <span class="sd">    Returns: the score earned by the player as an integer.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
@@ -952,13 +1003,13 @@ Python will:</p>
 <li><p>evaluate the argument (<code class="docutils literal notranslate"><span class="pre">3</span></code>),</p></li>
 <li><p>create the parameter <code class="docutils literal notranslate"><span class="pre">num_dice</span></code> and initialize it to the result of evaluating the argument (3),</p></li>
 <li><p>transfer control to the body of <code class="docutils literal notranslate"><span class="pre">get_largest_roll</span></code>,</p></li>
-<li><p>execute the first two statements, which create new variables named <code class="docutils literal notranslate"><span class="pre">NUM_SIDES</span></code> and <code class="docutils literal notranslate"><span class="pre">largest</span></code>, and initialize them to 6 and 0, respectively,</p></li>
-<li><p>execute the loop, which itself introduces new variables, named <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">roll</span></code>, that are reset for each iteration,</p></li>
+<li><p>execute the first two statements, which create new variables named <code class="docutils literal notranslate"><span class="pre">num_sides</span></code> and <code class="docutils literal notranslate"><span class="pre">largest</span></code>, and initialize them to 6 and 0, respectively,</p></li>
+<li><p>execute the loop, which itself introduces new variables, named <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">roll</span></code>, that are updated for each iteration,</p></li>
 <li><p>set the return value of the function call to be the value of <code class="docutils literal notranslate"><span class="pre">largest</span></code>,</p></li>
-<li><p>discard the variables it created during the function evaluation (e.g., <code class="docutils literal notranslate"><span class="pre">num_dice</span></code> and <code class="docutils literal notranslate"><span class="pre">NUM_SIDES</span></code>), and</p></li>
+<li><p>discard the variables it created during the function evaluation (e.g., <code class="docutils literal notranslate"><span class="pre">num_dice</span></code> and <code class="docutils literal notranslate"><span class="pre">num_sides</span></code>), and</p></li>
 <li><p>transfer control back to the first statement of <code class="docutils literal notranslate"><span class="pre">play_round</span></code>.</p></li>
 </ul>
-<p>The variables <code class="docutils literal notranslate"><span class="pre">NUM_SIDES</span></code>, <code class="docutils literal notranslate"><span class="pre">largest</span></code>, <code class="docutils literal notranslate"><span class="pre">i</span></code>, and <code class="docutils literal notranslate"><span class="pre">roll</span></code> are
+<p>The variables <code class="docutils literal notranslate"><span class="pre">num_sides</span></code>, <code class="docutils literal notranslate"><span class="pre">largest</span></code>, <code class="docutils literal notranslate"><span class="pre">i</span></code>, and <code class="docutils literal notranslate"><span class="pre">roll</span></code> are
 valid only within <code class="docutils literal notranslate"><span class="pre">get_largest_roll</span></code>.  We would get an error if we
 tried to use one them or the parameter (<code class="docutils literal notranslate"><span class="pre">num_dice</span></code>) outside of
 the context of this function.  For example, this code will fail,</p>
@@ -976,7 +1027,7 @@ inside <code class="docutils literal notranslate"><span class="pre">get_largest_
 <code class="docutils literal notranslate"><span class="pre">get_largest_roll</span></code> and update the variable <code class="docutils literal notranslate"><span class="pre">score</span></code>.  Python will go
 through exactly the same steps to evaluate the second call, including
 creating <em>fresh</em> versions of the parameter (<code class="docutils literal notranslate"><span class="pre">num_dice</span></code>) and the rest
-of the local variables (<code class="docutils literal notranslate"><span class="pre">NUM_SIDES</span></code>, <code class="docutils literal notranslate"><span class="pre">largest</span></code>, <code class="docutils literal notranslate"><span class="pre">i</span></code>, and
+of the local variables (<code class="docutils literal notranslate"><span class="pre">num_sides</span></code>, <code class="docutils literal notranslate"><span class="pre">largest</span></code>, <code class="docutils literal notranslate"><span class="pre">i</span></code>, and
 <code class="docutils literal notranslate"><span class="pre">roll</span></code>), initializing them appropriately, and eventually discarding
 them when the function returns.  Finally, it will complete the same process all
 over again to evaluate the third call.</p>
@@ -990,7 +1041,7 @@ a single execution of <code class="docutils literal notranslate"><span class="pr
 how to design and write functions. So far, we have seen some fairly
 simple parameters, but, as we’ll see in this section, parameters
 have several features and nuances that we need
-to be aware of when writing functions.</p>
+to keep in mind when writing functions.</p>
 <section id="call-by-value">
 <h3><span class="section-number">1.4.6.1. </span>Call-by-value<a class="headerlink" href="#call-by-value" title="Permalink to this heading"></a></h3>
 <p>As discussed above, expressions used as arguments for a function call are
@@ -1001,9 +1052,9 @@ parameter passing is known as <em>call-by-value</em>.</p>
 design.  Here’s a function that updates the value of its formal
 parameter and three functions that use it:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_one</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The value of x at the start of add_one is&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  The value of x at the start of add_one is&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The value of x at the end of add_one is&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  The value of x at the end of add_one is&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">x</span>
 
 <span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
@@ -1028,11 +1079,12 @@ parameter and three functions that use it:</p>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The value of x after the the call to add_one is&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>(We omitted docstrings from the functions to save space.)</p>
 <p>Here’s what happens when we call function <code class="docutils literal notranslate"><span class="pre">f</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">()</span>
 <span class="go">The value of y before the the call to add_one is 5</span>
-<span class="go">The value of x at the start of add_one is 5</span>
-<span class="go">The value of x at the end of add_one is 6</span>
+<span class="go">  The value of x at the start of add_one is 5</span>
+<span class="go">  The value of x at the end of add_one is 6</span>
 <span class="go">The value returned by the call to add_one is 6</span>
 <span class="go">The value of y after the the call to add_one is 5</span>
 </pre></div>
@@ -1049,8 +1101,8 @@ the <code class="docutils literal notranslate"><span class="pre">add_one</span><
 function <code class="docutils literal notranslate"><span class="pre">f</span></code> and the call in function <code class="docutils literal notranslate"><span class="pre">g</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="p">()</span>
 <span class="go">The value of y before the the call to add_one is 5</span>
-<span class="go">The value of x at the start of add_one is 5</span>
-<span class="go">The value of x at the end of add_one is 6</span>
+<span class="go">  The value of x at the start of add_one is 5</span>
+<span class="go">  The value of x at the end of add_one is 6</span>
 <span class="go">The value returned by the call to add_one is 6</span>
 <span class="go">The value of y after the the call to add_one is 5</span>
 </pre></div>
@@ -1061,8 +1113,8 @@ function <code class="docutils literal notranslate"><span class="pre">h</span></
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The value of x before the the call to add_one is 5
-The value of x at the start of add_one is 5
-The value of x at the end of add_one is 6
+  The value of x at the start of add_one is 5
+  The value of x at the end of add_one is 6
 The value returned by the call to add_one is 6
 The value of x after the the call to add_one is 5
 </pre></div>
@@ -1071,8 +1123,50 @@ The value of x after the the call to add_one is 5
 formal parameter <code class="docutils literal notranslate"><span class="pre">x</span></code> in <code class="docutils literal notranslate"><span class="pre">add_one</span></code> are <em>different</em> variables that
 just happen to have the same name.</p>
 </section>
+<section id="id2">
+<h3><span class="section-number">1.4.6.2. </span>Practice Problem<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p><strong>Problem 3</strong> Given the following functions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fun1</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">i</span>
+
+<span class="k">def</span> <span class="nf">fun2</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">fun1</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">fun1</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">fun3</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">fun1</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">fun4</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">fun3</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fun2</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>What is the result of evaluating this call: <code class="docutils literal notranslate"><span class="pre">fun4(6)</span></code>?</p>
+<p><strong>Problem 4</strong>  Given the following code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fun1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="n">y</span> <span class="o">==</span> <span class="n">z</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">fun2</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">3</span>
+
+<span class="k">def</span> <span class="nf">fun3</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">fun1</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+                <span class="n">fun2</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>What is the result of evaluating <code class="docutils literal notranslate"><span class="pre">fun3(6,</span> <span class="pre">4,</span> <span class="pre">2)</span></code>?</p>
+</section>
 <section id="default-parameter-values">
-<h3><span class="section-number">1.4.6.2. </span>Default parameter values<a class="headerlink" href="#default-parameter-values" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">1.4.6.3. </span>Default parameter values<a class="headerlink" href="#default-parameter-values" title="Permalink to this heading"></a></h3>
 <p>Suppose we wanted to write a function that simulates flipping a coin
 <code class="docutils literal notranslate"><span class="pre">n</span></code> times. The function itself would have a single parameter, <code class="docutils literal notranslate"><span class="pre">n</span></code>,
 and would return the number of coin flips that landed on heads.
@@ -1082,19 +1176,19 @@ either a 0 or a 1 (arbitrarily setting 0 to be heads and 1 to be tails):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
 
 <span class="k">def</span> <span class="nf">flip_coins</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Flip a coin n times and report the number that comes up heads.</span>
 
-<span class="sd">    Input:</span>
-<span class="sd">      n (int): number of times to flip the coin</span>
+<span class="sd">    Args:</span>
+<span class="sd">        n (int): number of times to flip the coin</span>
 
 <span class="sd">    Returns (int): number of flips that come up heads.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">num_heads</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="n">flip</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">flip</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">flip</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">num_heads</span> <span class="o">=</span> <span class="n">num_heads</span> <span class="o">+</span> <span class="mi">1</span>
 
@@ -1102,7 +1196,7 @@ either a 0 or a 1 (arbitrarily setting 0 to be heads and 1 to be tails):</p>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="go">51</span>
+<span class="go">45</span>
 </pre></div>
 </div>
 <p>As expected, if we flip the coin a large number of times,
@@ -1110,7 +1204,7 @@ the number of flips that come out heads approaches 50%:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">100000</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">heads</span> <span class="o">=</span> <span class="n">flip_coins</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">heads</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
-<span class="go">0.49943</span>
+<span class="go">0.50153</span>
 </pre></div>
 </div>
 <p>Now, let’s make this function more general. Right now,
@@ -1122,23 +1216,24 @@ heads (for a fair coin, this value would be <code class="docutils literal notran
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">flip_coins</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">prob_heads</span><span class="p">):</span>
 </pre></div>
 </div>
-<p>Of course, we also have to change the implementation of the function. We will
-now use a different function from the <code class="docutils literal notranslate"><span class="pre">random</span></code> module: the <code class="docutils literal notranslate"><span class="pre">uniform(a,b)</span></code> function.
-This function returns a <em>float</em> between <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>. If we call the function
-with parameters <code class="docutils literal notranslate"><span class="pre">0.0</span></code> and <code class="docutils literal notranslate"><span class="pre">1.0</span></code>, we can simply use values less than <code class="docutils literal notranslate"><span class="pre">prob_heads</span></code>
-as indicating that the coin flip resulted in heads, and
+<p>Of course, we also have to change the implementation of the
+function. We will now use a different function from the <code class="docutils literal notranslate"><span class="pre">random</span></code>
+module: the <code class="docutils literal notranslate"><span class="pre">uniform(a,b)</span></code> function.  This function returns a
+randomly chosen <em>float</em> between <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>. If we call the function with
+parameters <code class="docutils literal notranslate"><span class="pre">0.0</span></code> and <code class="docutils literal notranslate"><span class="pre">1.0</span></code>, we can simply use values less than
+<code class="docutils literal notranslate"><span class="pre">prob_heads</span></code> as indicating that the coin flip resulted in heads, and
 values greater than or equal to <code class="docutils literal notranslate"><span class="pre">prob_heads</span></code> to indicate tails:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">flip_coins</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">prob_heads</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Flip a weighted coin n times and report the number that come up</span>
 <span class="sd">    heads.</span>
 
-<span class="sd">    Input:</span>
-<span class="sd">      n (int): number of times to flip the coin</span>
-<span class="sd">      prob_heads (float): probability that the coin comes up heads</span>
+<span class="sd">    Args:</span>
+<span class="sd">        n (int): number of times to flip the coin</span>
+<span class="sd">        prob_heads (float): probability that the coin comes up heads</span>
 
 <span class="sd">    Returns (int): number of flips that came up heads.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">num_heads</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -1155,10 +1250,10 @@ correctly when we use large values of <code class="docutils literal notranslate"
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">100000</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">heads</span> <span class="o">=</span> <span class="n">flip_coins</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">heads</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
-<span class="go">0.70005</span>
+<span class="go">0.69756</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">heads</span> <span class="o">=</span> <span class="n">flip_coins</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">heads</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
-<span class="go">0.50019</span>
+<span class="go">0.50079</span>
 </pre></div>
 </div>
 <p>However, it’s likely that we will want to call <code class="docutils literal notranslate"><span class="pre">flip_coins</span></code> to
@@ -1167,17 +1262,17 @@ allows us to specify a <em>default value</em> for parameters. To do this, we
 write the parameter in the form of an assignment, with the default value
 “assigned” to the parameter:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">flip_coins</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">prob_heads</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Flip a weighted coin n times and report the number that come up</span>
 <span class="sd">    heads.</span>
 
-<span class="sd">    Input:</span>
-<span class="sd">      n (int): number of times to flip the coin</span>
-<span class="sd">      prob_heads (float): probability that the coin comes up heads</span>
-<span class="sd">        (default: 0.5)</span>
+<span class="sd">    Args:</span>
+<span class="sd">        n (int): number of times to flip the coin</span>
+<span class="sd">        prob_heads (float): probability that the coin comes up heads</span>
+<span class="sd">          (default: 0.5)</span>
 
 <span class="sd">    Returns (int): number of flips that came up heads.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">num_heads</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -1191,31 +1286,31 @@ write the parameter in the form of an assignment, with the default value
 </div>
 <p>We can still call the function with the <code class="docutils literal notranslate"><span class="pre">prob_heads</span></code> parameter:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span>
-<span class="go">70226</span>
+<span class="go">70043</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">)</span>
-<span class="go">34904</span>
+<span class="go">35147</span>
 </pre></div>
 </div>
 <p>But, if we omit the parameter, Python will use <code class="docutils literal notranslate"><span class="pre">0.5</span></code> by default:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
-<span class="go">49954</span>
+<span class="go">50310</span>
 </pre></div>
 </div>
 <p>When you specify a function’s parameters,
 those without default values must come first, followed by
-those with default values (if there are any). Notice that the following code fails:</p>
+those with default values (if there are any). Notice, for example, that the following code fails:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">flip_coins</span><span class="p">(</span><span class="n">prob_heads</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Flip a weighted coin n times and report the number that come up</span>
 <span class="sd">    heads.</span>
 
-<span class="sd">    Input:</span>
-<span class="sd">      prob_heads (float): probability that the coin comes up heads</span>
-<span class="sd">        (default: 0.5)</span>
-<span class="sd">      n (int): number of times to flip the coin</span>
+<span class="sd">    Args:</span>
+<span class="sd">        prob_heads (float): probability that the coin comes up heads</span>
+<span class="sd">          (default: 0.5)</span>
+<span class="sd">        n (int): number of times to flip the coin</span>
 
 <span class="sd">    Returns (int): number of flips that came up heads.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">num_heads</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -1228,17 +1323,19 @@ those with default values (if there are any). Notice that the following code fai
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  File &quot;&lt;stdin&gt;&quot;, line 1
-SyntaxError: non-default argument follows default argument
+    def flip_coins(prob_heads=0.5, n):
+                                   ^
+SyntaxError: parameter without a default follows parameter with a default
 </pre></div>
 </div>
 </section>
 <section id="positional-and-keyword-arguments">
-<h3><span class="section-number">1.4.6.3. </span>Positional and keyword arguments<a class="headerlink" href="#positional-and-keyword-arguments" title="Permalink to this heading"></a></h3>
-<p>So far, whenever we have called a function, we have specified the arguments in that function call in the same order as they appear in the function’s list of parameters (with the ability to omit some of those parameters that have a default value).  These are referred to as <em>positional arguments</em>,
+<h3><span class="section-number">1.4.6.4. </span>Positional and keyword arguments<a class="headerlink" href="#positional-and-keyword-arguments" title="Permalink to this heading"></a></h3>
+<p>So far, whenever we have called a function, we have specified the arguments in that function call in the same order as they appear in the function’s list of parameters (with the ability to omit some of those parameters that have a default value).  These types of arguments are referred to as <em>positional arguments</em>,
 because how they map to specific parameters depends on their <em>position</em>
 in the list of arguments. For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span>
-<span class="go">69832</span>
+<span class="go">69973</span>
 </pre></div>
 </div>
 <p>In this case, <code class="docutils literal notranslate"><span class="pre">100000</span></code> will be the value for the <code class="docutils literal notranslate"><span class="pre">n</span></code> parameter and
@@ -1247,13 +1344,13 @@ in the list of arguments. For example:</p>
 a value by using <em>keyword arguments</em>. This type of argument follows
 the same syntax as an assignment; for example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">prob_heads</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="go">70055</span>
+<span class="go">69843</span>
 </pre></div>
 </div>
 <p>Notice that, because we explicitly provide a mapping from values to parameters,
 the position of the arguments no longer matters:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="n">prob_heads</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
-<span class="go">69873</span>
+<span class="go">69940</span>
 </pre></div>
 </div>
 <p>Keyword arguments can make a function call easier to read, especially for
@@ -1263,22 +1360,103 @@ remember the exact position of each parameter.</p>
 although in that case the positional arguments must come first.</p>
 <p>For example, this call works:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="n">prob_heads</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="go">69985</span>
+<span class="go">70013</span>
 </pre></div>
 </div>
 <p>But this call doesn’t:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="n">prob_heads</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
   File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>
+<span class="w">    </span><span class="n">flip_coins</span><span class="p">(</span><span class="n">prob_heads</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
+<span class="w">                                     </span><span class="pm">^</span>
 <span class="gr">SyntaxError</span>: <span class="n">positional argument follows keyword argument</span>
 </pre></div>
 </div>
 </section>
+<section id="id3">
+<h3><span class="section-number">1.4.6.5. </span>Practice Problem<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p><strong>Problem 5</strong></p>
+<p>Test code is designed to help validate the behavior of a piece for
+code for a given set of values.  How do we test computations that use
+randomness given that the generated random values change each time we
+run the computation?  One way to address this problem is to set the
+seed used to by the random number generator to compute the sequence of
+values it returns.  The seed is set by calling <code class="docutils literal notranslate"><span class="pre">random.seed</span></code> with an
+integer value.  If <code class="docutils literal notranslate"><span class="pre">random.seed</span></code> is called with the value <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+the value of the system clock time at the time of the call is used as
+the seed.  This function is typically called once at the start of the
+computation.</p>
+<p>Here is a simple illustration of how the seed works:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="go">0.2330654737797524</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="go">0.7830144643540888</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="go">0.4553051301153339</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="go">0.2330654737797524</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="go">0.7830144643540888</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="go">0.4553051301153339</span>
+</pre></div>
+</div>
+<p>Notice that the second three calls to <code class="docutils literal notranslate"><span class="pre">random.uniform</span></code> generate the
+exact same values as the first three calls.</p>
+<p>Rewrite <code class="docutils literal notranslate"><span class="pre">flip_coins</span></code> to take a seed as a second optional parameter
+and to include a call to <code class="docutils literal notranslate"><span class="pre">random.seed</span></code>.  Make sure to update the
+docstring to include the extra parameter.</p>
+<p>Once you have writen your function, write function calls that provide:</p>
+<ul class="simple">
+<li><p>only a value for <code class="docutils literal notranslate"><span class="pre">n</span></code>,</p></li>
+<li><p>a value for <code class="docutils literal notranslate"><span class="pre">n</span></code> and a value for <code class="docutils literal notranslate"><span class="pre">prob_heads</span></code>,</p></li>
+<li><p>a value for <code class="docutils literal notranslate"><span class="pre">n</span></code> and a value for the seed  parameter, but not <code class="docutils literal notranslate"><span class="pre">prob_heads</span></code>, and</p></li>
+<li><p>values for all three parameters.</p></li>
+</ul>
+<p><strong>Problem 6</strong></p>
+<p>A common trick when debugging a complex function is to include a
+parameter called <code class="docutils literal notranslate"><span class="pre">debug_level</span></code> that is used to specify how much
+information the function should print out during the computation.
+During regular use, the debug level might be set to zero, while during
+active debugging, it might be set higher.</p>
+<p>For example, if we were to add a debug level parameter to
+<code class="docutils literal notranslate"><span class="pre">flip_coin</span></code> from <code class="docutils literal notranslate"><span class="pre">Problem</span> <span class="pre">5</span></code>, we might have:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> mean do not print any information about the computation,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> mean print the values of the parameters passed to the function, and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> mean print the parameters and the values of <code class="docutils literal notranslate"><span class="pre">flip</span></code> and <code class="docutils literal notranslate"><span class="pre">num_heads</span></code> for coin flip.</p></li>
+</ul>
+<p>For example, the call <code class="docutils literal notranslate"><span class="pre">flip_coins(5,</span> <span class="pre">0.5,</span> <span class="pre">5000,</span> <span class="pre">debug_level=0)</span></code>
+would not print any extra information; the call <code class="docutils literal notranslate"><span class="pre">flip_coins(5,</span> <span class="pre">0.5,</span> <span class="pre">5000,</span> <span class="pre">debug_level=1)</span></code>
+would print something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Debug</span> <span class="mi">1</span><span class="p">:</span> <span class="n">flip_coins</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">prob_heads0</span><span class="mf">.5</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">debug_level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>the call <code class="docutils literal notranslate"><span class="pre">flip_coins(5,</span> <span class="pre">0.5,</span> <span class="pre">5000,</span> <span class="pre">1)</span></code> would print something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Debug</span> <span class="mi">2</span><span class="p">:</span> <span class="n">flip_coins</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">prob_heads0</span><span class="mf">.5</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">debug_level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Debug</span> <span class="mi">2</span><span class="p">:</span> <span class="n">flip</span><span class="p">:</span> <span class="mf">0.2330654737797524</span>    <span class="n">num_heads</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">Debug</span> <span class="mi">2</span><span class="p">:</span> <span class="n">flip</span><span class="p">:</span> <span class="mf">0.7830144643540888</span>    <span class="n">num_heads</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">Debug</span> <span class="mi">2</span><span class="p">:</span> <span class="n">flip</span><span class="p">:</span> <span class="mf">0.4553051301153339</span>    <span class="n">num_heads</span><span class="p">:</span> <span class="mi">2</span>
+<span class="n">Debug</span> <span class="mi">2</span><span class="p">:</span> <span class="n">flip</span><span class="p">:</span> <span class="mf">0.501694756752729</span>     <span class="n">num_heads</span><span class="p">:</span> <span class="mi">2</span>
+<span class="n">Debug</span> <span class="mi">2</span><span class="p">:</span> <span class="n">flip</span><span class="p">:</span> <span class="mf">0.8394352573499935</span>    <span class="n">num_heads</span><span class="p">:</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>The return value for all three calls, which is not shown, would be
+<code class="docutils literal notranslate"><span class="pre">2</span></code> as expected from the debugging output.</p>
+<p>Update your solution for <code class="docutils literal notranslate"><span class="pre">Problem</span> <span class="pre">5</span></code> to take a <code class="docutils literal notranslate"><span class="pre">debug_level</span></code>
+parameter and to use it to decide what information to print
+using above description.</p>
+<p>The exact output you will see when you run your implementation will
+depend on the exact format you use in the necessary print statements
+and the version of the <code class="docutils literal notranslate"><span class="pre">random</span></code> library that you are using.</p>
+</section>
 <section id="dynamic-typing-revisited">
-<h3><span class="section-number">1.4.6.4. </span>Dynamic typing revisited<a class="headerlink" href="#dynamic-typing-revisited" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">1.4.6.6. </span>Dynamic typing revisited<a class="headerlink" href="#dynamic-typing-revisited" title="Permalink to this heading"></a></h3>
 <p>Let’s return to our <code class="docutils literal notranslate"><span class="pre">multiply</span></code> function and revisit the impact of
 dynamic typing.  In this case, we’ve defined a function that is
 intended to work with numbers. One of the nice things about Python is
-that, as defined, the function will also seamlessly work with floats:</p>
+that, as defined, the function will also seamlessly work with floats as well as with the integers that we used in our initial examples:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">multiply</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
 <span class="go">7.5</span>
 </pre></div>
@@ -1294,7 +1472,7 @@ passing incompatible values can lead to errors at runtime:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">multiply</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="s2">&quot;hello&quot;</span><span class="p">)</span>
 <span class="gt">Traceback (most recent call last):</span>
   File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
-  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">11</span>, in <span class="n">multiply</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">12</span>, in <span class="n">multiply</span>
 <span class="gr">TypeError</span>: <span class="n">can&#39;t multiply sequence by non-int of type &#39;float&#39;</span>
 </pre></div>
 </div>
@@ -1323,15 +1501,15 @@ code, we could move the definition out of the functions altogether.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">NUM_SIDES</span> <span class="o">=</span> <span class="mi">6</span>
 
 <span class="k">def</span> <span class="nf">get_largest_roll</span><span class="p">(</span><span class="n">num_dice</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Roll a specified number of dice and return the largest face</span>
 <span class="sd">    value.</span>
 
-<span class="sd">    Inputs:</span>
-<span class="sd">      num_dice (int): the number of dice to roll</span>
+<span class="sd">    Args:</span>
+<span class="sd">        num_dice (int): the number of dice to roll</span>
 
 <span class="sd">    Returns (int): the largest face value rolled</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># initialize largest with a value smaller than the smallest</span>
     <span class="c1"># possible roll.</span>
@@ -1343,14 +1521,14 @@ code, we could move the definition out of the functions altogether.</p>
     <span class="k">return</span> <span class="n">largest</span>
 
 <span class="k">def</span> <span class="nf">sum_throw</span><span class="p">(</span><span class="n">num_dice</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Throw a specified number dice and sum up the resulting rolls.</span>
 
-<span class="sd">    Inputs:</span>
-<span class="sd">      num_dice (int): the number of dice to roll</span>
+<span class="sd">    Args:</span>
+<span class="sd">        num_dice (int): the number of dice to roll</span>
 
 <span class="sd">    Returns (int): the sum of the face values rolled</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_dice</span><span class="p">):</span>
@@ -1361,7 +1539,8 @@ code, we could move the definition out of the functions altogether.</p>
 </div>
 <p>In this example, the variable <code class="docutils literal notranslate"><span class="pre">NUM_SIDES</span></code> is defined and then used
 in both functions.  As an aside, it is common to use names with all
-capital letters to signal that a value is a constant.</p>
+capital letters to signal that a variable is a constant (that is, its
+value will not change once it is set).</p>
 <p>This is an excellent use of a global variable.  We avoid repeated code
 (i.e., multiple definitions of the same value) and, since the value
 does not change, there is never any confusion about the variable’s
@@ -1391,16 +1570,17 @@ about the die in some cases and not others:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">NUM_SIDES</span> <span class="o">=</span> <span class="mi">6</span>
 
 <span class="k">def</span> <span class="nf">get_largest_roll</span><span class="p">(</span><span class="n">num_dice</span><span class="p">,</span> <span class="n">die_num_sides</span><span class="o">=</span><span class="n">NUM_SIDES</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Roll a specified number of dice and return the largest face</span>
 <span class="sd">    value.</span>
 
-<span class="sd">    Inputs:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        num_dice (int): the number of dice to roll</span>
-<span class="sd">        die_num_sides (int): the number of sides on a die (default: 6)</span>
+<span class="sd">        die_num_sides (int): the number of sides on a</span>
+<span class="sd">          die (default: 6)</span>
 
 <span class="sd">    Returns (int): the largest face value rolled</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># initialize largest with a value smaller than the smallest</span>
     <span class="c1"># possible roll.</span>
@@ -1425,9 +1605,7 @@ local variable <em>shadows</em> the global variable.  That is, the local variabl
 takes precedence.  Here is a simple example of this behavior:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">add_c</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
-<span class="gp">... </span><span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="gp">... </span><span class="sd">    Add x and c</span>
-<span class="gp">... </span><span class="sd">    &#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="w">    </span><span class="sd">&quot;&quot;&quot; Add x and c &quot;&quot;&quot;</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span>
 <span class="gp">... </span>
 <span class="gp">... </span>
@@ -1441,9 +1619,7 @@ global <code class="docutils literal notranslate"><span class="pre">c</span></co
 <p>Here is a related example that illustrates another aspect of shadowing:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">add_10</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-<span class="gp">... </span><span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="gp">... </span><span class="sd">    Add 10 to x</span>
-<span class="gp">... </span><span class="sd">    &#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="w">    </span><span class="sd">&quot;&quot;&quot; Add 10 to x &quot;&quot;&quot;</span>
 <span class="gp">... </span>    <span class="n">c</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span>
 <span class="gp">... </span>
@@ -1466,9 +1642,7 @@ global variable within a function by declaring that it is
 use of this feature:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">update_c</span><span class="p">(</span><span class="n">new_c</span><span class="p">):</span>
-<span class="gp">... </span><span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="gp">... </span><span class="sd">    Update the value of the global variable c</span>
-<span class="gp">... </span><span class="sd">    &#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="w">    </span><span class="sd">&quot;&quot;&quot; Update the value of the global variable c  &quot;&quot;&quot;</span>
 <span class="gp">... </span>
 <span class="gp">... </span>    <span class="k">global</span> <span class="n">c</span>
 <span class="gp">... </span>    <span class="n">c</span> <span class="o">=</span> <span class="n">new_c</span>
@@ -1507,40 +1681,40 @@ function calls that are in progress. When a program begins to run, the call
 stack is empty because no functions have been called. Now, let’s suppose we have
 these three simple functions:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tax</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">rate</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the tax for a given price.</span>
 
-<span class="sd">    Inputs:</span>
-<span class="sd">      p (float): price</span>
-<span class="sd">      rate (float): tax rate</span>
+<span class="sd">    Args:</span>
+<span class="sd">        p (float): price</span>
+<span class="sd">        rate (float): tax rate</span>
 
 <span class="sd">    Returns (float): the computed tax</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">p</span> <span class="o">*</span> <span class="n">rate</span>
     <span class="k">return</span> <span class="n">t</span>
 
-<span class="k">def</span> <span class="nf">taxed_price</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">taxed_price</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">rate</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the price with tax.</span>
 
-<span class="sd">    Inputs:</span>
-<span class="sd">      price (float): price</span>
-<span class="sd">      rate (float): tax rate</span>
+<span class="sd">    Args:</span>
+<span class="sd">        price (float): price</span>
+<span class="sd">        rate (float): tax rate</span>
 
 <span class="sd">    Returns (float): price with tax</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">price</span> <span class="o">=</span> <span class="n">price</span> <span class="o">+</span> <span class="n">tax</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">price</span> <span class="o">=</span> <span class="n">price</span> <span class="o">+</span> <span class="n">tax</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">rate</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">price</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute and print the price 100 with tax.</span>
 
-<span class="sd">    Inputs: none</span>
+<span class="sd">    Args: none</span>
 
 <span class="sd">    Returns: None</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">p</span> <span class="o">=</span> <span class="mi">100</span>
 
@@ -1549,10 +1723,9 @@ these three simple functions:</p>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The taxed price of&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="n">tp</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">taxed_price</span></code> takes a price (<code class="docutils literal notranslate"><span class="pre">price</span></code>) and a tax rate (<code class="docutils literal notranslate"><span class="pre">t</span></code>) and
+<p><code class="docutils literal notranslate"><span class="pre">taxed_price</span></code> takes a price (<code class="docutils literal notranslate"><span class="pre">price</span></code>) and a tax rate (<code class="docutils literal notranslate"><span class="pre">rate</span></code>) and
 computes the price with tax. <code class="docutils literal notranslate"><span class="pre">tax</span></code> takes the same parameters and
-computes just the tax (although note how the tax rate parameter is
-called <code class="docutils literal notranslate"><span class="pre">rate</span></code>; this naming choice was a conscious decision). The
+computes just the tax. The
 <code class="docutils literal notranslate"><span class="pre">main</span></code> function calls <code class="docutils literal notranslate"><span class="pre">taxed_price</span></code> and prints information about
 the price with and without taxes.</p>
 <p>Now, let’s say we call the <code class="docutils literal notranslate"><span class="pre">main</span></code> function:</p>
@@ -1644,7 +1817,7 @@ By convention, we draw the new frame stacked below the existing frame:</p>
 <p><strong>Parameters</strong>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">price</span></code>: 100</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">t</span></code>: 0.10</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rate</span></code>: 0.10</p></li>
 </ul>
 <p><strong>Variables</strong>: None</p>
 <p><strong>Return Value</strong>: None</p>
@@ -1656,7 +1829,7 @@ By convention, we draw the new frame stacked below the existing frame:</p>
 program needs to remember the state <code class="docutils literal notranslate"><span class="pre">main</span></code> was in before the call to
 <code class="docutils literal notranslate"><span class="pre">taxed_price</span></code> (such as the value of its local variables) so that it
 can return to that exact same state when <code class="docutils literal notranslate"><span class="pre">taxed_price</span></code> returns.</p>
-<p>Next, notice that the value of parameter <code class="docutils literal notranslate"><span class="pre">price</span></code> is set to 100.  Why?
+<p>Next, notice that the value of parameter <code class="docutils literal notranslate"><span class="pre">price</span></code> is set to 100 and the value of the parameter <code class="docutils literal notranslate"><span class="pre">rate</span></code> is set to 0.10.  Why?
 Because we called <code class="docutils literal notranslate"><span class="pre">taxed_price</span></code> like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">taxed_price</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">)</span>
 </pre></div>
@@ -1692,7 +1865,7 @@ call stack:</p>
 <p><strong>Parameters</strong>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">price</span></code>: 100</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">t</span></code>: 0.10</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rate</span></code>: 0.10</p></li>
 </ul>
 <p><strong>Variables</strong>: None</p>
 <p><strong>Return Value</strong>: None</p>
@@ -1768,7 +1941,7 @@ is run, the stack will look like this:</p>
 <p><strong>Parameters</strong>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">price</span></code>: 100</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">t</span></code>: 0.10</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rate</span></code>: 0.10</p></li>
 </ul>
 <p><strong>Variables</strong>:</p>
 <ul class="simple">
@@ -1828,6 +2001,275 @@ and they do not persist into future function calls. For example, if we called
 <code class="docutils literal notranslate"><span class="pre">tax</span></code> again, it would not “remember” that a previous call already set a value
 for its local variable <code class="docutils literal notranslate"><span class="pre">t</span></code>.</p></li>
 </ul>
+</section>
+<section id="practice-problem-solutions">
+<h2><span class="section-number">1.4.9. </span>Practice Problem Solutions<a class="headerlink" href="#practice-problem-solutions" title="Permalink to this heading"></a></h2>
+<p><strong>Problem 1</strong>:</p>
+<p>Here is a solution that assumes that the functions <code class="docutils literal notranslate"><span class="pre">is_prime</span></code> and <code class="docutils literal notranslate"><span class="pre">print_categories</span></code> are in the same file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_categories</span><span class="p">(</span><span class="n">lb</span><span class="p">,</span> <span class="n">ub</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Print the primes between lb and ub inclusive.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        lb (int): the lower bound of the range</span>
+<span class="sd">        ub (int): the lower bound of the range</span>
+
+<span class="sd">    Returns: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lb</span><span class="p">,</span> <span class="n">ub</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;prime&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;composite&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And here is one that assumes that <code class="docutils literal notranslate"><span class="pre">is_prime</span></code> and
+<code class="docutils literal notranslate"><span class="pre">print_categories</span></code> are in different files and that <code class="docutils literal notranslate"><span class="pre">is_prime</span></code> is
+in a file named <code class="docutils literal notranslate"><span class="pre">primes.py</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">primes</span>
+
+<span class="k">def</span> <span class="nf">print_categories</span><span class="p">(</span><span class="n">lb</span><span class="p">,</span> <span class="n">ub</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Print the primes between lb and ub inclusive.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        lb (int): the lower bound of the range</span>
+<span class="sd">        ub (int): the lower bound of the range</span>
+
+<span class="sd">    Returns: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lb</span><span class="p">,</span> <span class="n">ub</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">primes</span><span class="o">.</span><span class="n">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;prime&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;composite&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Problem 2</strong></p>
+<p>Here is a solution that uses a single return statement:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_grade</span><span class="p">(</span><span class="n">midterm</span><span class="p">,</span> <span class="n">final</span><span class="p">,</span> <span class="n">hw_avg</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a student&#39;s midterm and final exam grades and their average</span>
+<span class="sd">    homework score, compute the student&#39;s grade.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">        midterm (float): a score between 0-100</span>
+<span class="sd">        final (float): a score between 0-100</span>
+<span class="sd">        hw_avg (float): a score between 0-100</span>
+
+<span class="sd">    Returns (str): the student&#39;s grade </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Verify that the parameters have sensible values</span>
+    <span class="k">assert</span> <span class="mf">0.0</span> <span class="o">&lt;=</span> <span class="n">midterm</span> <span class="o">&lt;=</span> <span class="mf">100.0</span>
+    <span class="k">assert</span> <span class="mf">0.0</span> <span class="o">&lt;=</span> <span class="n">final</span> <span class="o">&lt;=</span> <span class="mf">100.0</span>
+    <span class="k">assert</span> <span class="mf">0.0</span> <span class="o">&lt;=</span> <span class="n">hw_avg</span> <span class="o">&lt;=</span> <span class="mf">100.0</span>
+
+    <span class="k">if</span> <span class="n">final</span> <span class="o">&gt;=</span> <span class="mi">90</span> <span class="ow">and</span> <span class="n">midterm</span> <span class="o">&gt;=</span> <span class="mi">90</span> <span class="ow">and</span> <span class="n">hw_avg</span> <span class="o">&gt;=</span> <span class="mi">90</span><span class="p">:</span>
+        <span class="n">grade</span> <span class="o">=</span>  <span class="s1">&#39;A&#39;</span>
+    <span class="k">elif</span> <span class="n">final</span> <span class="o">&gt;=</span> <span class="mi">80</span> <span class="ow">and</span> <span class="n">midterm</span> <span class="o">&gt;=</span> <span class="mi">80</span> <span class="ow">and</span> <span class="n">hw_avg</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">:</span>
+        <span class="n">grade</span> <span class="o">=</span>  <span class="s1">&#39;B&#39;</span>
+    <span class="k">elif</span> <span class="n">final</span> <span class="o">&gt;=</span> <span class="mi">70</span> <span class="ow">and</span> <span class="n">midterm</span> <span class="o">&gt;=</span> <span class="mi">70</span> <span class="ow">and</span> <span class="n">hw_avg</span> <span class="o">&gt;=</span> <span class="mi">70</span><span class="p">:</span>
+        <span class="n">grade</span> <span class="o">=</span>  <span class="s1">&#39;C&#39;</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">final</span> <span class="o">&gt;=</span> <span class="mi">50</span> <span class="ow">and</span> <span class="n">midterm</span> <span class="o">&gt;=</span> <span class="mi">50</span> <span class="ow">and</span> 
+          <span class="n">final</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">midterm</span><span class="o">+</span><span class="mi">20</span><span class="p">)</span> <span class="ow">and</span> <span class="n">hw_avg</span> <span class="o">&gt;=</span> <span class="mi">90</span><span class="p">):</span>
+        <span class="n">grade</span> <span class="o">=</span>  <span class="s1">&#39;B&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">grade</span> <span class="o">=</span>  <span class="s1">&#39;F&#39;</span>
+    <span class="k">return</span> <span class="n">grade</span>
+</pre></div>
+</div>
+<p>And here is a solution that uses multiple return statements:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_grade</span><span class="p">(</span><span class="n">midterm</span><span class="p">,</span> <span class="n">final</span><span class="p">,</span> <span class="n">hw_avg</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a student&#39;s midterm and final exam grades and their average</span>
+<span class="sd">    homework score, compute the student&#39;s grade.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">        midterm (float): a score between 0-100</span>
+<span class="sd">        final (float): a score between 0-100</span>
+<span class="sd">        hw_avg (float): a score between 0-100</span>
+
+<span class="sd">    Returns (str): the student&#39;s grade </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Verify that the parameters have sensible values</span>
+    <span class="k">assert</span> <span class="mf">0.0</span> <span class="o">&lt;=</span> <span class="n">midterm</span> <span class="o">&lt;=</span> <span class="mf">100.0</span>
+    <span class="k">assert</span> <span class="mf">0.0</span> <span class="o">&lt;=</span> <span class="n">final</span> <span class="o">&lt;=</span> <span class="mf">100.0</span>
+    <span class="k">assert</span> <span class="mf">0.0</span> <span class="o">&lt;=</span> <span class="n">hw_avg</span> <span class="o">&lt;=</span> <span class="mf">100.0</span>
+
+    <span class="k">if</span> <span class="n">final</span> <span class="o">&gt;=</span> <span class="mi">90</span> <span class="ow">and</span> <span class="n">midterm</span> <span class="o">&gt;=</span> <span class="mi">90</span> <span class="ow">and</span> <span class="n">hw_avg</span> <span class="o">&gt;=</span> <span class="mi">90</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;A&#39;</span>
+    <span class="k">if</span> <span class="n">final</span> <span class="o">&gt;=</span> <span class="mi">80</span> <span class="ow">and</span> <span class="n">midterm</span> <span class="o">&gt;=</span> <span class="mi">80</span> <span class="ow">and</span> <span class="n">hw_avg</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">:</span>
+        <span class="k">return</span>  <span class="s1">&#39;B&#39;</span>
+    <span class="k">if</span> <span class="n">final</span> <span class="o">&gt;=</span> <span class="mi">70</span> <span class="ow">and</span> <span class="n">midterm</span> <span class="o">&gt;=</span> <span class="mi">70</span> <span class="ow">and</span> <span class="n">hw_avg</span> <span class="o">&gt;=</span> <span class="mi">70</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;C&#39;</span> 
+    <span class="k">if</span> <span class="p">(</span><span class="n">final</span> <span class="o">&gt;=</span> <span class="mi">50</span> <span class="ow">and</span> <span class="n">midterm</span> <span class="o">&gt;=</span> <span class="mi">50</span> <span class="ow">and</span> 
+        <span class="n">final</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">midterm</span><span class="o">+</span><span class="mi">20</span><span class="p">)</span> <span class="ow">and</span> <span class="n">hw_avg</span> <span class="o">&gt;=</span> <span class="mi">90</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;B&#39;</span>
+    <span class="k">return</span> <span class="s1">&#39;F&#39;</span>
+</pre></div>
+</div>
+<p>Which do you find easier to understand?</p>
+<p>Here is some basic test code for this function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_compute_grade</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Simple test code for compute grade &quot;&quot;&quot;</span>
+
+    <span class="k">assert</span> <span class="n">compute_grade</span><span class="p">(</span><span class="mf">90.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">,</span> <span class="mf">92.0</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;A&quot;</span>
+    <span class="k">assert</span> <span class="n">compute_grade</span><span class="p">(</span><span class="mf">80.0</span><span class="p">,</span> <span class="mf">85.5</span><span class="p">,</span> <span class="mf">80.0</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;B&quot;</span>
+    <span class="k">assert</span> <span class="n">compute_grade</span><span class="p">(</span><span class="mf">70.0</span><span class="p">,</span> <span class="mf">70.0</span><span class="p">,</span> <span class="mf">73.5</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;C&quot;</span>
+    <span class="k">assert</span> <span class="n">compute_grade</span><span class="p">(</span><span class="mf">50.0</span><span class="p">,</span> <span class="mf">70.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;B&quot;</span>
+    <span class="k">assert</span> <span class="n">compute_grade</span><span class="p">(</span><span class="mf">70.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;F&quot;</span>
+    <span class="k">assert</span> <span class="n">compute_grade</span><span class="p">(</span><span class="mf">50.0</span><span class="p">,</span> <span class="mf">70.0</span><span class="p">,</span> <span class="mf">85.0</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;F&quot;</span>
+</pre></div>
+</div>
+<p>This test function must either be in the same file as
+<code class="docutils literal notranslate"><span class="pre">compute_grade</span></code> or the that contains the test code must include an
+import statement that imports the function by name.  For example, if
+<code class="docutils literal notranslate"><span class="pre">compute_grade</span></code> is in a file call <code class="docutils literal notranslate"><span class="pre">instructor.py</span></code>, the inport
+statement would have the form:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">instructor</span> <span class="kn">import</span> <span class="n">compute_grade</span>
+</pre></div>
+</div>
+<p><strong>Problem 3</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fun1</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">2</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">i</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fun2</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">fun1</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">fun1</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fun3</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">fun1</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fun4</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">i</span> <span class="o">=</span> <span class="n">fun3</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">fun2</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fun4(6): </span><span class="si">{</span><span class="n">fun4</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="go">fun4(6): 16</span>
+</pre></div>
+</div>
+<p><strong>Problem 4</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fun1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="n">y</span> <span class="o">==</span> <span class="n">z</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span>
+<span class="gp">... </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="mi">1</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fun2</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="gp">... </span>    <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">3</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fun3</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="gp">... </span>            <span class="n">a</span> <span class="o">=</span> <span class="n">fun1</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="gp">... </span>            <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+<span class="gp">... </span>                <span class="n">fun2</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+<span class="gp">... </span>                <span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fun3(6, 4, 2): </span><span class="si">{</span><span class="n">fun3</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="go">fun3(6, 4, 2): 8</span>
+</pre></div>
+</div>
+<p><strong>Problem 5</strong></p>
+<p>Here is <code class="docutils literal notranslate"><span class="pre">flip_coin</span></code> augmented to take the seed for the random number
+generator as an optional parameter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">flip_coins</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">prob_heads</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="gp">... </span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="gp">... </span><span class="sd"> Flip a weighted coin n times and report the number that come up</span>
+<span class="gp">... </span><span class="sd"> heads.</span>
+<span class="gp">... </span>
+<span class="gp">... </span><span class="sd"> Args:</span>
+<span class="gp">... </span><span class="sd">     n (int): number of times to flip the coin</span>
+<span class="gp">... </span><span class="sd">     prob_heads (float): probability that the coin comes up heads</span>
+<span class="gp">... </span><span class="sd">         (default: 0.5)</span>
+<span class="gp">... </span><span class="sd">     seed (int | None): the seed for the random number generator</span>
+<span class="gp">... </span><span class="sd">         (default: None)</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="gp">... </span><span class="sd"> Returns (int): number of flips that came up heads.</span>
+<span class="gp">... </span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="gp">... </span>
+<span class="gp">... </span> <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="gp">... </span> <span class="n">num_heads</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">... </span>
+<span class="gp">... </span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="gp">... </span>     <span class="n">flip</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="gp">... </span>     <span class="k">if</span> <span class="n">flip</span> <span class="o">&lt;</span> <span class="n">prob_heads</span><span class="p">:</span>
+<span class="gp">... </span>         <span class="n">num_heads</span> <span class="o">=</span> <span class="n">num_heads</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="gp">... </span>
+<span class="gp">... </span> <span class="k">return</span> <span class="n">num_heads</span>
+<span class="gp">... </span>
+</pre></div>
+</div>
+<p>Here are some sample uses of this function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">prob_heads</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">prob_heads</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+<p>Depending on which version of the Python <code class="docutils literal notranslate"><span class="pre">random</span></code> library you are
+running, you may get different results.</p>
+<p><strong>Problem 6</strong></p>
+<p>Here is the implement of <code class="docutils literal notranslate"><span class="pre">flip_coin</span></code> from Problem 5 augmented to take the debug level as parameter:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">flip_coins</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">prob_heads</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">debug_level</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Flip a weighted coin n times and report the number that come up</span>
+<span class="sd">    heads.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n (int): number of times to flip the coin</span>
+<span class="sd">        prob_heads (float): probability that the coin comes up heads</span>
+<span class="sd">            (default: 0.5)</span>
+<span class="sd">        seed (int | None): the seed for the random number generator</span>
+<span class="sd">            (default: None)</span>
+<span class="sd">        debug_level (int): controls the amount of information printed</span>
+<span class="sd">            about the computation</span>
+
+<span class="sd">    Returns (int): number of flips that came up heads.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">debug_level</span> <span class="o">&lt;=</span> <span class="mi">2</span>
+
+    <span class="k">if</span> <span class="n">debug_level</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Debug </span><span class="si">{</span><span class="n">debug_level</span><span class="si">}</span><span class="s2">: &quot;</span> <span class="o">+</span> 
+               <span class="sa">f</span><span class="s2">&quot;flip_coins(n=</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">, prob_heads</span><span class="si">{</span><span class="n">prob_heads</span><span class="si">}</span><span class="s2">, &quot;</span> <span class="o">+</span>
+               <span class="sa">f</span><span class="s2">&quot;seed=</span><span class="si">{</span><span class="n">seed</span><span class="si">}</span><span class="s2">, debug_level=</span><span class="si">{</span><span class="n">debug_level</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+              
+              
+    <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+    <span class="n">num_heads</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">flip</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">flip</span> <span class="o">&lt;</span> <span class="n">prob_heads</span><span class="p">:</span>
+            <span class="n">num_heads</span> <span class="o">=</span> <span class="n">num_heads</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">debug_level</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Debug </span><span class="si">{</span><span class="n">debug_level</span><span class="si">}</span><span class="s2">: flip: </span><span class="si">{</span><span class="n">flip</span><span class="si">}</span><span class="se">\t</span><span class="s2">&quot;</span> <span class="o">+</span>
+                   <span class="sa">f</span><span class="s2">&quot;num_heads: </span><span class="si">{</span><span class="n">num_heads</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">num_heads</span>
+</pre></div>
+</div>
+<p>The escape sequence <code class="docutils literal notranslate"><span class="pre">\t</span></code>, used in the coin flip print statement, corresponds to a tab character.</p>
 </section>
 </section>
 

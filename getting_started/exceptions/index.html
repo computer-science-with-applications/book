@@ -51,6 +51,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../organization/index.html">1.5. Basics of Code Organization</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">1.6. Understanding Errors and Catching Exceptions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#catching-exceptions">1.6.1. Catching exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#practice-problems">1.6.2. Practice Problems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#practice-problem-solutions">1.6.3. Practice Problem Solutions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../example/index.html">1.7. Example: A Game of Chance</a></li>
@@ -109,10 +111,10 @@ raised (<code class="docutils literal notranslate"><span class="pre">division</s
 <p>The error message contains a <em>stack trace</em> or a synopsis of the state of
 the call stack when the error is detected.</p>
 <p>Specifically, in this example, the first two lines constitute the
-stack trace.  Because we directly typed <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">42</span> <span class="pre">/</span> <span class="pre">0</span></code> into
-the interpreter, these lines don’t provide a lot of information in
-this case (it is immediately apparent that the error originated in the
-code we just typed).</p>
+stack trace.  Because we directly typed <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">42</span> <span class="pre">/</span> <span class="pre">0</span></code> into the
+interpreter, these lines don’t provide a lot of information (it is
+immediately apparent that the error originated in the code we just
+typed).</p>
 <p>The stack trace is much more useful when an exception is raised inside
 a function, as it will tell us the exact line inside that function
 where the exception was raised. Not just that, it will provide us with
@@ -121,14 +123,14 @@ the complete sequence of function calls that led to the exception.</p>
 the result of dividing an integer N by all the positive integers less
 than N.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; divide a by b &#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; divide a by b &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
 
 <span class="k">def</span> <span class="nf">print_divisions</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; Print result of dividing N by integers less than N. &#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Print result of dividing N by integers less than N. &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
         <span class="n">d</span> <span class="o">=</span> <span class="n">divide</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If we store this code in a file named <code class="docutils literal notranslate"><span class="pre">exc.py</span></code>, import it into
@@ -145,9 +147,8 @@ something like this:</p>
 <span class="gr">ZeroDivisionError</span>: <span class="n">division by zero</span>
 </pre></div>
 </div>
-<p>Notice how this stack trace is much more informative. In particular,
-it tells us than an exception happened after the following sequence of
-events:</p>
+<p>This stack trace is much more informative. In particular, it tells us
+than an exception happened after the following sequence of events:</p>
 <ul class="simple">
 <li><p>Python ran <code class="docutils literal notranslate"><span class="pre">exc.print_divisions(12)</span></code> in the interpreter (shown in the stack trace as as <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&quot;&lt;stdin&gt;&quot;,</span> <span class="pre">line</span> <span class="pre">1,</span>&#160; <span class="pre">in</span> <span class="pre">&lt;module&gt;</span></code>).</p></li>
 <li><p>During the call to <code class="docutils literal notranslate"><span class="pre">print_divisions</span></code>, Python ran the line
@@ -156,9 +157,9 @@ events:</p>
 located in line 3 of <code class="docutils literal notranslate"><span class="pre">exc.py</span></code>. This last entry in the stack
 trace produced a <code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code> exception.</p></li>
 </ul>
-<p>Notice that this is simply a printed version of the function call
-stack, which we covered in section <a class="reference internal" href="../intro_functions/index.html#call-stack"><span class="std std-ref">The function call stack</span></a> of the previous
-chapter.</p>
+<p>Notice that this trace is simply a printed version of the function
+call stack, which we covered in section <a class="reference internal" href="../intro_functions/index.html#call-stack"><span class="std std-ref">The function call stack</span></a> of the
+chapter that introduced functions.</p>
 <p>There is clearly something wrong in our code, and the exception’s
 stack trace can be very useful to figure out exactly what is wrong.
 Frequently there is a difference between the line that raises the
@@ -185,7 +186,7 @@ want to avoid the value zero, so the <code class="docutils literal notranslate">
 </pre></div>
 </div>
 <p>Instead of changing <code class="docutils literal notranslate"><span class="pre">exc.py</span></code>, we will copy the file to a new file
-named <code class="docutils literal notranslate"><span class="pre">exc_fixed.py</span></code> and then fix the copy.  If import the corrected
+named <code class="docutils literal notranslate"><span class="pre">exc_fixed.py</span></code> and then fix the copy.  If we import the corrected
 version and run <code class="docutils literal notranslate"><span class="pre">exc_fixed.print_divisions(12)</span></code>, we will get:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">exc_fixed</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">exc_fixed</span><span class="o">.</span><span class="n">print_divisions</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
@@ -204,13 +205,19 @@ version and run <code class="docutils literal notranslate"><span class="pre">exc
 </div>
 <p>Now, we get the result we expect.  The loop starts at <code class="docutils literal notranslate"><span class="pre">1</span></code> and no
 longer triggers the divide-by-zero exception.</p>
-<p>So, when your code raises an exception, try not to fixate on the exact
-line that raises the exception. While that line could be wrong, it is
-just as likely that the actual origin of the exception is somewhere
-else in your code.  The stack trace provides some hints as to where to
-look for the error.  Systematically adding <code class="docutils literal notranslate"><span class="pre">print</span></code> statements that
-highlight the value of crucial variables can help you isolate the
-source of the error.</p>
+<p>Making mistakes is an important part of learning to program and, it is
+a normal part of writing and debugging code even, for experience
+programmers.  Learning to use the clues provided by an error message
+to identify the source of a bug takes time and patience.  When your
+code raises an exception, try not to get too frustrated and try not
+fixate on the exact line that raises the exception.  Instead, start by
+reading the last line of the error message to understand exactly which
+exception was raised and then work your way through the stack trace,
+starting with the line that raised the exception and working backwards
+through the call chain.  Using the insight you gained from that
+process to decide where to add print statements to highight the value
+of crucial variables and to reason careully about the flow of control
+will help lead you to the source of the problem.</p>
 <section id="catching-exceptions">
 <h2><span class="section-number">1.6.1. </span>Catching exceptions<a class="headerlink" href="#catching-exceptions" title="Permalink to this heading"></a></h2>
 <p>While exceptions can alert us to errors in our code, they can also be
@@ -221,7 +228,7 @@ not defined when <code class="docutils literal notranslate"><span class="pre">b<
 <p>We can catch an exception with a <code class="docutils literal notranslate"><span class="pre">try</span></code> statement, also known as a
 <code class="docutils literal notranslate"><span class="pre">try</span></code> .. <code class="docutils literal notranslate"><span class="pre">except</span></code> block.  For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; divide a by b &#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; divide a by b &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">ret_val</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
     <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
@@ -234,10 +241,10 @@ not defined when <code class="docutils literal notranslate"><span class="pre">b<
 <p>We will store this version of <code class="docutils literal notranslate"><span class="pre">divide</span></code> along with the original code
 for <code class="docutils literal notranslate"><span class="pre">print_divisions</span></code> (shown below) in a file named <code class="docutils literal notranslate"><span class="pre">exc_try.py</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_divisions</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&#39;&#39;&#39; Print result of dividing N by integers less than N. &#39;&#39;&#39;</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot; Print result of dividing N by integers less than N. &quot;&quot;&quot;</span>
   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
       <span class="n">d</span> <span class="o">=</span> <span class="n">divide</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-      <span class="nb">print</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If we run this new version, we will get:</p>
@@ -258,8 +265,8 @@ for <code class="docutils literal notranslate"><span class="pre">print_divisions
 </pre></div>
 </div>
 <p>A <code class="docutils literal notranslate"><span class="pre">try</span></code> statement allows us to “try” a piece of code, which we write
-after the <code class="docutils literal notranslate"><span class="pre">try</span></code> and, if it raises an exception, run an alternate
-piece of code, which can be found after the <code class="docutils literal notranslate"><span class="pre">except</span></code>.  In this case,
+after the <code class="docutils literal notranslate"><span class="pre">try:</span></code> and, if it raises an exception, run an alternate
+piece of code, which can be found after the <code class="docutils literal notranslate"><span class="pre">except:</span></code>.  In this case,
 the division in the first call to <code class="docutils literal notranslate"><span class="pre">divide</span></code> will trigger the
 exception and the code in the <code class="docutils literal notranslate"><span class="pre">except</span></code> clause will be run and will
 set <code class="docutils literal notranslate"><span class="pre">ret_val</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code>.  Once the code in the <code class="docutils literal notranslate"><span class="pre">except</span></code> clause
@@ -297,7 +304,7 @@ stops, and the stack trace message shown above is printed,</p>
         <span class="n">ret_val</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
         <span class="c1"># Fail: no way to move forward.</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type error:, err)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type error:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ret_val</span>
 </pre></div>
@@ -350,12 +357,12 @@ catch everything. Don’t.  It is likely that your application will be
 better served by handling different exceptions in different ways.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">try</span></code> statement also has an optional <code class="docutils literal notranslate"><span class="pre">finally</span></code> clause that
 gets run whether an exception is raised or not. This clause is useful
-when there are any cleanup operations that need to be performed
+when there are cleanup operations that need to be performed
 (closing files, closing database connections, etc.) regardless of
 whether the code succeeded or failed.  For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; Divide a by b and catch exceptions&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Divide a by b and catch exceptions&quot;&quot;&quot;</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="n">ret_val</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
@@ -368,7 +375,7 @@ whether the code succeeded or failed.  For example:</p>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unexpected Error:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">finally</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;divide() was called with </span><span class="si">{}</span><span class="s2"> and </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;divide() was called with </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">ret_val</span>
 </pre></div>
@@ -388,7 +395,7 @@ from the start of the chapter.  We’ve modified <code class="docutils literal n
 that error in <code class="docutils literal notranslate"><span class="pre">print_divisions</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; Divide a by b and catch exceptions&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Divide a by b and catch exceptions&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">ret_val</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
     <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
@@ -398,13 +405,13 @@ that error in <code class="docutils literal notranslate"><span class="pre">print
     <span class="k">return</span> <span class="n">ret_val</span>
 
 <span class="k">def</span> <span class="nf">print_divisions</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; Print result of dividing N by integers less than N. &#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Print result of dividing N by integers less than N. &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">d</span> <span class="o">=</span> <span class="n">divide</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;is undefined&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> is undefined&quot;</span><span class="p">)</span>
 
 <span class="n">print_divisions</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
 </pre></div>
@@ -439,6 +446,130 @@ now know enough to read error messages and handle simple exception
 processing.  We’ll return to the topic of exceptions later in the book
 to look ways to catch related types of errors in one <code class="docutils literal notranslate"><span class="pre">except</span></code> clause
 and how to define and raise your own exceptions.</p>
+</section>
+<section id="practice-problems">
+<h2><span class="section-number">1.6.2. </span>Practice Problems<a class="headerlink" href="#practice-problems" title="Permalink to this heading"></a></h2>
+<p>The practice problems in this section refer to the following functions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">some_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span><span class="w">    </span><span class="sd">&quot;&quot;&quot; Docstring left out on purpose &quot;&quot;&quot;</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="c1"># Will raise a TypeError if x is not a string.</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">x</span>
+<span class="gp">... </span>    <span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="c1"># Will raise a ZeroDivisionError</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="mi">10</span> <span class="o">/</span> <span class="n">x</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">elif</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="c1"># Will raise an AssertionError</span>
+<span class="gp">... </span>        <span class="k">assert</span> <span class="kc">False</span>
+<span class="gp">... </span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="s2">&quot;some_func does not raise an exception&quot;</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">some_other_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span><span class="w">    </span><span class="sd">&quot;&quot;&quot; Docstring left out on purpose &quot;&quot;&quot;</span>
+<span class="gp">... </span>    <span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">result</span> <span class="o">=</span> <span class="n">some_func</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="s2">&quot;Caught TypeError in some_other_func&quot;</span>
+<span class="gp">... </span>    <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="s2">&quot;Caught ZeroDivisionError in some_other_func&quot;</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">result</span>
+<span class="gp">... </span>
+<span class="gp">... </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">yet_another_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span><span class="w">    </span><span class="sd">&quot;&quot;&quot; Docstring left out on purpose &quot;&quot;&quot;</span>
+<span class="gp">... </span>    <span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">result</span> <span class="o">=</span> <span class="n">some_other_func</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="s2">&quot;Caught TypeError in yet_another_func&quot;</span>
+<span class="gp">... </span>    <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="s2">&quot;Caught ZeroDivisionError in yet_another_func&quot;</span>
+<span class="gp">... </span>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">result</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Caught </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2"> in yet_another_func&quot;</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">result</span>
+<span class="gp">... </span>
+</pre></div>
+</div>
+<p><strong>Problem 1</strong></p>
+<ul class="simple">
+<li><p>What value(s) could you pass to <code class="docutils literal notranslate"><span class="pre">some_func</span></code> to cause it to raise a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>,</p></li>
+<li><p>What value(s) could you pass to <code class="docutils literal notranslate"><span class="pre">some_func</span></code> to cause it to raise a <code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code>,</p></li>
+<li><p>What value(s) could you pass to <code class="docutils literal notranslate"><span class="pre">some_func</span></code> to cause it to raise an <code class="docutils literal notranslate"><span class="pre">AssertionError</span></code>, and</p></li>
+<li><p>What value(s) could you pass to <code class="docutils literal notranslate"><span class="pre">some_func</span></code> to cause it return a value rather than raise an exception?</p></li>
+</ul>
+<p><strong>Problem 2</strong></p>
+<ul class="simple">
+<li><p>What value(s) could you pass to <code class="docutils literal notranslate"><span class="pre">some_other_func</span></code> that will cause it to return <code class="docutils literal notranslate"><span class="pre">&quot;some_func</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">raise</span> <span class="pre">an</span> <span class="pre">exception&quot;</span></code>,</p></li>
+<li><p>What value(s) could you pass to <code class="docutils literal notranslate"><span class="pre">some_other_func</span></code> that will cause it to return <code class="docutils literal notranslate"><span class="pre">&quot;Caught</span> <span class="pre">TypeError</span> <span class="pre">in</span> <span class="pre">some_other_func&quot;</span></code>,  and</p></li>
+<li><p>What value(s) could you pass to <code class="docutils literal notranslate"><span class="pre">some_other_func</span></code> that will cause it to return <code class="docutils literal notranslate"><span class="pre">&quot;Caught</span> <span class="pre">ZeroDivisionError</span> <span class="pre">in</span> <span class="pre">some_other_func&quot;</span></code>.</p></li>
+</ul>
+<p><strong>Problem 3</strong></p>
+<p>What is the result of evaluating <code class="docutils literal notranslate"><span class="pre">some_other_func(5)</span></code>?</p>
+<p><strong>Problem 4</strong></p>
+<p>What is the result of evaluating the following calls:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">yet_another_func(0)</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">yet_another_func(1)</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">yet_another_func(5)</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">yet_another_func(15)</span></code>?</p></li>
+</ul>
+</section>
+<section id="practice-problem-solutions">
+<h2><span class="section-number">1.6.3. </span>Practice Problem Solutions<a class="headerlink" href="#practice-problem-solutions" title="Permalink to this heading"></a></h2>
+<p><strong>Problem 1</strong></p>
+<ul class="simple">
+<li><p>Any call to <code class="docutils literal notranslate"><span class="pre">some_func</span></code> with a value less than zero (e.g.  <code class="docutils literal notranslate"><span class="pre">some_func(-1)</span></code>) will raise a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">some_func(0)</span></code> will raise a <code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code>.</p></li>
+<li><p>Any call with a value between one and nine (inclusive) (e.g. <code class="docutils literal notranslate"><span class="pre">some_func(5)</span></code>) will raise an <code class="docutils literal notranslate"><span class="pre">AssertionError</span></code>.</p></li>
+<li><p>Any call with a value greater than or equal to ten (e.g. <code class="docutils literal notranslate"><span class="pre">some_func(20)</span></code>) will not raise an exception and will return the string <code class="docutils literal notranslate"><span class="pre">'some_func</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">raise</span> <span class="pre">an</span> <span class="pre">exception'</span></code>.</p></li>
+</ul>
+<p><strong>Problem 2</strong></p>
+<ul class="simple">
+<li><p>Any call to <code class="docutils literal notranslate"><span class="pre">some_other_func</span></code> with a value greater than or equal to nine (e.g. <code class="docutils literal notranslate"><span class="pre">some_other_func(9)</span></code> return the string <code class="docutils literal notranslate"><span class="pre">'some_func</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">raise</span> <span class="pre">an</span> <span class="pre">exception'</span></code>.  The call to <code class="docutils literal notranslate"><span class="pre">some_func</span></code> in the body of the <code class="docutils literal notranslate"><span class="pre">try</span></code> block of <code class="docutils literal notranslate"><span class="pre">some_other_func</span></code> does not raise an exception and so, none of the exception handlers are executed and and <code class="docutils literal notranslate"><span class="pre">some_other_func</span></code> executes the final return statement.</p></li>
+<li><p>Any call with a value less than -1 (e.g. <code class="docutils literal notranslate"><span class="pre">some_other_func(-2)</span></code>) will return <code class="docutils literal notranslate"><span class="pre">'Caught</span> <span class="pre">TypeError</span> <span class="pre">in</span> <span class="pre">some_other_func'</span></code>.  The call to <code class="docutils literal notranslate"><span class="pre">some_func</span></code> in the <code class="docutils literal notranslate"><span class="pre">try</span></code> block will raise a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>.  Since the error is not caught by <code class="docutils literal notranslate"><span class="pre">some_func</span></code> it is propagated to <code class="docutils literal notranslate"><span class="pre">some_other_func</span></code> where it is caught by the exception handler.  The exception handler returns the string.</p></li>
+<li><p>The call <code class="docutils literal notranslate"><span class="pre">some_other_func(-1)</span></code> will return <code class="docutils literal notranslate"><span class="pre">'Caught</span> <span class="pre">ZeroDivisionError</span> <span class="pre">in</span> <span class="pre">some_other_func'</span></code>. The call to <code class="docutils literal notranslate"><span class="pre">some_func</span></code> in the <code class="docutils literal notranslate"><span class="pre">try</span></code> block will raise a <code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code>.  Since the error is not caught by <code class="docutils literal notranslate"><span class="pre">some_func</span></code> it is propagated to <code class="docutils literal notranslate"><span class="pre">some_other_func</span></code> where it is caught by the exception handler.  The exception handler returns the string.</p></li>
+</ul>
+<p><strong>Problem 3</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">some_other_func</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">4</span>, in <span class="n">some_other_func</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">11</span>, in <span class="n">some_func</span>
+<span class="gr">AssertionError</span>
+</pre></div>
+</div>
+<p>This function raises an exception because the call to <code class="docutils literal notranslate"><span class="pre">some_func</span></code> raises an <code class="docutils literal notranslate"><span class="pre">AssertionError</span></code> and neither <code class="docutils literal notranslate"><span class="pre">some_func</span></code> nor <code class="docutils literal notranslate"><span class="pre">some_other_func</span></code> catch that type of exception, so it is propagated to top-level.</p>
+<p><strong>Problem 4</strong></p>
+<p>Each call to <code class="docutils literal notranslate"><span class="pre">yet_another_func</span></code> calls <code class="docutils literal notranslate"><span class="pre">some_other_func</span></code>, which in
+turn calls <code class="docutils literal notranslate"><span class="pre">some_func</span></code>.  Some of the calls to <code class="docutils literal notranslate"><span class="pre">some_func</span></code> raise
+exceptions, others do not.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">yet_another_func</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">&#39;Caught TypeError in some_other_func&#39;</span>
+</pre></div>
+</div>
+<p>In this case, the call to <code class="docutils literal notranslate"><span class="pre">some_func</span></code> raises a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>, which
+caught and handled by the <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> clause the <code class="docutils literal notranslate"><span class="pre">try</span></code> block in <code class="docutils literal notranslate"><span class="pre">some_other_func</span></code>.  That
+handler has a normal return statement, so the call to
+<code class="docutils literal notranslate"><span class="pre">some_other_func</span></code> finishes normally and the <code class="docutils literal notranslate"><span class="pre">try</span></code> block in <code class="docutils literal notranslate"><span class="pre">yet_another_func</span></code> finishes normally.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">yet_another_func</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">&#39;Caught ZeroDivisionError in some_other_func&#39;</span>
+</pre></div>
+</div>
+<p>Similar to the previous example, the exception, <code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code>, is handled by <code class="docutils literal notranslate"><span class="pre">some_other_func</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">yet_another_func</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">&#39;Caught  in yet_another_func&#39;</span>
+</pre></div>
+</div>
+<p>In this case, the call to <code class="docutils literal notranslate"><span class="pre">some_func</span></code> raises an <code class="docutils literal notranslate"><span class="pre">AssertionError</span></code>.
+That error is not caught in either <code class="docutils literal notranslate"><span class="pre">some_func</span></code> or
+<code class="docutils literal notranslate"><span class="pre">some_other_func</span></code> and so, it is propagated to the <code class="docutils literal notranslate"><span class="pre">try</span></code> block in
+<code class="docutils literal notranslate"><span class="pre">yet_other_func</span></code>, where it is caught and handled by the
+<code class="docutils literal notranslate"><span class="pre">Exception</span></code> clause.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">yet_another_func</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="go">&#39;some_func does not raise an exception&#39;</span>
+</pre></div>
+</div>
+<p>This call does not raise any exceptions.</p>
 </section>
 </section>
 

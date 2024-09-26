@@ -600,17 +600,25 @@ Comments: &gt;
 <p>As with any library, we need to import the <code class="docutils literal notranslate"><span class="pre">yaml</span></code> library before we
 can use it:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">yaml</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">ModuleNotFoundError</span>: <span class="n">No module named &#39;yaml&#39;</span>
 </pre></div>
 </div>
 <p>We can load a YAML file using <code class="docutils literal notranslate"><span class="pre">yaml.load</span></code> with a file pointer:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;rubric.yml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="n">rubric</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 <span class="gp">... </span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">2</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;yaml&#39; is not defined</span>
 </pre></div>
 </div>
 <p>The result will be a dictionary:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rubric</span>
-<span class="go">{&#39;Points&#39;: {&#39;Tests&#39;: {&#39;Points Possible&#39;: 50, &#39;Points Obtained&#39;: 45}, &#39;Implementing foo()&#39;: {&#39;Points Possible&#39;: 20, &#39;Points Obtained&#39;: 10}, &#39;Implementing bar()&#39;: {&#39;Points Possible&#39;: 20, &#39;Points Obtained&#39;: 20}, &#39;Code Style&#39;: {&#39;Points Possible&#39;: 10, &#39;Points Obtained&#39;: 7.5}}, &#39;Penalties&#39;: {&#39;Code comments are written in Old English&#39;: -5}, &#39;Bonuses&#39;: {&#39;Worked alone&#39;: 10}, &#39;Total Points&#39;: &#39;87.5 / 100&#39;, &#39;Comments&#39;: &#39;Well done!\n&#39;}</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;rubric&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Notice that the nesting of the dictionary reflects the nesting of the

@@ -57,7 +57,7 @@ we "ran" the ``hello.py`` file, but we ``import``-ed the ``primes.py`` file. To
 explore this distinction, we'll start by elaborating on what it means to "import" a module.
 To do this, we will use two
 modules which you can find in our :ref:`example code <example-code>`: ``getting-started/code-organization/primes.py``
-and ``getting-started/code-organization/mersenne.py`` In Python, modules are usually referred
+and ``getting-started/code-organization/mersenne.py``. In Python, modules are usually referred
 to without the ``.py`` extension, so we will refer to these as the "``primes`` modules" and the
 "``mersenne`` module".
 
@@ -67,10 +67,27 @@ and ``is_prime``:
 .. code:: python
 
    def print_primes(max_n):
-       # ...
+       """
+       Print the primes between 2 and max_n inclusive.
+
+       Args:
+           max_n (int): the upper bound on the range
+
+       Returns: None
+       """
+       # code omitted
+
 
    def is_prime(n):
-       # ...
+       """
+       Is n a prime number?
+
+       Args:
+           n (int): the value to check
+
+       Returns (bool): True if n is prime and False otherwise.
+       """
+       # code omitted
 
 The actual implementation of these functions won't be relevant to our discussion of modules,
 as we'll be focusing on how these functions are *called* across modules, and not on how they
@@ -115,25 +132,42 @@ like this:
 
     import primes
 
-    def is_mersenne_prime(p):
-        # ...
+    def is_mersenne_prime_exponent(p):
+        # docstring and code omitted
 
-    def is_power_of_two(n):
-        # ...
+
+    def get_power_of_two_exponent(n):
+        # docstring and code omitted
+
 
     def print_mersenne_primes(max_p):
-        # ...
+        """
+        Print the mersenne primes that have an exponent in the range from
+          1 to max_p (non-inclusive).
 
-As with the ``primes`` module, the exact implementation of these functions won't be relevant to
-our discussion, but notice how the ``print_mersenne_primes`` function uses the ``is_prime``
-function from the ``primes`` module:
+        Args:
+            max_p (int): the upper bound (non-inclusive) for the range of
+              exponents to consider.
+        """
+        i = 1
+        for p in range(max_p):
+            if not primes.is_prime(p):
+                continue
+            if is_mersenne_prime_exponent(p):
+                m = 2 ** p - 1
+                print(f"M{i}: {m} = 2**{p} - 1")
+                i += 1
 
-.. code:: python
+As with the ``primes`` module, the exact implementation of these
+functions won't be relevant to our discussion, but notice how the
+``print_mersenne_primes`` function uses the ``is_prime`` function from
+the ``primes`` module.
 
-    if not primes.is_prime(p):
-
-We are able to use this function because we included the ``import primes`` statement at the top
-of the ``mersenne`` module.
+We are able to use this function because we included the ``import
+primes`` statement at the top of the ``mersenne`` module.  If you look
+at ``mersenne.py``, you'll see that the the ``math`` library is also
+imported, because the ``get_power_of_two_exponent`` function (which is
+not shown) uses ``math.log2``.
 
 Now, let's try using a function from the ``mersenne`` module
 from the interpreter. Before doing so, exit the interpreter and start it again,
@@ -369,9 +403,10 @@ Here are some sample runs of this program:
     Enter a number: 127
     127 is a double Mersenne prime: both 127 and 2^127-1 are Mersenne primes.
 
-However, all the logic involved in testing each number's primality
-is contained in two other modules: ``primes`` and ``mersenne``. Our program, thus,
-spans three modules: ``prime-checker``, ``primes``, and ``mersenne``.
+All the logic involved in actually testing each number's primality is
+contained in two other modules: ``primes`` and ``mersenne``. Our
+program, thus, spans three modules: ``prime-checker``, ``primes``, and
+``mersenne``.
 
 This is a further example of *decomposition*: while we could have placed all the
 code in a single module, dividing it into distinct modules, each with a related

@@ -142,6 +142,9 @@ import Pandas.  This step is traditionally done using the <code class="docutils 
 option with <code class="docutils literal notranslate"><span class="pre">import</span></code> to introduce a short alias (<code class="docutils literal notranslate"><span class="pre">pd</span></code>) for the
 library.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">ModuleNotFoundError</span>: <span class="n">No module named &#39;pandas&#39;</span>
 </pre></div>
 </div>
 <section id="dataframes">
@@ -153,6 +156,9 @@ library function <code class="docutils literal notranslate"><span class="pre">pd
 loads it into a data frame.  Let’s use this function to load the tree
 data from a file named <code class="docutils literal notranslate"><span class="pre">2015StreetTreesCensus_TREES.csv</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;2015StreetTreesCensus_TREES.csv&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;pd&#39; is not defined</span>
 </pre></div>
 </div>
 <p>This file is available in our <a class="reference internal" href="../../preface.html#example-code"><span class="std std-ref">example code</span></a>,
@@ -168,18 +174,13 @@ about indexing in other data structures.</p>
 <p>Here, for example, are a few columns from the first ten rows of the
 dataset:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees10</span> <span class="o">=</span> <span class="n">trees</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trees10</span><span class="p">[[</span><span class="s2">&quot;Latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="s2">&quot;spc_common&quot;</span><span class="p">,</span> <span class="s2">&quot;health&quot;</span><span class="p">,</span> <span class="s2">&quot;boroname&quot;</span><span class="p">]]</span>
-<span class="go">    Latitude  longitude        spc_common health       boroname</span>
-<span class="go">0  40.723092 -73.844215         red maple   Fair         Queens</span>
-<span class="go">1  40.794111 -73.818679           pin oak   Fair         Queens</span>
-<span class="go">2  40.717581 -73.936608       honeylocust   Good       Brooklyn</span>
-<span class="go">3  40.713537 -73.934456       honeylocust   Good       Brooklyn</span>
-<span class="go">4  40.666778 -73.975979   American linden   Good       Brooklyn</span>
-<span class="go">5  40.770046 -73.984950       honeylocust   Good      Manhattan</span>
-<span class="go">6  40.770210 -73.985338       honeylocust   Good      Manhattan</span>
-<span class="go">7  40.762724 -73.987297   American linden   Good      Manhattan</span>
-<span class="go">8  40.596579 -74.076255       honeylocust   Good  Staten Island</span>
-<span class="go">9  40.586357 -73.969744  London planetree   Fair       Brooklyn</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees10&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Notice that the result looks very much like a table in which both the
@@ -188,59 +189,28 @@ came from the first row in the file and the rows are simply numbered
 starting at zero.</p>
 <p>Here’s the full first row of the dataset with all 41 attributes:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="go">created_at                                       08/27/2015</span>
-<span class="go">tree_id                                              180683</span>
-<span class="go">block_id                                             348711</span>
-<span class="go">the_geom      POINT (-73.84421521958048 40.723091773924274)</span>
-<span class="go">tree_dbh                                                  3</span>
-<span class="go">stump_diam                                                0</span>
-<span class="go">curb_loc                                             OnCurb</span>
-<span class="go">status                                                Alive</span>
-<span class="go">health                                                 Fair</span>
-<span class="go">spc_latin                                       Acer rubrum</span>
-<span class="go">spc_common                                        red maple</span>
-<span class="go">steward                                                None</span>
-<span class="go">guards                                                 None</span>
-<span class="go">sidewalk                                           NoDamage</span>
-<span class="go">user_type                                  TreesCount Staff</span>
-<span class="go">problems                                               None</span>
-<span class="go">root_stone                                               No</span>
-<span class="go">root_grate                                               No</span>
-<span class="go">root_other                                               No</span>
-<span class="go">trnk_wire                                                No</span>
-<span class="go">trnk_light                                               No</span>
-<span class="go">trnk_other                                               No</span>
-<span class="go">brnch_ligh                                               No</span>
-<span class="go">brnch_shoe                                               No</span>
-<span class="go">brnch_othe                                               No</span>
-<span class="go">address                                   108-005 70 AVENUE</span>
-<span class="go">zipcode                                               11375</span>
-<span class="go">zip_city                                       Forest Hills</span>
-<span class="go">cb_num                                                  406</span>
-<span class="go">borocode                                                  4</span>
-<span class="go">boroname                                             Queens</span>
-<span class="go">cncldist                                                 29</span>
-<span class="go">st_assem                                                 28</span>
-<span class="go">st_senate                                                16</span>
-<span class="go">nta                                                    QN17</span>
-<span class="go">nta_name                                       Forest Hills</span>
-<span class="go">boro_ct                                             4073900</span>
-<span class="go">state                                              New York</span>
-<span class="go">Latitude                                            40.7231</span>
-<span class="go">longitude                                          -73.8442</span>
-<span class="go">x_sp                                            1.02743e+06</span>
-<span class="go">y_sp                                                 202757</span>
-<span class="go">Name: 0, dtype: object</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>and here are a few specific values from that row:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">first_row</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">first_row</span><span class="p">[</span><span class="s2">&quot;Latitude&quot;</span><span class="p">]</span>
-<span class="go">40.72309177</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;first_row&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">first_row</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">]</span>
-<span class="go">-73.84421522</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;first_row&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">first_row</span><span class="p">[</span><span class="s2">&quot;boroname&quot;</span><span class="p">]</span>
-<span class="go">&#39;Queens&#39;</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;first_row&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Notice that the latitude and longitude values are floats, while the
@@ -250,27 +220,17 @@ stored in the column.  If this analysis cannot determine a more
 specific type, the data will be represented using strings.</p>
 <p>We can also extract data for a specific column:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees10</span><span class="p">[</span><span class="s2">&quot;boroname&quot;</span><span class="p">]</span>
-<span class="go">0           Queens</span>
-<span class="go">1           Queens</span>
-<span class="go">2         Brooklyn</span>
-<span class="go">3         Brooklyn</span>
-<span class="go">4         Brooklyn</span>
-<span class="go">5        Manhattan</span>
-<span class="go">6        Manhattan</span>
-<span class="go">7        Manhattan</span>
-<span class="go">8    Staten Island</span>
-<span class="go">9         Brooklyn</span>
-<span class="go">Name: boroname, dtype: object</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees10&#39; is not defined</span>
 </pre></div>
 </div>
 <p>and we can easily do useful things with the result, like count the number
 of times each unique value occurs:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees10</span><span class="p">[</span><span class="s2">&quot;boroname&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-<span class="go">Brooklyn         4</span>
-<span class="go">Manhattan        3</span>
-<span class="go">Queens           2</span>
-<span class="go">Staten Island    1</span>
-<span class="go">Name: boroname, dtype: int64</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees10&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Now that you have a some feel for the data, we’ll move on to
@@ -278,7 +238,9 @@ discussing some useful attributes and methods provided by data frames.
 The <code class="docutils literal notranslate"><span class="pre">shape</span></code> attribute yields the number of rows and columns in the
 data frame:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">shape</span>
-<span class="go">(683788, 42)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>The data frame has fewer rows (683,788) than lines in the file
@@ -286,15 +248,9 @@ data frame:</p>
 labels and does not appear as a regular row in the data frame.</p>
 <p>We can use the <code class="docutils literal notranslate"><span class="pre">columns</span></code> attribute to examine the column labels:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">columns</span>
-<span class="go">Index([&#39;created_at&#39;, &#39;tree_id&#39;, &#39;block_id&#39;, &#39;the_geom&#39;, &#39;tree_dbh&#39;,</span>
-<span class="go">       &#39;stump_diam&#39;, &#39;curb_loc&#39;, &#39;status&#39;, &#39;health&#39;, &#39;spc_latin&#39;, &#39;spc_common&#39;,</span>
-<span class="go">       &#39;steward&#39;, &#39;guards&#39;, &#39;sidewalk&#39;, &#39;user_type&#39;, &#39;problems&#39;, &#39;root_stone&#39;,</span>
-<span class="go">       &#39;root_grate&#39;, &#39;root_other&#39;, &#39;trnk_wire&#39;, &#39;trnk_light&#39;, &#39;trnk_other&#39;,</span>
-<span class="go">       &#39;brnch_ligh&#39;, &#39;brnch_shoe&#39;, &#39;brnch_othe&#39;, &#39;address&#39;, &#39;zipcode&#39;,</span>
-<span class="go">       &#39;zip_city&#39;, &#39;cb_num&#39;, &#39;borocode&#39;, &#39;boroname&#39;, &#39;cncldist&#39;, &#39;st_assem&#39;,</span>
-<span class="go">       &#39;st_senate&#39;, &#39;nta&#39;, &#39;nta_name&#39;, &#39;boro_ct&#39;, &#39;state&#39;, &#39;Latitude&#39;,</span>
-<span class="go">       &#39;longitude&#39;, &#39;x_sp&#39;, &#39;y_sp&#39;],</span>
-<span class="go">      dtype=&#39;object&#39;)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>We noted earlier that the rows, like columns, have labels.
@@ -307,17 +263,17 @@ re-load the data and specify the name of a column to use for the
 index using the <code class="docutils literal notranslate"><span class="pre">index_col</span></code> parameter:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;2015StreetTreesCensus_TREES.csv&quot;</span><span class="p">,</span>
 <span class="gp">... </span>                    <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;tree_id&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;pd&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Now that we have a meaningful index, we can use the <code class="docutils literal notranslate"><span class="pre">index</span></code>
 attribute to find the names of the rows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">index</span>
-<span class="go">Int64Index([180683, 200540, 204026, 204337, 189565, 190422, 190426, 208649,</span>
-<span class="go">            209610, 192755,</span>
-<span class="go">            ...</span>
-<span class="go">            200671, 193070, 195173, 155348, 184210, 155433, 183795, 166161,</span>
-<span class="go">            184028, 200607],</span>
-<span class="go">           dtype=&#39;int64&#39;, name=&#39;tree_id&#39;, length=683788)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Now let’s look at accessing values in the sample data frame in a more
@@ -326,101 +282,25 @@ either the appropriate row label or the position of the row in the
 data frame.  To index the data using the row label (<code class="docutils literal notranslate"><span class="pre">180683</span></code> for the
 row at position 0), we use the <code class="docutils literal notranslate"><span class="pre">loc</span></code> operator with square brackets.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">180683</span><span class="p">]</span>
-<span class="go">created_at                                       08/27/2015</span>
-<span class="go">block_id                                             348711</span>
-<span class="go">the_geom      POINT (-73.84421521958048 40.723091773924274)</span>
-<span class="go">tree_dbh                                                  3</span>
-<span class="go">stump_diam                                                0</span>
-<span class="go">curb_loc                                             OnCurb</span>
-<span class="go">status                                                Alive</span>
-<span class="go">health                                                 Fair</span>
-<span class="go">spc_latin                                       Acer rubrum</span>
-<span class="go">spc_common                                        red maple</span>
-<span class="go">steward                                                None</span>
-<span class="go">guards                                                 None</span>
-<span class="go">sidewalk                                           NoDamage</span>
-<span class="go">user_type                                  TreesCount Staff</span>
-<span class="go">problems                                               None</span>
-<span class="go">root_stone                                               No</span>
-<span class="go">root_grate                                               No</span>
-<span class="go">root_other                                               No</span>
-<span class="go">trnk_wire                                                No</span>
-<span class="go">trnk_light                                               No</span>
-<span class="go">trnk_other                                               No</span>
-<span class="go">brnch_ligh                                               No</span>
-<span class="go">brnch_shoe                                               No</span>
-<span class="go">brnch_othe                                               No</span>
-<span class="go">address                                   108-005 70 AVENUE</span>
-<span class="go">zipcode                                               11375</span>
-<span class="go">zip_city                                       Forest Hills</span>
-<span class="go">cb_num                                                  406</span>
-<span class="go">borocode                                                  4</span>
-<span class="go">boroname                                             Queens</span>
-<span class="go">cncldist                                                 29</span>
-<span class="go">st_assem                                                 28</span>
-<span class="go">st_senate                                                16</span>
-<span class="go">nta                                                    QN17</span>
-<span class="go">nta_name                                       Forest Hills</span>
-<span class="go">boro_ct                                             4073900</span>
-<span class="go">state                                              New York</span>
-<span class="go">Latitude                                            40.7231</span>
-<span class="go">longitude                                          -73.8442</span>
-<span class="go">x_sp                                            1.02743e+06</span>
-<span class="go">y_sp                                                 202757</span>
-<span class="go">Name: 180683, dtype: object</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>To access the row using the row number, that is, its position in the
 data frame, we use <code class="docutils literal notranslate"><span class="pre">iloc</span></code> operator and square brackets:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="go">created_at                                       08/27/2015</span>
-<span class="go">block_id                                             348711</span>
-<span class="go">the_geom      POINT (-73.84421521958048 40.723091773924274)</span>
-<span class="go">tree_dbh                                                  3</span>
-<span class="go">stump_diam                                                0</span>
-<span class="go">curb_loc                                             OnCurb</span>
-<span class="go">status                                                Alive</span>
-<span class="go">health                                                 Fair</span>
-<span class="go">spc_latin                                       Acer rubrum</span>
-<span class="go">spc_common                                        red maple</span>
-<span class="go">steward                                                None</span>
-<span class="go">guards                                                 None</span>
-<span class="go">sidewalk                                           NoDamage</span>
-<span class="go">user_type                                  TreesCount Staff</span>
-<span class="go">problems                                               None</span>
-<span class="go">root_stone                                               No</span>
-<span class="go">root_grate                                               No</span>
-<span class="go">root_other                                               No</span>
-<span class="go">trnk_wire                                                No</span>
-<span class="go">trnk_light                                               No</span>
-<span class="go">trnk_other                                               No</span>
-<span class="go">brnch_ligh                                               No</span>
-<span class="go">brnch_shoe                                               No</span>
-<span class="go">brnch_othe                                               No</span>
-<span class="go">address                                   108-005 70 AVENUE</span>
-<span class="go">zipcode                                               11375</span>
-<span class="go">zip_city                                       Forest Hills</span>
-<span class="go">cb_num                                                  406</span>
-<span class="go">borocode                                                  4</span>
-<span class="go">boroname                                             Queens</span>
-<span class="go">cncldist                                                 29</span>
-<span class="go">st_assem                                                 28</span>
-<span class="go">st_senate                                                16</span>
-<span class="go">nta                                                    QN17</span>
-<span class="go">nta_name                                       Forest Hills</span>
-<span class="go">boro_ct                                             4073900</span>
-<span class="go">state                                              New York</span>
-<span class="go">Latitude                                            40.7231</span>
-<span class="go">longitude                                          -73.8442</span>
-<span class="go">x_sp                                            1.02743e+06</span>
-<span class="go">y_sp                                                 202757</span>
-<span class="go">Name: 180683, dtype: object</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>In both cases the result of evaluating the expression has type Pandas
 <code class="docutils literal notranslate"><span class="pre">Series</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">trees</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="go">&lt;class &#39;pandas.core.series.Series&#39;&gt;</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>A <code class="docutils literal notranslate"><span class="pre">Series</span></code> is defined as “a one-dimensional labeled array capable of
@@ -435,6 +315,9 @@ for example, extract the exact same value using the expression
 with a subset of the rows of an existing data frame.  For example,
 this statement from above:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees10</span> <span class="o">=</span> <span class="n">trees</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>constructs a data frame that contains the first ten rows (row 0
@@ -444,36 +327,18 @@ underlying data, which means that updating one, updates the other!</p>
 <p>We can extract the values in a specific column as a series using
 square brackets with the column name as the index:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees10</span><span class="p">[</span><span class="s2">&quot;spc_common&quot;</span><span class="p">]</span>
-<span class="go">tree_id</span>
-<span class="go">180683           red maple</span>
-<span class="go">200540             pin oak</span>
-<span class="go">204026         honeylocust</span>
-<span class="go">204337         honeylocust</span>
-<span class="go">189565     American linden</span>
-<span class="go">190422         honeylocust</span>
-<span class="go">190426         honeylocust</span>
-<span class="go">208649     American linden</span>
-<span class="go">209610         honeylocust</span>
-<span class="go">192755    London planetree</span>
-<span class="go">Name: spc_common, dtype: object</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees10&#39; is not defined</span>
 </pre></div>
 </div>
 <p>We can also use dot notation to access a column, if the corresponding
 label conforms to the rules for Python identifiers and does not
 conflict with the name of a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> attribute or method:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees10</span><span class="o">.</span><span class="n">spc_common</span>
-<span class="go">tree_id</span>
-<span class="go">180683           red maple</span>
-<span class="go">200540             pin oak</span>
-<span class="go">204026         honeylocust</span>
-<span class="go">204337         honeylocust</span>
-<span class="go">189565     American linden</span>
-<span class="go">190422         honeylocust</span>
-<span class="go">190426         honeylocust</span>
-<span class="go">208649     American linden</span>
-<span class="go">209610         honeylocust</span>
-<span class="go">192755    London planetree</span>
-<span class="go">Name: spc_common, dtype: object</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees10&#39; is not defined</span>
 </pre></div>
 </div>
 <p>The tree dataset has many columns, most of which we will not be using
@@ -482,8 +347,13 @@ saw above, we can extract the desired columns using a list as the
 index:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cols_to_keep</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;spc_common&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;health&#39;</span><span class="p">,</span> <span class="s1">&#39;boroname&#39;</span><span class="p">,</span> <span class="s1">&#39;Latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trees_narrow</span> <span class="o">=</span> <span class="n">trees</span><span class="p">[</span><span class="n">cols_to_keep</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trees_narrow</span><span class="o">.</span><span class="n">shape</span>
-<span class="go">(683788, 6)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees_narrow&#39; is not defined</span>
 </pre></div>
 </div>
 <p>This new data frame has the same number of rows and the same index as
@@ -511,6 +381,10 @@ function that uses this approach to construct the desired data frame:</p>
 <span class="gp">... </span>
 <span class="gp">... </span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span> <span class="o">=</span> <span class="n">get_tree_data</span><span class="p">(</span><span class="s2">&quot;2015StreetTreesCensus_TREES.csv&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">12</span>, in <span class="n">get_tree_data</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;pd&#39; is not defined</span>
 </pre></div>
 </div>
 <p>A few things to notice about this function: first, the index column,
@@ -531,13 +405,9 @@ example, do not include values for the health of the tree.  We can see
 the impact of this missing data in row 630, which contains information
 about a dead tree in Queens:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">630</span><span class="p">]</span>
-<span class="go">status           Dead</span>
-<span class="go">health            NaN</span>
-<span class="go">spc_common        NaN</span>
-<span class="go">boroname       Queens</span>
-<span class="go">latitude       40.738</span>
-<span class="go">longitude    -73.9216</span>
-<span class="go">Name: 192569, dtype: object</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Notice that both the <code class="docutils literal notranslate"><span class="pre">health</span></code> and the <code class="docutils literal notranslate"><span class="pre">spc_common</span></code> fields have the
@@ -562,17 +432,15 @@ questions:</p>
 <span class="gp">... </span>        <span class="n">counts</span><span class="p">[</span><span class="n">kind</span><span class="p">]</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">kind</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="gp">... </span>
 <span class="gp">... </span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of unique street tree species:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
-<span class="go">Number of unique street tree species: 132</span>
+<span class="go">Number of unique street tree species: 0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">top_5</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">kind</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">top_5</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span>
 <span class="gp">... </span>
-<span class="go">London planetree</span>
-<span class="go">honeylocust</span>
-<span class="go">Callery pear</span>
-<span class="go">pin oak</span>
-<span class="go">Norway maple</span>
 </pre></div>
 </div>
 <p>Recall that the species is not specified for stumps and most dead
@@ -592,8 +460,13 @@ some of the many attributes and methods provided by the <code class="docutils li
 data type.  Here for example, is code, to answer the first question
 using the <code class="docutils literal notranslate"><span class="pre">nunique</span></code> method:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">num_unique</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">spc_common</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of unique street tree species:&quot;</span><span class="p">,</span> <span class="n">num_unique</span><span class="p">)</span>
-<span class="go">Number of unique street tree species: 132</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;num_unique&#39; is not defined</span>
 </pre></div>
 </div>
 <p>which returns the number of unique values in a series.  By default, it
@@ -608,13 +481,13 @@ occurred.  Conveniently, the values are ordered in descending order by
 count, so the most frequent item is first and we can use slicing to
 extract the top five:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vc</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">spc_common</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">vc</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
-<span class="go">London planetree    87014</span>
-<span class="go">honeylocust         64264</span>
-<span class="go">Callery pear        58931</span>
-<span class="go">pin oak             53185</span>
-<span class="go">Norway maple        34189</span>
-<span class="go">Name: spc_common, dtype: int64</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;vc&#39; is not defined</span>
 </pre></div>
 </div>
 <p>The resulting series is not quite what we want: the names of the
@@ -623,11 +496,9 @@ using the <code class="docutils literal notranslate"><span class="pre">index</sp
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">kind</span> <span class="ow">in</span> <span class="n">vc</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>
 <span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span>
 <span class="gp">... </span>
-<span class="go">London planetree</span>
-<span class="go">honeylocust</span>
-<span class="go">Callery pear</span>
-<span class="go">pin oak</span>
-<span class="go">Norway maple</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;vc&#39; is not defined</span>
 </pre></div>
 </div>
 <p>In addition to the <code class="docutils literal notranslate"><span class="pre">index</span></code> attribute, the <code class="docutils literal notranslate"><span class="pre">Series</span></code> type includes
@@ -639,15 +510,21 @@ We’ll discuss a few of them here.</p>
 elements using the <code class="docutils literal notranslate"><span class="pre">loc</span></code> and <code class="docutils literal notranslate"><span class="pre">iloc</span></code> operators with a value’s index
 and position respectively:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vc</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;London planetree&quot;</span><span class="p">]</span>
-<span class="go">87014</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;vc&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">vc</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="go">87014</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;vc&#39; is not defined</span>
 </pre></div>
 </div>
 <p>We can also drop the <code class="docutils literal notranslate"><span class="pre">loc</span></code> operator and just use square brackets
 with the index:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vc</span><span class="p">[</span><span class="s2">&quot;London planetree&quot;</span><span class="p">]</span>
-<span class="go">87014</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;vc&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Finally, if the index is a legal Python identifier and it does not
@@ -655,7 +532,9 @@ conflict with a <code class="docutils literal notranslate"><span class="pre">Ser
 dot notation.  “London planetree” does not qualify because of the
 embedded space, but “mimosa” on the other hand, does:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vc</span><span class="o">.</span><span class="n">mimosa</span>
-<span class="go">163</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;vc&#39; is not defined</span>
 </pre></div>
 </div>
 <p>The series <code class="docutils literal notranslate"><span class="pre">describe</span></code> method computes a new series that contains
@@ -667,18 +546,21 @@ number of entries (<code class="docutils literal notranslate"><span class="pre">
 (<code class="docutils literal notranslate"><span class="pre">unique</span></code>), the most common value (<code class="docutils literal notranslate"><span class="pre">top</span></code>), and its frequency
 <code class="docutils literal notranslate"><span class="pre">freq</span></code>).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">spc_common</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-<span class="go">count               652169</span>
-<span class="go">unique                 132</span>
-<span class="go">top       London planetree</span>
-<span class="go">freq                 87014</span>
-<span class="go">Name: spc_common, dtype: object</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>By default, all of these values are computed excluding <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values.
 This method provides an alternative way to answer our first question:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">num_unique</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">spc_common</span><span class="o">.</span><span class="n">describe</span><span class="p">()[</span><span class="s2">&quot;unique&quot;</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of unique street tree species:&quot;</span><span class="p">,</span> <span class="n">num_unique</span><span class="p">)</span>
-<span class="go">Number of unique street tree species: 132</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;num_unique&#39; is not defined</span>
 </pre></div>
 </div>
 <p>One thing to note about this code: we used the square bracket notation
@@ -695,28 +577,17 @@ construct a simple series with an index that ranges from zero to ten
 to use an example using the <code class="docutils literal notranslate"><span class="pre">pd.Series</span></code> constructor and a list of
 values:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sample_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">92</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">70</span><span class="p">])</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;pd&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sample_series</span>
-<span class="go">0    92</span>
-<span class="go">1    74</span>
-<span class="go">2    80</span>
-<span class="go">3    60</span>
-<span class="go">4    72</span>
-<span class="go">5    90</span>
-<span class="go">6    84</span>
-<span class="go">7    74</span>
-<span class="go">8    75</span>
-<span class="go">9    70</span>
-<span class="go">dtype: int64</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;sample_series&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sample_series</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-<span class="go">count    10.000000</span>
-<span class="go">mean     77.100000</span>
-<span class="go">std       9.643075</span>
-<span class="go">min      60.000000</span>
-<span class="go">25%      72.500000</span>
-<span class="go">50%      74.500000</span>
-<span class="go">75%      83.000000</span>
-<span class="go">max      92.000000</span>
-<span class="go">dtype: float64</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;sample_series&#39; is not defined</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">describe</span></code> method can also be applied to data frames.</p>
@@ -726,10 +597,9 @@ prior to applying the operator.  For example, we could compute a
 series with the percentage live trees, dead trees, and stumps using a
 call to <code class="docutils literal notranslate"><span class="pre">value_counts</span></code> and a couple of operators:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">trees</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
-<span class="go">Alive    95.376491</span>
-<span class="go">Stump     2.581794</span>
-<span class="go">Dead      2.041715</span>
-<span class="go">Name: status, dtype: float64</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 </section>
@@ -790,7 +660,13 @@ which is similar to filtering in Numpy.  Here’s a statement that
 computes the same data frame with entries for the trees in Brooklyn
 much more efficiently:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">in_brooklyn</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">boroname</span> <span class="o">==</span> <span class="s2">&quot;Brooklyn&quot;</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bt</span> <span class="o">=</span> <span class="n">trees</span><span class="p">[</span><span class="n">in_brooklyn</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>The variable <code class="docutils literal notranslate"><span class="pre">in_brooklyn</span></code> refers to a series with boolean values,
@@ -801,8 +677,13 @@ the corresponding boolean is <code class="docutils literal notranslate"><span cl
 <p>Using this approach, we can compute the most common tree in Brooklyn
 quite compactly and efficiently:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bt</span> <span class="o">=</span> <span class="n">trees</span><span class="p">[</span><span class="n">trees</span><span class="o">.</span><span class="n">boroname</span> <span class="o">==</span> <span class="s2">&quot;Brooklyn&quot;</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Most common tree in Brooklyn:&quot;</span><span class="p">,</span> <span class="n">bt</span><span class="o">.</span><span class="n">spc_common</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="go">Most common tree in Brooklyn: London planetree</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;bt&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Notice that this version specifies the filter expression directly as
@@ -814,7 +695,13 @@ constructs a data frame with the entries for trees in Queens that are
 that are either dead or in poor health:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">filter</span> <span class="o">=</span> <span class="p">(</span><span class="n">trees</span><span class="o">.</span><span class="n">boroname</span> <span class="o">==</span> <span class="s2">&quot;Queens&quot;</span><span class="p">)</span> <span class="o">&amp;</span> \
 <span class="gp">... </span>           <span class="p">((</span><span class="n">trees</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;Dead&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">trees</span><span class="o">.</span><span class="n">health</span> <span class="o">==</span> <span class="s2">&quot;Poor&quot;</span><span class="p">))</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bad_trees_queens</span> <span class="o">=</span> <span class="n">trees</span><span class="p">[</span><span class="nb">filter</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Note that the parentheses are necessary because element-wise and
@@ -825,13 +712,27 @@ are dead or in poor health?”, we need both the number of trees in
 Queens (excluding stumps) and the number of bad trees in Queens, so
 we’ll split the filtering into two pieces:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">not_stump_in_queens</span> <span class="o">=</span> <span class="p">(</span><span class="n">trees</span><span class="o">.</span><span class="n">boroname</span> <span class="o">==</span> <span class="s2">&quot;Queens&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">trees</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s2">&quot;Stump&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trees_in_queens</span> <span class="o">=</span> <span class="n">trees</span><span class="p">[</span><span class="n">not_stump_in_queens</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bad_tree_filter</span> <span class="o">=</span> <span class="p">(</span><span class="n">trees_in_queens</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;Dead&quot;</span><span class="p">)</span> <span class="o">|</span> \
 <span class="gp">... </span>                      <span class="p">(</span><span class="n">trees_in_queens</span><span class="o">.</span><span class="n">health</span> <span class="o">==</span> <span class="s2">&quot;Poor&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees_in_queens&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bad_trees_in_queens</span> <span class="o">=</span> <span class="n">trees_in_queens</span><span class="p">[</span><span class="n">bad_tree_filter</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees_in_queens&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;Percentage of the trees street in Queens are dead or in poor health: </span><span class="si">{:.2f}</span><span class="s2">%&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bad_trees_in_queens</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">trees_in_queens</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
-<span class="go">Percentage of the trees street in Queens are dead or in poor health: 5.72%</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;bad_trees_in_queens&#39; is not defined</span>
 </pre></div>
 </div>
 <p>The first two lines build a data frame for the trees in Queens
@@ -926,12 +827,9 @@ that uses this approach:</p>
 <span class="gp">... </span>
 <span class="gp">... </span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">find_per_boro_count</span><span class="p">(</span><span class="n">trees</span><span class="p">)</span>
-<span class="go">Bronx             85203</span>
-<span class="go">Brooklyn         177293</span>
-<span class="go">Manhattan         65423</span>
-<span class="go">Queens           250551</span>
-<span class="go">Staten Island    105318</span>
-<span class="go">dtype: int64</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>In each iteration of the loop, we identify the trees in a specific
@@ -960,12 +858,9 @@ the borough name rather than explicit filtering:</p>
 <span class="gp">... </span>
 <span class="gp">... </span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">find_per_boro_count</span><span class="p">(</span><span class="n">trees</span><span class="p">)</span>
-<span class="go">Bronx             85203</span>
-<span class="go">Brooklyn         177293</span>
-<span class="go">Manhattan         65423</span>
-<span class="go">Queens           250551</span>
-<span class="go">Staten Island    105318</span>
-<span class="go">dtype: int64</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Other than the use of <code class="docutils literal notranslate"><span class="pre">groupby</span></code>, the only difference between this
@@ -979,13 +874,9 @@ each group, is so common that the <code class="docutils literal notranslate"><sp
 a method, named <code class="docutils literal notranslate"><span class="pre">size</span></code>, for this computation.  Using this method, we
 can count the number of trees per borough in one line:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;boroname&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
-<span class="go">boroname</span>
-<span class="go">Bronx             85203</span>
-<span class="go">Brooklyn         177293</span>
-<span class="go">Manhattan         65423</span>
-<span class="go">Queens           250551</span>
-<span class="go">Staten Island    105318</span>
-<span class="go">dtype: int64</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>How do we build on this code to compute the number of live trees,
@@ -994,89 +885,56 @@ is available for each tree in the <code class="docutils literal notranslate"><sp
 data using this field along with the borough to get the information
 we want:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">status_per_boro</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;boroname&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">status_per_boro</span>
-<span class="go">boroname       status</span>
-<span class="go">Bronx          Alive      80585</span>
-<span class="go">               Dead        2530</span>
-<span class="go">               Stump       2088</span>
-<span class="go">Brooklyn       Alive     169744</span>
-<span class="go">               Dead        3319</span>
-<span class="go">               Stump       4230</span>
-<span class="go">Manhattan      Alive      62427</span>
-<span class="go">               Dead        1802</span>
-<span class="go">               Stump       1194</span>
-<span class="go">Queens         Alive     237974</span>
-<span class="go">               Dead        4440</span>
-<span class="go">               Stump       8137</span>
-<span class="go">Staten Island  Alive     101443</span>
-<span class="go">               Dead        1870</span>
-<span class="go">               Stump       2005</span>
-<span class="go">dtype: int64</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;status_per_boro&#39; is not defined</span>
 </pre></div>
 </div>
 <p>What might not be immediately clear from this output is that
 <code class="docutils literal notranslate"><span class="pre">status_per_boro</span></code> is a <code class="docutils literal notranslate"><span class="pre">Series</span></code> with a hierarchical index, not a
 data frame.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">status_per_boro</span><span class="o">.</span><span class="n">index</span>
-<span class="go">MultiIndex([(        &#39;Bronx&#39;, &#39;Alive&#39;),</span>
-<span class="go">            (        &#39;Bronx&#39;,  &#39;Dead&#39;),</span>
-<span class="go">            (        &#39;Bronx&#39;, &#39;Stump&#39;),</span>
-<span class="go">            (     &#39;Brooklyn&#39;, &#39;Alive&#39;),</span>
-<span class="go">            (     &#39;Brooklyn&#39;,  &#39;Dead&#39;),</span>
-<span class="go">            (     &#39;Brooklyn&#39;, &#39;Stump&#39;),</span>
-<span class="go">            (    &#39;Manhattan&#39;, &#39;Alive&#39;),</span>
-<span class="go">            (    &#39;Manhattan&#39;,  &#39;Dead&#39;),</span>
-<span class="go">            (    &#39;Manhattan&#39;, &#39;Stump&#39;),</span>
-<span class="go">            (       &#39;Queens&#39;, &#39;Alive&#39;),</span>
-<span class="go">            (       &#39;Queens&#39;,  &#39;Dead&#39;),</span>
-<span class="go">            (       &#39;Queens&#39;, &#39;Stump&#39;),</span>
-<span class="go">            (&#39;Staten Island&#39;, &#39;Alive&#39;),</span>
-<span class="go">            (&#39;Staten Island&#39;,  &#39;Dead&#39;),</span>
-<span class="go">            (&#39;Staten Island&#39;, &#39;Stump&#39;)],</span>
-<span class="go">           names=[&#39;boroname&#39;, &#39;status&#39;])</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;status_per_boro&#39; is not defined</span>
 </pre></div>
 </div>
 <p>We can extract the information for a given borough as series using
 square brackets and the name of the borough:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">status_per_boro</span><span class="p">[</span><span class="s2">&quot;Bronx&quot;</span><span class="p">]</span>
-<span class="go">status</span>
-<span class="go">Alive    80585</span>
-<span class="go">Dead      2530</span>
-<span class="go">Stump     2088</span>
-<span class="go">dtype: int64</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;status_per_boro&#39; is not defined</span>
 </pre></div>
 </div>
 <p>and we can extract a specific value, say, the number of live trees,
 for a specific borough using either two sets of square brackets or one
 set of square brackets and a tuple:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">status_per_boro</span><span class="p">[</span><span class="s2">&quot;Bronx&quot;</span><span class="p">][</span><span class="s2">&quot;Alive&quot;</span><span class="p">]</span>
-<span class="go">80585</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;status_per_boro&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">status_per_boro</span><span class="p">[</span><span class="s2">&quot;Bronx&quot;</span><span class="p">,</span> <span class="s2">&quot;Alive&quot;</span><span class="p">]</span>
-<span class="go">80585</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;status_per_boro&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Our desired result is a data frame, not a series with a hierarchical
 index, but before we convert the result to the right type, let’s add
 some code to calculate percentages rather than the counts:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro</span> <span class="o">=</span> <span class="n">status_per_boro</span><span class="o">/</span><span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;boroname&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;status_per_boro&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro</span>
-<span class="go">boroname       status</span>
-<span class="go">Bronx          Alive     94.580003</span>
-<span class="go">               Dead       2.969379</span>
-<span class="go">               Stump      2.450618</span>
-<span class="go">Brooklyn       Alive     95.742077</span>
-<span class="go">               Dead       1.872042</span>
-<span class="go">               Stump      2.385881</span>
-<span class="go">Manhattan      Alive     95.420571</span>
-<span class="go">               Dead       2.754383</span>
-<span class="go">               Stump      1.825046</span>
-<span class="go">Queens         Alive     94.980263</span>
-<span class="go">               Dead       1.772094</span>
-<span class="go">               Stump      3.247642</span>
-<span class="go">Staten Island  Alive     96.320667</span>
-<span class="go">               Dead       1.775575</span>
-<span class="go">               Stump      1.903758</span>
-<span class="go">dtype: float64</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;pct_per_boro&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Notice that while the numerator of the division operation is a series
@@ -1117,29 +975,33 @@ In our example, <code class="docutils literal notranslate"><span class="pre">uns
 frame index and the values of <code class="docutils literal notranslate"><span class="pre">status</span></code> as the column labels, which
 is exactly what we want:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
-<span class="go">status             Alive      Dead     Stump</span>
-<span class="go">boroname                                    </span>
-<span class="go">Bronx          94.580003  2.969379  2.450618</span>
-<span class="go">Brooklyn       95.742077  1.872042  2.385881</span>
-<span class="go">Manhattan      95.420571  2.754383  1.825046</span>
-<span class="go">Queens         94.980263  1.772094  3.247642</span>
-<span class="go">Staten Island  96.320667  1.775575  1.903758</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;pct_per_boro&#39; is not defined</span>
 </pre></div>
 </div>
 <p>We’ve walked through several steps to get to this point, let’s put
 them together before we move on:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">counts_per_boro</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;boroname&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">status_per_boro</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;boroname&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro</span> <span class="o">=</span> <span class="n">status_per_boro</span><span class="o">/</span><span class="n">counts_per_boro</span> <span class="o">*</span> <span class="mf">100.0</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;status_per_boro&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_df</span> <span class="o">=</span> <span class="n">pct_per_boro</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;pct_per_boro&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_df</span>
-<span class="go">status             Alive      Dead     Stump</span>
-<span class="go">boroname                                    </span>
-<span class="go">Bronx          94.580003  2.969379  2.450618</span>
-<span class="go">Brooklyn       95.742077  1.872042  2.385881</span>
-<span class="go">Manhattan      95.420571  2.754383  1.825046</span>
-<span class="go">Queens         94.980263  1.772094  3.247642</span>
-<span class="go">Staten Island  96.320667  1.775575  1.903758</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;pct_per_boro_df&#39; is not defined</span>
 </pre></div>
 </div>
 <p>We are now close to answering the question of how tree health differs
@@ -1152,6 +1014,9 @@ status for dead trees and stumps.  We’ll use the Pandas <code class="docutils 
 method to compute the new column (<code class="docutils literal notranslate"><span class="pre">combined</span></code>) and then
 add it to the <code class="docutils literal notranslate"><span class="pre">trees</span></code> data frame using an assignment statement.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="p">[</span><span class="s2">&quot;combined&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">trees</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s2">&quot;Alive&quot;</span><span class="p">,</span> <span class="n">trees</span><span class="o">.</span><span class="n">health</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">where</span></code> method will return a series with the same shape and
@@ -1167,11 +1032,9 @@ either the condition or from the other argument, <code class="docutils literal n
 a <code class="docutils literal notranslate"><span class="pre">NaN</span></code> into the result.</p>
 <p>Here’s some sample data from the result:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="p">[</span><span class="mi">629</span><span class="p">:</span><span class="mi">632</span><span class="p">]</span>
-<span class="go">        status health        spc_common  boroname   latitude  longitude combined</span>
-<span class="go">tree_id                                                                         </span>
-<span class="go">179447   Alive   Good  northern red oak  Brooklyn  40.637491 -73.955789     Good</span>
-<span class="go">192569    Dead    NaN               NaN    Queens  40.738044 -73.921552     Dead</span>
-<span class="go">179766   Stump    NaN               NaN  Brooklyn  40.637379 -73.953814    Stump</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Rows 629-631 happen to contain information about a live tree, a dead
@@ -1194,13 +1057,9 @@ information about how tree health differs by borough:</p>
 <span class="gp">... </span>
 <span class="gp">... </span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tree_health_by_boro</span><span class="p">(</span><span class="n">trees</span><span class="p">)</span>
-<span class="go">combined            Good       Fair      Poor      Dead     Stump</span>
-<span class="go">boroname                                                         </span>
-<span class="go">Bronx          78.169783  12.777719  3.632501  2.969379  2.450618</span>
-<span class="go">Brooklyn       77.956829  14.142126  3.643122  1.872042  2.385881</span>
-<span class="go">Manhattan      72.387387  17.516775  5.516409  2.754383  1.825046</span>
-<span class="go">Queens         77.432539  13.789209  3.758516  1.772094  3.247642</span>
-<span class="go">Staten Island  78.494654  13.801060  4.024003  1.775575  1.903758</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>By default, <code class="docutils literal notranslate"><span class="pre">unstack</span></code> will order the columns by value, which is not
@@ -1217,14 +1076,13 @@ two approaches: use one or more column names and one or more series.</p>
 groups:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">combined_status</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">trees</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s2">&quot;Alive&quot;</span><span class="p">,</span>
 <span class="gp">... </span>                                     <span class="n">trees</span><span class="o">.</span><span class="n">health</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">combined_status</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
-<span class="go">status</span>
-<span class="go">Dead      13961</span>
-<span class="go">Fair      96504</span>
-<span class="go">Good     528850</span>
-<span class="go">Poor      26818</span>
-<span class="go">Stump     17654</span>
-<span class="go">dtype: int64</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>The groups are determined by the values <code class="docutils literal notranslate"><span class="pre">combined_status</span></code>.  A row
@@ -1233,16 +1091,13 @@ contains an entry with the same index and the associated value matches
 the group’s label.  For example, <code class="docutils literal notranslate"><span class="pre">177922</span></code> appears as an index value
 in both <code class="docutils literal notranslate"><span class="pre">trees</span></code> and <code class="docutils literal notranslate"><span class="pre">combined_status</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">combined_status</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">177922</span><span class="p">]</span>
-<span class="go">&#39;Stump&#39;</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;combined_status&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">177922</span><span class="p">]</span>
-<span class="go">status                Stump</span>
-<span class="go">health                  NaN</span>
-<span class="go">spc_common              NaN</span>
-<span class="go">boroname      Staten Island</span>
-<span class="go">latitude            40.5285</span>
-<span class="go">longitude          -74.1652</span>
-<span class="go">combined              Stump</span>
-<span class="go">Name: 177922, dtype: object</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>This tree will be in the <code class="docutils literal notranslate"><span class="pre">'Stump'</span></code> group, because that’s the value
@@ -1250,16 +1105,13 @@ of tree <code class="docutils literal notranslate"><span class="pre">177922</spa
 <code class="docutils literal notranslate"><span class="pre">180683</span></code> will be in group <code class="docutils literal notranslate"><span class="pre">'Fair'</span></code>, because that’s its value in
 <code class="docutils literal notranslate"><span class="pre">combined_status</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">combined_status</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">180683</span><span class="p">]</span>
-<span class="go">&#39;Fair&#39;</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;combined_status&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">180683</span><span class="p">]</span>
-<span class="go">status            Alive</span>
-<span class="go">health             Fair</span>
-<span class="go">spc_common    red maple</span>
-<span class="go">boroname         Queens</span>
-<span class="go">latitude        40.7231</span>
-<span class="go">longitude      -73.8442</span>
-<span class="go">combined           Fair</span>
-<span class="go">Name: 180683, dtype: object</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>In this case, every index value in <code class="docutils literal notranslate"><span class="pre">trees</span></code> has a corresponding value
@@ -1293,13 +1145,9 @@ of the column name as a proxy for the column as a series.  That is,
 <span class="gp">... </span>
 <span class="gp">... </span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tree_health_by_boro</span><span class="p">(</span><span class="n">trees</span><span class="p">)</span>
-<span class="go">status              Good       Fair      Poor      Dead     Stump</span>
-<span class="go">boroname                                                         </span>
-<span class="go">Bronx          78.169783  12.777719  3.632501  2.969379  2.450618</span>
-<span class="go">Brooklyn       77.956829  14.142126  3.643122  1.872042  2.385881</span>
-<span class="go">Manhattan      72.387387  17.516775  5.516409  2.754383  1.825046</span>
-<span class="go">Queens         77.432539  13.789209  3.758516  1.772094  3.247642</span>
-<span class="go">Staten Island  78.494654  13.801060  4.024003  1.775575  1.903758</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 </section>
@@ -1310,46 +1158,21 @@ a hierarchical index into a data frame with a flat index.  In this
 section, we’ll look at another way to handle the same task using the
 <code class="docutils literal notranslate"><span class="pre">pct_per_boro</span></code> series:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro</span>
-<span class="go">boroname       status</span>
-<span class="go">Bronx          Alive     94.580003</span>
-<span class="go">               Dead       2.969379</span>
-<span class="go">               Stump      2.450618</span>
-<span class="go">Brooklyn       Alive     95.742077</span>
-<span class="go">               Dead       1.872042</span>
-<span class="go">               Stump      2.385881</span>
-<span class="go">Manhattan      Alive     95.420571</span>
-<span class="go">               Dead       2.754383</span>
-<span class="go">               Stump      1.825046</span>
-<span class="go">Queens         Alive     94.980263</span>
-<span class="go">               Dead       1.772094</span>
-<span class="go">               Stump      3.247642</span>
-<span class="go">Staten Island  Alive     96.320667</span>
-<span class="go">               Dead       1.775575</span>
-<span class="go">               Stump      1.903758</span>
-<span class="go">dtype: float64</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;pct_per_boro&#39; is not defined</span>
 </pre></div>
 </div>
 <p>As first step, we will convert the series into a data frame using
 the series’ <code class="docutils literal notranslate"><span class="pre">to_frame</span></code> method:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_df</span> <span class="o">=</span> <span class="n">pct_per_boro</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;pct_per_boro&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_df</span>
-<span class="go">                              0</span>
-<span class="go">boroname      status           </span>
-<span class="go">Bronx         Alive   94.580003</span>
-<span class="go">              Dead     2.969379</span>
-<span class="go">              Stump    2.450618</span>
-<span class="go">Brooklyn      Alive   95.742077</span>
-<span class="go">              Dead     1.872042</span>
-<span class="go">              Stump    2.385881</span>
-<span class="go">Manhattan     Alive   95.420571</span>
-<span class="go">              Dead     2.754383</span>
-<span class="go">              Stump    1.825046</span>
-<span class="go">Queens        Alive   94.980263</span>
-<span class="go">              Dead     1.772094</span>
-<span class="go">              Stump    3.247642</span>
-<span class="go">Staten Island Alive   96.320667</span>
-<span class="go">              Dead     1.775575</span>
-<span class="go">              Stump    1.903758</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;pct_per_boro_df&#39; is not defined</span>
 </pre></div>
 </div>
 <p>The resulting data frame retains the hierarchical index from the series
@@ -1357,23 +1180,13 @@ and has a single column with name <code class="docutils literal notranslate"><sp
 can shift the hierarchical index values into columns and construct a
 new range index:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_df</span> <span class="o">=</span> <span class="n">pct_per_boro_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;pct_per_boro_df&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_df</span>
-<span class="go">         boroname status          0</span>
-<span class="go">0           Bronx  Alive  94.580003</span>
-<span class="go">1           Bronx   Dead   2.969379</span>
-<span class="go">2           Bronx  Stump   2.450618</span>
-<span class="go">3        Brooklyn  Alive  95.742077</span>
-<span class="go">4        Brooklyn   Dead   1.872042</span>
-<span class="go">5        Brooklyn  Stump   2.385881</span>
-<span class="go">6       Manhattan  Alive  95.420571</span>
-<span class="go">7       Manhattan   Dead   2.754383</span>
-<span class="go">8       Manhattan  Stump   1.825046</span>
-<span class="go">9          Queens  Alive  94.980263</span>
-<span class="go">10         Queens   Dead   1.772094</span>
-<span class="go">11         Queens  Stump   3.247642</span>
-<span class="go">12  Staten Island  Alive  96.320667</span>
-<span class="go">13  Staten Island   Dead   1.775575</span>
-<span class="go">14  Staten Island  Stump   1.903758</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;pct_per_boro_df&#39; is not defined</span>
 </pre></div>
 </div>
 <p>You’ll notice that this data frame is long and thin as opposed to
@@ -1381,6 +1194,9 @@ short and wide, as is desired.  Before we convert the data frame into
 the appropriate shape, let’s rename the column labelled <code class="docutils literal notranslate"><span class="pre">0</span></code> into
 something more descriptive:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s2">&quot;percentage&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;pct_per_boro_df&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Finally, we can use the data frame <code class="docutils literal notranslate"><span class="pre">pivot</span></code> method to convert a long
@@ -1392,14 +1208,13 @@ we’ll use the borough name as the index, the <code class="docutils literal not
 supply the column names, and the recently renamed <code class="docutils literal notranslate"><span class="pre">percentage</span></code>
 column to supply the values:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_pvt</span> <span class="o">=</span> <span class="n">pct_per_boro_df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s2">&quot;boroname&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;percentage&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;pct_per_boro_df&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_pvt</span>
-<span class="go">status             Alive      Dead     Stump</span>
-<span class="go">boroname                                    </span>
-<span class="go">Bronx          94.580003  2.969379  2.450618</span>
-<span class="go">Brooklyn       95.742077  1.872042  2.385881</span>
-<span class="go">Manhattan      95.420571  2.754383  1.825046</span>
-<span class="go">Queens         94.980263  1.772094  3.247642</span>
-<span class="go">Staten Island  96.320667  1.775575  1.903758</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;pct_per_boro_pvt&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Because every borough has at least one tree of each status, values are
@@ -1407,33 +1222,34 @@ available for all the entries in pivot result.  If a combination is
 not available, <code class="docutils literal notranslate"><span class="pre">pivot</span></code> fills in a <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.  We can see an example of
 this by computing a pivot table for tree species per boro:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;spc_common&quot;</span><span class="p">,</span> <span class="s2">&quot;boroname&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro_df</span> <span class="o">=</span> <span class="n">species_per_boro</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;species_per_boro&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro_pvt</span> <span class="o">=</span> <span class="n">species_per_boro_df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s2">&quot;spc_common&quot;</span><span class="p">,</span> <span class="s2">&quot;boroname&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;species_per_boro_df&#39; is not defined</span>
 </pre></div>
 </div>
 <p>and then by examining the resulting value for a species named Atlas
 cedar:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro_pvt</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Atlas cedar&quot;</span><span class="p">]</span>
-<span class="go">boroname</span>
-<span class="go">Bronx             6.0</span>
-<span class="go">Brooklyn         34.0</span>
-<span class="go">Manhattan         NaN</span>
-<span class="go">Queens           39.0</span>
-<span class="go">Staten Island     8.0</span>
-<span class="go">Name: Atlas cedar, dtype: float64</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;species_per_boro_pvt&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Notice that the entry for <code class="docutils literal notranslate"><span class="pre">Manhattan</span></code> is <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p>
 <p>In case  you are curious, here’s the  code that we used  to identify a
 tree to use as an example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro_pvt</span><span class="p">[</span><span class="n">species_per_boro_pvt</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
-<span class="go">boroname        Bronx  Brooklyn  Manhattan  Queens  Staten Island</span>
-<span class="go">spc_common                                                       </span>
-<span class="go">Atlas cedar       6.0      34.0        NaN    39.0            8.0</span>
-<span class="go">Shantung maple    9.0      12.0        NaN    27.0           11.0</span>
-<span class="go">Virginia pine     1.0       3.0        3.0     3.0            NaN</span>
-<span class="go">false cypress    13.0      35.0        NaN    51.0            9.0</span>
-<span class="go">trident maple     7.0      12.0        NaN    68.0           23.0</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;species_per_boro_pvt&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Let’s pull this expression apart.  The expression
@@ -1459,14 +1275,13 @@ from the data set.</p>
 <p>As an aside, in this case, it makes sense to replace the null values
 with zeros.  We can do this task easily using the <code class="docutils literal notranslate"><span class="pre">fillna</span></code> method:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro_pvt</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;species_per_boro_pvt&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro_pvt</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Atlas cedar&quot;</span><span class="p">]</span>
-<span class="go">boroname</span>
-<span class="go">Bronx             6.0</span>
-<span class="go">Brooklyn         34.0</span>
-<span class="go">Manhattan         0.0</span>
-<span class="go">Queens           39.0</span>
-<span class="go">Staten Island     8.0</span>
-<span class="go">Name: Atlas cedar, dtype: float64</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;species_per_boro_pvt&#39; is not defined</span>
 </pre></div>
 </div>
 <p>As in other cases, adding <code class="docutils literal notranslate"><span class="pre">inplace=True</span></code> as a parameter instructs
@@ -1486,12 +1301,14 @@ associated with the data frame.  Before we run <code class="docutils literal not
 the data from the file to clean up any extra columns left over from
 our earlier computation:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span> <span class="o">=</span> <span class="n">get_tree_data</span><span class="p">(</span><span class="s2">&quot;2015StreetTreesCensus_TREES.csv&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">12</span>, in <span class="n">get_tree_data</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;pd&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">memory_usage</span><span class="o">=</span><span class="s2">&quot;deep&quot;</span><span class="p">)</span>
-<span class="go">&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;</span>
-<span class="go">Int64Index: 683788 entries, 180683 to 200607</span>
-<span class="go">Columns: 6 entries, status to longitude</span>
-<span class="go">dtypes: float64(2), object(4)</span>
-<span class="go">memory usage: 181.1 MB</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>The last line of the output tells us that our <code class="docutils literal notranslate"><span class="pre">trees</span></code> data frame
@@ -1512,23 +1329,17 @@ entries in the <code class="docutils literal notranslate"><span class="pre">tree
 <code class="docutils literal notranslate"><span class="pre">boroname</span></code> field using a categorical variable, and then shows the
 first five values of the new series:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">boroname</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
-<span class="go">tree_id</span>
-<span class="go">180683      Queens</span>
-<span class="go">200540      Queens</span>
-<span class="go">204026    Brooklyn</span>
-<span class="go">204337    Brooklyn</span>
-<span class="go">189565    Brooklyn</span>
-<span class="go">Name: boroname, dtype: object</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">boro_cat</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">boroname</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">boro_cat</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
-<span class="go">tree_id</span>
-<span class="go">180683      Queens</span>
-<span class="go">200540      Queens</span>
-<span class="go">204026    Brooklyn</span>
-<span class="go">204337    Brooklyn</span>
-<span class="go">189565    Brooklyn</span>
-<span class="go">Name: boroname, dtype: category</span>
-<span class="go">Categories (5, object): [&#39;Bronx&#39;, &#39;Brooklyn&#39;, &#39;Manhattan&#39;, &#39;Queens&#39;, &#39;Staten Island&#39;]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;boro_cat&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Notice that the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> has changed from <code class="docutils literal notranslate"><span class="pre">object</span></code> to <code class="docutils literal notranslate"><span class="pre">category</span></code>
@@ -1541,12 +1352,13 @@ needed by a factor of 10 by converting the <code class="docutils literal notrans
 <span class="gp">... </span>    <span class="n">trees</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">trees</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
 <span class="gp">... </span>
 <span class="gp">... </span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">2</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trees</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">memory_usage</span><span class="o">=</span><span class="s2">&quot;deep&quot;</span><span class="p">)</span>
-<span class="go">&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;</span>
-<span class="go">Int64Index: 683788 entries, 180683 to 200607</span>
-<span class="go">Columns: 6 entries, status to longitude</span>
-<span class="go">dtypes: category(4), float64(2)</span>
-<span class="go">memory usage: 18.9 MB</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;trees&#39; is not defined</span>
 </pre></div>
 </div>
 <p>Another way to create a <code class="docutils literal notranslate"><span class="pre">Categorical</span></code> is to define a set of labelled
@@ -1555,6 +1367,9 @@ categorical variable from a series with numeric values.  Our tree data
 does not have a natural example for this type of categorical, so we’ll
 use ten sample diastolic blood pressure values as an example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dbp_10</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">92</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">70</span><span class="p">])</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;pd&#39; is not defined</span>
 </pre></div>
 </div>
 <p>We might want to label values below 80 as “normal”, values between 80
@@ -1581,18 +1396,9 @@ bin boundaries.</p>
 <p>Give these bin boundaries and labels, we can create a categorical
 variable from the sample diastolic blood pressures using <code class="docutils literal notranslate"><span class="pre">pd.cut</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">dbp_10</span><span class="p">,</span> <span class="n">dbp_bins</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">dbp_labels</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="go">0                high</span>
-<span class="go">1              normal</span>
-<span class="go">2    pre-hypertension</span>
-<span class="go">3              normal</span>
-<span class="go">4              normal</span>
-<span class="go">5                high</span>
-<span class="go">6    pre-hypertension</span>
-<span class="go">7              normal</span>
-<span class="go">8              normal</span>
-<span class="go">9              normal</span>
-<span class="go">dtype: category</span>
-<span class="go">Categories (3, object): [&#39;normal&#39; &lt; &#39;pre-hypertension&#39; &lt; &#39;high&#39;]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;pd&#39; is not defined</span>
 </pre></div>
 </div>
 <p>As expected from the description above, patients 3, 4, 7-9 are

@@ -55,6 +55,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#playing-a-round">1.7.2. Playing a round</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#simulating-a-player">1.7.3. Simulating a player</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#estimating-win-rate">1.7.4. Estimating win rate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#main-block">1.7.5. Main block</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#final-program">1.7.6. Final Program</a></li>
 </ul>
 </li>
 </ul>
@@ -93,7 +95,7 @@
 <span id="chapter-hazard"></span><h1><span class="section-number">1.7. </span>Example: A Game of Chance<a class="headerlink" href="#example-a-game-of-chance" title="Permalink to this heading"></a></h1>
 <p>Hazard is a game of chance that was popular in medieval England.  To
 play, a designated player named the <em>caster</em> throws a pair of
-six-sided die and any number of other players can place bets on the
+six-sided dice and any number of other players can place bets on the
 caster’s rolls. In this chapter, we will first describe the game and
 then write code to simulate it.</p>
 <p>The game proceeds in rounds.  At the start of a round, the caster
@@ -102,7 +104,7 @@ inclusive. The caster then rolls both dice in the <em>come out roll</em>.
 The terminology for this part
 of Hazard is complex and does not add a lot to our understanding of
 the game.  Without affecting the accuracy of our simulation, we will
-simply refer to the the sum of the come out roll as the <em>chance</em>.</p>
+simply refer to the the sum of the dice in the come out roll as the <em>chance</em>.</p>
 <p>Here are the rules for the come out roll:</p>
 <ul class="simple">
 <li><p>If the chance is equal to the caster’s chosen main, the caster immediately wins the round.</p></li>
@@ -147,7 +149,7 @@ throw on chance of</em></p></th>
 </tr>
 <tr class="row-even"><td><p>6</p></td>
 <td><p>6, 12</p></td>
-<td><p>2, 3, 11,</p></td>
+<td><p>2, 3, 11</p></td>
 <td><p>Any other value</p></td>
 </tr>
 <tr class="row-odd"><td><p>7</p></td>
@@ -294,27 +296,40 @@ matches the main, and the caster loses the round.</p>
 immediately loses.  Since the caster has lost two rounds in a row, they
 pass the dice on to another player.</p>
 <p>Given that brief explanation, let’s look at some code for simulating
-this game.  The first thing we need to do is simulate
-rolling a pair of dice.</p>
+this game.  Our implementation needs to handle at least three tasks:</p>
+<ul class="simple">
+<li><p>rolling the dice,</p></li>
+<li><p>playing a round, and</p></li>
+<li><p>simulating a game.</p></li>
+</ul>
+<p>We’ll start by writing a function to roll the dice.</p>
 <section id="rolling-dice">
 <h2><span class="section-number">1.7.1. </span>Rolling dice<a class="headerlink" href="#rolling-dice" title="Permalink to this heading"></a></h2>
-<p>In Hazard, we throw of pair of dice and add the face values
-together.  Because we will use this computation often in our simulation,
-it makes sense to write a very short function to do it:</p>
+<p>In Hazard, the caster throws of pair of dice and the face values are
+added together.  Because we will use this computation often in our
+simulation, it makes sense to write a very short function to do it:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">throw_dice</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Throw a pair of six-sided dice</span>
 
 <span class="sd">    Returns (int): the sum of the dice</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">NUM_SIDES</span> <span class="o">=</span> <span class="mi">6</span>
-    <span class="n">val</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">NUM_SIDES</span><span class="p">)</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">NUM_SIDES</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">val</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_sides</span> <span class="o">=</span> <span class="mi">6</span>
+    <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_sides</span><span class="p">)</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_sides</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>We chose to use a constant for number of sides for the die, but we could have
 easily written this function to take the number of sides as
 an argument.</p>
+<p>It may seem silly to write a function for a couple of function calls
+and an addition.  There are two advantages to encapsulating this work
+into a function: first, encapsulating this work allows us to think
+about rolling dice rather than calling <code class="docutils literal notranslate"><span class="pre">random.randint</span></code>, etc when
+writing later functions and, second, we can make changes, such as
+using dice with a different number of sides or using another method
+for simulating the rolling of the dice, simply by changing this
+function rather than having to find every place in the code that needs
+to roll the dice.</p>
 </section>
 <section id="playing-a-round">
 <h2><span class="section-number">1.7.2. </span>Playing a round<a class="headerlink" href="#playing-a-round" title="Permalink to this heading"></a></h2>
@@ -327,19 +342,22 @@ We can return this information as a boolean: <code class="docutils literal notra
 <code class="docutils literal notranslate"><span class="pre">False</span></code> for a loss.  Putting these design decisions together gives
 us the following function header:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">play_one_round</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Play one round of Hazard.</span>
 
-<span class="sd">    Inputs:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        chosen_main (int): a value between 5 and 9 inclusive.</span>
 <span class="sd">    </span>
-<span class="sd">    Returns (boolean): True, if player wins the round and False, otherwise.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    Returns (bool): True, if player wins the round and False, otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 </pre></div>
 </div>
 <p>To simulate the come out roll, we first call our
 <code class="docutils literal notranslate"><span class="pre">throw_dice</span></code> function and save the result in a variable named
 <code class="docutils literal notranslate"><span class="pre">chance</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">chance</span> <span class="o">=</span> <span class="n">throw_dice</span><span class="p">()</span>
+</pre></div>
+</div>
 <p>Next, we need to translate the rules for the come out roll.  At the
 top-level, this computation requires a conditional with four branches.
 The first two branches are straightforward: if each condition holds, the caster
@@ -363,20 +381,21 @@ conditional that branches on the value of <code class="docutils literal notransl
             <span class="k">return</span> <span class="p">(</span><span class="n">chance</span> <span class="o">==</span> <span class="mi">11</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Notice that the outcome of the second branch of the inner conditional
-is not <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> but instead depends on whether the value
-of <code class="docutils literal notranslate"><span class="pre">chance</span></code> is 11 or 12.  Since <code class="docutils literal notranslate"><span class="pre">chance</span></code> can only have one of
-these two values, we can compute the output with a simple boolean
-expression: <code class="docutils literal notranslate"><span class="pre">chance</span> <span class="pre">==</span> <span class="pre">12</span></code>.  The output of the third branch is
+<p>Unlike the previous returns, the outcome of the second branch of the
+inner conditional is not hard-coded to be the constant <code class="docutils literal notranslate"><span class="pre">True</span></code> or the
+constant <code class="docutils literal notranslate"><span class="pre">False</span></code> instead it depends on whether the value of
+<code class="docutils literal notranslate"><span class="pre">chance</span></code> is 11 or 12.  Since <code class="docutils literal notranslate"><span class="pre">chance</span></code> can only have one of these
+two values, we can determine the result by evaluating a simple boolean
+expression: <code class="docutils literal notranslate"><span class="pre">chance</span> <span class="pre">==</span> <span class="pre">12</span></code>.  The result of the third branch is
 computed similarly, using the boolean expression <code class="docutils literal notranslate"><span class="pre">chance</span> <span class="pre">==</span> <span class="pre">11</span></code>.</p>
 <p>Finally, if none of the first three conditions of the outer
 conditional statement hold, then Python executes the body of the <code class="docutils literal notranslate"><span class="pre">else</span></code> branch.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">roll</span> <span class="o">=</span> <span class="n">throw_dice</span><span class="p">()</span>
-    <span class="k">while</span> <span class="ow">not</span> <span class="p">((</span><span class="n">roll</span> <span class="o">==</span> <span class="n">chance</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">roll</span> <span class="o">==</span> <span class="n">chosen_main</span><span class="p">)):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">else</span><span class="p">:</span>
         <span class="n">roll</span> <span class="o">=</span> <span class="n">throw_dice</span><span class="p">()</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">roll</span> <span class="o">!=</span> <span class="n">chance</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">roll</span> <span class="o">!=</span> <span class="n">chosen_main</span><span class="p">):</span>
+            <span class="n">roll</span> <span class="o">=</span> <span class="n">throw_dice</span><span class="p">()</span>
 
-    <span class="k">return</span> <span class="p">(</span><span class="n">roll</span> <span class="o">==</span> <span class="n">chance</span><span class="p">)</span>
-
+        <span class="k">return</span> <span class="p">(</span><span class="n">roll</span> <span class="o">==</span> <span class="n">chance</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>In this case, the caster continues to throw the dice until a roll
@@ -385,28 +404,32 @@ this condition in two parts: The expression <code class="docutils literal notran
 <span class="pre">(roll</span> <span class="pre">==</span> <span class="pre">chosen_main)</span></code> will be true when the roll matches either the
 chance or the main.  Since our loop should continue only when that
 condition does not hold, we can simply negate this expression to get
-the proper test for the loop: (<code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">((roll</span> <span class="pre">==</span> <span class="pre">chance)</span> <span class="pre">or</span> <span class="pre">(roll</span> <span class="pre">==</span>
-<span class="pre">chosen_main))</span></code>)</p>
-<p>Notice that we again return the result of evaluating a boolean
-expression.</p>
+an appropriate test for the loop: (<code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">((roll</span> <span class="pre">==</span> <span class="pre">chance)</span> <span class="pre">or</span> <span class="pre">(roll</span> <span class="pre">==</span>
+<span class="pre">chosen_main))</span></code>).</p>
+<p>While that expression correct reflects the logic of the game, it is a
+bit hard to understand at first glance.  It can be rewritten as:
+<code class="docutils literal notranslate"><span class="pre">(roll</span> <span class="pre">!=</span> <span class="pre">chance)</span> <span class="pre">and</span> <span class="pre">(roll</span> <span class="pre">!=</span> <span class="pre">chosen_main)</span></code>, which is easier to
+read.</p>
+<p>After the loop finishes, we again return the result of evaluating a
+boolean expression.</p>
 <p>A note about using parenthesis in expressions: because <code class="docutils literal notranslate"><span class="pre">not</span></code> has
 higher precedence than <code class="docutils literal notranslate"><span class="pre">or</span></code>, the parenthesis surrounding the
-expression <code class="docutils literal notranslate"><span class="pre">((roll</span> <span class="pre">==</span> <span class="pre">chance)</span> <span class="pre">or</span> <span class="pre">(roll</span> <span class="pre">==</span> <span class="pre">main))</span></code> in the while loop
-test are necessary for correctness.  The rest of parenthesis
-surrounding expressions in this function, in contrast, are not
+expression <code class="docutils literal notranslate"><span class="pre">((roll</span> <span class="pre">==</span> <span class="pre">chance)</span> <span class="pre">or</span> <span class="pre">(roll</span> <span class="pre">==</span> <span class="pre">main))</span></code> in our first version
+of the test are necessary for correctness.  The parenthesis
+surrounding the equality (and inequality) tests, in contrast, are not
 necessary for correctness.  Some programmers include parenthesis to
 increase clarity, while others consider them unnecessary distractions.
 You can decide for yourself.</p>
 <p>We can put these pieces together to get the following complete function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">play_one_round</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Play one round of Hazard.</span>
 
-<span class="sd">    Inputs:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        chosen_main (int): a value between 5 and 9 inclusive.</span>
 <span class="sd">    </span>
-<span class="sd">    Returns (boolean): True, if player wins the round and False, otherwise.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    Returns (bool): True, if player wins the round and False, otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">chance</span> <span class="o">=</span> <span class="n">throw_dice</span><span class="p">()</span>
 
@@ -422,41 +445,79 @@ You can decide for yourself.</p>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># chosen_main is 7</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">chance</span> <span class="o">==</span> <span class="mi">11</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">roll</span> <span class="o">=</span> <span class="n">throw_dice</span><span class="p">()</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">roll</span> <span class="o">!=</span> <span class="n">chance</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">roll</span> <span class="o">!=</span> <span class="n">chosen_main</span><span class="p">):</span>
+            <span class="n">roll</span> <span class="o">=</span> <span class="n">throw_dice</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="n">roll</span> <span class="o">==</span> <span class="n">chance</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>While this version correctly implements the rules for one round, it
+does not follow standard Python style.  In particular, since all the
+branches contain return statements, the <code class="docutils literal notranslate"><span class="pre">elif</span></code> branches can be
+converted into <code class="docutils literal notranslate"><span class="pre">if</span></code> statements and the final <code class="docutils literal notranslate"><span class="pre">else</span></code> can be dropped
+altogether.  The original version also uses more parentheses than
+strictly necessary.  Here is a version that is closer to standard
+Python style:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">play_one_round</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Play one round of Hazard.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        chosen_main (int): a value between 5 and 9 inclusive.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns (bool): True, if player wins the round and False, otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">chance</span> <span class="o">=</span> <span class="n">throw_dice</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">chance</span> <span class="o">==</span> <span class="n">chosen_main</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">chance</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">chance</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="n">chance</span> <span class="o">==</span> <span class="mi">11</span> <span class="ow">or</span> <span class="n">chance</span> <span class="o">==</span> <span class="mi">12</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">chosen_main</span> <span class="o">==</span> <span class="mi">5</span> <span class="ow">or</span> <span class="n">chosen_main</span> <span class="o">==</span> <span class="mi">9</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">chosen_main</span> <span class="o">==</span> <span class="mi">6</span> <span class="ow">or</span> <span class="n">chosen_main</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">chance</span> <span class="o">==</span> <span class="mi">12</span>
+        <span class="c1"># chosen_main is 7</span>
+        <span class="k">return</span> <span class="n">chance</span> <span class="o">==</span> <span class="mi">11</span>
 
     <span class="n">roll</span> <span class="o">=</span> <span class="n">throw_dice</span><span class="p">()</span>
-    <span class="k">while</span> <span class="ow">not</span> <span class="p">((</span><span class="n">roll</span> <span class="o">==</span> <span class="n">chance</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">roll</span> <span class="o">==</span> <span class="n">chosen_main</span><span class="p">)):</span>
+    <span class="k">while</span> <span class="n">roll</span> <span class="o">!=</span> <span class="n">chance</span> <span class="ow">and</span> <span class="n">roll</span> <span class="o">!=</span> <span class="n">chosen_main</span><span class="p">:</span>
         <span class="n">roll</span> <span class="o">=</span> <span class="n">throw_dice</span><span class="p">()</span>
 
-    <span class="k">return</span> <span class="p">(</span><span class="n">roll</span> <span class="o">==</span> <span class="n">chance</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">roll</span> <span class="o">==</span> <span class="n">chance</span>
 </pre></div>
 </div>
 </section>
 <section id="simulating-a-player">
 <h2><span class="section-number">1.7.3. </span>Simulating a player<a class="headerlink" href="#simulating-a-player" title="Permalink to this heading"></a></h2>
 <p>We will also encapsulate the code for simulating an individual caster’s turn
-in a function.  Similar to <code class="docutils literal notranslate"><span class="pre">play_one_round</span></code>, this function will take
+in a function.  Like <code class="docutils literal notranslate"><span class="pre">play_one_round</span></code>, this function will take
 the chosen main as a parameter.  The betting rules for Hazard are
-complex so, for now, our simulation will simply count the number of
+complex and so, our simulation will simply count the number of
 rounds that the caster wins.</p>
 <p>Recall that the caster plays rounds until they lose two in a row.
 Keeping track of the number of consecutive losses is the trickiest
 part of this function.  We’ll use a variable, <code class="docutils literal notranslate"><span class="pre">consecutive_losses</span></code>,
 that we initialize to zero because the caster has not yet played or
 lost any rounds. We will call <code class="docutils literal notranslate"><span class="pre">play_one_round</span></code> to simulate a round
-and update <code class="docutils literal notranslate"><span class="pre">consecutive_losses</span></code> as appropriate: on a loss, we will
-increment its value.  On a win, we will reset it to zero.</p>
+and update <code class="docutils literal notranslate"><span class="pre">consecutive_losses</span></code> as appropriate. On a loss, we will
+increment its value and on a win, we will reset it to zero.</p>
 <p>As soon as the caster has lost two consecutive rounds, the test for
 the while loop will be false and the function will return the number
 of rounds won.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulate_caster</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Simulate rounds until the caster loses two rounds in a row.</span>
 
-<span class="sd">    Inputs:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        chosen_main (int): a value between 5 and 9 inclusive.</span>
 
 <span class="sd">    Returns (int): the number of rounds won</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">num_wins</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">consecutive_losses</span> <span class="o">=</span> <span class="mi">0</span>
@@ -474,13 +535,13 @@ of rounds won.</p>
 </section>
 <section id="estimating-win-rate">
 <h2><span class="section-number">1.7.4. </span>Estimating win rate<a class="headerlink" href="#estimating-win-rate" title="Permalink to this heading"></a></h2>
-<p>Finally, we can easily reuse our function <code class="docutils literal notranslate"><span class="pre">play_one_round</span></code> to print
-a table of estimated per-round win rates for the different possible choices for
-main.  There is a tradeoff between accuracy and computation time: simulating
-more rounds takes more time to compute
-but produces a more accurate result.  Rather than hard-coding a specific number
-of rounds, we’ll write our function to take the number of rounds as a
-parameter and let the user make this tradeoff.</p>
+<p>We can easily reuse our function <code class="docutils literal notranslate"><span class="pre">play_one_round</span></code> to print a table
+of estimated per-round win rates for the different possible choices
+for main.  There is a tradeoff between accuracy and computation time:
+simulating more rounds takes more time to compute but produces a more
+accurate result.  Rather than hard-coding a specific number of rounds,
+we’ll write our function to take the number of rounds as a parameter
+and let the user make this tradeoff.</p>
 <p>We will use a pair of nested loops to generate the table.  The outer
 loop will iterate over the possible values for main (<code class="docutils literal notranslate"><span class="pre">range(5,</span>
 <span class="pre">10)</span></code>). Why <code class="docutils literal notranslate"><span class="pre">10</span></code>?  Recall that <code class="docutils literal notranslate"><span class="pre">range</span></code> generates a sequence of
@@ -489,26 +550,210 @@ specified upper bound.  The inner loop will both simulate the desired
 number of rounds and keep track of the number of rounds won for the
 current value of <code class="docutils literal notranslate"><span class="pre">chosen_main</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_win_rate_table</span><span class="p">(</span><span class="n">num_rounds</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Print a table with the win rates for the possible choices for main</span>
 
-<span class="sd">    Inputs:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        num_rounds (int): the number of rounds to simulate</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+
+<span class="sd">    Returns: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">for</span> <span class="n">chosen_main</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
         <span class="n">num_wins</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_rounds</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_rounds</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">play_one_round</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">):</span>
                 <span class="n">num_wins</span> <span class="o">=</span> <span class="n">num_wins</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">,</span> <span class="n">num_wins</span><span class="o">/</span><span class="n">num_rounds</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Notice that for this computation, we need to start with a fresh win
-count for each possible value of <code class="docutils literal notranslate"><span class="pre">chosen_main</span></code>, so the value of
-<code class="docutils literal notranslate"><span class="pre">win</span></code> gets reset to zero for each iteration of the outer loop.  As
-we noted in our earlier discussion of loops, initializing variables in
-the wrong place is a very common source of bugs.</p>
+<p>This computation needs to start with a fresh win count for each
+possible value of <code class="docutils literal notranslate"><span class="pre">chosen_main</span></code>, so the value of <code class="docutils literal notranslate"><span class="pre">win</span></code> gets reset
+to zero for each iteration of the outer loop.  As we noted in our
+earlier discussion of loops, initializing variables in the wrong place
+is a very common source of bugs.</p>
+<p>Also, notice that we used a sigle underscore character (that is,
+<code class="docutils literal notranslate"><span class="pre">_</span></code>) as the name for the loop variable.  A single underscore
+is often used in situations, such as this one, where Python’s syntax
+requires a name, but the value will not be used.</p>
+</section>
+<section id="main-block">
+<h2><span class="section-number">1.7.5. </span>Main block<a class="headerlink" href="#main-block" title="Permalink to this heading"></a></h2>
+<p>Finally, we add a main block to complete our program.  The main block
+needs to prompt the user for the number of rounds to use in the
+simulations and print the win rate table.</p>
+<p>Here’s the code for the main block:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;The number of rounds needs to be a positive integer. Goodbye.&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Number of rounds: &quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">num_rounds</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">valueError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">num_rounds</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">print_win_rate_table</span><span class="p">(</span><span class="n">num_rounds</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>        
+</pre></div>
+</div>
+<p>We chose to use <code class="docutils literal notranslate"><span class="pre">input</span></code>, a built-in function, to prompt the user for
+a value.  This function takes a string, prints it, waits for the user
+to enter a value, and then returns that value as a string.</p>
+<p>The user-supplied string can be converted to an integer using the
+built-in <code class="docutils literal notranslate"><span class="pre">int</span></code> function, which takes a string and returns the
+cooresponding integer, if possible.  This function will raise a
+<code class="docutils literal notranslate"><span class="pre">ValueError</span></code> if the string cannot be converted into an integer.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">try</span></code> block is often used when dealing with user input.  If the
+string supplied by the user can be converted to an integer, then the
+variable <code class="docutils literal notranslate"><span class="pre">num_rounds</span></code> will set to that integer and the main block
+will continue with conditional that follows the <code class="docutils literal notranslate"><span class="pre">try</span></code> block.  If the
+string cannot be converted to an integer, then <code class="docutils literal notranslate"><span class="pre">int</span></code> will raise a
+<code class="docutils literal notranslate"><span class="pre">ValueError</span></code>.  The <code class="docutils literal notranslate"><span class="pre">try</span></code> block’s exception handler catches this
+exception, prints a simple error message, and then uses the <code class="docutils literal notranslate"><span class="pre">exit</span></code>
+function from the <code class="docutils literal notranslate"><span class="pre">sys</span></code> standard library to exit the program.</p>
+<p>Finally, the program verifies that the value supplied for the number
+of rounds is a positive integer and then call
+<code class="docutils literal notranslate"><span class="pre">print_win_rate_table</span></code>.  If the value is not a positive integer, the
+program prints an error message and exits.</p>
+<div class="admonition-technical-details admonition">
+<p class="admonition-title">Technical Details</p>
+<p>The parameter passed to <code class="docutils literal notranslate"><span class="pre">sys.exit</span></code> is used as the <em>exit status</em>
+or <em>exit code</em> for the program.  By convention, programs that exit
+normally use zero as their exit code.  Programs that encounter an
+error typically use a value other than zero as their exit
+code.</p>
+<p>By default, Python generates an exit code of zero unless the
+program calls <code class="docutils literal notranslate"><span class="pre">sys.exit</span></code> with a different value.</p>
+</div>
+</section>
+<section id="final-program">
+<h2><span class="section-number">1.7.6. </span>Final Program<a class="headerlink" href="#final-program" title="Permalink to this heading"></a></h2>
+<p>In addition to the functions described earlier, the final program
+contains a <em>module docstring</em> and a pair of import statements.  The
+module docstring is the triply-quoted string at the top of the file,
+which in this case simply describes the purpose of the program and
+shows a sample use.  The import statements give the program access to
+<code class="docutils literal notranslate"><span class="pre">random.randint</span></code>, which is used in <code class="docutils literal notranslate"><span class="pre">throw_dice</span></code>, and <code class="docutils literal notranslate"><span class="pre">sys.exit</span></code>,
+which is used in the main block.</p>
+<p>Here is the full program:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A program to estimate the success rates of different mains in the game Hazard.</span>
+
+<span class="sd">Sample use:</span>
+
+<span class="sd">    $ python3 hazard.py</span>
+<span class="sd">    Number of rounds: 1000</span>
+<span class="sd">    5 0.498</span>
+<span class="sd">    6 0.499</span>
+<span class="sd">    7 0.483</span>
+<span class="sd">    8 0.504</span>
+<span class="sd">    9 0.493</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">def</span> <span class="nf">throw_dice</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Throw a pair of six-sided dice</span>
+
+<span class="sd">    Returns (int): the sum of the dice</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_sides</span> <span class="o">=</span> <span class="mi">6</span>
+    <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_sides</span><span class="p">)</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_sides</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">play_one_round</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Play one round of Hazard.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        chosen_main (int): a value between 5 and 9 inclusive.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns (bool): True, if player wins the round and False, otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">chance</span> <span class="o">=</span> <span class="n">throw_dice</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">chance</span> <span class="o">==</span> <span class="n">chosen_main</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">chance</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">chance</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="n">chance</span> <span class="o">==</span> <span class="mi">11</span> <span class="ow">or</span> <span class="n">chance</span> <span class="o">==</span> <span class="mi">12</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">chosen_main</span> <span class="o">==</span> <span class="mi">5</span> <span class="ow">or</span> <span class="n">chosen_main</span> <span class="o">==</span> <span class="mi">9</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">chosen_main</span> <span class="o">==</span> <span class="mi">6</span> <span class="ow">or</span> <span class="n">chosen_main</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">chance</span> <span class="o">==</span> <span class="mi">12</span>
+        <span class="c1"># chosen_main is 7</span>
+        <span class="k">return</span> <span class="n">chance</span> <span class="o">==</span> <span class="mi">11</span>
+
+    <span class="n">roll</span> <span class="o">=</span> <span class="n">throw_dice</span><span class="p">()</span>
+    <span class="k">while</span> <span class="n">roll</span> <span class="o">!=</span> <span class="n">chance</span> <span class="ow">and</span> <span class="n">roll</span> <span class="o">!=</span> <span class="n">chosen_main</span><span class="p">:</span>
+        <span class="n">roll</span> <span class="o">=</span> <span class="n">throw_dice</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">roll</span> <span class="o">==</span> <span class="n">chance</span>
+
+
+<span class="k">def</span> <span class="nf">simulate_caster</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simulate rounds until the caster loses two rounds in a row.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        chosen_main (int): a value between 5 and 9 inclusive.</span>
+
+<span class="sd">    Returns (int): the number of rounds won</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">num_wins</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">consecutive_losses</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">while</span> <span class="n">consecutive_losses</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">play_one_round</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">):</span>
+            <span class="n">consecutive_losses</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">num_wins</span> <span class="o">=</span> <span class="n">num_wins</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">consecutive_losses</span> <span class="o">=</span> <span class="n">consecutive_losses</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">num_wins</span>
+
+
+<span class="k">def</span> <span class="nf">print_win_rate_table</span><span class="p">(</span><span class="n">num_rounds</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Print a table with the win rates for the possible choices for main</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        num_rounds (int): the number of rounds to simulate</span>
+
+<span class="sd">    Returns: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">chosen_main</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+        <span class="n">num_wins</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_rounds</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">play_one_round</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">):</span>
+                <span class="n">num_wins</span> <span class="o">=</span> <span class="n">num_wins</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">chosen_main</span><span class="p">,</span> <span class="n">num_wins</span><span class="o">/</span><span class="n">num_rounds</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;The number of rounds needs to be a positive integer. Goodbye.&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Number of rounds: &quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">num_rounds</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">valueError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">num_rounds</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">print_win_rate_table</span><span class="p">(</span><span class="n">num_rounds</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>        
+</pre></div>
+</div>
 </section>
 </section>
 

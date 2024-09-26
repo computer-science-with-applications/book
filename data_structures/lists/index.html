@@ -46,26 +46,53 @@
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">1. Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">2. Data Structures</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">2.1. Lists, Tuples, and Strings</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#creating-lists">2.1.1. Creating lists</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#accessing-elements-in-a-list">2.1.2. Accessing elements in a list</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#list-slicing">2.1.2.1. List slicing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-lists">2.1.1. Creating lists</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#practice-problems">2.1.1.1. Practice Problems</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#iterating-over-a-list">2.1.3. Iterating over a list</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#modifying-a-list">2.1.4. Modifying a list</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#creating-a-list-based-on-another-list">2.1.5. Creating a list based on another list</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#other-operations-on-lists">2.1.6. Other operations on lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accessing-elements-in-a-list">2.1.2. Accessing elements in a list</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#list-slicing">2.1.2.1. List slicing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">2.1.2.2. Practice Problems</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#iterating-over-a-list">2.1.3. Iterating over a list</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">2.1.3.1. Practice Problems</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#modifying-a-list">2.1.4. Modifying a list</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">2.1.4.1. Practice Problems</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-list-based-on-another-list">2.1.5. Creating a list based on another list</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">2.1.5.1. Practice Problems</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#other-operations-on-lists">2.1.6. Other operations on lists</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">2.1.6.1. Practice Problems</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#variables-revisited">2.1.7. Variables revisited</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-heap">2.1.8. The heap</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#list-parameters">2.1.9. List parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#lists-of-lists">2.1.10. Lists of lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-parameters">2.1.9. List parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">2.1.9.1. Practice Problems</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lists-of-lists">2.1.10. Lists of lists</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">2.1.10.1. Practice Problems</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#shallow-copy-versus-deep-copy">2.1.11. Shallow copy versus deep copy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tuples">2.1.12. Tuples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tuples">2.1.12. Tuples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#section-strings">2.1.12.1. Practice Problems</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#strings">2.1.13. Strings</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#string-formatting">2.1.13.1. String formatting</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#other-operations-on-strings">2.1.13.2. Other operations on strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">2.1.13.3. Practice Problems</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#practice-problem-solutions">2.1.14. Practice Problem Solutions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../dictionaries/index.html">2.2. Dictionaries and Sets</a></li>
@@ -122,7 +149,7 @@ the total price (with tax) of a collection of prices:</p>
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prices</span><span class="p">:</span>
     <span class="n">tax</span> <span class="o">=</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">p</span>
     <span class="n">total</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="n">tax</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The price (with tax) is&quot;</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The price (with tax) is </span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The price (with tax) is 11.0
@@ -182,6 +209,8 @@ them:</p>
 <span class="go">[]</span>
 </pre></div>
 </div>
+<p>Lists created by enclosing a sequence of values in square brackets,
+such as <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code>, are known as <em>list literals</em>.</p>
 <p>We can also create <em>new</em>
 lists by concatenating existing lists using the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
@@ -236,6 +265,15 @@ built-in <code class="docutils literal notranslate"><span class="pre">len</span>
 <span class="go">20</span>
 </pre></div>
 </div>
+<section id="practice-problems">
+<h3><span class="section-number">2.1.1.1. </span>Practice Problems<a class="headerlink" href="#practice-problems" title="Permalink to this heading"></a></h3>
+<p><strong>Problem 1</strong></p>
+<p>Construct a list literal with the string values <code class="docutils literal notranslate"><span class="pre">&quot;one&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;two&quot;</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">&quot;three&quot;</span></code> in that order.</p>
+<p><strong>Problem 2</strong></p>
+<p>Write an expression to construct a list that contains the values 1, 2,
+and 3 repeated 5 times.</p>
+</section>
 </section>
 <section id="accessing-elements-in-a-list">
 <h2><span class="section-number">2.1.2. </span>Accessing elements in a list<a class="headerlink" href="#accessing-elements-in-a-list" title="Permalink to this heading"></a></h2>
@@ -261,7 +299,7 @@ type is appropriate. For example:</p>
 <p>Lists are <em>mutable</em>: we can change both the contents and the
 size of a list.  To update the value at an index, we assign a value to the
 list element at that index using the same indexing notation as when we read a
-value from the list:</p>
+value from the list, but on the left side of an assignment statement:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
 <span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python&#39;, &#39;Java&#39;]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Python 3&quot;</span>
@@ -395,8 +433,9 @@ omitted, its value defaults to the length of the list:</p>
 <span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python 3&#39;, &#39;Java&#39;]</span>
 </pre></div>
 </div>
-<p>Remember that each slice itself is a new list, so the default slice
-notation (<code class="docutils literal notranslate"><span class="pre">[:]</span></code>) is commonly used to create a copy of the list.</p>
+<p>Remember that evaluating a slice yields a new list, so the default slice
+notation (<code class="docutils literal notranslate"><span class="pre">[:]</span></code>) is commonly used as an idiom for creating a copy of
+a list.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang</span>
 <span class="go">[&#39;C&#39;, &#39;C++&#39;, &#39;Python 3&#39;, &#39;Java&#39;]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">lang2</span> <span class="o">=</span> <span class="n">lang</span><span class="p">[:]</span>
@@ -493,6 +532,30 @@ For example, the following code replaces the first two elements of
 </div>
 <p>This usage is much less common and should be used sparingly.</p>
 </section>
+<section id="id1">
+<h3><span class="section-number">2.1.2.2. </span>Practice Problems<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p><strong>Problem 3</strong></p>
+<p><em>Part 1</em> Given the following list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">,</span> <span class="s2">&quot;four&quot;</span><span class="p">,</span> <span class="s2">&quot;five&quot;</span><span class="p">,</span> <span class="s2">&quot;six&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>what is the result evaluating the following expressions:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lst[3]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lst[-4]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lst[2:5]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lst[:10]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lst[1::3]</span></code></p></li>
+</ul>
+<p><em>Part 2</em></p>
+<p>For each of the following, write an expression to extract the specified value(s):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;five&quot;</span></code> from <code class="docutils literal notranslate"><span class="pre">lst</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;five&quot;</span></code> from <code class="docutils literal notranslate"><span class="pre">lst</span></code> using negative indexing;</p></li>
+<li><p>the last four values in <code class="docutils literal notranslate"><span class="pre">lst</span></code>;</p></li>
+<li><p>the last three values in <code class="docutils literal notranslate"><span class="pre">lst</span></code> in reverse order.</p></li>
+</ul>
+</section>
 </section>
 <section id="iterating-over-a-list">
 <h2><span class="section-number">2.1.3. </span>Iterating over a list<a class="headerlink" href="#iterating-over-a-list" title="Permalink to this heading"></a></h2>
@@ -505,7 +568,7 @@ we can use a <code class="docutils literal notranslate"><span class="pre">for</s
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prices</span><span class="p">:</span>
     <span class="n">tax</span> <span class="o">=</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">p</span>
     <span class="n">total</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="n">tax</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The price (with tax) is&quot;</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The price (with tax) is </span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The price (with tax) is 11.0
@@ -529,7 +592,7 @@ to access the list:</p>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">prices</span><span class="p">)):</span>
     <span class="n">tax</span> <span class="o">=</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">prices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">total</span> <span class="o">=</span> <span class="n">prices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">tax</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The price (with tax) is&quot;</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The price (with tax) is </span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The price (with tax) is 11.0
@@ -566,7 +629,7 @@ for the value–separated by a comma.</p>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">price</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">prices</span><span class="p">):</span>
     <span class="n">tax</span> <span class="o">=</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">price</span>
     <span class="n">total</span> <span class="o">=</span> <span class="n">price</span> <span class="o">+</span> <span class="n">tax</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The price (with tax) of element&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The price (with tax) of element </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The price (with tax) of element 0 is 11.0
@@ -607,6 +670,31 @@ we could write:</p>
 </div>
 <p>Notice that <code class="docutils literal notranslate"><span class="pre">p</span></code>, which iterates over the preferences, is used as an
 index into the list <code class="docutils literal notranslate"><span class="pre">lang</span></code>.</p>
+<section id="id2">
+<h3><span class="section-number">2.1.3.1. </span>Practice Problems<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p><strong>Problem 4</strong></p>
+<p>Write a function, <code class="docutils literal notranslate"><span class="pre">print_matching_indexes</span></code>, that takes a list of
+integers and a value and prints the index of every occurrence of the
+value in the list.  For example, given the list <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">5,</span> <span class="pre">7]</span></code>
+and <code class="docutils literal notranslate"><span class="pre">1</span></code> as the value, the function should print <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">3</span></code>.
+Given the same list and <code class="docutils literal notranslate"><span class="pre">9</span></code> as the value, your function should not
+print anything, because <code class="docutils literal notranslate"><span class="pre">9</span></code> does not occur in the list.</p>
+<p>What might make good test cases (in addition to the the sample inputs
+listed above) for this function?</p>
+<p><strong>Problem 5</strong></p>
+<p>Write a function, <code class="docutils literal notranslate"><span class="pre">find_idx_first_match</span></code>, that takes two lists of
+the same length and finds the first index where the two lists have the
+same value.  If no match is found, the function should return <code class="docutils literal notranslate"><span class="pre">-1</span></code>.</p>
+<p>For example, the call <code class="docutils literal notranslate"><span class="pre">find_idx_first_match([1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">7],</span> <span class="pre">[2,</span> <span class="pre">5,</span> <span class="pre">3,</span>
+<span class="pre">7]</span></code>) would return <code class="docutils literal notranslate"><span class="pre">2</span></code>, since both lists contain the value <code class="docutils literal notranslate"><span class="pre">3</span></code> at
+index <code class="docutils literal notranslate"><span class="pre">2</span></code> and do not match at any of the indexes less than 2.  The
+call <code class="docutils literal notranslate"><span class="pre">find_idx_first_match([1,</span> <span class="pre">2,</span> <span class="pre">3],</span> <span class="pre">[2,</span> <span class="pre">3,</span> <span class="pre">1])</span></code> the function would
+return <code class="docutils literal notranslate"><span class="pre">-1</span></code>, since there is no index at which the lists match.</p>
+<p>What might make good test cases (in addition to the the sample inputs
+listed above) for this function?</p>
+<p>How would your implementation change if the lists were not guaranteed
+to be the same length?</p>
+</section>
 </section>
 <section id="modifying-a-list">
 <h2><span class="section-number">2.1.4. </span>Modifying a list<a class="headerlink" href="#modifying-a-list" title="Permalink to this heading"></a></h2>
@@ -760,6 +848,27 @@ clear:</p>
 </div>
 <p>Are we expecting to get <code class="docutils literal notranslate"><span class="pre">[1]</span></code> or <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">5]</span></code>?</p>
 </div>
+<section id="id3">
+<h3><span class="section-number">2.1.4.1. </span>Practice Problems<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p><strong>Problem 6</strong></p>
+<p>Given the following list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">,</span> <span class="s2">&quot;four&quot;</span><span class="p">,</span> <span class="s2">&quot;five&quot;</span><span class="p">,</span> <span class="s2">&quot;six&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>For each of the following operations, determine the result of
+evaluating the operation and the value of <code class="docutils literal notranslate"><span class="pre">lst</span></code> afterwards.  Assume
+the operations are done in order, so changes made by one operation are
+visible to the next operation:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lst.append(&quot;seven&quot;)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lst.pop()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lst.pop(2)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">del</span>&#160; <span class="pre">lst[2]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lst.extend([&quot;eight&quot;,</span> <span class="pre">&quot;nine&quot;,</span> <span class="pre">&quot;ten&quot;])</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lst.append([&quot;eleven&quot;,</span> <span class="pre">&quot;twelve&quot;])</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lst.insert(2,</span> <span class="pre">&quot;thirteen&quot;)</span></code></p></li>
+</ul>
+</section>
 </section>
 <section id="creating-a-list-based-on-another-list">
 <h2><span class="section-number">2.1.5. </span>Creating a list based on another list<a class="headerlink" href="#creating-a-list-based-on-another-list" title="Permalink to this heading"></a></h2>
@@ -844,8 +953,8 @@ the list comprehension:</p>
 </pre></div>
 </div>
 <p>yields a list of ten zeros.</p>
-<p>List comprehensions also allow us to filter which values from the
-original list will be included in the computation of the new list. For
+<p>List comprehensions also allow us to filter the values from the
+original list that will be included in the computation of the new list. For
 example, suppose we wanted to create a <code class="docutils literal notranslate"><span class="pre">discounted_prices</span></code> list, but
 only wanted to include prices (before the discount) that are greater
 than 10. If we were using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, we might write something like
@@ -882,10 +991,31 @@ expands into this code:</p>
     <strong>if</strong> <em>&lt;boolean expression&gt;</em>:
         new_val = <em>&lt;transformational expression &gt;</em>
         <em>&lt;list name&gt;</em>.append(new_val)</pre>
-<p>We will return to this topic again Section
+<p>We will return to this topic again in
 <a class="reference internal" href="../../functions/functions/index.html#list-comprehensions-revisited"><span class="std std-ref">List comprehensions revisited</span></a> to discuss an alternate way to
 think about the computation captured by the list comprehension
 shorthand.</p>
+<section id="id4">
+<h3><span class="section-number">2.1.5.1. </span>Practice Problems<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p><strong>Problem 7</strong></p>
+<p>Write a function <code class="docutils literal notranslate"><span class="pre">compute_str_lengths</span></code> that takes a list of strings
+and constructs a new list where the ith entry in the result is the
+length of the ith string in the input list. For example, given <code class="docutils literal notranslate"><span class="pre">[&quot;abc&quot;,</span>
+<span class="pre">&quot;d&quot;,</span> <span class="pre">&quot;efgh&quot;,</span> <span class="pre">&quot;&quot;]</span></code>, the result would be <code class="docutils literal notranslate"><span class="pre">[3,</span> <span class="pre">1,</span> <span class="pre">4,</span> <span class="pre">0]</span></code>. (You can find the
+length of a string using the built-in <code class="docutils literal notranslate"><span class="pre">len</span></code> function. For example, <code class="docutils literal notranslate"><span class="pre">len(“abc”)</span></code> yields
+<code class="docutils literal notranslate"><span class="pre">3</span></code>.)</p>
+<p>What would make good test cases in addition to the the sample input
+listed above?</p>
+<p><strong>Problem 8</strong></p>
+<p>Write a function <code class="docutils literal notranslate"><span class="pre">find_long_strs</span></code> that takes a list of strings and a
+threshold length and returns a new list that contains all the strings
+in the input list that are least the specified threshold in length.
+For example, <code class="docutils literal notranslate"><span class="pre">find_long_strs([&quot;abc&quot;,</span> <span class="pre">&quot;d&quot;,</span> <span class="pre">&quot;efgh&quot;,</span> <span class="pre">&quot;&quot;],</span> <span class="pre">3)</span></code> would
+yield <code class="docutils literal notranslate"><span class="pre">[&quot;abc&quot;,</span> <span class="pre">&quot;efgh&quot;]</span></code>, while <code class="docutils literal notranslate"><span class="pre">find_long_strs([&quot;abc&quot;,</span> <span class="pre">&quot;d&quot;,</span> <span class="pre">&quot;efgh&quot;,&quot;&quot;],</span> <span class="pre">10)</span></code> would yield <code class="docutils literal notranslate"><span class="pre">[]</span></code>, because none of the strings have at
+least ten characters.</p>
+<p>What would make good test cases in addition to the the sample input
+listed above?</p>
+</section>
 </section>
 <section id="other-operations-on-lists">
 <h2><span class="section-number">2.1.6. </span>Other operations on lists<a class="headerlink" href="#other-operations-on-lists" title="Permalink to this heading"></a></h2>
@@ -992,6 +1122,30 @@ call to <code class="docutils literal notranslate"><span class="pre">sorted</spa
 <span class="go">[107, 101, 47, 23, 23, 17, 5]</span>
 </pre></div>
 </div>
+<section id="id6">
+<h3><span class="section-number">2.1.6.1. </span>Practice Problems<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<p><strong>Problem 9</strong></p>
+<p>Given the following list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">7.3</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>For each of the following pieces of code, determine the result of
+evaluating the code and the value of <code class="docutils literal notranslate"><span class="pre">lst</span></code> afterwards.  Assume the
+operations are done in order, so changes made by one operation are
+visible to the next operation:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">min(lst)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max(lst)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sum(lst)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lst.count(1.2)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lst.count(4.4)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lst.count(0.0)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lst[::-1]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lst.reverse()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sorted(lst)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lst.sort()</span></code></p></li>
+</ul>
+</section>
 </section>
 <section id="variables-revisited">
 <span id="section-variables-revisited"></span><h2><span class="section-number">2.1.7. </span>Variables revisited<a class="headerlink" href="#variables-revisited" title="Permalink to this heading"></a></h2>
@@ -1090,22 +1244,22 @@ happen to contain lists with the same values). We can actually see
 these values (the location of the lists in memory) using the
 built-in <code class="docutils literal notranslate"><span class="pre">id</span></code> function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst3</span><span class="p">)</span>
-<span class="go">140193399299648</span>
+<span class="go">124750133459968</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst4</span><span class="p">)</span>
-<span class="go">140193398756288</span>
+<span class="go">124750133918080</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst3</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">lst4</span><span class="p">)</span>
 <span class="go">False</span>
 </pre></div>
 </div>
 <p>Note: if you run this code yourself, you will very likely not see the
-same <code class="docutils literal notranslate"><span class="pre">id</span></code> values shown above. The <code class="docutils literal notranslate"><span class="pre">id</span></code> value for <code class="docutils literal notranslate"><span class="pre">lst3</span></code>,
+same <code class="docutils literal notranslate"><span class="pre">id</span></code> values as shown above. The <code class="docutils literal notranslate"><span class="pre">id</span></code> value for <code class="docutils literal notranslate"><span class="pre">lst3</span></code>,
 however, should not be the same as the one for <code class="docutils literal notranslate"><span class="pre">lst4</span></code>.</p>
 <p>In contrast, the <code class="docutils literal notranslate"><span class="pre">lst1</span></code> and <code class="docutils literal notranslate"><span class="pre">lst2</span></code> variables we created earlier do have the
 same <code class="docutils literal notranslate"><span class="pre">id</span></code> value, since they both refer to the same list in memory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst1</span><span class="p">)</span>
-<span class="go">140193395521280</span>
+<span class="go">124750134283648</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst2</span><span class="p">)</span>
-<span class="go">140193395521280</span>
+<span class="go">124750134283648</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst1</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">lst2</span><span class="p">)</span>
 <span class="go">True</span>
 </pre></div>
@@ -1190,25 +1344,17 @@ We could write the function like this:</p>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Multiplies the values in a list in-place by a specified factor.</span>
 
-<span class="sd">    Inputs:</span>
-<span class="sd">        lst: a list</span>
-<span class="sd">        factor: the factor to multiply by</span>
+<span class="sd">    Args:</span>
+<span class="sd">        lst (List[number]): a list</span>
+<span class="sd">        factor (number): the factor to multiply by</span>
 
 <span class="sd">    Returns: None</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)):</span>
-        <span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">factor</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lst</span><span class="p">):</span>
+        <span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span> <span class="o">*</span> <span class="n">factor</span>
 </pre></div>
 </div>
-<p>Earlier, we said that iterating over the range of indexes is
-considered “not Pythonic”, but this is one case where it
-is justified, as we need to use the indexes of the list
-to update it (just iterating over the values would not
-allow us to do so). Later in the chapter we will see that
-there is a built-in function called <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> that is
-generally preferred whenever we need to iterate over
-both the indexes and values of a list.</p>
 <p>Let’s try out this function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">scale</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
@@ -1235,7 +1381,7 @@ frame goes away and we are left with <code class="docutils literal notranslate">
 <img alt="../../_images/lists-functions-03.png" src="../../_images/lists-functions-03.png" />
 <p>As the client of a function, you need to be mindful that when you pass
 a list as a parameter to a function any changes made inside the
-function will affect the original list.  If you write a function that,
+function to the parameter will affect the original list.  If you write a function that,
 like <code class="docutils literal notranslate"><span class="pre">scale</span></code>, modifies a list in-place, make sure this behavior is
 properly documented so that anyone using the function is aware that
 the list that they are passing to the function will be modified.  In
@@ -1251,12 +1397,13 @@ returns a new list, leaving the original list intact:</p>
 <span class="sd">    Multiplies the values in a list by a specified factor.</span>
 
 <span class="sd">    Inputs:</span>
-<span class="sd">        lst: a list</span>
-<span class="sd">        factor: the factor to multiply by</span>
+<span class="sd">        lst (List[number]): a list</span>
+<span class="sd">        factor (number): the factor to multiply by</span>
 
-<span class="sd">    Returns: a list of the same type as the input</span>
+<span class="sd">    Returns (List[number): a list of the same type as factor</span>
+<span class="sd">        where the ith value is the ith value of the input list</span>
+<span class="sd">        multiplied by the factor.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-
     <span class="n">new_lst</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
         <span class="n">new_lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">factor</span><span class="p">)</span>
@@ -1279,12 +1426,13 @@ comprehension:</p>
 <span class="sd">    Multiplies the values in a list by a specified factor.</span>
 
 <span class="sd">    Inputs:</span>
-<span class="sd">        lst: a list</span>
-<span class="sd">        factor: the factor to multiply by</span>
+<span class="sd">        lst (List[number]): a list</span>
+<span class="sd">        factor (number): the factor to multiply by</span>
 
-<span class="sd">    Returns: a list of the same type as the input</span>
+<span class="sd">    Returns (List[number): a list of the same type as the factor</span>
+<span class="sd">        where the ith value is the ith value of the input list</span>
+<span class="sd">        multiplied by the factor.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-
     <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="n">factor</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -1302,6 +1450,17 @@ list passed as a parameter.</p>
 <li><p>Think carefully about whether you want to modify the list in-place or return a new list with modified values; and finally,</p></li>
 <li><p>Record your choice in your function’s docstring!</p></li>
 </ul>
+<section id="id7">
+<h3><span class="section-number">2.1.9.1. </span>Practice Problems<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<p><strong>Problem 10</strong></p>
+<p>Write a function, <code class="docutils literal notranslate"><span class="pre">add_in_element_wise</span></code>, that takes two lists of
+equal length and updates the first list with the element-wise sum of
+the two lists.  That is, the i-th value of the first list should be
+sum of the original i-th value of the first list and the i-th value of the
+second list.</p>
+<p>What would make good test cases in addition to the the sample input
+listed above?</p>
+</section>
 </section>
 <section id="lists-of-lists">
 <h2><span class="section-number">2.1.10. </span>Lists of lists<a class="headerlink" href="#lists-of-lists" title="Permalink to this heading"></a></h2>
@@ -1460,16 +1619,19 @@ all!  If this explanation of why the rows of <code class="docutils literal notra
 same list is confusing, please re-read the
 <a class="reference internal" href="#section-variables-revisited"><span class="std std-ref">Variables revisited</span></a> section.</p>
 <p>Instead of using multiplication on a nested list to initialize the
-matrix, we will use a loop:</p>
+matrix, we will use a pair of nested loops:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-<span class="gp">... </span>   <span class="n">m</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="c1"># create a row for the matrix</span>
+<span class="gp">... </span>    <span class="n">row</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="c1"># add the row to the matrix.</span>
+<span class="gp">... </span>    <span class="n">m</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 <span class="gp">... </span>
 </pre></div>
 </div>
-<p>Because the expression <code class="docutils literal notranslate"><span class="pre">[0]*5</span></code> is reevaluated in each iteration of
-the loop, a new list of five zeros is constructed and then appended to
-<code class="docutils literal notranslate"><span class="pre">m</span></code> on every iteration.  The new version of <code class="docutils literal notranslate"><span class="pre">m</span></code> can be depicted as
+<p>The new version of <code class="docutils literal notranslate"><span class="pre">m</span></code> created using version can be depicted as
 follows:</p>
 <img alt="../../_images/lists-10.png" class="align-center" src="../../_images/lists-10.png" />
 <p>As we can see, modifying one row of <code class="docutils literal notranslate"><span class="pre">m</span></code> won’t affect any other
@@ -1485,15 +1647,91 @@ row now:</p>
 <span class="go">[0, 0, 0, 0, 0]</span>
 </pre></div>
 </div>
+<p>There are two other ways we could built <code class="docutils literal notranslate"><span class="pre">m</span></code>: one uses a loop combined
+with list multiplication and the other uses a list comprehension:</p>
+<p>Here is the loop plus list multiplication version:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<span class="gp">... </span>   <span class="n">m</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">... </span>
+</pre></div>
+</div>
+<p>Why does this work?  Because the expression <code class="docutils literal notranslate"><span class="pre">[0]*5</span></code> is reevaluated in each iteration of
+the loop, a new list of five zeros is constructed and then a reference to that new list is appended to
+<code class="docutils literal notranslate"><span class="pre">m</span></code> on every iteration.</p>
+<p>And here is the list comprehension version:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="p">]</span>
+</pre></div>
+</div>
+<p>As in the previous version, a new list of five zeros is constructed
+for each value in the range.</p>
 <p>In sum, while lists-of-lists can be used to manipulate matrix-like
-data, they must constructed used with care.</p>
-<p>The way Python stores the lists internally means that many matrix
-operations (like matrix multiplication) can be quite inefficient. If
-you find yourself needing to manipulate matrix-like data extensively
-in your code (specially if you have to use higher-dimensional
-matrices), you may want to consider using a library like <a class="reference external" href="http://www.numpy.org/">NumPy</a>, which is specifically optimized for
+data, they must constructed used with care.  Also, the way Python
+stores the lists internally means that many matrix operations (like
+matrix multiplication) can be quite inefficient. If you find yourself
+needing to manipulate matrix-like data extensively in your code
+(specially if you have to use higher-dimensional matrices), you may
+want to consider using a library like <a class="reference external" href="http://www.numpy.org/">NumPy</a>, which is specifically optimized for
 manipulating matrices and vectors, and which we will cover later in
 the book.</p>
+<section id="id8">
+<h3><span class="section-number">2.1.10.1. </span>Practice Problems<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<p><strong>Problem 11</strong></p>
+<p>Write a function, <code class="docutils literal notranslate"><span class="pre">add_constant_2D</span></code>, that takes a matrix,
+represented as a list of lists, and a constant <code class="docutils literal notranslate"><span class="pre">c</span></code> and adds <code class="docutils literal notranslate"><span class="pre">c</span></code> to
+every element in the matrix in-place.</p>
+<p>For example, given:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+      <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>the value of <code class="docutils literal notranslate"><span class="pre">m1</span></code> after a call to <code class="docutils literal notranslate"><span class="pre">add_constant_2D(m1,</span> <span class="pre">10)</span></code> would be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>What would make good test cases in addition to the the sample input
+listed above?</p>
+<p><strong>Problem 12</strong></p>
+<p>Write a function, <code class="docutils literal notranslate"><span class="pre">average_rows</span></code>, that takes a matrix represented as
+a list of list of floats and returns a list of floats where the i-th
+float is the average of the values in the i-th row.  For example given:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">matrix</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">],</span>
+<span class="gp">... </span>          <span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],</span>
+<span class="gp">... </span>          <span class="p">[</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.3</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>the function would return <code class="docutils literal notranslate"><span class="pre">[2.033333333333333,</span> <span class="pre">5.166666666666667,</span>
+<span class="pre">8.1]</span></code>.</p>
+<p><strong>Problem 13</strong></p>
+<p>Write a function, <code class="docutils literal notranslate"><span class="pre">average_columns</span></code>, that takes a matrix represented
+as a list of list of floats and returns a list of floats where the
+i-th float is the average of the values in the i-th column.  Given the
+matrix in Problem 12, the result would be <code class="docutils literal notranslate"><span class="pre">[4.166666666666667,</span>
+<span class="pre">5.1000000000000005,</span> <span class="pre">6.033333333333334]</span></code>.</p>
+<p><strong>Problem 14</strong></p>
+<p>The <strong>shape</strong> of a matrix is the number of rows (that is, the length
+of the outer list) and columns (that is, the length of
+the inner list) in the matrix.</p>
+<p>Write a function, <code class="docutils literal notranslate"><span class="pre">add_2D</span></code> that takes two matrices, represented as
+list of lists, with the same shape and returns a new matrix (with the
+same shape) with element-wise sum of the inputs.</p>
+<p>For example, given:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+      <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
+
+<span class="n">m2</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>
+      <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>the result of calling <code class="docutils literal notranslate"><span class="pre">add_2D(m1,</span> <span class="pre">m2)</span></code> would be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">33</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">44</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">66</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>What would make good test cases in addition to the the sample input
+listed above?</p>
+</section>
 </section>
 <section id="shallow-copy-versus-deep-copy">
 <h2><span class="section-number">2.1.11. </span>Shallow copy versus deep copy<a class="headerlink" href="#shallow-copy-versus-deep-copy" title="Permalink to this heading"></a></h2>
@@ -1567,14 +1805,6 @@ original and the copy.</p>
 </pre></div>
 </div>
 <img alt="../../_images/lists-12.png" src="../../_images/lists-12.png" />
-<p>The deep copy function needs to be used with care; it will get stuck
-in an infinite computation, if it is called on a data structure that
-loops back onto itself, such as:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">list_with_cycle</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">list_with_cycle</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">list_with_cycle</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="../../_images/lists-13.png" src="../../_images/lists-13.png" />
 </section>
 <section id="tuples">
 <h2><span class="section-number">2.1.12. </span>Tuples<a class="headerlink" href="#tuples" title="Permalink to this heading"></a></h2>
@@ -1646,10 +1876,10 @@ values:</p>
 
 <span class="sd">    Compute the mean and standard deviation of a list of numbers.</span>
 
-<span class="sd">    Inputs:</span>
-<span class="sd">      lst: list of numbers</span>
+<span class="sd">    Args:</span>
+<span class="sd">      lst (List[number]): list of numbers</span>
 
-<span class="sd">    Returns: tuple with the mean and standard deviation.</span>
+<span class="sd">    Returns (Tuple[float, float]): the mean and standard deviation of the values in nums.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="n">mean</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
@@ -1659,14 +1889,14 @@ values:</p>
 </pre></div>
 </div>
 <p>We can call this function with a list of numbers, assign the result
-to a variable, and then extract the results by indexing:</p>
+to a variable, and then extract the results using indexing:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">quiz_scores</span> <span class="o">=</span> <span class="p">[</span><span class="mf">9.9</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">7.6</span><span class="p">,</span> <span class="mf">6.6</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">,</span> <span class="mf">7.8</span><span class="p">,</span> <span class="mf">11.0</span><span class="p">,</span> <span class="mf">7.3</span><span class="p">,</span> <span class="mf">7.4</span><span class="p">,</span> <span class="mf">9.2</span><span class="p">]</span>
 <span class="n">stats</span> <span class="o">=</span> <span class="n">compute_basic_stats</span><span class="p">(</span><span class="n">quiz_scores</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean:&quot;</span><span class="p">,</span> <span class="n">stats</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Standard deviation:&quot;</span><span class="p">,</span> <span class="n">stats</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Mean: 8.88
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Mean: 8.879999999999999
 Standard deviation: 1.7121915780659593
 </pre></div>
 </div>
@@ -1681,7 +1911,7 @@ tuple and using them in place of the slot numbers.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Standard deviation:&quot;</span><span class="p">,</span> <span class="n">stats</span><span class="p">[</span><span class="n">STDEV_SLOT</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Mean: 8.88
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Mean: 8.879999999999999
 Standard deviation: 1.7121915780659593
 </pre></div>
 </div>
@@ -1775,9 +2005,31 @@ The price (with tax) of element 3 is 77.0
 The price (with tax) of element 4 is 11.0
 </pre></div>
 </div>
+<section id="section-strings">
+<span id="id9"></span><h3><span class="section-number">2.1.12.1. </span>Practice Problems<a class="headerlink" href="#section-strings" title="Permalink to this heading"></a></h3>
+<p><strong>Problem 15</strong></p>
+<p>Write a function, <code class="docutils literal notranslate"><span class="pre">print_component</span></code>, that takes a list of tuples of
+length two (that is, 2-tuples or pairs) and a boolean, and prints the
+first element in each pair if the boolean is <code class="docutils literal notranslate"><span class="pre">True</span></code> and the second
+if the boolean is <code class="docutils literal notranslate"><span class="pre">False</span></code>.  For example, given [(“one”, 10), (“two”,
+29), (“three”, 30)] and <code class="docutils literal notranslate"><span class="pre">True</span></code>, your code should print: <code class="docutils literal notranslate"><span class="pre">one</span></code>,
+<code class="docutils literal notranslate"><span class="pre">two</span></code>, and <code class="docutils literal notranslate"><span class="pre">three</span></code>.  Given the same list and <code class="docutils literal notranslate"><span class="pre">False</span></code>, your
+function should print: <code class="docutils literal notranslate"><span class="pre">10</span></code>, <code class="docutils literal notranslate"><span class="pre">20</span></code>, and <code class="docutils literal notranslate"><span class="pre">30</span></code>.</p>
+<p>What would make good test cases in addition to the the sample input
+listed above?</p>
+<p><strong>Problem 16</strong></p>
+<p>Write a function <code class="docutils literal notranslate"><span class="pre">combine_triples</span></code>, that takes a list of tuples of
+length 3 (that is, a 3-tuple or triple), compute a tuple of length
+three , where the i-th element in the tuple is the sum of the i-th
+element from all the tuples from the input list. For example, given
+<code class="docutils literal notranslate"><span class="pre">[(1,</span> <span class="pre">2,</span> <span class="pre">3),</span> <span class="pre">(4,</span> <span class="pre">5,</span> <span class="pre">6),</span> <span class="pre">(7,</span> <span class="pre">8,</span> <span class="pre">9)]</span></code> the result should be <code class="docutils literal notranslate"><span class="pre">(12,</span> <span class="pre">15,</span>
+<span class="pre">18)</span></code>, because 1+4+7 is 12, 2+5+8 is 15, and 3+6+9 is 18.</p>
+<p>What would make good test cases in addition to the the sample input
+listed above?</p>
+</section>
 </section>
 <section id="strings">
-<span id="section-strings"></span><h2><span class="section-number">2.1.13. </span>Strings<a class="headerlink" href="#strings" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.1.13. </span>Strings<a class="headerlink" href="#strings" title="Permalink to this heading"></a></h2>
 <p>Back in <a class="reference internal" href="../../getting_started/basics/index.html#chapter-basics"><span class="std std-ref">Programming Basics</span></a> we introduced one of the basic data types
 in Python: strings. Strings allow us to store “text” or, more concretely, sequences (or
 “strings”) of characters:</p>
@@ -1806,38 +2058,34 @@ characters in a string:</p>
 </pre></div>
 </div>
 <section id="string-formatting">
-<h3><span class="section-number">2.1.13.1. </span>String formatting<a class="headerlink" href="#string-formatting" title="Permalink to this heading"></a></h3>
-<p>So far, whenever we had to print a combination of strings and other values,
-we would just use the <code class="docutils literal notranslate"><span class="pre">print</span></code> function, which prints its parameters
-separated by spaces:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">37</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Here is a number:&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
-<span class="go">Here is a number: 37</span>
-</pre></div>
-</div>
-<p>Strings also have a <code class="docutils literal notranslate"><span class="pre">format</span></code> method that allows us to combine values
-into a string in many different ways. When using this method, we
-include curly braces (<code class="docutils literal notranslate"><span class="pre">{}</span></code>) in any place where we want to embed
+<span id="id10"></span><h3><span class="section-number">2.1.13.1. </span>String formatting<a class="headerlink" href="#string-formatting" title="Permalink to this heading"></a></h3>
+<p>In <a class="reference internal" href="../../getting_started/basics/index.html#f-strings"><span class="std std-ref">F-strings</span></a>, we introduced formatted string literals (known as
+f-strings as a way to construct a string from a combination of basic
+text and computed values.</p>
+<p>Python strings also have a method called <code class="docutils literal notranslate"><span class="pre">format</span></code> that can also be
+used to construct a string from a combination of basic text and
+computed values.  When using this method, we include curly braces
+(<code class="docutils literal notranslate"><span class="pre">{}</span></code>) in any place in the format string where we want to embed
 another value.  For example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;Here is a number: </span><span class="si">{}</span><span class="s2">&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fmt_str</span> <span class="o">=</span> <span class="s2">&quot;Here is a number: </span><span class="si">{}</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 <p>Then, we call the <code class="docutils literal notranslate"><span class="pre">format</span></code> method, and pass the value (or values) we
 want to embed in the string as a parameter (or parameters):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fmt_str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="go">&#39;Here is a number: 37&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fmt_str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 <span class="go">&#39;Here is a number: 100&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mf">3.1415</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fmt_str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mf">3.1415</span><span class="p">)</span>
 <span class="go">&#39;Here is a number: 3.1415&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Not a number, but this still works&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fmt_str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Not a number, but this still works&quot;</span><span class="p">)</span>
 <span class="go">&#39;Here is a number: Not a number, but this still works&#39;</span>
 </pre></div>
 </div>
-<p>Note how <code class="docutils literal notranslate"><span class="pre">format</span></code> returns a new string; it does not modify
-the format string itself. If we want to print the resulting string, we can
+<p>Note how <code class="docutils literal notranslate"><span class="pre">format</span></code> returns a new string; it does not modify the
+format string itself. If we want to print the resulting string, we can
 pass the return value of <code class="docutils literal notranslate"><span class="pre">format</span></code> to <code class="docutils literal notranslate"><span class="pre">print</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">fmt_str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
 <span class="go">Here is a number: 37</span>
 </pre></div>
 </div>
@@ -1854,9 +2102,10 @@ look weird at first, but it is no different from calling <code class="docutils l
 <span class="go">5 times 7 is 35</span>
 </pre></div>
 </div>
-<p>And we can also control the way in which the embedded values are formatted.
-For example, when embedding a float, we can write <code class="docutils literal notranslate"><span class="pre">{:.Nf}</span></code>, substituting
-the number of decimal places we want to print for <code class="docutils literal notranslate"><span class="pre">N</span></code>:</p>
+<p>Using format strings, we can control the way in which the embedded
+values are formatted.  For example, when embedding a float, we can
+write <code class="docutils literal notranslate"><span class="pre">{:.Nf}</span></code>, substituting the number of decimal places we want to
+print for <code class="docutils literal notranslate"><span class="pre">N</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">PI</span> <span class="o">=</span> <span class="mf">3.141592653589793</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The value of pi is </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">PI</span><span class="p">))</span>
 <span class="go">The value of pi is 3.14</span>
@@ -1868,6 +2117,21 @@ the number of decimal places we want to print for <code class="docutils literal 
 see the full description of how to specify formats for different types
 of values in the <a class="reference external" href="https://docs.python.org/3/library/string.html#formatstrings">Python documentation</a> for
 this method</p>
+<p>Format specifiers can also be used with f-strings.  The
+expression-to-be-evaluated goes before the colon in the specifier:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">PI</span> <span class="o">=</span> <span class="mf">3.141592653589793</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The value of pi is </span><span class="si">{</span><span class="n">PI</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="go">The value of pi is 3.14</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The circumference of circle of radius </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">r</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="go">The circumference of circle of radius 2.0 is 12.6</span>
+</pre></div>
+</div>
+<p>For simple tasks, f-strings are preferred over format strings.  Format
+strings can be useful when you want to build up a complex string over
+time or when you want to setup the formatting for a string ahead of
+the computation of the values that will be used to complete the
+string.</p>
 </section>
 <section id="other-operations-on-strings">
 <h3><span class="section-number">2.1.13.2. </span>Other operations on strings<a class="headerlink" href="#other-operations-on-strings" title="Permalink to this heading"></a></h3>
@@ -1924,7 +2188,8 @@ delimiters removed. For example:</p>
 </pre></div>
 </div>
 <p>The parameter to <code class="docutils literal notranslate"><span class="pre">split</span></code> is optional; if we omit it, <code class="docutils literal notranslate"><span class="pre">split</span></code> will
-assume that any whitespace characters (spaces, tabs, etc.) are the separator. For example:</p>
+assume treat any run of whitespace characters (spaces, tabs, etc.) as
+a separator. For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">phrase</span> <span class="o">=</span> <span class="s2">&quot;The quick   brown  fox     jumps  over   the  lazy            dog&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">words</span> <span class="o">=</span> <span class="n">phrase</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">words</span>
@@ -1960,6 +2225,1018 @@ literal:</p>
 a full list of methods, see the <a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#string-methods">Python documentation</a>
 or run <code class="docutils literal notranslate"><span class="pre">help(str)</span></code> from the Python interpreter.</p>
 </section>
+<section id="id12">
+<h3><span class="section-number">2.1.13.3. </span>Practice Problems<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h3>
+<p><strong>Problem 17</strong></p>
+<p>Write a function, <code class="docutils literal notranslate"><span class="pre">count_suffix_matches</span></code>, which takes a list of words
+and a suffix and computes the number of words in the list that end in
+the specified suffix. Both the words and the suffix will be
+represented as strings.  For example, <code class="docutils literal notranslate"><span class="pre">count_suffix_matches([&quot;hello&quot;,</span>
+<span class="pre">&quot;jello&quot;,</span> <span class="pre">&quot;ham&quot;,</span> <span class="pre">&quot;cello&quot;],</span> <span class="pre">&quot;ello&quot;)</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">3</span></code> and
+<code class="docutils literal notranslate"><span class="pre">count_suffix_matches([&quot;hello&quot;],</span> <span class="pre">&quot;bye&quot;)</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>Write one solution that uses the string <code class="docutils literal notranslate"><span class="pre">endswith</span></code> method and
+another one that does not.</p>
+<p><strong>Problem 18</strong></p>
+<p>Write a function <code class="docutils literal notranslate"><span class="pre">find_first_word</span></code>, which takes a sentence
+represented as a string and a single letter, also represented as a
+string, and finds the first word in the sentence that contains that
+letter. For the purposes of this task, we will define a word to be a
+sequence of non-white-space characters.  For example, given the
+sentence <code class="docutils literal notranslate"><span class="pre">&quot;I</span> <span class="pre">am</span> <span class="pre">learning</span> <span class="pre">a</span> <span class="pre">lot</span> <span class="pre">and</span> <span class="pre">having</span> <span class="pre">fun</span> <span class="pre">this</span> <span class="pre">quarter&quot;</span></code> and the
+letter <code class="docutils literal notranslate"><span class="pre">&quot;n&quot;</span></code>, find_first_word should return the word <code class="docutils literal notranslate"><span class="pre">&quot;learning&quot;</span></code>.</p>
+<p>Write one version using the string <code class="docutils literal notranslate"><span class="pre">split</span></code> method and another that
+does not.  The string <code class="docutils literal notranslate"><span class="pre">isspace()</span></code> method, which returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if
+all the characters in a string are whitespaces and <code class="docutils literal notranslate"><span class="pre">False</span></code>
+otherwise, will be useful for the second implementation.</p>
+</section>
+</section>
+<section id="practice-problem-solutions">
+<h2><span class="section-number">2.1.14. </span>Practice Problem Solutions<a class="headerlink" href="#practice-problem-solutions" title="Permalink to this heading"></a></h2>
+<p><strong>Problem 1</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">]</span>
+<span class="go">[&#39;one&#39;, &#39;two&#39;, &#39;three&#39;]</span>
+</pre></div>
+</div>
+<p><strong>Problem 2</strong></p>
+<p>This problem could be solved by writing down a list with 15 numbers,
+but using list multiplication is a better choice:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="go">[1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span>
+<span class="go">[1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3]</span>
+</pre></div>
+</div>
+<p><strong>Problem 3</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">,</span> <span class="s2">&quot;four&quot;</span><span class="p">,</span> <span class="s2">&quot;five&quot;</span><span class="p">,</span> <span class="s2">&quot;six&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="go">&#39;four&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>
+<span class="go">&#39;three&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+<span class="go">[&#39;three&#39;, &#39;four&#39;, &#39;five&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<span class="go">[&#39;one&#39;, &#39;two&#39;, &#39;three&#39;, &#39;four&#39;, &#39;five&#39;, &#39;six&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">3</span><span class="p">]</span>
+<span class="go">[&#39;two&#39;, &#39;five&#39;]</span>
+</pre></div>
+</div>
+<p>Here are two ways to extract <code class="docutils literal notranslate"><span class="pre">&quot;five&quot;</span></code> from <code class="docutils literal notranslate"><span class="pre">lst</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="go">&#39;five&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">&#39;five&#39;</span>
+</pre></div>
+</div>
+<p>Here are two ways to extract the last four values from <code class="docutils literal notranslate"><span class="pre">lst</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+<span class="go">[&#39;three&#39;, &#39;four&#39;, &#39;five&#39;, &#39;six&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span>
+<span class="go">[&#39;three&#39;, &#39;four&#39;, &#39;five&#39;, &#39;six&#39;]</span>
+</pre></div>
+</div>
+<p>Here are three ways to extract the last three values from <code class="docutils literal notranslate"><span class="pre">lst</span></code> in reverse order:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">[&#39;six&#39;, &#39;five&#39;, &#39;four&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">4</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">[&#39;six&#39;, &#39;five&#39;, &#39;four&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">[&#39;six&#39;, &#39;five&#39;, &#39;four&#39;]</span>
+</pre></div>
+</div>
+<p><strong>Problem 4</strong></p>
+<p>Here is a possible solution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_matching_indexes</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">val_to_match</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Prints the indexes that have a value that matches val_to_match.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">       lst (List[int]): the values to check</span>
+<span class="sd">       val_to_match (int): the value of interest</span>
+
+<span class="sd">    Returns: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lst</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="n">val_to_match</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Our solution uses <code class="docutils literal notranslate"><span class="pre">enumerate</span></code>, because we need both the index and
+the value.  This approach is less error-prone than using a loop that
+iterates over the list and maintains a seperate index variable.  It is
+also less error-prone than using a loop that iterates over the
+index-space of the list using <code class="docutils literal notranslate"><span class="pre">range</span></code> and then uses indexing to
+extract the value from the list.</p>
+<p>Here is some test code for <code class="docutils literal notranslate"><span class="pre">print_matching_indexes</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_single_print_matching_indexes</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">match_val</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Run a single test for print_matching_indexes.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        lst (List[int]): the test list</span>
+<span class="sd">        match_val (int): the test value to match</span>
+<span class="sd">        expected (List[int]): a list of the indexes that are expected</span>
+<span class="sd">            to be printed or None, if none of the indexes are expected to match</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;print_matching_indexes(</span><span class="si">{</span><span class="n">lst</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">match_val</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">expected</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected: No indexes should be printed&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">expected</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Actual:&quot;</span><span class="p">)</span>
+    <span class="n">print_matching_indexes</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">match_val</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>    
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_print_matching_indexes</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Test code for print_matching_indexes.  This code prints out the values </span>
+<span class="sd">    to expect from each test and then runs the test.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check a value that occurs more than once in the list</span>
+    <span class="n">test_single_print_matching_indexes</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+
+    <span class="c1"># Check a value that does not occur in the list</span>
+    <span class="n">test_single_print_matching_indexes</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="mi">9</span><span class="p">,</span> <span class="p">[])</span>
+
+    <span class="c1"># Check the empty list</span>
+    <span class="n">test_single_print_matching_indexes</span><span class="p">([],</span> <span class="mi">5</span><span class="p">,</span> <span class="p">[])</span>
+
+    <span class="c1"># Check a one-element list that matches</span>
+    <span class="n">test_single_print_matching_indexes</span><span class="p">([</span><span class="mi">10</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># Check a one-element list that does not match</span>
+    <span class="n">test_single_print_matching_indexes</span><span class="p">([</span><span class="mi">10</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[])</span>
+    
+    <span class="c1"># Check a list where every value matches.</span>
+    <span class="n">test_single_print_matching_indexes</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Notice that we followed the zero-one-many rule-of-thumb: we have test
+cases for the empty list, a one-element list with different
+values-to-match, and several tests with multi-element lists.</p>
+<p><strong>Problem 5</strong></p>
+<p>Here is a possible solution for <code class="docutils literal notranslate"><span class="pre">find_idx_first_match</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_idx_first_match</span><span class="p">(</span><span class="n">lst1</span><span class="p">,</span> <span class="n">lst2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find the first index where lst1 and lst2 have the same</span>
+<span class="sd">    value. Return -1 if none of the indexes hold matching values.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        lst1 (List[number]): one list</span>
+<span class="sd">        lst2 (List[number]): another list</span>
+
+<span class="sd">    Returns (int): the first index at which lst1 and lst2 have the</span>
+<span class="sd">        same value or -1, if none of the indexes hold matching values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst1</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst2</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">val1</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lst1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">val1</span> <span class="o">==</span> <span class="n">lst2</span><span class="p">[</span><span class="n">idx</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">idx</span>
+
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>Here is an alternative solution that uses indexing for both
+<code class="docutils literal notranslate"><span class="pre">lst1</span></code> and <code class="docutils literal notranslate"><span class="pre">lst2</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_idx_first_match_1</span><span class="p">(</span><span class="n">lst1</span><span class="p">,</span> <span class="n">lst2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find the first index where lst1 and lst2 have the same</span>
+<span class="sd">    value. Return -1 if none of the indexes hold matching values.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        lst1 (List[number]): one list</span>
+<span class="sd">        lst2 (List[number]): another list</span>
+
+<span class="sd">    Returns (int): the first index at which lst1 and lst2 have the</span>
+<span class="sd">        same value or -1, if none of the indexes hold matching values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst1</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst2</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lst1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">lst1</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">==</span> <span class="n">lst2</span><span class="p">[</span><span class="n">idx</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">idx</span>
+
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>Some programmers prefer the second version, because the relationship
+between the two values being compared is more explicit.  The name
+<code class="docutils literal notranslate"><span class="pre">_</span></code> is often used in situations where a variable name is needed for
+syntactic purposes, but the value of the variable will not be used.</p>
+<p>Here is a solution that works even if the lists are not the same
+length:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_idx_first_match_2</span><span class="p">(</span><span class="n">lst1</span><span class="p">,</span> <span class="n">lst2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find the first index where lst1 and lst2 have the same</span>
+<span class="sd">    value. Return -1 if none of the indexes hold matching values.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        lst1 (List[number]): one list</span>
+<span class="sd">        lst2 (List[number]): another list</span>
+
+<span class="sd">    Returns (int): the first index at which lst1 and lst2 have the</span>
+<span class="sd">        same value or -1, if none of the indexes hold matching values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lst1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst2</span><span class="p">):</span>
+            <span class="c1"># lst1 is longer than lst2</span>
+            <span class="k">break</span>
+
+        <span class="k">if</span> <span class="n">lst1</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">==</span> <span class="n">lst2</span><span class="p">[</span><span class="n">idx</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">idx</span>
+
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>The first conditional in this solution handles with the case where
+<code class="docutils literal notranslate"><span class="pre">lst2</span></code> is shorter than <code class="docutils literal notranslate"><span class="pre">lst1</span></code>.  We do not need special code to
+handle the case where <code class="docutils literal notranslate"><span class="pre">lst1</span></code> is shorter than <code class="docutils literal notranslate"><span class="pre">lst2</span></code>, because the
+loop will end when it runs out of values in <code class="docutils literal notranslate"><span class="pre">lst1</span></code> and so, there is
+no danger of an out-of-bounds error.</p>
+<p>We chose to use <code class="docutils literal notranslate"><span class="pre">break</span></code> rather than <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">-1</span></code>, because it limits
+the number of places that would need to be changed if we decided to
+change the “not found” return value.</p>
+<p>Here is some simple test code for this problem:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_find_idx_first_match</span><span class="p">():</span>
+    <span class="c1"># Check empty lists</span>
+    <span class="k">assert</span> <span class="n">find_idx_first_match</span><span class="p">([],</span> <span class="p">[])</span> <span class="o">==</span>  <span class="o">-</span><span class="mi">1</span>
+    
+    <span class="c1"># Check one element lists that match</span>
+    <span class="k">assert</span> <span class="n">find_idx_first_match</span><span class="p">([</span><span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span>
+
+    <span class="c1"># Check one elements that do not match</span>
+    <span class="k">assert</span> <span class="n">find_idx_first_match</span><span class="p">([</span><span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">])</span> <span class="o">==</span>  <span class="o">-</span><span class="mi">1</span>
+
+    <span class="c1"># Check multi-element list with a match in the middle</span>
+    <span class="k">assert</span> <span class="n">find_idx_first_match</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span> <span class="o">==</span> <span class="mi">2</span>
+    
+    <span class="c1"># Check multi-element list with a match in the middle</span>
+    <span class="k">assert</span> <span class="n">find_idx_first_match</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span> <span class="o">==</span> <span class="mi">3</span>
+
+    <span class="c1"># Check multi-element list with no match</span>
+    <span class="k">assert</span> <span class="n">find_idx_first_match</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span> <span class="o">==</span>  <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>This code only tests the firsts solution.  We could easily add calls
+to the other two implemetations, if needed.  The test cases that we
+have are not sufficient for testing the third version, which allows
+lists of different lengths.  What might be some good test cases
+for checking that the last version works for lists of different lengths?</p>
+<p><strong>Problem 6</strong></p>
+<p>In the code below, we compare the result of an operation with <code class="docutils literal notranslate"><span class="pre">None</span></code>
+to highlight the operations that modify the list in-place and return
+<code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">,</span> <span class="s2">&quot;four&quot;</span><span class="p">,</span> <span class="s2">&quot;five&quot;</span><span class="p">,</span> <span class="s2">&quot;six&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;seven&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[&#39;one&#39;, &#39;two&#39;, &#39;three&#39;, &#39;four&#39;, &#39;five&#39;, &#39;six&#39;, &#39;seven&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="go">&#39;seven&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[&#39;one&#39;, &#39;two&#39;, &#39;three&#39;, &#39;four&#39;, &#39;five&#39;, &#39;six&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">&#39;three&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[&#39;one&#39;, &#39;two&#39;, &#39;four&#39;, &#39;five&#39;, &#39;six&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span>  <span class="n">lst</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[&#39;one&#39;, &#39;two&#39;, &#39;five&#39;, &#39;six&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;eight&quot;</span><span class="p">,</span> <span class="s2">&quot;nine&quot;</span><span class="p">,</span> <span class="s2">&quot;ten&quot;</span><span class="p">])</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[&#39;one&#39;, &#39;two&#39;, &#39;five&#39;, &#39;six&#39;, &#39;eight&#39;, &#39;nine&#39;, &#39;ten&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s2">&quot;eleven&quot;</span><span class="p">,</span> <span class="s2">&quot;twelve&quot;</span><span class="p">])</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[&#39;one&#39;, &#39;two&#39;, &#39;five&#39;, &#39;six&#39;, &#39;eight&#39;, &#39;nine&#39;, &#39;ten&#39;, [&#39;eleven&#39;, &#39;twelve&#39;]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;thirteen&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[&#39;one&#39;, &#39;two&#39;, &#39;thirteen&#39;, &#39;five&#39;, &#39;six&#39;, &#39;eight&#39;, &#39;nine&#39;, &#39;ten&#39;, [&#39;eleven&#39;, &#39;twelve&#39;]]</span>
+</pre></div>
+</div>
+<p>Notice the difference between extending a list with the values from another list and appending a list value to a list.</p>
+<p><strong>Problem 7</strong></p>
+<p>Here is a solution for <code class="docutils literal notranslate"><span class="pre">compute_str_lengths</span></code> that uses an explicit loop and the list <code class="docutils literal notranslate"><span class="pre">append</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_str_lengths</span><span class="p">(</span><span class="n">lst</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a list of strings, compute a list of the lengths of the strings.</span>
+
+<span class="sd">    Inputs (List[str]): a list of strings</span>
+
+<span class="sd">    Returns (List[int]): a list of the length of the strings</span>
+<span class="sd">      in the input list.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+<p>and here is one that uses a list comprehension:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_str_lengths_1</span><span class="p">(</span><span class="n">lst</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a list of strings, compute a list of the lengths of the strings.</span>
+
+<span class="sd">    Inputs (List[str]): a list of strings</span>
+
+<span class="sd">    Returns (List[int]): a list of the length of the strings</span>
+<span class="sd">      in the input list.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Here is some simple test code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_compute_str_lengths</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simple test code for compute_str_lengths</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Check empty list</span>
+    <span class="k">assert</span> <span class="n">compute_str_lengths</span><span class="p">([])</span> <span class="o">==</span> <span class="p">[]</span>
+    
+    <span class="c1"># Check a one element list</span>
+    <span class="k">assert</span> <span class="n">compute_str_lengths</span><span class="p">([</span><span class="s2">&quot;xyzw&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+    
+    <span class="c1"># Check a element list where the single element is the empty string. </span>
+    <span class="k">assert</span> <span class="n">compute_str_lengths</span><span class="p">([</span><span class="s2">&quot;&quot;</span><span class="p">])</span> <span class="o">==</span>  <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Check a multi-element list</span>
+    <span class="k">assert</span> <span class="n">compute_str_lengths</span><span class="p">([</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;efgh&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Problem 8</strong></p>
+<p>Here is a solution for <code class="docutils literal notranslate"><span class="pre">find_long_strs</span></code> that uses an explicit loop and the list <code class="docutils literal notranslate"><span class="pre">append</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_long_strs</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a list of strings, return a list of the strings that</span>
+<span class="sd">    are at least threshold long.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        lst (List[str]): a list of strings to consider</span>
+<span class="sd">        threshold (int): the minimum length of a string to include</span>
+
+<span class="sd">    Returns (List[str]): a list of the strings from lst that</span>
+<span class="sd">      are at least threshold charaters long.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+<p>and here is one that uses a list comprehension:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_long_strs_1</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a list of strings, return a list of the strings that</span>
+<span class="sd">    are at least threshold long.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        lst (List[str]): a list of strings to consider</span>
+<span class="sd">        threshold (int): the minimum length of a string to include</span>
+
+<span class="sd">    Returns (List[str]): a list of the strings from lst that</span>
+<span class="sd">      are at least threshold charaters long.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">lst</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Here is some simple test code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_find_long_strs</span><span class="p">():</span>
+
+    <span class="c1"># Check empty list</span>
+    <span class="k">assert</span> <span class="n">find_long_strs</span><span class="p">([],</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="p">[]</span>
+
+    <span class="c1"># Check list with only the empty string</span>
+    <span class="k">assert</span> <span class="n">find_long_strs</span><span class="p">([</span><span class="s2">&quot;&quot;</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span> <span class="o">==</span> <span class="p">[]</span>
+
+    <span class="c1"># Check one element list that is too short</span>
+    <span class="k">assert</span> <span class="n">find_long_strs</span><span class="p">([</span><span class="s2">&quot;ab&quot;</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span> <span class="o">==</span> <span class="p">[]</span>
+    
+    <span class="c1"># Check one element list that is the exact length of the threshold</span>
+    <span class="k">assert</span> <span class="n">find_long_strs</span><span class="p">([</span><span class="s2">&quot;abcd&quot;</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span> <span class="o">==</span>  <span class="p">[</span><span class="s2">&quot;abcd&quot;</span><span class="p">]</span>
+                          
+    <span class="c1"># Check one element list that is the longer than the threshold</span>
+    <span class="k">assert</span> <span class="n">find_long_strs</span><span class="p">([</span><span class="s2">&quot;abcdef&quot;</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;abcdef&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Check a multi-element list where everything should be in the result</span>
+    <span class="k">assert</span> <span class="n">find_long_strs</span><span class="p">([</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;efgh&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span> <span class="o">==</span> \
+        <span class="p">[</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;efgh&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Check a multi-element list where only some of the strings should</span>
+    <span class="c1"># be in the result    </span>
+    <span class="k">assert</span> <span class="n">find_long_strs</span><span class="p">([</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;efgh&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="s2">&quot;efgh&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Check a multi-element list where none the strings should be in the result     </span>
+    <span class="k">assert</span> <span class="n">find_long_strs</span><span class="p">([</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;efgh&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="p">[]</span>
+</pre></div>
+</div>
+<p><strong>Problem 9</strong></p>
+<p>In the code below, we compare the result of an operation with <code class="docutils literal notranslate"><span class="pre">None</span></code>
+to highlight the operations that modify the list in-place and return
+<code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">7.3</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">min</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+<span class="go">0.3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[1.5, 1.2, 7.3, 4.4, 6.5, 0.3, 1.2, 1.2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">max</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+<span class="go">7.3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[1.5, 1.2, 7.3, 4.4, 6.5, 0.3, 1.2, 1.2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sum</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+<span class="go">23.6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[1.5, 1.2, 7.3, 4.4, 6.5, 0.3, 1.2, 1.2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[1.5, 1.2, 7.3, 4.4, 6.5, 0.3, 1.2, 1.2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mf">4.4</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[1.5, 1.2, 7.3, 4.4, 6.5, 0.3, 1.2, 1.2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[1.5, 1.2, 7.3, 4.4, 6.5, 0.3, 1.2, 1.2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">[1.2, 1.2, 0.3, 6.5, 4.4, 7.3, 1.2, 1.5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[1.5, 1.2, 7.3, 4.4, 6.5, 0.3, 1.2, 1.2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[1.2, 1.2, 0.3, 6.5, 4.4, 7.3, 1.2, 1.5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+<span class="go">[0.3, 1.2, 1.2, 1.2, 1.5, 4.4, 6.5, 7.3]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[1.2, 1.2, 0.3, 6.5, 4.4, 7.3, 1.2, 1.5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span>
+<span class="go">[0.3, 1.2, 1.2, 1.2, 1.5, 4.4, 6.5, 7.3]</span>
+</pre></div>
+</div>
+<p><strong>Problem 10</strong></p>
+<p>Here is a possible solution for <code class="docutils literal notranslate"><span class="pre">add_in_element_wise</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_in_element_wise</span><span class="p">(</span><span class="n">lst1</span><span class="p">,</span> <span class="n">lst2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes two lists of the same length and updates lst1 such that the</span>
+<span class="sd">    ith element of lst1 will contain the sum of the original ith</span>
+<span class="sd">    element of the lst1 and the ith element of lst2.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        lst1 (List[number]): a list of values</span>
+<span class="sd">        lst2 (List[number]): a list of values    </span>
+
+<span class="sd">    Returns: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst1</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst2</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lst1</span><span class="p">):</span>
+        <span class="n">lst1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">lst2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Our solution uses enumerate, because we need the index to update the
+value at each index of <code class="docutils literal notranslate"><span class="pre">lst1</span></code>.  Our use of <code class="docutils literal notranslate"><span class="pre">+=</span></code> eliminates the
+need to access <code class="docutils literal notranslate"><span class="pre">lst1[i]</span></code> explictly.  We use <code class="docutils literal notranslate"><span class="pre">_</span></code> as the variable
+name for second component of the tuple generated by <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> to
+signal that its value will not be used.</p>
+<p>Here is some simple test code for this function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_single_add_in_element_wise</span><span class="p">(</span><span class="n">lst1</span><span class="p">,</span> <span class="n">lst2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Run a single test for add_in_element_wise</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        lst1 (List[number]): first operand</span>
+<span class="sd">        lst2 (List[number]): second operand</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Compute a new list with the expected value</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="n">lst1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">lst2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lst1</span><span class="p">)]</span>
+    <span class="n">add_in_element_wise</span><span class="p">(</span><span class="n">lst1</span><span class="p">,</span> <span class="n">lst2</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">lst1</span> <span class="o">==</span> <span class="n">t</span>             
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_add_in_element_wise</span><span class="p">():</span>
+    <span class="c1"># Check empty lists</span>
+    <span class="n">test_single_add_in_element_wise</span><span class="p">([],</span> <span class="p">[]),</span>
+
+    <span class="c1"># Check single element lists</span>
+    <span class="n">test_single_add_in_element_wise</span><span class="p">([</span><span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">20</span><span class="p">]),</span>
+
+    <span class="c1"># Check multi-element lists</span>
+    <span class="n">test_single_add_in_element_wise</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><strong>Problem 11</strong></p>
+<p>Here is a solution for <code class="docutils literal notranslate"><span class="pre">add_constant_2D</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_constant_2D</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a matrix and a constant, add the constant to every element</span>
+<span class="sd">    in the maxtrix.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">       m (List[List[int | float]]): the input matrix</span>
+<span class="sd">       c ([int | float]): the constant</span>
+
+<span class="sd">    Returns: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+            <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span>  <span class="n">c</span>            
+</pre></div>
+</div>
+<p>And here is some test code for this function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_add_constant_2D</span><span class="p">():</span>
+    <span class="c1"># Check a square matrix</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+    <span class="n">add_constant_2D</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">m</span> <span class="o">==</span> <span class="p">[[</span><span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">],</span> <span class="p">[</span><span class="mi">33</span><span class="p">,</span> <span class="mi">34</span><span class="p">]]</span>
+
+    <span class="c1"># Check a matrix with more rows than columns</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
+    <span class="n">add_constant_2D</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">m</span> <span class="o">==</span> <span class="p">[[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">],</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">24</span><span class="p">],</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">]]</span>
+
+    <span class="c1"># Check a matrix with more columns than rows</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
+    <span class="n">add_constant_2D</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">m</span> <span class="o">==</span> <span class="p">[[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">],</span> <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">]]</span>
+
+    <span class="c1"># Check a matrix with exactly one row and exactly one column</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">10</span><span class="p">]]</span>
+    <span class="n">add_constant_2D</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">m</span> <span class="o">==</span> <span class="p">[[</span><span class="mi">20</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p><strong>Problem 12</strong></p>
+<p>Here is a solution for <code class="docutils literal notranslate"><span class="pre">average_rows</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">average_rows</span><span class="p">(</span><span class="n">matrix</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the average of each row.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        matrix (List[List[float]]): the data of interest</span>
+
+<span class="sd">    Returns (List[float]]): a list with the average value in each row</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">matrix</span><span class="p">:</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+<p>And here is some test code for this function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_single_average_rows</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Run a single test for average_rows</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">       m (List[List[number]]): the matrix</span>
+<span class="sd">       expected (List[float]): the expected result</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.00000001</span>
+    <span class="n">actual</span> <span class="o">=</span> <span class="n">average_rows</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="c1"># Verify that the result has the right length</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">expected</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span>
+    <span class="c1"># Verify that all the elements are within epsilon of their</span>
+    <span class="c1"># corresponding expected value.</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">actual</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">actual</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">expected</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">epsilon</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_average_rows</span><span class="p">():</span>
+    <span class="c1"># Check square matrix</span>
+    <span class="n">test_single_average_rows</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.3</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">]],</span>
+                            <span class="p">[</span><span class="mf">2.033333333333333</span><span class="p">,</span> <span class="mf">5.166666666666667</span><span class="p">,</span> 
+                             <span class="mf">8.1</span><span class="p">])</span>
+    
+    <span class="c1"># Check a matrix with more rows than columns</span>
+    <span class="n">test_single_average_rows</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.3</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">11.0</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">]],</span>
+                            <span class="p">[</span><span class="mf">2.033333333333333</span><span class="p">,</span> <span class="mf">5.166666666666667</span><span class="p">,</span>
+                             <span class="mf">8.1</span><span class="p">,</span> <span class="mf">11.0</span><span class="p">])</span>
+    
+    <span class="c1"># Check a matrix with more columns than rows.</span>
+    <span class="n">test_single_average_rows</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">]],</span>
+                            <span class="p">[</span><span class="mf">2.033333333333333</span><span class="p">,</span> <span class="mf">5.166666666666667</span><span class="p">])</span>
+    
+
+    <span class="c1"># Check matrix with exactly one row with exactly one element</span>
+    <span class="n">test_single_average_rows</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">]],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">])</span>      
+</pre></div>
+</div>
+<p><strong>Problem 13</strong></p>
+<p>Here is a solution for <code class="docutils literal notranslate"><span class="pre">average_columns</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">average_columns</span><span class="p">(</span><span class="n">matrix</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the average of each row.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        matrix (List[List[float]]): the data of interest</span>
+
+<span class="sd">    Returns (List[float]]): a list with the average value in each column</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">N</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    
+    <span class="n">M</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">assert</span> <span class="n">M</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># iterate over the column index space</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+        <span class="n">tot</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># iterate over the range index space</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+            <span class="n">tot</span> <span class="o">=</span> <span class="n">tot</span> <span class="o">+</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tot</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+<p>And here are some test code for this function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_single_average_columns</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Run a single test for average_columns</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">       m (List[List[number]]): the matrix</span>
+<span class="sd">       expected (List[float]): the expected result</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.00000001</span>
+    <span class="n">actual</span> <span class="o">=</span> <span class="n">average_columns</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="c1"># Verify that the result has the right length</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">expected</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span>
+    <span class="c1"># Verify that all the elements are within epsilon of their</span>
+    <span class="c1"># corresponding expected value.</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">actual</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">actual</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">expected</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">epsilon</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_average_columns</span><span class="p">():</span>
+    <span class="c1"># Check square matrix</span>
+    <span class="n">test_single_average_columns</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.3</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">]],</span>
+                            <span class="p">[</span><span class="mf">4.166666666666667</span><span class="p">,</span> <span class="mf">5.1000000000000005</span><span class="p">,</span> 
+                             <span class="mf">6.033333333333334</span><span class="p">])</span>
+                             
+    <span class="c1"># Check a matrix with more rows than columns</span>
+    <span class="n">test_single_average_columns</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.3</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">11.0</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">]],</span>
+                            <span class="p">[</span><span class="mf">5.625</span><span class="p">,</span> <span class="mf">6.575</span><span class="p">,</span> <span class="mf">7.525</span><span class="p">])</span>
+    
+    <span class="c1"># Check a matrix with more columns than rows.</span>
+    <span class="n">test_single_average_columns</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">]],</span>
+                            <span class="p">[</span><span class="mf">2.75</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">4.55</span><span class="p">])</span>
+    
+
+    <span class="c1"># Check matrix with exactly one row with exactly one element</span>
+    <span class="n">test_single_average_columns</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">]],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">])</span>      
+</pre></div>
+</div>
+<p><strong>Problem 14</strong></p>
+<p>Here is a solution for <code class="docutils literal notranslate"><span class="pre">add_2D</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_2D</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given two matrices with the same shape, construct a new matrix</span>
+<span class="sd">    with the element-wise sum of the inputs.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        m1 (List[List[int | float]): one matrix</span>
+<span class="sd">        m2 (List[List[int | float]): another matrix    </span>
+
+<span class="sd">    Returns [List[List[int | float]]: a matrix, represented as a list of lists,</span>
+<span class="sd">        with the element-wise sum of of the inputs.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Verify that m1 and m2 have the same shape.</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">m1</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">m2</span><span class="p">)</span>
+    <span class="c1"># all is a built-in function if all the values in the list are True</span>
+    <span class="k">assert</span> <span class="nb">all</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">m1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">m2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">m1</span><span class="p">)])</span>
+
+    <span class="n">new_m</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row1</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">m1</span><span class="p">):</span>
+        <span class="n">new_row</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row1</span><span class="p">):</span>
+            <span class="n">new_row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m1</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">m2</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">new_m</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_row</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">new_m</span>
+</pre></div>
+</div>
+<p>And here are some test cases for this function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_add_2D</span><span class="p">():</span>
+    <span class="c1"># Test a square matrix</span>
+    <span class="n">m1</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+    <span class="n">m2</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">]]</span>
+    <span class="n">expected</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">22</span><span class="p">],</span> <span class="p">[</span><span class="mi">44</span><span class="p">,</span> <span class="mi">55</span><span class="p">]]</span>
+    <span class="k">assert</span> <span class="n">add_2D</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
+
+    <span class="c1"># Test a matrix with more columns than rows</span>
+    <span class="n">m1</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
+    <span class="n">m2</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">]]</span>
+    <span class="n">expected</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">33</span><span class="p">],</span> <span class="p">[</span><span class="mi">44</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">66</span><span class="p">]]</span>
+    <span class="k">assert</span> <span class="n">add_2D</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
+                   
+    <span class="c1"># Test a matrix with more rows than columns</span>
+    <span class="n">m1</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
+    <span class="n">m2</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">]]</span>
+    <span class="n">expected</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">22</span><span class="p">],</span> <span class="p">[</span><span class="mi">33</span><span class="p">,</span> <span class="mi">44</span><span class="p">],</span> <span class="p">[</span><span class="mi">55</span><span class="p">,</span> <span class="mi">66</span><span class="p">]]</span>
+    <span class="k">assert</span> <span class="n">add_2D</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
+
+    <span class="c1"># Test a matrix with a single row with a single column</span>
+    <span class="k">assert</span> <span class="n">add_2D</span><span class="p">([[</span><span class="mi">10</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">20</span><span class="p">]])</span> <span class="o">==</span> <span class="p">[[</span><span class="mi">30</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p><strong>Problem 15</strong></p>
+<p>Here is a possible solution for <code class="docutils literal notranslate"><span class="pre">print_component</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_component</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">print_first</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a list of tuples of length two (that is, 2-tuples or pairs)</span>
+<span class="sd">    and a boolean, print the first element in each pair if the boolean</span>
+<span class="sd">    is True and the second if the boolean is False.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">        lst [List[Any, Any]]: a list of pairs</span>
+<span class="sd">        print_first [bool]: will be True, if the first value in the</span>
+<span class="sd">          pair should be printed and False, if the second should be</span>
+<span class="sd">          printed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">fst</span><span class="p">,</span> <span class="n">snd</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">print_first</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">fst</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">snd</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And here is some simple test code for this function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_single_print_component</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">print_first</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Run a single test case for print_component</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        lst (List[Tuple(Any, Any)]): the test list</span>
+<span class="sd">        print_first (bool): the test value for print_first</span>
+<span class="sd">        expected(str): a string with the expected values</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;print_component(</span><span class="si">{</span><span class="n">lst</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">print_first</span><span class="si">}</span><span class="s2">):&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">expected</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; Should not print any values&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  should print </span><span class="si">{</span><span class="n">expected</span><span class="si">}</span><span class="s2"> (with one value per line)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Actual values printed:&quot;</span><span class="p">)</span>
+    <span class="n">print_component</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">print_first</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>      
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_print_component</span><span class="p">():</span>
+    <span class="c1"># Check an empty list with True for print_first</span>
+    <span class="n">test_single_print_component</span><span class="p">([],</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># Check an empty list with False for print_first</span>
+    <span class="n">test_single_print_component</span><span class="p">([],</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># Check a list with a single tuple: print first element</span>
+    <span class="n">test_single_print_component</span><span class="p">([(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)],</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+    <span class="c1"># Check a list with a single tuple: print second element</span>
+    <span class="n">test_single_print_component</span><span class="p">([(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)],</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+    <span class="c1"># Check a list with multiple tuples: print first elements</span>
+    <span class="n">test_single_print_component</span><span class="p">([(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mi">27</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;bcd&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)],</span> <span class="kc">True</span><span class="p">,</span> 
+                                <span class="s2">&quot;a, bcd, and z&quot;</span><span class="p">)</span>
+    <span class="c1"># Check a list with multiple tuples: print second elements    </span>
+    <span class="n">test_single_print_component</span><span class="p">([(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mi">27</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;bcd&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)],</span> <span class="kc">False</span><span class="p">,</span> 
+                                <span class="s2">&quot;27, 25, and 15&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Problem 16</strong></p>
+<p>Here is a possible solution for <code class="docutils literal notranslate"><span class="pre">combined_triples</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">combine_triples</span><span class="p">(</span><span class="n">lst</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a list of integer triples (3-tuples), compute a triple, where the ith</span>
+<span class="sd">    element in the result is the sum of the ith element in the triples</span>
+<span class="sd">    from the input list.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        lst (List[Tuple(int, int, int)]): the list of triples</span>
+
+<span class="sd">    Returns Tuple[int, int, int]: a triple where the ith element is the </span>
+<span class="sd">      sum of the ith elements from the input triples.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fst_tot</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">snd_tot</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">third_tot</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">f</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
+        <span class="n">fst_tot</span> <span class="o">+=</span> <span class="n">f</span>
+        <span class="n">snd_tot</span> <span class="o">+=</span> <span class="n">s</span>
+        <span class="n">third_tot</span> <span class="o">+=</span> <span class="n">t</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">fst_tot</span><span class="p">,</span> <span class="n">snd_tot</span><span class="p">,</span> <span class="n">third_tot</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And here is some test code for this function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_combine_triples</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Test code for combine triples</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">test_cases</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="c1"># Each test case has a list and the expected result</span>
+        <span class="c1"># Check the empty list</span>
+        <span class="p">([],</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+
+        <span class="c1"># Check a one element list</span>
+        <span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)],</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span>
+        
+        <span class="c1"># Check a multi-element list</span>
+        <span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">)],</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">18</span><span class="p">))</span>
+        <span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">lst</span><span class="p">,</span> <span class="n">expected</span> <span class="ow">in</span> <span class="n">test_cases</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">combine_triples</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
+</pre></div>
+</div>
+<p>Notice that the test cases are represented using a list of tuples and
+that using tuple-unpacking in the loop allows for test code that is
+simple and compact.  We will use this style of test code in our
+solutions for problems later in the book.</p>
+<p><strong>Problem 17</strong></p>
+<p>Here is an implementation of <code class="docutils literal notranslate"><span class="pre">count_suffix_matches</span></code> that uses <code class="docutils literal notranslate"><span class="pre">endswith</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">count_suffix_matches</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">suffix</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Count the number of words that end with a suffix.</span>
+<span class="sd">    </span>
+<span class="sd">    Inputs:</span>
+<span class="sd">        words (List[str]): list of strings</span>
+<span class="sd">        suffix (str): the suffix of interest.</span>
+<span class="sd">        </span>
+<span class="sd">    Return (int): the number of words in word that end with suffix. </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">word</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">suffix</span><span class="p">):</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+            
+    <span class="k">return</span> <span class="n">count</span>
+</pre></div>
+</div>
+<p>And here is one that uses slicing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">count_suffix_matches_1</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">suffix</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Count the number of words that end with a suffix.</span>
+<span class="sd">    </span>
+<span class="sd">    Inputs:</span>
+<span class="sd">        words List[str]:  list of strings</span>
+<span class="sd">        suffix [str]: a string</span>
+<span class="sd">        </span>
+<span class="sd">    Return [int]: the number of words in word that end with suffix. </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">suffix</span> <span class="o">==</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">suffix</span><span class="p">):]:</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+            
+    <span class="k">return</span> <span class="n">count</span> 
+</pre></div>
+</div>
+<p>Here is some simple test code for this function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_count_suffix_matches</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Test code for count_suffix &quot;&quot;&quot;</span>
+    <span class="n">test_cases</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="c1"># Check for multiple strings that match the suffix</span>
+        <span class="p">([</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="s2">&quot;jello&quot;</span><span class="p">,</span> <span class="s2">&quot;ham&quot;</span><span class="p">,</span> <span class="s2">&quot;cello&quot;</span><span class="p">],</span> <span class="s2">&quot;ello&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+
+        <span class="c1"># Check list of length one with a string that does not match the suffix</span>
+        <span class="p">([</span><span class="s2">&quot;hello&quot;</span><span class="p">],</span> <span class="s2">&quot;bye&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+
+        <span class="c1"># Check list of length one with word that matches the suffix exactly</span>
+        <span class="p">([</span><span class="s2">&quot;hello&quot;</span><span class="p">],</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+
+        <span class="c1"># Check list of length one where the string in the list is</span>
+        <span class="c1"># a suffix of the suffix-to-be-counted.</span>
+        <span class="p">([</span><span class="s2">&quot;ello&quot;</span><span class="p">],</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+
+        <span class="c1"># Check empty list</span>
+        <span class="p">([],</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">lst</span><span class="p">,</span> <span class="n">suffix</span><span class="p">,</span> <span class="n">expected</span> <span class="ow">in</span> <span class="n">test_cases</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">count_suffix_matches</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">suffix</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
+</pre></div>
+</div>
+<p><strong>Problem 18</strong></p>
+<p>Here is an implementation of <code class="docutils literal notranslate"><span class="pre">find_first_word`</span> <span class="pre">that</span> <span class="pre">uses</span>
+<span class="pre">the</span> <span class="pre">string</span> <span class="pre">``split</span></code> method</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_first_word</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">character</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find the first word in a sentence that contains a given</span>
+<span class="sd">    character or None, if the character does not occur in</span>
+<span class="sd">    the sentence.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        sentence (str): the sentence to search</span>
+<span class="sd">        character (str): the character of interest</span>
+
+<span class="sd">    Returns (str | None): The first word in the sentence that contains</span>
+<span class="sd">        the character or None, if the character does not</span>
+<span class="sd">        occur in the sentence.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">sentence</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">character</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">word</span>
+
+    <span class="c1"># did not find the character in a word</span>
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>Here is an implementation that does not use <code class="docutils literal notranslate"><span class="pre">split</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_first_word_1</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">character</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find the first word in a sentence that contains a given</span>
+<span class="sd">    character or None, if the character does not occur in</span>
+<span class="sd">    the sentence.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        sentence (str): the sentence to search</span>
+<span class="sd">        character (str): the character of interest</span>
+
+<span class="sd">    Returns (str | None): The first word in the sentence that contains</span>
+<span class="sd">        the character or None, if the character does not</span>
+<span class="sd">        occur in the sentence.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># keep track of the beginning of most recent word</span>
+    <span class="n">beginning</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># keep track of the location of the letter of interest</span>
+    <span class="n">location</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># look for the the beginning of each word and look for the character</span>
+    <span class="c1"># of interest</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">letter</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">letter</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
+            <span class="n">beginning</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">letter</span> <span class="o">==</span> <span class="n">character</span><span class="p">:</span>
+            <span class="n">location</span> <span class="o">=</span> <span class="n">i</span>
+            <span class="k">break</span>
+
+    <span class="k">if</span> <span class="n">location</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># did not find the letter</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># find the end of the word</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">location</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">end</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">sentence</span><span class="p">[</span><span class="n">end</span><span class="p">]</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
+            <span class="k">break</span>
+        <span class="n">end</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">sentence</span><span class="p">[</span><span class="n">beginning</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>        
+</pre></div>
+</div>
+<p>And here is some simple test code for this function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_find_first_word</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Test code for find_first_word &quot;&quot;&quot;</span>
+    <span class="n">test_cases</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="c1"># Example from problem write-up</span>
+        <span class="p">(</span><span class="s2">&quot;I am learning a lot and having fun this quarter&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;learning&quot;</span><span class="p">),</span>
+
+        <span class="c1"># Letter does not occur</span>
+        <span class="p">(</span><span class="s2">&quot;I am learning a lot and having fun this quarter&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+
+        <span class="c1"># Word of iterest (lot) ends in a character other than a space</span>
+        <span class="p">(</span><span class="s2">&quot;I am learning a lot</span><span class="se">\n</span><span class="s2"> and having fun this quarter&quot;</span><span class="p">,</span> <span class="s2">&quot;t&quot;</span><span class="p">,</span> <span class="s2">&quot;lot&quot;</span><span class="p">),</span>
+
+        <span class="c1"># Empty sentence</span>
+        <span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+
+        <span class="c1"># First word in the sentence matches</span>
+        <span class="p">(</span><span class="s2">&quot;I am learning a lot</span><span class="se">\n</span><span class="s2"> and having fun this quarter&quot;</span><span class="p">,</span> <span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="s2">&quot;I&quot;</span><span class="p">),</span>
+
+        <span class="c1"># Last word in sentence matches</span>
+        <span class="p">(</span><span class="s2">&quot;I am learning a lot</span><span class="se">\t</span><span class="s2"> and having fun this quarter&quot;</span><span class="p">,</span> <span class="s2">&quot;q&quot;</span><span class="p">,</span> <span class="s2">&quot;quarter&quot;</span><span class="p">),</span>
+
+        <span class="c1"># Letter occurs as the last character in the string</span>
+        <span class="p">(</span><span class="s2">&quot;Let&#39;s use Zoom&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;Zoom&quot;</span><span class="p">),</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">sentence</span><span class="p">,</span> <span class="n">letter</span><span class="p">,</span> <span class="n">expected</span> <span class="ow">in</span> <span class="n">test_cases</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">find_first_word</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">letter</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
+</pre></div>
+</div>
 </section>
 </section>
 
