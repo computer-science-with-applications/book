@@ -811,14 +811,14 @@ list by using the <code class="docutils literal notranslate"><span class="pre">a
 <code class="docutils literal notranslate"><span class="pre">Tree</span></code> objects (corresponding to <code class="docutils literal notranslate"><span class="pre">CHILD</span> <span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">CHILD</span> <span class="pre">2</span></code>,
 <code class="docutils literal notranslate"><span class="pre">CHILD</span> <span class="pre">3</span></code>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">_children</span>
-<span class="go">[&lt;tree.Tree object at 0x7175a738bb00&gt;, &lt;tree.Tree object at 0x7175a7a3a6f0&gt;, &lt;tree.Tree object at 0x7175a7a3a3c0&gt;]</span>
+<span class="go">[&lt;tree.Tree object at 0x7ce5df0c9d00&gt;, &lt;tree.Tree object at 0x7ce5df18d7f0&gt;, &lt;tree.Tree object at 0x7ce5df18d790&gt;]</span>
 </pre></div>
 </div>
 <p>If we look at its first child’s <code class="docutils literal notranslate"><span class="pre">_children</span></code> attribute, we
 will see it is a list with two <code class="docutils literal notranslate"><span class="pre">Tree</span></code> objects (corresponding
 to <code class="docutils literal notranslate"><span class="pre">GRANDCHILD</span> <span class="pre">1.1</span></code> and <code class="docutils literal notranslate"><span class="pre">GRANDCHILD</span> <span class="pre">1.2</span></code>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">_children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_children</span>
-<span class="go">[&lt;tree.Tree object at 0x7175a7447980&gt;, &lt;tree.Tree object at 0x7175a71eaa50&gt;]</span>
+<span class="go">[&lt;tree.Tree object at 0x7ce5df0e86e0&gt;, &lt;tree.Tree object at 0x7ce5df08b680&gt;]</span>
 </pre></div>
 </div>
 <p>And if we look at the <code class="docutils literal notranslate"><span class="pre">_children</span></code> attribute of either of those

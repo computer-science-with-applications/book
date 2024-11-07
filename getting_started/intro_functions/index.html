@@ -173,7 +173,7 @@ the function <code class="docutils literal notranslate"><span class="pre">random
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The value of n is&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-<span class="go">The value of n is 804</span>
+<span class="go">The value of n is 58</span>
 </pre></div>
 </div>
 <p>When calling an existing function, you specify parameters in
@@ -721,11 +721,11 @@ could write code that implements the rules directly:</p>
 <p>This code is not very elegant, but it does the job and we can call it
 over and over again to play as many rounds as we want:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">play_round</span><span class="p">()</span>
+<span class="go">13</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">play_round</span><span class="p">()</span>
 <span class="go">12</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">play_round</span><span class="p">()</span>
-<span class="go">11</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">play_round</span><span class="p">()</span>
-<span class="go">11</span>
+<span class="go">9</span>
 </pre></div>
 </div>
 <p>Although this implementation works, it has repeated code, which is a
@@ -936,11 +936,11 @@ player has an advantage:</p>
 <p>Simulating 10,000 trials with a goal of 500 shows that there is a big
 advantage to going first: <code class="docutils literal notranslate"><span class="pre">player1</span></code> wins roughly 60% of the time.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">simulate_many_games</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
-<span class="go">0.6092</span>
+<span class="go">0.6167</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">simulate_many_games</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
-<span class="go">0.6156</span>
+<span class="go">0.6117</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">simulate_many_games</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
-<span class="go">0.6108</span>
+<span class="go">0.6138</span>
 </pre></div>
 </div>
 </section>
@@ -1196,7 +1196,7 @@ either a 0 or a 1 (arbitrarily setting 0 to be heads and 1 to be tails):</p>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="go">45</span>
+<span class="go">47</span>
 </pre></div>
 </div>
 <p>As expected, if we flip the coin a large number of times,
@@ -1204,7 +1204,7 @@ the number of flips that come out heads approaches 50%:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">100000</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">heads</span> <span class="o">=</span> <span class="n">flip_coins</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">heads</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
-<span class="go">0.50153</span>
+<span class="go">0.49857</span>
 </pre></div>
 </div>
 <p>Now, let’s make this function more general. Right now,
@@ -1250,10 +1250,10 @@ correctly when we use large values of <code class="docutils literal notranslate"
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">100000</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">heads</span> <span class="o">=</span> <span class="n">flip_coins</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">heads</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
-<span class="go">0.69756</span>
+<span class="go">0.69871</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">heads</span> <span class="o">=</span> <span class="n">flip_coins</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">heads</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
-<span class="go">0.50079</span>
+<span class="go">0.50145</span>
 </pre></div>
 </div>
 <p>However, it’s likely that we will want to call <code class="docutils literal notranslate"><span class="pre">flip_coins</span></code> to
@@ -1286,14 +1286,14 @@ write the parameter in the form of an assignment, with the default value
 </div>
 <p>We can still call the function with the <code class="docutils literal notranslate"><span class="pre">prob_heads</span></code> parameter:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span>
-<span class="go">70043</span>
+<span class="go">70225</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">)</span>
-<span class="go">35147</span>
+<span class="go">35007</span>
 </pre></div>
 </div>
 <p>But, if we omit the parameter, Python will use <code class="docutils literal notranslate"><span class="pre">0.5</span></code> by default:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
-<span class="go">50310</span>
+<span class="go">49931</span>
 </pre></div>
 </div>
 <p>When you specify a function’s parameters,
@@ -1335,7 +1335,7 @@ SyntaxError: parameter without a default follows parameter with a default
 because how they map to specific parameters depends on their <em>position</em>
 in the list of arguments. For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span>
-<span class="go">69973</span>
+<span class="go">70180</span>
 </pre></div>
 </div>
 <p>In this case, <code class="docutils literal notranslate"><span class="pre">100000</span></code> will be the value for the <code class="docutils literal notranslate"><span class="pre">n</span></code> parameter and
@@ -1344,13 +1344,13 @@ in the list of arguments. For example:</p>
 a value by using <em>keyword arguments</em>. This type of argument follows
 the same syntax as an assignment; for example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">prob_heads</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="go">69843</span>
+<span class="go">69976</span>
 </pre></div>
 </div>
 <p>Notice that, because we explicitly provide a mapping from values to parameters,
 the position of the arguments no longer matters:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="n">prob_heads</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
-<span class="go">69940</span>
+<span class="go">70059</span>
 </pre></div>
 </div>
 <p>Keyword arguments can make a function call easier to read, especially for
@@ -1360,7 +1360,7 @@ remember the exact position of each parameter.</p>
 although in that case the positional arguments must come first.</p>
 <p>For example, this call works:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="n">prob_heads</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="go">70013</span>
+<span class="go">70524</span>
 </pre></div>
 </div>
 <p>But this call doesn’t:</p>
@@ -2213,7 +2213,7 @@ generator as an optional parameter:</p>
 </div>
 <p>Here are some sample uses of this function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="go">3</span>
+<span class="go">2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">prob_heads</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
 <span class="go">4</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">flip_coins</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>

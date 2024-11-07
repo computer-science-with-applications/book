@@ -1092,13 +1092,13 @@ set with curly braces or using the built-in <code class="docutils literal notran
 sequence (list, string, etc.) as the parameter:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;07974&quot;</span><span class="p">}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span>
-<span class="go">{&#39;60637&#39;, &#39;07974&#39;}</span>
+<span class="go">{&#39;07974&#39;, &#39;60637&#39;}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;07974&quot;</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span>
-<span class="go">{&#39;60637&#39;, &#39;07974&#39;}</span>
+<span class="go">{&#39;07974&#39;, &#39;60637&#39;}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">vowels</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="s2">&quot;aeiou&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">vowels</span>
-<span class="go">{&#39;o&#39;, &#39;i&#39;, &#39;u&#39;, &#39;a&#39;, &#39;e&#39;}</span>
+<span class="go">{&#39;e&#39;, &#39;a&#39;, &#39;o&#39;, &#39;i&#39;, &#39;u&#39;}</span>
 </pre></div>
 </div>
 <p>To construct an empty set, we use the <code class="docutils literal notranslate"><span class="pre">set</span></code> function with no arguments:</p>
@@ -1137,11 +1137,11 @@ function:</p>
 <p>Sets are mutable: we can add and remove elements.  We can add elements
 to a set using the <code class="docutils literal notranslate"><span class="pre">add</span></code> method:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span>
-<span class="go">{&#39;60637&#39;, &#39;07974&#39;}</span>
+<span class="go">{&#39;07974&#39;, &#39;60637&#39;}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;14850&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;60637&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span>
-<span class="go">{&#39;60637&#39;, &#39;07974&#39;, &#39;14850&#39;}</span>
+<span class="go">{&#39;07974&#39;, &#39;14850&#39;, &#39;60637&#39;}</span>
 </pre></div>
 </div>
 <p>The second example illustrates an important point about sets: adding
@@ -1153,7 +1153,7 @@ not.  The <code class="docutils literal notranslate"><span class="pre">discard</
 a member of the set and does nothing if the value is not a member of
 the set.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span>
-<span class="go">{&#39;60637&#39;, &#39;07974&#39;, &#39;14850&#39;}</span>
+<span class="go">{&#39;07974&#39;, &#39;14850&#39;, &#39;60637&#39;}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;60637&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;60615&quot;</span><span class="p">)</span>
 <span class="gt">Traceback (most recent call last):</span>
@@ -1222,9 +1222,9 @@ operator or the <code class="docutils literal notranslate"><span class="pre">int
 sets using the <code class="docutils literal notranslate"><span class="pre">-</span></code> operator or the <code class="docutils literal notranslate"><span class="pre">difference</span></code> method:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;07974&quot;</span><span class="p">}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span> <span class="o">|</span> <span class="p">{</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;60615&quot;</span><span class="p">}</span>
-<span class="go">{&#39;60637&#39;, &#39;60615&#39;, &#39;07974&#39;}</span>
+<span class="go">{&#39;07974&#39;, &#39;60615&#39;, &#39;60637&#39;}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span><span class="o">.</span><span class="n">union</span><span class="p">({</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;60615&quot;</span><span class="p">})</span>
-<span class="go">{&#39;60637&#39;, &#39;60615&#39;, &#39;07974&#39;}</span>
+<span class="go">{&#39;07974&#39;, &#39;60615&#39;, &#39;60637&#39;}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;60615&quot;</span><span class="p">}</span>
 <span class="go">{&#39;60637&#39;}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">zipcodes</span><span class="o">.</span><span class="n">intersection</span><span class="p">({</span><span class="s2">&quot;60637&quot;</span><span class="p">,</span> <span class="s2">&quot;60615&quot;</span><span class="p">})</span>
@@ -1240,8 +1240,8 @@ elements in a set:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">zc</span> <span class="ow">in</span> <span class="n">zipcodes</span><span class="p">:</span>
 <span class="gp">... </span>     <span class="nb">print</span><span class="p">(</span><span class="n">zc</span><span class="p">)</span>
 <span class="gp">... </span>
-<span class="go">60637</span>
 <span class="go">07974</span>
+<span class="go">60637</span>
 </pre></div>
 </div>
 <p>As with dictionaries, sets are unordered and so the elements will be
