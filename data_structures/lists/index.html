@@ -1244,9 +1244,9 @@ happen to contain lists with the same values). We can actually see
 these values (the location of the lists in memory) using the
 built-in <code class="docutils literal notranslate"><span class="pre">id</span></code> function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst3</span><span class="p">)</span>
-<span class="go">137326734095040</span>
+<span class="go">124542691784640</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst4</span><span class="p">)</span>
-<span class="go">137326735818112</span>
+<span class="go">124542693223936</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst3</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">lst4</span><span class="p">)</span>
 <span class="go">False</span>
 </pre></div>
@@ -1257,9 +1257,9 @@ however, should not be the same as the one for <code class="docutils literal not
 <p>In contrast, the <code class="docutils literal notranslate"><span class="pre">lst1</span></code> and <code class="docutils literal notranslate"><span class="pre">lst2</span></code> variables we created earlier do have the
 same <code class="docutils literal notranslate"><span class="pre">id</span></code> value, since they both refer to the same list in memory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst1</span><span class="p">)</span>
-<span class="go">137326734148800</span>
+<span class="go">124542691831040</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst2</span><span class="p">)</span>
-<span class="go">137326734148800</span>
+<span class="go">124542691831040</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">lst1</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">lst2</span><span class="p">)</span>
 <span class="go">True</span>
 </pre></div>

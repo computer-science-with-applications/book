@@ -1394,14 +1394,15 @@ and the column to use for filling the new data frame.  In our case,
 we’ll use the borough name as the index, the <code class="docutils literal notranslate"><span class="pre">status</span></code> column to
 supply the column names, and the recently renamed <code class="docutils literal notranslate"><span class="pre">percentage</span></code>
 column to supply the values:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_pvt</span> <span class="o">=</span> <span class="n">pct_per_boro_df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s2">&quot;boroname&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;percentage&quot;</span><span class="p">)</span>
-<span class="gt">Traceback (most recent call last):</span>
-  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
-<span class="gr">TypeError</span>: <span class="n">DataFrame.pivot() takes 1 positional argument but 4 were given</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_pvt</span> <span class="o">=</span> <span class="n">pct_per_boro_df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;boroname&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;percentage&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pct_per_boro_pvt</span>
-<span class="gt">Traceback (most recent call last):</span>
-  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
-<span class="gr">NameError</span>: <span class="n">name &#39;pct_per_boro_pvt&#39; is not defined. Did you mean: &#39;pct_per_boro_df&#39;?</span>
+<span class="go">status             Alive      Dead     Stump</span>
+<span class="go">boroname                                    </span>
+<span class="go">Bronx          94.580003  2.969379  2.450618</span>
+<span class="go">Brooklyn       95.742077  1.872042  2.385881</span>
+<span class="go">Manhattan      95.420571  2.754383  1.825046</span>
+<span class="go">Queens         94.980263  1.772094  3.247642</span>
+<span class="go">Staten Island  96.320667  1.775575  1.903758</span>
 </pre></div>
 </div>
 <p>Because every borough has at least one tree of each status, values are
@@ -1410,27 +1411,32 @@ not available, <code class="docutils literal notranslate"><span class="pre">pivo
 this by computing a pivot table for tree species per boro:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;spc_common&quot;</span><span class="p">,</span> <span class="s2">&quot;boroname&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro_df</span> <span class="o">=</span> <span class="n">species_per_boro</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro_pvt</span> <span class="o">=</span> <span class="n">species_per_boro_df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s2">&quot;spc_common&quot;</span><span class="p">,</span> <span class="s2">&quot;boroname&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="gt">Traceback (most recent call last):</span>
-  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
-<span class="gr">TypeError</span>: <span class="n">DataFrame.pivot() takes 1 positional argument but 4 were given</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro_pvt</span> <span class="o">=</span> <span class="n">species_per_boro_df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;spc_common&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;boroname&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>and then by examining the resulting value for a species named Atlas
 cedar:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro_pvt</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Atlas cedar&quot;</span><span class="p">]</span>
-<span class="gt">Traceback (most recent call last):</span>
-  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
-<span class="gr">NameError</span>: <span class="n">name &#39;species_per_boro_pvt&#39; is not defined. Did you mean: &#39;species_per_boro_df&#39;?</span>
+<span class="go">boroname</span>
+<span class="go">Bronx             6.0</span>
+<span class="go">Brooklyn         34.0</span>
+<span class="go">Manhattan         NaN</span>
+<span class="go">Queens           39.0</span>
+<span class="go">Staten Island     8.0</span>
+<span class="go">Name: Atlas cedar, dtype: float64</span>
 </pre></div>
 </div>
 <p>Notice that the entry for <code class="docutils literal notranslate"><span class="pre">Manhattan</span></code> is <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p>
 <p>In case  you are curious, here’s the  code that we used  to identify a
 tree to use as an example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro_pvt</span><span class="p">[</span><span class="n">species_per_boro_pvt</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
-<span class="gt">Traceback (most recent call last):</span>
-  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
-<span class="gr">NameError</span>: <span class="n">name &#39;species_per_boro_pvt&#39; is not defined. Did you mean: &#39;species_per_boro_df&#39;?</span>
+<span class="go">boroname        Bronx  Brooklyn  Manhattan  Queens  Staten Island</span>
+<span class="go">spc_common                                                       </span>
+<span class="go">Atlas cedar       6.0      34.0        NaN    39.0            8.0</span>
+<span class="go">Shantung maple    9.0      12.0        NaN    27.0           11.0</span>
+<span class="go">Virginia pine     1.0       3.0        3.0     3.0            NaN</span>
+<span class="go">false cypress    13.0      35.0        NaN    51.0            9.0</span>
+<span class="go">trident maple     7.0      12.0        NaN    68.0           23.0</span>
 </pre></div>
 </div>
 <p>Let’s pull this expression apart.  The expression
@@ -1456,13 +1462,14 @@ from the data set.</p>
 <p>As an aside, in this case, it makes sense to replace the null values
 with zeros.  We can do this task easily using the <code class="docutils literal notranslate"><span class="pre">fillna</span></code> method:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro_pvt</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gt">Traceback (most recent call last):</span>
-  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
-<span class="gr">NameError</span>: <span class="n">name &#39;species_per_boro_pvt&#39; is not defined. Did you mean: &#39;species_per_boro_df&#39;?</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">species_per_boro_pvt</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Atlas cedar&quot;</span><span class="p">]</span>
-<span class="gt">Traceback (most recent call last):</span>
-  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
-<span class="gr">NameError</span>: <span class="n">name &#39;species_per_boro_pvt&#39; is not defined. Did you mean: &#39;species_per_boro_df&#39;?</span>
+<span class="go">boroname</span>
+<span class="go">Bronx             6.0</span>
+<span class="go">Brooklyn         34.0</span>
+<span class="go">Manhattan         0.0</span>
+<span class="go">Queens           39.0</span>
+<span class="go">Staten Island     8.0</span>
+<span class="go">Name: Atlas cedar, dtype: float64</span>
 </pre></div>
 </div>
 <p>As in other cases, adding <code class="docutils literal notranslate"><span class="pre">inplace=True</span></code> as a parameter instructs

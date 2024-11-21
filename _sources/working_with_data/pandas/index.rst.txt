@@ -984,7 +984,7 @@ column to supply the values:
 
 .. python-run::
 
-   pct_per_boro_pvt = pct_per_boro_df.pivot("boroname", "status", "percentage")
+   pct_per_boro_pvt = pct_per_boro_df.pivot(index="boroname", columns="status", values="percentage")
    pct_per_boro_pvt
 
 
@@ -997,7 +997,7 @@ this by computing a pivot table for tree species per boro:
 
     species_per_boro = trees.groupby(["spc_common", "boroname"]).size()
     species_per_boro_df = species_per_boro.to_frame().reset_index()
-    species_per_boro_pvt = species_per_boro_df.pivot("spc_common", "boroname", 0)
+    species_per_boro_pvt = species_per_boro_df.pivot(index="spc_common", columns="boroname", values=0)
 
 and then by examining the resulting value for a species named Atlas
 cedar:
