@@ -22,7 +22,7 @@ Example code
 ~~~~~~~~~~~~
 
 Some chapters in the book rely on example code that we provide through the
-following repository on GiHub:
+following repository on GitHub:
 
 https://github.com/cs-apps-book/examples
 

@@ -317,7 +317,7 @@ values between 0 and 100 (inclusive), we would just use the following:
 Finally, NumPy includes a function, ``loadtxt``, for loading data from
 a file into an array.  This function takes the name of the file as a
 required argument.  Programmers can also specify the data type of the
-values, a number of header rows to skip (``skiprow``), the delimiter
+values, a number of header rows to skip (``skiprows``), the delimiter
 that is used to separate values in a row (``delimiter``), etc.  We
 can load the data shown above from a file named
 ``pima-indians-diabetes.csv`` into an array named ``data`` with this
