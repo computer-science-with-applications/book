@@ -559,12 +559,12 @@ can use it:
 
     import yaml
 
-We can load a YAML file using ``yaml.load`` with a file pointer:
+We can load a YAML file using ``yaml.safe_load`` with a file pointer:
 
 .. python-run::
 
     with open("rubric.yml") as f:
-        rubric = yaml.load(f)
+        rubric = yaml.safe_load(f)
 
 
 The result will be a dictionary:
